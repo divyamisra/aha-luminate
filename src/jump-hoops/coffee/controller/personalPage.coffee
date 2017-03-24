@@ -15,11 +15,13 @@ angular.module 'ahaLuminateControllers'
       $scope.teamId = $dataRoot.data('team-id') if $dataRoot.data('team-id') isnt ''
       $scope.eventDate =''
       $rootScope.numTeams = ''
+      $scope.challengeId = ''
       $scope.challengeName = ''
       $scope.challengeCompleted = ''
 
-      ZuriService.getZooStudent '1/2',
+      ZuriService.getZooStudent '1163033/438147777',
         success: (response) ->
+          $scope.challengeId = response.data.challenges.current
           $scope.challengeName = response.data.challenges.current
           $scope.challengeCompleted = response.data.challenges.completed
 

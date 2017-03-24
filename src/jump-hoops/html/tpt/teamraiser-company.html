@@ -1,4 +1,4 @@
-<div ng-controller="CompanyPageCtrl">
+<div ng-controller="CompanyPageCtrl" ng-cloak>
   <div class="ym-page-section ym-page-section__top">
     <div class="col-md-6 ym-user-image" style="background-image:url('[[C4:responsive_company_logo]]');">
         <img class="hidden-md hidden-lg" src="[[C4:responsive_company_logo]]" alt="[[C1:photo1_text]]" />
@@ -41,22 +41,22 @@
   </div>
   <div class="ym-page-section ym-page-section__main">
     <div class="container">
-      <div class="ym-our-stats ym-promo-block">
+      <div class="ym-our-stats ym-promo-block" ng-if="participantCount > 0">
         <h3 class="ym-headline">Our Stats</h3>
         <div class="ym-promo-block__item ym-promo-block__item--members ym-promo-block--circle">
           <h2 class="ym-headline">{{participantCount}}</h2>
           <p>team members registered.</p>
         </div>
         <div class="ym-promo-block__item ym-promo-block__item--exercise ym-promo-block--circle">
-          <h2 class="ym-headline">321</h2>
+          <h2 class="ym-headline">{{activity1amt}}</h2>
           <p>daily challenges of excersing 60 minutes a day!</p>
         </div>
         <div class="ym-promo-block__item ym-promo-block__item--water ym-promo-block--circle">
-          <h2 class="ym-headline">120</h2>
+          <h2 class="ym-headline">{{activity2amt}}</h2>
           <p>daily challenges of choosing water over sugar drinks</p>
         </div>
         <div class="ym-promo-block__item ym-promo-block__item--food ym-promo-block--circle">
-          <h2 class="ym-headline">47</h2>
+          <h2 class="ym-headline">{{activity3amt}}</h2>
           <p>daily challenges of fruits and veggies at every meal</p>
         </div>
       </div>

@@ -56,12 +56,12 @@
         </div>
         <div class="clearfix"></div>
       </div>
-      <div class="ym-my-challenge ym-secondary-medium-color" ng-if="challengeName != null">
+      <div class="ym-my-challenge ym-secondary-medium-color" ng-if="challengeId != null">
         <h3 class="ym-headline">My Challenge</h3>
         <div class="col-sm-4">
-          <img class="img-responsive" ng-if="challengeName == 'Choose water over sugar drinks'" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/jump-hoops/image/my-challenge-water.png" alt="{{challengeName}}" />
-          <img class="img-responsive" ng-if="challengeName == 'Be physically active for 60 minutes everyday'" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/jump-hoops/image/my-challenge-exercise.png" alt="{{challengeName}}" />
-          <img class="img-responsive" ng-if="challengeName != 'Be physically active for 60 minutes everyday' && challengeName != 'Choose water over sugar drinks'" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/jump-hoops/image/my-challenge-food.png" alt="{{challengeName}}" />
+          <img class="img-responsive" ng-if="challengeId == 1 || challengeId == 4" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/jump-hoops/image/my-challenge-exercise.png" alt="{{challengeName}}" />
+          <img class="img-responsive" ng-if="challengeId == 2" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/jump-hoops/image/my-challenge-water.png" alt="{{challengeName}}" />
+          <img class="img-responsive" ng-if="challengeId == 3" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/jump-hoops/image/my-challenge-food.png" alt="{{challengeName}}" />          
         </div>
         <div class="col-sm-8">
           <p class="ym_my_challenge__description">  
@@ -76,6 +76,23 @@
         </div>
         <div class="clearfix"></div>
       </div>
+      <!--fallback to pull challenge from LO if no Zuri data-->
+      [[?[[E48:[[S80:trID]]-[[S334:px]]:question:Pick from one of the choices below and we will customize your message letting friends and family know you have taken the challenge. We will also send you some information to help you meet your goal.]]::::
+      ::
+        <div class="ym-my-challenge ym-secondary-medium-color" ng-if="challengeId = null">
+          <h3 class="ym-headline">My Challenge</h3>
+          <div class="col-sm-4">
+            <img class="img-responsive" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/jump-hoops/image/my-challenge-water.png" alt="" />
+          </div>
+          <div class="col-sm-8">
+            <p class="ym_my_challenge__description">  
+              <strong>[[E48:[[S80:trID]]-[[S334:px]]:question:Pick from one of the choices below and we will customize your message letting friends and family know you have taken the challenge. We will also send you some information to help you meet your goal.]]</strong>
+            </p>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      ]]
+      <div class="clearfix"></div>
     </div>
     <div class="clearfix"></div>
   </div>
