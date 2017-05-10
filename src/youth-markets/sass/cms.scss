@@ -4,47 +4,61 @@
   h5,
   .h5-heading {
     margin: 0 0 30px;
-    
+
     @media(max-width: $screen-sm-max) {
       margin: 0 0 20px;
     }
   }
-  
+
   h2 + h5,
   h2 + .h5-heading {
     margin: 0 0 20px;
   }
-  
+
   .ym-page-breadcrumbs {
     color: $brand-white;
     padding-bottom: 18px;
-    
+
     a {
       color: $brand-white;
       text-decoration: underline;
     }
   }
-  
+
   .breadcrumbComponent {
     display: block;
     margin-bottom: 25px;
-    
+
     .breadcrumb {
       color: $brand-white;
       background-color: $event-accent;
       padding: 0;
       font-weight: lighter;
     }
-    
+
     @media (max-width: $screen-xs-max) {
       display: none;
     }
   }
-  
+
   .breadcrumbseparator {
     color: $brand-white;
   }
-  
+
+  div {
+    & > .ym-page-section__block:last-of-type {
+      margin-bottom: 0px;
+    }
+  }
+
+  .ym-promo-block--footer {
+    margin-top: 50px;
+
+    @media (max-width: $screen-sm-max) {
+      margin-top: 40px;
+    }
+  }
+
   .ym-page-section__block {
     padding: 0px 40px;
     margin-bottom: 50px;
@@ -59,6 +73,12 @@
       padding-right: 100px;
     }
 
+    & > h2 {
+      &:only-child {
+        margin-bottom: -25px
+      }
+    }
+
     @media (max-width: $screen-sm-max) {
       margin-bottom: 40px;
 
@@ -67,6 +87,12 @@
       &.ym-page-section__block--slim {
         padding-left: 40px;
         padding-right: 40px;
+      }
+
+      & > h2 {
+        &:only-child {
+          margin-bottom: -15px 
+        }
       }
     }
 
@@ -188,6 +214,12 @@
       h6,
       .h6-heading {
         margin-bottom: 25px;
+      }
+
+      .fa-ul {
+        & > li {
+          font-size: 14px;
+        }
       }
     }
   }

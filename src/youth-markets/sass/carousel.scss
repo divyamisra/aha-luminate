@@ -37,6 +37,19 @@
         display: block;
       }
     }
+
+    h3,
+    .h3-heading,
+    h5,
+    .h5-heading {
+      a {
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
   }
 
   .owl-prev {
@@ -128,6 +141,15 @@
     margin: 20px 0;
   }
 
+  h3,
+  .h3-heading,
+  h5,
+  .h5-heading {
+    a {
+      color: $event-secondary;
+    }
+  }
+
   .owl-stage {
     display: flex;
   }
@@ -163,7 +185,7 @@
       bottom: 0;
       left: 0;
       right: 0;
-      max-width: 132px;
+      width: 132px;
       margin: auto;
     }
   }
