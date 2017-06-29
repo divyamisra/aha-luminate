@@ -30,7 +30,9 @@
   }
 }
 
-.ym-pc-dashboard-progress-type {
+.ym-pc-dashboard-progress-type,
+.ym-pc-dashboard-captain-page-type, 
+.ym-pc-dashboard-coordinator-page-type {
   a {
     &, 
     &:link, 
@@ -223,4 +225,8 @@
       }
     }
   }
+}
+
+.ym-pc-dashboard-section-header h2 {
+  text-transform: uppercase;
 }
