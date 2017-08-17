@@ -5,11 +5,11 @@
     </h2>
   </div>
   <div class="modal-body">
-    <div uib-alert class="alert-danger" ng-if="importContactsError">
+    <div uib-alert class="alert-danger" role="alert" ng-if="importContactsError">
       {{importContactsError}}
     </div>
     <div ng-if="contactImport.step == 'choose-type'">
-      <div uib-alert class="alert-warning">
+      <div uib-alert class="alert-warning" role="alert">
         <p>
           Importing contacts from other email services into your Participant Center Address Book makes it easy to solicit donations, monitor who responded, and follow up with personal thank you notes.
         </p>
@@ -37,7 +37,7 @@
       </div>
     </div>
     <div ng-if="contactImport.step == 'online-consent'">
-      <div uib-alert class="alert-warning">
+      <div uib-alert class="alert-warning" role="alert">
         Your consent is needed to access your online address book. If the consent pop-up does not appear automatically, check to ensure it was not blocked by your browser.
       </div>
       <div ng-repeat="jobEvent in contactImport.jobEvents">
@@ -49,7 +49,7 @@
         No contacts found.
       </div>
       <div ng-if="contactsAvailableForImport.length > 0">
-        <div uib-alert class="alert-warning">
+        <div uib-alert class="alert-warning" role="alert">
           Your contacts were successfully retrieved. Import all or some of the retrieved contacts into your Participant Center Address Book.
         </div>
         <p>
@@ -61,7 +61,7 @@
       </div>
     </div>
     <div ng-if="contactImport.step == 'csv-upload'">
-      <div uib-alert class="alert-warning">
+      <div uib-alert class="alert-warning" role="alert">
         Your upload file should include the columns First Name, Last Name, and Email.
       </div>
       <form class="js--import-contacts-csv-form" action="CRAddressBookAPI" method="POST" enctype="multipart/form-data" target="import-contacts-upload-shim">

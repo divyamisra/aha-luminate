@@ -358,7 +358,7 @@
               <button type="button" class="btn btn-md-wide btn-primary" ng-click="logChallenge()" ng-if="!personalChallenge.completedToday" ng-cloak>
                 <strong>Yes, I met this challenge today!</strong> <!--<i class="fa fa-check" hidden aria-hidden="true"></i>-->
               </button>
-              <div class="alert alert-success" ng-if="personalChallenge.completedToday" ng-cloak>
+              <div class="alert alert-success" role="alert" ng-if="personalChallenge.completedToday" ng-cloak>
                 <strong>Challenge met</strong> <i class="fa fa-check" hidden aria-hidden="true"></i>
               </div>
             </div>

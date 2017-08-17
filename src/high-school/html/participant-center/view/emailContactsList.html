@@ -159,19 +159,19 @@
       </div>
     </div>
     <div class="col-sm-8 col-md-9">
-      <div uib-alert class="alert-success" ng-if="addContactSuccess">
+      <div uib-alert class="alert-success" role="alert" ng-if="addContactSuccess">
         {{addContactSuccess}}
       </div>
-      <div uib-alert class="alert-success" ng-if="importContactsSuccess">
+      <div uib-alert class="alert-success" role="alert" ng-if="importContactsSuccess">
         Contacts imported successfully.
       </div>
-      <div uib-alert class="alert-success" ng-if="editContactSuccess">
+      <div uib-alert class="alert-success" role="alert" ng-if="editContactSuccess">
         {{editContactSuccess}}
       </div>
-      <div uib-alert class="alert-danger" ng-if="deleteContactError">
+      <div uib-alert class="alert-danger" role="alert" ng-if="deleteContactError">
         {{deleteContactError}}
       </div>
-      <div uib-alert class="alert-success" ng-if="deleteContactSuccess">
+      <div uib-alert class="alert-success" role="alert" ng-if="deleteContactSuccess">
         {{deleteContactSuccess}}
       </div>
       <div class="contacts-list__actions clearfix">

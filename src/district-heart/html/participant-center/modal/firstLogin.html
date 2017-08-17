@@ -11,10 +11,10 @@
         Your personal page is built and ready! <strong>Customize your URL</strong> so you can quickly share your page with family and friends:
       </div>
       <div class="ym-pc-first-login-url">
-        <div class="alert alert-danger" ng-if="setPersonalUrlInfo.errorMessage" ng-cloak>
+        <div class="alert alert-danger" role="alert" ng-if="setPersonalUrlInfo.errorMessage" ng-cloak>
           <span ng-bind-html="setPersonalUrlInfo.errorMessage"></span>
         </div>
-        <div class="alert alert-success" ng-if="setPersonalUrlInfo.success" ng-cloak>
+        <div class="alert alert-success" role="alert" ng-if="setPersonalUrlInfo.success" ng-cloak>
           URL updated.
         </div>
         <form method="POST" novalidate ng-submit="setPersonalUrl()">

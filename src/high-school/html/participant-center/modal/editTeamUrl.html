@@ -5,10 +5,10 @@
     </h2>
   </div>
   <div class="modal-body">
-    <div uib-alert class="alert-danger" ng-if="teamUrlInfo.errorMessage">
+    <div uib-alert class="alert-danger" role="alert" ng-if="teamUrlInfo.errorMessage">
       <span ng-bind-html="teamUrlInfo.errorMessage"></span>
     </div>
-    <div uib-alert class="alert-warning" ng-if="teamShortcut.hint">
+    <div uib-alert class="alert-warning" role="alert" ng-if="teamShortcut.hint">
       <span ng-bind-html="teamShortcut.hint"></span>
     </div>
     <div class="form-group">
