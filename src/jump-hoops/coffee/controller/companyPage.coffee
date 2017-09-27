@@ -26,6 +26,7 @@ angular.module 'ahaLuminateControllers'
       $scope.activity1amt = ''
       $scope.activity2amt = ''
       $scope.activity3amt = ''
+      $scope.schoolNotFound = ''
       
       $scope.trustHtml = (html) ->
         return $sce.trustAsHtml(html)
@@ -71,6 +72,9 @@ angular.module 'ahaLuminateControllers'
             $scope.activity3amt = studentsPledgedActivities['3'].count
           else
             $scope.activity3amt = 0
+
+      checkSchoolNotFound = (schoolName) ->
+        $scope.schoolNotFound = if schoolName.indexOf('School Not Found') > -1 then true else false
       
       setCompanyProgress = (amountRaised, goal) ->
         $scope.companyProgress = 
@@ -110,6 +114,7 @@ angular.module 'ahaLuminateControllers'
               amountRaised = companies[0].amountRaised
               goal = companies[0].goal
               name = companies[0].companyName
+              checkSchoolNotFound name
               coordinatorId = companies[0].coordinatorId
               $rootScope.companyName = name
               setCompanyProgress amountRaised, goal
