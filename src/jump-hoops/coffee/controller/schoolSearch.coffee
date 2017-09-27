@@ -189,7 +189,7 @@ angular.module 'ahaLuminateControllers'
         index = $scope.schoolList.schools.indexOf value
         begin <= index and index < end
         
-      $scope.noschoolRedirect = ->
-        if $scope.selectedItem
-          window.location.href = $scope.selectedItem
+      $scope.noschoolRedirect = (selectedItem) ->
+        if selectedItem
+          window.location.href = selectedItem
 ]
