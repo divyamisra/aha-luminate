@@ -1,5 +1,37 @@
 <div ng-controller="CompanyPageCtrl" ng-cloak>
   <div class="hidden" hidden aria-hidden="true" ng-init="parentCompanyId = '[[?xx::x[[E417:[[S334:company_id]]]]x::::[[E130:[[T8:[[E417:[[S334:company_id]]]]]] dup dup [[T8:company_id=]] indexof 11 + swap length substring dup 0 swap [[T8:&]] indexof substring]]]]'; companyPagePhoto1.customUrl = '[[C4:responsive_company_logo]]'"></div>
+  <div ng-if="schoolNotFound">
+  <div class="ym-page-section ym-page-section__top">
+    <div class="col-md-6 ym-user-image" ng-style="{'background-image': (companyPagePhoto1.customUrl && companyPagePhoto1.customUrl != '') ? ('url(' + companyPagePhoto1.customUrl + ')') : ('url(' + companyPagePhoto1.defaultUrl + ')')}">
+      <div class="ym-user-image-inner">
+        <button type="button" class="btn btn-md-wide btn-toggle" ng-click="editCompanyPhoto1()" ng-if="participantRegistration.companyInformation.companyId == '[[S334:company_id]]' && participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+          <span class="fa fa-camera"></span> Edit Photo
+        </button>
+        <img class="hidden-md hidden-lg" ng-src="{{companyPagePhoto1.customUrl && companyPagePhoto1.customUrl != '' ? companyPagePhoto1.customUrl : companyPagePhoto1.defaultUrl}}" alt="School Photo" ng-cloak>
+      </div>
+    </div>
+    <div class="col-md-6 ym-progress ym-secondary-medium-color">
+      <h2 class="ym-progress__title h4">
+        [[C1:title]]
+      </h2>
+      <div class="ym-progress__cta">
+        <div ng-if="(companyTeams.totalNumber == 1 && !teamId) || companyTeams.totalNumber > 1" ng-cloak>
+          <a class="btn btn-primary btn-lg" aria-label="Sign Up with {{companyName}}" href="TRR?fr_id=[[S80:trID]]&amp;pg=tfind&amp;fr_tm_opt=existing&amp;s_frTJoin=&amp;company_id=[[S334:company_id]]&amp;s_frCompanyId=[[S334:company_id]]">
+            Sign Up
+          </a>
+        </div>
+        <div ng-if="companyTeams.totalNumber == 1 && teamId" ng-cloak>
+          <a class="btn btn-primary btn-lg" aria-label="Sign Up with {{companyName}}" ng-href="TRR?fr_id=[[S80:trID]]&amp;pg=tfind&amp;fr_tm_opt=existing&amp;fr_tjoin={{teamId}}&amp;s_frTJoin={{teamId}}&amp;s_frCompanyId=[[S334:company_id]]">
+            Sign Up
+          </a>
+        </div>
+      </div>
+      <p>Please Sign Up and an American Heart Association Representative will contact you when you have been moved to your school!</p>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+  </div>
+  <div ng-if="!schoolNotFound">
   <div class="ym-page-section ym-page-section__top">
     <div class="col-md-6 ym-user-image" ng-style="{'background-image': (companyPagePhoto1.customUrl && companyPagePhoto1.customUrl != '') ? ('url(' + companyPagePhoto1.customUrl + ')') : ('url(' + companyPagePhoto1.defaultUrl + ')')}">
       <div class="ym-user-image-inner">
@@ -187,5 +219,6 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
 </div>
