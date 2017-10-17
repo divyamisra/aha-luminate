@@ -38,7 +38,7 @@ angular.module 'ahaLuminateControllers'
             if not $scope.$$phase
               $scope.$apply()
             angular.element('body').removeClass 'hidden'
-        TeamraiserTeamService.getTeams 'team_company_id=' + $scope.teamSearch.companyId + '&list_page_size=500',
+        TeamraiserTeamService.getTeams 'team_company_id=' + $scope.teamSearch.companyId + '&list_page_size=500&list_sort_column=name',
           error: ->
             setTeams()
           success: (response) ->
