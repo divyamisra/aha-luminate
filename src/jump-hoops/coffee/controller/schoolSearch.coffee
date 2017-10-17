@@ -188,4 +188,8 @@ angular.module 'ahaLuminateControllers'
         end = begin + $scope.schoolList.paginationItemsPerPage
         index = $scope.schoolList.schools.indexOf value
         begin <= index and index < end
-  ]
+        
+      $scope.noschoolRedirect = (selectedItem) ->
+        if selectedItem
+          window.location.href = selectedItem
+]
