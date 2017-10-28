@@ -1,5 +1,4 @@
-.heart-page-main--participant-center {
-  font-size: 15px;
+.heart_pc_main_page {
   margin: 32px 0 0;
   
   @media (min-width: $screen-sm-min) {
@@ -29,10 +28,5 @@
   @media (min-width: $screen-lg-min) {
     width: 720px;
     margin: 0 0 0 48px;
-  }
-  
-  h2 {
-    font-size: 20px;
-    margin: 0 0 30px;
   }
 }

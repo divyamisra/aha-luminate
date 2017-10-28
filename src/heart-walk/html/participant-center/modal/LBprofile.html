@@ -1,0 +1,69 @@
+<div class="modal-header">
+  <h2 class="modal-title">
+    Complete Your Profile
+  </h2>
+</div>
+<div class="modal-body">
+  <div uib-alert class="alert-success" ng-if="updateSurveySuccess" close="resetSurveyAlerts()">
+    <span translate="survey_save_success"></span>
+  </div>
+  <div uib-alert class="alert-danger" ng-if="updateSurveyFailure" close="resetSurveyAlerts()">
+    {{updateSurveyFailureMessage}}
+  </div>
+  <div uib-alert class="alert-success" ng-if="updateProfileSuccess" close="resetProfileAlerts()">
+    <span translate="survey_save_success"></span>
+  </div>
+  <div uib-alert class="alert-danger" ng-if="updateProfileFailure" close="resetProfileAlerts()">
+    {{updateProfileFailureMessage}}
+  </div>
+  <div class="row">
+    <div class="col-sm-12" class="profile_headlines">
+        <p ng-if="profileProgress == '0'">We want to get to know you, <span ng-if="constituent.name && constituent.name.first">{{constituent.name.first}}</span><span ng-if="!constituent.name.first">Participant</span>! Mind sharing a few more details with us?</p>
+        <p ng-if="profileProgress == '1'">We’re definitely getting there, <span ng-if="constituent.name && constituent.name.first">{{constituent.name.first}}</span><span ng-if="!constituent.name.first">Participant</span>. Can you share a little more about you?</p>
+        <p ng-if="profileProgress == '2'"><span ng-if="constituent.name && constituent.name.first">{{constituent.name.first}}</span><span ng-if="!constituent.name.first">Participant</span>, we love getting to know you. Just a few more details, please.</p>
+        <p ng-if="profileProgress == '3'">So close, <span ng-if="constituent.name && constituent.name.first">{{constituent.name.first}}</span><span ng-if="!constituent.name.first">Participant</span>! Just one more detail and then we’re complete.</p>
+        <p ng-if="profileProgress == '4'">Yay! Your profile is up-to-date. You can edit it at any time by using the links below.</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4 profile_progress">
+      <!--<div class="profile_percent">{{profilePercent}}%</div>-->
+      <div class="progress red ratio{{profileProgress}}">
+          <span class="progress-left">
+              <span class="progress-bar"></span>
+          </span>
+          <span class="progress-right">
+              <span class="progress-bar"></span>
+          </span>
+          <div class="progress-value">{{profilePercent}}%</div>
+      </div>
+      <h3>My Profile Progress</h3>
+    </div>
+    <div class="col-sm-8 profile_icon_checklist">
+      <div class="row">
+        <div class="col-xs-6">
+          <i class="fa fa-question" ng-if="profileChecklistItems.why == 0"></i><i class="fa fa-check" ng-if="profileChecklistItems.why == 1"></i><a id="LBprofileWhy" href ng-href="{{personalPageUrlSecure}}&amp;videoWhy=true">What's Your Why?</a>
+        </div>
+        <div class="col-xs-6">
+          <i class="fa fa-mobile" ng-if="profileChecklistItems.mobile == 0"></i><i class="fa fa-check" ng-if="profileChecklistItems.mobile == 1"></i><a href ng-click="sendGAEvent('Mobile Phone - profile lightbox');LBprofileLinks('mobile')">Mobile Phone</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+          <i class="fa fa-home" ng-if="profileChecklistItems.street == 0"></i><i class="fa fa-check" ng-if="profileChecklistItems.street == 1"></i><a href ng-click="sendGAEvent('Street Address - profile lightbox');LBprofileLinks('street')">Street Address</a>
+        </div>
+        <div class="col-xs-6">
+          <i class="fa fa-calendar" ng-if="profileChecklistItems.years == 0"></i><i class="fa fa-check" ng-if="profileChecklistItems.years == 1"></i><a href ng-click="sendGAEvent('Heart Walk Alumni - profile lightbox');LBprofileLinks('years')">Heart Walk Alumni?</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <div class="clearfix">
+    <div class="not_right_now_center">
+      <a href class="btn btn-primary-inverted text-uppercase" ng-click="sendGAEvent('Not Right Now - profile lightbox');notRightNow();">Not Right Now</a>
+    </div>
+  </div>
+  <div class="lb_skip_link"><a href ng-click="sendGAEvent('Mark My Profile as Complete - profile lightbox');LBskip('profile');">Mark My Profile as Complete</a></div>
+</div>

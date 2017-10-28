@@ -1,0 +1,22 @@
+<div class="modal-header">
+  <h2 class="modal-title">
+    Welcome Back!
+  </h2>
+</div>
+<div class="modal-body">
+  <div>
+      <p><span ng-if="constituent.name && constituent.name.first">{{constituent.name.first}}</span><span ng-if="!constituent.name.first">Participant</span>, we are THRILLED to have you back!</p>
+      <p><span class="redText strongText">Our tip to you</span><span class="strongText">: make sure you make a donation towards your fundraising goal!</span> This shows your commitment to fundraise to those around you.</p>
+  </div>
+</div>
+<div class="modal-footer">
+  <div class="clearfix">
+    <div class="pull-left">
+      <a href class="btn btn-primary-inverted text-uppercase" ng-click="sendGAEvent('Not Right Now - donate lightbox');notRightNow()">Not Right Now</a>
+    </div>
+    <div class="pull-right">
+      <a id="LBmakeDonation" ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}" class="btn btn-primary text-uppercase">Make a Donation</a>
+    </div>
+  </div>
+  <div class="lb_skip_link"><a href ng-click="sendGAEvent('Mark as Complete - donate lightbox');LBskip('donate')">Mark as Complete</a></div>
+</div>

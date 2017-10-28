@@ -1,0 +1,32 @@
+<form ng-submit="updateEditYears($event)" novalidate>
+  <div class="modal-header">
+    <h2 class="modal-title">
+      Update Years
+    </h2>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="question_key_hw_years_participated">How Many Years have you participated in HeartWalk?</label>
+      <div class="input-group">
+        <select name="question_key_hw_years_participated" id="question_key_hw_years_participated" class="form-control" aria-label="How many years have your participated?" ng-model="sqvm.surveyModel.question_key_hw_years_participated">
+          <option value="1">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5+">5+</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="clearfix">
+      <div class="pull-left">
+        <a href class="btn btn-primary-inverted text-uppercase" ng-click="sendGAEvent('Cancel editing How Many Years - profile lightbox');cancelEditYears()">Cancel</a>
+      </div>
+      <div class="pull-right">
+        <button type="submit" class="btn btn-primary text-uppercase" ng-click="sendGAEvent('Save editing How Many Years - profile lightbox')">Save</button>
+      </div>
+    </div>
+  </div>
+</form>

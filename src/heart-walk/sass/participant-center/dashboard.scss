@@ -1,6 +1,42 @@
+body {
+  font-size: 18px;
+}
+
+a {
+  &,
+  &:link,
+  &:visited,
+  &:hover,
+  &:focus {
+    font-weight: 400;
+  }
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 767px)  {
+  h1, .h1, h2, .h2 {
+    font-size: 24px;
+  }
+}
+
+/*#headerWrapper {
+  position: relative;
+  z-index: 1040;
+}*/
+
+.manage_walk_items {
+  p {
+    font-size: 16px;
+  }
+}
+
 .heart-dashboard__header {
   margin: 0 0 20px;
-  
+
   @media (min-width: $screen-sm-min) {
     margin: 0 0 50px;
   }
@@ -20,12 +56,12 @@
 .heart-dashboard-tab-info__text {
   font-size: 18px;
   padding: 0 0 30px;
-  
+
   @media (min-width: $screen-sm-min) {
     float: left;
     padding: 0;
   }
-  
+
   @media (min-width: 840px) {
     font-size: 20px;
   }
@@ -35,42 +71,390 @@
   font-size: 25px;
   font-weight: 600;
 }
+.heart_pc_sidebar_row {
+    margin-bottom: 50px;
+}
+.header_greetings a {
+    font-weight: bold;
+}
+.header_checklist {
+    margin-bottom: 50px;
+}
+.view_map {
+    margin-top: 20px;
+}
 
 .heart-dashboard-tab-info__cta {
   text-align: center;
-  
+
   @media (min-width: $screen-sm-min) {
     float: right;
     text-align: left;
   }
-  
+
   .btn {
-    &, 
-    &:link, 
+    &,
+    &:link,
     &:visited {
       padding: 4px 10px;
       margin: 0 0 0 8px;
-      
+
       @media (min-width: 360px) {
         padding: 4px 16px;
         margin: 0 0 0 10px;
       }
-      
+
       @media (min-width: 375px) {
         padding: 4px 18px;
       }
-      
+
       @media (min-width: 414px) {
         padding: 4px 24px;
       }
-      
+
       &:first-child {
         margin: 0;
-        
+
         @media (min-width: $screen-sm-min) {
           margin: 0 0 0 10px;
         }
       }
     }
   }
+}
+.redText {
+    color: #de2427;
+}
+.strongText {
+    font-weight: bold;
+}
+
+.row.profile_box_row {
+    border-bottom: 1px dotted #7e7e7e;
+}
+.profile_box {
+    border-right: 1px dotted #333;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    overflow: hidden;
+}
+.profile_box:last-child {
+    border: 0;
+}
+.profile_box_icon {
+    width: 25%;
+    color: #a1a2a3;
+    font-size: 68px;
+    text-align: center;
+}
+
+.profile_box_info {
+    width: 75%;
+    font-size: 16px;
+}
+@media only screen and (min-width: 768px)  {
+  .profile_box_text {
+      min-height: 70px;
+  }
+}
+.profile_box button.btn.btn-primary, .profile_box a.btn.btn-primary {
+    display: block;
+    width: 100%;
+    line-height: 32px;
+    margin-top: 10px;
+}
+.lb_skip_link {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 20px;
+}
+.not_right_now_center {
+    text-align: center;
+}
+
+@media only screen and (max-width: 767px)  {
+  .modal-footer .pull-left, .modal-footer .pull-right {
+      float: none !important;
+      text-align: center;
+      margin-bottom: 10px;
+  }
+  .profile_box {
+      border: 0;
+      padding-top: 10px;
+      padding-bottom: 10px;
+  }
+  .profile_box_icon {
+    font-size: 48px;
+  }
+  .row.profile_box_row {
+      border: 0;
+  }
+  .manage_walk_items .pull-right, .heart_pc_my_donors .pull-right {
+    text-align: center;
+    float: none !important;
+  }
+  .manage_walk_items .pull-left, .heart_pc_my_donors .pull-left {
+    float: none !important;
+  }
+  .heart_pc_my_donors a.pull-right {
+    margin-bottom: 30px;
+  }
+  .donor_gift_list, .donor_gift_list a {
+    font-size: 12px;
+  }
+}
+.manage_walk_items {
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    border-bottom: 1px dotted #7e7e7e;
+}
+.manage_walk_items a.btn {
+    margin-top: 3px;
+}
+.manage_walk_header {
+    font-weight: 600;
+    line-height: 1;
+}
+.heart_pc_sidebar_thermometer {
+    position: relative;
+    background: #ffffff;
+    border-radius: 0;
+    height: auto;
+    margin: 0 0 15px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: 1px solid #ececec;
+}
+
+.heart_pc_sidebar_thermometer .heart_pc_sidebar_thermometer_fill {
+    background: #9a1211;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.heart_pc_sidebar_percentage {
+    text-align: center;
+    display: block;
+    color: #000000;
+    font-size: 16px;
+    padding: 5px;
+    position: relative;
+}
+a.heart_pc_sidebar_sharebtn {
+    margin-right: 20px;
+    text-decoration: none;
+    font-size: 28px;
+}
+.profile_icon_checklist .row {
+    margin-bottom: 20px;
+}
+.profile_icon_checklist i.fa {
+    font-size: 24px;
+    width: 40px;
+    text-align: center;
+    height: 40px;
+    vertical-align: middle;
+    display: inline-block;
+    -moz-border-radius: 100px;
+    -webkit-border-radius: 100px;
+    border-radius: 100px;
+    -moz-box-shadow: 0px 0px 2px #888;
+    -webkit-box-shadow: 0px 0px 2px #888;
+    box-shadow: 0px 0px 2px #888;
+    padding: 8px;
+    margin-right: 10px;
+    color: #de2427;
+}
+.profile_progress .progress{
+    width: 140px;
+    height: 140px;
+    line-height: 140px;
+    background: none;
+    margin: 0 auto;
+    box-shadow: none;
+    position: relative;
+}
+.profile_box_icon.profile_progress .progress {
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    background: none;
+    margin: 0 auto;
+    box-shadow: none;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+.profile_progress .progress:after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 14px solid #ddd;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.profile_box_icon.profile_progress .progress:after{
+    border: 8px solid #a1a2a3;
+}
+.profile_box_icon.profile_progress .progress.red .progress-bar {
+  border-width: 8px;
+}
+.profile_progress .progress > span{
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+.profile_progress .progress .progress-left{
+    left: 0;
+}
+.profile_progress .progress .progress-bar{
+    width: 100%;
+    height: 100%;
+    background: none;
+    border-width: 14px;
+    border-style: solid;
+    position: absolute;
+    top: 0;
+}
+.profile_progress .progress .progress-left .progress-bar{
+    left: 100%;
+    border-top-right-radius: 80px;
+    border-bottom-right-radius: 80px;
+    border-left: 0;
+    -webkit-transform-origin: center left;
+    transform-origin: center left;
+}
+.profile_progress .progress .progress-right{
+    right: 0;
+}
+.profile_progress .progress .progress-right .progress-bar {
+    left: -100%;
+    border-top-left-radius: 80px;
+    border-bottom-left-radius: 80px;
+    border-right: 0;
+    -webkit-transform-origin: center right;
+    transform-origin: center right;
+}
+.profile_progress .progress .progress-value{
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    background: #ffffff;
+    font-size: 32px;
+    color: #939595;
+    line-height: 125px;
+    text-align: center;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+}
+.profile_box_icon.profile_progress .progress .progress-value {
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    background: #ffffff;
+    font-size: 12px;
+    color: #939595;
+    line-height: 53px;
+    text-align: center;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+}
+.profile_progress h3 {
+    font-size: 16px;
+    text-align: center;
+    color: #939595;
+}
+.profile_progress .progress.ratio1 .progress-right .progress-bar {
+    animation: right-loading-1 1s linear forwards;
+}
+.profile_progress .progress.ratio2 .progress-right .progress-bar, .profile_progress .progress.ratio3 .progress-right .progress-bar, .profile_progress .progress.ratio4 .progress-right .progress-bar {
+    animation: right-loading-2 1s linear forwards;
+}
+.profile_progress .progress.red .progress-bar{
+    border-color: #de2427;
+}
+.profile_progress .progress.ratio3 .progress-left .progress-bar{
+    animation: right-loading-1 1s linear forwards 1s;
+}
+.profile_progress .progress.ratio4 .progress-left .progress-bar{
+    animation: right-loading-2 1s linear forwards 1s;
+}
+@keyframes right-loading-1{
+    0%{
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100%{
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+}
+@keyframes right-loading-2{
+    0%{
+        -webkit-transform: rotate(0deg);
+        transform: rotate(deg);
+    }
+    100%{
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+}
+@media only screen and (max-width: 990px){
+  .profile_progress .progress {
+    margin-bottom: 20px;
+  }
+  .profile_box_icon.profile_progress .progress {
+    width: 50px;
+    height: 50px;
+  }
+  .profile_box_icon.profile_progress .progress:after{
+    border: 8px solid #a1a2a3;
+  }
+  .profile_box_icon.profile_progress .progress .progress-value {
+    line-height: 45px;
+  }
+}
+
+
+.email_messages_bar {
+    width: 100%;
+    border: 1px solid #dfe0e0;
+    margin: 40px 0;
+}
+.message_suggestions {
+    margin-bottom: 30px;
+    margin-top: 40px;
+}
+.heart_sample_message {
+    width: 100%;
+    border: 1px solid #dfe0e0;
+    height: 245px;
+    overflow-y: scroll;
+    overflow-x: auto;
+    padding: 20px;
+    font-size: 16px;
+}
+p.email_send_via_FC {
+    margin: 30px 0 10px;
+}
+
+div#send_via_FC {
+    margin-bottom: 40px;
+}
+
+.addthis_toolbox a:hover, .addthis_toolbox a:active, .addthis_toolbox a:focus {
+    color: black;
+}
+.mobile_form_error, .zip_form_error {
+    color: #de2427;
 }

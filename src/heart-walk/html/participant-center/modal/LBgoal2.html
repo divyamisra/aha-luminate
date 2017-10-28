@@ -1,0 +1,22 @@
+<div class="modal-header">
+  <h2 class="modal-title">
+    Way to Go, Fundraising Superstar!
+  </h2>
+</div>
+<div class="modal-body">
+  <div>
+      <p>You did it, <span ng-if="constituent.name && constituent.name.first">{{constituent.name.first}}</span><span ng-if="!constituent.name.first">Participant</span>! You are a fundraising superstar!</p>
+      <p><span class="redText strongText">Our tip to you</span><span class="strongText">: update your fundraising goal and see how far you can go!</span></p>
+  </div>
+</div>
+<div class="modal-footer">
+  <div class="clearfix">
+    <div class="pull-left">
+      <a href class="btn btn-primary-inverted text-uppercase" ng-click="sendGAEvent('Not Right Now - 100% goal lightbox');notRightNow()">Not Right Now</a>
+    </div>
+    <div class="pull-right">
+      <a href class="btn btn-primary text-uppercase" ng-click="sendGAEvent('Update My Goal - 100% goal lightbox');LBgoalTwoSubmit()">Update My Goal</a>
+    </div>
+  </div>
+  <div class="lb_skip_link"><a href ng-click="sendGAEvent('Mark Send an Email as Complete - 100% goal lightbox');LBskip('goal2')">Mark as Complete</a></div>
+</div>

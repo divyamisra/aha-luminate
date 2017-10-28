@@ -20,12 +20,12 @@
   <div class="modal-footer">
     <div class="clearfix">
       <div class="pull-left">
-        <button type="button" class="btn btn-primary-inverted text-uppercase" ng-click="cancelEditGoal()">
+        <button type="button" class="btn btn-primary-inverted text-uppercase" ng-click="sendGAEvent('Cancel editing Team Goal');cancelEditGoal()">
           <span translate="class_cancel_link"></span>
         </button>
       </div>
       <div class="pull-right">
-        <button type="submit" class="btn btn-primary text-uppercase">
+        <button type="submit" class="btn btn-primary text-uppercase" ng-click="sendGAEvent('Save editing Team Goal')">
           <span translate="dialog_save_label"></span>
         </button>
       </div>

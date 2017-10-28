@@ -1,17 +1,89 @@
-.ng-pc-container, 
+.ng-pc-container,
 .ng-pc-modal {
   .btn.form-control {
     height: auto;
   }
-  
-  .btn, 
+
+  .heart_pc_main_page .btn {
+    min-width: 135px;
+  }
+
+  .btn,
   a.btn {
-    &, 
-    &:link, 
-    &:visited, 
-    &:hover, 
+    &,
+    &:link,
+    &:visited,
+    &:hover,
     &:focus {
       border-width: 1px;
+      padding: 5px 5px;
+      font-size: 16px;
+      font-weight: 400;
     }
   }
+  .btn.btn-goal {
+    &,
+    &:link,
+    &:visited,
+    &:hover,
+    &:focus {
+      min-width: 80px;
+    }
+  }
+}
+
+.btn-primary:focus,
+a.btn-primary:focus {
+  background-color: #de2427;
+  border-color: #ca1e21;
+  color: #ffffff;
+}
+.btn-primary-inverted,
+.btn-primary-inverted:link,
+.btn-primary-inverted:focus,
+.btn-primary-inverted:visited,
+.btn-primary-inverted:active:focus,
+a.btn-primary-inverted,
+a.btn-primary-inverted:link,
+a.btn-primary-inverted:visited,
+a.btn-primary-inverted:focus,
+a.btn-primary-inverted:active:focus {
+    border-color: #3c3c3c;
+    color: #3c3c3c;
+    background-color: #ffffff;
+}
+
+.btn-primary-inverted:active,
+.btn-primary-inverted:hover,
+a.btn-primary-inverted:active,
+a.btn-primary-inverted:hover,
+.btn-primary-inverted:active:hover,
+a.btn-primary-inverted:active:hover {
+    background-color: #3c3c3c;
+    color: #ffffff;
+    border-color: #3c3c3c;
+}
+a.pc_btn, button.pc_btn {
+    height: 60px;
+    padding: 0 20px;
+    line-height: 60px;
+    font-size: 20px;
+    font-weight: normal;
+    background: none;
+    background-color: #d01d20;
+    color: #ffffff;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 20px;
+    border: 0;
+}
+@media only screen and (max-width: 767px)  {
+    a.pc_btn, button.pc_btn {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+#download_donation_list, #download_team_roster, #download_team_donation_list {
+    margin: 20px 0;
 }

@@ -68,8 +68,15 @@
     }
   }
   
+  .message_suggestions .nav-tabs {
+    > li {
+      width: 25%;
+    }
+  }
+
   .heart-dashboard--has-team .nav-tabs, 
-  .heart-dashboard--has-company .nav-tabs {
+  .heart-dashboard--has-company .nav-tabs,
+  .message_suggestions .nav-tabs {
     display: block;
   }
   

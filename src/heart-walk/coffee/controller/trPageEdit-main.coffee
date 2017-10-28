@@ -14,12 +14,12 @@ angular.module 'trPageEditControllers'
     'TeamraiserSurveyResponseService'
     ($rootScope, $scope, $location, $compile, $sce, $uibModal, APP_INFO, TeamraiserRegistrationService, TeamraiserParticipantPageService, TeamraiserTeamPageService, TeamraiserCompanyPageService, TeamraiserSurveyResponseService) ->
       luminateExtend.api.getAuth()
-      
+
       $embedRoot = angular.element '[data-embed-root]'
       editPage = $embedRoot.data 'edit-page'
-      
+
       $scope.teamraiserAPIPath = $sce.trustAsResourceUrl $scope.securePath + 'CRTeamraiserAPI'
-      
+
       $scope.textEditorToolbar = [
         [
           'h1'
@@ -47,7 +47,7 @@ angular.module 'trPageEditControllers'
           'redo'
         ]
       ]
-      
+
       if editPage is 'personal'
         $scope.regSurvey = {}
         $scope.regSurveyString = ''
@@ -68,15 +68,15 @@ angular.module 'trPageEditControllers'
                 else
                   $scope.regSurveyString += '&question_' + surveyResponse.questionId + '=' + surveyResponse.responseValue
               $scope.regSurvey = surveyResponses
-        
+
         TeamraiserRegistrationService.getRegistration
           error: ->
             # TODO
           success: (response) ->
             $scope.registration = response.getRegistrationResponse?.registration
-        
+
         $personalPhoto2 = angular.element '.kd-user-cover__bg'
-        
+
         # make cover photo dynamic
         $scope.setPersonalPhoto2Url = (photoUrl) ->
           defaultPhotoUrl = angular.element('.kd-user-cover__bg').attr('data-defaultphoto') or ''
@@ -89,10 +89,10 @@ angular.module 'trPageEditControllers'
           $scope.setPersonalPhoto2Url $personalPhoto2.css('background-image').split('(')[1].split(')')[0]
           $personalPhoto2.replaceWith $compile($personalPhoto2.clone().attr('ng-style', "{'background-image': 'url(' + personalPhoto2Url + ')'}"))($scope)
           $personalPhoto2 = angular.element '.kd-user-cover__bg'
-        
+
         # insert cover photo edit button
         $scope.editPersonalPhoto2 = ->
-          $scope.editPersonalPhoto2Modal = $uibModal.open 
+          $scope.editPersonalPhoto2Modal = $uibModal.open
             scope: $scope
             templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/page-edit/modal/editPersonalPhoto2.html'
         $scope.closePersonalPhoto2Modal = ->
@@ -111,14 +111,14 @@ angular.module 'trPageEditControllers'
         $scope.setPersonalPhoto2Error = (errorMessage) ->
           if not errorMessage and $scope.updatePersonalPhoto2Error
             delete $scope.updatePersonalPhoto2Error
-          $scope.updatePersonalPhoto2Error = 
+          $scope.updatePersonalPhoto2Error =
             message: errorMessage
           if not $scope.$$phase
             $scope.$apply()
         $personalPhoto2.append $compile('<button type="button" class="btn btn-primary-inverted btn-raised" ng-click="editPersonalPhoto2()"><span class="glyphicon glyphicon-camera"></span> Edit Cover Photo</button>')($scope)
-        
+
         $personalPhoto1 = angular.element '.heart-user-image-wrap--personal'
-        
+
         # make photo dynamic
         $scope.setPersonalPhoto1Url = (photoUrl) ->
           $scope.personalPhoto1Url = photoUrl
@@ -130,10 +130,10 @@ angular.module 'trPageEditControllers'
           if $personalPhotoSrc and $personalPhotoSrc isnt ''
             $scope.setPersonalPhoto1Url $personalPhotoSrc
           $personalPhoto.replaceWith $compile($personalPhoto.clone().attr('ng-src', '{{personalPhoto1Url}}'))($scope)
-        
+
         # insert photo edit button
         $scope.editPersonalPhoto1 = ->
-          $scope.editPersonalPhoto1Modal = $uibModal.open 
+          $scope.editPersonalPhoto1Modal = $uibModal.open
             scope: $scope
             templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/page-edit/modal/editPersonalPhoto1.html'
         $scope.closePersonalPhoto1Modal = ->
@@ -152,25 +152,25 @@ angular.module 'trPageEditControllers'
         $scope.setPersonalPhoto1Error = (errorMessage) ->
           if not errorMessage and $scope.updatePersonalPhoto1Error
             delete $scope.updatePersonalPhoto1Error
-          $scope.updatePersonalPhoto1Error = 
+          $scope.updatePersonalPhoto1Error =
             message: errorMessage
           if not $scope.$$phase
             $scope.$apply()
-        $personalPhoto1.find('.heart-user-image-wrap-inner').prepend $compile('<button type="button" class="btn btn-primary-inverted btn-raised" ng-click="editPersonalPhoto1()"><span class="glyphicon glyphicon-camera"></span> Edit Photo</button>')($scope)
-        
+        $personalPhoto1.find('.heart-user-image-wrap-inner').prepend $compile('<button type="button" class="btn btn-primary-inverted btn-raised" ng-click="editPersonalPhoto1()" id="edit_personal_photo"><span class="glyphicon glyphicon-camera"></span> Edit Photo</button>')($scope)
+
         $personalHeader = angular.element '.kd-user-story__headline'
         $personalHeadline = $personalHeader.find '> h2'
-        
-        # make headline dynamic
+
+        # make headline dynamica
         $scope.personalHeadline = $personalHeadline.text()
         $personalHeadline.replaceWith $compile($personalHeadline.clone().attr('ng-class', '{"hidden": personalHeadlineOpen}').html('{{personalHeadline}}'))($scope)
-        
+
         # insert headline edit button
         $scope.editPersonalHeadline = ->
           $scope.prevPersonalHeadline = $scope.personalHeadline
           $scope.personalHeadlineOpen = true
         $personalHeader.prepend $compile('<button type="button" class="btn btn-primary-inverted btn-raised" ng-class="{\'hidden\': personalHeadlineOpen}" ng-click="editPersonalHeadline()"><span class="glyphicon glyphicon-pencil"></span> Edit Headline</button>')($scope)
-        
+
         # insert headline form
         closePersonalHeadline = ->
           $scope.personalHeadlineOpen = false
@@ -180,13 +180,13 @@ angular.module 'trPageEditControllers'
           $scope.personalHeadline = $scope.prevPersonalHeadline
           closePersonalHeadline()
         $scope.updatePersonalHeadline = ->
-          TeamraiserParticipantPageService.updatePersonalPageInfo 'page_title=' + $scope.personalHeadline, 
+          TeamraiserParticipantPageService.updatePersonalPageInfo 'page_title=' + $scope.personalHeadline,
             error: (response) ->
               # TODO
             success: (response) ->
               closePersonalHeadline()
         $personalHeader.append $compile('<form method="POST" novalidate ng-class="{\'hidden\': !personalHeadlineOpen}" ng-submit="updatePersonalHeadline()"><button type="button" class="btn btn-primary-inverted btn-raised" ng-click="cancelEditPersonalHeadline()">Cancel</button> <button type="submit" class="btn btn-primary btn-raised">Save</button><h2><input type="text" class="form-control" ng-model="personalHeadline"></h2></form>')($scope)
-        
+
         $personalVideo = angular.element '.heart-user-video--personal'
         $scope.fr_id = $rootScope.frId;
         # make video dynamic
@@ -224,7 +224,7 @@ angular.module 'trPageEditControllers'
           $personalVideoIframe.replaceWith $compile($personalVideoIframe.clone().attr('ng-src', '{{personalVideoEmbedUrl}}'))($scope)
         # insert edit video button
         $scope.editPersonalVideo = ->
-          $scope.editPersonalVideoModal = $uibModal.open 
+          $scope.editPersonalVideoModal = $uibModal.open
             scope: $scope
             templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/page-edit/modal/editPersonalVideo.html'
         $scope.closePersonalVideoModal = ->
@@ -238,12 +238,12 @@ angular.module 'trPageEditControllers'
         $scope.setPersonalVideoError = (errorMessage) ->
           if not errorMessage and $scope.updatePersonalVideoError
             delete $scope.updatePersonalVideoError
-          $scope.updatePersonalVideoError = 
+          $scope.updatePersonalVideoError =
             message: errorMessage
         $scope.updatePersonalVideo = ->
           if $scope.personalVideo.type is 'youtube'
             angular.element('.js--remove-personalized-video-form').submit()
-            TeamraiserParticipantPageService.updatePersonalVideoUrl 'video_url=' + $scope.personalMedia.videoUrl, 
+            TeamraiserParticipantPageService.updatePersonalVideoUrl 'video_url=' + $scope.personalMedia.videoUrl,
               error: (response) ->
                 $scope.setPersonalVideoError response.errorResponse.message
               success: (response) ->
@@ -274,29 +274,29 @@ angular.module 'trPageEditControllers'
             setTimeout ( ->
               $scope.closePersonalVideoModal()
             ), 500
-            
+
           else if $scope.personalVideo.type is 'default'
             angular.element('.js--remove-personalized-video-form').submit()
             TeamraiserParticipantPageService.updatePersonalVideoUrl 'video_url=http://www.youtube.com/'
             setTimeout ( ->
               $scope.closePersonalVideoModal()
-              location.reload();
+              window.location.href = 'http://' + $location.$$host + '/site/TR?fr_id=' + $scope.frId + '&pg=personal&px=' + $rootScope.consId
             ), 500
-        $personalVideo.find('.heart-user-video-inner').prepend $compile('<button type="button" class="btn btn-primary-inverted btn-raised" ng-click="editPersonalVideo()"><span class="glyphicon glyphicon-facetime-video"></span> Edit Video</button>')($scope)
-        
+        $personalVideo.find('.heart-user-video-inner').prepend $compile('<button type="button" class="btn btn-primary-inverted btn-raised" ng-click="editPersonalVideo()" id="edit_personal_video"><span class="glyphicon glyphicon-facetime-video"></span> Edit Video</button>')($scope)
+
         $personalTextContainer = angular.element '.heart-page-story--personal #fr_rich_text_container'
-        
+
         # make content dynamic
         $scope.personalContent = $personalTextContainer.html()
         $scope.ng_personalContent = $personalTextContainer.html()
         $personalTextContainer.html $compile('<div ng-class="{\'hidden\': personalContentOpen}" ng-bind-html="personalContent"></div>')($scope)
-        
+
         # insert content edit button
         $scope.editPersonalContent = ->
           $scope.prevPersonalContent = $scope.personalContent
           $scope.personalContentOpen = true
-        $personalTextContainer.prepend $compile('<div class="form-group"><button type="button" class="btn btn-primary btn-raised" ng-class="{\'hidden\': personalContentOpen}" ng-click="editPersonalContent()"><span class="glyphicon glyphicon-pencil"></span> Edit Story</button></div>')($scope)
-        
+        $personalTextContainer.prepend $compile('<div class="form-group"><button type="button" class="btn btn-primary btn-raised" ng-class="{\'hidden\': personalContentOpen}" ng-click="editPersonalContent()" id="edit_personal_story"><span class="glyphicon glyphicon-pencil"></span> Edit Story</button></div>')($scope)
+
         # insert content form
         closePersonalContent = ->
           $scope.personalContentOpen = false
@@ -308,7 +308,7 @@ angular.module 'trPageEditControllers'
           $scope.ng_personalContent = $scope.prevPersonalContent
         $scope.updatePersonalContent = ->
           richText = $scope.ng_personalContent
-          $richText = jQuery '<div />', 
+          $richText = jQuery '<div />',
             html: richText
           richText = $richText.html()
           richText = richText.replace /<\/?[A-Z]+.*?>/g, (m) ->
@@ -321,7 +321,7 @@ angular.module 'trPageEditControllers'
             '&#' + i.charCodeAt(0) + ';'
           .replace /&#38;/g, '&'
           .replace /<!--[\s\S]*?-->/g, ''
-          TeamraiserParticipantPageService.updatePersonalPageInfo 'rich_text=' + encodeURIComponent(richText), 
+          TeamraiserParticipantPageService.updatePersonalPageInfo 'rich_text=' + encodeURIComponent(richText),
             error: (response) ->
               # TODO
             success: (response) ->
@@ -332,10 +332,10 @@ angular.module 'trPageEditControllers'
                 $scope.personalContent = richText
                 closePersonalContent()
         $personalTextContainer.append $compile('<form method="POST" novalidate ng-class="{\'hidden\': !personalContentOpen}" ng-submit="updatePersonalContent()"><div class="form-group"><button type="button" class="btn btn-primary-inverted btn-raised" ng-click="cancelEditPersonalContent()">Cancel</button> <button type="submit" class="btn btn-primary btn-raised">Save</button></div><div class="form-group"><div text-angular ng-model="ng_personalContent" ta-toolbar="{{textEditorToolbar}}" ta-text-editor-class="border-around" ta-html-editor-class="border-around"></div></div></form>')($scope)
-      
+
       else if editPage is 'team'
         $teamPhoto1 = angular.element '.heart-user-image-wrap--team'
-        
+
         # make photo dynamic
         $scope.setTeamPhoto1Url = (photoUrl) ->
           $scope.teamPhoto1Url = photoUrl
@@ -347,10 +347,10 @@ angular.module 'trPageEditControllers'
           if $teamPhotoSrc and $teamPhotoSrc isnt ''
             $scope.setTeamPhoto1Url $teamPhotoSrc
           $teamPhoto.replaceWith $compile($teamPhoto.clone().attr('ng-src', '{{teamPhoto1Url}}'))($scope)
-        
+
         # insert photo edit button
         $scope.editTeamPhoto1 = ->
-          $scope.editTeamPhoto1Modal = $uibModal.open 
+          $scope.editTeamPhoto1Modal = $uibModal.open
             scope: $scope
             templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/page-edit/modal/editTeamPhoto1.html'
         $scope.closeTeamPhoto1Modal = ->
@@ -369,25 +369,25 @@ angular.module 'trPageEditControllers'
         $scope.setTeamPhoto1Error = (errorMessage) ->
           if not errorMessage and $scope.updateTeamPhoto1Error
             delete $scope.updateTeamPhoto1Error
-          $scope.updateTeamPhoto1Error = 
+          $scope.updateTeamPhoto1Error =
             message: errorMessage
           if not $scope.$$phase
             $scope.$apply()
-        $teamPhoto1.find('.heart-user-image-wrap-inner').prepend $compile('<button type="button" class="btn btn-primary-inverted btn-raised" ng-click="editTeamPhoto1()"><span class="glyphicon glyphicon-camera"></span> Edit Photo</button>')($scope)
-        
-        $teamPageTextContainer = angular.element '.heart-page-story--team #fr_rich_text_container' 
-        
+        $teamPhoto1.find('.heart-user-image-wrap-inner').prepend $compile('<button type="button" class="btn btn-primary-inverted btn-raised" ng-click="editTeamPhoto1()" id="edit_team_photo"><span class="glyphicon glyphicon-camera"></span> Edit Photo</button>')($scope)
+
+        $teamPageTextContainer = angular.element '.heart-page-story--team #fr_rich_text_container'
+
         # make content dynamic
         $scope.teamContent = $teamPageTextContainer.html()
         $scope.ng_teamContent = $teamPageTextContainer.html()
         $teamPageTextContainer.html $compile('<div ng-class="{\'hidden\': teamContentOpen}" ng-bind-html="teamContent"></div>')($scope)
-        
+
         # insert content edit button
         $scope.editTeamContent = ->
           $scope.prevTeamContent = $scope.teamContent
           $scope.teamContentOpen = true
-        $teamPageTextContainer.prepend $compile('<div class="form-group"><button type="button" class="btn btn-primary btn-raised" ng-class="{\'hidden\': teamContentOpen}" ng-click="editTeamContent()"><span class="glyphicon glyphicon-pencil"></span> Edit Story</button></div>')($scope)
-        
+        $teamPageTextContainer.prepend $compile('<div class="form-group"><button type="button" class="btn btn-primary btn-raised" ng-class="{\'hidden\': teamContentOpen}" ng-click="editTeamContent()" id="edit_team_story"><span class="glyphicon glyphicon-pencil"></span> Edit Story</button></div>')($scope)
+
         # insert content form
         closeTeamContent = ->
           $scope.teamContentOpen = false
@@ -399,7 +399,7 @@ angular.module 'trPageEditControllers'
           $scope.ng_teamContent = $scope.prevTeamContent
         $scope.updateTeamContent = ->
           richText = $scope.ng_teamContent
-          $richText = jQuery '<div />', 
+          $richText = jQuery '<div />',
             html: richText
           richText = $richText.html()
           richText = richText.replace /<\/?[A-Z]+.*?>/g, (m) ->
@@ -412,7 +412,7 @@ angular.module 'trPageEditControllers'
             '&#' + i.charCodeAt(0) + ';'
           .replace /&#38;/g, '&'
           .replace /<!--[\s\S]*?-->/g, ''
-          TeamraiserTeamPageService.updateTeamPageInfo 'rich_text=' + encodeURIComponent(richText), 
+          TeamraiserTeamPageService.updateTeamPageInfo 'rich_text=' + encodeURIComponent(richText),
             error: (response) ->
               # TODO
             success: (response) ->
@@ -423,10 +423,10 @@ angular.module 'trPageEditControllers'
                 $scope.teamContent = richText
                 closeTeamContent()
         $teamPageTextContainer.append $compile('<form method="POST" novalidate ng-class="{\'hidden\': !teamContentOpen}" ng-submit="updateTeamContent()"><div class="form-group"><button type="button" class="btn btn-primary-inverted btn-raised" ng-click="cancelEditTeamContent()">Cancel</button> <button type="submit" class="btn btn-primary btn-raised">Save</button></div><div class="form-group"><div text-angular ng-model="ng_teamContent" ta-toolbar="{{textEditorToolbar}}" ta-text-editor-class="border-around" ta-html-editor-class="border-around"></div></div></form>')($scope)
-      
+
       else if editPage is 'company'
         $scope.companyId = $location.absUrl().split('company_id=')[1].split('&')[0]
-        
+
         TeamraiserRegistrationService.getRegistration
           error: ->
             # TODO
@@ -436,7 +436,7 @@ angular.module 'trPageEditControllers'
               companyInformation = registration?.companyInformation
               if companyInformation?.companyId is $scope.companyId and companyInformation?.isCompanyCoordinator is 'true'
                 $companyPhoto1 = angular.element '.heart-user-image-wrap--company'
-                
+
                 # make photo dynamic
                 $scope.setCompanyPhoto1Url = (photoUrl) ->
                   $scope.companyPhoto1Url = photoUrl
@@ -448,10 +448,10 @@ angular.module 'trPageEditControllers'
                   if $companyPhotoSrc and $companyPhotoSrc isnt ''
                     $scope.setCompanyPhoto1Url $companyPhotoSrc
                   $companyPhoto.replaceWith $compile($companyPhoto.clone().attr('ng-src', '{{companyPhoto1Url}}'))($scope)
-                
+
                 # insert photo edit button
                 $scope.editCompanyPhoto1 = ->
-                  $scope.editCompanyPhoto1Modal = $uibModal.open 
+                  $scope.editCompanyPhoto1Modal = $uibModal.open
                     scope: $scope
                     templateUrl: APP_INFO.rootPath + 'dist/heart-walk/html/page-edit/modal/editCompanyPhoto1.html'
                 $scope.closeCompanyPhoto1Modal = ->
@@ -470,25 +470,25 @@ angular.module 'trPageEditControllers'
                 $scope.setCompanyPhoto1Error = (errorMessage) ->
                   if not errorMessage and $scope.updateCompanyPhoto1Error
                     delete $scope.updateCompanyPhoto1Error
-                  $scope.updateCompanyPhoto1Error = 
+                  $scope.updateCompanyPhoto1Error =
                     message: errorMessage
                   if not $scope.$$phase
                     $scope.$apply()
-                $companyPhoto1.find('.heart-user-image-wrap-inner').prepend $compile('<button type="button" class="btn btn-primary-inverted btn-raised" ng-click="editCompanyPhoto1()"><span class="glyphicon glyphicon-camera"></span> Edit Photo</button>')($scope)
-                
-                $companyPageTextContainer = angular.element '.heart-page-story--company #fr_rich_text_container' 
-                
+                $companyPhoto1.find('.heart-user-image-wrap-inner').prepend $compile('<button type="button" class="btn btn-primary-inverted btn-raised" ng-click="editCompanyPhoto1()" id="edit_company_photo"><span class="glyphicon glyphicon-camera"></span> Edit Photo</button>')($scope)
+
+                $companyPageTextContainer = angular.element '.heart-page-story--company #fr_rich_text_container'
+
                 # make content dynamic
                 $scope.companyContent = $companyPageTextContainer.html()
                 $scope.ng_companyContent = $companyPageTextContainer.html()
                 $companyPageTextContainer.html $compile('<div ng-class="{\'hidden\': companyContentOpen}" ng-bind-html="companyContent"></div>')($scope)
-                
+
                 # insert content edit button
                 $scope.editCompanyContent = ->
                   $scope.prevCompanyContent = $scope.companyContent
                   $scope.companyContentOpen = true
-                $companyPageTextContainer.prepend $compile('<div class="form-group"><button type="button" class="btn btn-primary btn-raised" ng-class="{\'hidden\': companyContentOpen}" ng-click="editCompanyContent()"><span class="glyphicon glyphicon-pencil"></span> Edit Story</button></div>')($scope)
-                
+                $companyPageTextContainer.prepend $compile('<div class="form-group"><button type="button" class="btn btn-primary btn-raised" ng-class="{\'hidden\': companyContentOpen}" ng-click="editCompanyContent()" id="edit_company_story"><span class="glyphicon glyphicon-pencil"></span> Edit Story</button></div>')($scope)
+
                 # insert content form
                 closeCompanyContent = ->
                   $scope.companyContentOpen = false
@@ -500,7 +500,7 @@ angular.module 'trPageEditControllers'
                   $scope.ng_companyContent = $scope.prevCompanyContent
                 $scope.updateCompanyContent = ->
                   richText = $scope.ng_companyContent
-                  $richText = jQuery '<div />', 
+                  $richText = jQuery '<div />',
                     html: richText
                   richText = $richText.html()
                   richText = richText.replace /<\/?[A-Z]+.*?>/g, (m) ->
@@ -513,7 +513,7 @@ angular.module 'trPageEditControllers'
                     '&#' + i.charCodeAt(0) + ';'
                   .replace /&#38;/g, '&'
                   .replace /<!--[\s\S]*?-->/g, ''
-                  TeamraiserCompanyPageService.updateCompanyPageInfo 'rich_text=' + encodeURIComponent(richText), 
+                  TeamraiserCompanyPageService.updateCompanyPageInfo 'rich_text=' + encodeURIComponent(richText),
                     error: (response) ->
                       # TODO
                     success: (response) ->
@@ -524,25 +524,25 @@ angular.module 'trPageEditControllers'
                         $scope.companyContent = richText
                         closeCompanyContent()
                 $companyPageTextContainer.append $compile('<form method="POST" novalidate ng-class="{\'hidden\': !companyContentOpen}" ng-submit="updateCompanyContent()"><div class="form-group"><button type="button" class="btn btn-primary-inverted btn-raised" ng-click="cancelEditCompanyContent()">Cancel</button> <button type="submit" class="btn btn-primary btn-raised">Save</button></div><div class="form-group"><div text-angular ng-model="ng_companyContent" ta-toolbar="{{textEditorToolbar}}" ta-text-editor-class="border-around" ta-html-editor-class="border-around"></div></div></form>')($scope)
-      
-      window.trPageEdit = 
+
+      window.trPageEdit =
         uploadPhotoError: (response) ->
           errorResponse = response.errorResponse
           photoType = errorResponse.photoType
           photoNumber = errorResponse.photoNumber
           errorCode = errorResponse.code
           errorMessage = errorResponse.message
-          
+
           if photoType is 'personal'
             if photoNumber is '1'
               $scope.setPersonalPhoto1Error errorMessage
             else if photoNumber is '2'
               $scope.setPersonalPhoto2Error errorMessage
-          
+
           else if photoType is 'team'
             if photoNumber is '1'
               $scope.setTeamPhoto1Error errorMessage
-          
+
           else if photoType is 'company'
             if photoNumber is '1'
               $scope.setCompanyPhoto1Error errorMessage
@@ -550,9 +550,9 @@ angular.module 'trPageEditControllers'
           successResponse = response.successResponse
           photoType = successResponse.photoType
           photoNumber = successResponse.photoNumber
-          
+
           if photoType is 'personal'
-            TeamraiserParticipantPageService.getPersonalPhotos 
+            TeamraiserParticipantPageService.getPersonalPhotos
               error: (response) ->
                 # TODO
               success: (response) ->
@@ -568,9 +568,9 @@ angular.module 'trPageEditControllers'
                 $scope.closePersonalPhoto1Modal()
                 $scope.closePersonalVideoModal()
                 $scope.closePersonalPhoto2Modal()
-          
+
           else if photoType is 'team'
-            TeamraiserTeamPageService.getTeamPhoto 
+            TeamraiserTeamPageService.getTeamPhoto
               error: (response) ->
                 # TODO
               success: (response) ->
@@ -582,9 +582,9 @@ angular.module 'trPageEditControllers'
                     if photoItem.id is '1'
                       $scope.setTeamPhoto1Url photoUrl
                 $scope.closeTeamPhoto1Modal()
-          
+
           else if photoType is 'company'
-            TeamraiserCompanyPageService.getCompanyPhoto 
+            TeamraiserCompanyPageService.getCompanyPhoto
               error: (response) ->
                 # TODO
               success: (response) ->
@@ -596,4 +596,19 @@ angular.module 'trPageEditControllers'
                     if photoItem.id is '1'
                       $scope.setCompanyPhoto1Url photoUrl
                 $scope.closeCompanyPhoto1Modal()
+
+      getParameterByName = (name, url) ->
+        if !url
+          url = $location.absUrl()
+        name = name.replace(/[\[\]]/g, '\\$&')
+        regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)')
+        results = regex.exec(url)
+        if !results
+          return null
+        if !results[2]
+          return ''
+        decodeURIComponent results[2].replace(/\+/g, ' ')
+      videoWhy = getParameterByName('videoWhy');
+      if videoWhy is 'true'
+        $scope.editPersonalVideo()
   ]

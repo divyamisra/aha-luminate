@@ -1,0 +1,28 @@
+<div class="modal-header">
+  <h2 class="modal-title">
+    "__________ is Why." - <span ng-if="constituent.name && constituent.name.first">{{constituent.name.first}}</span><span ng-if="!constituent.name.first">Participant</span>
+  </h2>
+</div>
+<div uib-alert class="alert-success" ng-if="updateSurveySuccess" close="resetSurveyAlerts()">
+  <span translate="survey_save_success"></span>
+</div>
+<div uib-alert class="alert-danger" ng-if="updateSurveyFailure" close="resetSurveyAlerts()">
+  {{updateSurveyFailureMessage}}
+</div>
+<div class="modal-body">
+  <div>
+      <p>What's your why, <span ng-if="constituent.name && constituent.name.first">{{constituent.name.first}}</span><span ng-if="!constituent.name.first">Participant</span>? Tell us why you walk and we’ll create a personalized video for you to share with friends and family!</p>
+      <p>Click 'Update My Why' below and then on the follow page choose 'Personalize Video' from the dropdown.</p>
+  </div>
+</div>
+<div class="modal-footer">
+  <div class="clearfix">
+    <div class="pull-left">
+      <a href class="btn btn-primary-inverted text-uppercase" ng-click="sendGAEvent('Not Right Now - why lightbox');notRightNow()">Not Right Now</span></a>
+    </div>
+    <div class="pull-right">
+      <a id="LBupdateWhy" ng-href="{{personalPageUrl}}&amp;videoWhy=true" class="btn btn-primary text-uppercase">Update My Why</a>
+    </div>
+  </div>
+  <div class="lb_skip_link"><a ng-click="sendGAEvent('Mark as Complete - why lightbox');LBskip('why')">Mark as Complete</a></div>
+</div>

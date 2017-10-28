@@ -2,21 +2,23 @@
   text-align: left;
   width: 100%;
   margin: 0 0 12px;
-  
+
   > .btn {
     text-align: left;
-    
+
     .caret {
       margin-left: 8px;
+      float: right;
+      margin-top: 8px;
     }
   }
-  
+
   &.open {
     > .dropdown-menu {
       width: 100%;
     }
   }
-  
+
   .dropdown-menu {
     > li {
       > a {

@@ -22,12 +22,12 @@
   <div class="modal-footer">
     <div class="clearfix">
       <div class="pull-left">
-        <button type="button" class="btn btn-primary-inverted text-uppercase" ng-click="cancelEditPageUrl()">
+        <button type="button" class="btn btn-primary-inverted text-uppercase" ng-click="sendGAEvent('Cancel editing Team Page URL');cancelEditPageUrl()">
           <span translate="team_page_shortcut_cancel"></span>
         </button>
       </div>
       <div class="pull-right">
-        <button type="submit" class="btn btn-primary text-uppercase">
+        <button type="submit" class="btn btn-primary text-uppercase" ng-click="sendGAEvent('Save editing Team Page URL')">
           <span translate="team_page_shortcut_save"></span>
         </button>
       </div>

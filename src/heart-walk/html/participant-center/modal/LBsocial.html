@@ -1,0 +1,21 @@
+<div class="modal-header">
+  <h2 class="modal-title">
+    Time to Go Social!
+  </h2>
+</div>
+<div class="modal-body">
+  <div>
+      <p>We’ve got some great social media tools you can use to chat up Heart Walk on Facebook, Twitter, or Instagram... or all three! Use them to share why you walk!</p>
+  </div>
+</div>
+<div class="modal-footer">
+  <div class="clearfix">
+    <div class="pull-left">
+      <a href class="btn btn-primary-inverted text-uppercase" ng-click="sendGAEvent('Not Right Now - social lightbox');notRightNow()">Not Right Now</a>
+    </div>
+    <div class="pull-right">
+      <a href ng-click="sendGAEvent('Go Social - social lightbox');goSocial()" class="btn btn-primary text-uppercase">Go Social</a>
+    </div>
+  </div>
+  <div class="lb_skip_link"><a href ng-click="sendGAEvent('Mark Going Social as Complete - social lightbox');LBskip('social')">Mark as Complete</a></div>
+</div>

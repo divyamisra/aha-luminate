@@ -1,0 +1,32 @@
+<form ng-submit="updateTeamName()">
+  <div class="modal-header">
+    <h2 class="modal-title">
+      Update Team Name
+    </h2>
+  </div>
+  <div class="modal-body">
+    <div uib-alert class="alert-danger" ng-if="updateTeamNameFailure">
+      {{updateTeamNameFailureMessage}}
+    </div>
+    <div class="form-group">
+      <label for="teamName" class="sr-only">Edit Team Name</label>
+      <div class="input-group">
+        <input type="text" class="form-control" id="teamName" ng-model="updateTeamNameInput.name" aria-label="Edit Team Name" required>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="clearfix">
+      <div class="pull-left">
+        <button type="button" class="btn btn-primary-inverted text-uppercase" ng-click="sendGAEvent('Cancel editing Team Name');cancelEditTeamName()">
+          Cancel
+        </button>
+      </div>
+      <div class="pull-right">
+        <button type="submit" class="btn btn-primary text-uppercase" ng-click="sendGAEvent('Save editing Team Name')">
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+<form>

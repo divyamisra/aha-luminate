@@ -59,4 +59,3 @@ machine. One simple tool available for both Windows and Mac is [Fiddler for Chro
 "http://localhost:8000/".
 
 You should always use debug mode when developing locally.
-

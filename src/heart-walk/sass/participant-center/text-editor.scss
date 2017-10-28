@@ -4,36 +4,37 @@
   border-radius: 0;
   padding: 10px;
   margin-left: 0;
-  
+
   .btn-group {
     margin: 0 12px 12px 0;
-    
+
     @media (min-width: 680px) {
       display: inline-block;
     }
-    
+
     &:last-child {
       margin: 0 12px 0 0;
     }
   }
-  
+
   .btn {
-    &, 
-    &:link, 
-    &:visited, 
-    &:hover, 
-    &:focus, 
+    &,
+    &:link,
+    &:visited,
+    &:hover,
+    &:focus,
     &:active {
       padding: 8px !important;
-      
+      font-size: 12px !important;
+
       @media (min-width: 360px) {
         padding: 10px !important;
       }
-      
+
       @media (min-width: 375px) {
         padding: 11px !important;
       }
-      
+
       @media (min-width: 400px) {
         padding: 12px !important;
       }
@@ -47,7 +48,7 @@
   border-top: 0;
   border-radius: 0;
   padding: 10px;
-  
+
   [contenteditable] {
     &:focus {
       outline: 0;

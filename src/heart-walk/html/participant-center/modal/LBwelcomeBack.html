@@ -1,0 +1,22 @@
+<div class="modal-header">
+  <h2 class="modal-title">
+    Welcome Back!
+  </h2>
+</div>
+<div class="modal-body">
+  <div>
+      <p><span ng-if="constituent.name && constituent.name.first">{{constituent.name.first}}</span><span ng-if="!constituent.name.first">Participant</span>, we are THRILLED to have you back!</p>
+      <p><span class="redText strongText">Our tip to you</span><span class="strongText">: be sure to Share Your Why by updating your personal story.</span> Updating your story shows others your commitment to raise funds to save lives from heart disease and stroke.</p>
+  </div>
+</div>
+<div class="modal-footer">
+  <div class="clearfix">
+    <div class="pull-left">
+      <a href class="btn btn-primary-inverted text-uppercase" ng-click="sendGAEvent('Not Right Now - welcome back lightbox');notRightNow()">Not Right Now</a>
+    </div>
+    <div class="pull-right">
+      <a id="update_my_story_welcome_back_lb" ng-href="{{personalPageUrl}}" class="btn btn-primary text-uppercase">Update My Story</a>
+    </div>
+  </div>
+  <div class="lb_skip_link"><a href ng-click="sendGAEvent('Mark Updating My Story as Complete - welcome back lightbox');LBskip('page')">Mark as Complete</a></div>
+</div>

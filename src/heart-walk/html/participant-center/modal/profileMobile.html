@@ -1,0 +1,26 @@
+<form name="profileMobilePhone" ng-submit="profileMobilePhone.$valid && updateEditMobile($event)" novalidate>
+  <div class="modal-header">
+    <h2 class="modal-title">
+      Update Your Mobile Number
+    </h2>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="mobile_phone">Mobile Phone:</label>
+      <div class="input-group">
+        <input type="text" id="mobile_phone" name="mobile_phone" class="form-control" aria-label="Enter mobile phone" ng-model="constituent.mobile_phone" ng-pattern="/^\(?(\d{3})\)?[ .-]?(\d{3})[ .-]?(\d{4})$/">
+      </div>
+      <div class="mobile_form_error" ng-show="submittedMobile==true && profileMobilePhone.$invalid"><span ng-show="submittedMobile==true && profileMobilePhone.mobile_phone.$error" role="alert">Phone number must be 10 digit format</span></div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="clearfix">
+      <div class="pull-left">
+        <a href class="btn btn-primary-inverted text-uppercase" ng-click="sendGAEvent('Cancel editing mobile number - profile lightbox');cancelEditMobile()">Cancel</a>
+      </div>
+      <div class="pull-right">
+        <button type="submit" class="btn btn-primary text-uppercase" ng-click="sendGAEvent('Save editing mobile number - profile lightbox');submittedMobile = true">Save</button>
+      </div>
+    </div>
+  </div>
+</form>

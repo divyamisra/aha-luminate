@@ -1,0 +1,22 @@
+<div class="modal-header">
+  <h2 class="modal-title">
+    You’re Halfway There! Come On, You Got This!
+  </h2>
+</div>
+<div class="modal-body">
+  <div>
+      <p>You’ve raised {{participantProgress.raisedFormatted}} and are on your way to hitting your fundraising goal!</p>
+      <p><span class="redText strongText">Our tip to you</span><span class="strongText">: follow up with friends through email and let them know why fundraising is so important to you.</span></p>
+  </div>
+</div>
+<div class="modal-footer">
+  <div class="clearfix">
+    <div class="pull-left">
+      <a href class="btn btn-primary-inverted text-uppercase" ng-click="sendGAEvent('Not Right Now - 50% goal lightbox');notRightNow()">Not Right Now</a>
+    </div>
+    <div class="pull-right">
+      <a href class="btn btn-primary text-uppercase" ng-click="sendGAEvent('Send an Email - 50% goal lightbox');LBgoalOneSubmit()">Send an Email</a>
+    </div>
+  </div>
+  <div class="lb_skip_link"><a href ng-click="sendGAEvent('Mark Send an Email as Complete - 50% goal lightbox');LBskip('goal1')">Mark as Complete</a></div>
+</div>

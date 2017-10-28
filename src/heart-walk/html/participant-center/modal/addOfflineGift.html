@@ -44,12 +44,12 @@
   <div class="modal-footer">
     <div class="clearfix">
       <div class="pull-left">
-        <button type="button" class="btn btn-primary-inverted text-uppercase" ng-click="cancelAddOfflineGift()">
+        <button type="button" class="btn btn-primary-inverted text-uppercase" ng-click="sendGAEvent('Cancel Adding Offline Gift');cancelAddOfflineGift()">
           Cancel
         </button>
       </div>
       <div class="pull-right">
-        <button type="submit" class="btn btn-primary text-uppercase">
+        <button type="submit" class="btn btn-primary text-uppercase" ng-click="sendGAEvent('Submit Adding Offline Gift')">
           Submit
         </button>
       </div>

@@ -1,5 +1,5 @@
 <div>
-  <table class="table">
+  <table class="table donor_gift_list">
     <thead>
       <tr>
         <th class="heart-table-header--sortable">
@@ -18,17 +18,17 @@
           </a>
         </th>
         <th>
-          Status
+          Next Step
         </th>
         <th>
-          Actions
+          Done?
         </th>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="gift in gifts">
         <td>
-          <span ng-bind-html="gift.name.first"></span> <span ng-bind-html="gift.name.last"></span> 
+          <span ng-bind-html="gift.name.first"></span> <span ng-bind-html="gift.name.last"></span>
           <!-- TODO: note -->
         </td>
         <td>
@@ -44,11 +44,11 @@
         </td>
         <td>
           <div ng-if="device.isMobile">
-            <a class="icon-btn icon-btn-gray" ng-click="acknowledgeGift(gift.contactId)" ng-if="gift.acknowledged == 'false'"><i class="glyphicon glyphicon-ok"></i></a> 
+            <a class="icon-btn icon-btn-gray" ng-click="acknowledgeGift(gift.contactId)" ng-if="gift.acknowledged == 'false'"><i class="glyphicon glyphicon-ok"></i></a>
             <a class="icon-btn icon-btn-gray" ng-click="deleteGift(gift.id)" ng-if="gift.isOnlineGift == 'false' && gift.confirmed == 'false'"><i class="fa fa-times"></i></a>
           </div>
           <div ng-if="!device.isMobile">
-            <a class="icon-btn icon-btn-gray" uib-tooltip="Acknowledge&nbsp;Gift" tooltip-placement="'auto top'" ng-click="acknowledgeGift(gift.contactId)" ng-if="gift.acknowledged == 'false'"><i class="glyphicon glyphicon-ok"></i></a> 
+            <a class="icon-btn icon-btn-gray" uib-tooltip="Acknowledge&nbsp;Gift" tooltip-placement="'auto top'" ng-click="acknowledgeGift(gift.contactId)" ng-if="gift.acknowledged == 'false'"><i class="glyphicon glyphicon-ok"></i></a>
             <a class="icon-btn icon-btn-gray" uib-tooltip="Delete&nbsp;Gift" tooltip-placement="'auto top'" ng-click="deleteGift(gift.id)" ng-if="gift.isOnlineGift == 'false' && gift.confirmed == 'false'"><i class="fa fa-times"></i></a>
           </div>
         </td>
