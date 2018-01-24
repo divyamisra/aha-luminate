@@ -511,7 +511,7 @@ angular.module 'trPcControllers'
               setPersonalChallenge()
             else
               id = personalChallenges.current
-              if id isnt '1' and id isnt '2' and id isnt '3'
+              if id is '0'
                 setPersonalChallenge()
               else
                 numCompleted = if personalChallenges.completed then Number(personalChallenges.completed) else 0
