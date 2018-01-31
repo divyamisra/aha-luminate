@@ -61,7 +61,8 @@ angular.module 'ahaLuminateControllers'
           isNoDonation: isNoDonation
           askMessage: askMessage
         if $donationLevelRadio.is '[checked]'
-          $scope.toggleDonationLevel levelAmount
+          setTimeout ->
+            $scope.toggleDonationLevel levelAmount
         if isOtherAmount
           otherAmount = $donationLevel.find('input[name^="donation_level_form_input_"]').val()
           if otherAmount
@@ -75,7 +76,7 @@ angular.module 'ahaLuminateControllers'
         false
       
       $scope.submitPtype = ->
-        if $scope.donationLevels.activeLevel.isOtherAmount
+        if $scope.donationLevels.activeLevel?.isOtherAmount
           if $scope.participationOptionsForm.ng_donation_level_other_amount.$viewValue == undefined 
             amt = 0
           else 

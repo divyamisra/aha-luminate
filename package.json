@@ -9,14 +9,14 @@
     }
   ],
   "engines": {
-    "node": "^6.11.5"
+    "node": "^6.12.3"
   },
   "dependencies": {
     "grunt": "^1.0.1",
     "load-grunt-tasks": "^3.5.2"
   },
   "devDependencies": {
-    "autoprefixer": "^7.1.6",
+    "autoprefixer": "^7.2.5",
     "glob": "^7.1.2",
     "grunt-cli": "^1.2.0",
     "grunt-connect-proxy": "git+https://github.com/drewzboto/grunt-connect-proxy.git",
@@ -28,7 +28,7 @@
     "grunt-contrib-htmlmin": "^2.4.0",
     "grunt-contrib-imagemin": "^2.0.1",
     "grunt-contrib-jshint": "^1.1.0",
-    "grunt-contrib-uglify": "^3.1.0",
+    "grunt-contrib-uglify": "^3.3.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-notify": "^0.4.5",
     "grunt-postcss": "^0.9.0",

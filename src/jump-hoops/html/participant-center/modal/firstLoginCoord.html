@@ -1,0 +1,58 @@
+<div>
+  <div class="modal-body">
+    <a class="close" aria-label="Close" ng-click="cancelEditCompanyUrl()">
+      <span aria-hidden="true">×</span>
+    </a>
+    <div class="ym-pc-first-login-modal">
+      <h2 class="h3">
+        Thank You!
+      </h2>
+      <div>
+        Your school page is built and ready! <strong>Customize your URL</strong> so you can quickly share your page with students:
+      </div>
+      <div class="ym-pc-first-login-url">
+        <div class="alert alert-danger" role="alert" ng-if="companyUrlInfo.errorMessage" ng-cloak>
+          <span ng-bind-html="companyUrlInfo.errorMessage"></span>
+        </div>
+        <div class="alert alert-success" role="alert" ng-if="companyUrlInfo.success" ng-cloak>
+          URL updated.
+        </div>
+        <form method="POST" novalidate ng-submit="updateCompanyUrl()">
+          <div class="ym-pc-first-login-url-prefix" ng-cloak>
+            <span ng-bind-html="companyShortcut.prefix"></span>
+          </div>
+          <div class="ym-pc-first-login-url-text">
+            <label for="shortcut_text" class="sr-only">
+              URL:
+            </label>
+            <input type="text" id="shortcut_text" class="form-control" ng-model="companyUrlInfo.updatedShortcut" aria-label="URL">
+          </div>
+          <div class="ym-pc-first-login-url-btn">
+            <button type="submit" class="btn btn-sm btn-primary">
+              <strong>Save</strong>
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="ym-pc-first-login-self-donor" ng-if="participantRegistration.selfDonor == 'true'">
+        <p>
+          We also received your first donation and your receipt has been emailed to you.
+        </p>
+      </div>
+      <div class="ym-pc-first-login-image">
+        <img class="img-responsive" src="../aha-luminate/dist/jump-hoops/image/intro_scaresquad.png" alt="Welcome to the scare squad">
+      </div>
+      <div class="ym-pc-first-login-close">
+        <a class="btn btn-primary" ng-click="cancelEditCompanyUrl()">
+          <strong>Start Fundraising!</strong>
+        </a>
+      </div>
+      <div class="hidden" hidden aria-hidden="true">
+        <img ng-src="//hearttools.heart.org/aha_ym18_dev/api/student/register/{{frId}}/{{consId}}?team_id={{participantRegistration.teamId}}&amp;school_id={{participantRegistration.companyInformation.companyId}}" alt="" ng-if="tablePrefix == 'heartdev'">
+        <img ng-src="//hearttools.heart.org/aha_ym18/api/student/register/{{frId}}/{{consId}}?team_id={{participantRegistration.teamId}}&amp;school_id={{participantRegistration.companyInformation.companyId}}" alt="" ng-if="tablePrefix == 'heart'">
+        <img ng-src="//jumphoopsstaging.boundlessnetwork.com/api/webhooks/team/refresh/{{frId}}/{{participantRegistration.teamId}}" alt="" ng-if="tablePrefix == 'heartdev'">
+        <img ng-src="//jumphoops.heart.org/api/webhooks/team/refresh/{{frId}}/{{participantRegistration.teamId}}" alt="" ng-if="tablePrefix == 'heart'">
+      </div>
+    </div>
+  </div>
+</div>

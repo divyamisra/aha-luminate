@@ -86,7 +86,7 @@
                 School Participants
               </a>
             </li>
-            <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' && prevFrId && prevFrId != ''" ng-cloak>
+            <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' && prev1FrId && prev1FrId != ''" ng-cloak>
               <a ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_past_company_coordinator_participants/list">
                 <span class="badge"><span class="fa fa-star"></span></span>
                 Past School Participants
@@ -153,7 +153,7 @@
             <span class="badge">{{contactCounts.email_rpt_show_company_coordinator_participants}}</span>
             School Participants
           </a>
-          <a class="list-group-item" ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_past_company_coordinator_participants/list" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' && prevFrId && prevFrId != ''" ng-cloak>
+          <a class="list-group-item" ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_past_company_coordinator_participants/list" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' && prev1FrId && prev1FrId != ''" ng-cloak>
             <span class="badge"><span class="fa fa-star"></span></span>
             Past School Participants
           </a>

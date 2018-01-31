@@ -1,4 +1,4 @@
-<form method="POST" novalidate ng-submit="addNewContact()">
+<form name="addNewContactForm" method="POST" novalidate ng-submit="addNewContact()">
   <div class="modal-header">
     <h2 class="h5 modal-title">
       Add Contact
@@ -20,11 +20,11 @@
       </label>
       <input type="text" class="form-control" id="addContactLastName" ng-model="newContact.last_name" aria-label="Last">
     </div>
-    <div class="form-group">
+    <div class="form-group" ng-class="{'has-error': addNewContactForm.$submitted && addNewContactForm.email.$invalid}">
       <label for="addContactEmail">
         Email
       </label>
-      <input type="email" class="form-control" id="addContactEmail" ng-model="newContact.email" aria-label="Email" required>
+      <input type="email" class="form-control" name="email" id="addContactEmail" ng-model="newContact.email" aria-label="Email" required>
     </div>
   </div>
   <div class="modal-footer">
