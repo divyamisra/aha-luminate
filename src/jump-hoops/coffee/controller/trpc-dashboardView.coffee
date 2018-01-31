@@ -21,30 +21,29 @@ angular.module 'trPcControllers'
       $scope.dashboardPromises = []
       
       $dataRoot = angular.element '[data-embed-root]'
-
+      
       if $scope.participantRegistration.lastPC2Login is '0'
-        if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
-          $scope.firstLoginModal = $uibModal.open
-            scope: $scope
-            templateUrl: APP_INFO.rootPath + 'dist/jump-hoops/html/participant-center/modal/firstLogin.html'
+        $scope.firstLoginModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/jump-hoops/html/participant-center/modal/firstLogin.html'
         
-          $scope.setPersonalUrlInfo = 
-            updatedShortcut: ''
+        $scope.setPersonalUrlInfo = 
+          updatedShortcut: ''
         
-          $scope.setPersonalUrl = ->
-            delete $scope.setPersonalUrlInfo.errorMessage
-            delete $scope.setPersonalUrlInfo.success
-            NgPcTeamraiserShortcutURLService.updateShortcut 'text=' + encodeURIComponent($scope.setPersonalUrlInfo.updatedShortcut)
-              .then (response) ->
-                if response.data.errorResponse
-                  $scope.setPersonalUrlInfo.errorMessage = response.data.errorResponse.message
-                else
-                  $scope.setPersonalUrlInfo.success = true
-                  $scope.getParticipantShortcut()
+        $scope.setPersonalUrl = ->
+          delete $scope.setPersonalUrlInfo.errorMessage
+          delete $scope.setPersonalUrlInfo.success
+          NgPcTeamraiserShortcutURLService.updateShortcut 'text=' + encodeURIComponent($scope.setPersonalUrlInfo.updatedShortcut)
+            .then (response) ->
+              if response.data.errorResponse
+                $scope.setPersonalUrlInfo.errorMessage = response.data.errorResponse.message
+              else
+                $scope.setPersonalUrlInfo.success = true
+                $scope.getParticipantShortcut()
         
-          $scope.closeFirstLogin = ->
-            $scope.firstLoginModal.close()
-
+        $scope.closeFirstLogin = ->
+          $scope.firstLoginModal.close()
+      
       # undocumented update_last_pc2_login parameter required to make news feeds work, see bz #67720
       NgPcTeamraiserRegistrationService.updateRegistration 'update_last_pc2_login=true'
         .then ->
@@ -421,38 +420,6 @@ angular.module 'trPcControllers'
           $scope.dashboardPromises.push updateTeamUrlPromise
       
       if $scope.participantRegistration.companyInformation and $scope.participantRegistration.companyInformation.companyId and $scope.participantRegistration.companyInformation.companyId isnt -1 and $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
-
-        $scope.companyUrlInfo = {}
-        
-        $scope.editCompanyUrl = ->
-          delete $scope.companyUrlInfo.errorMessage
-          $scope.companyUrlInfo.updatedShortcut = $scope.companyShortcut.text or ''
-          $scope.editCompanyUrlModal = $uibModal.open
-            scope: $scope
-            templateUrl: APP_INFO.rootPath + 'dist/jump-hoops/html/participant-center/modal/editCompanyUrl.html'
-        
-        $scope.editCompanyUrlFirst = ->
-          delete $scope.companyUrlInfo.errorMessage
-          $scope.companyUrlInfo.updatedShortcut = $scope.companyShortcut.text or ''
-          $scope.editCompanyUrlModal = $uibModal.open
-            scope: $scope
-            templateUrl: APP_INFO.rootPath + 'dist/jump-hoops/html/participant-center/modal/firstLoginCoord.html'
-
-        $scope.cancelEditCompanyUrl = ->
-         $scope.editCompanyUrlModal.close()
-        
-        $scope.updateCompanyUrl = ->
-          delete $scope.companyUrlInfo.errorMessage
-          updateCompanyUrlPromise = NgPcTeamraiserShortcutURLService.updateCompanyShortcut 'text=' + encodeURIComponent($scope.companyUrlInfo.updatedShortcut)
-            .then (response) ->
-              if response.data.errorResponse
-                $scope.companyUrlInfo.errorMessage = response.data.errorResponse.message
-              else
-                $scope.editCompanyUrlModal.close()
-                $scope.getCompanyShortcut()
-              response
-          $scope.dashboardPromises.push updateCompanyUrlPromise
-      
         $scope.getCompanyShortcut = ->
           getCompanyShortcutPromise = NgPcTeamraiserShortcutURLService.getCompanyShortcut()
             .then (response) ->
@@ -470,12 +437,34 @@ angular.module 'trPcControllers'
                     $scope.companyPageUrl = shortcutItem.url
                   else
                     $scope.companyPageUrl = shortcutItem.defaultUrl.split('/site/')[0] + '/site/TR?fr_id=' + $scope.frId + '&pg=company&company_id=' + $scope.participantRegistration.companyInformation.companyId
-                    if $scope.participantRegistration.lastPC2Login is '0'
-                      $scope.editCompanyUrlFirst()
               response
           $scope.dashboardPromises.push getCompanyShortcutPromise
         $scope.getCompanyShortcut()
         
+        $scope.companyUrlInfo = {}
+        
+        $scope.editCompanyUrl = ->
+          delete $scope.companyUrlInfo.errorMessage
+          $scope.companyUrlInfo.updatedShortcut = $scope.companyShortcut.text or ''
+          $scope.editCompanyUrlModal = $uibModal.open
+            scope: $scope
+            templateUrl: APP_INFO.rootPath + 'dist/jump-hoops/html/participant-center/modal/editCompanyUrl.html'
+        
+        $scope.cancelEditCompanyUrl = ->
+         $scope.editCompanyUrlModal.close()
+        
+        $scope.updateCompanyUrl = ->
+          delete $scope.companyUrlInfo.errorMessage
+          updateCompanyUrlPromise = NgPcTeamraiserShortcutURLService.updateCompanyShortcut 'text=' + encodeURIComponent($scope.companyUrlInfo.updatedShortcut)
+            .then (response) ->
+              if response.data.errorResponse
+                $scope.companyUrlInfo.errorMessage = response.data.errorResponse.message
+              else
+                $scope.editCompanyUrlModal.close()
+                $scope.getCompanyShortcut()
+              response
+          $scope.dashboardPromises.push updateCompanyUrlPromise
+      
       $scope.personalChallenge = {}
       $scope.updatedPersonalChallenge = {}
       setPersonalChallenge = (id = '-1', name = '', numCompleted = 0, completedToday = false) ->
@@ -511,7 +500,7 @@ angular.module 'trPcControllers'
               setPersonalChallenge()
             else
               id = personalChallenges.current
-              if id is '0'
+              if id isnt '1' and id isnt '2' and id isnt '3'
                 setPersonalChallenge()
               else
                 numCompleted = if personalChallenges.completed then Number(personalChallenges.completed) else 0

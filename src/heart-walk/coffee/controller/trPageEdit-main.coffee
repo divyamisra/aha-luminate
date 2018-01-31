@@ -146,7 +146,6 @@ angular.module 'trPageEditControllers'
           if $event
             $event.preventDefault()
           angular.element('.js--delete-personal-photo-1-form').submit()
-          $scope.setPersonalPhoto1Url "../aha-luminate/dist/heart-walk/image/default-personal.png"
           false
         $scope.cancelEditPersonalPhoto1 = ->
           $scope.closePersonalPhoto1Modal()

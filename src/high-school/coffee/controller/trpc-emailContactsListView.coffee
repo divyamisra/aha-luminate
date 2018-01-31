@@ -66,8 +66,8 @@ angular.module 'trPcControllers'
             count = count + 1
         count
       
-      isAllContactsSelected = ->
-        $scope.addressBookContacts.allContacts.length > 0 and $scope.addressBookContacts.allContacts.length is countContactSelected($scope.addressBookContacts.allContacts)
+      isAllContactsSelected = () ->
+        $scope.addressBookContacts.allContacts.length is countContactSelected $scope.addressBookContacts.allContacts
       
       $scope.contactCounts = {}
       contactFilters = [
@@ -92,108 +92,50 @@ angular.module 'trPcControllers'
         if filter is $scope.filter
           $scope.getContacts = ->
             pageNumber = $scope.addressBookContacts.page - 1
-            if pageNumber > 0
-              window.scrollTo 0, 0
             if filter is 'email_custom_rpt_show_past_company_coordinator_participants'
               if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
-                $scope.addressBookContacts.contacts = []
-                $scope.addressBookContacts.totalNumber = 0
-                $scope.addressBookContacts.allContacts = []
-                $scope.addressBookContacts.allContactsSelected = isAllContactsSelected()
-              else if not $scope.prev1FrId or $scope.prev1FrId is ''
-                $scope.addressBookContacts.contacts = []
-                $scope.addressBookContacts.totalNumber = 0
-                $scope.addressBookContacts.allContacts = []
-                $scope.addressBookContacts.allContactsSelected = isAllContactsSelected()
+                # TODO
+              else if not $scope.prevFrId or $scope.prevFrId is ''
+                # TODO
               else
-                if $scope.addressBookContacts.contacts
-                  delete $scope.addressBookContacts.contacts
-                NgPcTeamraiserCompanyService.getCompanies 'fr_id=' + $scope.prev1FrId + '&company_name=' + encodeURIComponent('org_for_company_id=' + $scope.participantRegistration.companyInformation.companyId)
+                NgPcTeamraiserCompanyService.getCompanies 'fr_id=' + $scope.prevFrId + '&company_name=' + encodeURIComponent('org_for_company_id=' + $scope.participantRegistration.companyInformation.companyId)
                   .then (response) ->
-                    previousParticipants = []
-                    totalNumberResults = 0
-                    getPrev2Contacts = ->
-                      companyId = prev1CompanyId or $scope.participantRegistration.companyInformation.companyId
-                      NgPcTeamraiserCompanyService.getCompanies 'fr_id=' + $scope.prev2FrId + '&company_name=' + encodeURIComponent('org_for_company_id=' + companyId)
+                    companies = response.data.getCompaniesResponse?.company
+                    if companies
+                      companies = [companies] if not angular.isArray companies
+                      previousCompany = companies[0]
+                      previousCompanyId = previousCompany.companyId
+                      NgPcTeamraiserReportsService.getSchoolDetailReport $scope.prevFrId, previousCompanyId
                         .then (response) ->
-                          prev2Companies = response.data.getCompaniesResponse?.company
-                          if not prev2Companies
-                            $scope.addressBookContacts.contacts = previousParticipants
-                            $scope.addressBookContacts.totalNumber = totalNumberResults
-                            $scope.addressBookContacts.allContacts = previousParticipants
-                            $scope.addressBookContacts.allContactsSelected = isAllContactsSelected()
-                          else
-                            prev2Companies = [prev2Companies] if not angular.isArray prev2Companies
-                            prev2Company = prev2Companies[0]
-                            prev2CompanyId = prev2Company.companyId
-                            NgPcTeamraiserReportsService.getSchoolDetailReport $scope.prev2FrId, prev2CompanyId
-                              .then (response) ->
-                                report2Html = response.data.getSchoolDetailReport?.report
-                                handleReportHtml report2Html
-                                $scope.addressBookContacts.contacts = previousParticipants
-                                $scope.addressBookContacts.totalNumber = totalNumberResults
-                                $scope.addressBookContacts.allContacts = previousParticipants
-                                $scope.addressBookContacts.allContactsSelected = isAllContactsSelected()
-                    handleReportHtml = (reportHtml) ->
-                      if reportHtml and reportHtml.indexOf('<p>No results</p>') is -1
-                        $reportTable = angular.element('<div>' + reportHtml + '</div>').find 'table'
-                        if $reportTable.length > 0
-                          $reportTableRows = $reportTable.find 'tr'
-                          if $reportTableRows.length > 0
-                            angular.forEach $reportTableRows, (reportTableRow, reportTableRowIndex) ->
-                              $reportTableRow = angular.element reportTableRow
-                              firstName = jQuery.trim $reportTableRow.find('td').eq(8).text()
-                              lastName = jQuery.trim $reportTableRow.find('td').eq(9).text()
-                              email = jQuery.trim $reportTableRow.find('td').eq(10).text()
-                              contact =
-                                firstName: firstName
-                                lastName: lastName
-                                email: email
-                              contact.selected = isContactSelected contact
-                              contactIsUnique = true
-                              angular.forEach previousParticipants, (previousParticipant) ->
-                                contactString = firstName.toLowerCase() + ' ' + lastName.toLowerCase() + ' <' + email.toLowerCase() + '>'
-                                previousParticipantString = previousParticipant.firstName.toLowerCase() + ' ' + previousParticipant.lastName.toLowerCase() + ' <' + previousParticipant.email.toLowerCase() + '>'
-                                if contactString is previousParticipantString
-                                  contactIsUnique = false
-                              if contactIsUnique
-                                totalNumberResults++
-                                previousParticipants.push contact
-                            previousParticipants.sort (a, b) ->
-                              aFullName = a.firstName.toLowerCase() + ' ' + a.lastName.toLowerCase()
-                              bFullName = b.firstName.toLowerCase() + ' ' + b.lastName.toLowerCase()
-                              if aFullName < bFullName
-                                return -1
-                              else if aFullName > bFullName
-                                return 1
-                              else
-                                return 0
-                    prev1Companies = response.data.getCompaniesResponse?.company
-                    prev1CompanyId = null
-                    if prev1Companies
-                      prev1Companies = [prev1Companies] if not angular.isArray prev1Companies
-                      prev1Company = prev1Companies[0]
-                      prev1CompanyId = prev1Company.companyId
-                    if not prev1CompanyId
-                      getPrev2Contacts()
-                    else
-                      NgPcTeamraiserReportsService.getSchoolDetailReport $scope.prev1FrId, prev1CompanyId
-                        .then (response) ->
-                          report1Html = response.data.getSchoolDetailReport?.report
-                          handleReportHtml report1Html
-                          if not $scope.prev2FrId or $scope.prev2FrId is ''
-                            $scope.addressBookContacts.contacts = previousParticipants
-                            $scope.addressBookContacts.totalNumber = totalNumberResults
-                            $scope.addressBookContacts.allContacts = previousParticipants
-                            $scope.addressBookContacts.allContactsSelected = isAllContactsSelected()
-                          else
-                            getPrev2Contacts()
+                          previousParticipants = []
+                          totalNumberResults = 0
+                          reportHtml = response.data.getSchoolDetailReport?.report
+                          if reportHtml and reportHtml.indexOf('<p>No results</p>') is -1
+                            $reportTable = angular.element('<div>' + reportHtml + '</div>').find 'table'
+                            if $reportTable.length > 0
+                              $reportTableRows = $reportTable.find 'tr'
+                              if $reportTableRows.length > 0
+                                angular.forEach $reportTableRows, (reportTableRow, reportTableRowIndex) ->
+                                  totalNumberResults++
+                                  if reportTableRowIndex >= pageNumber * 10
+                                    $reportTableRow = angular.element reportTableRow
+                                    consId = jQuery.trim $reportTableRow.find('td').eq(7).text()
+                                    firstName = jQuery.trim $reportTableRow.find('td').eq(8).text()
+                                    lastName = jQuery.trim $reportTableRow.find('td').eq(9).text()
+                                    email = jQuery.trim $reportTableRow.find('td').eq(10).text()
+                                    if previousParticipants.length < 10
+                                      contact =
+                                        firstName: firstName
+                                        lastName: lastName
+                                        email: email
+                                      previousParticipants.push contact
+                          $scope.addressBookContacts.contacts = previousParticipants
+                          $scope.addressBookContacts.totalNumber = totalNumberResults
             else
               contactsPromise = NgPcContactService.getTeamraiserAddressBookContacts 'tr_ab_filter=' + filter + '&skip_groups=true&list_page_size=10&list_page_offset=' + pageNumber
                 .then (response) ->
-                  # $scope.contactCounts[filter] = $scope.addressBookContacts.totalNumber = response.data.getTeamraiserAddressBookContactsResponse?.totalNumberResults or '0'
-                  $scope.addressBookContacts.totalNumber = response.data.getTeamraiserAddressBookContactsResponse?.totalNumberResults or '0'
-                  addressBookContacts = response.data.getTeamraiserAddressBookContactsResponse?.addressBookContact or []
+                  $scope.contactCounts[filter] = $scope.addressBookContacts.totalNumber = response.data.getTeamraiserAddressBookContactsResponse.totalNumberResults
+                  addressBookContacts = response.data.getTeamraiserAddressBookContactsResponse.addressBookContact
                   addressBookContacts = [addressBookContacts] if not angular.isArray addressBookContacts
                   contacts = []
                   angular.forEach addressBookContacts, (contact) ->
@@ -210,12 +152,49 @@ angular.module 'trPcControllers'
               $scope.addressBookContacts.getAllPage = 0
             pageNumber = $scope.addressBookContacts.getAllPage
             if filter is 'email_custom_rpt_show_past_company_coordinator_participants'
-              delete $scope.addressBookContacts.getAllPage
+              if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
+                # TODO
+              else if not $scope.prevFrId or $scope.prevFrId is ''
+                # TODO
+              else
+                NgPcTeamraiserCompanyService.getCompanies 'fr_id=' + $scope.prevFrId + '&company_name=' + encodeURIComponent('org_for_company_id=' + $scope.participantRegistration.companyInformation.companyId)
+                  .then (response) ->
+                    companies = response.data.getCompaniesResponse?.company
+                    if companies
+                      companies = [companies] if not angular.isArray companies
+                      previousCompany = companies[0]
+                      previousCompanyId = previousCompany.companyId
+                      NgPcTeamraiserReportsService.getSchoolDetailReport $scope.prevFrId, previousCompanyId
+                        .then (response) ->
+                          previousParticipants = []
+                          totalNumberResults = 0
+                          reportHtml = response.data.getSchoolDetailReport?.report
+                          if reportHtml and reportHtml.indexOf('<p>No results</p>') is -1
+                            $reportTable = angular.element('<div>' + reportHtml + '</div>').find 'table'
+                            if $reportTable.length > 0
+                              $reportTableRows = $reportTable.find 'tr'
+                              if $reportTableRows.length > 0
+                                angular.forEach $reportTableRows, (reportTableRow) ->
+                                  totalNumberResults++
+                                  $reportTableRow = angular.element reportTableRow
+                                  consId = jQuery.trim $reportTableRow.find('td').eq(7).text()
+                                  firstName = jQuery.trim $reportTableRow.find('td').eq(8).text()
+                                  lastName = jQuery.trim $reportTableRow.find('td').eq(9).text()
+                                  email = jQuery.trim $reportTableRow.find('td').eq(10).text()
+                                  contact =
+                                    firstName: firstName
+                                    lastName: lastName
+                                    email: email
+                                  previousParticipants.push contact
+                          $scope.addressBookContacts.allContacts = previousParticipants
+                          delete $scope.addressBookContacts.getAllPage
+                          $scope.addressBookContacts.contacts = previousParticipants
+                          $scope.addressBookContacts.totalNumber = totalNumberResults
             else
               allContactsPromise = NgPcContactService.getTeamraiserAddressBookContacts 'tr_ab_filter=' + filter + '&skip_groups=true&list_page_size=200&list_page_offset=' + pageNumber
                 .then (response) ->
-                  totalNumber = response.data.getTeamraiserAddressBookContactsResponse?.totalNumberResults or '0'
-                  addressBookContacts = response.data.getTeamraiserAddressBookContactsResponse?.addressBookContact or []
+                  totalNumber = response.data.getTeamraiserAddressBookContactsResponse.totalNumberResults
+                  addressBookContacts = response.data.getTeamraiserAddressBookContactsResponse.addressBookContact
                   addressBookContacts = [addressBookContacts] if not angular.isArray addressBookContacts
                   contacts = []
                   angular.forEach addressBookContacts, (contact) ->
@@ -235,12 +214,11 @@ angular.module 'trPcControllers'
           if filter is 'email_custom_rpt_show_past_company_coordinator_participants'
             $scope.contactCounts[filter] = ''
           else
-            # contactCountPromise = NgPcContactService.getTeamraiserAddressBookContacts 'tr_ab_filter=' + filter + '&skip_groups=true&list_page_size=1'
-              # .then (response) ->
-                # $scope.contactCounts[filter] = response.data.getTeamraiserAddressBookContactsResponse?.totalNumberResults or '0'
-                # response
-            # $scope.emailPromises.push contactCountPromise
-            $scope.contactCounts[filter] = ''
+            contactCountPromise = NgPcContactService.getTeamraiserAddressBookContacts 'tr_ab_filter=' + filter + '&skip_groups=true&list_page_size=1'
+              .then (response) ->
+                $scope.contactCounts[filter] = response.data.getTeamraiserAddressBookContactsResponse?.totalNumberResults or '0'
+                response
+            $scope.emailPromises.push contactCountPromise
       
       filterNames = 
         email_rpt_show_all: 'All Contacts'
@@ -291,7 +269,9 @@ angular.module 'trPcControllers'
       
       $scope.addNewContact = ->
         $scope.clearAddContactAlerts()
-        if $scope.addNewContactForm.$valid
+        if not $scope.newContact.email or $scope.newContact.email is ''
+          # TODO
+        else
           addContactPromise = NgPcContactService.addAddressBookContact $httpParamSerializer($scope.newContact)
             .then (response) ->
               if response.data.errorResponse
