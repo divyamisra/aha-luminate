@@ -28,8 +28,7 @@ angular.module 'trPcApp'
     ($rootScope, NG_PC_APP_INFO) ->
       # get data from embed container
       $embedRoot = angular.element '[data-embed-root]'
-      $rootScope.prev1FrId = $embedRoot.data('prev-one-fr-id') or ''
-      $rootScope.prev2FrId = $embedRoot.data('prev-two-fr-id') or ''
+      $rootScope.prevFrId = $embedRoot.data('prev-fr-id') or ''
       $rootScope.consName = $embedRoot.data('cons-name') or ''
       studentRegGoal = $embedRoot.data('student-reg-goal') or '0'
       if isNaN studentRegGoal

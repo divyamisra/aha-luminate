@@ -21,7 +21,6 @@ angular.module 'ahaLuminateControllers'
       $rootScope.companyName = ''
       $scope.eventDate = ''
       $scope.totalTeams = ''
-      $scope.totalTeamsAlt = ''
       $scope.teamId = ''
       $scope.activity1amt = ''
       $scope.activity2amt = ''
@@ -127,7 +126,6 @@ angular.module 'ahaLuminateControllers'
         currentPage: 1
         paginationItemsPerPage: 4
         paginationMaxSize: 4
-      
       setCompanyTeams = (teams, totalNumber) ->
         $scope.companyTeams.teams = teams or []
         totalNumber = totalNumber or 0
@@ -167,30 +165,6 @@ angular.module 'ahaLuminateControllers'
             teamMinsActivityMap = response.data.data?.list or []
             $scope.companyTeams.teamMinsActivityMap = teamMinsActivityMap
       getCompanyTeams '%'
-      
-      $scope.companyTeamsAlt = {}
-      setCompanyTeamsAlt = (teams, totalNumber) ->
-        $scope.companyTeamsAlt.teams = teams or []
-        totalNumber = totalNumber or 0
-        $scope.companyTeamsAlt.totalNumber = Number totalNumber
-        $scope.totalTeamsAlt = totalNumber
-        if not $scope.$$phase
-          $scope.$apply()
-      
-      getCompanyTeamsAlt = ->
-        TeamraiserTeamService.getTeams 'team_company_id=' + $scope.companyId + '&list_page_size=500',
-          error: ->
-            setCompanyTeamsAlt()
-          success: (response) ->
-            companyTeams = response.getTeamSearchByInfoResponse.team
-            if companyTeams
-              companyTeams = [companyTeams] if not angular.isArray companyTeams
-              angular.forEach companyTeams, (companyTeam) ->
-                companyTeam.amountRaised = Number companyTeam.amountRaised
-                companyTeam.amountRaisedFormatted = $filter('currency')(companyTeam.amountRaised / 100, '$').replace '.00', ''
-              totalNumberTeams = response.getTeamSearchByInfoResponse.totalNumberResults
-              setCompanyTeamsAlt companyTeams, totalNumberTeams
-      getCompanyTeamsAlt()
       
       setTeamsMinsActivity = ->
         teams = $scope.companyTeams.teams
