@@ -357,7 +357,7 @@
               </div>
             </div>
             <div class="ym_my_challenge__actions">
-              <button type="button" class="btn btn-md-wide btn-primary" ng-click="logChallenge()" ng-if="!personalChallenge.completedToday" ng-cloak>
+              <button type="button" class="btn btn-md-wide btn-primary" ng-class="{'disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" ng-click="logChallenge()" ng-if="!personalChallenge.completedToday" ng-cloak>
                 <strong>Yes, I met this challenge today!</strong> <!--<i class="fa fa-check" hidden aria-hidden="true"></i>-->
               </button>
               <div class="alert alert-success" role="alert" ng-if="personalChallenge.completedToday" ng-cloak>
@@ -368,11 +368,13 @@
           <div class="ym_my_challenge__update" ng-if="personalChallenge.id" ng-cloak>
             <form method="post" novalidate ng-submit="updateChallenge()">
               <label for="ym-update-challenge">Update my challenge:</label>
-              <select class="form-control" name="ym-update-challenge" ng-model="updatedPersonalChallenge.id">
+              <select class="form-control" ng-class="{'disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" name="ym-update-challenge" ng-model="updatedPersonalChallenge.id">
                 <option value=""></option>
                 <option ng-repeat="challenge in challenges" value="{{challenge.id}}">{{challenge.name}}</option>
               </select>
-              <button type="submit" class="btn btn-md-wide btn-primary"><strong>Update Challenge</strong></button>
+              <button type="submit" class="btn btn-md-wide btn-primary" ng-class="{'disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending">
+                <strong>Update Challenge</strong>
+              </button>
             </form>
           </div>
         </div>

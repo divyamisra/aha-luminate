@@ -1,24 +1,6 @@
 .ng-pc-modal {
   .modal-body {
     font-size: 15px;
-
-    &-red {
-      background: $brand-primary;
-      color: $brand-white;
-      text-align: center;
-      padding: 30px;
-    }
-  }
-
-  .modal-header-red {
-    background: $brand-primary;
-    color: $brand-white;
-    text-align: center;
-    border-bottom: initial;
-  }
-
-  .modal-footer-red {
-    border-top: initial;
   }
   
   .modal-header__btns {

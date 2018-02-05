@@ -1,12 +1,15 @@
-<div class="modal-header modal-header-red">
+<div class="modal-header">
   <h2 class="modal-title">
-    Wear red and give today.
+    Welcome Back!
   </h2>
 </div>
-<div class="modal-body modal-body-red">
-  <p>When we all come together, we can create a culture of better heart health for all. Help us raise awareness of heart disease and stroke by wearing red on February 2. Then help us raise money to fight it.</p>
+<div class="modal-body">
+  <div>
+      <p><span ng-if="constituent.name && constituent.name.first">{{constituent.name.first}}</span><span ng-if="!constituent.name.first">Participant</span>, we are THRILLED to have you back!</p>
+      <p><span class="redText strongText">Our tip to you</span><span class="strongText">: make sure you make a donation towards your fundraising goal!</span> This shows your commitment to fundraise to those around you.</p>
+  </div>
 </div>
-<div class="modal-footer modal-footer-red">
+<div class="modal-footer">
   <div class="clearfix">
     <div class="pull-left">
       <a href class="btn btn-primary-inverted text-uppercase" ng-click="sendGAEvent('Not Right Now - donate lightbox');notRightNow()">Not Right Now</a>

@@ -500,16 +500,22 @@ angular.module 'trPcControllers'
         if not $scope.$$phase
           $scope.$apply()
       getStudentChallenge = ->
+        if not $scope.personalChallenge
+          $scope.personalChallenge = {}
+        $scope.personalChallenge.updatePending = true
         ZuriService.getStudent $scope.frId + '/' + $scope.consId,
           failure: (response) ->
+            delete $scope.personalChallenge.updatePending
             setPersonalChallenge()
           error: (response) ->
+            delete $scope.personalChallenge.updatePending
             setPersonalChallenge()
           success: (response) ->
             personalChallenges = response.data.challenges
             if not personalChallenges
               setPersonalChallenge()
             else
+              delete $scope.personalChallenge.updatePending
               id = personalChallenges.current
               if id is '0'
                 setPersonalChallenge()
@@ -540,17 +546,27 @@ angular.module 'trPcControllers'
           name: challenge
       
       $scope.updateChallenge = ->
+        if not $scope.personalChallenge
+          $scope.personalChallenge = {}
+        $scope.personalChallenge.updatePending = true
         ZuriService.updateChallenge $scope.frId + '/' + $scope.consId + '?challenge=' + $scope.updatedPersonalChallenge.id,
           failure: (response) ->
             # TODO
+            delete $scope.personalChallenge.updatePending
           success: (response) ->
+            delete $scope.personalChallenge.updatePending
             getStudentChallenge()
       
       $scope.logChallenge = ->
+        if not $scope.personalChallenge
+          $scope.personalChallenge = {}
+        $scope.personalChallenge.updatePending = true
         ZuriService.logChallenge $scope.frId + '/' + $scope.consId + '/' + $scope.personalChallenge.id,
           failure: (response) ->
             # TODO
+            delete $scope.personalChallenge.updatePending
           success: (response) ->
+            delete $scope.personalChallenge.updatePending
             getStudentChallenge()
       
       $scope.prizes = []

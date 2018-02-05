@@ -111,12 +111,15 @@
         </div>
       </div>
       <div class="ym-page-section ym-page-section__roster" ng-if="schoolList.searchSubmitted" ng-cloak>
-        <div role="alert" aria-label="Search results loading" ng-if="schoolList.searchPending == true" ng-cloak>
+        <div role="alert" aria-label="Search results loading" ng-if="schoolList.searchPending" ng-cloak>
           <div class="text-center">
             Loading ...
           </div>
         </div>
-        <div class="js--school-search-loaded" ng-if="schoolList.searchPending != true" ng-cloak>
+        <div role="alert" class="alert alert-danger" ng-if="!schoolList.searchPending && schoolList.searchErrorMessage" ng-cloak>
+          <div ng-bind-html="schoolList.searchErrorMessage"></div>
+        </div>
+        <div class="js--school-search-loaded" ng-if="!schoolList.searchPending && !schoolList.searchErrorMessage" ng-cloak>
           <div ng-if="schoolList.schools.length > 0 || (schoolList.schools.length == 0 && schoolList.stateFilter && schoolList.stateFilter != '')" ng-cloak>
             <div class="ym-page-section__header"> 
               <h2 class="h5 school-list__header">
@@ -196,8 +199,8 @@
             </div>
           </div>
           <div ng-if="schoolList.schools.length > 0" ng-cloak>
-            <div class="alert alert-info" role="alert" ng-if="schoolList.totalNumberResults > 2500" ng-cloak>
-              <strong>Your search returned more than 2,500 results. Please try again with a more specific keyword.</strong>
+            <div class="alert alert-info" role="alert" ng-if="schoolList.totalNumberResults > 2000" ng-cloak>
+              <strong>Your search returned more than 2,000 results. Please try again with a more specific keyword.</strong>
             </div>
             <div class="table-responsive">
               <table class="table table-striped ym-list ym-list--school-list" summary="Results Matching Your School's Name">
