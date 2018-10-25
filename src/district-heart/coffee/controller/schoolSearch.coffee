@@ -3,5 +3,6 @@ angular.module 'ahaLuminateControllers'
     '$scope'
     'SchoolSearchService'
     ($scope, SchoolSearchService) ->
-      SchoolSearchService.init $scope, 'District Heart Challenge'
-  ]
+      ## on init - last param true = get events by location on load; false = do nothing on load
+      SchoolSearchService.init $scope, 'American Heart Challenge', (location.protocol == "https:" ? true : false)
+]
