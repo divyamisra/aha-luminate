@@ -131,3 +131,25 @@
   };
   addthis.init();
 </script>
+
+[[?x9x::x[[S4]]x::
+<script>
+  jQuery(document).ready(function($){
+    if  ($('#tos_radio_true').length > 0){
+      $('label[for="tos_dropdown"]').parent().hide();
+      $('label[for="tos_dropdown"]').parent().next('fieldset').hide();
+      $('label[for="tos_dropdown"]').parent().before('<input type="checkbox" name="terms-of-service-checkbox" id="terms-of-service-checkbox"><label for="terms-of-service-checkbox">&nbsp;Yes, I agree to the <a href="https://www.heart.org/en/about-us/statements-and-policies/privacy-statement" target="_blank">AHA Privacy Policy</a></label>');
+
+      $('#terms-of-service-checkbox').change(function(){
+        if($(this).is(':checked')){
+          $('#tos_radio_true').prop('checked',true);
+        }
+        else {
+          $('#tos_radio_true').prop('checked',false);
+        }
+      });
+    }
+  });
+</script>
+
+::]]
