@@ -98,7 +98,9 @@
       font-size: 2rem;
       margin: 0 0 24px;
     }
-
+    ol,ul{
+      list-style:none;
+    }
     .top-list {
       background-color: $white;
       padding: 0;

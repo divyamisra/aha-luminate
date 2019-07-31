@@ -132,6 +132,7 @@ angular.module 'ahaLuminateControllers'
                     if $scope.companyId is schoolDataRows[i][schoolDataHeaders.CID]
                       $scope.eventDate = schoolDataRows[i][schoolDataHeaders.ED]
                       $scope.moneyDueDate = schoolDataRows[i][schoolDataHeaders.MDD]
+                      $scope.schoolStudentGoal = schoolDataRows[i][schoolDataHeaders.PG]
                       break
                     i++
 

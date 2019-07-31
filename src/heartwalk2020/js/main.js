@@ -686,7 +686,7 @@
             }
 
             if ($('body').is('.pg_company')) {
-                
+             
                 $('.team-roster form .btn').html('<i class="fas fa-search"></i>');
                 $('#participant-roster td:nth-child(3) a').html('Donate');
             }
@@ -930,7 +930,7 @@
                           } else {
                             $('.js--don-amt').text('');
                           }
-                          var customAmt = parseInt($(this).val()) * 10;
+                          var customAmt = parseInt($(this).val()) * 100;
   
                           finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $('.js--don-amt-other').data('level-id') + (isNaN(customAmt) === true ? '' : '&set.Value=' + customAmt);
                           $('.js--personal-don-submit').attr('data-final-don-url', finalDonUrl);
@@ -1050,6 +1050,14 @@
 
     if ($('body').is('.pg_company')) {
       // Company Page
+
+        // Populate company name from page title
+        var pageTitle = jQuery('head title').text().trim();
+        var start_pos = pageTitle.indexOf(':') + 1;
+        var end_pos = pageTitle.indexOf('-',start_pos);
+        var companyName = pageTitle.substring(start_pos,end_pos).trim();
+        $('.js--company-name').text(companyName);
+
         // Populate total raised
         var raised = $('.company-tally-container--amount .company-tally-ammount').text();
         if (raised) {
@@ -1106,9 +1114,6 @@
 
           $(teams).each(function (i, team) {
             var companyName = team.companyName;
-            if(i === 0){
-              $('.js--company-name').text(companyName);
-            }
             var teamRaised = (parseInt(team.amountRaised) * 0.01);
             var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
 

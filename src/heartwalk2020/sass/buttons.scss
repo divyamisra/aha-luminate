@@ -69,10 +69,15 @@ a.btn {
   float: left;
   margin: 0 15px 0 0;
   max-height:50px;
+  position:relative;
 
   &:hover, &.active {
     background-color: $black;
     color: $white;
+  }
+  .form-check-input {
+    margin-left:auto;
+    left:5px;
   }
 }
 

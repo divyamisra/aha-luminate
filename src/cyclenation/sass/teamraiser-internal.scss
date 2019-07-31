@@ -22,7 +22,7 @@
   }
 
   .section-event-info {
-    
+
     .event-info {
 
       p {
@@ -45,7 +45,7 @@
           border-bottom: 10px solid $primary;
 
         }
-        
+
         img {
           width: 100%;
         }
@@ -91,7 +91,7 @@
 
         @include media-breakpoint-down(md) {
           font-size: $font-size-lg;
-        }        
+        }
       }
 
       h1.sub-text {
@@ -170,7 +170,7 @@
   }
 
   .section-trending {
-    
+
     .trending {
 
       .content {
@@ -244,7 +244,7 @@
       border-left: 10px solid $primary;
 
       @include media-breakpoint-down(lg) {
-        height: 540px;
+        height: 440px;
       }
 
       @include media-breakpoint-down(md) {
@@ -274,7 +274,7 @@
             border: 1px solid $gray-500;
             border-radius: 5px 0 0 5px;
           }
-  
+
           button {
             border-radius: 0 5px 5px 0;
           }
@@ -295,7 +295,7 @@
       }
 
       .faq-nav {
-        
+
         .navbar-nav {
           position: inherit;
           flex-direction: inherit;
@@ -401,7 +401,7 @@
                   .icon-closed {
                     display: block;
                   }
-                  
+
                   .icon-open {
                     display: none;
                   }
@@ -471,19 +471,19 @@
             border-bottom: 60px solid $primary;
             z-index: -1;
           }
-        }        
+        }
       }
     }
   }
 
   .section-logos {
-    
+
     .photo-boxes {
 
       .photo-box {
 
         .photo-container {
-          
+
           @include media-breakpoint-down(md) {
             max-width: 400px;
           }
@@ -493,7 +493,7 @@
   }
 
   .section-print-materials {
-    
+
     .photo-boxes {
 
       .photo-box {
@@ -509,7 +509,7 @@
   }
 
   .section-thank-you-cards {
-    
+
     .photo-boxes {
 
       .photo-box {
@@ -753,12 +753,12 @@
       font-size: 1.5rem;
     }
 
-    input[type="radio"], 
+    input[type="radio"],
     input[type="checkbox"] {
       margin-right: 0.5em;
     }
 
-    input[type="radio"] + label, 
+    input[type="radio"] + label,
     input[type="checkbox"] + label {
       margin-right: 3.7em;
 
@@ -776,7 +776,7 @@
     }
 
     div.donation-level-container:last-child {
-      float: none;
+      float: left;
       margin-right: 0;
       position: relative;
 
@@ -801,7 +801,7 @@
           margin-left: 2em;
           margin-top: -20px;
         }
-  
+
         small.form-text {
           position: absolute;
           left: 25px;
@@ -815,7 +815,7 @@
       }
     }
 
-    div.donation-level-input-container, 
+    div.donation-level-input-container,
     div.generic-repeat-label-checkbox-container {
 
       @include media-breakpoint-down(md) {
@@ -853,7 +853,7 @@
     #level_flexibletotal_row {
       margin-top: 1em;
       display: none;
-      
+
       span {
         font-size: 1.5rem;
       }
@@ -950,7 +950,7 @@
 
           @include media-breakpoint-down(md) {
             width: 100%;
-          }          
+          }
         }
 
         #responsive_payment_typepay_typeradio_payment_types {
@@ -990,7 +990,7 @@
             border-radius: 32px;
             font-size: 2em;
             padding: 0.3em 1.5em;
-  
+
             label {
               text-align: center;
               margin-right: 0;
@@ -998,13 +998,13 @@
           }
         }
       }
-      
+
       #payment_cc_container {
 
         h3 {
           display: none;
         }
-  
+
         #responsive_payment_typecc_type_row {
           margin-left: 3.5em;
 
@@ -1021,11 +1021,11 @@
           }
         }
       }
-  
+
       #responsive_payment_typecc_exp_date_row {
-  
+
         .date-input-container {
-  
+
           legend {
             display: none;
           }
@@ -1050,7 +1050,7 @@
             display: block;
             width: 100%;
           }
-  
+
           input,
           select {
             width: 280px;

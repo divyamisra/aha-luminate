@@ -5,7 +5,7 @@
         margin: 28px 0;
 
         .btn {
-          max-width: unset;
+          max-width: 350px;
         }
       }
     }
@@ -43,5 +43,16 @@
     #participant-roster th:nth-child(3) {
       display: none;
     }
+  }
+}
+
+.evenly-like {
+  display: flex;
+  justify-content: space-between;
+
+  &:before,
+  &:after {
+    content: '';
+    display: block;
   }
 }

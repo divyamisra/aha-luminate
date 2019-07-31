@@ -29,17 +29,15 @@
         <div class="ym-progress__thermometer--fill" ng-style="{'width': companyProgress.percent + '%'}"></div>
       </div>
       <div class="ym-progress__stats">
-        <div class="ym-progress__amount col-sm-6">
+        <div class="ym-progress__amount" ng-class="(companyProgress.goalFormatted && companyProgress.goalFormatted != '' && companyProgress.goalFormatted != '$0') ? 'col-md-6' : 'col-md-12'">
           <p>
             We've raised <strong><span ng-bind-html="companyProgress.amountRaisedFormatted"></span></strong>
           </p>
         </div>
-        <div class="ym-progress__goal col-sm-6">
-          <div ng-if="companyProgress.goalFormatted && companyProgress.goalFormatted != '' && companyProgress.goalFormatted != '$0'" ng-cloak>
-            <p>
-              Our goal is <strong><span ng-bind-html="companyProgress.goalFormatted"></span></strong>
-            </p>
-          </div>
+        <div class="ym-progress__goal col-sm-6" ng-if="companyProgress.goalFormatted && companyProgress.goalFormatted != '' && companyProgress.goalFormatted != '$0'" ng-cloak>
+          <p>
+            Our goal is <strong><span ng-bind-html="companyProgress.goalFormatted"></span></strong>
+          </p>
         </div>
         <div class="clearfix"></div>
         <div class="ym-progress__date" ng-if="eventDate && eventDate != '' && eventDate != 'User Provided No Response'" ng-cloak>
@@ -50,6 +48,11 @@
         <div class="ym-progress__date" ng-if="moneyDueDate && moneyDueDate != '' && moneyDueDate != 'User Provided No Response'" ng-cloak>
           <p>
             Our money due date is <strong>{{moneyDueDate | date:'MM/dd/yyyy'}}</strong>
+          </p>
+        </div>
+        <div class="ym-progress__date" ng-if="schoolStudentGoal && schoolStudentGoal != '' && schoolStudentGoal != 'User Provided No Response'" ng-cloak>
+          <p>
+            School Student Goal is <strong>{{schoolStudentGoal}}</strong>
           </p>
         </div>
       </div>

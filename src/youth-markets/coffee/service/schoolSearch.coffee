@@ -31,16 +31,16 @@ angular.module 'ahaLuminateApp'
             failure: (response) ->
             success: (response) ->
               $scope.schoolList.stateFilter = response.data.company.schoolData.state
-
-          delete $scope.schoolList.schools
-          $scope.schoolList.searchPending = true
-          $scope.schoolList.searchSubmitted = true
-          $scope.schoolList.searchByLocation = true
-          $scope.schoolList.geoLocationEnabled = true
-          SchoolLookupService.getGeoSchoolData e,
-            failure: (response) ->
-            success: (response) ->
-              showSchoolSearchResults(response)
+              delete $scope.schoolList.schools
+              $scope.schoolList.searchPending = true
+              $scope.schoolList.searchSubmitted = true
+              $scope.schoolList.searchByLocation = true
+              $scope.schoolList.geoLocationEnabled = true
+              $scope.getSchoolSearchResults(true)
+              #SchoolLookupService.getGeoSchoolData e,
+              #  failure: (response) ->
+              #  success: (response) ->
+              #    showSchoolSearchResults(response)
 
         # gelocate call error
         showGEOError = (e) ->
@@ -347,6 +347,12 @@ angular.module 'ahaLuminateApp'
                 $scope.schoolList.totalNumberResults = schools.length
                 $scope.schoolList.schools = schools
                 $scope.orderSchools $scope.schoolList.sortProp, true
+                if nameFilter isnt 'zz'
+                  # filter off zz schools
+                  schools = $filter('filter')(schools, { SCHOOL_NAME: '!ZZ' }, false)
+                  $scope.schoolList.schools = schools
+                  $scope.schoolList.totalItems = schools.length
+                  $scope.schoolList.totalNumberResults = schools.length
                 if $scope.schoolList.stateFilter isnt ''
                   schools = $filter('filter') schools, SCHOOL_STATE: $scope.schoolList.stateFilter
                   $scope.schoolList.schools = schools
