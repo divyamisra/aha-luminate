@@ -73,7 +73,7 @@ function addPaymentOptions() {
 					var selectedAmt = $('.js--personal-don-form .donation-amount-btn.active').text().trim().replace("$","").replace(",","");;
 					var finalUrl = jQuery('.js--personal-don-submit').attr('data-final-don-url');
 					var otherAmt = jQuery.getCustomQuerystring(finalUrl,"set.Value");
-					var customAmt = parseInt(otherAmt / 10);
+					var customAmt = parseInt(otherAmt / 100);
 					var link = $(this).attr('href').replace(/&amount=[0-9]*/,"");
 					$(this).attr('href', link + "&amount="+(customAmt > 0 ? customAmt : selectedAmt));
 				});
