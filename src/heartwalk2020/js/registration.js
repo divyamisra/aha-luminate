@@ -1320,7 +1320,7 @@
         $('#sel_type_container').parent().addClass('aural-only');
 
         $('span.input-label:contains("Life is Why")').parent().parent().parent().parent().hide();
-        $('.input-label:contains("How many years")').parent().parent().parent().parent().hide();
+        //$('.input-label:contains("How many years")').parent().parent().parent().parent().hide();
         $('.input-label:contains("Mobile Phone")').parent().parent().parent().parent().addClass('regMobilePhone');
         $('span.cons_email').parent().parent().addClass('consEmail');
         $('.survey-question-container.regMobilePhone').insertAfter('.cons-info-question-container.consEmail');
