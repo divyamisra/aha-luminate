@@ -791,8 +791,12 @@
               $(teamData).each(function (i) {
                 var teamName = this.name;
                 var teamRaised = (parseInt(this.amountRaised) * 0.01);
+                console.log('teamRaised1:' + teamRaised);
                 teamRaised = teamRaised.toString();
+                console.log('teamRaised2:' + teamRaised);
                 var teamRaisedFormmatted = teamRaised.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                console.log('teamRaisedFormmatted:' + teamRaisedFormmatted);
+
                 var teamId = this.id;
 
                 var badgeLevel = null;
@@ -887,8 +891,8 @@
           } else {
             if (results[0].geometry && results[0].geometry.location) {
               // getZipForLatLng({
-              //   lat: results[0].geometry.location.lat(), 
-              //   lng: results[0].geometry.location.lng(), 
+              //   lat: results[0].geometry.location.lat(),
+              //   lng: results[0].geometry.location.lng(),
               //   callback: settings.callback
               // });
             } else {
@@ -2594,7 +2598,7 @@
             }
           } else {
             // road logic
-            // override default Bootstrap modal tab behavior 
+            // override default Bootstrap modal tab behavior
 
             $('#dspPledge').on('keyup', function (e) {
               var focusedElement = document.activeElement.id
@@ -2845,7 +2849,7 @@
               break;
           }
 
-          // var sponsorToPush = { }; 
+          // var sponsorToPush = { };
           // sponsorToPush["sponsorName"] = sponsorName;
           // sponsorToPush["sponsorLevel"] = sponsorLevel;
           // sponsorToPush["sponsorImg"] = sponsorImg;
@@ -2893,7 +2897,7 @@
 
       // Add text above matching company label
       // removed code
-      
+
       // wrap billing fields into container
       $('#billing_first_name_row, #billing_last_name_row, #donor_email_address_row, .custom-field-container:contains("Cell or Phone Number"), #billing_addr_street1_row, #billing_addr_street2_row, #billing_addr_city_row, #billing_addr_state_row, #billing_addr_zip_row, #billing_addr_country_row').wrapAll('<div class="billing-fields-container"></div>');
 
@@ -2909,14 +2913,14 @@
       // wrap cc fields into container
       $('#responsive_payment_typecc_number_row, #responsive_payment_typecc_exp_date_row').wrapAll('<div class="cc-fields-container"></div>');
 
-      // wrap cc expiration dates into separate containers 
+      // wrap cc expiration dates into separate containers
       $('label[for=responsive_payment_typecc_exp_date_MONTH], select#responsive_payment_typecc_exp_date_MONTH').wrapAll('<div class="cc-expiration-date-month-container expiration-date-fields"></div>');
       $('label[for=responsive_payment_typecc_exp_date_YEAR], select#responsive_payment_typecc_exp_date_YEAR').wrapAll('<div class="cc-expiration-date-year-container expiration-date-fields"></div>');
 
-      // apply button styles classes 
+      // apply button styles classes
       $('#pstep_finish').addClass('btn-rounded btn-primary')
       /* END 2019 DF UPDATES */
-      
+
       // replace duplicate ID
       $('#level_flexible_row.form-row.form-donation-level').attr('id', 'level_flexible_row2');
 
