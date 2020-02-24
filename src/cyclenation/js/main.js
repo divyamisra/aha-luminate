@@ -791,11 +791,11 @@
               $(teamData).each(function (i) {
                 var teamName = this.name;
                 var teamRaised = (parseInt(this.amountRaised) * 0.01);
-                console.log('teamRaised1:' + teamRaised);
+                console.log('teamRaised1: ' + teamRaised);
                 teamRaised = teamRaised.toString();
-                console.log('teamRaised2:' + teamRaised);
+                console.log('teamRaised2: ' + teamRaised);
                 var teamRaisedFormmatted = teamRaised.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
-                console.log('teamRaisedFormmatted:' + teamRaisedFormmatted);
+                console.log('teamRaisedFormmatted: ' + teamRaisedFormmatted);
 
                 var teamId = this.id;
 
