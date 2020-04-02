@@ -2,6 +2,9 @@
 [[U0:greetingPercentage=[[E130:[[E130:"[[E42:[[S334:fr_id]]:dollars]]" ".00" "" replaceall]] [[E130:"[[E42:[[S334:fr_id]]:goal]]" ".00" "" replaceall]] / 100 * int 100 min]]]]
 [[U0:afterpartyMapLink=[[T9:[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:event_schedule]]" dup dup "|" lastindexof 1 + swap length substring]]]]]]
 [[U0:eventLocationParkingLink=[[T9:[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:map_link]]" dup dup "|" lastindexof 1 + swap length substring]]]]]]
+[[U0:albumId=[[?x{Luminate Photo Album IDx::x[[T9:[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:sponsor_4]]" dup 0 swap "|" indexof substring]]]]x::[[?xheartdevx::x[[S29:TABLE_PREFIX]]x::7738::7833]]::[[T9:[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:sponsor_4]]" dup 0 swap "|" indexof substring]]]]]]]]
+[[U0:youTubeId=[[?xYouTube URL}x::x[[T9:[[E130:"[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:sponsor_4]]" dup dup "|" lastindexof 1 + swap length substring]]" dup dup "/" lastindexof 1 + swap length substring]]]]x::[[?xRoad Cyclingx::x[[E42:[[S334:fr_id]]:public-event-type]]x::Vb5PB1toJpU::fjSpCstrV70]]::[[T9:[[E130:"[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:sponsor_4]]" dup dup "|" lastindexof 1 + swap length substring]]" dup dup "/" lastindexof 1 + swap length substring]]]]]]]]
+
 
  <!-- HERO -->
  <section id="hero" class="section-hero hero container-fluid">
@@ -650,8 +653,8 @@
       <div class="container">
         <div id="fundraiserSearch" class="search-container col-12 col-lg-10 offset-lg-1 py-5">
           <form class="js__rider-search row mx-0 px-0" onsubmit="_gaq.push(['_trackEvent', 'event homepage', 'click', 'search']);">
-            <label for="rider_name" class="sr-only">Search individuals, teams, and companies</label>
-            <input type="text" class="search form-control col-10 col-lg-11" id="rider_name" placeholder="Search individuals, teams, and companies">
+            <label for="rider_name" class="sr-only">To donate, search for an individual, team or company</label>
+            <input type="text" class="search form-control col-10 col-lg-11" id="rider_name" placeholder="To donate, search for an individual, team or company">
             <button type="submit" id="rider_search_button" class="search-button action-button search-submit col-2 col-lg-1"><span class="sr-only">Search</span>
               <i class="fas fa-search" aria-hidden="true" alt=""></i>
               <!-- <?xml version="1.0" encoding="utf-8"?>
@@ -677,7 +680,7 @@
 <!-- END TOP FUNDRAISERS SECTION -->
 [[?xx{unassigned}x::x[[E47:[[S334:fr_id]]:fr_info:1:sponsor_4]]x::::
 <!-- SOCIAL FEED SECTION -->
-<section id="social-feed" class="section-social-feed gray-background" data-album-id="[[E47:[[S334:fr_id]]:fr_info:1:sponsor_4]]" data-album-url="AjaxProxy?cnv_url=[[T1:http://[[S29:DOMAIN]][[S29:PATH]]PhotoAlbumUser?view=UserAlbum&AlbumID=[[E47:[[S334:fr_id]]:fr_info:1:sponsor_4]]&pgwrap=n]]&auth=[[S86:true]]">
+<section id="social-feed" class="section-social-feed gray-background" data-album-id="[[S80:albumId]]" data-album-url="AjaxProxy?cnv_url=[[T1:http://[[S29:DOMAIN]][[S29:PATH]]PhotoAlbumUser?view=UserAlbum&AlbumID=[[S80:albumId]]&pgwrap=n]]&auth=[[S86:true]]">
   <div class="container pt-5 pb-5">
     <div class="social-feed-title col-12">
       <h2 class="pb-1">[[E47:[[S334:fr_id]]:fr_info:1:event_location_city]] CycleNation on Social Media</h2>
@@ -694,12 +697,35 @@
     <p class="social-feed-text col-12 pt-3">See what CycleNation is all about! And don&rsquo;t be a victim of FOMO... join us and get your selfie in all the photos this year.</p>
     <div class="js__raw-album-container" style="display:none;">
     </div>
-    <div class="social-feed-container col-12 pt-2">
-      <div class="js__lo-album-container grid">
-          <div class="grid-sizer"></div>
-          
+
+    [[?xx::x[[T9:[[E130:"[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:sponsor_4]]" dup dup "|" lastindexof 1 + swap length substring]]" dup dup "/" lastindexof 1 + swap length substring]]]]x::<!-- deleted YouTube placeholder. Hide tabs and only show photo gallery -->::
+    <!-- BEGIN media tabs -->
+    <ul class="nav nav-tabs greeting-media-tabs d-flex justify-content-center align-items-end" id="mediaTab" role="tablist">
+      <li class="nav-item gallery-tab-container">
+        <a class="nav-link active" id="gallery-tab" data-toggle="tab" href="#gallery" role="tab" aria-controls="gallery" aria-selected="true">Photos</a>
+      </li>
+      <li class="nav-item video-tab-container">
+        <a class="nav-link" id="video-tab" data-toggle="tab" href="#video" role="tab" aria-controls="video" aria-selected="false">Video</a>
+      </li>
+    </ul>
+    ]]
+    <div class="tab-content" id="mediaTabContent">
+      <div class="tab-pane fade show active" id="gallery" role="tabpanel" aria-labelledby="gallery-tab">
+        <div class="social-feed-container col-12 pt-3 pb-2">
+          <div class="js__lo-album-container grid">
+            <div class="grid-sizer"></div>
+        </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="video" role="tabpanel" aria-labelledby="video-tab">
+        <div class="video-container col-12 col-md-8 offset-md-2 py-2 py-md-5 text-center">
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/[[S80:youTubeId]]" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="CycleNation Greeting Page Video"></iframe>
+          </div>
+        </div>
       </div>
     </div>
+    <!-- END media tabs -->
     <div class="social-feed-button col-12 pt-2 text-center">
       <a class="btn-rounded btn-white" href="SPageServer/?pagename=cn_blog">About #CycleNation</a>
     </div>

@@ -2,6 +2,9 @@
   <div class="ym-page-section ym-page-section__top">
     <div class="col-md-6 ym-user-image" ng-init="personalPagePhoto1.customUrl = '[[C4:graphic_upload]]'; personalPagePhoto1.caption = '[[T6:[[C1:graphic_caption]]]]'" ng-style="{'background-image': (personalPagePhoto1.customUrl && personalPagePhoto1.customUrl != '') ? ('url(' + personalPagePhoto1.customUrl + ')') : ('url(' + personalPagePhoto1.defaultUrl + ')')}">
       <div class="ym-user-image-inner">
+        <div class="ym-school-student-survivor" ng-if="survivor">
+          <img src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/middle-school/image/heart_hero.png" alt="I am a Survivor">
+        </div>
         [[?
           [[?xx::x[[S1:cons_id]]x::::
             [[?x[[S1:cons_id]]x::x[[S334:px]]x::T::]]
@@ -100,7 +103,7 @@
         </h2>
         <div class="ym-badges__item" ng-repeat="prize in prizes" ng-cloak> <!--  ng-repeat="prize in prizes | limitTo: 3" -->
           <div class="ym-badge__item" ng-if="prize.earned" ng-cloak>
-            <img class="img-responsive" ng-src="//s3.amazonaws.com/aha-oot-production/fy19/assets/badges/khc/{{prize.id}}_delivered.png" alt="{{prize.label}}">
+            <img class="img-responsive" ng-src="//s3.amazonaws.com/cd-aha-oot-production/fy19/assets/badges/khc/{{prize.id}}_delivered.png" alt="{{prize.label}}">
             <span ng-bind-html="prize.label"></span> <span class="sr-only">(earned)</span>
           </div>
         </div>

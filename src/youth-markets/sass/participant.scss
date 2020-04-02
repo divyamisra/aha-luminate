@@ -154,7 +154,8 @@ main > .container {
         font-size: 18px;
       }
       
-      &.ng-pc-nav-item--resources {
+      &.ng-pc-nav-item--resources,
+      &.ng-pc-nav-item--order-gifts {
         padding: 3px 6px 0;
         
         @media (min-width: 670px) {
@@ -669,13 +670,13 @@ main > .container {
     margin: 0 0 32px;
   }
   
-  .btn {
+  /*.btn {
     @media (min-width: $screen-md-min) {
       position: absolute;
       right: 60px;
       top: 0;
     }
-  }
+  }*/
 }
 
 .ym-pc-dashboard-badges-icons {
@@ -807,7 +808,7 @@ main > .container {
   }
 
   .ym-pc-dashboard-section-header {
-    color: $brand-white;
+    color: $event-grey;
   }
 }
 
@@ -1768,7 +1769,7 @@ main > .container {
   margin: 0 0 15px;
 
   @media (min-width: $screen-sm-min) {
-    width: 135px;
+    width: 125px;
     margin: 0;
   }
 }

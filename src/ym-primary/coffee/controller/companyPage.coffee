@@ -21,6 +21,9 @@ angular.module 'ahaLuminateControllers'
       $scope.companyId = $location.absUrl().split('company_id=')[1].split('&')[0].split('#')[0]
       domain = $location.absUrl().split('/site/')[0]
       $rootScope.companyName = ''
+      $scope.hideAmount = ''
+      $scope.notifyName = ''
+      $scope.notifyEmail = ''
       $scope.eventDate = ''
       $scope.moneyDueDate = ''
       $scope.totalTeams = ''
@@ -31,6 +34,8 @@ angular.module 'ahaLuminateControllers'
       $scope.activity3amt = ''
       $scope.topClassRaised = []
       $scope.topClassStudents = []
+      $scope.schoolYears = 0
+      $scope.unconfirmedAmountRaised = 0
       
       $scope.trustHtml = (html) ->
         return $sce.trustAsHtml(html)
@@ -133,9 +138,15 @@ angular.module 'ahaLuminateControllers'
                       $scope.eventDate = schoolDataRows[i][schoolDataHeaders.ED]
                       $scope.moneyDueDate = schoolDataRows[i][schoolDataHeaders.MDD]
                       $scope.schoolStudentGoal = schoolDataRows[i][schoolDataHeaders.PG]
+                      $scope.hideAmount = schoolDataRows[i][schoolDataHeaders.HA]
+                      $scope.notifyName = schoolDataRows[i][schoolDataHeaders.YMDN]
+                      $scope.notifyEmail = schoolDataRows[i][schoolDataHeaders.YMDE]
+                      $scope.unconfirmedAmountRaised = schoolDataRows[i][schoolDataHeaders.UCR]
                       break
                     i++
-
+                  #setCompanyProgress Number(amountRaised) + Number(($scope.unconfirmedAmountRaised) * 100), goal
+                  setCompanyProgress Number(amountRaised), goal
+                  
               if coordinatorId and coordinatorId isnt '0' and eventId
                 TeamraiserCompanyService.getCoordinatorQuestion coordinatorId, eventId
                   .then (response) ->
@@ -424,4 +435,11 @@ angular.module 'ahaLuminateControllers'
                 setCompanyCity schoolDataRow[1]
                 setCompanyState schoolDataRow[2]
           return
-  ]
+        
+      ZuriService.getSchoolYears $scope.companyId,
+        error: (response) ->
+          # TO DO
+        success: (response) ->
+          $scope.schoolYears = response.data.value
+        
+    ]

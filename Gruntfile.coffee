@@ -195,7 +195,6 @@ module.exports = (grunt) ->
     return
   grunt.registerTask 'dev', ->
     devTasks = [
-      'configureProxies:dev'
       'connect:dev'
     ]
     config.watch['general'].tasks.forEach (task) ->

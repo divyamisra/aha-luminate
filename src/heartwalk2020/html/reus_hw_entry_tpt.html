@@ -13,10 +13,14 @@
                 <!-- multi-event -->
                 <div class="row buttons-row">
                         [[?x1x2x::x[[S42:0:status]]x::
-                          <a href="SPageServer/?pagename=heartwalk_register&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'register to walk button']);">Register to Walk</a>
+                            [[?xx::x[[S48:0:part-type-id]]x::
+                            <a href="SPageServer/?pagename=heartwalk_register&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'register to walk button']);">Register</a>
+                            ::
+                            <a href="TRC?pg=center&fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'visit my hq button']);">Visit My HQ</a>
+                            ]]
                         ::]]
                         [[?x2x3x::x[[S42:0:status]]x::
-                          <a href="SPageServer/?pagename=HeartWalk_Search&amp;search_type=walker&amp;cross_event=false&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'donate button']);">Donate</a>
+                          <a href="SPageServer/?pagename=HeartWalk_Search&amp;search_type=walker&amp;cross_event=false&amp;fr_id=[[S334:fr_id]]&amp;event_search=false" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'donate button']);">Donate</a>
                         ::]]
                     </div>
                     <span class="multi-event-info-toggler d-none d-sm-block d-md-none" onclick="toggleMultiEventInfo(this)">See All Locations <i class="fas fa-plus float-right" aria-hidden="true"></i><span class="sr-only">Toggle event data and time info</span></span>
@@ -32,10 +36,14 @@
                 <!-- single event -->
                 <div class="row buttons-row">
                         [[?x1x2x::x[[S42:0:status]]x::
-                          <a href="SPageServer/?pagename=heartwalk_register&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'register to walk button']);">Register to Walk</a>
+                            [[?xx::x[[S48:0:part-type-id]]x::
+                                <a href="SPageServer/?pagename=heartwalk_register&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'register to walk button']);">Register</a>
+                                ::
+                                <a href="TRC?pg=center&fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'visit my hq button']);">Visit My HQ</a>
+                            ]]
                         ::]]
                         [[?x2x3x::x[[S42:0:status]]x::
-                          <a href="SPageServer/?pagename=HeartWalk_Search&amp;search_type=walker&amp;cross_event=false&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'donate button']);">Donate</a>
+                          <a href="SPageServer/?pagename=HeartWalk_Search&amp;search_type=walker&amp;cross_event=false&amp;fr_id=[[S334:fr_id]]&amp;event_search=false" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'donate button']);">Donate</a>
                         ::]]
                     </div>
                     <div class="row info-columns">
@@ -114,8 +122,14 @@
                       <!-- /.thermometer -->
                   </div>
                   <!-- /.col-12 -->
+                  <div class="custom-event-management-link-container hidden col-12 mt-3">
+                    Welcome [[S1:first_name]]. <a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]TREM?tr.emgmt=em_event_center&amp;fr_id=[[S334:fr_id]]" target="_blank">Manage this event</a>
+                    </div>
+                  <!-- /.col-12 -->
               </div>
               <!-- /.row -->
+
+
           </div>
           <!-- /.event-info -->
       </div>
@@ -197,7 +211,7 @@
                       <img src="[[E47:[[S334:fr_id]]:fr_info:1:sponsor_3]]" alt="About the [[E47:[[S334:fr_id]]:fr_info:1:event_title]]"/>
                       <div class="bg-black-gradient">
                           [[?x1x2x::x[[S42:0:status]]x::
-                          <a href="SPageServer/?pagename=heartwalk_register&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary" onclick="_gaq.push(['_trackEvent', 'greeting', 'about', 'register to walk button']);">Register to Walk</a>
+                          <a href="SPageServer/?pagename=heartwalk_register&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary" onclick="_gaq.push(['_trackEvent', 'greeting', 'about', 'register to walk button']);">Register</a>
                           ::]]
                           <!-- /.btn btn-primary -->
                           <!-- <a href="TR?fr_id=[[S334:fr_id]]&pg=informational&type=fr_informational&sid=1071" class="btn btn-tertiary">More Details</a> -->

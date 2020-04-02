@@ -10,7 +10,7 @@ angular.module 'trPcControllers'
     ($rootScope, $scope, $filter, $location, NgPcTeamraiserEmailService, NgPcTeamraiserGiftService, NgPcTeamraiserReportsService) ->
       $scope.reportPromises = []
       
-      $scope.activeReportTab = if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true' then 0 else 1
+      $scope.activeReportTab = 1 ##if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true' then 0 else 1
       
       NgPcTeamraiserEmailService.getSuggestedMessages()
         .then (response) ->

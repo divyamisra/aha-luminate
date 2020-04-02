@@ -27,300 +27,53 @@ angular.module 'trPcControllers'
       getRandomID = ->
         return Math.floor((Math.random()*3)+1);
 
-      defaultInstantGifts = [
-        {
-          "id":"MWB-19"
-          "name":"Heart Heroes Wristband"
-          "status":0
-          "level":""
-          "level_desc":""
-        }
-        {
-          "id":"KSHA-19"
-          "name":"Finn"
-          "status":0
-          "level":""
-          "level_desc":"(First Online Gift)"
-        }
-        {
-          "id":"KPAN-19"
-          "name":"Ruby"
-          "status":0
-          "level":"$40"
-          "level_desc":""
-        }
-        {
-          "id":"3D"
-          "name":"Create Your Own 3D Printed Heart Hero"
-          "status":0
-          "level":"$1,000"
-          "level_desc":""
-        }
-      ]
-      defaultStandardGifts = [
-        {
-          "id":"KUNI-19"
-          "name":"Echo and Hero Clasp"
-          "status":0
-          "level":"$5"
-        }
-        {
-          "id":"LVL2JR-19"
-          "name":"Jump Rope"
-          "status":0
-          "level":"$15"
-        }
-        {
-          "id":"KOTT-19"
-          "name":"Oscar"
-          "status":0
-          "level":"$20"
-        }
-        {
-          "id":"KPIG-19"
-          "name":"Sprinkles"
-          "status":0
-          "level":"$35"
-        }
-        {
-          "id":"LVL3"
-          "name":"T-Shirt"
-          "status":0
-          "level":"$50"
-        }
-        {
-          "id":"LVL4BB-19"
-          "name":"Basketball"
-          "status":0
-          "level":"$75"
-        }
-        {
-          "id":"KNAR-19"
-          "name":"Splash"
-          "status":0
-          "level":"$100"
-        }
-        {
-          "id":"LVL5DB-19"
-          "name":"Dancing Ball"
-          "status":0
-          "level":"$150"
-        }
-        {
-          "id":"KDRA-19"
-          "name":"Fiery"
-          "status":0
-          "level":"$200"
-        }
-        {
-          "id":"LVL6ST-19"
-          "name":"Slimeball Target"
-          "status":0
-          "level":"$250"
-        }
-        {
-          "id":"LVL7SR-19"
-          "name":"Splash's Racquet Fun"
-          "status":0
-          "level":"$500"
-        }
-        {
-          "id":"LVL8WH-19"
-          "name":"Wireless Headphones"
-          "status":0
-          "level":"$1,000"
-        }
-      ]
-
-      giftLevels = {
-        "$0": [
-          "MWB-19"
-        ]
-        "$5-$14": [
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-        ]
-        "$15-$19":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "LVL2JR-19"
-        ]
-        "$20-$34":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "LVL2JR-19"
-          "KOTT-19"
-        ]
-        "$35-$49":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "KPAN-19"
-          "LVL2JR-19"
-          "KOTT-19"
-          "KPIG-19"
-        ]
-        "$50-$74":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "KPAN-19"
-          "LVL2JR-19"
-          "KOTT-19"
-          "KPIG-19"
-          "LVL3"
-        ]
-        "Green $75-$99":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "KPAN-19"
-          "LVL2JR-19"
-          "KOTT-19"
-          "KPIG-19"
-          "LVL3"
-          "LVL4BB-19"
-        ]
-        "Blue $100-$149":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "KPAN-19"
-          "LVL2JR-19"
-          "KOTT-19"
-          "KPIG-19"
-          "LVL3"
-          "LVL4BB-19"
-          "KNAR-19"
-        ]
-        "Purple $150-$199":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "KPAN-19"
-          "LVL2JR-19"
-          "KOTT-19"
-          "KPIG-19"
-          "LVL3"
-          "LVL4BB-19"
-          "KNAR-19"
-          "LVL5DB-19"
-        ]
-        "Red $200-$249":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "KPAN-19"
-          "LVL2JR-19"
-          "KOTT-19"
-          "KPIG-19"
-          "LVL3"
-          "LVL4BB-19"
-          "KNAR-19"
-          "LVL5DB-19"
-          "KDRA-19"
-        ]
-        "Orange $250-$499":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "KPAN-19"
-          "LVL2JR-19"
-          "KOTT-19"
-          "KPIG-19"
-          "LVL3"
-          "LVL4BB-19"
-          "KNAR-19"
-          "LVL5DB-19"
-          "KDRA-19"
-          "LVL6ST-19"
-        ]
-        "Brown $500-$999":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "KPAN-19"
-          "LVL2JR-19"
-          "KOTT-19"
-          "KPIG-19"
-          "LVL3"
-          "LVL4BB-19"
-          "KNAR-19"
-          "LVL5DB-19"
-          "KDRA-19"
-          "LVL6ST-19"
-          "LVL7SR-19"
-        ]
-        "Yellow $1000+":[
-          "KUNI-19"
-          "MWB-19"
-          "KSHA-19"
-          "KPAN-19"
-          "LVL2JR-19"
-          "KOTT-19"
-          "KPIG-19"
-          "LVL3"
-          "LVL4BB-19"
-          "KNAR-19"
-          "LVL5DB-19"
-          "KDRA-19"
-          "LVL6ST-19"
-          "LVL7SR-19"
-          "LVL8WH-19"
-          "3D"
-        ]
-      }
+      defaultStandardGifts = BoundlessService.defaultStandardGifts()
       
-      $scope.bonusGifts = []
       $scope.standardGifts = []
+      $scope.giftsEarned = 0
       
       BoundlessService.getPrizes $scope.consId
       .then (response) ->
         students = response.data.student
         angular.forEach students, (student) ->
+          if student.has_bonus
+             giftLevels = BoundlessService.giftLevels_instant()
+          else
+             giftLevels = BoundlessService.giftLevels_noninstant()
           current_level = if student.current_level != null then student.current_level else '$0'
-          angular.forEach defaultInstantGifts, (gift) ->
-            status = 0
-            if jQuery.inArray(gift.id,giftLevels[current_level]) isnt -1 and student.has_bonus != 0
-              # even though current level > $40 if they haven't raied more than $40 online, 
-              # ruby won't be in the prize list
-              if gift.id == 'KPAN-19'
-                jQuery(student.prizes).each ->
-                  if @prize_sku == 'KPAN-19'
-                    status = 1
-                  return
-              else
-                status = 1
-            $scope.bonusGifts.push
-              prize_label: gift.name
-              prize_sku: gift.id
-              prize_status: status
-              prize_level: gift.level
-              prize_desc: gift.level_desc
-
           prevstatus = 0
           angular.forEach defaultStandardGifts, (gift, key) ->
-            status = 0
-            lastItem = 0
-            if jQuery.inArray(gift.id,giftLevels[current_level]) isnt -1
-              status = 1
-            if prevstatus == 1 and status == 0
+            if student.has_bonus and (gift.instant == 1 or gift.instant == 2) or !student.has_bonus and (gift.instant == 0 or gift.instant == 2)
+              status = 0
+              lastItem = 0
+              if jQuery.inArray(gift.id,giftLevels[current_level]) isnt -1
+                status = 1
+                if gift.online_only
+                  status = 0
+                  jQuery.each student.prizes, (item, key) ->
+                    if key.prize_sku.indexOf(gift.id) isnt -1
+                      status = 1
+                      return false
+                    return
+              if prevstatus == 1 and status == 0
+                $scope.standardGifts[$scope.standardGifts.length-1].lastItem = 1
+              $scope.standardGifts.push
+                prize_label: gift.name
+                prize_sku: gift.id
+                prize_status: status
+                lastItem: lastItem
+                randomID: getRandomID()
+                prize_level: gift.level
+                earned_title: gift.earned_title
+                earned_subtitle1: gift.earned_subtitle1
+                earned_subtitle2: gift.earned_subtitle2
+              $scope.giftStatus = status
+              prevstatus = status
+              if status == 1
+                $scope.giftsEarned++
+
+            if $scope.giftStatus == 1
               $scope.standardGifts[$scope.standardGifts.length-1].lastItem = 1
-            $scope.standardGifts.push
-              prize_label: gift.name
-              prize_sku: gift.id
-              prize_status: status
-              lastItem: lastItem
-              randomID: getRandomID()
-              prize_level: gift.level
-            $scope.giftStatus = status
-            prevstatus = status
-        
-          if $scope.giftStatus == 1
-            $scope.standardGifts[$scope.standardGifts.length-1].lastItem = 1
       , (response) ->
         # TODO
 

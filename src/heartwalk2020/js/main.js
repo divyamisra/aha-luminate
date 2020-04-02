@@ -95,6 +95,22 @@
     var searchType = getURLParameter(currentUrl, 'search_type');
     var isCrossEventSearch = getURLParameter(currentUrl, 'cross_event');
 
+    var skipLink = document.getElementById('skip-main');
+
+    skipLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('pcBodyContainer').scrollIntoView();
+    });
+
+    if ($('body').is('.pg_HeartWalk_HQ')) {
+      $('.js__skip-to').on('click', function(e){
+        e.preventDefault();
+        $('html, body').animate({
+               scrollTop: $('#pcBodyContainer').offset().top
+          }, 500);
+      });
+    }
+
     var addScrollLinks = function () {
       $('a.scroll-link')
         .on('click', function (event) {
@@ -459,7 +475,7 @@
                 event.greeting_url + '">' + event.name + '</a></td></tr>' +
                   '</td></tr><tr><td>Date</td><td>' + eventDate + '</td></tr><tr><td>Distance</td><td>' + event.distance + 'mi</td></tr><tr><td colspan="2" class="text-center">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=heartwalk_register&fr_id=' + event.id + '" class="btn btn-primary btn-block btn-rounded" title="Register for ' + event.name + '" aria-label="Register for ' + event.name + '">Register</a>' : 'Registration Closed') + '</td></tr></table></td></tr>';
               }
-               
+
 
                 if (eventStatus === '1' || eventStatus === '2' || eventStatus === '3') {
                   $('.js--event-results-rows').append(eventRow);
@@ -542,24 +558,28 @@
     cd.getTopParticipants = function (eventId) {
       luminateExtend.api({
         api: 'teamraiser',
-        data: 'method=getParticipants&first_name=%25%25%25&event_type=' + eventType + '&fr_id=' + eventId + '&list_sort_column=total&list_ascending=false&list_page_size=5&response_format=json',
+        data: 'method=getParticipants&first_name=%25%25%25&event_type=' + eventType + '&fr_id=' + eventId + '&list_sort_column=total&list_ascending=false&list_page_size=10&response_format=json',
         callback: {
           success: function (response) {
             if (!$.isEmptyObject(response.getParticipantsResponse)) {
+              var counter = 0;
               var participantData = luminateExtend.utils.ensureArray(response.getParticipantsResponse
                 .participant);
 
               $(participantData).each(function () {
-                console.log('getting top participants');
-                var participantName = this.name.first + ' ' + this.name.last;
-                var participantRaised = (parseInt(this.amountRaised) * 0.01);
-                var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
-                var participantId = this.consId;
-                var participantPage = this.personalPageUrl;
-                var isCaptain = this.aTeamCaptain;
-                var topWalkerHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="' + participantPage + '">' + participantName + '</a></div><div class="raised">Raised<br><strong>$' + participantRaisedFormmatted + '</strong></div></div></li>';
-                if(participantName !== "Null Null"){
-                  $('.js--walker-top-list ul').append(topWalkerHtml);
+                if (counter <= 4) {
+                    var participantName = this.name.first + ' ' + this.name.last;
+                    var participantRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
+
+                    var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
+                    var participantId = this.consId;
+                    var participantPage = this.personalPageUrl;
+                    var isCaptain = this.aTeamCaptain;
+                    var topWalkerHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="' + participantPage + '">' + participantName + '</a></div><div class="raised">Raised<br><strong>$' + participantRaisedFormmatted + '</strong></div></div></li>';
+                    if(participantName !== "null null"){
+                      $('.js--walker-top-list ul').append(topWalkerHtml);
+                      counter = counter + 1;
+                    }
                 }
               });
             }
@@ -568,7 +588,7 @@
             console.log('getTopParticipants error: ' + response.errorResponse.message);
           }
         }
-      }); 
+      });
     };
     // END TOP PARTICIPANTS
 
@@ -584,8 +604,9 @@
 
               $(teamData).each(function (i) {
                 var teamName = this.name;
-                var teamRaised = (parseInt(this.amountRaised) * 0.01);
-                var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                var teamRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
+
+                var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
                 var teamId = this.id;
 
                 var topTeamRow = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a></div><div class="raised">Raised<br><strong>$' + teamRaisedFormmatted + '</strong></div></div></li>';
@@ -598,12 +619,92 @@
             console.log('getTopTeams error: ' + response.errorResponse.message);
           }
         }
-      }); 
+      });
     };
 
     // END TOP TEAMS
 
     // BEGIN TOP COMPANIES
+// TODO - replace with companyList
+
+    cd.getCompanyList = function (eventId) {
+      luminateExtend.api({
+        api: 'teamraiser',
+        data: 'method=getCompanyList&fr_id=' + eventId +
+          '&include_all_companies=true&response_format=json',
+        callback: {
+          success: function (response) {
+            var childCompanyIdMap, companyItems, ref, rootAncestorCompanies;
+            companyItems = ((ref = response.getCompanyListResponse) != null ? ref.companyItem : void 0) || [];
+            if (!$.isArray(companyItems)) {
+              companyItems = [companyItems];
+            }
+            rootAncestorCompanies = [];
+            childCompanyIdMap = {};
+            $.each(companyItems, function(i, companyItem) {
+              var rootAncestorCompany;
+              if (companyItem.parentOrgEventId == '0') {
+                rootAncestorCompany = {
+                  eventId: eventId,
+                  companyId: companyItem.companyId,
+                  companyName: companyItem.companyName,
+                  amountRaised: companyItem.amountRaised ? Number(companyItem.amountRaised) : 0
+                };
+                rootAncestorCompanies.push(rootAncestorCompany);
+              }
+            });
+            $.each(companyItems, function(i, companyItem) {
+              var parentOrgEventId;
+              parentOrgEventId = companyItem.parentOrgEventId;
+              if (parentOrgEventId != "0") {
+                childCompanyIdMap['company-' + companyItem.companyId] = parentOrgEventId;
+              }
+            });
+            $.each(childCompanyIdMap, function(key, value) {
+              if (childCompanyIdMap['company-' + value]) {
+                childCompanyIdMap[key] = childCompanyIdMap['company-' + value];
+              }
+            });
+            $.each(childCompanyIdMap, function(key, value) {
+              if (childCompanyIdMap['company-' + value]) {
+                childCompanyIdMap[key] = childCompanyIdMap['company-' + value];
+              }
+            });
+            $.each(companyItems, function(i, companyItem) {
+              var childCompanyAmountRaised, rootParentCompanyId;
+              if (companyItem.parentOrgEventId != '0') {
+                rootParentCompanyId = childCompanyIdMap['company-' + companyItem.companyId];
+                childCompanyAmountRaised = companyItem.amountRaised ? Number(companyItem.amountRaised) : 0;
+                $.each(rootAncestorCompanies, function(rootAncestorCompanyIndex, rootAncestorCompany) {
+                  if (rootAncestorCompany.companyId === rootParentCompanyId) {
+                     rootAncestorCompanies[rootAncestorCompanyIndex].amountRaised = rootAncestorCompanies[rootAncestorCompanyIndex].amountRaised + childCompanyAmountRaised;
+                  }
+                });
+              }
+            });
+
+            //$.each(rootAncestorCompanies, function(rootAncestorCompanyIndex, rootAncestorCompany) {
+            //   rootAncestorCompanies[rootAncestorCompanyIndex].amountRaisedFormatted = $filter('currency')(rootAncestorCompany.amountRaised / 100, '$', 0);
+            //});
+            var sortedAncestorCompanies = rootAncestorCompanies.sort(function(a, b){return b.amountRaised-a.amountRaised});
+            //var sortedAncestorCompanies = $filter('orderBy')(rootAncestorCompanies, 'amountRaised', true);
+            $(sortedAncestorCompanies).each(function (i) {
+              if(i < 5){
+                var companyName = this.companyName;
+                var companyRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
+                var companyRaisedFormmatted = companyRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
+                var topCompanyHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR?company_id=' + this.companyId + '&fr_id=' + evID + '&pg=company">' + companyName + '</a></div><div class="raised">Raised<br><strong>$' + companyRaisedFormmatted + '</strong></div></div></li>';
+                $('.js--company-top-list ul').append(topCompanyHtml);
+              }
+            });
+          },
+          error: function (response) {
+            console.log('getCompanyList error: ' + response.errorResponse.message);
+          }
+        }
+      });
+    };
+
     cd.getTopCompanies = function (eventId) {
       luminateExtend.api({
         api: 'teamraiser',
@@ -614,25 +715,15 @@
             if (!$.isEmptyObject(response.getCompaniesResponse)) {
               var topCompanies = luminateExtend.utils.ensureArray(response.getCompaniesResponse
                 .company);
-
                 var totalCompanies = parseInt(response.getCompaniesResponse.totalNumberResults);
                 $('.js--num-companies').text(totalCompanies);
-
-              $(topCompanies).each(function () {
-                var companyName = this.companyName;
-                var companyRaised = (parseInt(this.amountRaised) * 0.01);
-                var companyRaisedFormmatted = companyRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
-                var topCompanyHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR?company_id=' + this.companyId + '&fr_id=' + evID + '&pg=company">' + companyName + '</a></div><div class="raised">Raised<br><strong>$' + companyRaisedFormmatted + '</strong></div></div></li>';
-
-                $('.js--company-top-list ul').append(topCompanyHtml);
-              });
             }
           },
           error: function (response) {
             console.log('getTopCompanies error: ' + response.errorResponse.message);
           }
         }
-      }); 
+      });
     };
 
     // EXPANDABLE DONOR ROLL
@@ -645,26 +736,8 @@
             $(this).children('i').addClass('fa-chevron-down');
         }
 
-        // In order for the animation to work we need an absolute
-        // height value, so we calculate that by getting the total
-        // height of the donations-container child divs plus their
-        // margin value
-        var totalHeight = 205;
-        $('.donations-container div').each(function(i, div) {
-            if (i > 4) {
-                totalHeight += ($(div).height() + 20);
-            }
-        });
-
-        if ($('.donations-container').height() == 205) {
-            $('.donations-container').animate({height: totalHeight}, 400);
-        } else {
-            $('.donations-container').animate({height: 205}, 400);
-        }
-      $('.hidden-donor-row').toggleClass('d-none');
-
+      $('.hidden-donor-row').slideToggle(200);
     });
-
     cd.reorderPageForMobile = function () {
         // Reorganize page for mobile views
         if (screenWidth <= 767) {
@@ -686,7 +759,7 @@
             }
 
             if ($('body').is('.pg_company')) {
-             
+
                 $('.team-roster form .btn').html('<i class="fas fa-search"></i>');
                 $('#participant-roster td:nth-child(3) a').html('Donate');
             }
@@ -703,13 +776,21 @@
           }
         });
         $('#team-roster_info, #team-roster_filter').wrapAll('<div class="row"></div>');
-        $('#team-roster_info').insertBefore($('#team-roster_filter')).wrap('<div class="col-lg-6 col-md-12 sorter d-flex align-items-end"></div>');
+        $('#team-roster_info').insertBefore($('#team-roster_filter')).wrap('<div class="col-lg-6 col-md-12 sorter pl-md-0"></div>');
         $('#team-roster_filter').wrap('<div class="col-lg-6 col-md-12"></div>');
 
         $('#team-roster_filter input[type="search"]').attr('id', 'team_search').wrap('<div class="input-group"></div>').addClass('form-control').after('<div class="input-group-append"><button class="btn btn-primary btn-outline-secondary" type="button">Search <i class="fas fa-search"></i></button></div>');
 
         $('#team-roster_filter label').attr('for', 'team_search');
-    
+
+        // Add general team donation total and link
+        var genTeamDonAmt = $('.team-roster-participant-name:contains("Team Gifts")').next().text();
+        $('.js--gen-team-don-total').text(genTeamDonAmt);
+
+        $('#team-roster_wrapper .sorter').prepend($('.js--gen-team-don-container'));
+
+        $('.js--gen-team-don-container').show();
+
     };
 
     cd.initializeParticipantRosterTable = function() {
@@ -735,11 +816,11 @@
     cd.getTeamHonorRoll = function() {
         // populate donor honor roll
         if($('.team-honor-list-row').length > 0){
+          console.log('native honor row length:', $('.team-honor-list-row').length);
             $('.team-honor-list-row').each(function(i, donor){
                 var donorName = $(this).find('.team-honor-list-name').text();
                 var donorAmt = $(this).find('.team-honor-list-value').text();
-                // console.log('donorName donorAmt', donorName + ' ' + donorAmt);
-                $('.js--donor-roll').append('<div class="donor-row ' + (i > 4 ? 'hidden-donor-row d-none' : '') + '"><span class="name">' + donorName + '</span><span class="amount">' + donorAmt + '</span></div>');
+                $('.js--donor-roll').append('<div ' + (i > 4 ? 'style="display:none;"' : '') + ' class="donor-row ' + (i > 4 ? 'hidden-donor-row' : '') + '"><span class="name">' + donorName + '</span><span class="amount">' + donorAmt + '</span></div>');
                 if(i === 5){
                     $('.js--honor-roll-expander').addClass('d-block').removeClass('hidden');
                 }
@@ -758,8 +839,9 @@
             }
         });
     };
-    if ($('body').is('.app_id_26') || $('body').is('.app_id_27')) {
-      if($('.sponsor_slider .local_sponsors').length > 0){
+    //if ($('body').is('.app_id_26') || $('body').is('.app_id_27')) {
+    //run unslider anytime sponsor_slider is found
+    if($('.sponsor_slider .local_sponsors').length > 0){
         $('.sponsor_slider .local_sponsors').unslider({
           selectors: {
             container: 'div.tr_sponsorship_logos',
@@ -767,23 +849,22 @@
           },
           autoplay: true
         });
-      }
-
     }
+    //}
     if ($('body').is('.pg_entry')) {
       // Greeting Page
         // populate greeting page content
         $('.js--greeting-text').html($('#fr_html_container').html());
 
         if(publicEventType === "Multi-Event"){
-          // populate multi-event 
+          // populate multi-event
           var multiEventPageId = (isProd === true ? '3571' : '1110');
 
           var multiEventApiRequest = "TR?fr_id=" + evID + "&pg=informational&sid=" + multiEventPageId + " #page_body_container";
 
           $('.js--multi-event-locations').load(multiEventApiRequest);
         }
-        
+
 
         // Event info section mobile expand/collapse functionality
         $('.event-info-expand').click(function() {
@@ -796,6 +877,11 @@
                 $(icon).removeClass('fa-minus').addClass('fa-plus');
             }
         });
+
+        // show EMC link if logged in visitor is EMC for this event
+        if($('.event-management-link-container').length){
+          $('.custom-event-management-link-container').removeClass('hidden');
+        }
 
         // Update placeholder text in mobile for top walker search
         if(screenWidth <= 1065) {
@@ -810,6 +896,7 @@
             // Build roster on greeting page
             cd.getTopParticipants(evID);
             cd.getTopTeams(evID);
+            cd.getCompanyList(evID);
             cd.getTopCompanies(evID);
 
         // Walker Search
@@ -836,7 +923,7 @@
         var sponsorUrl = jQuery(this).attr('href');
           if (confirm("These are proud sponsors of the American Heart Association's Heart Walk. By clicking on this link, you will be taken outside American Heart Association and this is not an endorsement of either the linked-to entity or any product or service.")) {
             window.location.href = sponsorUrl;
-          } 
+          }
       });
     }
 
@@ -858,10 +945,10 @@
         // Build personal donation form
         cd.getDonationFormInfo = function(options) {
           luminateExtend.api({
-            api: 'donation', 
-            requestType: 'POST', 
-            data: 'method=getDonationFormInfo&fr_id=' + evID + '&form_id=' + dfID, 
-            requiresAuth: true, 
+            api: 'donation',
+            requestType: 'POST',
+            data: 'method=getDonationFormInfo&fr_id=' + evID + '&form_id=' + dfID,
+            requiresAuth: true,
             callback: {
               success: function(response) {
                   var i = 0,
@@ -876,16 +963,16 @@
 
                     if(userSpecified == 'false'){
                       // build pre-defined giving levels
-                      $('.donation-amounts').append('<label class="form-check-label donation-amount-btn btn mb-3" for="personalDonAmt' + i + '" data-level-id="' + levelID + '"> <input class="form-check-input" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> ' + amountFormatted + '</label>');                      
+                      $('.donation-amounts').append('<label class="form-check-label donation-amount-btn btn mb-3" for="personalDonAmt' + i + '" data-level-id="' + levelID + '"> <input class="form-check-input" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> ' + amountFormatted + '</label>');
                     } else {
                       // build user-specified level
-                      $('.donation-amounts').append('<div class="custom-amount"> <input class="form-check-input other-amt-radio sr-only" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> <label class="js--don-amt-other sr-only" for="personalDonAmt' + i + '" data-level-id="' + levelID + '">Enter your own amount</label> <label class="form-label d-inline-block" for="personalOtherAmt">Custom Amount:</label><br/> <input type="text" id="personalOtherAmt" class="form-control d-inline-block js--personal-amt-other" data-parsley-min="25" data-parsley-min-message="Donations of all amounts are greatly appreciated. Online donations have a $25 minimum."/> </div>');                     
+                      $('.donation-amounts').append('<div class="custom-amount"> <input class="form-check-input other-amt-radio sr-only" type="radio" name="personalDonAmt" id="personalDonAmt' + i + '" value="' + levelID + '"> <label class="js--don-amt-other sr-only" for="personalDonAmt' + i + '" data-level-id="' + levelID + '">Enter your own amount</label> <label class="form-label d-inline-block" for="personalOtherAmt">Custom Amount:</label><br/> <input type="text" id="personalOtherAmt" class="form-control d-inline-block js--personal-amt-other" data-parsley-min="25" data-parsley-min-message="Donations of all amounts are greatly appreciated. Online donations have a $25 minimum."/> </div>');
                     }
                   });
 
                   $('.custom-amount').after('<span class="error-row"></span>');
 
-                  
+
                       $('.js--personal-don-form').removeClass('hidden');
                       var defaultDonUrl = $('.js--personal-don-submit').data('don-url');
                       var finalDonUrl = null;
@@ -897,28 +984,11 @@
                         $('.js--personal-don-form .donation-amount-btn').removeClass('active');
                         $('.paymentSelType').addClass('hidden');
                         $(this).addClass('active');
-                        $('.js--don-amt').text($(this).text());
+                        // $('.js--don-amt').text($(this).text());
                         finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $(this).data('level-id');
                         $('.js--personal-don-submit').attr('data-final-don-url', finalDonUrl);
 
                      });
-                  
-                      // format "other" amount before submitting to native donation form
-                      // $('.js--personal-amt-other').on('blur', function(e){
-                      //   var keyCode = (e.keyCode ? e.keyCode : e.which);
-                      //   if (keyCode !== 9) {
-                      //   var customAmt = parseInt($(this).val()) * 10;
-
-                      //   finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $('.js--don-amt-other').data('level-id') + (isNaN(customAmt) === true ? '' : '&set.Value=' + customAmt);
-
-                      //   if($(this).val()){
-                      //     $('.js--don-amt').text('$' + $(this).val());
-                      //   } else if($('.custom-amount .form-check-input').is(':checked') === true) {
-                      //     $('.js--don-amt').text('');
-                      //   }
-                      //   console.log('final url BLUR: ', finalDonUrl);
-                      // } 
-                      // });
 
                       $('.js--personal-amt-other').on('keyup', function(e){
                         var keyCode = (e.keyCode ? e.keyCode : e.which);
@@ -927,24 +997,20 @@
                         if (keyCode != 9) {
                           $('.js--personal-don-form .donation-amount-btn').removeClass('active');
                           $('.custom-amount input[name="personalDonAmt"]').prop('checked', true);
-                          if($(this).val()){
-                            $('.js--don-amt').text('$' + $(this).val());
-                          } else {
-                            $('.js--don-amt').text('');
-                          }
+
                           var customAmt = parseInt($(this).val()) * 100;
-  
+
                           finalDonUrl = defaultDonUrl + '&set.DonationLevel=' + $('.js--don-amt-other').data('level-id') + (isNaN(customAmt) === true ? '' : '&set.Value=' + customAmt);
                           $('.js--personal-don-submit').attr('data-final-don-url', finalDonUrl);
                         }
                       });
 
                       // Set default donation amount
-                      $('input[name="personalDonAmt"]').eq(0).click().prop('checked', true).closest('.donation-amount-btn').addClass('active');
-                      $('.js--don-amt').text($('.form-check-label').eq(0).text().trim());
+                      $('input[name="personalDonAmt"]').eq(1).click().prop('checked', true).closest('.donation-amount-btn').addClass('active');
+                      // $('.js--don-amt').text($('.form-check-label').eq(1).text().trim());
 
-                   
-                
+
+
                       // redirect is now managed in amazonpay.js
                       // $('.js--personal-don-form').on('submit', function(e){
                       //   e.preventDefault();
@@ -952,7 +1018,7 @@
                       //   window.location.href = finalDonUrl;
                       // });
 
-              }, 
+              },
               error: function(response) {
                   // $('.field-error-text').text(response.errorResponse.message);
                   // $('.ErrorContainer').removeClass('hidden');
@@ -961,6 +1027,61 @@
           });
         };
         cd.getDonationFormInfo();
+
+
+         // Get events by name or state
+    cd.getPersonalVideo = function (frId, consId) {
+       luminateExtend.api({
+        api: 'teamraiser',
+        data: 'method=getPersonalVideoUrl' +
+          '&fr_id=' + frId +
+          '&cons_id=' + consId +
+          '&response_format=json',
+        callback: {
+          success: function (response) {
+            var videoEmbedHtml;
+            if (response.getPersonalVideoUrlResponse.videoUrl) {
+              var videoUrl = response.getPersonalVideoUrlResponse.videoUrl;
+
+              if (videoUrl && videoUrl.indexOf('vidyard') === -1) {
+                videoUrl = videoUrl.replace('&amp;v=', '&v=');
+                var videoId = '';
+                var personalVideoEmbedUrl = '';
+
+                if (videoUrl.indexOf('?v=') !== -1) {
+                  videoId = videoUrl.split('?v=')[1].split('&')[0];
+                } else if (videoUrl.indexOf('&v=') !== -1) {
+                  videoId = videoUrl.split('&v=')[1].split('&')[0];
+                } else if (videoUrl.indexOf('/embed/') !== -1) {
+                  videoId = videoUrl
+                    .split('/embed/')[1]
+                    .split('/')[0]
+                    .split('?')[0];
+                } else if (videoUrl.indexOf('youtu.be/') !== -1) {
+                  videoId = videoUrl
+                    .split('youtu.be/')[1]
+                    .split('/')[0]
+                    .split('?')[0];
+                }
+                if (videoId !== '') {
+                  personalVideoEmbedUrl = 'https://www.youtube.com/embed/' + videoId + '?wmode=opaque&amp;rel=0&amp;showinfo=0';
+                }
+              }
+              videoEmbedHtml = '<iframe class="embed-responsive-item" src="' + personalVideoEmbedUrl + '" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+            } else {
+              // TODO - show default video
+              videoEmbedHtml = '<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/b3K5LcaPzvE?wmode=opaque&amp;rel=0&amp;showinfo=0" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+            }
+            $('.js--personal-video-container').append(videoEmbedHtml);
+          },
+          error: function (response) {
+            console.log('getPersonalVideo error: ' + response.errorResponse.message);
+          }
+        }
+      });
+    };
+    var personalPageConsId = getURLParameter(currentUrl, 'px');
+    cd.getPersonalVideo(evID, personalPageConsId);
     }
 
     if ($('body').is('.pg_team')) {
@@ -971,9 +1092,9 @@
         cd.setDonorRollHeight();
         cd.reorderPageForMobile();
 
-        // populate custom team page content		
-        $('.js--team-text').html($('#fr_rich_text_container').html());		
-        // populate donor honor roll		
+        // populate custom team page content
+        $('.js--team-text').html($('#fr_rich_text_container').html());
+        // populate donor honor roll
         cd.getTeamHonorRoll();
 
       // build team roster
@@ -994,24 +1115,24 @@
               success: function (response) {
                 if (response.getParticipantsResponse.totalNumberResults === '0') {
                   // no search results
-        
+
                 } else {
                   var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
                   var totalParticipants = parseInt(response.getParticipantsResponse.totalNumberResults);
-        
+
                   // if ( $.fn.DataTable ) {
                   //   if ( $.fn.DataTable.isDataTable('#participantResultsTable') ) {
                   //     $('#participantResultsTable').DataTable().destroy();
                   //   }              }
                   // $('#participantResultsTable tbody').empty();
-        
+
                   // $('.js--num-participant-results').text((totalParticipants === 1 ? '1 Result' : totalParticipants + ' Results'));
-        
+
                   $(participants).each(function (i, participant) {
-        
-                    var participantRaised = (parseInt(participant.amountRaised) * 0.01);
-                    var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
-        
+
+                    var participantRaised = (parseInt(participant.amountRaised) * 0.01).toFixed(2);
+                    var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
+
                     $('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"><td class="donor-name"><a href="' + participant.personalPageUrl + '">' +
                       participant.name.first + ' ' + participant.name.last +
                       '</a>' + (participant.aTeamCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
@@ -1019,19 +1140,12 @@
                         $('.js--team-captain-link').attr('href', participant.personalPageUrl).text(participant.name.first + ' ' + participant.name.last);
                       }
                   });
-        
+
                   if(totalParticipants > 5) {
                     $('.js--more-participant-results').removeAttr('hidden');
                   }
-                  cd.initializeTeamRosterTable();
+                  // cd.initializeTeamRosterTable();
 
-                  // $('#team-roster').DataTable({
-                  //   "info":     false,
-                  //   "autoWidth": false
-                  // });
-
-                  // $('.dataTables_length').addClass('bs-select');
-                  // $('.js--participant-results-container').removeAttr('hidden');
                   //add call to hook donate button with payment type selections
                   addPaymentTypesOnSearch();
                   $('.js--more-participant-results').on('click', function(e){
@@ -1058,19 +1172,82 @@
         // Populate company name from page title
         var pageTitle = jQuery('head title').text().trim();
         var start_pos = pageTitle.indexOf(':') + 1;
-        var end_pos = pageTitle.indexOf('-',start_pos);
-        var companyName = pageTitle.substring(start_pos,end_pos).trim();
-        $('.js--company-name').text(companyName);
+        var end_pos = pageTitle.indexOf('- Heart Walk',start_pos);
+        var currentCompanyName = pageTitle.substring(start_pos,end_pos).trim();
+        var currentCompanyId = getURLParameter(currentUrl, 'company_id');
+        $('.js--company-name').text(currentCompanyName);
+        // var isParentCompany = ($('#company_hierarchy_list_component .lc_Row1').length ? true : false)
+        var isParentCompany = ($('.js--company-hierarchy-list-container .lc_Row1').length ? true : false)
 
-        // Populate total raised
-        var raised = $('.company-tally-container--amount .company-tally-ammount').text();
+        var allCompanyData = [{
+          id: currentCompanyId,
+          name: currentCompanyName
+        }];
+        // allCompanyData.push({currentCompanyId, companyName});
+        // get child company IDs
+        if(isParentCompany){
+          $('.js--company-hierarchy-list-container .trr-td a').each(function(){
+            var childCompanyLink = $(this).attr('href');
+            var childCompanyName = $(this).text();
+            var childCompanyId = getURLParameter(childCompanyLink, 'company_id');
+            allCompanyData.push({id: childCompanyId, name: childCompanyName});
+            // allCompanyData.id
+          });
+        } else {
+
+          luminateExtend.api({
+            api: 'teamraiser',
+            data: 'method=getCompanyList&fr_id=' + evID +
+              '&include_all_companies=true&response_format=json',
+            callback: {
+              success: function (response) {
+                if (!$.isEmptyObject(response.getCompanyListResponse)) {
+                  var companyItems = luminateExtend.utils.ensureArray(response.getCompanyListResponse.companyItem);
+
+                  $(companyItems).each(function (i, company) {
+                    if(company.companyId === currentCompanyId){
+                      var parentCompanyId = company.parentOrgEventId;
+
+                      luminateExtend.api({
+                        api: 'teamraiser',
+                        data: 'method=getCompaniesByInfo' +
+                          '&company_id=' + parentCompanyId +
+                          '&response_format=json',
+                        callback: {
+                          success: function (response) {
+                            if (response.getCompaniesResponse.totalNumberResults !== '0') {
+                              $('.tr-page-info h1').before('<small><a href="' + response.getCompaniesResponse.company.companyURL + '">' + response.getCompaniesResponse.company.companyName + '</a></small>');
+                            }
+                          },
+                          error: function (response) {
+                            $('.js--company-results-container').removeAttr('hidden').text(response.errorResponse.message);
+                          }
+                        }
+                      });
+
+                    }
+                  });
+                }
+              },
+              error: function (response) {
+                console.log('getCompanyList error: ' + response.errorResponse.message);
+              }
+            }
+          });
+        }
+
+        var raised = $('.indicator-title:contains("Company Fundraising Status")').parent().find('.amount-raised-value').text();
+
         if (raised) {
             $('#progress-amount').html(raised);
         }
 
         // Get company goal
         $('.indicator-title:contains("Company Fundraising")').closest('.tr-status-indicator-container').addClass('default-company-thermometer');
-        var companyoGoalText = $('.default-company-thermometer .total-goal-value').text();
+        // var companyoGoalText = $('.default-company-thermometer .total-goal-value').text();
+        var companyoGoalText = $('.indicator-title:contains("Company Fundraising Status")').parent().find('.total-goal-value').text();
+
+
         var companyGoal = companyoGoalText.split('.');
         $('#goal-amount').html(companyGoal[0]);
 
@@ -1090,118 +1267,211 @@
 
         // Build company team roster
          // build team roster
-  var companyId = getURLParameter(currentUrl, 'company_id');
+         var numTeamRows = 0;
 
-  console.log('companyId: ', companyId);
- cd.getCompanyTeams = function () {
-  luminateExtend.api({
-    api: 'teamraiser',
-    data: 'method=getTeamsByInfo' +
-      '&team_name=%25%25%25' + 
-      '&fr_id=' + evID +
-      '&team_company_id=' + companyId +
-      '&list_page_size=499' +
-      '&list_page_offset=0' +
-      '&response_format=json' +
-      '&list_sort_column=team_name' +
-      '&list_ascending=true',
-    callback: {
-      success: function (response) {
-        if (response.getTeamSearchByInfoResponse.totalNumberResults === '0') {
-          // no search results
+         cd.getCompanyTeams = function (companyId, companyName, numCompanies, companyIndex) {
+          luminateExtend.api({
+            api: 'teamraiser',
+            data: 'method=getTeamsByInfo' +
+              '&team_name=%25%25%25' +
+              '&fr_id=' + evID +
+              '&team_company_id=' + companyId +
+              '&list_page_size=499' +
+              '&list_page_offset=0' +
+              '&response_format=json' +
+              '&list_sort_column=team_name' +
+              '&list_ascending=true',
+            callback: {
+              success: function (response) {
+                if (response.getTeamSearchByInfoResponse.totalNumberResults === '0') {
+                  // no search results
 
-        } else {
-          var teams = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
-          var totalTeams = parseInt(response.getTeamSearchByInfoResponse.totalNumberResults);
-          var totalTeamsText = totalTeams > 1 ? ' Teams' : ' Team';
-          $('.js--num-company-teams').text(totalTeams + totalTeamsText);
+                } else {
+                  var teams = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
+                  $(teams).each(function (i, team) {
+                    var teamRaised = (parseInt(team.amountRaised) * 0.01).toFixed(2);
+                    var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
+                    $('#team-roster tbody').append('<tr class="' + (numTeamRows > 4 ? 'd-none' : '') + '"> <td class="team-name"> <a href="' + team.teamPageURL + '" data-sort="' + team.name + '">' + team.name + '</a> </td><td class="donor-name"> <a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '" data-sort="' + team.captainFirstName + ' ' + team.captainLastName + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a> </td><td class="company-name"> <a href="' + luminateExtend.global.path.secure + 'TR/?pg=company&company_id=' + team.companyId + '&fr_id=' + team.EventId + '" data-sort="' + companyName + '">' + companyName + '</a> </td><td class="raised" data-sort="' + teamRaisedFormmatted + '"> <span><strong>$' + teamRaisedFormmatted + '</strong></span> </td><td> <a href="' + team.joinTeamURL + '">' + (screenWidth <= 480 ? 'Join' : 'Join Team') + '</a> </td></tr>');
+                    numTeamRows++;
+                  });
 
-          $(teams).each(function (i, team) {
-            var companyName = team.companyName;
-            var teamRaised = (parseInt(team.amountRaised) * 0.01);
-            var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+                  $('.js--more-team-results').on('click', function(e){
+                    e.preventDefault();
+                    $('#team-roster tr').removeClass('d-none');
+                    $(this).attr('hidden', true);
+                  });
+                }
 
-            $('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"> <td class="donor-name"> <a href="' + team.teamPageURL + '" data-sort="' + team.name + '">' + team.name + '</a> </td><td class="donor-name"> <a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '" data-sort="' + team.captainFirstName + ' ' + team.captainLastName + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a> </td><td class="raised" data-sort="' + teamRaisedFormmatted + '"> <span><strong>$' + teamRaisedFormmatted + '</strong></span> </td><td> <a href="' + team.joinTeamURL + '">' + (screenWidth <= 480 ? 'Join' : 'Join Team') + '</a> </td></tr>');
+                if(companyIndex === numCompanies){
+                  setTimeout(function(){
+                    cd.initializeTeamRosterTable();
+                    var totalTeams = $('.team-name').length;
+                    var totalTeamsText = totalTeams > 1 ? ' Teams' : ' Team';
+                    $('.js--num-company-teams').text(totalTeams + totalTeamsText);
+                    if(totalTeams > 5) {
+                      $('.js--more-team-results').removeAttr('hidden');
+                    }
+                  }, 250);
+                }
+              }
+            },
+            error: function (response) {
+              $('#error-participant').removeAttr('hidden').text(response.errorResponse.message);
+              console.log('error response: ', response);
+            }
           });
-          
-          console.log('totalTeams: ', totalTeams);
-          if(totalTeams > 5) {
-            $('.js--more-team-results').removeAttr('hidden');
-          }
-          cd.initializeTeamRosterTable();
+        };
 
-          $('.js--more-team-results').on('click', function(e){
-            e.preventDefault();
-            $('#team-roster tr').removeClass('d-none');
-            $(this).attr('hidden', true);
-          });
-        }
-      }
-    },
-    error: function (response) {
-      $('#error-participant').removeAttr('hidden').text(response.errorResponse.message);
-      console.log('error response: ', response);
-    }
-  });
-};
-cd.getCompanyTeams();
+cd.buildCompanyTeamRoster = function(){
+  var numCompanies = allCompanyData.length;
+  for (var i = 0, l = allCompanyData.length; i < l; i++) {
+    var company = allCompanyData[i];
+    var companyIndex = i + 1;
+    var companyId = company.id;
+    var companyName = company.name;
+    cd.getCompanyTeams(companyId, companyName, numCompanies, companyIndex);
+  }
+}
 
+cd.buildCompanyTeamRoster();
+var numWalkerRows = 0;
 
  // build team roster
  cd.getCompanyParticipants = function () {
+     console.log('getCompanyParticipants');
+  var numCompanies = allCompanyData.length-1;
+  var company = allCompanyData[0];
+  var companyIndex = 0;
+  var companyId = company.id;
+  var companyName = company.name;
+
   $('#participant-roster tbody').html('');
-  luminateExtend.api({
+  var participants = [];
+  cd.getAllParticipants = function(pgcnt) {
+   companyId = allCompanyData[companyIndex].id;
+   console.log('companyId = ' + companyId);
+   companyName = allCompanyData[companyIndex].name;
+   console.log('companyName = ' + companyName);
+   luminateExtend.api({
+    async: false,
     api: 'teamraiser',
     data: 'method=getParticipants' +
       '&team_name=%25%25%25&fr_id=' + evID +
       '&list_filter_column=team.company_id' +
       '&list_filter_text=' + companyId +
       '&list_page_size=499' +
-      '&list_page_offset=0' +
+      '&list_page_offset=' + pgcnt +
       '&response_format=json',
     callback: {
       success: function (response) {
+          console.log('success');
         if (response.getParticipantsResponse.totalNumberResults === '0') {
-          // no search results
-
-        } else {
-          var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
-          var totalParticipants = parseInt(response.getParticipantsResponse.totalNumberResults);
-          var totalParticipantsText = totalParticipants > 1 ? ' Walkers' : ' Walker';
-          $('.js--num-company-participants').text(totalParticipants + totalParticipantsText);
-
-          $(participants).each(function (i, participant) {
-
-            var participantRaised = (parseInt(participant.amountRaised) * 0.01);
-            var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
-
-            $('#participant-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"><td class="donor-name"><a href="' + participant.personalPageUrl + '">' +
-              participant.name.first + ' ' + participant.name.last +
-              '</a>' + (participant.aparticipantCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
-          });
-
-          if (totalParticipants > 5) {
-            $('.js--more-participant-results').removeAttr('hidden');
+            console.log('totalNumberResults is 0');
+          if (allCompanyData[companyIndex+1] != undefined) {
+              console.log('allCompanyData is not undefined');
+              companyIndex = companyIndex + 1;
+              pgcnt = 0;
+              cd.getAllParticipants(pgcnt);
+          } else {
+              console.log('allCompanyData is unefined');
+            if (participants.length > 0) {
+                console.log('participants.length > 0');
+               cd.buildParticipantList(participants);
+            }
           }
-          cd.initializeParticipantRosterTable();
-          //add call to hook donate button with payment type selections
-          addPaymentTypesOnSearch();
-          $('.js--more-participant-results').on('click', function (e) {
-            e.preventDefault();
-            $('#participant-roster tr').removeClass('d-none');
-            $(this).attr('hidden', true);
-          });
+          // no search results
+          return false;
+        } else {
+            console.log('totalNumberResults is not 0');
+          if (typeof(response.getParticipantsResponse.participant) == "undefined") {
+              console.log('getParticipantsResponse.participant is undefined');
+            if (allCompanyData[companyIndex+1] != undefined) {
+                console.log('allCompanyData is not undefined');
+              companyIndex = companyIndex + 1;
+              pgcnt = 0;
+              cd.getAllParticipants(pgcnt);
+            } else {
+                console.log('allCompanyData is undefined');
+              cd.buildParticipantList(participants);
+            }
+          } else {
+              console.log('getParticipantsResponse.participant is not undefined');
+             pgcnt++;
+             var participantList = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant);
+             $(participantList).each(function (i, participant) {
+               participantList[i].companyId = companyId;
+               participantList[i].companyName = companyName;
+             });
+             participants = participants.concat(participantList);
+             cd.getAllParticipants(pgcnt);
+          }
         }
+      },
+      error: function (response) {
+        $('#error-participant').removeAttr('hidden').text(response.errorResponse.message);
+        console.log('error response: ', response);
       }
-    },
-    error: function (response) {
-      $('#error-participant').removeAttr('hidden').text(response.errorResponse.message);
-      console.log('error response: ', response);
     }
-  });
+   });
+ }
+ cd.getAllParticipants(0);
 };
+
 cd.getCompanyParticipants();
 
+cd.buildParticipantList = function(participants) {
+    $(participants).each(function (i, participant) {
+      var participantRaised = (parseInt(participant.amountRaised) * 0.01).toFixed(2);
+      var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
+
+      $('#participant-roster tbody').append('<tr class="' + (numWalkerRows > 4 ? 'd-none' : '') + '"><td class="participant-name"><a href="' + participant.personalPageUrl + '">' +
+        participant.name.first + ' ' + participant.name.last +
+        '</a>' + (participant.aTeamCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="company-name"> <a href="' + luminateExtend.global.path.secure + 'TR/?pg=company&company_id=' + participant.companyId + '&fr_id=' + participant.eventId + '" data-sort="' + participant.companyName+ '">' + participant.companyName + '</a> </td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
+        numWalkerRows++;
+    });
+
+    $('.js--more-participant-results').on('click', function (e) {
+      e.preventDefault();
+      $('#participant-roster tr').removeClass('d-none');
+      $(this).attr('hidden', true);
+    });
+
+    setTimeout(function(){
+      cd.initializeParticipantRosterTable();
+      var totalParticipants = $('.participant-name').length;
+      var totalParticipantsText = totalParticipants > 1 ? ' Walkers' : ' Walker';
+      $('.js--num-company-participants').text(totalParticipants + totalParticipantsText);
+      if (numWalkerRows > 5) {
+        $('.js--more-participant-results').removeAttr('hidden');
+      }
+    }, 250);
+
+    //add call to hook donate button with payment type selections
+    $('a:contains(Donat)').on('click',function(e){
+      e.preventDefault();
+      if(!$(this).hasClass('js--team-member-donate')){
+        if ($(this).next('.paymentSelType').length > 0) {
+          $(this).next('.paymentSelType').remove();
+        } else {
+          var dlink = $(this).attr("href");
+          var fr_id = $.getCustomQuerystring(dlink,"FR_ID");
+          var px = $.getCustomQuerystring(dlink,"PROXY_ID");
+          var pt = $.getCustomQuerystring(dlink,"PROXY_TYPE");
+
+          var html = "<div class='paymentSelType text-center' style='padding-top:10px;'>" +
+            "<h2 class='h6'>How would you like to donate?</h2>" +
+            "<div class='payment-options-container'><a href='"+dlink+"'><img src='https://www2.heart.org/images/content/pagebuilder/credit-card-logos2.png' alt='Donate with Visa, MasterCard, American Express or Discover cards'/></a>" +
+            "<a href='"+default_path+"/site/SPageNavigator/heartwalk_donate_amazon.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+px+"&PROXY_TYPE="+pt+"' class='amazon'><img src='https://donatenow.heart.org/images/amazon-payments_inactive.png' alt='Donate with Amazon Pay'/></a>" +
+              "<a href='"+default_path+"/site/SPageNavigator/heartwalk_donate_googlepay.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+px+"&PROXY_TYPE="+pt+"' class='googlepay'><img src='https://www2.heart.org/donation-forms/donatenow/images/googlepay-button.png' alt='Donate with Google Pay'/></a>" +
+              "<a href='"+default_path+"/site/SPageNavigator/heartwalk_donate_applepay.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+px+"&PROXY_TYPE="+pt+"' class='applepay hidden-md hidden-lg'><img src='https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png' alt='ApplePay'/></a>" +
+            "<a href='"+default_path+"/site/SPageNavigator/heartwalk_donate_venmo.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+px+"&PROXY_TYPE="+pt+"' class='venmo hidden-md hidden-lg'><img src='https://www2.heart.org/donation-forms/donatenow/images/venmo-button.png' alt='Venmo'/></a>" +
+            "<a href='"+dlink+"&paypal=true'><img src='https://www2.heart.org/images/content/pagebuilder/PP_logo_h_100x26.png'/ alt='Donate with PayPal'></a></div>";
+          $(this).after(html);
+        }
+      }
+    });
+
+}
 
     }
 
@@ -1251,13 +1521,8 @@ cd.getCompanyParticipants();
         var firstNameVal = getURLParameter(currentUrl, 'first_name') ? getURLParameter(currentUrl, 'first_name') : '';
         var lastNameVal = getURLParameter(currentUrl, 'last_name') ? getURLParameter(currentUrl, 'last_name') : '';
 
-        console.log('firstNameVal: ', firstNameVal);
-        console.log('lastNameVal: ', lastNameVal);
-
-
         if(!firstNameVal && !lastNameVal){
           // General participant search from greeting page. Show all walkers
-          console.log('run general search for all walkers');
           cd.getParticipants('%25%25%25', '%25%25%25', (isCrossEventSearch === "true" ? true : false));
         } else {
           firstNameVal = decodeURIComponent(firstNameVal);
@@ -1265,7 +1530,7 @@ cd.getCompanyParticipants();
 
           $('#walkerFirstName').val(firstNameVal);
           $('#walkerLastName').val(lastNameVal);
-  
+
           cd.getParticipants(firstNameVal, lastNameVal, (isCrossEventSearch === "true" ? true : false));
         }
 
@@ -1334,6 +1599,7 @@ var setIconDirection = function (element) {
         icon.addClass('fa-chevron-down');
     }
 };
+
 
 var toggleMultiEventInfo = function(elem) {
   $(elem).toggleClass('open');

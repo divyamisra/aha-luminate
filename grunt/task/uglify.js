@@ -141,9 +141,17 @@ module.exports = {
         dest: "dist/heartwalk2020/js/main." + "<%= timestamp %>" + ".min.js"
       },
       {
+        src: ["src/heartwalk2020/js/registration.js"],
+        dest: "dist/heartwalk2020/js/registration." + "<%= timestamp %>" + ".min.js"
+      },
+      {
+        src: ["src/heartwalk2020/js/donation.js"],
+        dest: "dist/heartwalk2020/js/donation." + "<%= timestamp %>" + ".min.js"
+      },
+      {
         src: ["src/heartwalk2020/js/pushy.js"],
         dest: "dist/heartwalk2020/js/pushy.min.js"
       }
     ]
-  }  
+  }
 }

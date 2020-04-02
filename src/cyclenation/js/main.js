@@ -74,7 +74,7 @@
         })
       });
     }
-    
+
     // Select all links with hashes
     var addScrollLinks = function () {
       $('a.scroll-link')
@@ -88,7 +88,11 @@
             // Only prevent default if animation is actually gonna happen
             event.preventDefault();
             if ($('body').is('.pg_cn_home') || $('body').is('.pg_entry')) {
-              var scrollLocation = target.offset().top - 130;
+              if($(document).scrollTop()>299){
+                var scrollLocation = target.offset().top - 130;
+              } else {
+                var scrollLocation = target.offset().top - 250;
+              }
             } else {
               var scrollLocation = target.offset().top;
             }
@@ -494,12 +498,12 @@
               imageId = getURLParameter(imageId, 'PhotoID');
               var imageAltText = $(this).find('img').attr('alt');
               var imageSrc = '/images/content/photos/large_' + imageId + '.jpg';
-              var finalAlbumImage = '<div class="grid-item"><a href="' + imageSrc + '"><img src="' + imageSrc + '" alt="' + imageAltText + '" /></a></div>';
+              var finalAlbumImage = '<div class="grid-item"><a href="' + imageSrc + '"><img src="' + imageSrc + '" alt="' + imageAltText + '" data-modaal-desc="' + imageAltText + '" data-group="gallery" class="gallery" /></a></div>';
 
               $('.js__lo-album-container').prepend(finalAlbumImage);
-            
+
             });
-           
+
             var $grid = $('.js__lo-album-container').imagesLoaded( function() {
               console.log('launch masonry');
               // init Masonry after all images have loaded
@@ -509,7 +513,13 @@
                 columnWidth: '.grid-sizer'
               });
 
-              var lightbox = $('.js__lo-album-container a').simpleLightbox();
+              // var simpleLightboxOptinos = {
+              //   captions: true
+              // }
+              // var lightbox = $('.js__lo-album-container a').simpleLightbox();
+              $('.gallery').modaal({
+                type: 'image'
+              });
 
             });
 
@@ -593,6 +603,7 @@
               var events = luminateExtend.utils.ensureArray(response.getTeamraisersResponse.teamraiser);
 
               var todaysDate = new Date();
+              todaysDate.setDate(todaysDate.getDate() - 1);
               var liveEventsDisplayed = 0;
               var pastEventsDisplayed = 0;
 
@@ -689,6 +700,7 @@
               var events = luminateExtend.utils.ensureArray(response.getTeamraisersResponse.teamraiser);
 
               var todaysDate = new Date();
+              todaysDate.setDate(todaysDate.getDate() - 1);
               var liveEventsDisplayed = 0;
               var pastEventsDisplayed = 0;
 
@@ -813,12 +825,12 @@
               $(participantData).each(function () {
                 var participantName = this.name.first + ' ' + this.name.last;
                 var participantRaised = (parseInt(this.amountRaised) * 0.01);
-                participantRaised = participantRaised.toString();
+                participantRaised = participantRaised.toFixed(0);
                 var participantRaisedFormmatted = participantRaised.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                 var participantId = this.consId;
                 var participantPage = this.personalPageUrl;
                 var isCaptain = this.aTeamCaptain;
-                var topParticipantHtml = '<div class="top-list-entry row pb-2"><div class="badges col-2">' + (isCaptain === "true" ? '<svg version="1.1" class="team-captain-badge" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 110 110" style="enable-background:new 0 0 110 110;" xml:space="preserve"><circle class="st0" cx="55" cy="55" r="55"></circle><polygon class="st1" points="55,72.8 32.1,87.2 38.7,61 18,43.7 44.9,41.9 55,16.8 65.1,41.9 92,43.7 71.3,61 77.9,87.2 "></polygon></svg>' : '') + '</div><div class="names-amounts col-10 pl-0"><a class="participant-name" href="' + participantPage + '">' + participantName + '</a><span class="amount-raised">$' + participantRaisedFormmatted + '</span></div></div>';
+                var topParticipantHtml = '<div class="top-list-entry row pb-2"><div class="badges col-2">' + (isCaptain === "true" ? '<svg version="1.1" class="team-captain-badge" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 110 110" style="enable-background:new 0 0 110 110;" xml:space="preserve" alt=""><circle class="st0" cx="55" cy="55" r="55"></circle><polygon class="st1" points="55,72.8 32.1,87.2 38.7,61 18,43.7 44.9,41.9 55,16.8 65.1,41.9 92,43.7 71.3,61 77.9,87.2 "></polygon></svg>' : '') + '</div><div class="names-amounts col-10 pl-0"><a class="participant-name" href="' + participantPage + '">' + participantName + '</a><span class="amount-raised">$' + participantRaisedFormmatted + '</span></div></div>';
 
                 $('.js__top-participants-list').append(topParticipantHtml);
 
@@ -849,12 +861,10 @@
               $(teamData).each(function (i) {
                 var teamName = this.name;
                 var teamRaised = (parseInt(this.amountRaised) * 0.01);
-                teamRaised = teamRaised.toString();
+                teamRaised = teamRaised.toFixed(0);
                 var teamRaisedFormmatted = teamRaised.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                 var teamId = this.id;
-
                 var badgeLevel = null;
-
                 if (teamRaised >= 5000) {
                   badgeLevel = "5000";
                 } else if (teamRaised >= 2500) {
@@ -863,7 +873,7 @@
                   badgeLevel = "1000";
                 }
 //                var topTeamRow = '<div class="top-list-entry row pb-2"><div class="badges col-2"> ' + (badgeLevel ? '<img src="http://' + window.location.host + '/aha-luminate/dist/cyclenation/image/badge_team_' + badgeLevel + '.svg" aria-hidden="true">' : '') + '</div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a> <span class="amount-raised">$' + teamRaisedFormmatted + '</span> </div></div>';
-                var topTeamRow = '<div class="top-list-entry row pb-2"><div class="badges col-2"> ' + (badgeLevel ? '<img src="https://' + window.location.host + '/aha-luminate/dist/cyclenation/image/badge_team_' + badgeLevel + '.svg" aria-hidden="true">' : '') + '</div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a> <span class="amount-raised">$' + teamRaisedFormmatted + '</span> </div></div>';
+                var topTeamRow = '<div class="top-list-entry row pb-2"><div class="badges col-2"> ' + (badgeLevel ? '<img src="https://' + window.location.host + '/aha-luminate/dist/cyclenation/image/badge_team_' + badgeLevel + '.svg" aria-hidden="true" alt="">' : '') + '</div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR/?team_id=' + teamId + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a> <span class="amount-raised">$' + teamRaisedFormmatted + '</span> </div></div>';
 
                 $('.js__top-teams-list').append(topTeamRow);
               });
@@ -895,7 +905,7 @@
               $(topCompanies).each(function () {
                 var companyName = this.companyName;
                 var companyRaised = (parseInt(this.amountRaised) / 100);
-                companyRaised = companyRaised.toString();
+                companyRaised = companyRaised.toFixed(0);
                 var companyRaisedFormmatted = companyRaised.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
                 var topCompanyHtml = '<div class="top-list-entry row pb-2"> <div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="participant-name" href="TR?company_id=' + this.companyId + '&fr_id=' + evID + '&pg=company">' + companyName + '</a> <span class="amount-raised">$' + companyRaisedFormmatted + '</span> </div></div>';
                 $('.js__top-companies-list').append(topCompanyHtml);
@@ -945,8 +955,8 @@
           } else {
             if (results[0].geometry && results[0].geometry.location) {
               // getZipForLatLng({
-              //   lat: results[0].geometry.location.lat(), 
-              //   lng: results[0].geometry.location.lng(), 
+              //   lat: results[0].geometry.location.lat(),
+              //   lng: results[0].geometry.location.lng(),
               //   callback: settings.callback
               // });
             } else {
@@ -1965,7 +1975,8 @@
         .prepend('<div class="order-2 order-sm-1 col-sm-4 col-md-3 col-8 offset-2 offset-sm-0"><a href="TRR/?pg=tfind&amp;fr_id=' + evID + '" class="button btn-secondary btn-block">Back</a></div>')
 
       // Add minimum validation to LOs team goal input
-      $(loTeamGoal)
+      if (eventType2 === 'StationaryV2') {
+        $(loTeamGoal)
         .val(goalPerBike)
         .addClass('pl-0 border-left-0')
         .wrap('<div class="input-group" />')
@@ -1979,6 +1990,27 @@
           "data-parsley-type": "number",
           "data-parsley-min-message": minTeamGoalMsg
         });
+      } else {
+        var minTeamGoal = $(loTeamGoal).val();
+        minTeamGoal = Number(minTeamGoal.replace(/[^0-9\.-]+/g, ""));
+
+        $(loTeamGoal)
+        .val(minTeamGoal)
+        .addClass('pl-0 border-left-0')
+        .wrap('<div class="input-group" />')
+        .before('<div class="input-group-prepend"><div class="input-group-text py-0 px-1 border-right-0 bg-white">$</div></div>')
+        .attr({
+          "min": minTeamGoal,
+          "step": "100",
+          "aria-label": "Goal amount (to the nearest dollar)",
+          "data-parsley-validation-threshold": "1",
+          "data-parsley-trigger": "keyup",
+          "data-parsley-type": "number",
+          "data-parsley-min-message": minTeamGoalMsg
+        });
+      }
+
+
       $('#team_find_new_fundraising_goal_input_hint').before('<div class="team-goal-error"></div>');
 
       $('.js__show-team-bikes').on('click', function (e) {
@@ -2652,7 +2684,7 @@
             }
           } else {
             // road logic
-            // override default Bootstrap modal tab behavior 
+            // override default Bootstrap modal tab behavior
 
             $('#dspPledge').on('keyup', function (e) {
               var focusedElement = document.activeElement.id
@@ -2802,7 +2834,7 @@
     $('label[for="responsive_payment_typecc_exp_date_MONTH"] .label-text').text('Month:');
     $('label[for="responsive_payment_typecc_exp_date_MONTH"]').insertBefore($('#responsive_payment_typecc_exp_date_MONTH'));
 
-    //$('label[for="responsive_payment_typecc_exp_date_YEAR"]').append('<span class="label-text">Year: </span>');
+    $('label[for="responsive_payment_typecc_exp_date_YEAR"]').append('<span class="label-text">Year: </span>');
     $('label[for="responsive_payment_typecc_exp_date_YEAR"]').insertBefore($('#responsive_payment_typecc_exp_date_YEAR'));
 
     $('#responsive_payment_typecc_exp_date_row .field-required').remove();
@@ -2853,7 +2885,7 @@
         $('.js__carousel-inner').append('<div class="carousel-item ' + (i === 0 ? 'active' : '') + '"><img src="' + $(this).attr('src') + '" alt="' + $(this).attr('alt') + '"></div>');
       });
       $('.carousel').carousel({
-        interval: 2000
+        interval: 4000
       });
 
       if (viewportWidth < 640) {
@@ -2903,7 +2935,7 @@
               break;
           }
 
-          // var sponsorToPush = { }; 
+          // var sponsorToPush = { };
           // sponsorToPush["sponsorName"] = sponsorName;
           // sponsorToPush["sponsorLevel"] = sponsorLevel;
           // sponsorToPush["sponsorImg"] = sponsorImg;
@@ -2943,6 +2975,68 @@
     }
     if ($('body').is('.app_donation')) {
       /* 2019 DF UPDATES */
+
+      // donation levels
+      $('.donation-level-container').addClass('level');
+      $('.donation-level-container:last-child').addClass('otherAmount').removeClass('level');
+      $('.donation-level-container.level .donation-level-amount-container').prop('tabindex', '0');
+
+      $('.donation-level-user-entered input[type="text"]').prop('placeholder', 'Other');
+      $('.otherAmount .donation-level-label-container').remove();
+      $('.donation-level-user-entered > label').prepend('<span class="text-muted"><em>($25 minimum)</em></span>');
+      $('.otherAmount label .aural-only').text('Other amount edit');
+
+      $('.otherAmount .form-input > label').prepend('<span class="text-muted">Enter an amount</span>');
+
+      $('.donation-level-user-entered input[type="text"]').removeAttr('onfocus');
+
+      var askMessageHtml = '<div class="ask-message">Donors who give $5,000 or more each year join our <a target="_blank" href="https://www.heart.org/en/get-involved/ways-to-give/cor-vitae-society">Cor Vitae Giving Society</a>.</div>';
+      $(askMessageHtml).insertAfter('.don-standard-levels');
+
+      $('.donation-level-amount-container').click(function() {
+        $('.donation-level-amount-container.active, .donation-level-user-entered input').removeClass('active');
+        $(this).addClass('active');
+      });
+
+      $('.donation-level-user-entered').click(function() {
+        $('.donation-level-amount-container.active, .donation-level-user-entered input').removeClass('active');
+        $(this).find('input').addClass('active');
+        $('.otherAmount .donation-level-label-input-container input[type="radio"]').click();
+      });
+
+      $('.donation-level-amount-container').keydown(function(e) {
+        var code = e.which
+        if ((code === 13) || (code === 32)) {
+          e.preventDefault();
+          $(this).click();
+        }
+      });
+      $('.donation-level-user-entered input').keyup(function(e) {
+        var code = e.which
+        var click = code === 9 || code === 39 || code === 40 || code === 37 || code === 38 ? false : true;
+        if (click) {
+          $('.donation-level-user-entered').click();
+        }
+      });
+
+      $('.donation-level-amount-container').focus(function(e) {
+        $(this).keyup(function(e){
+          var code = e.which
+          if ((code === 39) || (code === 40)) {
+            var nextElem = $(this).parent().parent().parent().parent()[0].nextElementSibling;
+            if($(nextElem).hasClass('otherAmount')) {
+              $('.donation-level-user-entered input[type="text"]').focus();
+            } else {
+              $(nextElem).find('.donation-level-amount-container').focus();
+            }
+          }
+          if ((code === 37) || (code === 38)) {
+            var prevElem = $(this).parent().parent().parent().parent()[0].previousElementSibling;
+            $(prevElem).find('.donation-level-amount-container').focus();
+          }
+        });
+      });
+
       // add donor recognition label
       $('<legend>Donor Recognition:</legend>').insertBefore('#tr_recognition_nameanonymous_row #tr_recognition_nameanonymousname');
 
@@ -2951,7 +3045,7 @@
 
       // Add text above matching company label
       // removed code
-      
+
       // wrap billing fields into container
       $('#billing_first_name_row, #billing_last_name_row, #donor_email_address_row, .custom-field-container:contains("Cell or Phone Number"), #billing_addr_street1_row, #billing_addr_street2_row, #billing_addr_city_row, #billing_addr_state_row, #billing_addr_zip_row, #billing_addr_country_row').wrapAll('<div class="billing-fields-container"></div>');
 
@@ -2967,18 +3061,16 @@
       // wrap cc fields into container
       $('#responsive_payment_typecc_number_row, #responsive_payment_typecc_exp_date_row').wrapAll('<div class="cc-fields-container"></div>');
 
-      // wrap cc expiration dates into separate containers 
+      // wrap cc expiration dates into separate containers
       $('label[for=responsive_payment_typecc_exp_date_MONTH], select#responsive_payment_typecc_exp_date_MONTH').wrapAll('<div class="cc-expiration-date-month-container expiration-date-fields"></div>');
       $('label[for=responsive_payment_typecc_exp_date_YEAR], select#responsive_payment_typecc_exp_date_YEAR').wrapAll('<div class="cc-expiration-date-year-container expiration-date-fields"></div>');
 
-      // apply button styles classes 
+      // apply button styles classes
       $('#pstep_finish').addClass('btn-rounded btn-primary')
       /* END 2019 DF UPDATES */
-      
+
       // replace duplicate ID
       $('#level_flexible_row.form-row.form-donation-level').attr('id', 'level_flexible_row2');
-
-      $('.donation-level-user-entered input[type="text"]').after('<small class="form-text text-muted"><em>($25 minimum)</em></small>');
 
       $('#level_flexible_row2').wrapInner('<fieldset></fieldset>');
       $('#level_flexible_row2 fieldset').prepend('<legend class="aural-only">Select Gift Amount</legend>');

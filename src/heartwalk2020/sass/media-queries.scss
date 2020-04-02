@@ -192,7 +192,7 @@
   }
 }
 
-@media all and (max-width: 1010px) {
+@media all and (max-width: 1023px) {
   nav {
     li.login a {
       padding: 8px 21px !important;
@@ -323,11 +323,11 @@
   /* END PERSONAL AND TEAM PAGE STYLES */
 
   .tr-page-container {
-    &.hero {
-      .col-lg-4 {
-        padding: 0 !important;
-      }
-    }
+    // &.hero {
+    //   .col-lg-4 {
+    //     padding: 0 !important;
+    //   }
+    // }
 
     .sidebar {
       max-width: 40% !important;
@@ -468,13 +468,19 @@
   }
 
   nav {
+    margin: 6px auto 0px !important;
+    
     .navbar-brand {
-      margin: 10px 0 20px 20px;
+      margin: 0px 0px 0px 20px;
       padding: 0;
 
       svg {
         margin: 0;
         max-width: 200px;;
+      }
+      
+      img {
+        max-width: 90%;
       }
     }
   }
@@ -670,11 +676,12 @@
   .pg_personal, .pg_team, .pg_company {
     .tr-page-container {
       &.hero {
-        padding: 20px 0 0 0;
+        padding:0 15px;
       }
 
       .sidebar {
         max-width: unset !important;
+        padding:0;
       }
 
       .col-lg-8 {

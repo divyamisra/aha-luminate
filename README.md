@@ -6,7 +6,7 @@ The framework used on American Heart Association's Luminate Online web propertie
 Using Grunt
 -----------
 
-Before getting started using Grunt, you'll need to install [Node.js](https://nodejs.org) v8.x. (If you need to use multiple versions of Node on your machine, 
+Before getting started using Grunt, you'll need to install [Node.js](https://nodejs.org) v12.x. (If you need to use multiple versions of Node on your machine, 
 consider using [nvm](https://github.com/creationix/nvm)).
 
 Once you have Node installed, you'll need to install the project dependencies:

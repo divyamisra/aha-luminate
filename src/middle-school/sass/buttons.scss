@@ -1,0 +1,9 @@
+button.btn {
+  &.btn-secondary {
+    &:hover,
+    &:focus,
+    &:active {
+      color: $event-grey;
+    }
+  }
+}

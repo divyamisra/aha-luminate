@@ -22,7 +22,6 @@ a.ym-pc-dashboard-download-certificates {
 	transition: all 0.2s;
 	width: 150px;
 	z-index: 99999;
-	outline: none;
 }
 @media only screen and (min-width: 768px) {
 	.launch-builder-popup {
@@ -89,102 +88,76 @@ a.ym-pc-dashboard-download-certificates {
 }
 
 /* badge list */
+.ym-pc-dashboard-badges-section {
+  background: none !important;
+  margin: 0px !important;
+  padding: 10px 0 0 0 !important;
+  
+  .ym-pc-dashboard-mission-accomplished {
+    color: $event-secondary;
+    font-weight:bold;
+  }
+  .ym-pc-dashboard-completed-label {
+    font-size:14px;
+  }
+  .btn {
+    white-space:normal;
+  }
+}
+
+.ym-pc-dashboard-badges-header {
+   background: #feeec7;
+   width: 100%;
+   padding-bottom: 20px;
+   margin-top: 50px;
+   position: relative;
+   font-size:20px;
+   img {
+	margin-top: -35px;
+	max-width: 70px;
+	margin-bottom: 20px;
+   }
+   p {
+	display: block;
+	max-width: 475px;
+	color: indigo;
+	margin:0 auto;
+   }
+   em {
+      font-size:16px;
+   }
+}
 .ym-pc-dashboard-badges-icons {
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
-	justify-content: flex-start;
+	justify-content: center;
 	align-items: flex-start;
-	padding: 0 20px;
+	padding: 20px;
+	background: #feeec7;
 }
 .ym-pc-dashboard-badges-icon {
 	text-align: center;
-	margin: 0 15px 25px;
-	max-width:125px;
+	padding: 0 25px 25px;
+	max-width:200px;
 }
 
-/* Gifts tab */
-section.ym-pc-dashboard-bonus-gifts-section {
-	.ym-pc-dashboard-section-header {
-	   background: #d7d4e8;
-   	   padding:20px 0 0;
-	   overflow:hidden;
-		
-	   p {
-              font-size: 16px;
-              margin: 10px 0 20px;
-              line-height: 22px;
-           }
-	}
-  
-        @media (min-width: $screen-sm-min) {
-           margin: 0 0 40px;
-        }
-        
-	.ym-pc-dashboard-bonus-gifts-icons {
-	   background: $brand-white;
-           margin: 5px 0 0 0;
-        }
-	
-	.ym-pc-dashboard-bonus-gifts-icon {
-           display: inline-block;
-           max-width: 270px;
-           margin: 0 11px 12px 0;
-           vertical-align: top;
-   	   position:relative;
-           
-           &:nth-child(4n+4) {
-              margin-right: 0;
-           }
+.ym-pc-dashboard-coordinator-resources-contact {
+	text-align:center;
+	font-weight:bold;
+	margin-top:15px;
+	color: $event-secondary;
+}
 
-	   a {
-              text-decoration:none;
-	   }
-		
-	   .ym-pc-dashboard-bonus-gift-level {
-              color: #440075;
-              right:10px;
-              position: absolute;
-              top: 15px;
-              font-family: "Luckiest Guy",cursive;
-              font-size: 16px;
-           }
-	   .ym-pc-dashboard-bonus-gift-earned {
-              color: #440075;
-              left:35%;
-              position: absolute;
-              top: 15px;
-              font-family: "Luckiest Guy",cursive;
-              font-size: 20px;
-           }
-           .ym-pc-dashboard-bonus-gifts-text {
-              background: #440075;
-	      padding: 20px;
-	      text-align:center;
-	      color: #ffffff;
-	      min-height:85px;
-	      font-weight:bold;
-           }
-           .ym-pc-dashboard-bonus-gifts-desc {
-	      font-style:italic;
-              font-size:0.9em;
-           }
+
+/* Gifts tab */
+section.ym-pc-dashboard-gifts-section {
+	h3.h6 {
+		color: $event-secondary;
 	}
 }
 
 section.ym-pc-dashboard-standard-gifts-section {
-	.ym-pc-dashboard-section-header {
-	   background: #c8e3aa;
-   	   padding:20px 0 0;
-	   overflow:hidden;
-		
-	   p {
-              font-size: 16px;
-              margin: 10px 0 20px;
-              line-height: 22px;
-           }
-	}
-	
         @media (min-width: $screen-sm-min) {
            margin: 0 0 40px;
         }
@@ -192,54 +165,97 @@ section.ym-pc-dashboard-standard-gifts-section {
 	.ym-pc-dashboard-standard-gifts-icons {
 	   background: $brand-white;
            margin: 5px 0 0 0;
+	   display:flex;
+	   flex-flow: row wrap;
+	   justify-content: space-around;
         }
 	
 	.ym-pc-dashboard-standard-gifts-icon {
-           display: inline-block;
-           max-width: 270px;
-           max-width: 270px;
-           margin: 0 11px 0 0;
+           max-width: 23%;
+           margin: 0 11px 15px 0;
            vertical-align: top;
    	   position:relative;
-           
-           &:nth-child(4n+4) {
-              margin-right: 0;
+	   text-align:center;
+	   background: #eafbd7;
+	   padding: 20px;
+	   flex: 1 100%;
+  
+	   @media (max-width: $screen-sm-min) {
+              max-width:45%;
            }
+	   @media (max-width: $screen-xs-min) {
+              max-width:100%;
+           }
+		
+	   img {
+	      margin-bottom: 30px;
+	   }
+           
+	   &.not-earned {
+	      background: #d7d5e9;
+		   
+	      img {
+		 opacity: 0.5;
+	      }
+	   }
 
 	   a {
               text-decoration:none;
+	      display:block;
 	   }
 
-	   .ym-pc-dashboard-bonus-gift-level {
-              color: #440075;
-              right:10px;
-              position: absolute;
-              top: 15px;
-              font-family: "Luckiest Guy",cursive;
-              font-size: 16px;
-           }
 	   .ym-pc-dashboard-standard-gift-earned {
-              color: #440075;
-              left:28%;
-              position: absolute;
-              top: 15px;
-              font-family: "Luckiest Guy",cursive;
-              font-size: 30px;
+		   h4 {
+	              color: #440075;
+        	      font-family: "Luckiest Guy",cursive;
+	              font-size: 20px;
+		   }
+		   .gift-subtitle1 {
+			   color:#440075;
+			   font-weight:bold;
+		   }
+		   .gift-subtitle2 {
+			   color:#2d2d2d;
+		   }
            }
-           .ym-pc-dashboard-standard-gifts-text {
-              text-align: center;
-              color: #000;
-              position: relative;
-              margin-top: -36px;
- 	      margin-bottom:12px;
-              font-weight: bold;
-              font-size: 20px;
+	   .ym-pc-dashboard-standard-gift-notearned {
+		   h4 {
+	              color: #2d2d2d;
+        	      font-family: "Luckiest Guy",cursive;
+	              font-size: 20px;
+		   }
+		   .gift-subtitle1 {
+			   color:#2d2d2d;
+			   font-weight:bold;
+		   }
+		   .gift-subtitle2 {
+			   color:#2d2d2d;
+		   }
            }
-	   
-	   .ym-pc-dashboard-standard-gifts-path {
-	      margin-bottom: 15px;
+	   .more-details-button {
+	      display:inline-block;
+	      background: $event-primary;
+	      color:#ffffff;
+	      padding: 10px 30px;
+	      border-radius: 15px;
+	      margin-top:40px;
+	      margin-bottom:20px;
 	   }
 	}
+	
+	.see-all-gifts {
+	   a.btn {
+   	      font-size: 20px;
+   	      margin-top: 20px;
+	      margin-bottom: 20px;
+	   }
+	}
+		
+}
+
+div.ta-editor table.containFull, 
+div.ta-editor table.containFull table {
+	width: auto !important;
 }
 
 .modal-dialog {
@@ -292,4 +308,53 @@ div[id^="taTextElement"]:focus {
     outline: 0;
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+}
+
+.ym-pc-dashboard-coordinator-school-years-section {
+	background-color: $event-accent-light;
+	padding: 36px;
+	margin: 0 0 30px;
+}
+
+.ym-pc-dashboard-livestream-box {
+	.ym-pc-dashboard-livestream-title {
+		text-align: center;
+		margin-bottom: 20px;
+	}
+	.ym-pc-dashboard-livestream-images {
+		.pc-livestream-character {
+			max-width:210px;
+			margin-right:50px;
+			@media (max-width: 992px) {
+				max-width:130px;
+			}
+		}
+		.pc-livestream-hearts {
+			max-height: 210px;
+			margin-bottom: 10px;
+			@media (max-width: 992px) {
+				max-height:130px;
+			}
+		}
+	}
+	.ym-pc-dashboard-livestream-buttons {
+		margin-top: 10px;
+		padding-top: 10px;
+		border-top: 1px solid #38b5bd;
+		overflow: hidden;
+		
+		a:nth-child(1) {
+			float:left;
+		}
+		a:nth-child(2) {
+			float:right;
+		}
+		a {
+			@media (max-width: 480px) {
+				text-align: center;
+				float: none !important;
+				margin-bottom: 10px;
+			}
+		}
+	}
 }

@@ -3,6 +3,36 @@ body {
   font-size: 18px;
 }
 
+main {
+    background-image: url("/images/content/pagebuilder/hw_hero_desktop.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-color: $gray-400;
+    padding: 48px 76px 67px;
+}
+@media (max-width:767px) {
+  main {
+    padding-right:5px;
+    padding-left:5px;
+    padding-top: 0px;
+  }
+}  
+@media (min-width: 1200px) {
+     main .content {
+         margin: 0 auto;
+    }
+}
+ main > .container {
+     background-color: #ffffff;
+     padding: 40px 20px !important;
+}
+
+@media (max-width:767px) {
+   main > .container {
+     padding-top: 10px !important;
+   }
+}
+
 a {
   color: $red;
   text-decoration: underline;
@@ -120,10 +150,6 @@ img {
 
 .achievements {
   margin: 0 0 10px;
-
-  svg {
-    margin: 17px 37px 0 0;
-  }
 }
 
 .donor-roll {
@@ -220,7 +246,7 @@ img {
     li {
       border-top: solid 1px $white;
       color: $white;
-      padding: 11px 0 24px 45px;
+      padding: 11px;
       font-size: 0.97rem;
       line-height: 1.4;
 
@@ -237,7 +263,10 @@ img {
 
     .achievements {
       svg {
-        width: 50px;
+        width: 100%;
+        max-width: 70px;
+        display: block;
+        margin: 0 auto;
       }
     }
   }

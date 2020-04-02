@@ -116,10 +116,10 @@
             <div class="ym-pc-dashboard-badges-icons clearfix">
               <div class="ym-pc-dashboard-badges-icon" ng-repeat="prize in prizes" ng-cloak>
                 <div ng-if="prize.earned">
-                  <img class="img-responsive" ng-src="//s3.amazonaws.com/aha-oot-production/fy20/assets/badges/ahc/{{prize.id}}_delivered.png" alt="">
+                  <img class="img-responsive" ng-src="//s3.amazonaws.com/cd-aha-oot-production/fy20/assets/badges/ahc/{{prize.id}}_delivered.png" alt="">
                 </div>
                 <div ng-if="!prize.earned">
-                  <img class="img-responsive" ng-src="//s3.amazonaws.com/aha-oot-production/fy20/assets/badges/ahc/{{prize.id}}_earned.png" alt="">
+                  <img class="img-responsive" ng-src="//s3.amazonaws.com/cd-aha-oot-production/fy20/assets/badges/ahc/{{prize.id}}_earned.png" alt="">
                 </div>
                 <div>
                   <span ng-bind-html="prize.label"></span> <span class="sr-only" ng-if="prize.earned">(earned)</span><span class="sr-only" ng-if="!prize.earned">(not yet earned)</span>
@@ -588,6 +588,21 @@
         </div>
       </div>
     </section>
+    <section class="ym-pc-dashboard-coordinator-school-years-section" aria-label="Years School Participated">
+      <div class="ym-pc-dashboard-section-header">
+        <h2 class="h3" ng-if="companyProgress.schoolYears > 0">
+          Your school has participated for <span ng-bind-html="companyProgress.schoolYears"></span> Years
+        </h2>
+        <h2 class="h3" ng-if="companyProgress.schoolYears == 0">
+          Tell us how many years your school has participated in the program
+        </h2>
+      </div>
+      <div class="ym-pc-dashboard-coordinator-school-years-update text-center">
+         <a href="" ng-click="editSchoolYears()" class="ym-school-update-years">
+           <strong>Update School Years</strong>
+         </a> 
+      </div>
+    </section>
     <section class="ym-pc-dashboard-coordinator-steps-section" aria-label="Fundraising Steps">
       <div class="ym-pc-dashboard-section-header">
         <h2 class="h3">
@@ -787,11 +802,11 @@
             Visit our Thank-You Gift portal to manage and order gifts for your students.
           </p>
           <div class="ym-activity-box-cta">
-            <a class="btn btn-md-wide btn-primary" ng-href="https://ms.staging.ootqa.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
-              <strong>Thank You Gifts</strong>
+            <a class="btn btn-md-wide btn-primary" ng-href="https://ahc.staging.ootqa.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
+              <strong>Thank-You Gifts</strong>
             </a>
             <a class="btn btn-md-wide btn-primary" ng-href="https://middleschool.heart.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart'" ng-cloak>
-              <strong>Thank You Gifts</strong>
+              <strong>Thank-You Gifts</strong>
             </a>
           </div>
         </div>
@@ -842,6 +857,11 @@
           <strong>View All Resources</strong>
         </a>
       </div>
+      <div class="ym-pc-dashboard-coordinator-resources-contact" ng-if="notifyName != ''" ng-cloak>
+        Questions about your program – contact your staff partner at: <a ng-href="mailto:{{notifyEmail}}">
+          <strong>{{notifyName}}</strong>
+        </a>
+      </div>
     </section>
   </div>
   <section class="ym-pc-dashboard-spread-section event-secondary-medium--diagonal" aria-label="Resources for Spreading the Word">
@@ -877,7 +897,7 @@
             </h3>
           </div>
           <p>
-            Share on Facebook, Twitter, LinkedIn and event text messaging!
+            Share on Facebook, Twitter, LinkedIn and even text messaging!
           </p>
           <div class="text-center">
             <a class="btn btn-md-wide btn-secondary" ng-href="{{baseUrl}}#/social">

@@ -46,7 +46,7 @@
             <div class="ym-header-login">
               [[?xx[[S8]]::xxhttps::
                 <!-- secure page -->
-                <button type="button" class="btn btn-global-primary ym-header-login-toggle" ng-click="toggleLoginMenu()">
+                <button type="button" class="btn btn-global-primary ym-header-login-toggle" ng-click="toggleLoginMenu()" title="Log In to Fundraise">
                   Log In to Fundraise <span class="fa fa-chevron-down" ng-class="{'fa-chevron-down': !loginMenuOpen, 'fa-chevron-up': loginMenuOpen}"></span>
                 </button>
                 <div class="ym-header-login-dropdown" ng-class="{'open': loginMenuOpen}" ng-cloak>
@@ -87,11 +87,21 @@
             <div class="ym-header-logged-in" ng-cloak>
               <div class="clearfix">
                 <div class="ym-header-welcome">
-                  <button type="button" class="btn btn-link ym-header-welcome-toggle" ng-click="toggleWelcomeMenu()">
+                  <div class="dropdown">
+                    <button class="btn btn-link dropdown-toggle ym-header-welcome-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Welcome[[?xx::x[[S1:first_name]]x::::, <span class="ym-header-welcome-toggle--first-name">[[S1:first_name]]]]!</span> <span class="caret"></span>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+                      <a class="dropdown-item" href="ConsProfileUser?dispMode=edit&amp;NEXTURL=[[T1:[[E130:[[T8:[[S8]]]] [[T8:&amp;]] [[T8:&]] replaceall]]]]">Edit Profile</a>
+                      <a class="dropdown-item" href="UserLogin?logout=&amp;NEXTURL=[[T1:[[E130:[[T8:[[S8]]]] [[T8:&amp;]] [[T8:&]] replaceall]]]]">Log Out</a>
+                    </div>
+                  </div>
+                  <!--
+                  <button type="button" class="btn btn-link ym-header-welcome-toggle" ng-click="toggleWelcomeMenu()" title="Open menu to Edit Profile or Logout" aria-haspopup="true" aria-expanded="false">
                     Welcome[[?xx::x[[S1:first_name]]x::::, <span class="ym-header-welcome-toggle--first-name">[[S1:first_name]]]]!</span> <span class="fa fa-chevron-down" ng-class="{'fa-chevron-down': !welcomeMenuOpen, 'fa-chevron-up': welcomeMenuOpen}"></span>
                   </button>
-                  <div class="ym-header-welcome-dropdown" ng-class="{'open': welcomeMenuOpen, 'my-events': numberEvents > 1, 'my-hq' : numberEvents == 1}" role="menubar" title="Welcome Menu" ng-cloak>
-                    <ul role="menu" id="js--header-welcome-ul" tabindex="0">
+                  <div class="ym-header-welcome-dropdown" ng-class="{'open': welcomeMenuOpen, 'my-events': numberEvents > 1, 'my-hq' : numberEvents == 1}" role="menu" title="Welcome Menu" ng-cloak>
+                    <ul id="js--header-welcome-ul">
                       <li>
                         <a role="menuitem" href="ConsProfileUser?dispMode=edit&amp;NEXTURL=[[T1:[[E130:[[T8:[[S8]]]] [[T8:&amp;]] [[T8:&]] replaceall]]]]">
                           Edit Profile
@@ -104,6 +114,7 @@
                       </li>
                     </ul>
                   </div>
+                  -->
                   <a class="btn btn-global-primary ym-header-hq-btn" href="PageServer?pagename=middle_school_my_events" ng-if="numberEvents > 1">
                     My Events
                   </a>

@@ -124,11 +124,11 @@ angular.module 'ahaLuminateApp'
       
       getAvatar: (requestData, callback) ->
         if $rootScope.tablePrefix is 'heartdev'
-          url = '//khc.staging.ootqa.org/api/student/' + requestData + '/monster-designer'
+          url = '//khc.staging.ootqa.org/api/points/student/' + requestData
         else if $rootScope.tablePrefix is 'heartnew'
-          url = '//khc.dev.ootqa.org/api/student/' + requestData + '/monster-designer'
+          url = '//khc.dev.ootqa.org/api/points/student/' + requestData
         else
-          url = '//kidsheartchallenge.heart.org/api/student/' + requestData + '/monster-designer'
+          url = '//kidsheartchallenge.heart.org/api/points/student/' + requestData
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
           .then (response) ->
             if response.data.success is false
@@ -137,4 +137,34 @@ angular.module 'ahaLuminateApp'
               callback.success response
           , (response) ->
             callback.failure response
+
+      getSchoolYears: (requestData, callback) ->
+        if $rootScope.tablePrefix is 'heartdev'
+          url = '//hearttools.heart.org/aha_ym20_dev/api/school/' + requestData + '/years-participated?key=k7wvZXDpmDpenVcp'
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = '//hearttools.heart.org/aha_ym20_testing/api/school/' + requestData + '/years-participated?key=XgUnZxvFcjZ4jEMT'
+        else
+          url = '//hearttools.heart.org/aha_ym20/api/school/' + requestData + '/years-participated?key=XgUnZxvFcjZ4jEMT'
+        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
+          .then (response) ->
+            if response.data.success is false
+              callback.error response
+            else
+              callback.success response
+          , (response) ->
+            callback.failure response
+
+      updateSchoolYears: (requestData, callback) ->
+        if $rootScope.tablePrefix is 'heartdev'
+          url = '//hearttools.heart.org/aha_ym20_dev/api/school/' + requestData + '&key=k7wvZXDpmDpenVcp'
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = '//hearttools.heart.org/aha_ym20_testing/api/school/' + requestData + '&key=XgUnZxvFcjZ4jEMT'
+        else
+          url = '//hearttools.heart.org/aha_ym20/api/school/' + requestData + '&key=XgUnZxvFcjZ4jEMT'
+        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
+          .then (response) ->
+            callback.success response
+          , (response) ->
+            callback.failure response
+            
   ]

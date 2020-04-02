@@ -10,29 +10,67 @@ crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.8.0/parsley[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
 <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@7/dist/polyfill[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
-[[?x26x27x::x[[S4]]x::
-  [[?xx::x[[E416:[[S334:fr_id]]:HORIZONTAL:100:100]]x::::
-<script src="https://cdnjs.cloudflare.com/ajax/libs/unslider/2.0.3/js/unslider-min.js" integrity="sha256-5cLCHHHqQX2x3pQpjWwAtBL54U9EGWOHe8tDkXuxPTI=" crossorigin="anonymous"></script>
-  ::]]
+[[?
+  [[?[[S8]]::heartwalk_donate::T::]] 
+  [[?x26x27x9x::x[[S4]]x::T::]] 
+::T:: 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/unslider/2.0.3/js/unslider-min.js" integrity="sha256-5cLCHHHqQX2x3pQpjWwAtBL54U9EGWOHe8tDkXuxPTI=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/additional-methods.min.js"></script>
 ::]]
 
-[[?[[?xentryxteamxcompanyx::x[[S334:pg]]x::T::]][[?xHeartWalk_Searchx::x[[S334:pagename]]x::T::]]::T::
+[[?[[S8]]::heartwalk_donate::
+  <script src="../amazonpay/heartwalk/js/jquery.creditCardValidator.js"></script>
+::]]
+
+[[?[[S8]]::heartwalk_donate_amazon::
+  <script src="../amazonpay/heartwalk/amazon/js/luminateExtend-custom.js"></script>
+  <script src="../amazonpay/heartwalk/amazon/js/amazon-pay.js"></script>
+::]]
+[[?[[S8]]::heartwalk_donate_applepay::
+  <script src="https://js.braintreegateway.com/web/3.22.2/js/client.min.js"></script>
+  <script src="https://js.braintreegateway.com/web/3.22.2/js/apple-pay.min.js"></script>
+  <script src="https://js.braintreegateway.com/web/3.22.2/js/data-collector.min.js"></script>
+  <script src="../amazonpay/heartwalk/applepay/js/braintree-luminate.js"></script>
+  <script src="../amazonpay/heartwalk/applepay/js/donation-custom.js"></script>
+::]]
+[[?[[S8]]::heartwalk_donate_venmo::
+  <script src="https://js.braintreegateway.com/web/3.22.2/js/client.min.js"></script>
+  <script src="https://js.braintreegateway.com/web/3.22.2/js/venmo.min.js"></script>
+  <script src="https://js.braintreegateway.com/web/3.22.2/js/data-collector.min.js"></script>
+  <script src="../amazonpay/heartwalk/venmo/js/braintree-luminate.js"></script>
+  <script src="../amazonpay/heartwalk/venmo/js/donation-custom.js"></script>
+::]]
+[[?[[S8]]::heartwalk_donate_googlepay::
+  <script src="https://pay.google.com/gp/p/js/pay.js"></script>
+  <script src="https://js.braintreegateway.com/web/3.41.0/js/client.min.js"></script>
+  <script src="https://js.braintreegateway.com/web/3.41.0/js/google-payment.min.js"></script>
+  <script src="https://js.braintreegateway.com/web/3.41.0/js/data-collector.min.js"></script>
+  <script src="../amazonpay/heartwalk/googlepay/js/braintree-luminate.js"></script>
+  <script src="../amazonpay/heartwalk/googlepay/js/donation-custom.js"></script>
+::]]
+
+[[?
+  [[?x27x::x[[S4]]x::T::]]
+  [[?xentryxteamxcompanyx::x[[S334:pg]]x::T::]]
+  [[?xHeartWalk_Searchx::x[[S334:pagename]]x::T::]]
+::T::
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
 ::]]
 
 <script>
   luminateExtend({
-  apiKey: '[[S0:CONVIO_API_KEY]]',
+  apiKey: "[[S0:CONVIO_API_KEY]]",
   path: {
-    nonsecure: 'http://[[S29:DOMAIN]][[S29:PATH]]',
-    secure: decodeURIComponent('[[T1:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]]]')
+    nonsecure: "http://[[S29:DOMAIN]][[S29:PATH]]",
+    secure: decodeURIComponent("[[T1:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]]]")
   },
-  srcCode: '[[S80:src]]',
-  subSrcCode: '[[S80:subsrc]]',
-  [[?xx::x[[E42:[[S80:evID]]:title]]x::::eventName: '[[T9:[[E42:[[S80:evID]]:title]]]]',]]
-  tablePrefix: '[[S29:TABLE_PREFIX]]', 
-  devBranch: '[[T6:[[S80:dev_branch]]]]', 
-  ajaxProxyAuth: '[[S86:true]]'
+  srcCode: "[[S80:src]]",
+  subSrcCode: "[[S80:subsrc]]",
+  [[?xx::x[[E42:[[S80:evID]]:title]]x::::eventName: "[[T9:[[E42:[[S80:evID]]:title]]]]",]]
+  tablePrefix: "[[S29:TABLE_PREFIX]]", 
+  devBranch: "[[T6:[[S80:dev_branch]]]]", 
+  ajaxProxyAuth: "[[S86:true]]"
 });
 
 </script>
@@ -40,7 +78,12 @@ crossorigin="anonymous"></script>
 <script src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/heartwalk2020/js/pushy.js"></script>
 
 <script src="[[S666:template_macros/aha_luminate_filepath.tpt::heartwalk2020/js/main::js::@@buildTimestamp]]"></script>
-
+[[?x27x::x[[S4]]x::
+<script src="[[S666:template_macros/aha_luminate_filepath.tpt::heartwalk2020/js/registration::js::@@buildTimestamp]]"></script>
+::]]
+[[?x9x::x[[S4]]x::
+<script src="[[S666:template_macros/aha_luminate_filepath.tpt::heartwalk2020/js/donation::js::@@buildTimestamp]]"></script>
+::]]
 <script src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/heartwalk2020/js/amazonpay.js?v=1"></script>
 
 [[?xheartdevx::x[[S29:TABLE_PREFIX]]x::
@@ -63,7 +106,13 @@ crossorigin="anonymous"></script>
     if  (jQuery('#tos_radio_true').length > 0){
       jQuery('label[for="tos_dropdown"]').parent().hide();
       jQuery('label[for="tos_dropdown"]').parent().next('fieldset').hide();
-      jQuery('label[for="tos_dropdown"]').parent().before('<input type="checkbox" name="terms-of-service-checkbox" id="terms-of-service-checkbox"><label for="terms-of-service-checkbox">&nbsp;Yes, I agree to the <a href="https://www.heart.org/en/about-us/statements-and-policies/privacy-statement" target="_blank">AHA Privacy Policy</a></label>');
+      [[?xheartdevx::x[[S29:TABLE_PREFIX]]x::
+        jQuery('label[for="tos_dropdown"]').parent().before('<input type="checkbox" name="terms-of-service-checkbox" id="terms-of-service-checkbox"><label for="terms-of-service-checkbox">&nbsp;Yes, I agree to the <a href="DocServer/HeartWalk2019_163605_TOS_texting_2019.11.19.pdf?docID=2624" target="_blank">Terms and Conditions (PDF)</a> and <a href="https://www.heart.org/en/about-us/statements-and-policies/privacy-statement" target="_blank">AHA Privacy Policy</a></label>');
+      ::
+        jQuery('label[for="tos_dropdown"]').parent().before('<input type="checkbox" name="terms-of-service-checkbox" id="terms-of-service-checkbox"><label for="terms-of-service-checkbox">&nbsp;Yes, I agree to the <a href="DocServer/HeartWalk2019_163605_TOS_texting_2019.11.19.pdf?docID=5787" target="_blank">Terms and Conditions (PDF)</a> and <a href="https://www.heart.org/en/about-us/statements-and-policies/privacy-statement" target="_blank">AHA Privacy Policy</a></label>');
+      ]]
+      jQuery('#terms-of-service-checkbox + label').prepend(jQuery('label[for="tos_dropdown"]').closest('.form-content').find('span.field-required'));
+      jQuery('label[for="tos_dropdown"]').attr("for","tos_radio_true");
       jQuery('#terms-of-service-checkbox').change(function(){
         if(jQuery(this).is(':checked')){
           jQuery('#tos_radio_true').prop('checked',true);

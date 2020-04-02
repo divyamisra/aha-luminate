@@ -533,10 +533,8 @@
     margin: 0 10px;
     overflow: hidden;
     vertical-align: middle;
-    
-    &:focus {
-      outline:none;
-    }
+    color: #000000;
+    text-decoration:none;
   }
   
   #school-state-filter,

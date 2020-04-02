@@ -54,9 +54,10 @@ nav {
   }
 
   li.nav-item {
-    margin: 30px 0 0 58px;
+    margin: 30px 0 0 50px;
     position: relative;
     height: 96px;
+    list-style:none;
 
     &.logged-in:hover {
       a {
@@ -185,7 +186,7 @@ nav {
   }
   /* Login button */
   li.login {
-    margin: 30px -2px -11px 45px;
+    margin: 30px 0px -11px 45px;
 
     &:hover {
 

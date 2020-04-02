@@ -115,6 +115,14 @@ module.exports = {
       {
         src: 'dist/heartwalk2020/css/main.css', 
         dest: 'dist/heartwalk2020/css/main.'+ '<%= timestamp %>' +'.min.css'
+      },
+      {
+        src: 'dist/heartwalk2020/css/registration.css', 
+        dest: 'dist/heartwalk2020/css/registration.'+ '<%= timestamp %>' +'.min.css'
+      },
+      {
+        src: 'dist/heartwalk2020/css/donation.css', 
+        dest: 'dist/heartwalk2020/css/donation.'+ '<%= timestamp %>' +'.min.css'
       }
     ]
   }

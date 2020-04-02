@@ -1,11 +1,12 @@
 angular.module 'ahaLuminateControllers'
   .controller 'MainCtrl', [
+    '$rootScope'
     '$scope'
     '$httpParamSerializer'
     'AuthService'
     'TeamraiserParticipantService'
     '$timeout'
-    ($scope, $httpParamSerializer, AuthService, TeamraiserParticipantService, $timeout) ->
+    ($rootScope, $scope, $httpParamSerializer, AuthService, TeamraiserParticipantService, $timeout) ->
       $dataRoot = angular.element '[data-aha-luminate-root]'
       consId = $dataRoot.data('cons-id') if $dataRoot.data('cons-id') isnt ''
       $scope.regEventId = ''
@@ -55,19 +56,22 @@ angular.module 'ahaLuminateControllers'
             angular.element('.js--default-header-login-form').submit()
           success: ->
             if not $scope.headerLoginInfo.ng_nexturl or $scope.headerLoginInfo.ng_nexturl is ''
-              window.location = window.location.href
+#              window.location = window.location.href
+              window.location = $rootScope.secureDomain + 'site/SPageServer?pagename=middle_school_my_events'
             else
               window.location = $scope.headerLoginInfo.ng_nexturl
       
       $scope.toggleWelcomeMenu = ->
         if $scope.welcomeMenuOpen
+          angular.element("button.ym-header-welcome-toggle").attr("aria-expanded","false");
           delete $scope.welcomeMenuOpen
         else
+          angular.element("button.ym-header-welcome-toggle").attr("aria-expanded","true");
           $scope.welcomeMenuOpen = true
           focusDropdown = ->
             document.getElementById('js--header-welcome-ul').focus()
           $timeout focusDropdown, 100
-      
+          
       angular.element('body').on 'click', (event) ->
         if $scope.welcomeMenuOpen and angular.element(event.target).closest('.ym-header-welcome').length is 0
           $scope.toggleWelcomeMenu()

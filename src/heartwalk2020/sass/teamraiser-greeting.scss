@@ -4,8 +4,15 @@
     background-size: 100%;
     background-repeat: no-repeat;
     background-color: $gray-400;
+    padding:0px;
+
+    & > .container {
+  	  padding: 0 !important;
+	  background: none;
+    }
   }
 
+  
   /* Event information box at top of page */
   .event-info {
       padding: 48px 72px 67px;

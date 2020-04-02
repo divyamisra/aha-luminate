@@ -2,7 +2,7 @@
 .paymentSelType {
   a {
      display: block;
-     margin: 25px 0;
+     margin: 25px 15px;
   }
   img {
      max-width:100%;
@@ -18,20 +18,6 @@
 #participant-roster > tbody > tr > td:nth-child(3),
 #team-roster > tbody > tr > td:nth-child(3) {
   width:35%;
-}
-.information-box {
-  .paymentSelType {
-    .payment-options-container {
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-pack: justify;
-      -webkit-justify-content: space-between;
-      -ms-flex-pack: justify;
-      justify-content: space-between;
-    }
-  }
 }
 }
 

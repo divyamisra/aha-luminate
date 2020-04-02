@@ -3,6 +3,10 @@
   <div class="ym-page-section ym-page-section__top">
     <div class="col-md-6 ym-user-image" ng-style="{'background-image': (companyPagePhoto1.customUrl && companyPagePhoto1.customUrl != '') ? ('url(' + companyPagePhoto1.customUrl + ')') : ('url(' + companyPagePhoto1.defaultUrl + ')')}">
       <div class="ym-user-image-inner">
+      	<div class="ym-school-participation-years" ng-if="schoolYears > 0">
+      	  <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/ym-school-participation-years.png" alt="School Participation Years">
+    	    <div class="ym-school-participation-years-text"><span ng-bind-html="schoolYears"></span> Years Participating</div>
+      	</div>
         <button type="button" class="btn btn-md-wide btn-toggle" ng-click="editCompanyPhoto1()" ng-if="participantRegistration.companyInformation.companyId == '[[S334:company_id]]' && participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
           <span class="fa fa-camera"></span> Edit Photo
         </button>
@@ -32,7 +36,7 @@
         <div class="ym-progress__thermometer--fill" ng-style="{'width': companyProgress.percent + '%'}"></div>
       </div>
       <div class="ym-progress__stats">
-        <div class="ym-progress__amount col-sm-6">
+        <div ng-if="hideAmount != 'Y'" class="ym-progress__amount" ng-class="(companyProgress.goalFormatted && companyProgress.goalFormatted != '' && companyProgress.goalFormatted != '$0') ? 'col-md-6' : 'col-md-12'" ng-cloak>
           <p>
             We've raised <strong><span ng-bind-html="companyProgress.amountRaisedFormatted"></span></strong>
           </p>

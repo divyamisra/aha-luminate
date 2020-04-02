@@ -5,6 +5,12 @@
   margin: 0;
 }
 
+.personal-avatar {
+  max-width:35%;
+  margin-right:20px;
+  margin-bottom:20px;
+  float:left;
+}
 .ym-page-section__list {
   background: $event-accent;
 }
@@ -113,3 +119,12 @@ hr.ym-zuri-animation__divider {
   }
 }
 
+.ym-school-student-survivor {
+  position:relative;
+  max-width:180px;
+  padding:5px;
+  
+  img {
+    width: 100%;
+  }
+}

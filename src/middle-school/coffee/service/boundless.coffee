@@ -39,20 +39,35 @@ angular.module 'ahaLuminateApp'
             
       logEmailSent: ->
         if $rootScope.tablePrefix is 'heartdev'
-          url = 'https://ahc.staging.ootqa.org/api/webhooks/student/emails-sent/' + $rootScope.frId + '/' + $rootScope.consId 
+          url = 'https://ahc.staging.ootqa.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/2/ecard_sent'
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = 'https://ahc.dev.ootqa.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/2/ecard_sent'
         else
-          url = 'https://middleschool.heart.org/api/webhooks/student/emails-sent/' + $rootScope.frId + '/' + $rootScope.consId
+          url = 'https://middleschool.heart.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/2/ecard_sent'
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
           .then (response) ->
             response
           , (response) ->
             response
-      
+            
       logPersonalPageUpdated: ->
         if $rootScope.tablePrefix is 'heartdev'
           url = 'https://ahc.staging.ootqa.org/api/webhooks/student/personal-page-updated/' + $rootScope.frId + '/' + $rootScope.consId 
         else
           url = 'https://middleschool.heart.org/api/webhooks/student/personal-page-updated/' + $rootScope.frId + '/' + $rootScope.consId
+        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
+          .then (response) ->
+            response
+          , (response) ->
+            response
+            
+      logFundraiserCreated: ->
+        if $rootScope.tablePrefix is 'heartdev'
+          url = 'https://ahc.staging.ootqa.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/10/fundraiser_created'
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = 'https://ahc.dev.ootqa.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/10/fundraiser_created'
+        else
+          url = 'https://middleschool.heart.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/10/fundraiser_created'
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
           .then (response) ->
             response

@@ -610,3 +610,15 @@
   display: block;
   width: 100%;
 }
+
+.modaal-close {
+  position: absolute !important;
+  right: -50px !important;
+  top: -50px !important;
+}
+
+@include media-breakpoint-down(md) {
+  .modaal-close {
+    right: -20px !important;
+  }
+}

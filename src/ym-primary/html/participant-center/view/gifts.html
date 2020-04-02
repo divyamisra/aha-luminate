@@ -1,61 +1,29 @@
-   <h2 class="text-center">Thank You Gifts</h2>
-   <h3 class="text-center">You Have Raised {{participantProgress.raisedFormatted}}</h3>
-   <em class="text-center" style="display: block;">Please allow 15 minutes for the system to update your donation.<br/>Please note that prizes can take up to 6 weeks to be delivered after the event has completed.</em>
-   <section class="ym-pc-dashboard-bonus-gifts-section" aria-label="My Bonus Gifts" ng-if="bonusGifts && bonusGifts.length > 0" ng-cloak>
-      <div class="ym-pc-dashboard-section-header">
-        <h2 class="h4">
-          Online Bonus Level Donation Gifts
-        </h2>
-        <p>These thank you gifts are only available for online fundraisers like yourself! Earn these gifts<br/>along with all the standard donation gifts below as well.</p>
-      </div>
-      <div class="ym-pc-dashboard-bonus-gifts-icons" role="list" aria-label="Bonus Gifts">
-        <div class="ym-pc-dashboard-bonus-gifts-icon" ng-repeat="bonusGift in bonusGifts" ng-cloak>
-           <a href="" ng-click="showPrize(bonusGift.prize_sku,bonusGift.prize_label,bonusGift.prize_status)">
-              <div class="ym-pc-dashboard-bonus-gift-level" ng-bind-html="bonusGift.prize_level"></div>
-              <div class="ym-pc-dashboard-bonus-gift-earned" ng-if="bonusGift.prize_status">Earned!</div>
-              <div ng-if="bonusGift.prize_status">
-                <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes/{{bonusGift.prize_sku}}_earned.jpg" alt="{{bonusGift.prize_label}}">
-              </div>
-              <div ng-if="!bonusGift.prize_status">
-                <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes/{{bonusGift.prize_sku}}_notearned.jpg" alt="{{bonusGift.prize_label}}">
-              </div>
-              <div class="ym-pc-dashboard-bonus-gifts-text">
-                <span ng-bind-html="bonusGift.prize_label"></span> <span class="sr-only" ng-if="bonusGift.prize_status">(earned)</span><span class="sr-only" ng-if="!bonusGift.prize_status">(not yet earned)</span>
-                <div class="ym-pc-dashboard-bonus-gifts-desc" ng-if="bonusGift.prize_desc"><span ng-bind-html="bonusGift.prize_desc"></span></div>
-              </div>
-           </a>
-        </div>
-      </div>
-   </section>
+   <h2 class="text-center h3">You've earned <span ng-bind-html="giftsEarned"></span> out of <span ng-bind-html="standardGifts.length"></span> thank you gifts!</h2>
+   <h3 class="h6 text-center" ng-if="giftsEarned != standardGifts.length">
+     Continue sending emails and e-cards to receive additional thank-you gifts!
+   </h3>
+   <h3 class="h6 text-center" ng-if="giftsEarned == standardGifts.length">
+     Congratulations on earning all of your gifts! Keep going to help save special hearts.
+   </h3>   <em class="text-center" style="display: block;">You have raised {{participantProgress.raisedFormatted}}.<br/>Please allow 15 minutes for the system to update your donation.<br/>Please note that prizes can take up to 6 weeks to be delivered after the event has completed.</em>
    <section class="ym-pc-dashboard-standard-gifts-section" aria-label="My Standard Gifts" ng-if="standardGifts && standardGifts.length > 0" ng-cloak>
-      <div class="ym-pc-dashboard-section-header">
-        <h2 class="h4">
-          Standard Donation Gifts
-        </h2>
-        <p>Check your fundraising progress and see what gifts you’ve collected along the way. Help Fiery<br/>get to the end of the trail and earn all the thank you gifts!</p>
-      </div>
       <div class="ym-pc-dashboard-standard-gifts-icons" role="list" aria-label="Standard Gifts">
-        <div class="ym-pc-dashboard-standard-gifts-icon" ng-repeat="standardGift in standardGifts" ng-cloak>
+        <div class="ym-pc-dashboard-standard-gifts-icon" ng-class="{'not-earned': !standardGift.prize_status}" ng-repeat="standardGift in standardGifts" ng-cloak>
            <a href="" ng-click="showPrize(standardGift.prize_sku,standardGift.prize_label,standardGift.prize_status)">
-              <div class="ym-pc-dashboard-bonus-gift-level" ng-bind-html="standardGift.prize_level"></div>
-              <div class="ym-pc-dashboard-standard-gift-earned" ng-if="standardGift.prize_status">Earned!</div>
-              <div ng-if="standardGift.prize_status">
-                <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes/{{standardGift.prize_sku}}_earned.jpg" alt="{{standardGift.prize_label}}">
+              <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes2020/{{standardGift.prize_sku}}.png" alt="{{standardGift.prize_label}}">
+              <div class="ym-pc-dashboard-standard-gift-earned" ng-if="standardGift.prize_status">
+                 <h4 class="gift-title" ng-bind-html="standardGift.earned_title"></h4>
+                 <div class="gift-subtitle1"><span ng-bind-html="standardGift.earned_subtitle1"></span></div>
+                 <div class="gift-subtitle2">You've earned <span ng-bind-html="standardGift.earned_subtitle2"></span>.</div>
               </div>
-              <div ng-if="!standardGift.prize_status">
-                <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes/{{standardGift.prize_sku}}_notearned.jpg" alt="{{standardGift.prize_label}}">
+              <div class="ym-pc-dashboard-standard-gift-notearned" ng-if="!standardGift.prize_status">
+                 <h4 class="gift-title">Up next...</h4>
+                 <div class="gift-subtitle1">Raise <span ng-bind-html="standardGift.prize_level"></span></div>
+                 <div class="gift-subtitle2">and you'll get <span ng-bind-html="standardGift.earned_subtitle2"></span>.</div>
               </div>
               <div class="ym-pc-dashboard-standard-gifts-text">
-                <span ng-bind-html="standardGift.prize_label"></span> <span class="sr-only" ng-if="standardGift.prize_status">(earned)</span><span class="sr-only" ng-if="!standardGift.prize_status">(not yet earned)</span>
+                <span class="sr-only" ng-if="standardGift.prize_status">(earned)</span><span class="sr-only" ng-if="!standardGift.prize_status">(not yet earned)</span>
               </div>
-              <div ng-if="standardGift.prize_status" class="ym-pc-dashboard-standard-gifts-path">
-                <img ng-if="!standardGift.lastItem" class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes/gift_path_0{{standardGift.randomID}}_on.png" alt="Prize Path">
-                <img ng-if="standardGift.lastItem && !$last" class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes/gift_path_02_fiery_on.png" alt="Fiery on Path">
-                <img ng-if="standardGift.lastItem && $last" class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes/gift_path_final_on.png" alt="Finn, Ruby and Fiery on Path">
-              </div>
-              <div ng-if="!standardGift.prize_status" class="ym-pc-dashboard-standard-gifts-path">
-                 <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes/gift_path_0{{standardGift.randomID}}_off.png" alt="Prize Path Not Earned">
-              </div>
+              <div class="more-details-button">More Details</div>
            </a>
         </div>
       </div>

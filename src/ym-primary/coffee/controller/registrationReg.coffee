@@ -8,24 +8,30 @@ angular.module 'ahaLuminateControllers'
     'TeamraiserCompanyService'
     'TeamraiserRegistrationService'
     'SchoolLookupService'
-    ($rootScope, $scope, $filter, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserRegistrationService, SchoolLookupService) ->
+    'BoundlessService'
+    ($rootScope, $scope, $filter, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserRegistrationService, SchoolLookupService, BoundlessService) ->
       $rootScope.companyName = ''
+      $scope.teachers = []
+      $scope.teachersByGrade = []
+      $scope.companyId = angular.element('[name=s_frCompanyId]').val()
+      
       regCompanyId = luminateExtend.global.regCompanyId
       setCompanyName = (companyName) ->
         $rootScope.companyName = companyName
         if not $rootScope.$$phase
           $rootScope.$apply()
-      TeamraiserCompanyService.getCompanies 'company_id=' + regCompanyId,
-        error: ->
-          # TODO
-        success: (response) ->
-          companies = response.getCompaniesResponse.company
-          if not companies
-            # TODO
-          else
-            companies = [companies] if not angular.isArray companies
-            companyInfo = companies[0]
-            setCompanyName companyInfo.companyName
+      #TeamraiserCompanyService.getCompanies 'company_id=' + regCompanyId,
+      #  error: ->
+      #    # TODO
+      #  success: (response) ->
+      #    companies = response.getCompaniesResponse.company
+      #    if not companies
+      #      # TODO
+      #    else
+      #      companies = [companies] if not angular.isArray companies
+      #      companyInfo = companies[0]
+      #      setCompanyName companyInfo.companyName
+      setCompanyName localStorage.companyName
       
       $scope.registrationInfoErrors =
         errors: []
@@ -254,6 +260,19 @@ angular.module 'ahaLuminateControllers'
           else 
             angular.element('.js--default-reg-form').submit()
         false
+
+      BoundlessService.getTeachersBySchool $scope.companyId
+      .then (response) ->
+        $scope.teachers = response.data.teachers
+
+      $scope.getTeacherList = () ->
+        selectedGrade = $scope.registrationInfo[$scope.registrationCustomQuestions.ym_khc_grade]
+        $scope.teachersByGrade = []
+        teachersByGrade = []
+        angular.forEach $scope.teachers, (teacher) ->
+          if teacher.grade == selectedGrade
+            teachersByGrade.push teacher_name: teacher.teacher_name
+        $scope.teachersByGrade = teachersByGrade
         
       setCompanyCity = (companyCity) ->
         $rootScope.companyCity = companyCity
@@ -265,13 +284,18 @@ angular.module 'ahaLuminateControllers'
         if not $rootScope.$$phase
           $rootScope.$apply()
           
-      SchoolLookupService.getSchoolData()
-        .then (response) ->
-          schoolDataRows = response.data.getSchoolSearchDataResponse.schoolData
-          angular.forEach schoolDataRows, (schoolDataRow, schoolDataRowIndex) ->
-            if schoolDataRowIndex > 0
-              if regCompanyId is schoolDataRow[0]
-                setCompanyCity schoolDataRow[1]
-                setCompanyState schoolDataRow[2]
-                return
+      if localStorage.companyCity != undefined
+        setCompanyCity localStorage.companyCity
+        setCompanyState localStorage.companyState
+      
+      #
+      #SchoolLookupService.getSchoolData()
+      #  .then (response) ->
+      #    schoolDataRows = response.data.getSchoolSearchDataResponse.schoolData
+      #    angular.forEach schoolDataRows, (schoolDataRow, schoolDataRowIndex) ->
+      #      if schoolDataRowIndex > 0
+      #        if regCompanyId is schoolDataRow[0]
+      #          setCompanyCity schoolDataRow[1]
+      #          setCompanyState schoolDataRow[2]
+      #          return
   ]

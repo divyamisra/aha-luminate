@@ -2,10 +2,10 @@
 <div class="container tr-page-container hero">
     <div class="row">
         <div class="col-lg-4 col-md-12 sidebar">
-              [[?xx::x[[C4:graphic_upload]]x::
+             [[?xx::x[[C4:responsive_company_logo]]x::
                 <img class="sidebar-hero" src="[[S80:defaultCompanyImage]]" alt="Company Image" />
               ::
-                <img class="sidebar-hero" src="[[C4:graphic_upload]]" alt="Company Image" />
+                <img class="sidebar-hero" src="[[C4:responsive_company_logo]]" alt="Company Image" />
               ]]
             <div class="bg-gray-700">
                 <ul>
@@ -58,12 +58,11 @@
                     <!-- /.col-12 -->
                 </div>
                 <!-- /.row -->
-
                 [[?x1x2x::x[[S42:0:status]]x::
                 <form>
                         <div class="row buttons-row justify-content-between">
-                            <a class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" href="TRR/HeartWalk/General?pg=tfind&fr_id=[[S334:fr_id]]&fr_tm_opt=new" onclick="_gaq.push(['_trackEvent', 'company', 'banner', 'create team button']);">Create a Team</a>
-                            <a class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" href="TRR/HeartWalk/General?pg=tfind&fr_id=[[S334:fr_id]]" onclick="_gaq.push(['_trackEvent', 'company', 'banner', 'join team button']);">Join a Team</a>
+                            <a class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" href="TRR/HeartWalk/General?pg=tfind&fr_id=[[S334:fr_id]]&fr_tm_opt=new&s_regType=startTeam" onclick="_gaq.push(['_trackEvent', 'company', 'banner', 'create team button']);">Create a Team</a>
+                            <a class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" href="TRR/HeartWalk/General?pg=tfind&fr_id=[[S334:fr_id]]&s_regType=joinTeam" onclick="_gaq.push(['_trackEvent', 'company', 'banner', 'join team button']);">Join a Team</a>
                         </div>
                 </form>
                 ::]]
@@ -94,6 +93,7 @@
                                  <tr>
                                     <th class="border-0">Team:</th>
                                     <th class="border-0">Coach:</th>
+                                    <th class="border-0 js--company-col-header">Company:</th>
                                     <th class="border-0">Raised:</th>
                                     <th class="border-0" data-orderable="false"><span class="sr-only">Join Team Link</span></th>
                                 </tr>
@@ -117,6 +117,7 @@
                                 <thead>
                                 <tr>
                                     <th class="border-0 donor-name">Name:</th>
+                                    <th class="border-0 js--company-col-header">Company:</th>
                                     <th class="border-0 raised">Raised:</th>
                                     <th class="border-0" data-orderable="false"><span class="sr-only">Donation Link</span></th>
                                 </tr>
@@ -163,3 +164,4 @@
     <!-- /.row -->
 </div>
 <!-- /.container -->
+<div style="display:none;" class="js--company-hierarchy-list-container">[[E344:[[S334:company_id]]]]</div>

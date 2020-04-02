@@ -8,7 +8,6 @@ select {
     padding-right: 0.75rem\9;
     background-image: none\9;
     background: url('../image/ym-select-carot.png') right 0.75rem center no-repeat $brand-white;
-    color: $event-secondary;
     
     &::-ms-expand {
       display: none;

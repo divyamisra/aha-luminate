@@ -11,8 +11,10 @@
             <div class="row">
               <div class="col-12">
                 <div class="nav nav-tabs d-flex justify-content-center" id="searchPageTabs" role="tablist">
+                  [[?xfalsex::x[[S334:event_search]]x::::
                   <a class="nav-item nav-link active" id="searchEventTab" data-toggle="tab" href="#searchEvent"
                     role="tab" aria-controls="searchEvent" aria-selected="true">A Walk Event</a>
+                  ]]
                   <a class="nav-item nav-link" id="searchWalkerTab" data-toggle="tab" href="#searchWalker" role="tab"
                     aria-controls="searchWalker" aria-selected="false">A Walker</a>
                   <a class="nav-item nav-link" id="searchTeamTab" data-toggle="tab" href="#searchTeam" role="tab"
@@ -94,6 +96,13 @@
                     </form>
                   </div>
                 </div>
+                [[?xfalsex::x[[S334:event_search]]x::
+                <div class="row js--event-donation-container">
+                  <div class="col-12 text-center">
+                    <a href="Donation2?df_id=[[E42:[[S80:evID]]:form-id]]&amp;PROXY_ID=[[S80:evID]]&amp;PROXY_TYPE=21&amp;FR_ID=[[S80:evID]]">Give directly to this event</a>
+                  </div>
+                </div>
+                ::]]
                 <!-- BEGIN walker results container -->
                 <div class="row">
                   <div class="results-tab-pane col-12" id="participantSearchResults">
@@ -146,6 +155,13 @@
                     </form>
                   </div>
                 </div>
+                [[?xfalsex::x[[S334:event_search]]x::
+                <div class="row js--event-donation-container">
+                    <div class="col-12 text-center">
+                      <a href="Donation2?df_id=[[E42:[[S80:evID]]:form-id]]&amp;PROXY_ID=[[S80:evID]]&amp;PROXY_TYPE=21&amp;FR_ID=[[S80:evID]]">Give directly to this event</a>
+                    </div>
+                  </div>
+                  ::]]
                 <!-- BEGIN team results container -->
                 <div class="row">
                   <div class="results-tab-pane col-12" id="teamSearchResults">

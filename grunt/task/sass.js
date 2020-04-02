@@ -101,6 +101,12 @@ module.exports = {
     files: {
       'dist/heartwalk2020/css/main.css': [
         'src/heartwalk2020/sass/main.scss'
+      ],
+      'dist/heartwalk2020/css/registration.css': [
+        'src/heartwalk2020/sass/registration.scss'
+      ],
+      'dist/heartwalk2020/css/donation.css': [
+        'src/heartwalk2020/sass/donation.scss'
       ]
     }
   }

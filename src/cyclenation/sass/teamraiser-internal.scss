@@ -757,7 +757,9 @@
     input[type="checkbox"] {
       margin-right: 0.5em;
     }
-
+    input[type="radio"]{
+      vertical-align: middle;
+    }
     input[type="radio"] + label,
     input[type="checkbox"] + label {
       margin-right: 3.7em;
@@ -768,67 +770,109 @@
       }
     }
 
-    div.donation-level-container {
-      float: left;
-      margin-right: 10px;
-      margin-top: 0 !important;
-      margin-bottom: 0 !important;
-    }
+    .donation-levels {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
 
-    div.donation-level-container:last-child {
-      float: left;
-      margin-right: 0;
-      position: relative;
+      div.donation-level-container {
+        border: 0 none;
+        margin: 0;
+        margin-right: 6px;
+        margin-bottom: 12px;
 
-      .form-content {
-        margin-top: 0;
-        margin-bottom: 0;
-
-        .donation-level-input-container {
-          padding-top: 0;
-        }
-      }
-
-      div.donation-level-label-container {
-        margin-right: 1em;
-      }
-
-      div.donation-level-user-entered {
-        display: inline-block;
-
-        @include media-breakpoint-down(md) {
+        label {
           display: block;
-          margin-left: 2em;
-          margin-top: -20px;
+          margin: 0;
         }
 
-        small.form-text {
-          position: absolute;
-          left: 25px;
-          margin-top: -10px;
+        &:last-child {
+          margin-right: 0px;
+        }
 
-          @include media-breakpoint-down(md) {
-            left: auto;
-            margin-top: 0;
+        div.form-content {
+          margin: 0;
+          width: auto;
+        }
+
+        div.donation-level-label-container,
+        .donation-level-amount-container {
+          @include button-variant(#636466, #636466, $red-deep, $red-deep, $red, $red);
+          @include button-size(10px, 20px, 20px, 1.2, 0);
+          text-align: center;
+          vertical-align: top;
+          cursor: pointer;
+          border: 2px solid #636466;
+        }
+
+        .donation-level-label-input-container,
+        div.donation-level-input-container input[type="radio"] {
+          display: none;
+          visibility: hidden;
+        }
+        div.donation-level-input-container {
+          padding: 0;
+        }
+
+        &.otherAmount {
+          width: auto;
+          max-width: none;
+
+          div.donation-level-label-container {
+            border: 0 none;
+            @include button-variant(transparent, transparent, transparent, transparent, transparent, transparent);
+            @include button-size(0px, 0px, 12px, 1.2, 0);
+            color: #515151 !important;
+          }
+
+          input[type="text"] {
+            @include button-variant(#636466, #636466, $red-deep, $red-deep, $red, $red);
+            border: 2px solid #636466;
+            border-radius: 0;
+            height: 48px;
+            box-shadow: none;
+            text-align: center;
+            cursor: pointer;
+            font-size: 20px;
+          }
+
+          ::-webkit-input-placeholder {
+            text-align: center;
+            color: #ffffff;
+          }
+
+          ::-moz-placeholder {
+            text-align: center;
+            color: #ffffff;
+          }
+
+          :-ms-input-placeholder{
+            text-align: center;
+            color: #ffffff;
+          }
+
+          &:hover {
+            ::-webkit-input-placeholder {
+              color: #ffffff;
+            }
+
+            ::-moz-placeholder {
+              color: #ffffff;
+            }
+
+            :-ms-input-placeholder{
+              color: #ffffff;
+            }
+          }
+
+          div.donation-level-user-entered {
+            margin: 0px;
           }
         }
+        .donation-level-expanded-label {
+          display: none;
+        }
       }
-    }
-
-    div.donation-level-input-container,
-    div.generic-repeat-label-checkbox-container {
-
-      @include media-breakpoint-down(md) {
-        padding: 0 !important;
-      }
-    }
-
-    div.donation-level-label-container,
-    div.donation-level-amount-container {
-      margin-left: 0em;
-      margin-right: 4em;
-      margin-top: 0.15em;
-      vertical-align: top !important;
     }
 
     #level_flexiblegift_type_Row {
@@ -886,7 +930,7 @@
             width: 36px;
             height: 36px;
             padding: 8px 0;
-            margin: 0 0 0.25em 0.75em;
+            margin: 0 0 0.25em 0;
 
             #search-icon {
               width: 18px;
@@ -980,15 +1024,15 @@
             }
 
             img {
-              width: 155px;
-              margin-bottom: 8px;
+              width: 125px;
+              // margin-bottom: 8px;
             }
           }
 
           .payment-type-option {
             text-align: center;
             border-radius: 32px;
-            font-size: 2em;
+            // font-size: 2em;
             padding: 0.3em 1.5em;
 
             label {
@@ -1006,7 +1050,7 @@
         }
 
         #responsive_payment_typecc_type_row {
-          margin-left: 3.5em;
+          // margin-left: 3.5em;
 
           @include media-breakpoint-down(md) {
             text-align: center;
@@ -1044,7 +1088,7 @@
         .form-row {
           //float: left;
           width: 300px;
-          display: inline-block;
+          display: block;
 
           @include media-breakpoint-down(md) {
             display: block;
@@ -1100,10 +1144,10 @@
             .cc-expiration-date-month-container {
               float: left;
             }
-            .cc-expiration-date-year-container {
-              align-self: flex-end;
-              align-items: flex-end;
-            }
+            // .cc-expiration-date-year-container {
+            //   align-self: flex-end;
+            //   align-items: flex-end;
+            // }
           }
         }
       }
@@ -1148,7 +1192,7 @@
       margin-top: 2em;
 
       #pstep_finish {
-        font-size: 2em;
+        font-size: 1.4em;
         width: auto;
       }
     }

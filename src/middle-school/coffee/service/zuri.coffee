@@ -113,7 +113,7 @@ angular.module 'ahaLuminateApp'
       
       getProgram: (callback) ->
         if $rootScope.tablePrefix is 'heartdev'
-          url = '//hearttools.heart.org/aha_ahc20_dev/api/program?key=k7wvZXDpmDpenVcp'
+          url = '//hearttools.heart.org/aha_ahc20_dev/api/program?key=RByQUbXzYLBchS3n'
         else if $rootScope.tablePrefix is 'heartnew'
           url = '//hearttools.heart.org/aha_ahc20_testing/api/program?key=XgUnZxvFcjZ4jEMT'
         else
@@ -127,4 +127,32 @@ angular.module 'ahaLuminateApp'
           , (response) ->
             callback.failure response
 
+      getSchoolYears: (requestData, callback) ->
+        if $rootScope.tablePrefix is 'heartdev'
+          url = '//hearttools.heart.org/aha_ahc20_dev/api/school/' + requestData + '/years-participated?key=RByQUbXzYLBchS3n'
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = '//hearttools.heart.org/aha_ahc20_testing/api/school/' + requestData + '/years-participated?key=XgUnZxvFcjZ4jEMT'
+        else
+          url = '//hearttools.heart.org/aha_ahc20/api/school/' + requestData + '/years-participated?key=B78AEYxzbU9br6Cq'
+        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
+          .then (response) ->
+            if response.data.success is false
+              callback.error response
+            else
+              callback.success response
+          , (response) ->
+            callback.failure response
+
+      updateSchoolYears: (requestData, callback) ->
+        if $rootScope.tablePrefix is 'heartdev'
+          url = '//hearttools.heart.org/aha_ahc20_dev/api/school/' + requestData + '&key=RByQUbXzYLBchS3n'
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = '//hearttools.heart.org/aha_ahc20_testing/api/school/' + requestData + '&key=XgUnZxvFcjZ4jEMT'
+        else
+          url = '//hearttools.heart.org/aha_ahc20/api/school/' + requestData + '&key=B78AEYxzbU9br6Cq'
+        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
+          .then (response) ->
+            callback.success response
+          , (response) ->
+            callback.failure response
   ]

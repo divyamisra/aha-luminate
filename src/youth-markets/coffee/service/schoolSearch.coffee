@@ -23,6 +23,7 @@ angular.module 'ahaLuminateApp'
         $scope.schoolListByState = {}
         $scope.schoolDataMap = {}
         $scope.schoolDataMapByState = {}
+        $scope.searchError = false;
         
         #
         # New Geo Locate code for KHC
@@ -30,8 +31,8 @@ angular.module 'ahaLuminateApp'
           SchoolLookupService.getStateByLocation e,
             failure: (response) ->
             success: (response) ->
-              $scope.schoolList.stateFilter = response.data.company.schoolData.state
               delete $scope.schoolList.schools
+              $scope.schoolList.stateFilter = response.data.company.schoolData.state
               $scope.schoolList.searchPending = true
               $scope.schoolList.searchSubmitted = true
               $scope.schoolList.searchByLocation = true
@@ -68,14 +69,20 @@ angular.module 'ahaLuminateApp'
         # if getLoc is passed as true
         # ask for geolocation and load all schools within 10 miles of geolocation
         if getLoc is true
-          $scope.getLocation()
+           $scope.schoolList.geoLocationEnabled = true
+        #  $scope.getLocation()
         
         $scope.filterByLocation = ->
-          $scope.schoolList.ng_nameFilter = ''
-          $scope.schoolList.searchPending = true
-          $scope.schoolList.searchSubmitted = true
-          $scope.schoolList.searchByLocation = true
-          getLocation()
+          nameFilter = jQuery.trim $scope.schoolList.ng_nameFilter
+          $scope.schoolList.nameFilter = nameFilter
+          if not nameFilter
+            $scope.schoolList.searchErrorMessage = 'Please specify a search criteria before initiating a search.'
+          else
+            delete $scope.schoolList.searchErrorMessage
+            $scope.schoolList.searchPending = true
+            $scope.schoolList.searchSubmitted = true
+            $scope.schoolList.searchByLocation = true
+            getLocation()
         
         #get school data with getSchoolDataNew service call
         $scope.getSchoolSearchResultsNew = ->
@@ -158,19 +165,21 @@ angular.module 'ahaLuminateApp'
         # ask or retrieve current lat/long
         $scope.getLocationAlt = ->
           $scope.schoolList.searchSubmitted = true
-          $scope.schoolList.searchPending = true
-          $scope.schoolList.searchByLocation = true
-          e = 
-            enableHighAccuracy: !0
-            timeout: 1e4
-            maximumAge: 'infinity'
-          if navigator.geolocation then navigator.geolocation.getCurrentPosition(filterGeoSchoolData, showGEOError, e) else console.log('Geolocation is not supported by this browser.')
-          return
+          nameFilter = jQuery.trim $scope.schoolList.ng_nameFilter
+          $scope.schoolList.nameFilter = nameFilter
+          if not nameFilter
+            $scope.schoolList.searchErrorMessage = 'Please specify a search criteria before initiating a search.'
+          else
+            delete $scope.schoolList.searchErrorMessage
+            $scope.schoolList.searchPending = true
+            $scope.schoolList.searchByLocation = true
+            e = 
+              enableHighAccuracy: !0
+              timeout: 1e4
+              maximumAge: 'infinity'
+            if navigator.geolocation then navigator.geolocation.getCurrentPosition(filterGeoSchoolData, showGEOError, e) else console.log('Geolocation is not supported by this browser.')
+            return
 
-        #if getLoc not set or set to false then do normal load process of old search
-        if getLoc == true
-          $scope.getLocation()
-          
         SchoolLookupService.getSchoolData()
           .then (response) ->
             schoolDataRows = response.data.getSchoolSearchDataResponse.schoolData
@@ -202,9 +211,8 @@ angular.module 'ahaLuminateApp'
           $scope.schoolList.nameFilter = nameFilter
           #$scope.schoolList.stateFilter = ''
           $scope.schoolList.searchSubmitted = true
-          # if not nameFilter or nameFilter.length < 3
-          if false
-            $scope.schoolList.searchErrorMessage = 'Please enter at least 3 characters to search for.'
+          if not nameFilter
+            $scope.schoolList.searchErrorMessage = 'Please specify a search criteria before initiating a search.'
           else
             delete $scope.schoolList.searchErrorMessage
             $scope.getSchoolSearchResults()
@@ -325,7 +333,7 @@ angular.module 'ahaLuminateApp'
           companies = []
           TeamraiserCompanyService.getCompanies 'event_type=' + encodeURIComponent(eventType) + '&company_name=' + encodeURIComponent(nameFilter) + '&list_sort_column=company_name&list_page_size=500', (response) ->
             if response.getCompaniesResponse?.company
-              if response.getCompaniesResponse.totalNumberResults is '1'
+              if response.getCompaniesResponse?.totalNumberResults is '1'
                 companies.push response.getCompaniesResponse.company
               else
                 companies = response.getCompaniesResponse.company
@@ -349,7 +357,7 @@ angular.module 'ahaLuminateApp'
                 $scope.orderSchools $scope.schoolList.sortProp, true
                 if nameFilter isnt 'zz'
                   # filter off zz schools
-                  schools = $filter('filter')(schools, { SCHOOL_NAME: '!ZZ' }, false)
+                  schools = $filter('filter')(schools, ((value) -> value.SCHOOL_NAME.toLowerCase().indexOf('zz') isnt 0), false)
                   $scope.schoolList.schools = schools
                   $scope.schoolList.totalItems = schools.length
                   $scope.schoolList.totalNumberResults = schools.length

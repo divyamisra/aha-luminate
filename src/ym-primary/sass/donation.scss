@@ -28,6 +28,10 @@ div.donation-form-container label[for="terms-of-service-checkbox"] {
   
 } 
 
+div.donation-form-container label[for="cover-fee-checkbox"] {
+  margin-top: 30px;
+}
+
 div.donation-form-container .custom-field-container.has-error .checkbox label:before,
 div.donation-form-container .custom-field-container.has-error input[type=checkbox]+label:before {
   background-color: #fcddde;

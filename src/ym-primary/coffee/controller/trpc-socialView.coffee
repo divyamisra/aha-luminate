@@ -5,7 +5,7 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
   ($scope, $sce, $rootScope) ->
     urlPrefix = ''
     if $scope.tablePrefix is 'heartdev' or $scope.tablePrefix is 'heartnew'
-      urlPrefix = 'bfstage'
+      urlPrefix = 'load'
     else
       urlPrefix = 'loadaha'
     consId = $scope.consId

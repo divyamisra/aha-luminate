@@ -20,43 +20,51 @@ angular.module 'trPcControllers'
     'ZuriService'
     ($rootScope, $scope, $filter, $timeout, $uibModal, APP_INFO, BoundlessService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, NgPcTeamraiserSchoolService, FacebookFundraiserService, ZuriService) ->
       $scope.dashboardPromises = []
-      
+      $scope.eventDate = ''
+      $scope.moneyDueDate = ''
+      $scope.schoolStudentGoal = ''
+      $scope.schoolStudentReg = ''
+      $scope.schoolStudentRegOnline = ''
+      $scope.notifyName = ''
+      $scope.notifyEmail = ''
+
       $dataRoot = angular.element '[data-embed-root]'
-      
+
       if $scope.participantRegistration.lastPC2Login is '0'
-        $scope.firstLoginModal = $uibModal.open
-          scope: $scope
-          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/firstLogin.html'
-        
-        $scope.setPersonalUrlInfo = 
-          updatedShortcut: ''
-        
-        $scope.setPersonalUrl = ->
-          delete $scope.setPersonalUrlInfo.errorMessage
-          delete $scope.setPersonalUrlInfo.success
-          NgPcTeamraiserShortcutURLService.updateShortcut 'text=' + encodeURIComponent($scope.setPersonalUrlInfo.updatedShortcut)
-            .then (response) ->
-              if response.data.errorResponse
-                $scope.setPersonalUrlInfo.errorMessage = response.data.errorResponse.message
-              else
-                $scope.setPersonalUrlInfo.success = true
-                $scope.getParticipantShortcut()
-        
-        $scope.closeFirstLogin = ->
-          $scope.firstLoginModal.close()
-      
+        if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
+          $scope.firstLoginModal = $uibModal.open
+            scope: $scope
+            templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/firstLogin.html'
+
+          $scope.setPersonalUrlInfo =
+            updatedShortcut: ''
+
+          $scope.setPersonalUrl = ->
+            delete $scope.setPersonalUrlInfo.errorMessage
+            delete $scope.setPersonalUrlInfo.success
+            NgPcTeamraiserShortcutURLService.updateShortcut 'text=' + encodeURIComponent($scope.setPersonalUrlInfo.updatedShortcut)
+              .then (response) ->
+                if response.data.errorResponse
+                  $scope.setPersonalUrlInfo.errorMessage = response.data.errorResponse.message
+                else
+                  $scope.setPersonalUrlInfo.success = true
+                  $scope.getParticipantShortcut()
+
+          $scope.closeFirstLogin = ->
+            $scope.firstLoginModal.close()
+
       # undocumented update_last_pc2_login parameter required to make news feeds work, see bz #67720
       NgPcTeamraiserRegistrationService.updateRegistration 'update_last_pc2_login=true'
         .then ->
           NgPcTeamraiserRegistrationService.getRegistration()
-      
+
       if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true' or $scope.location is '/dashboard-student'
         $scope.dashboardProgressType = 'personal'
       else
         $scope.dashboardProgressType = 'company'
       $scope.toggleProgressType = (progressType) ->
         $scope.dashboardProgressType = progressType
-      
+
       $scope.refreshFundraisingProgress = ->
         fundraisingProgressPromise = NgPcTeamraiserProgressService.getProgress()
           .then (response) ->
@@ -116,22 +124,22 @@ angular.module 'trPcControllers'
             response
         $scope.dashboardPromises.push fundraisingProgressPromise
       $scope.refreshFundraisingProgress()
-      
+
       $scope.emailChallenge = {}
       setEmailSampleText = ->
-        sampleText = 'Hello! I am excited to be participating in the American Heart Association\'s American Heart Challenge Program! It is their mission to improve lives of all Americans, by providing public health education and research. Some of those ways are happening right here in my own school!\n\n' + 
+        sampleText = 'Hello! I am excited to be participating in the American Heart Association\'s American Heart Challenge Program! It is their mission to improve lives of all Americans, by providing public health education and research. Some of those ways are happening right here in my own school!\n\n' +
         'Please help me reach my fundraising goal'
         if not $scope.personalGoalInfo or not $scope.personalGoalInfo.goal or $scope.personalGoalInfo.goal is ''
           sampleText += ', '
         else
           sampleText += ' of ' + $scope.personalGoalInfo.goal + ', '
-        sampleText += 'by making a donation to my fundraising page. No matter the size of your gift - it will make a difference.\n\n' + 
-        'Thank You!\n' + 
-        $scope.consName + '\n\n' + 
+        sampleText += 'by making a donation to my fundraising page. No matter the size of your gift - it will make a difference.\n\n' +
+        'Thank You!\n' +
+        $scope.consName + '\n\n' +
         '***Did you know you might be able to double your gift to the American Heart Association? Ask your employer if you have an Employee Matching Gift program.'
         if $scope.personalPageUrl
-          sampleText += '\n\n' + 
-          'Visit my personal fundraising page:\n' + 
+          sampleText += '\n\n' +
+          'Visit my personal fundraising page:\n' +
           $scope.personalPageUrl
         $scope.emailChallenge.sampleText = sampleText
       setEmailSampleText()
@@ -139,16 +147,16 @@ angular.module 'trPcControllers'
         setEmailSampleText()
       $scope.$watch 'personalPageUrl', ->
         setEmailSampleText()
-      
+
       interactionTypeId = $dataRoot.data 'coordinator-message-id'
-      
+
       $scope.coordinatorMessage =
         text: ''
         errorMessage: null
         successMessage: false
         message: ''
         interactionId: ''
-      
+
       if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true' or $scope.location is '/dashboard-student'
         NgPcInteractionService.listInteractions 'interaction_type_id=' + interactionTypeId + '&interaction_subject=' + $scope.participantRegistration.companyInformation.companyId
           .then (response) ->
@@ -175,15 +183,15 @@ angular.module 'trPcControllers'
                   interaction = interactions[0]
                   $scope.coordinatorMessage.text = interaction.note?.text or ''
                   $scope.coordinatorMessage.interactionId = interaction.interactionId or ''
-        
+
         $scope.editCoordinatorMessage = ->
           $scope.editCoordinatorMessageModal = $uibModal.open
             scope: $scope
             templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/editCoordinatorMessage.html'
-        
+
         $scope.cancelEditCoordinatorMessage = ->
           $scope.editCoordinatorMessageModal.close()
-        
+
         $scope.updateCoordinatorMessage = ->
           if $scope.coordinatorMessage.interactionId is ''
             NgPcInteractionService.logInteraction 'interaction_type_id=' + interactionTypeId + '&cons_id=' + $scope.consId + '&interaction_subject=' + $scope.participantRegistration.companyInformation.companyId + '&interaction_body=' + ($scope.coordinatorMessage?.text or '')
@@ -196,14 +204,14 @@ angular.module 'trPcControllers'
           else
             NgPcInteractionService.updateInteraction 'interaction_id=' + $scope.coordinatorMessage.interactionId + '&cons_id=' + $scope.consId + '&interaction_subject=' + $scope.participantRegistration.companyInformation.companyId + '&interaction_body=' + ($scope.coordinatorMessage?.text or '')
               .then (response) ->
-                if response.data.errorResponse 
-                  $scope.coordinatorMessage.errorMessage = 'There was an error processing your update. Please try again later.' 
+                if response.data.errorResponse
+                  $scope.coordinatorMessage.errorMessage = 'There was an error processing your update. Please try again later.'
                 else
                   $scope.coordinatorMessage.successMessage = true
                   $scope.editCoordinatorMessageModal.close()
-      
+
       $scope.personalGoalInfo = {}
-      
+
       $scope.editPersonalGoal = ->
         delete $scope.personalGoalInfo.errorMessage
         personalGoal = $scope.participantProgress.goalFormatted.replace '$', ''
@@ -214,10 +222,10 @@ angular.module 'trPcControllers'
         $scope.editPersonalGoalModal = $uibModal.open
           scope: $scope
           templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/editParticipantGoal.html'
-      
+
       $scope.cancelEditPersonalGoal = ->
         $scope.editPersonalGoalModal.close()
-      
+
       $scope.updatePersonalGoal = ->
         delete $scope.personalGoalInfo.errorMessage
         newGoal = $scope.personalGoalInfo.goal
@@ -233,15 +241,11 @@ angular.module 'trPcControllers'
               else
                 $scope.editPersonalGoalModal.close()
                 $scope.refreshFundraisingProgress()
-                if $rootScope.facebookFundraiserId
-                  FacebookFundraiserService.updateFundraiser()
-                    .then ->
-                      FacebookFundraiserService.syncDonations()
               response
           $scope.dashboardPromises.push updatePersonalGoalPromise
-      
+
       $scope.teamGoalInfo = {}
-      
+
       $scope.editTeamGoal = ->
         delete $scope.teamGoalInfo.errorMessage
         teamGoal = $scope.teamProgress.goalFormatted.replace '$', ''
@@ -252,10 +256,10 @@ angular.module 'trPcControllers'
         $scope.editTeamGoalModal = $uibModal.open
           scope: $scope
           templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/editTeamGoal.html'
-      
+
       $scope.cancelEditTeamGoal = ->
         $scope.editTeamGoalModal.close()
-      
+
       $scope.updateTeamGoal = ->
         delete $scope.teamGoalInfo.errorMessage
         newGoal = $scope.teamGoalInfo.goal
@@ -273,9 +277,9 @@ angular.module 'trPcControllers'
                 $scope.refreshFundraisingProgress()
               response
           $scope.dashboardPromises.push updateTeamGoalPromise
- 
+
       $scope.schoolGoalInfo = {}
-      
+
       $scope.editSchoolGoal = ->
         delete $scope.schoolGoalInfo.errorMessage
         schoolGoal = $scope.companyProgress.goalFormatted.replace '$', ''
@@ -286,10 +290,10 @@ angular.module 'trPcControllers'
         $scope.editSchoolGoalModal = $uibModal.open
           scope: $scope
           templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/editSchoolGoal.html'
-      
+
       $scope.cancelEditSchoolGoal = ->
         $scope.editSchoolGoalModal.close()
-      
+
       $scope.updateSchoolGoal = ->
         delete $scope.schoolGoalInfo.errorMessage
         newGoal = $scope.schoolGoalInfo.goal
@@ -303,17 +307,18 @@ angular.module 'trPcControllers'
               $scope.editSchoolGoalModal.close()
               $scope.refreshFundraisingProgress()
           $scope.dashboardPromises.push updateSchoolGoalPromise
-      
+
       if $scope.facebookFundraisersEnabled and $rootScope.facebookFundraiserId and $rootScope.facebookFundraiserId isnt ''
         $rootScope.facebookFundraiserConfirmedStatus = 'pending'
         FacebookFundraiserService.confirmFundraiserStatus()
           .then (response) ->
-            if not response.data.status?.active
+            confirmOrUnlinkFacebookFundraiserResponse = response.data.confirmOrUnlinkFacebookFundraiserResponse
+            if confirmOrUnlinkFacebookFundraiserResponse?.active is 'false'
               delete $rootScope.facebookFundraiserId
               $rootScope.facebookFundraiserConfirmedStatus = 'deleted'
             else
               $rootScope.facebookFundraiserConfirmedStatus = 'confirmed'
-      
+
       $scope.participantGifts =
         sortColumn: 'date_recorded'
         sortAscending: false
@@ -344,7 +349,7 @@ angular.module 'trPcControllers'
             response
         $scope.dashboardPromises.push personalGiftsPromise
       $scope.getGifts()
-      
+
       $scope.donorContactCounts = {}
       donorContactFilters = [
         'email_rpt_show_nondonors_followup'
@@ -358,14 +363,14 @@ angular.module 'trPcControllers'
             $scope.donorContactCounts[filter] = if totalNumberResults then Number(totalNumberResults) else 0
             response
         $scope.dashboardPromises.push donorContactCountPromise
-      
+
       if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
         $scope.dashboardPageType = 'personal'
       else
         $scope.dashboardPageType = 'company'
       $scope.togglePageType = (pageType) ->
         $scope.dashboardPageType = pageType
-      
+
       $scope.getParticipantShortcut = ->
         getParticipantShortcutPromise = NgPcTeamraiserShortcutURLService.getShortcut()
           .then (response) ->
@@ -387,19 +392,19 @@ angular.module 'trPcControllers'
             response
         $scope.dashboardPromises.push getParticipantShortcutPromise
       $scope.getParticipantShortcut()
-      
+
       $scope.personalUrlInfo = {}
-      
+
       $scope.editPersonalUrl = ->
         delete $scope.personalUrlInfo.errorMessage
         $scope.personalUrlInfo.updatedShortcut = $scope.participantShortcut.text or ''
         $scope.editPersonalUrlModal = $uibModal.open
           scope: $scope
           templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/editParticipantUrl.html'
-      
+
       $scope.cancelEditPersonalUrl = ->
        $scope.editPersonalUrlModal.close()
-      
+
       $scope.updatePersonalUrl = ->
         delete $scope.personalUrlInfo.errorMessage
         updatePersonalUrlPromise = NgPcTeamraiserShortcutURLService.updateShortcut 'text=' + encodeURIComponent($scope.personalUrlInfo.updatedShortcut)
@@ -411,7 +416,7 @@ angular.module 'trPcControllers'
               $scope.getParticipantShortcut()
             response
         $scope.dashboardPromises.push updatePersonalUrlPromise
-      
+
       if $scope.participantRegistration.teamId and $scope.participantRegistration.teamId isnt '-1' and $scope.participantRegistration.aTeamCaptain is 'true'
         $scope.getTeamShortcut = ->
           getTeamShortcutPromise = NgPcTeamraiserShortcutURLService.getTeamShortcut()
@@ -433,19 +438,19 @@ angular.module 'trPcControllers'
               response
           $scope.dashboardPromises.push getTeamShortcutPromise
         $scope.getTeamShortcut()
-        
+
         $scope.teamUrlInfo = {}
-        
+
         $scope.editTeamUrl = ->
           delete $scope.teamUrlInfo.errorMessage
           $scope.teamUrlInfo.updatedShortcut = $scope.teamShortcut.text or ''
           $scope.editTeamUrlModal = $uibModal.open
             scope: $scope
             templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/editTeamUrl.html'
-        
+
         $scope.cancelEditTeamUrl = ->
          $scope.editTeamUrlModal.close()
-        
+
         $scope.updateTeamUrl = ->
           delete $scope.teamUrlInfo.errorMessage
           updateTeamUrlPromise = NgPcTeamraiserShortcutURLService.updateTeamShortcut 'text=' + encodeURIComponent($scope.teamUrlInfo.updatedShortcut)
@@ -457,7 +462,7 @@ angular.module 'trPcControllers'
                 $scope.getTeamShortcut()
               response
           $scope.dashboardPromises.push updateTeamUrlPromise
-      
+
       if $scope.participantRegistration.companyInformation and $scope.participantRegistration.companyInformation.companyId and $scope.participantRegistration.companyInformation.companyId isnt -1 and $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
         $scope.getCompanyShortcut = ->
           getCompanyShortcutPromise = NgPcTeamraiserShortcutURLService.getCompanyShortcut()
@@ -479,19 +484,26 @@ angular.module 'trPcControllers'
               response
           $scope.dashboardPromises.push getCompanyShortcutPromise
         $scope.getCompanyShortcut()
-        
+
         $scope.companyUrlInfo = {}
-        
+
         $scope.editCompanyUrl = ->
           delete $scope.companyUrlInfo.errorMessage
           $scope.companyUrlInfo.updatedShortcut = $scope.companyShortcut.text or ''
           $scope.editCompanyUrlModal = $uibModal.open
             scope: $scope
             templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/editCompanyUrl.html'
-        
+
+        $scope.editCompanyUrlFirst = ->
+          delete $scope.companyUrlInfo.errorMessage
+          $scope.companyUrlInfo.updatedShortcut = $scope.companyShortcut.text or ''
+          $scope.editCompanyUrlModal = $uibModal.open
+            scope: $scope
+            templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/firstLoginCoord.html'
+
         $scope.cancelEditCompanyUrl = ->
          $scope.editCompanyUrlModal.close()
-        
+
         $scope.updateCompanyUrl = ->
           delete $scope.companyUrlInfo.errorMessage
           updateCompanyUrlPromise = NgPcTeamraiserShortcutURLService.updateCompanyShortcut 'text=' + encodeURIComponent($scope.companyUrlInfo.updatedShortcut)
@@ -503,7 +515,30 @@ angular.module 'trPcControllers'
                 $scope.getCompanyShortcut()
               response
           $scope.dashboardPromises.push updateCompanyUrlPromise
-      
+
+        $scope.getCompanyShortcut = ->
+          getCompanyShortcutPromise = NgPcTeamraiserShortcutURLService.getCompanyShortcut()
+            .then (response) ->
+              if response.data.errorResponse
+                # TODO
+              else
+                shortcutItem = response.data.getCompanyShortcutResponse?.shortcutItem
+                if not shortcutItem
+                  # TODO
+                else
+                  if shortcutItem.prefix
+                    shortcutItem.prefix = shortcutItem.prefix
+                  $scope.companyShortcut = shortcutItem
+                  if shortcutItem.url
+                    $scope.companyPageUrl = shortcutItem.url
+                  else
+                    $scope.companyPageUrl = shortcutItem.defaultUrl.split('/site/')[0] + '/site/TR?fr_id=' + $scope.frId + '&pg=company&company_id=' + $scope.participantRegistration.companyInformation.companyId
+                    if $scope.participantRegistration.lastPC2Login is '0'
+                      $scope.editCompanyUrlFirst()
+              response
+          $scope.dashboardPromises.push getCompanyShortcutPromise
+        $scope.getCompanyShortcut()
+
       $scope.prizes = []
       BoundlessService.getBadges $scope.consId
         .then (response) ->
@@ -542,7 +577,7 @@ angular.module 'trPcControllers'
           $scope.updatedPersonalChallenge.id = id
         if not $scope.$$phase
           $scope.$apply()
-          
+
       errorCount = 0
       getStudentChallenge = ->
         if not $scope.personalChallenge
@@ -574,7 +609,7 @@ angular.module 'trPcControllers'
                 numCompleted = if personalChallenges.completed then Number(personalChallenges.completed) else 0
                 setPersonalChallenge id, personalChallenges.text, numCompleted, personalChallenges.completedToday
       getStudentChallenge()
-      
+
       $scope.challenges = []
       # ZuriService.getChallenges $scope.frId + '/' + $scope.consId,
         # failure: (response) ->
@@ -595,7 +630,7 @@ angular.module 'trPcControllers'
         $scope.challenges.push
           id: challengeIndex
           name: challenge
-      
+
       $scope.updateChallenge = ->
         if not $scope.personalChallenge
           $scope.personalChallenge = {}
@@ -607,7 +642,7 @@ angular.module 'trPcControllers'
           success: (response) ->
             delete $scope.personalChallenge.updatePending
             getStudentChallenge()
-      
+
       $scope.updateDayChallenge = (challengeid) ->
         if not $scope.personalChallenge
           $scope.personalChallenge = {}
@@ -619,7 +654,7 @@ angular.module 'trPcControllers'
           success: (response) ->
             delete $scope.personalChallenge.updatePending
             getStudentChallenge()
-      
+
       $scope.logChallenge = ->
         if not $scope.personalChallenge
           $scope.personalChallenge = {}
@@ -632,4 +667,67 @@ angular.module 'trPcControllers'
             delete $scope.personalChallenge.updatePending
             getStudentChallenge()
 
+      NgPcTeamraiserCompanyService.getSchoolDates()
+        .then (response) ->
+          schoolDataRows = response.data.getSchoolDatesResponse.schoolData
+          schoolDataHeaders = {}
+          schoolDates = {}
+          angular.forEach schoolDataRows[0], (schoolDataHeader, schoolDataHeaderIndex) ->
+            schoolDataHeaders[schoolDataHeader] = schoolDataHeaderIndex
+          i = 0
+          len = schoolDataRows.length
+          while i < len
+            if $rootScope.companyInfo.companyId is schoolDataRows[i][schoolDataHeaders.CID]
+              $scope.eventDate = schoolDataRows[i][schoolDataHeaders.ED]
+              $scope.moneyDueDate = schoolDataRows[i][schoolDataHeaders.MDD]
+              $scope.schoolStudentGoal = schoolDataRows[i][schoolDataHeaders.PG]
+              $scope.schoolStudentReg = schoolDataRows[i][schoolDataHeaders.TR]
+              $scope.schoolStudentRegOnline = schoolDataRows[i][schoolDataHeaders.RO]
+              $scope.notifyName = schoolDataRows[i][schoolDataHeaders.YMDN]
+              $scope.notifyEmail = schoolDataRows[i][schoolDataHeaders.YMDE]
+              break
+            i++
+
+      $scope.schoolYearsInfo = {}
+
+      if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
+        ZuriService.getSchoolYears $scope.participantRegistration.companyInformation.companyId,
+          failure: (response) ->
+            $scope.companyProgress.schoolYears = 0
+          error: (response) ->
+            $scope.companyProgress.schoolYears = 0
+          success: (response) ->
+            if response.data.value isnt null
+              $scope.companyProgress.schoolYears = response.data.value
+            else
+              $scope.companyProgress.schoolYears = 0
+
+      $scope.editSchoolYears = ->
+        delete $scope.schoolYearsInfo.errorMessage
+        schoolYears = $scope.companyProgress.schoolYears
+        if schoolYears is '' or schoolYears is '0'
+          $scope.schoolYearsInfo.years = ''
+        else
+          $scope.schoolYearsInfo.years = schoolYears
+        $scope.editSchoolYearsModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/participant-center/modal/editSchoolYears.html'
+
+      $scope.cancelEditSchoolYears = ->
+        $scope.editSchoolYearsModal.close()
+
+      $scope.updateSchoolYears = ->
+        delete $scope.schoolYearsInfo.errorMessage
+        newYears = $scope.schoolYearsInfo.years
+        if not newYears or newYears is '' or newYears is '0' or isNaN(newYears)
+          $scope.schoolYearsInfo.errorMessage = 'Please specify a year greater than 0.'
+        else
+          updateSchoolYearPromise = ZuriService.updateSchoolYears $scope.participantRegistration.companyInformation.companyId + '/years-participated/update?value=' + newYears,
+            failure: (response) ->
+              $scope.schoolYearsInfo.errorMessage = 'Process failed to save years entered'
+            error: (response) ->
+              $scope.schoolYearsInfo.errorMessage = 'Error: ' + response.data.message
+            success: (response) ->
+              $scope.companyProgress.schoolYears = newYears
+              $scope.editSchoolYearsModal.close()
   ]

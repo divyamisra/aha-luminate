@@ -15,17 +15,24 @@ angular.module 'ahaLuminateControllers'
     'TeamraiserRegistrationService'
     'TeamraiserCompanyPageService'
     'PageContentService'
+    'CompanyService'
     '$sce'
-    ($scope, $rootScope, $location, $filter, $timeout, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserTeamService, TeamraiserParticipantService, BoundlessService, ZuriService, TeamraiserRegistrationService, TeamraiserCompanyPageService, PageContentService, $sce) ->
+    '$http'
+    ($scope, $rootScope, $location, $filter, $timeout, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserTeamService, TeamraiserParticipantService, BoundlessService, ZuriService, TeamraiserRegistrationService, TeamraiserCompanyPageService, PageContentService, CompanyService, $sce, $http) ->
       $scope.companyId = $location.absUrl().split('company_id=')[1].split('&')[0].split('#')[0]
       $rootScope.companyName = ''
       $scope.eventDate = ''
       $scope.totalTeams = ''
       $scope.teamId = ''
+      $scope.hideAmount = ''
+      $scope.notifyName = ''
+      $scope.notifyEmail = ''
+      $scope.moneyDueDate = ''
+      $scope.unconfirmedAmountRaised = 0
       
       $scope.trustHtml = (html) ->
         return $sce.trustAsHtml(html)
-      
+           
       getLocalSponsors = ->
         if $scope.parentCompanyId and $scope.parentCompanyId isnt ''
           PageContentService.getPageContent 'middle_school_local_sponsors_' + $scope.parentCompanyId
@@ -120,7 +127,30 @@ angular.module 'ahaLuminateControllers'
               coordinatorId = companies[0].coordinatorId
               $rootScope.companyName = name
               setCompanyProgress amountRaised, goal
-              
+
+              CompanyService.getSchoolDates()
+                .then (response) ->
+                  schoolDataRows = response.data.getSchoolDatesResponse.schoolData
+                  schoolDataHeaders = {}
+                  schoolDates = {}
+                  angular.forEach schoolDataRows[0], (schoolDataHeader, schoolDataHeaderIndex) ->
+                    schoolDataHeaders[schoolDataHeader] = schoolDataHeaderIndex
+                  i = 0
+                  len = schoolDataRows.length
+                  while i < len
+                    if $scope.companyId is schoolDataRows[i][schoolDataHeaders.CID]
+                      $scope.eventDate = schoolDataRows[i][schoolDataHeaders.ED]
+                      $scope.moneyDueDate = schoolDataRows[i][schoolDataHeaders.MDD]
+                      $scope.schoolStudentGoal = schoolDataRows[i][schoolDataHeaders.PG]
+                      $scope.hideAmount = schoolDataRows[i][schoolDataHeaders.HA]
+                      $scope.notifyName = schoolDataRows[i][schoolDataHeaders.YMDN]
+                      $scope.notifyEmail = schoolDataRows[i][schoolDataHeaders.YMDE]
+                      $scope.unconfirmedAmountRaised = schoolDataRows[i][schoolDataHeaders.UCR]
+                      break
+                    i++
+                  #setCompanyProgress Number(amountRaised) + Number(($scope.unconfirmedAmountRaised) * 100), goal
+                  setCompanyProgress Number(amountRaised), goal
+                  
               if coordinatorId and coordinatorId isnt '0' and eventId
                 TeamraiserCompanyService.getCoordinatorQuestion coordinatorId, eventId
                   .then (response) ->
@@ -328,4 +358,10 @@ angular.module 'ahaLuminateControllers'
                 $scope.companyPageContent.mode = 'view'
                 if not $scope.$$phase
                   $scope.$apply()
-  ]
+                  
+      ZuriService.getSchoolYears $scope.companyId,
+        error: (response) ->
+          # TO DO
+        success: (response) ->
+          $scope.schoolYears = response.data.value
+   ]

@@ -2,6 +2,9 @@
   <div class="ym-page-section ym-page-section__top">
     <div class="col-md-6 ym-user-image" ng-init="personalPagePhoto1.customUrl = '[[C4:graphic_upload]]'; personalPagePhoto1.caption = '[[T6:[[C1:graphic_caption]]]]'" ng-style="{'background-image': (personalPagePhoto1.customUrl && personalPagePhoto1.customUrl != '') ? ('url(' + personalPagePhoto1.customUrl + ')') : ('url(' + personalPagePhoto1.defaultUrl + ')')}">
       <div class="ym-user-image-inner">
+        <div class="ym-school-student-survivor" ng-if="survivor">
+          <img src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/heart_hero.png" alt="I am a Survivor">
+        </div>
         [[?
           [[?xx::x[[S1:cons_id]]x::::
             [[?x[[S1:cons_id]]x::x[[S334:px]]x::T::]]
@@ -76,6 +79,7 @@
         [[C6:fr_rich_text]]
       </div>
       <div ng-show="personalPageContent.mode == 'view'">
+        <img class="personal-avatar" ng-src='{{personalInfo.avatar}}' ng-if="personalInfo.avatar != ''" alt="Avatar for [[E48:[[S80:trID]]-[[S334:px]]:cons.first_name]] [[E130:[[T8:[[E48:[[S80:trID]]-[[S334:px]]:cons.last_name]]]] 0 1 substring]]." ng-cloak>
         <div ng-bind-html="personalPageContent.rich_text">
           <div ng-non-bindable>
             [[C6:fr_rich_text]]

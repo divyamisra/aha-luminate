@@ -51,8 +51,6 @@ angular.module 'ahaLuminateApp'
       $rootScope.sessionCookie = $dataRoot.data('session-cookie') if $dataRoot.data('session-cookie') isnt ''
       $rootScope.dev_branch = $dataRoot.data('dev-branch') if $dataRoot.data('dev-branch') isnt ''
       $rootScope.facebookFundraisersEnabled = $dataRoot.data('facebook-fundraisers-enabled') is 'TRUE'
-      $rootScope.facebookFundraisersEndDate = if $dataRoot.data('facebook-fundraisers-end-date') is '' then '' else $dataRoot.data('facebook-fundraisers-end-date')
-      $rootScope.facebookCharityId = if $dataRoot.data('facebook-charity-id') is '' then '' else $dataRoot.data('facebook-charity-id')
       $rootScope.facebookFundraiserId = $dataRoot.data('facebook-fundraiser-id') if $dataRoot.data('facebook-fundraiser-id') isnt ''
   ]
 

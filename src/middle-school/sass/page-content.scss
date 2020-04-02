@@ -8,3 +8,13 @@
 .ym-page-section__list {
   background: $event-accent;
 }
+
+.ym-school-student-survivor {
+  position:relative;
+  max-width:180px;
+  padding:5px;
+  
+  img {
+    width: 100%;
+  }
+}

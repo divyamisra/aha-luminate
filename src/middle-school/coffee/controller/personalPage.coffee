@@ -19,6 +19,7 @@ angular.module 'ahaLuminateControllers'
       $scope.teamId = $dataRoot.data('team-id') if $dataRoot.data('team-id') isnt ''
       $scope.eventDate =''
       $rootScope.numTeams = ''
+      $rootScope.survivor = false
       
       $scope.prizes = []
       BoundlessService.getBadges $scope.participantId
@@ -70,6 +71,7 @@ angular.module 'ahaLuminateControllers'
           $scope.challengeName = null
           $scope.challengeId = null
           $scope.challengeCompleted = 0
+          $rootScope.survivor = false
         success: (response) ->
           if response.data.challenges.current is '0'
             $scope.challengeId = null
@@ -77,6 +79,7 @@ angular.module 'ahaLuminateControllers'
             $scope.challengeId = response.data.challenges.current
           $scope.challengeName = response.data.challenges.text
           $scope.challengeCompleted = response.data.challenges.completed
+          $rootScope.survivor = response.data.show_banner
       
       TeamraiserCompanyService.getCompanies 'company_id=' + $scope.companyId,
         success: (response) ->

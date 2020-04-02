@@ -12,6 +12,7 @@ node_modules
 .sass-cache
 npm-debug.log
 package-lock.json
+sftp-config.json
 
 # system files
 *.DS_Store

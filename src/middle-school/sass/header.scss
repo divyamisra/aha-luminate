@@ -32,3 +32,24 @@ header {
     }
   }
 }
+
+.ym-header-welcome {
+  .dropdown {
+    display:inline-block !important;
+    vertical-align:top;
+
+    span {
+      display:inline-block !important;
+    }
+  }
+  .dropdown-item {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+  }
+}
+
+header nav .ym-header-welcome-toggle:focus {
+  outline: 5px auto -webkit-focus-ring-color;
+}

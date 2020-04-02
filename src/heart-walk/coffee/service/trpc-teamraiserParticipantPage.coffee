@@ -25,6 +25,7 @@ angular.module 'trPcApp'
         dataString += '&' + requestData if requestData and requestData isnt ''
         LuminateRESTService.luminateExtendTeamraiserRequest dataString, true, true, callback
   ]
+
 angular.module 'trPcApp'
   .factory 'TeamraiserSurveyResponseService', [
     '$rootScope'
