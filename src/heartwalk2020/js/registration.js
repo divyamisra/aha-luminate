@@ -2007,7 +2007,7 @@
                         $(this).nextUntil('.switchCompany').each(function(){
                           var subName = $(this).text();
                           var subVal = $(this).val();
-                          subChildren.push({ 
+                          subChildren.push({
                             subName: subName,
                             subVal: subVal
                           });
@@ -2015,7 +2015,7 @@
                         });
 
                         var child = new Child(name,val,subChildren);
- 
+
                         children.push(child);
                       }
                       else{
@@ -2023,7 +2023,7 @@
                         $(this).nextUntil('.subCompany').each(function(){
                           var subName = $(this).text();
                           var subVal = $(this).val();
-                          subChildren.push({ 
+                          subChildren.push({
                             subName: subName,
                             subVal: subVal
                           });
@@ -2032,7 +2032,7 @@
                         });
 
                         var child = new Child(name,val,subChildren);
- 
+
                         children.push(child);
                       }
                     }
