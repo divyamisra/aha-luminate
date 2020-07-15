@@ -246,3 +246,6 @@
     </div>
   </div>
 </footer> -->
+<script>
+function getTimeRemaining(e){var n=Date.parse(e)-Date.parse(new Date),r=Math.floor(n/1e3%60),t=Math.floor(n/1e3/60%60),a=Math.floor(n/36e5%24);return{total:n,days:Math.floor(n/864e5),hours:a,minutes:t,seconds:r}}function initializeClock(e,n){var r=document.getElementById(e),t=r.querySelector(".days"),a=r.querySelector(".hours"),o=r.querySelector(".minutes"),i=r.querySelector(".seconds");function s(){var e=getTimeRemaining(n);t.innerHTML=e.days,a.innerHTML=("0"+e.hours).slice(-2),o.innerHTML=("0"+e.minutes).slice(-2),i.innerHTML=("0"+e.seconds).slice(-2),e.total<=0&&clearInterval(l)}s();var l=setInterval(s,1e3)}var deadline="2020-05-06T00:00:00";initializeClock('clockdiv', deadline);
+</script>
