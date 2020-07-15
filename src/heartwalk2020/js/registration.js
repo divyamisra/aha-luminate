@@ -1578,22 +1578,15 @@
             $('#fr_team_goal').val('');
             $('#fr_team_name').val('');
         }
-        
         $('.part-type-description-text:contains("Free")').html('&nbsp;');
         $('.survey-question-container legend span:contains("Waiver agreement")').parent().parent().addClass('waiverCheck');
         $('.waiverCheck legend').addClass('aural-only');
         $('.waiverCheck label').html('<span class="field-required"></span> I accept and acknowledge that I have read and understand this Heart Walk <a id="waiverPopLink" href="#">Release with Publicity Consent</a> and agree to them voluntarily.');
 	$('.waiverCheck input[type="checkbox"]').attr("aria-required","true");
+
         $('.survey-question-container legend span:contains("Privacy Policy")').parent().parent().addClass('privacyCheck');
         $('.privacyCheck legend').addClass('aural-only');
-        var trName = $('.campaign-banner-container').text();
-        trName = trName.replace(/'/g, '');
-        if (trName.indexOf('Lawyers') != -1){
-          $('.privacyCheck label').html('<span class="field-required"></span> I agree to the <a href="javascript:void(0)" onclick="window.open(\'DocServer/Terms_of_Service_Heart_Walk_LHH_2020.pdf\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Terms and Conditions (PDF)</a> and <a href="javascript:void(0)" onclick="window.open(\'https://www.heart.org/en/about-us/statements-and-policies/privacy-statement\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Privacy Policy</a>.');
-        }
-        else {
-          $('.privacyCheck label').html('<span class="field-required"></span> I agree to the <a href="javascript:void(0)" onclick="window.open(\'DocServer/HeartWalk2019_163605_TOS_texting_2019.11.19.pdf\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Terms and Conditions (PDF)</a> and <a href="javascript:void(0)" onclick="window.open(\'https://www.heart.org/en/about-us/statements-and-policies/privacy-statement\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Privacy Policy</a>.');
-        }
+        $('.privacyCheck label').html('<span class="field-required"></span> I agree to the <a href="javascript:void(0)" onclick="window.open(\'DocServer/HeartWalk2019_163605_TOS_texting_2019.11.19.pdf\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Terms and Conditions (PDF)</a> and <a href="javascript:void(0)" onclick="window.open(\'https://www.heart.org/en/about-us/statements-and-policies/privacy-statement\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Privacy Policy</a>.');
 	$('.privacyCheck input[type="checkbox"]').attr("aria-required","true");
 
 	$('.survey-question-container legend span:contains("Healthy for good signup")').parent().parent().addClass('healthyCheck');
@@ -1870,7 +1863,7 @@
         var waiver, waiverHTML;
         $(data).find('participationType').each(function() {
             var nodeName = $(this).find('name').text();
-            var nodeNameTrim = nodeName.replace(/\s/g, "").replace(/amp;/g, "");
+            var nodeNameTrim = nodeName.replace(/\s/g, "");
             if (nodeNameTrim == userParticipationType) {
                 waiver = $(this).find('waiver').text();
                 waiverHTML = waiver.replace(/(?:\r\n\r\n|\r\r|\n\n)/, '<p>').replace(/(?:\r\n\r\n|\r\r|\n\n)/g, '</p><p>').replace('our Privacy Policy', '<a href="http://www.Heart.org/Privacy">our Privacy Policy</a>');
@@ -2007,7 +2000,7 @@
                         $(this).nextUntil('.switchCompany').each(function(){
                           var subName = $(this).text();
                           var subVal = $(this).val();
-                          subChildren.push({
+                          subChildren.push({ 
                             subName: subName,
                             subVal: subVal
                           });
@@ -2015,7 +2008,7 @@
                         });
 
                         var child = new Child(name,val,subChildren);
-
+ 
                         children.push(child);
                       }
                       else{
@@ -2023,7 +2016,7 @@
                         $(this).nextUntil('.subCompany').each(function(){
                           var subName = $(this).text();
                           var subVal = $(this).val();
-                          subChildren.push({
+                          subChildren.push({ 
                             subName: subName,
                             subVal: subVal
                           });
@@ -2032,7 +2025,7 @@
                         });
 
                         var child = new Child(name,val,subChildren);
-
+ 
                         children.push(child);
                       }
                     }
@@ -2075,13 +2068,3 @@
 
 
 })(jQuery);
-
-if (!String.prototype.startsWith) {
-  Object.defineProperty(String.prototype, 'startsWith', {
-      value: function(search, rawPos) {
-          var pos = rawPos > 0 ? rawPos|0 : 0;
-          return this.substring(pos, pos + search.length) === search;
-      }
-  });
-}
-
