@@ -146,3 +146,21 @@ input[type="text"],
 select.form-control[size], select.form-control[multiple] {
   height: 55px;
 }
+
+div.responsive input[type="text"], div.responsive input[type="number"], div.responsive input[type="password"], div.responsive textarea, div.responsive select {
+  &:focus{
+    box-shadow: 0 0 0 .2rem rgba(193,14,33,.25)!important;
+    outline: 2px solid $outline-blue!important;
+  }
+}
+
+div.responsive button, div.responsive a.payment-type-label {
+  &:focus{
+    box-shadow: 0 0 0 .2rem rgba(193,14,33,.25);
+    outline: 2px solid $outline-blue;
+  }
+}
+
+div.responsive .custom-field-container {
+  padding: 4px;
+}

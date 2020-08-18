@@ -23,19 +23,33 @@
                 $('#navbar-container').slideToggle('fast');
             }
             $('.navbar-toggler-icon').toggleClass('fa-align-justify').toggleClass('fa-times');
-            $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_team .tr-page-container').toggleClass('static');
+
+            $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_tea .tr-page-container').toggleClass('static');
+
             $('.pg_company header, .pg_personal header, .pg_team header').toggleClass('mobile-open');
+
+            if ( $('#navbar-container').is(':visible') ) {
+              $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_tea .tr-page-container').addClass('static');
+
+              $('.pg_company header, .pg_personal header, .pg_team header').addClass('mobile-open');
+            } else {
+              $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_tea .tr-page-container').removeClass('static');
+
+              $('.pg_company header, .pg_personal header, .pg_team header').removeClass('mobile-open');
+            }
         });
 
         // Mobile search toggle
         $('.mobile-search-trigger').click(function () {
-            $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_team .tr-page-container').toggleClass('static');
+
+
             if ($('.navbar-toggler-icon').hasClass('fa-times')) {
                 $('#navbar-container').addClass('is-search');
                 $('.mobile-search-trigger').addClass('active');
                 $('.navbar-toggler-icon').toggleClass('fa-align-justify').toggleClass('fa-times');
             } else {
                 $('.mobile-search-trigger').toggleClass('active');
+                $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_team .tr-page-container').addClass('static');
                 if ($('#navbar-container').hasClass('is-search')) {
                     // Wait to toggle is-search class until the container
                     // is fully closed so that the user doesn't see the
@@ -47,6 +61,16 @@
                     $('#navbar-container').toggleClass('is-search');
                     $('#navbar-container').slideToggle('fast');
                 }
+            }
+
+            if ( $('.mobile-search-trigger').removeClass('active') ) {
+              $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_tea .tr-page-container').addClass('static');
+
+              $('.pg_company header, .pg_personal header, .pg_team header').addClass('mobile-open');
+            } else {
+              $('.pg_company .tr-page-container, .pg_personal .tr-page-container, .pg_tea .tr-page-container').removeClass('static');
+
+              $('.pg_company header, .pg_personal header, .pg_team header').removeClass('mobile-open');
             }
         });
 
@@ -357,7 +381,7 @@
                                       .append('<tr><td><table><tr' + (i > 10 ? ' class="d-none"' : '') + '><td>Company</td><td><a href="' + company.companyURL + '">' +
                                           company.companyName + '</a></td></tr><tr><td>Company Lead</td><td>' + (companyLead !== undefined ? companyLead : '') + '</td></tr>' +
                                           ((team.companyName !== null && team.companyName !== undefined) ? '<tr><td>Company</td><td><a href="TR?company_id=' + team.companyId + '&fr_id=' + team.EventId + '&pg=company">' + team.companyName + '</a>' : '') +
-                                          '</td></tr><tr><td>Event Location</td><td class="col-cta">' + (companyLocation !== undefined ? companyLocation : '') + '</td></tr><tr><td colspan="2" class="text-center"><td class="col-cta"><a class="btn btn-primary btn-block btn-rounded" title="Details about ' + company.companyName + '" href="' + company.companyURL + '">' + 'Details</a></td></td></tr></table></td></tr>');
+                                          '</td></tr><tr><td>Event Location</td><td class="col-cta">' + (companyLocation !== undefined ? companyLocation : '') + '</td></tr><tr><td class="col-cta"><a class="btn btn-primary btn-block btn-rounded" title="Details about ' + company.companyName + '" href="' + company.companyURL + '">' + 'Details</a></td></tr></table></td></tr>');
                               }
                             });
 

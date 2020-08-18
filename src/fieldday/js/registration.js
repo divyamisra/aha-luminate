@@ -2153,6 +2153,9 @@
             if ($('body').is('.pg_regsummary')) {
               $('.reg-summary-address-info .reg-summary-edit-link a').attr('aria-label', 'Edit your registration information');
               $('.js--edit-ptype').attr('aria-label', 'Edit your registration information');
+              if ( $('.team-status').html() === 'You are Starting a Team') {
+                $('#another_button').remove();
+              }
             }
 
 

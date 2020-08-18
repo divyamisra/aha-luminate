@@ -1247,11 +1247,12 @@ div.part-type-container {
 }
 div.part-type-container.selected,
 div.part-type-container:hover {
-    background-color: #000;
+    background-color: transparent;
+    color: #555;
     margin-top:0;
     margin-bottom: 20px;
-    outline: 2px solid $outline-blue;
-    border: 2px solid #000;
+    outline: none;
+    border: none;
     border-radius: 0px;
 }
 @media only screen and (max-width: 767px) {
@@ -1274,16 +1275,23 @@ div.part-type-container .part-type-decoration-messages {
 div.responsive .part-type-decoration-messages label {
   color: #000;
   display: block;
-  font-size: 24px;
-  line-height: 32px;
-  padding: 10px;
+  padding: 10px 0;
   text-align: left;
-  cursor:pointer;
-  margin: 0px;
+  margin: 0;
+
+  .part-type-fee-text {
+    font-size: 24px;
+    line-height: 32px;
+    &::before {
+      content: 'Registration fee: ';
+    }
+  }
+  .part-type-description-text {
+    font-size: 0.8em;
+  }
 }
-div.responsive .part-type-container.selected .part-type-decoration-messages label,
-div.responsive .part-type-container:hover .part-type-decoration-messages label{
-  color: #fff;
+div.responsive .part-type-container.selected .part-type-decoration-messages label,div.responsive .part-type-container:hover .part-type-decoration-messages label{
+  color: #555;
 }
 .part-type-name {
     display: inline-block;
