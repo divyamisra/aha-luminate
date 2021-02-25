@@ -69,7 +69,7 @@
 	document.cookie="level="+level;
         //var amt = $(this).find('.donation-level-amount-container').text();
         //$('.donateSubmit').text('Donate '+amt);
-        
+
     });
 
     $('.designated-giving-recurring-row input[type=radio]:checked').closest('.designated-giving-recurring-row').addClass("active");
@@ -134,7 +134,9 @@
 
     var xname = $('#part_name_donform').text()
     if (xname != ''){
-    $('#tr_show_gift_to_public_row label').text('Would you like your name displayed on '+xname+'\'s page.');
+    //$('#tr_show_gift_to_public_row label').text('Would you like your name displayed on '+xname+'\'s page.');
+    $('#tr_show_gift_to_public_row label').text('Yes, you can display the amount of my donation publicly');
+
     $('#tr_recognition_nameanonymous_row label').text('Hide my name from lists on '+xname+'\'s page. \('+xname+' will still see your name regardless of your choice.\)');}
 
     $('.external-payment label a').text('PayPal');
@@ -147,7 +149,7 @@
 	    }
     });
 
-    $('.level5 .donation-level-label-input-container').addClass('aural-only');
+    //$('.level5 .donation-level-label-input-container').addClass('aural-only');
 
 /**** impact statement randomizer *****/
       var $all = $(".impactStatement").hide();
@@ -182,9 +184,16 @@
     $('#responsive_payment_typecc_numbername, #responsive_payment_typecc_cvvname, #billing_first_namename, #billing_last_namename, #billing_addr_street1name, #billing_addr_cityname, #billing_addr_zipname, #donor_email_addressname, #responsive_payment_typecc_exp_date_MONTH, #responsive_payment_typecc_exp_date_YEAR, #billing_addr_state, #billing_addr_country').attr('aria-required','true');
     $('#billing_addr_street1_row, #billing_addr_street2_row, #billing_addr_city_row, #billing_addr_state_row, #billing_addr_zip_row, #billing_addr_country_row').wrapAll('<div class="billing-fields-container"></div>');
 
-    if ($('.errorMessageContainer .ErrorMessage.page-error .field-error-text').length > 0) {
+     setTimeout(function(){
+       if ( $('.ErrorMessage').length > 0 ) {
+         $('.ErrorMessage').attr('role', 'alert').attr('aria-atomic', 'true');
+       }
+     }, 1000);
+
+    /*if ($('.errorMessageContainer .ErrorMessage.page-error .field-error-text').length > 0) {
         $('.errorMessageContainer .ErrorMessage.page-error .field-error-text').attr('role','alert');
-    }
+    }*/
+
     $('#responsive_payment_typecc_numbername').attr('placeholder','XXXXXXXXXXXXXXXX');
     $('#level_flexible_row').before('<div class="required-indicator-legend"><span class="field-required"></span><span class="required-indicator-legend-text">Indicates Required</span></div>');
 

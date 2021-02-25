@@ -2,15 +2,15 @@
 /* typography */
 /* ********** */
 
-p, 
-ol, 
-ul, 
-li, 
-table, 
-tr, 
-th, 
-td, 
-.Explicit, 
+p,
+ol,
+ul,
+li,
+table,
+tr,
+th,
+td,
+.Explicit,
 div.responsive {
   font-family: inherit;
   font-size: inherit;
@@ -22,7 +22,7 @@ div.responsive {
 .hidden {
   display: none !important;
 }
-div.responsive span.header-warning-message, 
+div.responsive span.header-warning-message,
 div.responsive div.ErrorMessage.page-error>span.field-error-indicator {
   display: none;
 }
@@ -43,13 +43,13 @@ a.btn, a.btn:visited, a.editBtn, a.editBtn:visited, input.btn, input.btnMini, in
   padding: initial;
 }
 
-a, 
-#login-div-content a, 
+a,
+#login-div-content a,
 div.responsive a {
-  &:link, 
-  &:visited, 
-  &:hover, 
-  &:focus, 
+  &:link,
+  &:visited,
+  &:hover,
+  &:focus,
   &:active {
     // color: $link-color;
     // color:initial;
@@ -73,7 +73,7 @@ div.responsive a {
 }
 
 
- 
+
 // .button {
 //   @extend .btn;
 // }
@@ -135,7 +135,7 @@ div.registration-page-container div.section-header {
 }
 .mobile div#find_participant li {
   width: 135px !important;
-  
+
   // @media (min-width: $screen-sm-min) {
   //   width: auto !important;
   // }

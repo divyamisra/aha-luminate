@@ -24,7 +24,6 @@
 
 /* main styling */
 main {
-    background-image: url("/images/content/pagebuilder/fd_hero_desktop.jpg");
     background-size: 100%;
     background-repeat: no-repeat;
     background-color: $gray-400;
@@ -50,7 +49,8 @@ main {
 }
 
 .pg_ptype input[type="radio"]:focus {
-	outline: 2px solid $red;
+	outline: 2px solid $outline-blue;
+  outline-offset: 2px;
 }
 
 h1#pt_title_container,
@@ -240,7 +240,8 @@ div.responsive .survivor_yes_no .input-container input[type=radio] {
     top:15px;
 }
 div.responsive .survivor_yes_no .input-container input[type=radio]:focus {
-	outline: 5px auto -webkit-focus-ring-color;
+	outline: 2px solid $outline-blue;
+  outline-offset: 2px;
 }
 
 div.responsive .donation-level-row-container.donation-amt.active .donation-level-row-decoration-container,
@@ -942,7 +943,7 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
 	padding-right: 5px;
 }
 .payment-type-selections input[type=radio]:focus {
-	outline: 5px auto -webkit-focus-ring-color;
+	outline: 2px solid $outline-blue;
 }
 /*
 .app_tr_registration div#discount_code_container,
@@ -996,7 +997,7 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
 	font-size: 1.75rem;
 }
 .app_tr_registration div.registration-page-container div.sub-section-container {
- 	overflow:hidden;
+ 	//overflow:hidden;
 }
 .app_tr_registration div.registration-page-container #personal_info_container,
 .app_tr_registration div.registration-page-container #contact_info_section_one,
@@ -1222,7 +1223,7 @@ div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.respo
     max-width: none;
 }
 .app_tr_registration .cons-full-address-container {
-    overflow: hidden;
+    //overflow: hidden;
 }
 .app_tr_registration #remember_me_container {
 	display:none;
@@ -1246,11 +1247,12 @@ div.part-type-container {
 }
 div.part-type-container.selected,
 div.part-type-container:hover {
-    background-color: #000;
+    background-color: transparent;
+    color: #555;
     margin-top:0;
     margin-bottom: 20px;
-    outline: 5px auto -webkit-focus-ring-color;
-    border: 2px solid #000;
+    outline: none;
+    border: none;
     border-radius: 0px;
 }
 @media only screen and (max-width: 767px) {
@@ -1273,16 +1275,24 @@ div.part-type-container .part-type-decoration-messages {
 div.responsive .part-type-decoration-messages label {
   color: #000;
   display: block;
-  font-size: 24px;
-  line-height: 32px;
-  padding: 10px;
+  padding: 10px 0;
   text-align: left;
-  cursor:pointer;
-  margin: 0px;
+  margin: 0;
+
+  .part-type-fee-text {
+    font-size: 24px;
+    line-height: 32px;
+    &::before {
+      content: 'Registration fee: ';
+    }
+  }
+  .part-type-description-text {
+    font-size: 0.8em;
+    display: none;
+  }
 }
-div.responsive .part-type-container.selected .part-type-decoration-messages label,
-div.responsive .part-type-container:hover .part-type-decoration-messages label{
-  color: #fff;
+div.responsive .part-type-container.selected .part-type-decoration-messages label,div.responsive .part-type-container:hover .part-type-decoration-messages label{
+  color: #555;
 }
 .part-type-name {
     display: inline-block;
@@ -1478,6 +1488,7 @@ div#fr_thanks_page #part_ctr_container:hover {
   border: 1px solid #acacac;
   background: #ffffff;
   border-radius: 0;
+  margin-left: 2px;
 }
 
 /* checked mark aspect */
@@ -1542,8 +1553,8 @@ div#fr_thanks_page #part_ctr_container:hover {
 /*[type="radio"]:focus + label:before,
 [type="radio"]:checked:focus + label:before,
 [type="radio"]:not(:checked):focus + label:before*/ {
-  border: 1px solid -webkit-focus-ring-color;
-  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: 2px;
+  outline: 2px solid $outline-blue;
 }
 /*
 @media (max-width: 1010px) {
@@ -1684,7 +1695,8 @@ div.donation-level-row-container {
 .donation-level-row-container.donation-amt .donation-level-row-decoration-container:hover, .donation-level-row-container.donation-amt.active .donation-level-row-decoration-container {
     background-color: #000000 !important;
     color: #ffffff !important;
-    outline: 5px auto -webkit-focus-ring-color;
+    outline: 2px solid $outline-blue;
+    outline-offset: 2px;
 }
 .donation-level-row-container.donation-amt:hover, .donation-level-row-label:hover {
   cursor: pointer;
@@ -2022,9 +2034,9 @@ div.required-indicator-legend {
     }
 }
 
-.app_tr_registration, .pg_fieldday_register {
+.app_tr_registration, .pg_fieldday_register, .app_donation {
   background-color: #900;
-  background-image: url(https://secure3.convio.net/heartdev/images/content/pagebuilder/background-squiggles.png);
+  background-image: url(https://www2.heart.org/images/content/pagebuilder/background-squiggles.png);
   background-repeat: no-repeat;
   background-position: right top;
   background-size: 70%;
@@ -2045,7 +2057,11 @@ div.required-indicator-legend {
     display: none!important;
   }
 
-  .global-sponsors{
+  .global-sponsors, .mobile-utility-nav{
     display: none;
   }
+}
+
+.default-submit-hack {
+  display: none!important;
 }

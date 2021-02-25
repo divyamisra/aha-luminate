@@ -22,6 +22,7 @@
           <div class="event-info-item">
             <div class="event-info-item-icon"><i class="fas fa-map-marker-alt" aria-hidden="true" alt=""></i></div><a href="[[S80:eventLocationMapLink]]" target="_blank" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'header event map']);">[[E47:[[S334:fr_id]]:fr_info:1:event_location]]</a>
           </div>
+          [[?x6225x6064x4442x::x[[S334:fr_id]]x::::
           <div class="event-info-item">
             <div class="event-info-item-icon">
               <?xml version="1.0" encoding="utf-8"?>
@@ -51,13 +52,22 @@
             </div>
             [[?xRoad Cyclingx::x[[E42:[[S80:evID]]:public-event-type]]x::Road::Stationary Cycling]] Event
           </div>
+         ]]
           <div class="event-info-item">
             <div class="event-info-item-icon"><i class="fas fa-info-circle" aria-hidden="true" alt=""></i></div><a class="scroll-link" href="#eventDetails" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'header event more details']);">More Details</a>
           </div>
           <div class="event-info-buttons row">
           [[?x1x2x::x[[S42:0:status]]x::
-          <div class="col-md-6 mb-1">
+          <div class="col-md-6 mb-1 pc-[[E48:[[S334:fr_id]]-[[S1:cons_id]]:if-has-participant-center]]">
+            [[?xx::x[[S1:user_name]]x::
             <a href="SPageServer/?pagename=cn_register&amp;fr_id=[[S334:fr_id]]&amp;s_regType=" class="text-center btn-rounded btn-primary btn-block" aria-label="Register for CycleNation [[E47:[[S334:fr_id]]:fr_info:1:event_location_city]]" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'header register']);">Register</a>
+           ::
+              [[?xTRUEx::x[[E48:[[S334:fr_id]]-[[S1:cons_id]]:if-has-participant-center]]x::
+              <a href="TRC?pg=center&fr_id=[[S334:fr_id]]" class="text-center btn-rounded btn-primary btn-block" aria-label="Visit my HQ" onclick="_gaq.push(['_trackEvent', 'Visit my HQ', 'click', 'header events']);">My HQ</a>
+              ::
+              <a href="SPageServer/?pagename=cn_register&amp;fr_id=[[S334:fr_id]]&amp;s_regType=" class="text-center btn-rounded btn-primary btn-block" aria-label="Register for CycleNation [[E47:[[S334:fr_id]]:fr_info:1:event_location_city]]" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'header register']);">Register</a>
+              ]]
+           ]]
           </div>
           ::]]
           [[?x2x3x::x[[S42:0:status]]x::
@@ -116,7 +126,7 @@
 <section id="eventDetails" class="section-event-details">
   <div class="container">
     <div class="row">
-      <div class="details-container col-12 pb-5">
+      <div class="js-details-container details-container col-12 pb-3">
         <h2 class="h1">Details</h2>
         <div id="event-details-accordion" class="details-items-container accordion col-12 pt-4 row">
           [[?xx::x[[E47:[[S334:fr_id]]:fr_info:1:event_location]]x::::
@@ -564,7 +574,7 @@
   <div class="leaderboard-container container">
     <div class="row">
       <div class="col-md-12">
-          <h2 class="h1 pb-4 text-white">Leading the pack in [[E47:[[S334:fr_id]]:fr_info:1:event_location_city]]</h2>
+          <h2 class="h1 pb-4 text-white" id="packLeaderboard">Leading the pack in [[E47:[[S334:fr_id]]:fr_info:1:event_location_city]]</h2>
       </div>
     </div>
     <div class="row justify-content-center">
@@ -575,7 +585,7 @@
           <div class="row">
             <div class="col-2"></div>
             <div class="col-10 pl-0">
-              <h2 class="h4 py-3 section-fundraiser-list-title"><a class="text-white" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer/?pagename=cn_top_participants&fr_id=[[S80:evID]]" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'leaderboard riders top see all']);">Top Individuals <i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></h2>
+              <h2 class="h4 py-3 section-fundraiser-list-title" aria-describedby="packLeaderboard"><a class="text-white" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer/?pagename=cn_top_participants&fr_id=[[S80:evID]]" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'leaderboard riders top see all']);">Top Individuals <i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></h2>
             </div>
           </div>
         </div>
@@ -601,7 +611,7 @@
           <div class="row">
             <div class="col-2"></div>
             <div class="col-10 pl-0">
-              <h2 class="h4 py-3 section-fundraiser-list-title"><a class="text-white" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]TR?fr_id=[[S80:evID]]&pg=teamlist" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'leaderboard teams top see all']);">Top Teams<i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></h2>
+              <h2 class="h4 py-3 section-fundraiser-list-title" aria-describedby="packLeaderboard"><a class="text-white" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]TR?fr_id=[[S80:evID]]&pg=teamlist" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'leaderboard teams top see all']);">Top Teams <i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></h2>
             </div>
           </div>
         </div>
@@ -628,7 +638,7 @@
           <div class="row">
             <div class="col-2"></div>
             <div class="col-10 pl-0">
-              <h2 class="h4 py-3 section-fundraiser-list-title"><a class="text-white" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]TR?fr_id=[[S80:evID]]&pg=complist" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'leaderboard company top see all']);">Top Companies <i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></h2>
+              <h2 class="h4 py-3 section-fundraiser-list-title" aria-describedby="packLeaderboard"><a class="text-white" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]TR?fr_id=[[S80:evID]]&pg=complist" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'leaderboard company top see all']);">Top Companies <i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></h2>
             </div>
           </div>
         </div>
@@ -678,6 +688,102 @@
   </div>
 </section>
 <!-- END TOP FUNDRAISERS SECTION -->
+
+<!-- TOP FUNDRAISERS MILES SECTION -->
+<section id="fundraiserMiles" class="section-fundraiser pt-4 pb-5">
+  <div class="leaderboard-container container">
+    <div class="row">
+      <div class="col-md-12">
+          <h2 class="h1 pb-4 text-white" id="durationLeaderboard">[[E47:[[S334:fr_id]]:fr_info:1:event_location_city]] Cyclenation Move More Challenge Leaderboard</h2>
+          <p class="text-center"><a href="DocServer/CN_Move_More_Challenge_Toolkit.pdf" target="_blank" class="text-white">To learn more about Move More Challenge, click here</a></p>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <!-- TOP INDIVIDUALS -->
+      <div class="top-list individuals col-lg-4 row mx-0 mb-5 mb-lg-0">
+        <!-- TITLE -->
+        <div class="top-list-title col-12">
+          <div class="row">
+            <div class="col-2"></div>
+            <div class="col-10 pl-0">
+              <h2 class="h4 py-3 section-fundraiser-list-title" aria-describedby="durationLeaderboard"><a class="text-white" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageNavigator/cyclenation_activity_leaderboard.html?search_type=participant&fr_id=[[S80:evID]]" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'leaderboard riders top see all minutes']);">Top Individuals <span class="hidden" aria-hidden="true">Move More Challenge Leaderboard</span><i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></h2>
+            </div>
+          </div>
+        </div>
+        <!-- END TITLE -->
+        <!-- LIST -->
+        <div class="top-list-container col-12 px-3 py-3">
+          <div class="js__top-participants-miles">
+          </div>
+        </div>
+        <!-- END LIST -->
+        <!-- LIST LINK -->
+        <div class="top-list-link pt-2 pl-3">
+          <span class="sr-only" id="seeAllIndividualsMiles">See all Individuals</span>
+          <a class="text-white" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageNavigator/cyclenation_activity_leaderboard.html?search_type=participant&fr_id=[[S80:evID]]" aria-labelledby="seeAllIndividuals" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'leaderboard riders bottom see all minutes']);">See All Individuals<i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a>
+        </div>
+        <!-- END LINK -->
+      </div>
+      <!-- END TOP INDIVIDUALS -->
+      <!-- TOP TEAMS -->
+      <div class="top-list teams col-lg-4 row mx-0 mb-5 mb-lg-0">
+        <!-- TITLE -->
+        <div class="top-list-title col-12">
+          <div class="row">
+            <div class="col-2"></div>
+            <div class="col-10 pl-0">
+              <h2 class="h4 py-3 section-fundraiser-list-title" aria-describedby="durationLeaderboard"><a class="text-white" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageNavigator/cyclenation_activity_leaderboard.html?search_type=team&fr_id=[[S80:evID]]" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'leaderboard teams top see all miles']);">Top Teams <span class="hidden" aria-hidden="true">Move More Challenge Leaderboard</span><i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></h2>
+            </div>
+          </div>
+        </div>
+        <!-- END TITLE -->
+        <!-- LIST -->
+        <div class="top-list-container col-12 px-3 py-3">
+          <div class="js__top-teams-miles">
+          </div>
+        </div>
+        <!-- END LIST -->
+        <!-- LIST LINK -->
+        <div class="top-list-link pt-2 pl-3">
+          <span class="sr-only" id="seeAllTeamsMiles">See all teams</span>
+          <a class="text-white" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageNavigator/cyclenation_activity_leaderboard.html?search_type=team&fr_id=[[S80:evID]]" aria-labelledby="seeAllTeams" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'leaderboard teams bottom see all minutes']);">See All Teams<i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a>
+        </div>
+        <!-- END LINK -->
+      </div>
+      <!-- END TOP TEAMS -->
+      [[?xx::x[[E42:[[S334:fr_id]]:top-companies-rollup]]x::::
+      <!-- TOP COMPANIES -->
+      <div class="top-list companies col-lg-4 row mx-0 mb-5 mb-lg-0">
+        <!-- TITLE -->
+        <div class="top-list-title col-12">
+          <div class="row">
+            <div class="col-2"></div>
+            <div class="col-10 pl-0">
+              <h2 class="h4 py-3 section-fundraiser-list-title" aria-describedby="durationLeaderboard"><a class="text-white" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageNavigator/cyclenation_activity_leaderboard.html?search_type=company&fr_id=[[S80:evID]]" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'leaderboard company top see all miles']);">Top Companies <span class="hidden" aria-hidden="true">Move More Challenge Leaderboard</span><i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a></h2>
+            </div>
+          </div>
+        </div>
+        <!-- END TITLE -->
+        <!-- LIST -->
+        <div class="top-list-container col-12 px-3 py-3">
+          <div class="js__top-companies-miles">
+          </div>
+        </div>
+        <!-- END LIST -->
+        <!-- LIST LINK -->
+        <div class="top-list-link pt-2 pl-3">
+          <span class="sr-only" id="seeAllCompaniesMiles">See all companies</span>
+          <a class="text-white" href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageNavigator/cyclenation_activity_leaderboard.html?search_type=company&fr_id=[[S80:evID]]" aria-labelledby="seeAllCompanies" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'leaderboard company bottom see all minutes']);">See All Companies<i class="fas fa-angle-right" aria-hidden="true" alt=""></i></a>
+        </div>
+        <!-- END LINK -->
+      </div>
+      <!-- END TOP COMPANIES -->
+      ]]
+    </div>
+  </div>
+</section>
+<!-- END TOP FUNDRAISERS MILES SECTION -->
+
 [[?xx{unassigned}x::x[[E47:[[S334:fr_id]]:fr_info:1:sponsor_4]]x::::
 <!-- SOCIAL FEED SECTION -->
 <section id="social-feed" class="section-social-feed gray-background" data-album-id="[[S80:albumId]]" data-album-url="AjaxProxy?cnv_url=[[T1:http://[[S29:DOMAIN]][[S29:PATH]]PhotoAlbumUser?view=UserAlbum&AlbumID=[[S80:albumId]]&pgwrap=n]]&auth=[[S86:true]]">

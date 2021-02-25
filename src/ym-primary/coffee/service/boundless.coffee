@@ -8,7 +8,7 @@ angular.module 'ahaLuminateApp'
         if $rootScope.tablePrefix is 'heartdev'
           url = 'https://khc.staging.ootqa.org/api/coordinator/dashboard/check/' + requestData
         else if $rootScope.tablePrefix is 'heartnew'
-          url = 'https://khc.dev.ootqa.org/api/coordinator/dashboard/check/' + requestData
+          url = 'https://khc.staging.ootqa.org/api/coordinator/dashboard/check/' + requestData
         else
           url = 'https://kidsheartchallenge.heart.org/api/coordinator/dashboard/check/' + requestData
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
@@ -21,7 +21,7 @@ angular.module 'ahaLuminateApp'
         if $rootScope.tablePrefix is 'heartdev'
           url = 'https://khc.staging.ootqa.org/api/points/leaders/school/' + requestData + '/teachers/all'
         else if $rootScope.tablePrefix is 'heartnew'
-          url = 'https://khc.dev.ootqa.org/api/points/leaders/school/' + requestData + '/teachers/all'
+          url = 'https://khc.staging.ootqa.org/api/points/leaders/school/' + requestData + '/teachers/all'
         else
           url = 'https://kidsheartchallenge.heart.org/api/points/leaders/school/' + requestData + '/teachers/all'
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
@@ -30,26 +30,13 @@ angular.module 'ahaLuminateApp'
           , (response) ->
             response
 
-      getLeaderboardRaised: (requestData) ->
+      getLeaderboards: (requestData) ->
         if $rootScope.tablePrefix is 'heartdev'
-          url = 'https://khc.staging.ootqa.org/api/points/leaders/school/' + requestData + '/teachers/most-dollars?limit=5'
+          url = 'https://khc.staging.ootqa.org/api/points/leaders/school/' + requestData + '/teachers/all?limit=5'
         else if $rootScope.tablePrefix is 'heartnew'
-          url = 'https://khc.dev.ootqa.org/api/points/leaders/school/' + requestData + '/teachers/most-dollars?limit=5'
+          url = 'https://khc.staging.ootqa.org/api/points/leaders/school/' + requestData + '/teachers/all?limit=5'
         else
-          url = 'https://kidsheartchallenge.heart.org/api/points/leaders/school/' + requestData + '/teachers/most-dollars?limit=5'
-        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
-          .then (response) ->
-            response
-          , (response) ->
-            response
-      
-      getLeaderboardStudents: (requestData) ->
-        if $rootScope.tablePrefix is 'heartdev'
-          url = 'https://khc.staging.ootqa.org/api/points/leaders/school/' + requestData + '/teachers/most-students?limit=5'
-        else if $rootScope.tablePrefix is 'heartnew'
-          url = 'https://khc.dev.ootqa.org/api/points/leaders/school/' + requestData + '/teachers/most-students?limit=5'
-        else
-          url = 'https://kidsheartchallenge.heart.org/api/points/leaders/school/' + requestData + '/teachers/most-students?limit=5'
+          url = 'https://kidsheartchallenge.heart.org/api/points/leaders/school/' + requestData + '/teachers/all?limit=5'
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
           .then (response) ->
             response
@@ -60,7 +47,7 @@ angular.module 'ahaLuminateApp'
         if $rootScope.tablePrefix is 'heartdev'
           url = 'https://khc.staging.ootqa.org/api/badges/student/' + requestData
         else if $rootScope.tablePrefix is 'heartnew'
-          url = 'https://khc.dev.ootqa.org/api/badges/student/' + requestData
+          url = 'https://khc.staging.ootqa.org/api/badges/student/' + requestData
         else
           url = 'https://kidsheartchallenge.heart.org/api/badges/student/' + requestData
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
@@ -73,7 +60,7 @@ angular.module 'ahaLuminateApp'
         if $rootScope.tablePrefix is 'heartdev'
           url = 'https://khc.staging.ootqa.org/api/coordinator/students/standard-prizes/' +  + $rootScope.frId + '/' + $rootScope.consId 
         else if $rootScope.tablePrefix is 'heartnew'
-          url = 'https://khc.dev.ootqa.org/api/coordinator/students/standard-prizes/' +  + $rootScope.frId + '/' + $rootScope.consId
+          url = 'https://khc.staging.ootqa.org/api/coordinator/students/standard-prizes/' +  + $rootScope.frId + '/' + $rootScope.consId
         else
           url = 'https://kidsheartchallenge.heart.org/api/coordinator/students/standard-prizes/' +  + $rootScope.frId + '/' + $rootScope.consId
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
@@ -86,7 +73,7 @@ angular.module 'ahaLuminateApp'
         if $rootScope.tablePrefix is 'heartdev'
           url = 'https://khc.staging.ootqa.org/api/schools/totals/'
         else if $rootScope.tablePrefix is 'heartnew'
-          url = 'https://khc.dev.ootqa.org/api/schools/totals/'
+          url = 'https://khc.staging.ootqa.org/api/schools/totals/'
         else
           url = 'https://kidsheartchallenge.heart.org/api/schools/totals/'
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
@@ -99,7 +86,7 @@ angular.module 'ahaLuminateApp'
         if $rootScope.tablePrefix is 'heartdev'
           url = 'https://khc.staging.ootqa.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/2/ecard_sent'
         else if $rootScope.tablePrefix is 'heartnew'
-          url = 'https://khc.dev.ootqa.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/2/ecard_sent'
+          url = 'https://khc.staging.ootqa.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/2/ecard_sent'
         else
           url = 'https://kidsheartchallenge.heart.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/2/ecard_sent'
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
@@ -112,7 +99,7 @@ angular.module 'ahaLuminateApp'
         if $rootScope.tablePrefix is 'heartdev'
           url = 'https://khc.staging.ootqa.org/api/webhooks/student/personal-page-updated/' + $rootScope.frId + '/' + $rootScope.consId
         else if $rootScope.tablePrefix is 'heartnew'
-          url = 'https://khc.dev.ootqa.org/api/webhooks/student/personal-page-updated/' + $rootScope.frId + '/' + $rootScope.consId
+          url = 'https://khc.staging.ootqa.org/api/webhooks/student/personal-page-updated/' + $rootScope.frId + '/' + $rootScope.consId
         else
           url = 'https://kidsheartchallenge.heart.org/api/webhooks/student/personal-page-updated/' + $rootScope.frId + '/' + $rootScope.consId
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
@@ -125,7 +112,7 @@ angular.module 'ahaLuminateApp'
         if $rootScope.tablePrefix is 'heartdev'
           url = 'https://khc.staging.ootqa.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/10/fundraiser_created'
         else if $rootScope.tablePrefix is 'heartnew'
-          url = 'https://khc.dev.ootqa.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/10/fundraiser_created'
+          url = 'https://khc.staging.ootqa.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/10/fundraiser_created'
         else
           url = 'https://kidsheartchallenge.heart.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/10/fundraiser_created'
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
@@ -134,6 +121,28 @@ angular.module 'ahaLuminateApp'
           , (response) ->
             response
             
+      getBMLeaderboard: (requestData) ->
+        motion_username = 'kidsheartapi'
+        motion_password = 'mYhtYeBWCrA7cTST'
+        if $rootScope.tablePrefix == 'heartdev'
+          url = 'https://load.boundlessfundraising.com/mobiles/ahakhc/getMotionKhcCompanyRoster?' + requestData + '&list_size=5'
+        else
+          url = 'https://loadprod.boundlessfundraising.com/mobiles/ahakhc/getMotionKhcCompanyRoster?' + requestData + '&list_size=5'
+        jQuery.ajax
+          url: $sce.trustAsResourceUrl(url)
+          async: true
+          type: 'GET'
+          dataType: 'json'
+          contentType: 'application/json'
+          beforeSend: (xhr) ->
+            xhr.setRequestHeader 'Authorization', 'Basic ' + btoa(motion_username + ':' + motion_password)
+            return
+          success: (response) ->
+            response
+          error: (err) ->
+            console.log 'getMotionKhcCompanyRoster err', err
+            response
+
       defaultStandardGifts: ->
         [
           {
@@ -145,9 +154,10 @@ angular.module 'ahaLuminateApp'
             "instant": 1
             "earned_title":"Get ready for fun"
             "earned_subtitle1":"Thank you for joining Kids Heart Challenge and registering online!"
-            "earned_subtitle2":"You earned a wristband."
+            "earned_subtitle2":"You earned a wristband with a secret message!"
             "earned_subtitle3":"and you'll earn a wristband."
             "online_only":0
+            "video": ""
           }
           {
             "id":"DASHCLIP-21"
@@ -160,6 +170,7 @@ angular.module 'ahaLuminateApp'
             "earned_subtitle2":"It's important to move daily like Dash."
             "earned_subtitle3":"and you'll earn Dash."
             "online_only":0
+            "video": ""
           }
           {
             "id":"LVL1WB-21"
@@ -172,18 +183,20 @@ angular.module 'ahaLuminateApp'
             "earned_subtitle2":"a water bottle"
             "earned_subtitle3":"and you'll earn a water bottle."
             "online_only":0
+            "video": ""
           }
           {
             "id":"SAMCLIP-21"
             "name":"Sam"
             "status":0
-            "level":"$10 online"
+            "level":"$10"
             "instant": 1
             "earned_title":"Kickin' it ninja style"
-            "earned_subtitle1":"Take a bow for earning Sam for raising $10 online!"
-            "earned_subtitle2":"Always make a good choice like Sam."
+            "earned_subtitle1":"Take a bow for earning Sam for raising $10!"
+            "earned_subtitle2":"Always make a good choice like Sam and say NO to vaping and tobacco."
             "earned_subtitle3":"and you'll earn Sam."
             "online_only":1
+            "video": ""
           }
           {
             "id":"YOYO-21"
@@ -196,6 +209,7 @@ angular.module 'ahaLuminateApp'
             "earned_subtitle2":"Keep working hard towards your goal."
             "earned_subtitle3":"and you'll earn a spaghetti yoyo."
             "online_only":0
+            "video": "https://vimeo.com/americanheartassociation/review/453777085/ab8611f4ce"
           }
           {
             "id":"IKERCLIP-21"
@@ -204,22 +218,24 @@ angular.module 'ahaLuminateApp'
             "level":"$25"
             "instant": 1
             "earned_title":"Leading the pack"
-            "earned_subtitle1":"Be proud you earned Iker for raising $25!"
+            "earned_subtitle1":"Be proud you earned Iker by raising $25!"
             "earned_subtitle2":"Stand up for what's right like Iker."
             "earned_subtitle3":"and you'll earn Iker."
             "online_only":0
+            "video": "https://video.link/w/D17X"
           }
           {
             "id":"KAICLIP-21"
             "name":"Kai"
             "status":0
-            "level":"$40 online"
+            "level":"$40"
             "instant": 1
-            "earned_title":"You're rad dude"
-            "earned_subtitle1":"You earned Kai for raising $40 online!"
+            "earned_title":"You're rad"
+            "earned_subtitle1":"You earned Kai for raising $40!"
             "earned_subtitle2":"Keep it cool just like Kai."
             "earned_subtitle3":"and you'll earn Kai."
             "online_only":1
+            "video": "https://vimeo.com/americanheartassociation/review/453778802/c7317f5ef3"
           }
           {
             "id":"KHC"
@@ -232,6 +248,7 @@ angular.module 'ahaLuminateApp'
             "earned_subtitle2":"Show off your spirit for being healthy."
             "earned_subtitle3":"and you'll earn a t-shirt."
             "online_only":0
+            "video": ""
           }
           {
             "id":"PBALL-21"
@@ -240,10 +257,11 @@ angular.module 'ahaLuminateApp'
             "level":"$75"
             "instant": 2
             "earned_title":"Have a ball"
-            "earned_subtitle1":"Thank for all your hard work for raising $75!"
+            "earned_subtitle1":"Thanks for all your hard work and raising $75!"
             "earned_subtitle2":"You've earned a playground ball."
-            "earned_subtitle3":"and you'll earn a playbround ball."
+            "earned_subtitle3":"and you'll earn a playground ball."
             "online_only":0
+            "video": ""
           }
           {
             "id":"JOURNEYCLIP-21"
@@ -252,10 +270,11 @@ angular.module 'ahaLuminateApp'
             "level":"$100"
             "instant": 1
             "earned_title":"Lots o' love for you"
-            "earned_subtitle1":"We're so happy you earned Journey for raising $100!"
+            "earned_subtitle1":"We're so happy you earned Journey by raising $100!"
             "earned_subtitle2":"Be kind to others just like Journey."
             "earned_subtitle3":"and you'll earn Journey."
             "online_only":0
+            "video": ""
           }
           {
             "id":"TAYESCOUTCLIP-21"
@@ -268,30 +287,33 @@ angular.module 'ahaLuminateApp'
             "earned_subtitle2":"Always help others just like them."
             "earned_subtitle3":"and you'll earn Taye & Scout."
             "online_only":0
+            "video": "https://vimeo.com/americanheartassociation/review/453776957/cde52d6c23"
           }
           {
             "id":"SOCKS-21"
-            "name":"Athletic Socks"
+            "name":"Dash's Socks"
             "status":0
             "level":"$250"
             "instant": 2
             "earned_title":"Jump in feet first"
             "earned_subtitle1":"You're knocking our socks off so you earned a pair for raising $250!"
             "earned_subtitle2":"Take a walk...with your new socks."
-            "earned_subtitle3":"and you'll earn Athletic Socks."
+            "earned_subtitle3":"and you'll earn Dash's Socks."
             "online_only":0
+            "video": "https://vimeo.com/americanheartassociation/review/453778215/f7dc25f047"
           }
           {
             "id":"POPPER-21"
-            "name":"Popper"
+            "name":"Ball Launcher"
             "status":0
             "level":"$500"
             "instant": 2
             "earned_title":"Top of the pops"
-            "earned_subtitle1":"Your hard work raising $500 earned you a popper!"
+            "earned_subtitle1":"Your hard work raising $500 earned you a Ball Launcher!"
             "earned_subtitle2":"Stop drinking pop...pick water instead."
-            "earned_subtitle3":"and you'll earn Popper."
+            "earned_subtitle3":"and you'll earn a Ball Launcher."
             "online_only":0
+            "video": ""
           }
           {
             "id":"SPEAKER-21"
@@ -304,6 +326,7 @@ angular.module 'ahaLuminateApp'
             "earned_subtitle2":"Your hard work earned you a Kai speaker that totally rocks like you."
             "earned_subtitle3":"and you'll earn a Kai speaker."
             "online_only":0
+            "video": "https://video.link/w/On7X"
           }
         ]
 

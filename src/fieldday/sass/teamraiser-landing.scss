@@ -4,13 +4,13 @@
 }
 .landing-hero__photo {
   height: 200px;
-  @include media-breakpoint-up(lg) {
+  @include media-breakpoint-up(md) {
     height: 385px;
   }
   @include media-breakpoint-up(xl) {
     height: 685px;
   }
-  background-image: url(https://secure3.convio.net/heartdev/images/content/pagebuilder/fieldday-landing-hero.jpg);
+  background-image: url(https://www2.heart.org/images/content/pagebuilder/fieldday-landing-hero.jpg);
   background-position: center;
   @include media-breakpoint-up(lg) {
     background-position: center center;
@@ -58,7 +58,7 @@
 
 .landing-about {
   background-color: $red-deep;
-  background-image: url(https://secure3.convio.net/heartdev/images/content/pagebuilder/background-squiggles.png);
+  background-image: url(https://www2.heart.org/images/content/pagebuilder/background-squiggles.png);
   background-repeat: no-repeat;
   background-position: right top;
   background-size: 60%;
@@ -166,10 +166,8 @@
     font-weight: bold;
     align-self: center;
   }
-  .event-state-select-container::after {
-      font-family: "Font Awesome 5 Free";
+  .event-state-select__button {
       font-weight: 600;
-      content: "\f0d7";
       color: #fff;
       background-color: $red;
       right: 0;
@@ -183,10 +181,18 @@
       text-align: center;
       font-size: 1.5em;
       width: 16.667%;
-      display: block;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       cursor: pointer;
+      border: none;
       &:hover {
         background-color: $red-deep;
+      }
+      &:focus {
+        -webkit-box-shadow: 0 0 0 .2rem rgba(193,14,33,.5)!important;
+        box-shadow: 0 0 0 .2rem rgba(193,14,33,.5)!important;
+        outline: none;
       }
   }
 
@@ -196,6 +202,8 @@
       color: white;
       border-top-right-radius: 0.25rem;
       border-bottom-right-radius: 0.25rem;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
       border-color: #c11d20;
       padding: 16px;
       padding-right: 16px;
@@ -204,6 +212,10 @@
       font-size: 1.25em;
       &:hover {
         background-color: $red-deep;
+      }
+      &.button {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
       }
   }
 
@@ -272,6 +284,12 @@
   }
   .nav-tabs .nav-link {
     border-bottom: none;
+    text-decoration: none;
+    color: #495057;
+    &.active {
+      color: #c10e21;
+      text-decoration: underline;
+    }
   }
   .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
     background-color: transparent;
@@ -323,13 +341,13 @@
 }
 
 .landing-visual-banner {
-  background-image: url('https://secure3.convio.net/heartdev/images/content/pagebuilder/aha-fieldday-landing-banner_2x.jpg');
+  background-image: url('https://www2.heart.org/images/content/pagebuilder/aha-fieldday-landing-banner_2x.jpg');
   background-size: cover;
   background-position: top center;
   margin-top: 32px;
   margin-bottom: 32px;
   height: 200px;
-  @include media-breakpoint-up(lg) {
+  @include media-breakpoint-up(xl) {
     height: 300px;
     margin-top: 86px;
     margin-bottom: 86px;
@@ -350,12 +368,12 @@
 
 .global-promo {
   margin-bottom: 20px;
-  .row {
+  .container-fluid {
     position: relative;
     z-index: 1;
-    background-image: url('https://secure3.convio.net/heartdev/images/content/pagebuilder/aha-fieldday-landing-promo-mobile_2x.jpg');
+    background-image: url('https://www2.heart.org/images/content/pagebuilder/aha-fieldday-landing-promo-mobile_2x.jpg');
     @include media-breakpoint-up(lg) {
-      background-image: url('https://secure3.convio.net/heartdev/images/content/pagebuilder/aha-fieldday-landing-promo_2x.jpg');
+      background-image: url('https://www2.heart.org/images/content/pagebuilder/aha-fieldday-landing-promo_2x.jpg');
     }
     background-repeat: none;
     background-size: cover;

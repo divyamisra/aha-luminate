@@ -1,0 +1,151 @@
+
+    <!-- Search menu container -->
+    <div class="mb-5">
+        <div class="search-menu-container find">
+          <div class="search-menu">
+            <div class="row">
+              <div class="col-12 text-center">
+                <h1>What are you looking for?</h1>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="nav nav-tabs d-flex justify-content-center" id="searchPageTabs" role="tablist">
+                  <a class="nav-item nav-link" id="searchWalkerTab" data-toggle="tab" href="#searchWalker" role="tab"
+                    aria-controls="searchWalker" aria-selected="false">A Participant</a>
+                  <a class="nav-item nav-link" id="searchTeamTab" data-toggle="tab" href="#searchTeam" role="tab"
+                    aria-controls="searchTeam" aria-selected="false">A Team</a>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="tab-content" id="body-nav-tabContent">
+
+              <div class="tab-pane show active" id="searchWalker" role="tabpanel" aria-labelledby="walker">
+                <div class="row">
+                  <div class="col-md-8 offset-md-2">
+                    <form class="js--walker-search-form mt-3">
+                      <p>Search by First and / or Last Name</p>
+                      <div class="input-group input-group-lg">
+                        <label for="walkerFirstName" class="sr-only">Walker's First Name</label>
+                        <input id="walkerFirstName" type="text" name="first-name" class="form-control" />
+                        <label for="walkerLastName" class="sr-only">Walker's Last Name</label>
+                        <input id="walkerLastName" type="text" name="last-name" class="form-control" />
+                        <div class="input-group-append">
+                          <button type="submit" class="btn btn-primary">Search <i class="fas fa-search"
+                              aria-hidden="true"></i></button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                [[?xfalsex::x[[S334:event_search]]x::
+                <div class="row js--event-donation-container">
+                  <div class="col-12 text-center">
+                    <a href="Donation2?df_id=[[E42:[[S80:evID]]:form-id]]&amp;PROXY_ID=[[S80:evID]]&amp;PROXY_TYPE=21&amp;FR_ID=[[S80:evID]]">Give directly to this event</a>
+                  </div>
+                </div>
+                ::]]
+                <!-- BEGIN walker results container -->
+                <div class="row">
+                  <div class="results-tab-pane col-12" id="participantSearchResults">
+                    <div id="error-participant" class="help-block alert alert-danger text-center" hidden>Participant not
+                      found. Please try different search terms.</div>
+                    <div class="js--participant-results-container col-md-12" hidden>
+                      <div class="d-block d-md-none font-italic mobile-results-count"><span
+                          class="js--num-participant-results"></span></div>
+                      <table id="participantResultsTable" class="js--participants-results-table table mt-4" width="100%">
+                        <thead>
+                          <tr>
+                            <th class="th-sm">Full Name
+                            </th>
+                            <th class="th-sm">Team Name
+                            </th>
+                            <!-- <th class="th-sm">Company
+                          </th> -->
+                            <th class="th-sm">Event Name
+                            </th>
+                            <th class="th-sm" data-orderable="false"><span class="js--num-participant-results"></span>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody class="js--participants-results-rows"></tbody>
+                      </table>
+                      <div class="text-center pt-4">
+                        <p class="font-italic js--more-participant-results" hidden><a href="#">See More Results <i
+                              class="fas fa-arrow-down"></i></a></p>
+                        <p class="font-italic js--end-participant-list" hidden>You&rsquo;ve reached the end of the list
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- END walker results container -->
+              </div>
+
+              <div class="tab-pane fade" id="searchTeam" role="tabpanel" aria-labelledby="team">
+                <div class="row">
+                  <div class="col-md-6 offset-md-3">
+                    <form class="js--team-search-form mt-3">
+                      <label for="teamNameSearch">Search by Team Name</label>
+                      <div class="input-group input-group-lg">
+                        <input id="teamNameSearch" type="text" class="form-control" name="team-search" />
+                        <div class="input-group-append">
+                          <button type="submit" class="btn btn-primary">Search <i class="fas fa-search"
+                              aria-hidden="true"></i></button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                [[?xfalsex::x[[S334:event_search]]x::
+                <div class="row js--event-donation-container">
+                    <div class="col-12 text-center">
+                      <a href="Donation2?df_id=[[E42:[[S80:evID]]:form-id]]&amp;PROXY_ID=[[S80:evID]]&amp;PROXY_TYPE=21&amp;FR_ID=[[S80:evID]]">Give directly to this event</a>
+                    </div>
+                  </div>
+                  ::]]
+                <!-- BEGIN team results container -->
+                <div class="row">
+                  <div class="results-tab-pane col-12" id="teamSearchResults">
+                    <div id="error-team" class="help-block alert alert-danger text-center" hidden>Team not found. Please
+                      try
+                      different search terms.</div>
+                    <div class="js--team-results-container col-md-12" hidden>
+                      <div class="d-block d-md-none font-italic mobile-results-count"><span
+                          class="js--num-team-results"></span>
+                      </div>
+                      <table id="teamResultsTable" class="table mt-4" width="100%">
+                        <thead>
+                          <tr>
+                            <th class="th-sm">Team
+                            </th>
+                            <th class="th-sm">Team Coach
+                            </th>
+                            <th class="th-sm">Company
+                            </th>
+                            <th class="th-sm">Event Name
+                            </th>
+                            <th class="th-sm" data-orderable="false"><span class="js--num-team-results"></span>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody class="js--team-results-rows"></tbody>
+                      </table>
+                      <div class="text-center pt-4">
+                        <p class="font-italic js--more-team-results" hidden><a href="#">See More Results <i
+                              class="fas fa-arrow-down"></i></a></p>
+                        <p class="font-italic js--end-team-list" hidden>You&rsquo;ve reached the end of the list</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- END team results container -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.search-menu-container -->
+      </div>
+      <!-- /.container -->

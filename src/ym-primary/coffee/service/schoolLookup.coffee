@@ -39,7 +39,7 @@ angular.module 'ahaLuminateApp'
       
       # call returns data from DB matching filter criteria passed - school name and optionally the state      
       getSchoolDataNew: (requestData, callback) ->
-        url = '//hearttools.heart.org/ym-khc-schools/schoolProcessing.php?method=getSchoolsByFilter' + requestData
+        url = '//tools.heart.org/ym-khc-schools/schoolProcessing.php?method=getSchoolsByFilter' + requestData
         if $rootScope.tablePrefix is 'heartdev'
           url += '&table=dev'
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
@@ -50,7 +50,7 @@ angular.module 'ahaLuminateApp'
       
       # call returns all schools within 10 miles of lat/long passed
       getGeoSchoolData: (e, callback) ->
-        url = '//hearttools.heart.org/ym-khc-schools/schoolProcessing.php?method=getSchoolsByDistance&lat=' + e.coords.latitude + '&long=' + e.coords.longitude
+        url = '//tools.heart.org/ym-khc-schools/schoolProcessing.php?method=getSchoolsByDistance&lat=' + e.coords.latitude + '&long=' + e.coords.longitude
         if $rootScope.tablePrefix is 'heartdev'
           url += '&table=dev'
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
@@ -61,7 +61,7 @@ angular.module 'ahaLuminateApp'
 
       # call returns all schools within 10 miles of lat/long passed
       getStateByLocation: (e, callback) ->
-        url = '//hearttools.heart.org/ym-khc-schools/schoolProcessing.php?method=getStateByLocation&lat=' + e.coords.latitude + '&long=' + e.coords.longitude
+        url = '//tools.heart.org/ym-khc-schools/schoolProcessing.php?method=getStateByLocation&lat=' + e.coords.latitude + '&long=' + e.coords.longitude
         if $rootScope.tablePrefix is 'heartdev'
           url += '&table=dev'
         $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')

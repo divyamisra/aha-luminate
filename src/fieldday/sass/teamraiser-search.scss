@@ -39,4 +39,11 @@
       }
   }
 
+  .table td {
+    @media (max-width: 768px) {
+      border: none;
+    }
+
+  }
+
 }

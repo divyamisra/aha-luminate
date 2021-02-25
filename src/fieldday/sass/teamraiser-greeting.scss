@@ -10,7 +10,7 @@
   .event-info-banner {
     min-height: 210px;
     width: 100%;
-    background-image: url('https://secure3.convio.net/heartdev/images/content/pagebuilder/aha-fieldday-greeting-hero_2x.jpg');
+    background-image: url('https://www2.heart.org/images/content/pagebuilder/aha-fieldday-greeting-hero_2x.jpg');
     background-size: cover;
     background-position: top center;
     @include media-breakpoint-up(lg) {
@@ -19,7 +19,9 @@
   }
 
   .event-info__content {
-    padding: 0 72px;
+    @include media-breakpoint-up(lg) {
+      padding: 0 72px;
+    }
   }
 
 
@@ -146,12 +148,12 @@
 
   .greeting-visual-banner {
     height: 200px;
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(xl) {
       height: 623px;
       background-attachment: fixed;
     }
     width: 100%;
-    background-image: url('https://secure3.convio.net/heartdev/images/content/pagebuilder/aha-fieldday-greeting-banner_2x.jpg');
+    background-image: url('https://www2.heart.org/images/content/pagebuilder/aha-fieldday-greeting-banner_2x.jpg');
     background-size: cover;
     background-position: center;
 
@@ -159,7 +161,7 @@
 
   .top-lists {
     background-color: $red-deep;
-    background-image: url('https://secure3.convio.net/heartdev/images/content/pagebuilder/background-squiggles.png');
+    background-image: url('https://www2.heart.org/images/content/pagebuilder/background-squiggles.png');
     background-repeat: no-repeat;
     background-position: right top;
     background-size: 100%;

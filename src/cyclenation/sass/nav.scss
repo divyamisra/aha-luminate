@@ -98,6 +98,9 @@ padding: 0.625rem 1.25rem;
     }
   }
 
+  .navbar-nav li.nav-item.home {
+    background-color: #de2b3e;
+  }
   .navbar-nav li.nav-item.register {
     background-color: $primary;
   }

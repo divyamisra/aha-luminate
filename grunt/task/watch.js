@@ -5,161 +5,161 @@ require('events').EventEmitter.prototype._maxListeners = 100;
 module.exports = {
   "grunt-config": {
     files: [
-      'Gruntfile.coffee', 
-      'grunt/task/*.js', 
+      'Gruntfile.coffee',
+      'grunt/task/*.js',
       'grunt/.jshintrc'
-    ], 
+    ],
     tasks: [
-      'jshint:grunt-config', 
+      'jshint:grunt-config',
       'notify:grunt-config'
     ]
-  }, 
-  
+  },
+
   "global": {
     files: [
-      'src/global/sass/**/*', 
-      'src/global/coffee/**/*', 
+      'src/global/sass/**/*',
+      'src/global/coffee/**/*',
       'src/global/html/**/*'
-    ], 
+    ],
     tasks: [
       'notify:global'
     ]
-  }, 
-  
+  },
+
   "general": {
     files: [
-      'src/global/sass/**/*', 
-      'src/global/coffee/**/*', 
-      'src/global/html/**/*', 
-      'src/general/sass/**/*', 
-      'src/general/coffee/**/*', 
-      'src/general/html/**/*', 
+      'src/global/sass/**/*',
+      'src/global/coffee/**/*',
+      'src/global/html/**/*',
+      'src/general/sass/**/*',
+      'src/general/coffee/**/*',
+      'src/general/html/**/*',
       'src/general/image/**/*'
-    ], 
+    ],
     tasks: [
-      'clean:general', 
-      'css-dist:general', 
-      'js-dist:general', 
-      'html-dist:general', 
-      'img-copy:general-images', 
+      'clean:general',
+      'css-dist:general',
+      'js-dist:general',
+      'html-dist:general',
+      'img-copy:general-images',
       'notify:general'
     ]
-  }, 
-  
+  },
+
   "heart-walk": {
     files: [
-      'src/global/html/**/*', 
-      'src/global/sass/**/*', 
-      'src/global/coffee/**/*', 
-      'src/heart-walk/html/**/*', 
-      'src/heart-walk/image/**/*', 
-      'src/heart-walk/sass/**/*', 
+      'src/global/html/**/*',
+      'src/global/sass/**/*',
+      'src/global/coffee/**/*',
+      'src/heart-walk/html/**/*',
+      'src/heart-walk/image/**/*',
+      'src/heart-walk/sass/**/*',
       'src/heart-walk/coffee/**/*'
-    ], 
+    ],
     tasks: [
-      'clean:heart-walk', 
-      'css-dist:heart-walk', 
-      'js-dist:heart-walk', 
-      'html-dist:heart-walk', 
-      'translation-copy:heart-walk-translations', 
-      'img-copy:heart-walk-images', 
+      'clean:heart-walk',
+      'css-dist:heart-walk',
+      'js-dist:heart-walk',
+      'html-dist:heart-walk',
+      'translation-copy:heart-walk-translations',
+      'img-copy:heart-walk-images',
       'notify:heart-walk'
     ]
-  }, 
-  
+  },
+
   "youth-markets": {
     files: [
-      'src/youth-markets/html/**/*', 
+      'src/youth-markets/html/**/*',
       'src/youth-markets/image/**/*'
-    ], 
+    ],
     tasks: [
-      'clean:youth-markets', 
-      'html-dist:youth-markets', 
-      'img-copy:youth-markets-images', 
+      'clean:youth-markets',
+      'html-dist:youth-markets',
+      'img-copy:youth-markets-images',
       'notify:youth-markets'
     ]
-  }, 
-  
+  },
+
   "ym-primary": {
     files: [
-      'src/youth-markets/sass/**/*', 
-      'src/global/coffee/**/*', 
-      'src/youth-markets/coffee/**/*', 
-      'src/ym-primary/html/**/*', 
-      'src/ym-primary/image/**/*', 
-      'src/ym-primary/sass/**/*', 
+      'src/youth-markets/sass/**/*',
+      'src/global/coffee/**/*',
+      'src/youth-markets/coffee/**/*',
+      'src/ym-primary/html/**/*',
+      'src/ym-primary/image/**/*',
+      'src/ym-primary/sass/**/*',
       'src/ym-primary/coffee/**/*'
-    ], 
+    ],
     tasks: [
-      'clean:ym-primary',  
-      'css-dist:ym-primary', 
-      'js-dist:ym-primary', 
-      'html-dist:ym-primary', 
-      'img-copy:ym-primary-images', 
+      'clean:ym-primary',
+      'css-dist:ym-primary',
+      'js-dist:ym-primary',
+      'html-dist:ym-primary',
+      'img-copy:ym-primary-images',
       'notify:ym-primary'
     ]
-  }, 
-  
+  },
+
   "middle-school": {
     files: [
-      'src/youth-markets/sass/**/*', 
-      'src/global/coffee/**/*', 
-      'src/youth-markets/coffee/**/*', 
-      'src/middle-school/html/**/*', 
-      'src/middle-school/image/**/*', 
-      'src/middle-school/sass/**/*', 
+      'src/youth-markets/sass/**/*',
+      'src/global/coffee/**/*',
+      'src/youth-markets/coffee/**/*',
+      'src/middle-school/html/**/*',
+      'src/middle-school/image/**/*',
+      'src/middle-school/sass/**/*',
       'src/middle-school/coffee/**/*'
-    ], 
+    ],
     tasks: [
-      'clean:middle-school',  
-      'css-dist:middle-school', 
-      'js-dist:middle-school', 
-      'html-dist:middle-school', 
-      'img-copy:middle-school-images', 
+      'clean:middle-school',
+      'css-dist:middle-school',
+      'js-dist:middle-school',
+      'html-dist:middle-school',
+      'img-copy:middle-school-images',
       'notify:middle-school'
     ]
-  }, 
-  
+  },
+
   "high-school": {
     files: [
-      'src/youth-markets/sass/**/*', 
-      'src/global/coffee/**/*', 
-      'src/youth-markets/coffee/**/*', 
-      'src/high-school/html/**/*', 
-      'src/high-school/image/**/*', 
-      'src/high-school/sass/**/*', 
+      'src/youth-markets/sass/**/*',
+      'src/global/coffee/**/*',
+      'src/youth-markets/coffee/**/*',
+      'src/high-school/html/**/*',
+      'src/high-school/image/**/*',
+      'src/high-school/sass/**/*',
       'src/high-school/coffee/**/*'
-    ], 
+    ],
     tasks: [
-      'clean:high-school',  
-      'css-dist:high-school', 
-      'js-dist:high-school', 
-      'html-dist:high-school', 
-      'img-copy:high-school-images', 
+      'clean:high-school',
+      'css-dist:high-school',
+      'js-dist:high-school',
+      'html-dist:high-school',
+      'img-copy:high-school-images',
       'notify:high-school'
     ]
-  }, 
-  
+  },
+
   "district-heart": {
     files: [
-      'src/youth-markets/sass/**/*', 
-      'src/global/coffee/**/*', 
-      'src/youth-markets/coffee/**/*', 
-      'src/district-heart/html/**/*', 
-      'src/district-heart/image/**/*', 
-      'src/district-heart/sass/**/*', 
+      'src/youth-markets/sass/**/*',
+      'src/global/coffee/**/*',
+      'src/youth-markets/coffee/**/*',
+      'src/district-heart/html/**/*',
+      'src/district-heart/image/**/*',
+      'src/district-heart/sass/**/*',
       'src/district-heart/coffee/**/*'
-    ], 
+    ],
     tasks: [
-      'clean:district-heart',  
-      'css-dist:district-heart', 
-      'js-dist:district-heart', 
-      'html-dist:district-heart', 
-      'img-copy:district-heart-images', 
+      'clean:district-heart',
+      'css-dist:district-heart',
+      'js-dist:district-heart',
+      'html-dist:district-heart',
+      'img-copy:district-heart-images',
       'notify:district-heart'
     ]
   },
-  
+
   "nchw": {
     files: [
       'src/nchw/html/**/*',
@@ -176,7 +176,7 @@ module.exports = {
       'notify:nchw'
     ]
   },
-  
+
   "heartchase": {
     files: [
       'src/heartchase/html/**/*',
@@ -193,7 +193,7 @@ module.exports = {
       'notify:heartchase'
     ]
   },
-  
+
   "cyclenation": {
     files: [
       'src/cyclenation/html/**/*',
@@ -240,6 +240,22 @@ module.exports = {
       'html-dist:fieldday',
       'img-copy:fieldday-images',
       'notify:fieldday'
+    ]
+  },
+  "heartwalklawyers": {
+    files: [
+      'src/heartwalklawyers/html/**/*',
+      'src/heartwalklawyers/image/**/*',
+      'src/heartwalklawyers/sass/**/*',
+      'src/heartwalklawyers/js/**/*'
+    ],
+    tasks: [
+      'clean:heartwalklawyers',
+      'css-dist:heartwalklawyers',
+      'js-dist:heartwalklawyers',
+      'html-dist:heartwalklawyers',
+      'img-copy:heartwalklawyers-images',
+      'notify:heartwalklawyers'
     ]
   }
 }

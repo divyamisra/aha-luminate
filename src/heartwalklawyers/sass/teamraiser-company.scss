@@ -1,0 +1,55 @@
+.pg_company {
+  .tr-page-container {
+    .information-box {
+      .buttons-row {
+        margin: 28px 0;
+
+        .btn {
+          max-width: 350px;
+        }
+      }
+    }
+
+    .nav-tabs {
+      border: none;
+
+      .nav-link {
+        font-size: 2rem;
+        color: $white;
+        background-color: $gray-700;
+        border-top: solid 5px $gray-background;
+        border-bottom: none;
+        text-align: center;
+        text-decoration: none;
+        font-family: $font-family-bold;
+        @include border-radius(0,0,0,0);
+
+        &.active {
+          background-color: $gray-100;
+          color: $black;
+          border-top: solid 5px $red;
+        }
+      }
+    }
+
+    .tab-content {
+      margin: 25px 0 0 0;
+    }
+
+    .team-roster .btn-tertiary-black {
+      width: 260px;
+    }
+
+  }
+}
+
+.evenly-like {
+  display: flex;
+  justify-content: space-between;
+
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+  }
+}

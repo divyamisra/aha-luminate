@@ -585,9 +585,8 @@
         font-size: 1rem !important;
 
         .event-name {
-          font-size: 0.7778rem;
+          font-size: 1rem;
           font-family: $font-family-medium;
-          font-weight: normal;
         }
       }
 
@@ -619,6 +618,13 @@
 
           strong {
             margin: 0 0 0 5px;
+          }
+        }
+      }
+      &.top-steps {
+        .raised {
+          strong {
+            margin: 0 5px 0 0;
           }
         }
       }

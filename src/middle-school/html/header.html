@@ -34,7 +34,7 @@
                   Students
                 </a>
               </li>
-              <li>
+              <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
                 <a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer?pagename=ahc_resources_educational.html&tab=middleschool">
                   Teachers
                 </a>
@@ -164,7 +164,7 @@
                      For Students
                     </a>
                   </li>
-                  <li>
+                  <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
                     <a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer?pagename=ahc_resources_educational.html&tab=middleschool">
                       Teachers
                     </a>

@@ -4,220 +4,220 @@ module.exports = {
   "general": {
     files: [
       {
-        expand: true, 
-        cwd: 'dist/general/css/', 
+        expand: true,
+        cwd: 'dist/general/css/',
         src: [
           '**/*'
         ]
-      }, 
+      },
       {
-        expand: true, 
-        cwd: 'dist/general/js/', 
+        expand: true,
+        cwd: 'dist/general/js/',
         src: [
           '**/*'
         ]
-      }, 
+      },
       {
-        expand: true, 
-        cwd: 'dist/general/html/', 
+        expand: true,
+        cwd: 'dist/general/html/',
         src: [
           '**/*'
         ]
-      }, 
+      },
       {
-        expand: true, 
-        cwd: 'dist/general/image/', 
+        expand: true,
+        cwd: 'dist/general/image/',
         src: [
           '**/*'
         ]
       }
     ]
-  }, 
-  
+  },
+
   "heart-walk": {
     files: [
       {
-        expand: true, 
-        cwd: 'dist/heart-walk/css/', 
+        expand: true,
+        cwd: 'dist/heart-walk/css/',
         src: [
           '**/*'
         ]
-      }, 
+      },
       {
-        expand: true, 
-        cwd: 'dist/heart-walk/js/', 
+        expand: true,
+        cwd: 'dist/heart-walk/js/',
         src: [
           '**/*'
         ]
-      }, 
+      },
       {
-        expand: true, 
-        cwd: 'dist/heart-walk/html/', 
+        expand: true,
+        cwd: 'dist/heart-walk/html/',
         src: [
           '**/*'
         ]
-      }, 
+      },
       {
-        expand: true, 
-        cwd: 'dist/heart-walk/image/', 
+        expand: true,
+        cwd: 'dist/heart-walk/image/',
         src: [
           '**/*'
         ]
       }
     ]
-  }, 
-  
+  },
+
   "youth-markets": {
     files: [
       {
-        expand: true, 
-        cwd: 'dist/youth-markets/html/', 
+        expand: true,
+        cwd: 'dist/youth-markets/html/',
         src: [
           '**/*'
         ]
-      }, 
+      },
       {
-        expand: true, 
-        cwd: 'dist/youth-markets/image/', 
+        expand: true,
+        cwd: 'dist/youth-markets/image/',
         src: [
           '**/*'
         ]
       }
     ]
-  }, 
-  
+  },
+
   "ym-primary": {
     files: [
       {
-        expand: true, 
-        cwd: 'dist/ym-primary/css/', 
+        expand: true,
+        cwd: 'dist/ym-primary/css/',
         src: [
           '**/*'
         ]
-      }, 
+      },
       {
-        expand: true, 
-        cwd: 'dist/ym-primary/js/', 
+        expand: true,
+        cwd: 'dist/ym-primary/js/',
         src: [
           '**/*'
         ]
-      }, 
+      },
       {
-        expand: true, 
-        cwd: 'dist/ym-primary/html/', 
+        expand: true,
+        cwd: 'dist/ym-primary/html/',
         src: [
           '**/*'
         ]
-      }, 
+      },
       {
-        expand: true, 
-        cwd: 'dist/ym-primary/image/', 
+        expand: true,
+        cwd: 'dist/ym-primary/image/',
         src: [
           '**/*'
         ]
       }
     ]
-  }, 
-  
+  },
+
   "middle-school": {
     files: [
       {
-        expand: true, 
-        cwd: 'dist/middle-school/css/', 
+        expand: true,
+        cwd: 'dist/middle-school/css/',
         src: [
           '**/*'
         ]
-      }, 
+      },
       {
-        expand: true, 
-        cwd: 'dist/middle-school/js/', 
+        expand: true,
+        cwd: 'dist/middle-school/js/',
         src: [
           '**/*'
         ]
-      }, 
+      },
       {
-        expand: true, 
-        cwd: 'dist/middle-school/html/', 
+        expand: true,
+        cwd: 'dist/middle-school/html/',
         src: [
           '**/*'
         ]
-      }, 
+      },
       {
-        expand: true, 
-        cwd: 'dist/middle-school/image/', 
+        expand: true,
+        cwd: 'dist/middle-school/image/',
         src: [
           '**/*'
         ]
       }
     ]
-  }, 
-  
+  },
+
   "high-school": {
     files: [
       {
-        expand: true, 
-        cwd: 'dist/high-school/css/', 
+        expand: true,
+        cwd: 'dist/high-school/css/',
         src: [
           '**/*'
         ]
-      }, 
+      },
       {
-        expand: true, 
-        cwd: 'dist/high-school/js/', 
+        expand: true,
+        cwd: 'dist/high-school/js/',
         src: [
           '**/*'
         ]
-      }, 
+      },
       {
-        expand: true, 
-        cwd: 'dist/high-school/html/', 
+        expand: true,
+        cwd: 'dist/high-school/html/',
         src: [
           '**/*'
         ]
-      }, 
+      },
       {
-        expand: true, 
-        cwd: 'dist/high-school/image/', 
+        expand: true,
+        cwd: 'dist/high-school/image/',
         src: [
           '**/*'
         ]
       }
     ]
-  }, 
-  
+  },
+
   "district-heart": {
     files: [
       {
-        expand: true, 
-        cwd: 'dist/district-heart/css/', 
+        expand: true,
+        cwd: 'dist/district-heart/css/',
         src: [
           '**/*'
         ]
-      }, 
+      },
       {
-        expand: true, 
-        cwd: 'dist/district-heart/js/', 
+        expand: true,
+        cwd: 'dist/district-heart/js/',
         src: [
           '**/*'
         ]
-      }, 
+      },
       {
-        expand: true, 
-        cwd: 'dist/district-heart/html/', 
+        expand: true,
+        cwd: 'dist/district-heart/html/',
         src: [
           '**/*'
         ]
-      }, 
+      },
       {
-        expand: true, 
-        cwd: 'dist/district-heart/image/', 
+        expand: true,
+        cwd: 'dist/district-heart/image/',
         src: [
           '**/*'
         ]
       }
     ]
-  }, 
-  
+  },
+
   "nchw": {
     files: [
       {
@@ -250,7 +250,7 @@ module.exports = {
       }
     ]
   },
-  
+
   "heartchase": {
     files: [
       {
@@ -379,5 +379,37 @@ module.exports = {
         ]
       }
     ]
-  } 
+  },
+  "heartwalklawyers": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/heartwalklawyers/css/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/heartwalklawyers/js/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/heartwalklawyers/html/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/heartwalklawyers/image/',
+        src: [
+          '**/*'
+        ]
+      }
+    ]
+  }
 }

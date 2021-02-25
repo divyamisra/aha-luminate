@@ -3,11 +3,15 @@
   a {
      display: block;
      margin: 25px 15px;
+     @media (min-width: 768px) {
+       width:25%;
+     }
   }
   img {
      max-width:100%;
   }
   .h6 {
+    font-size: 1.1em;
     word-wrap: break-word;
     white-space: normal;
   }
@@ -32,8 +36,8 @@
 }
 }
 
-@media not all and (min-resolution:.001dpcm) { 
-.paymentSelType .applepay { 
+@media not all and (min-resolution:.001dpcm) {
+.paymentSelType .applepay {
     display: inline-block !important;
 }
 }

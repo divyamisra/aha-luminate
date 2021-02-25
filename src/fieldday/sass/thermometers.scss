@@ -11,22 +11,36 @@
   max-width:100%;
   position: relative;
   svg, img {
-    width: 35px;
+    width: 45px;
     height: auto;
     position: absolute;
     right: -20px;
-    top: -50px;
     @include media-breakpoint-up(md) {
      width: 55px;
      right: -30px;
-     top: -75px;
+    }
+  }
+  svg {
+    top: -60px;
+    @include media-breakpoint-up(md) {
+      top: -70px;
+    }
+  }
+  img {
+    mix-blend-mode: multiply;
+    top: -75px;
+    @include media-breakpoint-up(md) {
+     top: -85px;
     }
   }
 }
 
 .pg_personal, .pg_team, .pg_company {
   .thermometer {
-    margin: 55px 0 0;
+    margin: 40px 0 0;
+    @include media-breakpoint-up(md) {
+     margin-top: 55px;
+    }
   }
 
   .thermometer-inner {

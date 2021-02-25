@@ -26,6 +26,7 @@
    .dataTables_wrapper {
      .btn {
        @include border-radius(0, 4px, 4px, 0);
+       width: 40px;
      }
 
      h1 {
@@ -86,6 +87,10 @@
       margin: 0;
     }
   }
+}
+
+.coach {
+  margin-right: 3px;
 }
 
 .coach i {

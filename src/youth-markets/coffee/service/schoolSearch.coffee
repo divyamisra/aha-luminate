@@ -32,17 +32,21 @@ angular.module 'ahaLuminateApp'
             failure: (response) ->
             success: (response) ->
               delete $scope.schoolList.schools
-              $scope.schoolList.stateFilter = response.data.company.schoolData.state
-              $scope.schoolList.searchPending = true
-              $scope.schoolList.searchSubmitted = true
-              $scope.schoolList.searchByLocation = true
-              $scope.schoolList.geoLocationEnabled = true
-              $scope.getSchoolSearchResults(true)
-              #SchoolLookupService.getGeoSchoolData e,
-              #  failure: (response) ->
-              #  success: (response) ->
-              #    showSchoolSearchResults(response)
-
+              if response.data.company.schoolData != null
+                $scope.schoolList.stateFilter = response.data.company.schoolData.state
+                $scope.schoolList.searchPending = true
+                $scope.schoolList.searchSubmitted = true
+                $scope.schoolList.searchByLocation = true
+                $scope.schoolList.geoLocationEnabled = true
+                $scope.getSchoolSearchResults(true)
+                #SchoolLookupService.getGeoSchoolData e,
+                #  failure: (response) ->
+                #  success: (response) ->
+                #    showSchoolSearchResults(response)
+              else
+                $scope.schoolList.searchPending = false
+                $scope.schoolList.searchErrorMessage = 'No schools found matching the specified search criteria.'
+  
         # gelocate call error
         showGEOError = (e) ->
           $scope.schoolList.searchPending = false

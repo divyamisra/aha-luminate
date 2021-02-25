@@ -221,7 +221,7 @@
     }
 
     #home {
-      color: $red;
+      color: $red!important;
       padding: 18px 0 !important;
       font-size: 1rem;
 
@@ -365,7 +365,7 @@
 
       .donation-amounts {
         .donation-amount-btn {
-          width: 25%;
+          width: 32%;
         }
 
         .custom-amount {
@@ -379,8 +379,7 @@
 
       .buttons-row {
         .btn {
-          max-width: 44% !important;
-
+          margin-bottom: 20px;
           &:first-child {
             margin-right: 15px !important;
           }
@@ -480,7 +479,6 @@
 
   .pg_entry {
     main {
-      background-image: url("/images/content/pagebuilder/fd_hero_mobile.jpg") !important;
       background-size: 100% !important;
     }
 

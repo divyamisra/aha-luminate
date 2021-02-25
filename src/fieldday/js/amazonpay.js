@@ -39,6 +39,7 @@ function addPaymentOptions() {
 		var fr_id = jQuery.getCustomQuerystring(location.href,"fr_id");
 		var teamid = jQuery.getCustomQuerystring(location.href,"team_id");
 		var px = jQuery.getCustomQuerystring(location.href,"px");
+		var selectedAmt = 50;
     
     		/* personal page */
 		if (jQuery('body.pg_personal').length > 0) {
@@ -47,10 +48,10 @@ function addPaymentOptions() {
 			console.log('custom pay on personal');
 			var html = "<div class='paymentSelType text-center hidden mt-4'><h2 class='h5 mb-3'>How would you like to donate?</h2>" +
   				"<div class='d-lg-flex justify-content-lg-between'><a href='"+dlink+"' class='js--cc-btn'><img src='https://www2.heart.org/images/content/pagebuilder/credit-card-logos2.png' alt='Donate with Visa, MasterCard, American Express or Discover cards'/></a>" +
-  				"<a href='"+default_path+"/site/SPageNavigator/fieldday_donate_amazon.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+px+"&PROXY_TYPE=20' class='amazon'><img src='https://www2.heart.org/images/content/pagebuilder/amazon-payments.png' alt='Donate with Amazon Pay'/></a>" +
-  				"<a href='"+default_path+"/site/SPageNavigator/fieldday_donate_googlepay.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+px+"&PROXY_TYPE=20' class='googlepay'><img src='https://www2.heart.org/donation-forms/donatenow/images/googlepay-button.png' alt='Donate with Google Pay'/></a>" +
-				"<a href='"+default_path+"/site/SPageNavigator/fieldday_donate_applepay.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+px+"&PROXY_TYPE=20' class='applepay hidden-md hidden-lg'><img src='https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png' alt='ApplePay'/></a>" +
-				"<a href='"+default_path+"/site/SPageNavigator/fieldday_donate_venmo.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+px+"&PROXY_TYPE=20' class='venmo hidden-md hidden-lg'><img src='https://www2.heart.org/donation-forms/donatenow/images/venmo-button.png' alt='Venmo'/></a>" +
+  				"<a href='"+default_path+"/site/SPageNavigator/fieldday_donate_amazon.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+px+"&PROXY_TYPE=20&amount=" + selectedAmt + "' class='amazon'><img src='https://www2.heart.org/images/content/pagebuilder/amazon-payments.png' alt='Donate with Amazon Pay'/></a>" +
+  				"<a href='"+default_path+"/site/SPageNavigator/fieldday_donate_googlepay.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+px+"&PROXY_TYPE=20&amount=" + selectedAmt + "' class='googlepay'><img src='https://www2.heart.org/donation-forms/donatenow/images/googlepay-button.png' alt='Donate with Google Pay'/></a>" +
+				"<a href='"+default_path+"/site/SPageNavigator/fieldday_donate_applepay.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+px+"&PROXY_TYPE=20&amount=" + selectedAmt + "' class='applepay hidden-md hidden-lg'><img src='https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png' alt='ApplePay'/></a>" +
+				"<a href='"+default_path+"/site/SPageNavigator/fieldday_donate_venmo.html?FR_ID="+fr_id+"&mfc_pref=T&PROXY_ID="+px+"&PROXY_TYPE=20&amount=" + selectedAmt + "' class='venmo hidden-md hidden-lg'><img src='https://www2.heart.org/donation-forms/donatenow/images/venmo-button.png' alt='Venmo'/></a>" +
 			    	"<a href='"+dlink+"&paypal=true' class='js--paypal-btn'><img src='https://www2.heart.org/images/content/pagebuilder/PP_logo_h_100x26.png'/ alt='Donate with PayPal'></a></div>";
 		
 			jQuery('.buttons-row').after(html);
@@ -98,6 +99,17 @@ function addPaymentOptions() {
 					jQuery('.js--cc-btn').attr('href', updatedDlink);
 					var updatedPPdlink = updatedDlink + '&paypal=true';
 					jQuery('.js--paypal-btn').attr('href', updatedPPdlink);
+					// update form link with amount
+					var selectedAmt = 50;
+					if ($('.custom-amount input[name="personalDonAmt"]').prop('checked')) {
+						selectedAmt = $('#personalOtherAmt').val();
+					} else {
+						selectedAmt = $('.donation-amount-btn.active').text().trim().replace('$','').replace(',','');
+					};
+					$('.applepay, .googlepay, .venmo, .amazon').each(function(){
+						var extLink = $(this).attr('href').replace(/&amount=([^]*)/, '&amount='+selectedAmt);
+						$(this).attr('href', extLink);
+					});
 					jQuery('.tr-page-container .paymentSelType').removeClass('hidden');
 					jQuery('.tr-page-container .paymentSelType').slideDown();
 					return false;

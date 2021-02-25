@@ -74,8 +74,22 @@
     text-transform: uppercase;
     font-size: 1.333em;
     font-weight: normal;
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(lg) {
       font-size: 2.667em;
     }
+  }
+}
+
+//view all companies page
+@media (max-width: 767px) {
+  th.trr-table-participant-amount,
+  th.trr-table-number-amount {
+      display: none;
+  }
+}
+
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+  .mobile div.tr-page-container div#team_page_main_content, .mobile div.tr-page-container div.tr-page-main-content {
+      width: 100%;
   }
 }

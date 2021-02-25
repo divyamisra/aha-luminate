@@ -31,7 +31,9 @@
 	  <img class="agentk" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/{{hvImgAgentsrc}}" alt="Agent K">
         </div>
 		<div class="winding-road">
-			<svg xmlns="http://www.w3.org/2000/svg"  width="100%" height="100%" viewBox="0 0 658 750" preserveAspectRatio="xMidYMid meet">
+			<svg xmlns="http://www.w3.org/2000/svg"  width="100%" height="100%" viewBox="0 0 658 750" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="finns_mission_title finns_mission_desc">
+			   <title id="finns_mission_title">Finn's Mission</title>
+			   <desc id="finns_mission_desc">Your mission is complete the challenges listed for Finn</desc>
 			   <defs>
 				  <filter id="b" x="0" y="524.202" width="197.453" height="177.764" filterUnits="userSpaceOnUse">
 					 <feOffset dx="1" dy="1"/>
@@ -248,9 +250,9 @@
 					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="495" y="381">Donation</tspan></text>
 					 <path class="badge-path" data-name="Path 1529" d="M475 317h100v100h-100z" fill="url(#4{{(prizes[3].earned) ? '_delivered' : '_earned'}})"/>
 				  </g>
-				  <g id="ask-for-a-donation" transform="translate(-.004 -.001)" filter="url(#g)" data-name="Ask for a Donation">
+				  <g id="ask-for-a-donation" transform="translate(-.004 -.001)" filter="url(#g)" data-name="Receive a Donation">
 					 <path data-name="Path 1528" d="M615.362 272.616H507.129c-2.592-31.766-26.292-56.193-55.962-58.967V96.828c89.282 3.007 161.386 80.202 164.195 175.788z" fill="{{(prizes[2].earned) ? '#e1eed2' : '#f48220'}}"/>
-					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="495" y="190">Ask for a</tspan></text>
+					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="492" y="190">Receive a</tspan></text>
 					 <text fill="#444" font-size="14" font-weight="bold"><tspan x="495" y="206">Donation</tspan></text>
 					 <path class="badge-path" data-name="Path 1528" d="M478 143h100v100h-100z" fill="url(#3{{(prizes[2].earned) ? '_delivered' : '_earned'}})"/>
 				  </g>
@@ -280,47 +282,48 @@
 					 <text fill="#ffffff" font-size="20"><tspan x="50" y="72">Go!</tspan></text>
 					 <path data-name="Path 1523" d="M70 100v62h76v-62h-76z" fill="url(#letsgo_arrow)"/>
 				  </g>
-				  <g ng-if="prizesEarned != prizes.length" transform="translate(-.001 .003)" ng-cloak>
-					 <path data-name="Path 1523" d="M484 532v53h96v-52h-96z" fill="url(#not_secret_finn)"/>
-					 <text fill="#ffffff" font-size="20"><tspan x="450" y="635">Your Secret Code</tspan></text>
-					 <text fill="#ffffff" font-size="20"><tspan x="456" y="668">Will Reveal Here</tspan></text>
+ 				  <g ng-if="prizesEarned != prizes.length" transform="translate(-.001 .003)" class="finn-text" ng-cloak>
+				 	<path data-name="Path 1523" d="M484 532v53h96v-52h-96z" fill="url(#not_secret_finn)"></path>
+					<text fill="#ffffff" font-size="20"><tspan x="456" y="620">FINN'S SPECIAL</tspan></text>
+					<text fill="#ffffff" font-size="20"><tspan x="460" y="650">MESSAGE WILL</tspan></text>
+					<text fill="#ffffff" font-size="20"><tspan x="464" y="680">REVEAL HERE!</tspan></text>
 				  </g>
-				  <g ng-if="prizesEarned == prizes.length" transform="translate(-.001 .003)" ng-cloak>
+				  <g ng-if="prizesEarned == prizes.length" transform="translate(-.001 .003)" class="finn-text" ng-cloak>
 					 <path data-name="Path 1523" d="M450 489v96h178v-96h-178z" fill="url(#secret_finn)"/>
-					 <text fill="#ffffff" font-size="20"><tspan x="465" y="635">You are a real</tspan></text>
-					 <text fill="#ffffff" font-size="20"><tspan x="478" y="668">Heart Hero!</tspan></text>
+					 <text fill="#ffffff" font-size="20"><tspan x="455" y="635">YOU ARE A REAL</tspan></text>
+					 <text fill="#ffffff" font-size="20"><tspan x="468" y="668">HEART HERO!</tspan></text>
 				  </g>
-				  <g ng-if="!prizes[2].earned" transform="translate(-.001 .003)" ng-cloak>
-					  <a xlink:href="" ng-href="{{prizes[2].final_url}}" title="Ask for a donation"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="570" y="105">Ask for a</tspan></text></a>
-					  <a xlink:href="" ng-href="{{prizes[2].final_url}}" title="Ask for a donation"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="570" y="122">Donation</tspan></text></a>
+				  <g transform="translate(-.001 .003)" ng-cloak>
+					  <a xlink:href="" ng-href="{{prizes[2].final_url}}" title="Receive a donation"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="567" y="105">Receive a</tspan></text></a>
+					  <a xlink:href="" ng-href="{{prizes[2].final_url}}" title="Receive a donation"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="570" y="122">Donation</tspan></text></a>
 					 <path data-name="Path 1523" d="M575 130v23h23v-23h-23z" fill="url(#winding_road_link_arrow_3)"/>
 				  </g>
-				  <g ng-if="!prizes[3].earned" transform="translate(-.001 .003)" class="ng-scope">
+				  <g transform="translate(-.001 .003)" class="ng-scope">
  					 <path data-name="Path 1523" d="M535 435v23h23v-23h-23z" fill="url(#winding_road_link_arrow_4)"></path>
 					  <a xlink:href="" ng-href="{{prizes[3].final_url}}" title="Make a donation"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="570" y="435">Make a</tspan></text></a>
 					  <a xlink:href="" ng-href="{{prizes[3].final_url}}" title="Make a donation"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="570" y="455">Donation</tspan></text></a>
 				  </g>
-				  <g ng-if="!prizes[4].earned" transform="translate(-.001 .003)" class="ng-scope">
+				  <g transform="translate(-.001 .003)" class="ng-scope">
  					 <path data-name="Path 1523" d="M335 475v23h23v-23h-23z" fill="url(#winding_road_link_arrow_5)"></path>
 					  <a xlink:href="" ng-href="{{prizes[4].final_url}}"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="370" y="485" title="Share on social">Share on</tspan></text></a>
 					  <a xlink:href="" ng-href="{{prizes[4].final_url}}"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="375" y="505" title="Share on social">Social</tspan></text></a>
 				  </g>
-				  <g ng-if="!prizes[5].earned" transform="translate(-.001 .003)" ng-cloak>
+				  <g transform="translate(-.001 .003)" ng-cloak>
 					  <a xlink:href="" ng-click="showMobileApp()" href="javascript:void(0)"><text fill="#c10e21" font-size="14" font-weight="bold" title="Move More"><tspan x="235" y="305">Move</tspan></text></a>
 					  <a xlink:href="" ng-click="showMobileApp()" href="javascript:void(0)"><text fill="#c10e21" font-size="14" font-weight="bold" title="Move More"><tspan x="235" y="325">More</tspan></text></a>
 					 <path data-name="Path 1523" d="M272 310v23h23v-23h-23z" fill="url(#winding_road_link_arrow_6)"/>
 				  </g>
-				  <g ng-if="!prizes[6].earned" transform="translate(-.001 .003)" class="ng-scope">
+				  <g transform="translate(-.001 .003)" class="ng-scope">
 					  <a xlink:href="" ng-href="{{prizes[6].final_url}}" title="Send an email"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="0" y="360">Send an</tspan></text></a>
 					  <a xlink:href="" ng-href="{{prizes[6].final_url}}" title="Send an email"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="0" y="380">Email</tspan></text></a>
 					 <path data-name="Path 1523" d="M10 388v23h23v-23h-23z" fill="url(#winding_road_link_arrow_7)"></path>
 				  </g>
-				  <g ng-if="!prizes[7].earned" transform="translate(-.001 .003)" class="ng-scope">
+				  <g transform="translate(-.001 .003)" class="ng-scope">
 					 <path data-name="Path 1523" d="M3 635v23h23v-23h-23z" fill="url(#winding_road_link_arrow_8)"></path>
 					  <a xlink:href="" ng-href="{{prizes[7].final_url}}" title="Take CPR Quiz"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="0" y="675">Take</tspan></text></a>
 					  <a xlink:href="" ng-href="{{prizes[7].final_url}}" title="Take CPR Quiz"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="0" y="695">CPR Quiz</tspan></text></a>
 				  </g>
-				  <g ng-if="!prizes[8].earned" transform="translate(-.001 .003)" class="ng-scope">
+				  <g transform="translate(-.001 .003)" class="ng-scope">
 					 <path data-name="Path 1523" d="M300 710v23h23v-23h-23z" fill="url(#winding_road_link_arrow_9)"></path>
 					  <a xlink:href="" ng-href="{{prizes[8].final_url}}" title="Take Stroke Quiz"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="330" y="720">Take</tspan></text></a>
 					  <a xlink:href="" ng-href="{{prizes[8].final_url}}" title="Take Stroke Quiz"><text fill="#c10e21" font-size="14" font-weight="bold"><tspan x="330" y="740">Stroke Quiz</tspan></text></a>
@@ -481,7 +484,7 @@
                 <a ng-href="{{baseUrl}}#/email" ng-init="hvImgsrc3='PC_email-static.png';" ng-mouseover="hvImgsrc3='PC_email-animated.gif';" ng-mouseout="hvImgsrc3='PC_email-static.png';">
                   <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/{{hvImgsrc3}}" alt="Send Email">
                 </a> 
-                <a ng-href="https://hearttools.heart.org/aha_ym21{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank" ng-init="hvImgsrc4='PC_ecard-static.png';" ng-mouseover="hvImgsrc4='PC_ecard-animated.gif';" ng-mouseout="hvImgsrc4='PC_ecard-static.png';">
+                <a ng-href="https://tools.heart.org/aha_ym21{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank" ng-init="hvImgsrc4='PC_ecard-static.png';" ng-mouseover="hvImgsrc4='PC_ecard-animated.gif';" ng-mouseout="hvImgsrc4='PC_ecard-static.png';">
                   <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/{{hvImgsrc4}}" alt="Send E-card">
                 </a>
               </div>
@@ -489,7 +492,7 @@
                 <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email">
                   <strong>Send Email</strong>
                 </a> 
-                <a class="btn btn-md-wide btn-primary" ng-href="https://hearttools.heart.org/aha_ym21{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank">
+                <a class="btn btn-md-wide btn-primary" ng-href="https://tools.heart.org/aha_ym21{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank">
                   <strong>Send e-card</strong>
                 </a>
               </div>
@@ -508,21 +511,21 @@
             </div>
             <div class="text-center">
               <div class="ym-pc-dashboard-livestream-images">
-   	        <span class="hv-image" ng-init="hvImgLSsrc='pc-livestream.png';" ng-mouseover="hvImgLSsrc='pc-livestream-ioed.gif';" ng-mouseout="hvImgLSsrc='pc-livestream.png';">
-		  <img class="pc-livestream-character" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/{{hvImgLSsrc}}" alt="Livestream Character">
-	        </span>
-                &nbsp;
    	        <span class="hv-image" ng-init="hvImgLSHsrc='pc-tiltify-hearts.png';" ng-mouseover="hvImgLSHsrc='pc-tiltify-hearts-animated.gif';" ng-mouseout="hvImgLSHsrc='pc-tiltify-hearts.png';">
 		  <img class="pc-livestream-hearts" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/{{hvImgLSHsrc}}" alt="Livestream Hearts">
 	        </span>
+                &nbsp;
+   	        <span class="hv-image" ng-init="hvImgLSsrc='pc-livestream.png';" ng-mouseover="hvImgLSsrc='pc-livestream-animated.gif';" ng-mouseout="hvImgLSsrc='pc-livestream.png';">
+		  <img class="pc-livestream-character" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/{{hvImgLSsrc}}" alt="Livestream Character">
+	        </span>
               </div>
               <div class="ym-pc-dashboard-livestream-buttons">
-                <a class="btn btn-md-wide btn-primary" ng-href="https://tiltify.com/@me/dashboard/campaigns" target="_blank">
-                  <strong>Check Your Progress</strong>
-                </a> 
-                <a class="btn btn-md-wide btn-primary" ng-href="https://tiltify.com/aha/start?metadata.uid=LO_ID:{{consId}};EVENT_ID:{{frId}}" target="_blank">
+                <a class="btn btn-md-wide btn-primary" ng-href="https://tiltify.com/aha/kids-heart-challengeamerican-heart-challenge-c4ba88cc-eefb-495f-8230-05fa82e1db98/start/ownership" target="_blank">
                   <strong>Get Started</strong>
                 </a>
+                <a class="btn btn-md-wide btn-primary" ng-href="https://dashboard.tiltify.com/@me" target="_blank">
+                  <strong>Check Your Progress</strong>
+                </a> 
               </div>
               <br/>
               <p>By clicking these links, you will leave Kids Heart Challenge and be redirected to another site not under the control of the American Heart Association.</p>
@@ -531,7 +534,7 @@
         </div>
       </div>
     </section>
-    <section class="ym-pc-dashboard-standard-gifts-section" aria-label="My Gifts">
+    <section class="ym-pc-dashboard-standard-gifts-section" aria-label="My Gifts" ng-if="hideGifts != 'Y' && has_bonus != 3" ng-cloak>
       <div class="ym-pc-dashboard-section-header">
         <h2 class="h3">
           You Earned <span ng-bind-html="giftsEarned"></span> out of <span ng-bind-html="totalGifts"></span> Thank-You Gifts!
@@ -545,8 +548,9 @@
       </div>
       <div class="ym-pc-dashboard-standard-gifts-icons" role="list" aria-label="Standard Gifts">
         <div class="ym-pc-dashboard-standard-gifts-icon" ng-class="{'not-earned': !upcomingGift.prize_status}" ng-repeat="upcomingGift in upcomingGifts" ng-cloak>
-           <a href="" ng-click="showPrize(upcomingGift.prize_sku,upcomingGift.prize_label,upcomingGift.prize_status)">
+           <a href="" ng-click="showPrize(upcomingGift.prize_sku,upcomingGift.prize_label,upcomingGift.prize_status,upcomingGift.prize_video)">
               <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes2021/{{upcomingGift.prize_sku}}.png" alt="{{upcomingGift.prize_label}}">
+	      <div class="play-circle"><i class="fa fa-play"></i></div>
               <div class="ym-pc-dashboard-standard-gift-earned" ng-if="upcomingGift.prize_status">
                  <h4 class="gift-title" ng-bind-html="upcomingGift.earned_title"></h4>
                  <div class="gift-subtitle1"><span ng-bind-html="upcomingGift.earned_subtitle1"></span></div>
@@ -780,16 +784,16 @@
                 </div>
                 <div class="col-xs-12 col-sm-4">
                   <a href="" ng-click="updateDayChallenge(2)" class="text-center" ng-class="{'selected': personalChallenge.id == '2','disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" ng-init="imghover2=false">
-                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/pc-challenge-be-active{{personalChallenge.id == '2' ? '-hover':''}}.png" ng-mouseover="imghover2=true" ng-mouseout="imghover2=false" alt="Moving More" ng-show="!imghover2" ng-cloak>
-                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/pc-challenge-be-active-hover.png" ng-mouseover="imghover2=true" ng-mouseout="imghover2=false" alt="Moving More" ng-show="imghover2" ng-cloak>
-                    Moving<br/>More
+                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/pc-challenge-be-active{{personalChallenge.id == '2' ? '-hover':''}}.png" ng-mouseover="imghover2=true" ng-mouseout="imghover2=false" alt="Move More" ng-show="!imghover2" ng-cloak>
+                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/pc-challenge-be-active-hover.png" ng-mouseover="imghover2=true" ng-mouseout="imghover2=false" alt="Move More" ng-show="imghover2" ng-cloak>
+                    Move<br/>More
                   </a>
                 </div>
                 <div class="col-xs-12 col-sm-4">
                   <a href="" ng-click="updateDayChallenge(3)" class="text-center" ng-class="{'selected': personalChallenge.id == '3','disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" ng-init="imghover3=false">
-                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/pc-challenge-drink-water{{personalChallenge.id == '3' ? '-hover':''}}.png" ng-mouseover="imghover3=true" ng-mouseout="imghover3=false" alt="Choosing Water" ng-show="!imghover3" ng-cloak>
-                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/pc-challenge-drink-water-hover.png" ng-mouseover="imghover3=true" ng-mouseout="imghover3=false" alt="Choosing Water" ng-show="imghover3" ng-cloak>
-                    Choosing<br/>Water
+                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/pc-challenge-drink-water{{personalChallenge.id == '3' ? '-hover':''}}.png" ng-mouseover="imghover3=true" ng-mouseout="imghover3=false" alt="Choose Water" ng-show="!imghover3" ng-cloak>
+                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/pc-challenge-drink-water-hover.png" ng-mouseover="imghover3=true" ng-mouseout="imghover3=false" alt="Choose Water" ng-show="imghover3" ng-cloak>
+                    Choose<br/>Water
                   </a>
                 </div>
               </div>
@@ -810,12 +814,12 @@
              </div>
           </div>
           <div class="text-center" style="margin-bottom:35px;">
-             <!-- <a class="btn btn-lg btn-primary" ng-href="https://hearttools.heart.org/aha_ym21{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/virtualworld/?fr_id={{frId}}&cons_id={{consId}}&name={{consNameFirst}}" target="_new" aria-label="Enter Heartsville World">
+             <a class="btn btn-lg btn-primary" ng-href="https://tools.heart.org/aha_ym21{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/virtualworld/?fr_id={{frId}}&cons_id={{consId}}&name={{consNameFirst}}" target="_new" aria-label="Enter Heartsville World">
                 <strong>Enter World!</strong>
-                </a> -->
-             <a class="btn btn-lg btn-primary" href="javascript:void(0);">
-             <strong>Coming Soon!</strong>
              </a>
+             <!-- <a class="btn btn-lg btn-primary" href="javascript:void(0);">
+             <strong>Coming Soon!</strong>
+             </a> -->
           </div>
           <div class="row" ng-if="personalInfo.avatar == ''" ng-cloak>
              <div class="col-md-6">
@@ -839,11 +843,22 @@
                 </div>
              </div>
           </div>
-	  <div class="text-center">
-             <a class="btn btn-lg btn-primary" href="javascript:void(0);">
-             <strong>Coming Soon!</strong>
+	  <div class="text-center" ng-if="prizes && prizes.length > 0" ng-cloak>
+             <a class="btn btn-lg btn-primary" ng-click="monsterEdit()">
+                <strong>Customize Hero!</strong>
              </a>
+             <!--<a class="btn btn-lg btn-primary" href="javascript:void(0);">
+             <strong>Coming Soon!</strong>
+             </a>-->
           </div>
+	  <div class="text-center"  ng-if="!prizes || prizes.length == 0" ng-cloak>
+             We're building your heart hero customizer
+          </div>
+	  <div class="text-center" style="margin-top:20px;">
+	     <a class="btn btn-lg btn-secondary" href="DocServer/Agent_KHC_Decoder.pdf" target="_blank">
+		<strong>Agent KHC Decoder</strong>
+	     </a>
+	  </div>
         </div>
       </div>
       <div class="row">
@@ -854,6 +869,84 @@
 	      <iframe title="School Animation" id="school-animation"  ng-src="{{schoolAnimationURL}}"></iframe>
 	    </div>
           </div>
+        </div>
+      </div>
+    </section>
+    <section class="row ym-pc-dashboard-bottom-section" aria-label="Top 5 list and Spreading the Word">
+      <div class="col-md-6" ng-show="topClassRaised.length > 0 || topClassStudents.length > 0" ng-cloak>
+        <div class="container ym-teachers-leaderboard-block">
+	  <div class="ym-teachers-leaderboard ym-promo-block">
+	      <h2 class="ym-headline">Leaderboard</h2>
+  	   </div>
+ 	   <div class="row">
+	      <div class="col-md-6">
+	         <h3>Top class for dollars raised</h3>
+	         <div class="ym-tl-dollars-raised">
+		    <div class="row" ng-repeat="topRaised in topClassRaised" role="listitem" ng-if="topClassRaised.length > 0" ng-cloak>
+		       <div class="col-xs-2 col-sm-2 col-md-2 top-index">#{{$index+1}}</div>
+		       <div class="col-xs-10 col-sm-10 col-md-10 top-detail">
+			  <div class="top-name">{{topRaised.name}}</div>
+			  <div class="top-grade">{{topRaised.grade}}</div>
+			  <div class="top-raised">{{topRaised.raised | currency:"$":0}}</div>
+			  <div class="top-msg">{{topRaised.msg}}</div>
+		       </div>
+		    </div>
+	         </div>
+ 	      </div>
+	      <div class="col-md-6">
+	         <h3>Top grade for dollars raised</h3>
+	         <div class="ym-tl-dollars-raised">
+		    <div class="row" ng-repeat="topRaised in topGradeRaised" role="listitem" ng-if="topGradeRaised.length > 0" ng-cloak>
+		       <div class="col-xs-2 col-sm-2 col-md-2 top-index">#{{$index+1}}</div>
+		       <div class="col-xs-10 col-sm-10 col-md-10 top-detail">
+			  <div class="top-name">{{topRaised.name}}</div>
+			  <div class="top-grade">{{topRaised.grade}}</div>
+			  <div class="top-raised">{{topRaised.raised | currency:"$":0}}</div>
+			  <div class="top-msg">{{topRaised.msg}}</div>
+		       </div>
+		    </div>
+	         </div>
+	      </div>
+	   </div>
+        </div>
+     </div>
+     <div ng-class="(topClassRaised.length > 0 || topClassStudents.length > 0) ? 'col-md-6' : 'col-md-12'" class="ym-pc-dashboard-spread-section event-secondary-medium--diagonal">
+        <div class="ym-pc-dashboard-section-header">
+	  <h2 class="h3">
+	    Spread the Word
+	  </h2>
+        </div>
+        <div class="ym-pc-dashboard-spread-options">
+  	  <div class="ym-pc-dashboard-section-header">
+	    <h3 class="h5">
+	      Download Mobile App
+	    </h3>
+	  </div>
+	  <p>
+	    Download our Mobile Fundraising App today!
+	  </p>
+	  <div class="ym-pc-dashboard-mobile-downloads">
+	    <a href="https://itunes.apple.com/us/app/ym-primary/id548389448?mt=8" target="_blank" title="Download the iPhone App">
+	      <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/apple-store-logo.png" alt="Download the iPhone App">
+	    </a> 
+	    <a href="https://play.google.com/store/apps/details?id=com.aha_jump.android.communicator&amp;hl=en" target="_blank" title="Download the Android App">
+	      <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/google-play-logo.png" alt="Download the Android App">
+	    </a>
+	  </div>
+	  <br/><br/>
+	  <div class="ym-pc-dashboard-section-header">
+	    <h3 class="h5">
+	      Social Share
+	    </h3>
+	  </div>
+	  <p>
+	    Share on Facebook, Twitter, LinkedIn and even text messaging!
+	  </p>
+	  <div class="text-center">
+	    <a class="btn btn-md-wide btn-secondary" ng-href="{{baseUrl}}#/social">
+	      <strong>Go Social</strong> 
+	    </a>
+	  </div>
         </div>
       </div>
     </section>
@@ -874,7 +967,7 @@
             </div>
             <select class="form-control" id="challenge" ng-model="companyProgress.schoolChallenge" aria-label="School Challenge" ng-change="updateSchoolChallenge()">
               <option value="Slime Challenge">Slime Challenge</option>
-              <option value="Pie in the Face">Pie in the Face</option>
+              <option value="Pie in the Face">Pie Toss</option>
               <option value="Activity, Party or Event">Activity, Party or Event</option>
               <option value="Other">Other</option>
               <option value="No School Challenge">No School Challenge</option>
@@ -1083,28 +1176,28 @@
               </div>
               <div class="col-md-6">
                 <div class="schoolStatusTitle">School Status</div>
-                <p>
+                <p class="students-registered">
                   <strong>{{companyInfo.participantCount|number}}</strong> students are registered 
                 </p>
-                <p>
+                <p class="students-registered-online">
                   <span ng-if="studentRegGoal && studentRegGoal != 0" ng-cloak>Keep recruiting to meet your goal of <strong>{{studentRegGoal|number}}</strong> students!</span>
                   <span ng-if="schoolStudentRegOnline && schoolStudentRegOnline != 0" ng-cloak><strong>{{schoolStudentReg|number}}</strong> of those <strong>{{schoolStudentRegOnline|number}}</strong> students have registered online.</span>
                 </p>
-                <p>
+                <p class="students-fundraising">
                   <strong>{{companyParticipants.totalFundraisers|number}}</strong> student<span ng-if="companyParticipants.totalFundraisers > 1 || companyParticipants.totalFundraisers == 0">s are</span><span ng-if="companyParticipants.totalFundraisers == 1"> is</span> fundraising
                 </p>
                 <br/>
                 <div class="schoolStatusTitle">Daily Challenges</div>
-                <p>
+                <p class="students-challenge1">
                   <strong>{{activity1amt|number}}</strong> student<span ng-if="activity1amt > 1 || activity1amt == 0">s are</span><span ng-if="activity1amt == 1"> is</span> being kind
                 </p>
-                <p>
+                <p class="students-challenge2">
                   <strong>{{activity2amt|number}}</strong> student<span ng-if="activity2amt > 1 || activity2amt == 0">s are</span><span ng-if="activity2amt == 1"> is</span> moving more
                 </p>
-                <p>
+                <p class="students-challenge3">
                   <strong>{{activity3amt|number}}</strong> student<span ng-if="activity3amt > 1 || activity3amt == 0">s are</span><span ng-if="activity3amt == 1"> is</span> choosing water
                 </p>
-              </div>
+	      </div>
             </div>
           </div>
         </div>
@@ -1117,7 +1210,7 @@
         </h2>
       </div>
       <div class="row">
-        <div class="col-sm-4 ym-activity-box ym-activity-box--coordinator-pages">
+        <div class="col-md-4 ym-activity-box ym-activity-box--coordinator-pages">
           <h3 class="h5 clearfix">
             <span class="ym-activity-box-number">1</span> Edit My Pages
           </h3>
@@ -1261,35 +1354,30 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-4 ym-activity-box ym-activity-box--coordinator-student-view">
+        <div class="col-md-4 ym-activity-box ym-activity-box--coordinator-student-view">
           <h3 class="h5 clearfix">
-            <span class="ym-activity-box-number">2</span> Show your Students
+            <span class="ym-activity-box-number">2</span> Student View
           </h3>
           <div class="clearfix">
             <div class="ym-pc-student-view-text">
+              <div class="ym-pc-student-view-image">
+                <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/student-view-2021.png" alt="Student View">
+              </div>
               <p>
                 Use the "Student View" to show your students all of the great tools and games in their Headquarters and encourage them to fundraise!
               </p>
-              <div class="hidden-xs">
+              <div>
                 <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/dashboard-student">
                   <strong>Student View</strong>
                 </a>
               </div>
             </div>
-            <div class="ym-pc-student-view-image">
-              <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/student-view.jpg" alt="Student View">
-            </div>
-          </div>
-          <div class="visible-xs">
-            <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/dashboard-student">
-              <strong>Student View</strong>
-            </a>
           </div>
         </div>
-        <div class="col-sm-4 ym-activity-box">
+        <div class="col-md-4 ym-activity-box">
           <div class="ym-activity-box--coordinator-reports">
             <h3 class="h5 clearfix">
-              <span class="ym-activity-box-number">3</span> Manage Your Event
+              <span class="ym-activity-box-number">3</span> Manage Event
             </h3>
             <p>
               Check out the reports page to see which students have completed challenges and who has earned donations.
@@ -1301,7 +1389,7 @@
               <a class="btn btn-md-wide btn-primary" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
                 <strong>View Reports</strong>
               </a>
-              <a class="btn btn-md-wide btn-primary" ng-href="https://khc.dev.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartnew'" ng-cloak>
+              <a class="btn btn-md-wide btn-primary" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartnew'" ng-cloak>
                 <strong>View Reports</strong>
               </a>
               <a class="btn btn-md-wide btn-primary" ng-href="https://kidsheartchallenge.heart.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart'" ng-cloak> 
@@ -1317,7 +1405,7 @@
               <a class="btn btn-md-wide btn-primary" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev'" ng-cloak>
                 <strong>Thank-You Gifts</strong>
               </a>
-              <a class="btn btn-md-wide btn-primary" ng-href="https://khc.dev.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartnew'" ng-cloak>
+              <a class="btn btn-md-wide btn-primary" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartnew'" ng-cloak>
                 <strong>Thank-You Gifts</strong>
               </a>
               <a class="btn btn-md-wide btn-primary" ng-href="https://kidsheartchallenge.heart.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart'" ng-cloak> 
@@ -1343,10 +1431,10 @@
               </h3>
             </div>
             <p>
-              Download resources by state to share with your students.
+              Download resources to share with your students.
             </p>
-            <a class="btn btn-md-wide btn-primary" href="/site/SPageNavigator/khc_resources_educational_resources.html">
-              <strong>Download Resources</strong>
+            <a class="btn btn-md-wide btn-primary" href="http://www.heart.org/educationalresources">
+              <strong>View Resources</strong>
             </a>
           </div>
           <!--
@@ -1379,60 +1467,62 @@
           </div>
         </div>
       </div>
+      <!--
       <div class="ym-pc-dashboard-coordinator-resources-more">
         <a ng-href="{{baseUrl}}#/teacher-resources">
           <strong>View All Resources</strong>
         </a>
       </div>
-      <div class="ym-pc-dashboard-coordinator-resources-contact" ng-if="notifyName != ''">
+      -->
+      <div class="ym-pc-dashboard-coordinator-resources-contact" ng-if="notifyName != ''" ng-cloak>
         Questions about your program – contact your staff partner at: <a ng-href="mailto:{{notifyEmail}}">
           <strong>{{notifyName}}</strong>
         </a>
       </div>
     </section>
-  </div>
-  <section class="ym-pc-dashboard-spread-section event-secondary-medium--diagonal" aria-label="Resources for Spreading the Word">
-    <div class="ym-pc-dashboard-section-header">
-      <h2 class="h3">
-        Spread the Word
-      </h2>
-    </div>
-    <div class="ym-pc-dashboard-spread-options">
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="ym-pc-dashboard-section-header">
-            <h3 class="h5">
-              Download Mobile App
-            </h3>
+    <section class="ym-pc-dashboard-spread-section event-secondary-medium--diagonal" aria-label="Resources for Spreading the Word">
+      <div class="ym-pc-dashboard-section-header">
+        <h2 class="h3">
+          Spread the Word
+        </h2>
+      </div>
+      <div class="ym-pc-dashboard-spread-options">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="ym-pc-dashboard-section-header">
+              <h3 class="h5">
+                Download Mobile App
+              </h3>
+            </div>
+            <p>
+              Download our Mobile Fundraising App today!
+            </p>
+            <div class="ym-pc-dashboard-mobile-downloads">
+              <a href="https://itunes.apple.com/us/app/ym-primary/id548389448?mt=8" target="_blank" title="Download the iPhone App">
+                <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/apple-store-logo.png" alt="Download the iPhone App">
+              </a> 
+              <a href="https://play.google.com/store/apps/details?id=com.aha_jump.android.communicator&amp;hl=en" target="_blank" title="Download the Android App">
+                <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/google-play-logo.png" alt="Download the Android App">
+              </a>
+            </div>
           </div>
-          <p>
-            Download our Mobile Fundraising App today!
-          </p>
-          <div class="ym-pc-dashboard-mobile-downloads">
-            <a href="https://itunes.apple.com/us/app/ym-primary/id548389448?mt=8" target="_blank" title="Download the iPhone App">
-              <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/apple-store-logo.png" alt="Download the iPhone App">
-            </a> 
-            <a href="https://play.google.com/store/apps/details?id=com.aha_jump.android.communicator&amp;hl=en" target="_blank" title="Download the Android App">
-              <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/google-play-logo.png" alt="Download the Android App">
-            </a>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="ym-pc-dashboard-section-header">
-            <h3 class="h5">
-              Social Share
-            </h3>
-          </div>
-          <p>
-            Share on Facebook, Twitter, LinkedIn and even text messaging!
-          </p>
-          <div class="text-center">
-            <a class="btn btn-md-wide btn-secondary" ng-href="{{baseUrl}}#/social">
-              <strong>Go Social</strong> 
-            </a>
+          <div class="col-sm-6">
+            <div class="ym-pc-dashboard-section-header">
+              <h3 class="h5">
+                Social Share
+              </h3>
+            </div>
+            <p>
+              Share on Facebook, Twitter, LinkedIn and even text messaging!
+            </p>
+            <div class="text-center">
+              <a class="btn btn-md-wide btn-secondary" ng-href="{{baseUrl}}#/social">
+                <strong>Go Social</strong> 
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </div>

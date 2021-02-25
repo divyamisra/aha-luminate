@@ -3,103 +3,103 @@
 module.exports = {
   options: {
     optimizationLevel: 3
-  }, 
-  
+  },
+
   "general": {
     files: [
       {
-        expand: true, 
-        cwd: 'src/general/image/', 
+        expand: true,
+        cwd: 'src/general/image/',
         src: [
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
-        ], 
+        ],
         dest: 'dist/general/image/'
       }
     ]
-  }, 
-  
+  },
+
   "heart-walk": {
     files: [
       {
-        expand: true, 
-        cwd: 'src/heart-walk/image/', 
+        expand: true,
+        cwd: 'src/heart-walk/image/',
         src: [
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
-        ], 
+        ],
         dest: 'dist/heart-walk/image/'
       }
     ]
-  }, 
-  
+  },
+
   "youth-markets": {
     files: [
       {
-        expand: true, 
-        cwd: 'src/youth-markets/image/', 
+        expand: true,
+        cwd: 'src/youth-markets/image/',
         src: [
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
-        ], 
+        ],
         dest: 'dist/youth-markets/image/'
       }
     ]
-  }, 
-  
+  },
+
   "ym-primary": {
     files: [
       {
-        expand: true, 
-        cwd: 'src/ym-primary/image/', 
+        expand: true,
+        cwd: 'src/ym-primary/image/',
         src: [
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
           'prizes/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
           'prizes2020/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
           'prizes2021/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}',
           'fy21/*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
-        ], 
+        ],
         dest: 'dist/ym-primary/image/'
       }
     ]
-  }, 
-  
+  },
+
   "middle-school": {
     files: [
       {
-        expand: true, 
-        cwd: 'src/middle-school/image/', 
+        expand: true,
+        cwd: 'src/middle-school/image/',
         src: [
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
-        ], 
+        ],
         dest: 'dist/middle-school/image/'
       }
     ]
-  }, 
-  
+  },
+
   "high-school": {
     files: [
       {
-        expand: true, 
-        cwd: 'src/high-school/image/', 
+        expand: true,
+        cwd: 'src/high-school/image/',
         src: [
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
-        ], 
+        ],
         dest: 'dist/high-school/image/'
       }
     ]
-  }, 
-  
+  },
+
   "district-heart": {
     files: [
       {
-        expand: true, 
-        cwd: 'src/district-heart/image/', 
+        expand: true,
+        cwd: 'src/district-heart/image/',
         src: [
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
-        ], 
+        ],
         dest: 'dist/district-heart/image/'
       }
     ]
   },
-  
+
   "nchw": {
     files: [
       {
@@ -112,7 +112,7 @@ module.exports = {
       }
     ]
   },
-  
+
   "heartchase": {
     files: [
       {
@@ -125,7 +125,7 @@ module.exports = {
       }
     ]
   },
-  
+
   "cyclenation": {
     files: [
       {
@@ -161,6 +161,19 @@ module.exports = {
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
         ],
         dest: 'dist/fieldday/image/'
+      }
+    ]
+  },
+
+  "heartwalklawyers": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/heartwalklawyers/image/',
+        src: [
+          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
+        ],
+        dest: 'dist/heartwalklawyers/image/'
       }
     ]
   }

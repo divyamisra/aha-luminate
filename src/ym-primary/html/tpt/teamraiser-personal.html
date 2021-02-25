@@ -102,7 +102,13 @@
         <h2 class="ym-headline h3">
           Check Out My Badges
         </h2>
-        <div class="ym-badges__item" ng-repeat="prize in prizes" ng-cloak> <!--  ng-repeat="prize in prizes | limitTo: 3" -->
+        <div class="ym-badges__item" ng-if="prizesEarned == prizes.length"  ng-cloak>
+          <div class="ym-badge__item">
+            <img class="img-responsive" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/finns_mission_completed.png" alt="Finn's Mission is Completed">
+            <span>Completed Finn's Mission!</span> <span class="sr-only">(earned)</span>
+          </div>
+        </div>
+        <div class="ym-badges__item" ng-repeat="prize in prizes | filter: {status: 1}" ng-cloak> <!--  ng-repeat="prize in prizes | limitTo: 3" -->
           <div class="ym-badge__item" ng-if="prize.earned" ng-cloak>
             <img class="img-responsive" ng-src="//cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/{{prize.id}}_delivered.png" alt="{{prize.label}}">
             <span ng-bind-html="prize.label"></span> <span class="sr-only">(earned)</span>
@@ -131,7 +137,7 @@
               I have a
               <span class="challenge-day-count">{{challengeCompleted}}</span>
               day streak
-              <span ng-if="challengeId == '1'" ng-cloak>for being kind!</span>
+              <span ng-if="challengeId == '1'" ng-cloak>for being ready!</span>
               <span ng-if="challengeId == '2'" ng-cloak>for moving more!</span>
               <span ng-if="challengeId == '3'" ng-cloak>for choosing water!</span>
             </p>

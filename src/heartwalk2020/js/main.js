@@ -86,7 +86,22 @@
         var evID = $('body').data('fr-id') ? $('body').data('fr-id') : null;
         var dfID = $('body').data('df-id') ? $('body').data('df-id') : null;
         var consID = $('body').data('cons-id') ? $('body').data('cons-id') : null;
+        var eventDate = $('body').data('ev-date') ? new Date($('body').data('ev-date')) : null;
+        if (eventDate != null) {
+           eventDate.setDate(eventDate.getDate() + 15);
+        }
+        var currDate = $('body').data('curr-date') ? new Date($('body').data('curr-date')) : null;
+        var fourWeek = $('body').data('ev-date') ? new Date($('body').data('ev-date')) : null;
+        if (fourWeek != null) {
+           fourWeek.setDate(fourWeek.getDate() - 30);
+        }
 
+        var motion_username = 'heartwalkapi';
+        var motion_password = 'toYEaJuV98VJdIEn'; 
+        var motionDb = 'ahahw';
+        var motion_event = evID;
+        var motion_urlPrefix = (isProd) ? 'loadprod' : 'load';
+        
         function getURLParameter(url, name) {
             return (RegExp(name + '=' + '(.+?)(&|$)').exec(url) || [, null])[1];
         }
@@ -94,6 +109,14 @@
         var currentUrl = window.location.href;
         var searchType = getURLParameter(currentUrl, 'search_type');
         var isCrossEventSearch = getURLParameter(currentUrl, 'cross_event');
+
+        if (getURLParameter(currentUrl, 'demo') == "true") {
+           //override to test bm
+           motion_username = 'motionapi';
+           motion_password = 'jPOHc5J4qMVVSj7P'; 
+           motionDb = 'democdsb'; 
+           motion_event = 1061;
+        }
 
         var skipLink = document.getElementById('skip-main');
 
@@ -331,7 +354,6 @@
                             });
 
                             $('.js--company-results-container').removeAttr('hidden');
-                            $('.js--company-results-container').removeAttr('hidden');
                         }
                     },
                     error: function (response) {
@@ -429,91 +451,97 @@
 
         // Get events by zip
 
-        cd.getEventsByDistance = function (zipCode) {
-            $('.js--no-event-results').addClass('d-none');
-            $('.js--loading').show();
+    cd.getEventsByDistance = function (zipCode) {
+      var pastEvents = [];
+      $('.js--no-event-results').addClass('d-none');
+      $('.js--loading').show();
+      luminateExtend.api({
+        api: 'teamraiser',
+        data: 'method=getTeamraisersByDistance' +
+          '&starting_postal=' + zipCode +
+          '&distance_units=mi' +
+          '&search_distance=200' +
+          '&event_type=' + eventType +
+          '&response_format=json&list_page_size=499&list_page_offset=0&list_sort_column=distance&list_ascending=true',
+        callback: {
+          success: function (response) {
+            if (response.getTeamraisersResponse.totalNumberResults > '0') {
+              $('.js--loading').hide();
+              var events = luminateExtend.utils.ensureArray(response.getTeamraisersResponse.teamraiser);
+              var totalEvents = parseInt(response.getTeamraisersResponse.totalNumberResults);
 
-            luminateExtend.api({
-                api: 'teamraiser',
-                data: 'method=getTeamraisersByDistance' +
-                    '&starting_postal=' + zipCode +
-                    '&distance_units=mi' +
-                    '&search_distance=200' +
-                    '&event_type=' + eventType +
-                    '&response_format=json&list_page_size=499&list_page_offset=0&list_sort_column=event_date&list_ascending=true',
-                callback: {
-                    success: function (response) {
-                        if (response.getTeamraisersResponse.totalNumberResults > '0') {
-                            $('.js--loading').hide();
-                            var events = luminateExtend.utils.ensureArray(response.getTeamraisersResponse.teamraiser);
-                            var totalEvents = parseInt(response.getTeamraisersResponse.totalNumberResults);
-
-                            if ($.fn.DataTable) {
-                                if ($.fn.DataTable.isDataTable('#eventResultsTable')) {
-                                    $('#eventResultsTable').DataTable().destroy();
-                                }
-                            }
-                            $('#eventResultsTable tbody').empty();
-
-                            $('.js--num-event-results').text((totalEvents === 1 ? '1 Result' : totalEvents + ' Results'));
-
-                            $(events).each(function (i, event) {
-                                var eventDate = luminateExtend.utils.simpleDateFormat(event.event_date,
-                                    'EEE, MMM d, yyyy');
-                                var eventTimestamp = new Date(event.event_date);
-                                var eventStatus = event.status;
-                                var acceptsRegistration = event.accepting_registrations;
-
-                                if (screenWidth >= 768) {
-                                    var eventRow = '<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' +
-                                        event.greeting_url + '">' + event.name + '</a></td><td data-order="' + event.event_date + '">' + eventDate + '</td><td data-order="' + parseFloat(event.distance) + '">' + event.distance + 'mi</td><td><a href="' + event.greeting_url + '" aria-label="More details about ' + event.name + '" class="btn btn-secondary btn-block btn-rounded">Details</a></td><td class="col-cta">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=heartwalk_register&fr_id=' + event.id + '" aria-label="Register for ' + event.name + '" class="btn btn-primary btn-block btn-rounded">Register</a>' : 'Registration Closed') + '</td></tr>';
-                                } else {
-                                    $('#eventResultsTable thead').remove();
-                                    $('.js--event-results-rows').addClass('mobile')
-
-                                    var eventRow = '<tr><td><table><tr' + (i > 10 ? ' class="d-none"' : '') + '><td>Event Name</td><td><a href="' +
-                                        event.greeting_url + '">' + event.name + '</a></td></tr>' +
-                                        '</td></tr><tr><td>Date</td><td>' + eventDate + '</td></tr><tr><td>Distance</td><td>' + event.distance + 'mi</td></tr><tr><td colspan="2" class="text-center">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=heartwalk_register&fr_id=' + event.id + '" class="btn btn-primary btn-block btn-rounded" title="Register for ' + event.name + '" aria-label="Register for ' + event.name + '">Register</a>' : 'Registration Closed') + '</td></tr></table></td></tr>';
-                                }
-
-
-                                if (eventStatus === '1' || eventStatus === '2' || eventStatus === '3') {
-                                    $('.js--event-results-rows').append(eventRow);
-                                }
-                            });
-
-                            if (totalEvents > 10) {
-                                $('.js--more-event-results').removeAttr('hidden');
-                            }
-
-                            $('.js--more-event-results').on('click', function (e) {
-                                e.preventDefault();
-                                $('.js--event-results-rows tr').removeClass('d-none');
-                                $(this).attr('hidden', true);
-                                $('.js--end-event-list').removeAttr('hidden');
-                            });
-                            if (screenWidth >= 768) {
-                                $('#eventResultsTable').DataTable({
-                                    "paging": false,
-                                    "searching": false,
-                                    "info": false
-                                });
-                            }
-                            $('.dataTables_length').addClass('bs-select');
-
-                            $('.js--event-results-container').removeAttr('hidden');
-                        } else {
-                            $('.js--loading').hide();
-                            $('.js--no-event-results').removeClass('d-none');
-                        }
-                    },
-                    error: function (response) {
-                        $('.js--loading').hide();
-                    }
+              if ( $.fn.DataTable ) {
+                if ( $.fn.DataTable.isDataTable('#eventResultsTable') ) {
+                  $('#eventResultsTable').DataTable().destroy();
                 }
-            });
-        };
-        // END getEventsByDistance
+              }
+              $('#eventResultsTable tbody').empty();
+
+              $('.js--num-event-results').text((totalEvents === 1 ? '1 Result' : totalEvents + ' Results'));
+
+              $(events).each(function (i, event) {
+                var eventDate = luminateExtend.utils.simpleDateFormat(event.event_date,
+                  'EEE, MMM d, yyyy');
+                var eventTimestamp = new Date(event.event_date);
+                var eventStatus = event.status;
+                var acceptsRegistration = event.accepting_registrations;
+
+                if (screenWidth >= 768) {
+                var eventRow = '<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' +
+                event.greeting_url + '">' + event.name + '</a></td><td data-order="' + event.event_date + '">' + eventDate + '</td><td data-order="' + parseFloat(event.distance) + '">' + event.distance + 'mi</td><td><a href="' + event.greeting_url + '" aria-label="More details about ' + event.name + '" class="btn btn-secondary btn-block btn-rounded">Details</a></td><td class="col-cta">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=heartwalk_register&fr_id=' + event.id + '" aria-label="Register for ' + event.name + '" class="btn btn-primary btn-block btn-rounded">Register</a>' : 'Registration Closed') + '</td></tr>';
+              } else {
+                $('#eventResultsTable thead').remove();
+                $('.js--event-results-rows').addClass('mobile')
+
+                var eventRow = '<tr><td><table><tr' + (i > 10 ? ' class="d-none"' : '') + '><td>Event Name</td><td><a href="' +
+                event.greeting_url + '">' + event.name + '</a></td></tr>' +
+                  '</td></tr><tr><td>Date</td><td>' + eventDate + '</td></tr><tr><td>Distance</td><td>' + event.distance + 'mi</td></tr><tr><td colspan="2" class="text-center">' + (acceptsRegistration === 'true' ? '<a href="SPageServer/?pagename=heartwalk_register&fr_id=' + event.id + '" class="btn btn-primary btn-block btn-rounded" title="Register for ' + event.name + '" aria-label="Register for ' + event.name + '">Register</a>' : 'Registration Closed') + '</td></tr></table></td></tr>';
+              }
+
+                if (eventStatus === '1' || eventStatus === '2') {
+                  $('.js--event-results-rows').append(eventRow);
+                } else if (eventStatus === '3') {
+                  pastEvents.push(eventRow);
+                }
+              });
+
+              $(pastEvents).each(function (i, pastEvent) {
+                $('.js--event-results-rows').append(pastEvent);
+              });
+              if(totalEvents > 10) {
+                $('.js--more-event-results').removeAttr('hidden');
+              }
+
+              $('.js--more-event-results').on('click', function(e){
+                e.preventDefault();
+                $('.js--event-results-rows tr').removeClass('d-none');
+                $(this).attr('hidden', true);
+                $('.js--end-event-list').removeAttr('hidden');
+              });
+              if (screenWidth >= 768) {
+              $('#eventResultsTable').DataTable({
+                "paging":   false,
+                "searching":false,
+                "info":     false,
+                "order": []
+              });
+            }
+              $('.dataTables_length').addClass('bs-select');
+
+              $('.js--event-results-container').removeAttr('hidden');
+            } else {
+              $('.js--loading').hide();
+              $('.js--no-event-results').removeClass('d-none');
+            }
+          },
+          error: function (response) {
+            $('.js--loading').hide();
+            console.log('getEvents error: ' + response.errorResponse.message);
+          }
+        }
+      });
+    };
+    // END getEventsByDistance
 
         /***********************/
         /* THERMOMETER SCRIPTS */
@@ -726,6 +754,135 @@
             });
         };
 
+        /******************/
+        /* STEPS SCRIPTS */
+        /******************/
+        cd.getTopParticipantsSteps = function (eventId) {
+            var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=participant&list_size=5000';
+            var participantsFound = 0;
+            
+            $.ajax({ 
+                url: motionApiUrl,
+                async: true,
+                type:'GET',
+                dataType: 'json',
+                contentType: 'application/json',
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("Authorization", "Basic "+btoa(motion_username+':'+motion_password));
+                },
+                success: function(response){
+                    if (response.activities != undefined) {
+                        $(response.activities).each(function(){
+                            if (participantsFound < 5) {
+                                var participantName = this.name;
+                                var steps = parseFloat(this.total).formatMoney(0);
+                                var participantPage = "https://" + ((isProd) ? "www2" : "dev2") + ".heart.org/site/TR?px="+this.id+"&pg=personal&fr_id="+eventId;
+
+                                var topWalkerHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a title="' + participantName + ' Minutes" href="' + participantPage + '">' + participantName + '</a></div><div class="raised"><strong>' + steps + '</strong><br/>Minutes</div></div></li>';
+                                $('.js--walker-top-list-steps ul').append(topWalkerHtml);
+                            }
+                            participantsFound++;
+                        });
+                        $('.js--num-participants-steps').text(participantsFound);
+                    }
+                },
+                error: function(err) {
+                    console.log('getMotionActivityRoster err', err);
+                }
+            });
+        };
+        // END TOP PARTICIPANTS STEPS
+
+        // BEGIN TOP TEAMS STEPS
+        cd.getTopTeamsSteps = function (eventId) {
+            var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=team&list_size=5000';
+            var teamsFound = 0;
+            
+            $.ajax({ 
+                url: motionApiUrl,
+                async: true,
+                type:'GET',
+                dataType: 'json',
+                contentType: 'application/json',
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("Authorization", "Basic "+btoa(motion_username+':'+motion_password));
+                },
+                success: function(response){
+                    if (response.activities != undefined) {
+                        $(response.activities).each(function(){
+                            if (teamsFound < 5) {
+                                var teamName = this.name;
+                                var steps = parseFloat(this.total).formatMoney(0);
+                                var topTeamRow = '<li><div class="d-flex"><div class="flex-grow-1"><a title="' + teamName + ' Minutes" href="TR/?team_id=' + this.id + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a></div><div class="raised"><strong>' + steps + '</strong><br/>Minutes</div></div></li>';
+                                $('.js--team-top-list-steps ul').append(topTeamRow);
+                            }
+                            teamsFound++;
+                        });
+                        $('.js--num-teams-steps').text(teamsFound);
+                    }
+                },
+                error: function(err) {
+                    console.log('getMotionActivityRoster err', err);
+                }
+            });
+        };
+
+        // END TOP TEAMS STEPS
+
+        // BEGIN TOP COMPANIES STEPS
+        cd.getTopCompaniesSteps = function (eventId) {
+            var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=company&list_size=5000';
+            var companiesFound = 0;
+            
+            $.ajax({ 
+                url: motionApiUrl,
+                async: true,
+                type:'GET',
+                dataType: 'json',
+                contentType: 'application/json',
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader("Authorization", "Basic "+btoa(motion_username+':'+motion_password));
+                },
+                success: function(response){
+                    if (response.activities != undefined) {
+                        $(response.activities).each(function(){
+                            if (companiesFound < 5) {
+                                var companyName = this.name;
+                                var steps = parseFloat(this.total).formatMoney(0);
+                                var topCompanyRow = '<li><div class="d-flex"><div class="flex-grow-1"><a title="' + companyName + ' Minutes" href="TR/?company_id=' + this.id + '&amp;pg=company&amp;fr_id=' + evID + '">' + companyName + '</a></div><div class="raised"><strong>' + steps + '</strong><br/>Minutes</div></div></li>';
+                                $('.js--company-top-list-steps ul').append(topCompanyRow);
+                            }
+                            companiesFound++;
+                        });
+                        $('.js--num-companies-steps').text(companiesFound);
+                    }
+                },
+                error: function(err) {
+                    console.log('getMotionActivityRoster err', err);
+                }
+            });
+            /*
+            luminateExtend.api({
+                api: 'teamraiser',
+                data: 'method=getCompaniesByInfo&fr_id=' + eventId +
+                    '&include_cross_event=true&list_sort_column=total&list_ascending=false&list_page_size=5&response_format=json',
+                callback: {
+                    success: function (response) {
+                        if (!$.isEmptyObject(response.getCompaniesResponse)) {
+                            var topCompanies = luminateExtend.utils.ensureArray(response.getCompaniesResponse
+                                .company);
+                            var totalCompanies = parseInt(response.getCompaniesResponse.totalNumberResults);
+                            $('.js--num-companies-steps').text(totalCompanies);
+                        }
+                    },
+                    error: function (response) {
+                        // console.log('getTopCompanies error: ' + response.errorResponse.message);
+                    }
+                }
+            });
+            */
+        };
+
         // EXPANDABLE DONOR ROLL
         $('.js--honor-roll-expander').on('click', function (e) {
             if ($(this).children('i').hasClass('fa-chevron-down')) {
@@ -899,6 +1056,15 @@
             cd.getCompanyList(evID);
             cd.getTopCompanies(evID);
 
+            if (currDate >= fourWeek && currDate <= eventDate) {
+                //build steps leaderboard
+                cd.getTopParticipantsSteps(evID);
+                cd.getTopTeamsSteps(evID);
+                cd.getTopCompaniesSteps(evID);
+            } else {
+                $('.top-steps').hide();
+            }
+            
             // Walker Search
             $('.js--greeting-walker-search-form').on('submit', function (e) {
                 e.preventDefault();
@@ -1069,7 +1235,22 @@
                                 videoEmbedHtml = '<iframe class="embed-responsive-item" src="' + personalVideoEmbedUrl + '" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                             } else {
                                 // TODO - show default video
-                                videoEmbedHtml = '<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/b3K5LcaPzvE?wmode=opaque&amp;rel=0&amp;showinfo=0" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                                if (isProd) {
+                                  if (evID === 5612 || evID === 4854 || evID === 5731) {
+                                    videoEmbedHtml = '<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/TnjvKjkANPI?wmode=opaque&amp;rel=0&amp;showinfo=0" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                                  }
+                                  else {
+                                    videoEmbedHtml = '<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/b3K5LcaPzvE?wmode=opaque&amp;rel=0&amp;showinfo=0" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                                  }
+                                }
+                                else {
+                                  if (evID === 4412 || evID === 4413 || evID === 4414) {
+                                    videoEmbedHtml = '<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/TnjvKjkANPI?wmode=opaque&amp;rel=0&amp;showinfo=0" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                                  }
+                                  else {
+                                    videoEmbedHtml = '<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/b3K5LcaPzvE?wmode=opaque&amp;rel=0&amp;showinfo=0" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                                  }
+                                }                                
                             }
                             $('.js--personal-video-container').append(videoEmbedHtml);
                         },
@@ -1641,6 +1822,18 @@
         }
     });
 }(jQuery));
+
+Number.prototype.formatMoney = function (c, d, t) {
+  var n = this,
+    c = isNaN(c = Math.abs(c)) ? 2 : c,
+    d = d == undefined ? "." : d,
+    t = t == undefined ? "," : t,
+    s = n < 0 ? "-" : "",
+    i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))),
+    j = (j = i.length) > 3 ? j % 3 : 0;
+  return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d +
+    Math.abs(n - i).toFixed(c).slice(2) : "");
+};
 
 var cdSortByColumnNumber = 1;
 var cdSortByText = 'Amount Raised';

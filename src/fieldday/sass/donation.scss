@@ -18,13 +18,44 @@
      white-space: nowrap;
 }
 
-main {
-    background-image: url("/images/content/pagebuilder/fd_hero_desktop.jpg");
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-color: $gray-400;
-    padding: 48px 76px 67px;
+.app_donation {
+  background-color: #900;
+  background-image: url(https://www2.heart.org/images/content/pagebuilder/background-squiggles.png);
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-size: 70%;
+
+  header {
+    background-color: transparent;
+    background-image: none;
+    nav{
+      background-color: transparent;
+      &.mobile-utility-nav {
+        background-color: #eee;
+      }
+    }
+  }
+
+  main {
+    background-color: transparent;
+    padding: 48px 20px 67px;
+  }
+
+  .nav-item--about, .nav-item--find {
+    display: none!important;
+  }
+
+  .global-sponsors, .mobile-utility-nav{
+    display: none;
+  }
+
+  &.logged-in {
+    .mobile-utility-nav {
+      display: none;
+    }
+  }
 }
+
 
  a#skip-main:hover, a#skip-main:active, a#skip-main:focus {
      left: 0;
@@ -82,7 +113,7 @@ div.html-caption-container {
      margin-right: 20px;
 }
 .container > .row {
-    padding: 0 25px;
+    padding: 0 7px;
 }
  .donation-form-content {
      background-color: #ffffff;
@@ -231,6 +262,18 @@ div.responsive select, select[size] {
      max-height: 45px;
      background: #ffffff;
      background-color: #ffffff;
+}
+@media all and (max-width: 480px) {
+  #tr_recognition_namerec_namename {
+    width: 200px;
+  }
+ div.responsive input[type="text"],
+ div.responsive input[type="number"],
+ div.responsive input[type="password"],
+ div.responsive textarea, select,
+ div.responsive select, select[size] {
+   width: 220px;
+ }
 }
 div.responsive .donation-level-user-entered input[type="text"] {
 	margin: 0 0 0 15px;
@@ -619,8 +662,9 @@ body.ie11 label + div.donation-level-user-entered {
 }
 /* checked mark aspect changes */
 input[type=radio]:focus {
-    /*outline: 5px auto -webkit-focus-ring-color;*/
-    outline: 2px solid #c10e21;
+    outline: 2px solid $outline-blue;
+    outline-offset: 2px;
+    /*outline: 2px solid #c10e21;*/
 }
 [type="checkbox"]:not(:checked) + label:after,
 [type="radio"]:not(:checked) + label:after,
@@ -668,8 +712,8 @@ input[type=radio]:focus {
 [type="radio"]:focus + .form-input-label-block > label:before,
 [type="checkbox"]:checked:focus + .form-input-label-block > label:before,
 [type="checkbox"]:not(:checked):focus + .form-input-label-block > label:before {
-     border: 1px solid -webkit-focus-ring-color;
-     outline: 5px auto -webkit-focus-ring-color;
+     outline-offset: 2px;
+     outline: 2px solid $outline-blue;
 }
  .designated-giving-recurring-row input:checked, .designated-giving-recurring-row input:not(:checked) {
      left: 0;

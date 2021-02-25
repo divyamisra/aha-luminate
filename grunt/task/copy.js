@@ -4,108 +4,108 @@ module.exports = {
   "general-images": {
     files: [
       {
-        expand: true, 
-        cwd: 'src/general/image/', 
+        expand: true,
+        cwd: 'src/general/image/',
         src: [
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
-        ], 
+        ],
         dest: 'dist/general/image/'
       }
     ]
-  }, 
-  
+  },
+
   "heart-walk-translations": {
     files: [
       {
-        expand: true, 
-        cwd: 'src/heart-walk/translation/', 
+        expand: true,
+        cwd: 'src/heart-walk/translation/',
         src: [
-          '*.json', 
+          '*.json',
           '**/*.json'
-        ], 
+        ],
         dest: 'dist/heart-walk/translation/'
       }
     ]
-  }, 
-  
+  },
+
   "heart-walk-images": {
     files: [
       {
-        expand: true, 
-        cwd: 'src/heart-walk/image/', 
+        expand: true,
+        cwd: 'src/heart-walk/image/',
         src: [
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
-        ], 
+        ],
         dest: 'dist/heart-walk/image/'
       }
     ]
-  }, 
-  
+  },
+
   "youth-markets-images": {
     files: [
       {
-        expand: true, 
-        cwd: 'src/youth-markets/image/', 
+        expand: true,
+        cwd: 'src/youth-markets/image/',
         src: [
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
-        ], 
+        ],
         dest: 'dist/youth-markets/image/'
       }
     ]
-  }, 
-  
+  },
+
   "ym-primary-images": {
     files: [
       {
-        expand: true, 
-        cwd: 'src/ym-primary/image/', 
+        expand: true,
+        cwd: 'src/ym-primary/image/',
         src: [
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
-        ], 
+        ],
         dest: 'dist/ym-primary/image/'
       }
     ]
-  }, 
-  
+  },
+
   "middle-school-images": {
     files: [
       {
-        expand: true, 
-        cwd: 'src/middle-school/image/', 
+        expand: true,
+        cwd: 'src/middle-school/image/',
         src: [
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
-        ], 
+        ],
         dest: 'dist/middle-school/image/'
       }
     ]
-  }, 
-  
+  },
+
   "high-school-images": {
     files: [
       {
-        expand: true, 
-        cwd: 'src/high-school/image/', 
+        expand: true,
+        cwd: 'src/high-school/image/',
         src: [
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
-        ], 
+        ],
         dest: 'dist/high-school/image/'
       }
     ]
-  }, 
-  
+  },
+
   "district-heart-images": {
     files: [
       {
-        expand: true, 
-        cwd: 'src/district-heart/image/', 
+        expand: true,
+        cwd: 'src/district-heart/image/',
         src: [
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
-        ], 
+        ],
         dest: 'dist/district-heart/image/'
       }
     ]
   },
-  
+
   "nchw-images": {
     files: [
       {
@@ -118,7 +118,7 @@ module.exports = {
       }
     ]
   },
-  
+
   "nchw-scripts": {
     files: [
       {
@@ -131,7 +131,7 @@ module.exports = {
       }
     ]
   },
-  
+
   "heartchase-images": {
     files: [
       {
@@ -144,7 +144,7 @@ module.exports = {
       }
     ]
   },
-  
+
   "heartchase-scripts": {
     files: [
       {
@@ -157,7 +157,7 @@ module.exports = {
       }
     ]
   },
-  
+
   "cyclenation-scripts": {
     files: [
       {
@@ -195,5 +195,19 @@ module.exports = {
         dest: 'dist/fieldday/js/'
       }
     ]
+  },
+
+  "heartwalklawyers-scripts": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/heartwalklawyers/js/',
+        src: [
+          '*.js'
+        ],
+        dest: 'dist/heartwalklawyers/js/'
+      }
+    ]
   }
+
 }

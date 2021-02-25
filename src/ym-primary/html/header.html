@@ -32,8 +32,8 @@
                   Students
                 </a>
               </li>
-              <li>
-                <a href="https://www.heart.org/en/professional/educator/school-programs/elementary-schools">
+              <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+                <a href="http://www.heart.org/educationalresources">
                   Teachers
                 </a>
               </li>
@@ -157,8 +157,8 @@
                       For Students
                     </a>
                   </li>
-                  <li>
-                    <a href="https://www.heart.org/en/professional/educator/school-programs/elementary-schools">
+                  <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+                    <a href="http://www.heart.org/educationalresources">
                       For Teachers
                     </a>
                   </li>

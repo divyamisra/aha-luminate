@@ -116,6 +116,27 @@
   })();
 </script>
 
+[[?xpersonalx::x[[S334:pg]]x::
+  <script>
+    if(window.location.href.indexOf('ecard_linktrack=') > 0) {
+      var uparts = window.location.href.split('ecard_linktrack=');
+      uparts = uparts[1].split('&');
+      
+      var scriptTag = document.createElement('script');
+      [[?xheartdevx::x[[S29:TABLE_PREFIX]]x::
+        scriptTag.src = 'https://tools.heart.org/aha_ahc21_dev/visitlink_record.php?ecard_linktrack=' + uparts[0];
+      ::
+        [[?xheartnewx::x[[S29:TABLE_PREFIX]]x::
+          scriptTag.src = 'https://tools.heart.org/aha_ahc21_testing/visitlink_record.php?ecard_linktrack=' + uparts[0];
+        ::
+          scriptTag.src = 'https://tools.heart.org/aha_ahc21/visitlink_record.php?ecard_linktrack=' + uparts[0];
+        ]]
+      ]]
+      document.body.appendChild(scriptTag);
+    }
+  </script>
+::]]
+
 <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5789174373b4a027&amp;async=1"></script>
 <script>
   var addthis_config = {

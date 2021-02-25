@@ -1,0 +1,264 @@
+.pg_entry {
+  main {
+    background-image: url("/images/content/pagebuilder/hw_hero_desktop.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-color: $gray-400;
+    padding:0px;
+
+    & > .container {
+  	  padding: 0 !important;
+	  background: none;
+    }
+  }
+
+  
+  /* Event information box at top of page */
+  .event-info {
+      padding: 48px 72px 67px;
+      margin: 50px 0 0 0;
+      width: 720px;
+
+      h1 {
+        font-size: 1.97rem;
+        margin: 0;
+      }
+
+      h3 {
+        font-family: $font-family-bold;
+        margin: 0 0 21px;
+      }
+
+      .event-name, .event-date {
+        letter-spacing: 0.7px;
+      }
+
+      .event-name, .info-columns a, .info-columns .fas {
+        color: $red;
+      }
+
+      .info-columns {
+        margin: 31px 0 0 0;
+
+        .event-info-collapse {
+          &:hover {
+            a, i {
+              color: $red-deep;
+            }
+          }
+        }
+
+        h3, p {
+          line-height: 1.2;
+        }
+
+        h3, p, a, .fas {
+          font-size: 1rem;
+        }
+
+        a {
+          line-height: 1;
+        }
+
+        p {
+          margin: 0 0 17px;
+        }
+      }
+
+      .event-date {
+        margin: 1px 0 31px;
+        font-size: 1.44rem;
+        font-family:$font-family-medium;
+        font-weight: normal;
+      }
+
+      .btn {
+        max-width: 260px;
+        padding: 13px 0;
+        font-size: 1rem;
+      }
+
+      .fundraising-amounts {
+        margin-top: 30px;
+        margin-bottom: 0px;
+        border-top: solid 1px $gray-200;
+
+        span {
+          font-size: 1.12rem;
+          margin: 14px 0 -3px;
+        }
+
+        .amount {
+          font-size: 2rem;
+          font-family: $font-family-bold;
+          line-height: 1.4;
+          margin: 0;
+        }
+      }
+    }
+
+  .top-lists-container {
+    margin-top: 61px;
+    padding: 0 0 91px;
+
+    h2 {
+      font-size: 2rem;
+      margin: 0 0 24px;
+    }
+    ol,ul{
+      list-style:none;
+    }
+    .top-list {
+      background-color: $white;
+      padding: 0;
+
+      h3 {
+        font-size: 1.4rem;
+        color: $white;
+        padding: 38px 43px 37px 45px;
+        font-family: $font-family-bold;
+        margin: 0;
+
+        .text-small {
+          margin: 6px 0 0 0;
+          font-size: 1rem;
+        }
+      }
+
+      ul {
+        height: 380px;
+      }
+
+      li {
+        border-bottom: solid 2px $gray-700;
+        a {
+          font-size: 1rem;
+          padding: 26px 0 23px 47px;
+          line-height: 1.6;
+          display: block;
+        }
+      }
+
+      .raised {
+        font-size: 0.9rem;
+        padding: 15px 58px 0 0;
+        text-align: right;
+      }
+
+      .raised strong {
+        font-size: 0.9rem;
+        font-family: $font-family-bold;
+      }
+
+      .top-list-footer {
+        padding: 30px 0;
+
+        .btn-tertiary {
+          width: 100%;
+          max-width: 263px;
+          padding: 5px 0px !important;
+        }
+      }
+    }
+  }
+
+  .about-event {
+    padding: 0 0 80px;
+
+    .about-image-box {
+      padding: 0 0 0 0;
+      margin: 128px 0 0 12px;
+      width: 29%;
+      float: left;
+    }
+
+    .bg-black-gradient {
+      @include two-color-gradient(#495057, $black);
+      margin: 0 0 0 0;
+      padding: 25px 68px 13px;
+
+      .btn {
+        width: 100%;
+        padding: 12px 0;
+        margin: 0 0 18px;
+      }
+    }
+
+    .about-content-area {
+      padding: 130px 0 0 135px;
+      width: 69%;
+      float: left;
+
+      h2 {
+        margin: 0 0 25px;
+      }
+    }
+  }
+
+  .why-we-walk {
+    padding: 111px 30px 107px;
+
+    h2 {
+      margin: 0 0 20px;
+    }
+
+    img {
+      margin: 0 0 0 -8px;
+    }
+  }
+
+  .about-event p, .why-we-walk p {
+    line-height: 1.4;
+    margin: 0 0 22px;
+  }
+
+  .register-today {
+    background-image: url("https://www2.heart.org/images/content/pagebuilder/hw_hero_desktop.jpg");
+    padding: 55px 134px 69px;
+    margin: 80px 0 0;
+
+    h2 {
+      margin: 30px 0 18px;
+    }
+
+    p {
+      font-size: 1.3rem;
+      letter-spacing: 1.5px;
+    }
+
+    .btn {
+      margin: 18px 0 0;
+      padding: 11px;
+      font-size: 1.2rem;
+      max-width: 258px;
+      width: 100%;
+    }
+  }
+}
+
+.multi-event {
+  .multi-event-info-toggler {
+    display: block;
+    cursor: pointer;
+    margin: 20px 0 10px;
+    font-size: 1rem;
+    border-bottom: solid 1px $gray-200;
+    padding: 10px 0;
+
+    &.open {
+      border-bottom: none !important;
+      border-top: solid 1px $gray-200;
+    }
+
+    .fas {
+      color: $red;
+    }
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .top-list {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+}

@@ -9,6 +9,7 @@
 [[S51:reus_cn_alertbar]]
 <!-- INSERT INTO BODY OF WEBSITE AS NEXT ELEMENT AFTER <HEADER ROLE="BANNER"> ELEMENT END -->	
 
+[[S51:reus_cn_thermometer]]
 
 <!-- HEADER AND HERO -->
 <header class="header">
@@ -379,6 +380,13 @@
               ::
                 <!-- FULL -->
                 <ul class="navbar-nav">
+                  [[?x[[S334:pagename]]x::xcn_homex::::
+                  <li class="nav-item home">
+                      <a class="nav-link" href="TR?pg=entry&fr_id=[[S334:fr_id]]" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav home']);">
+                       Home
+                     </a>
+                  </li>
+                  ]]
                   <li class="nav-item register">
                     [[?x[[S334:pagename]]x::xcn_homex::
                       <!-- landing page, scroll to event search form -->
@@ -394,9 +402,21 @@
                       ::
                         <!-- on a tr page, direct to general reg step for that particular event -->
                         [[?x1x2x::x[[E42:[[S334:fr_id]]:status]]x::
-                        <a class="nav-link" href="SPageServer/?pagename=cn_register&amp;fr_id=[[S334:fr_id]]&amp;s_regType=" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav register']);">
-                          Register
-                        </a>
+                          [[?xx::x[[S1:user_name]]x::
+                            <a class="nav-link" href="SPageServer/?pagename=cn_register&amp;fr_id=[[S334:fr_id]]&amp;s_regType=" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav register']);">
+                              Register
+                            </a>
+                            ::
+                                [[?xTRUEx::x[[E48:[[S334:fr_id]]-[[S1:cons_id]]:if-has-participant-center]]x::
+                                <a class="nav-link" href="TRC?pg=center&fr_id=[[S334:fr_id]]" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav hq']);">
+                                  My HQ
+                                </a>
+                                ::
+                                <a class="nav-link" href="SPageServer/?pagename=cn_register&amp;fr_id=[[S334:fr_id]]&amp;s_regType=" onclick="_gaq.push(['_trackEvent', 'header', 'click', 'nav register']);">
+                                  Register
+                                </a>
+                                ]]
+                          ]]
                         ::]]
                       ]]
                     ]]

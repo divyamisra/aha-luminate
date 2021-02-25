@@ -15,7 +15,7 @@
             </a>
             <span ng-if="!selectContact || !contact.id">
               <span ng-if="contact.firstName">
-                {{contact.firstName}}{{contact.lastName ? ' ' + contact.lastName : ''}}{{contact.email ? ' &lt;' + contact.email + '&gt;' : ''}}
+                {{contact.firstName}}{{contact.lastName ? ' ' + contact.lastName : ''}}{{contact.email ? ' &lt;' + contact.email + '&gt;' : ''}} {{contact.grade ? ' (' + contact.grade + ')' : ''}}
               </span>
               <span ng-if="!contact.firstName">
                 &lt;{{contact.email}}&gt;

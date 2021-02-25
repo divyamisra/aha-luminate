@@ -1,3 +1,34 @@
+.ym-pc-student-view-text {
+  float: none;
+  width: auto !important;
+  margin: 0 3% 0 0;
+
+  @media (min-width: $screen-sm-min) {
+    width: auto !important;
+  }
+
+  p {
+    @media (min-width: $screen-sm-min) {
+      margin: 0 0 32px;
+    }
+  }
+  .ym-pc-student-view-image {
+    width: 115px;
+    margin: 0 0 15px 10px;
+
+    @media (min-width: $screen-sm-min) {
+      float: none;
+      width: 125px;
+      margin: 0 0 15px;
+    }
+    @media (min-width: $screen-lg-min) {
+      float: right;
+      width: 125px;
+      margin: 0 0 15px 10px;
+    }
+  }
+}
+
 .ym-pc-dashboard-progress-section .row .ym-pc-dashboard-progress-section__column {
     overflow: hidden;
 }
@@ -163,6 +194,11 @@ a.ym-pc-dashboard-download-certificates {
       @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
          height:750px;
       }
+	   
+	   g.finn-text text {
+	    font-family: "Luckiest Guy",cursive;
+	    font-size: 24px;
+	}
    }
    .agentk {
      max-width: 25%;
@@ -504,9 +540,10 @@ div[id^="taTextElement"]:focus {
 		margin-bottom: 20px;
 	}
 	.ym-pc-dashboard-livestream-images {
+		display:flex;
+		justify-content: space-around;
 		.pc-livestream-character {
 			max-width:210px;
-			margin-right:50px;
 			@media (max-width: 992px) {
 				max-width:130px;
 			}
@@ -514,6 +551,7 @@ div[id^="taTextElement"]:focus {
 		.pc-livestream-hearts {
 			max-height: 210px;
 			margin-bottom: 10px;
+			margin-left: 50px;
 			@media (max-width: 992px) {
 				max-height:130px;
 			}
@@ -524,14 +562,12 @@ div[id^="taTextElement"]:focus {
 		padding-top: 10px;
 		border-top: 1px solid #38b5bd;
 		overflow: hidden;
-		
-		a:nth-child(1) {
-			float:left;
-		}
-		a:nth-child(2) {
-			float:right;
-		}
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+
 		a {
+			margin-bottom: 10px;
 			@media (max-width: 480px) {
 				text-align: center;
 				float: none !important;
@@ -586,4 +622,21 @@ div[id^="taTextElement"]:focus {
        font-family: "Luckiest Guy",cursive;
        text-transform:uppercase;
     }
+}
+
+.play-circle {
+    position: absolute;
+    top: 2%;
+    left: 4%;
+    font-size: 24px;
+    border: 2px solid #c10e21;
+    padding: 5px 11px 5px 15px;
+    border-radius: 28px; 
+    display:none;
+}
+
+@media (min-width: 992px) {
+  .ym-pc-dashboard-bottom-section {
+	display:flex;
+  }
 }

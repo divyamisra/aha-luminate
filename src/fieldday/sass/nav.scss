@@ -33,7 +33,9 @@ padding: 0.625rem 1.25rem;
 
 #home, #find, #about {
   &:hover {
-    color: $white!important;
+    @include media-breakpoint-up(md) {
+      color: $white!important;
+    }
   }
 }
 .nav-wrapper {
@@ -215,7 +217,7 @@ nav {
           color: $black !important;
           text-decoration: none !important;
           border: none;
-          margin: 0 53px 32px 0;
+          margin: 0 30px 32px 0;
           &:hover {
             color: $red-deep!important;
             text-decoration: underline !important;
@@ -361,5 +363,16 @@ nav {
     margin: 0 20px 0 0;
     font-size: 1rem !important;
     font-weight: 600;
+  }
+}
+
+.nav-item--find {
+  a {
+    cursor: pointer;
+  }
+  &.open {
+    .dropdown-menu {
+      display: block;
+    }
   }
 }

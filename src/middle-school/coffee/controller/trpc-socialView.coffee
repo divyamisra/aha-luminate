@@ -6,9 +6,9 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
     console.log 'middle school'
     urlPrefix = ''
     if $scope.tablePrefix is 'heartdev'
-      urlPrefix = 'bfstage'
+      urlPrefix = 'load'
     else
-      urlPrefix = 'bfapps1'
+      urlPrefix = 'loadprod'
     consId = $scope.consId
     frId = $rootScope.frId
     auth = $rootScope.authToken

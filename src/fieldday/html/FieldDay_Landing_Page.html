@@ -1,7 +1,7 @@
 	<!-- CITIES NEAR YOU -->
 	<section class="event-city-search">
 		<div class="event-search-container container">
-			<h2 class="text-center pt-5 pb-4"><svg xmlns="http://www.w3.org/2000/svg" width="60.392" height="68.933" viewBox="0 0 60.392 68.933">
+			<h2 class="text-center pt-5 pb-4"><svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="60.392" height="68.933" viewBox="0 0 60.392 68.933">
 				<g id="Group_280" data-name="Group 280" transform="translate(-18.186 -24.839)">
 					<g id="Group_278" data-name="Group 278">
 						<g id="Group_277" data-name="Group 277">
@@ -18,14 +18,14 @@
 				<div class="form-group col-xs-12 col-md-5">
 					<form class="row ml-0 mr-0 pr-0 pl-0 js--zip-search">
 						<label for="zip-landing" class="sr-only">Search by Zip</label>
-						<input class="form-control col-xs-10 js--zip-search-val" id="zip-landing" name="zip-landing" placeholder="Search by Zip" type="text"> <button class="col-xs-2 event-zip-search-submit action-button search-submit" type="submit"><span class="sr-only">Search by Zip</span><i aria-hidden="true" class="fa fa-search"></i></button>
+						<input aria-controls="eventResults" class="form-control col-xs-10 js--zip-search-val" id="zip-landing" name="zip-landing" placeholder="Search by Zip" type="text"> <button class="col-xs-2 btn event-zip-search-submit action-button search-submit" type="submit"><span class="sr-only">Search by Zip</span><i aria-hidden="true" class="fa fa-search"></i></button>
 					</form>
 				</div>
 				<p class="form-group-divider col-xs-12 col-md-2 text-center">or</p>
 				<div class="form-group col-xs-12 col-md-5">
 					<form class="row no-gutters ml-0 mr-0 pr-0 pl-0 js--state-search">
 						<div class="col-xs-12 event-state-select-container">
-							<label class="sr-only" for="landing-state">Search by State</label> <select class="search form-control col-12 js--state-search-val" id="landing-state" name="landing-state" size="1">
+							<label class="sr-only" for="landing-state">Search by State</label> <select aria-controls="eventResults" class="search form-control col-12 js--state-search-val" id="landing-state" name="landing-state" size="1">
 								<option>
 									Search by State
 								</option>
@@ -182,17 +182,18 @@
 								<option value="WY">
 									WY
 								</option>
-							</select> <button class="sr-only js__state-search-submit" type="submit">Select state combo box collapsed</button>
+							</select>
+							<button class="event-state-select__button js__state-search-submit" type="submit"><i class="fas fa-caret-down" aria-hidden="true"></i><span class="sr-only">Select state combo box collapsed</span></button>
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
-		<div class="event-results container">
+		<div id="eventResults" class="event-results container">
 			<div class="js--loading py-4 text-center d-none">
 				Loading...
 			</div>
-			<div class="js--no-event-results alert alert-primary text-center col-md-8 offset-md-2 d-none" role="alert">
+			<div class="js--no-event-results alert alert-primary text-center col-md-8 offset-md-2 d-none" aria-atomic="true">
 				<span>We&rsquo;re not seeing anything on the horizon. Maybe try different search terms?</span>
 			</div>
 			<div class="event-results-wrapper container mt-3 text-center">
@@ -212,7 +213,7 @@
 	<section class="landing-participant-search">
 		<div class="container py-5">
 			<div class="d-flex justify-content-center align-items-center">
-				<h2><svg xmlns="http://www.w3.org/2000/svg" width="77.798" height="82.837" viewBox="0 0 77.798 82.837">
+				<h2><svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="77.798" height="82.837" viewBox="0 0 77.798 82.837">
 					<path id="Path_846" data-name="Path 846" d="M380.772-4239.725A17.28,17.28,0,0,0,363.494-4257a17.279,17.279,0,0,0-17.278,17.278,17.278,17.278,0,0,0,17.278,17.279,17.278,17.278,0,0,0,17.277-17.279Zm-17.278,15.406a15.426,15.426,0,0,1-15.405-15.406,15.424,15.424,0,0,1,15.405-15.4,15.424,15.424,0,0,1,15.4,15.4A15.426,15.426,0,0,1,363.494-4224.319Zm22.274-15.406A22.276,22.276,0,0,0,363.495-4262a22.275,22.275,0,0,0-22.275,22.275,22.273,22.273,0,0,0,21.286,22.25v3.864a4.844,4.844,0,0,0-3.905,4.748l0,12.179a4.839,4.839,0,0,0,4.84,4.838,4.841,4.841,0,0,0,4.84-4.838h0v-12.179a4.841,4.841,0,0,0-3.9-4.748v-3.861A22.272,22.272,0,0,0,385.768-4239.725Zm-19.361,30.862v12.179h0a2.968,2.968,0,0,1-2.965,2.964,2.969,2.969,0,0,1-2.968-2.964v-12.179a2.969,2.969,0,0,1,2.968-2.966A2.968,2.968,0,0,1,366.408-4208.863Zm-2.913-10.461a20.426,20.426,0,0,1-20.4-20.4,20.425,20.425,0,0,1,20.4-20.4,20.425,20.425,0,0,1,20.4,20.4A20.426,20.426,0,0,1,363.495-4219.324Z" transform="matrix(0.799, 0.602, -0.602, 0.799, -2795.226, 3198.433)"/>
 				</svg>
 	Looking for a Company or Participant?</h2>
@@ -230,7 +231,7 @@
 							</div>
 							<div class="col-12">
 								<div class="input-group input-group-lg">
-									<input class="form-control js--page-company-search-val" id="company-search-page" name="company-search-page" type="text">
+									<input aria-controls="participantSearchResults" class="form-control js--page-company-search-val" id="company-search-page" name="company-search-page" type="text">
 									<div class="input-group-append">
 										<button class="btn btn-primary" type="submit"><span class="sr-only">Search</span><i aria-hidden="true" class="fas fa-search"></i></button>
 									</div>
@@ -250,7 +251,7 @@
 								</div>
 								<div class="col-12">
 									<div class="input-group input-group-lg">
-										<label class="sr-only" for="participant-search-first-page">Participant&rsquo; First Name</label> <input class="form-control js--page-participant-search-first-val" id="participant-search-first-page" name="first-name" type="text"> <label class="sr-only" for="participant-search-last">Participant&rsquo; Last Name</label> <input class="form-control js--page-participant-search-last-val" id="participant-search-last" name="participant-search-last" type="text"> <div class="input-group-append"> <button class="btn btn-primary" type="submit"><span class="sr-only">Search</span><i aria-hidden="true" class="fas fa-search"></i></button>
+										<label class="sr-only" for="participant-search-first-page">Participant&rsquo; First Name</label> <input aria-controls="participantSearchResults" class="form-control js--page-participant-search-first-val" id="participant-search-first-page" name="first-name" type="text"> <label class="sr-only" for="participant-search-last">Participant&rsquo; Last Name</label> <input aria-controls="participantSearchResults" class="form-control js--page-participant-search-last-val" id="participant-search-last" name="participant-search-last" type="text"> <div class="input-group-append"> <button class="btn btn-primary" type="submit"><span class="sr-only">Search</span><i aria-hidden="true" class="fas fa-search"></i></button>
 										</div>
 									</div>
 								</div>
@@ -258,8 +259,8 @@
 						</form>
 				</div>
 			</div>
-			<div class="js--participant-search-results landing-participant-search__results text-center"></div>
-			<div class="js--participant-no-event-results alert alert-primary text-center col-md-8 offset-md-2 d-none" role="alert">
+			<div id="participantSearchResults" class="js--participant-search-results landing-participant-search__results text-center"></div>
+			<div class="js--participant-no-event-results alert alert-primary text-center col-md-8 offset-md-2 d-none" aria-atomic="true">
 				<span>We&rsquo;re not seeing anything. Maybe try different search term?</span>
 			</div>
 			<div class="js--show-more-container text-center mt-2 mb-5">
@@ -280,7 +281,7 @@
 					<h3>Field Day is Coming</h3>
 				</div>
 				<div class="card-body js--card-body">
-					<svg xmlns="http://www.w3.org/2000/svg" width="56.826" height="65.198" viewBox="0 0 56.826 65.198">
+					<svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="56.826" height="65.198" viewBox="0 0 56.826 65.198">
 						<g id="Group_302" data-name="Group 302" transform="translate(126.553 2787.101)">
 							<g id="_15" data-name="15" transform="translate(-126.553 -2787.101)">
 								<g id="Group_295" data-name="Group 295" transform="translate(0 4.84)">
@@ -309,7 +310,7 @@
 						</g>
 					</svg>
 					<p class="card-text js--card-content">We&lsquo;re ready to compete for the ultimate bragging rights&mdash;winning 1st place by saving lives in your community. Field Day is about to become one of the BEST company traditions!</p>
-					<p class="card-text"><a class="btn btn-secondary" href="https://dev2.heart.org/site/SPageServer/?pagename=FieldDay_Why_We_Play">Learn Why We Play</a></p>
+					<p class="card-text"><a class="btn btn-secondary" href="SPageServer/?pagename=FieldDay_Why_We_Play">Learn Why We Play</a></p>
 				</div>
 			</div>
 			<div class="card text-center mb-4">
@@ -317,7 +318,7 @@
 					<h3>Next Level Team Building</h3>
 				</div>
 				<div class="card-body js--card-body">
-					<svg xmlns="http://www.w3.org/2000/svg" width="67.199" height="64.336" viewBox="0 0 67.199 64.336">
+					<svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="67.199" height="64.336" viewBox="0 0 67.199 64.336">
 						<g id="Group_248" data-name="Group 248" transform="translate(-217.28 -3015.536)">
 							<path id="Path_769" data-name="Path 769" d="M256.716,3033.149a2.46,2.46,0,0,0-1.833.541,2.491,2.491,0,0,0-.912,1.659l-2.449,14.63-.335-.287a4.658,4.658,0,0,0-3.048-1.145,4.731,4.731,0,0,0-4.726,4.726,4.647,4.647,0,0,0,1.12,3.016l.164.2-1.214.975a3.377,3.377,0,0,0-1.268,2.679l.033,3.358-.028.053a2.607,2.607,0,0,0-.185,1.952l1.546,5.151a2.608,2.608,0,0,0,1.271,1.556,2.622,2.622,0,0,0,3.554-1.068,2.606,2.606,0,0,0,.2-2l-1.546-5.15a2.6,2.6,0,0,0-2.962-1.817l-.291.051-.02-2.1a1.81,1.81,0,0,1,.68-1.436l1.52-1.221.141.066a4.646,4.646,0,0,0,2.009.467,4.685,4.685,0,0,0,4.589-5.81l-.018-.076,2.824-16.582a.923.923,0,0,1,.9-.822l.112.006a.92.92,0,0,1,.818.976l-2.973,23.861v14.273a.787.787,0,1,0,1.574,0l0-14.239,2.967-23.765A2.485,2.485,0,0,0,256.716,3033.149Zm-5.425,20.124a3.152,3.152,0,1,1-3.152-3.152A3.156,3.156,0,0,1,251.291,3053.273Zm-7.666,10.976a1.051,1.051,0,0,1,1.931.2l1.545,5.15a1.05,1.05,0,0,1-.705,1.307,1.054,1.054,0,0,1-.8-.081,1.043,1.043,0,0,1-.507-.623l-1.546-5.15A1.039,1.039,0,0,1,243.625,3064.249Z"/>
 							<path id="Path_770" data-name="Path 770" d="M283.864,3050.941a2.464,2.464,0,0,0-1.763-.845l-.109,0a2.47,2.47,0,0,0-2.461,2.143l-1.1,6.755-5.955,1.556.175-.455a4.661,4.661,0,0,0,.326-1.69,4.731,4.731,0,0,0-4.726-4.725,4.621,4.621,0,0,0-1.582.293l-.283.1-.7-4.467,2.654-7.839a2.576,2.576,0,0,0-1.389-3.311,2.529,2.529,0,0,0-1.009-.208,2.63,2.63,0,0,0-2.383,1.548l-3.387,8.691a.835.835,0,0,0-.053.293l.145,13.524-2.169,12.779a.739.739,0,0,0,.13.568.917.917,0,0,0,.646.351.782.782,0,0,0,.774-.656l2.2-13.01-.146-13.421,3.326-8.534a1.037,1.037,0,0,1,1.307-.479,1.015,1.015,0,0,1,.523,1.347l-2.72,8.035a.792.792,0,0,0-.031.374l.841,5.383-.085.089a4.716,4.716,0,0,0,3.394,8,4.607,4.607,0,0,0,1.191-.172l9.883-2.571a.789.789,0,0,0,.577-.636l1.186-7.293a.928.928,0,0,1,.942-.789.907.907,0,0,1,.646.31.923.923,0,0,1,.222.668l-1.638,9.707-10.251,3.78a.78.78,0,0,0-.508.638l-1.589,12.212a.787.787,0,0,0,.694.883l.088.006a.788.788,0,0,0,.78-.685L272,3067.446l10.232-3.774a.788.788,0,0,0,.5-.608l1.73-10.266A2.472,2.472,0,0,0,283.864,3050.941Zm-12.458,7.461a3.152,3.152,0,1,1-3.152-3.151A3.156,3.156,0,0,1,271.406,3058.4Z"/>
@@ -342,7 +343,7 @@
 					</svg>
 
 					<p class="card-text js--card-content">Host a Field Day event for your company and help your employees alleviate workplace stress and burnout. This customizable event allows you to choose your event date, location and games!</p>
-					<p class="card-text"><a class="btn btn-secondary" href="https://dev2.heart.org/site/SPageServer/?pagename=FieldDay_Contact_Us" aria-label="Contact AHA for more information on Field Day">Contact Us</a></p>
+					<p class="card-text"><a class="btn btn-secondary" href="SPageServer/?pagename=FieldDay_Contact_Us" aria-label="Contact AHA for more information on Field Day">Contact Us</a></p>
 				</div>
 			</div>
 			<div class="card text-center mb-4">
@@ -350,14 +351,14 @@
 					<h3>Have Questions?</h3>
 				</div>
 				<div class="card-body js--card-body">
-					<svg xmlns="http://www.w3.org/2000/svg" width="82.755" height="67.904" viewBox="0 0 82.755 67.904">
+					<svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="82.755" height="67.904" viewBox="0 0 82.755 67.904">
 						<g id="Group_247" data-name="Group 247" transform="translate(-9 -617.495)">
 							<rect id="Rectangle_186" data-name="Rectangle 186" width="18.999" height="2" transform="translate(22.128 639.734)"/>
 							<path id="Path_768" data-name="Path 768" d="M87.8,627.215H64.7v-5.768a3.97,3.97,0,0,0-3.98-3.952H21.183a3.956,3.956,0,0,0-3.951,3.952v18.287H12.951A3.957,3.957,0,0,0,9,643.688v26.189a3.956,3.956,0,0,0,3.951,3.952h5.727V685.4l11.689-11.587H52.553a3.947,3.947,0,0,0,3.916-3.969V664.2h-2v5.645a1.945,1.945,0,0,1-1.916,1.969H29.544L20.678,680.6v-8.772H12.951A1.954,1.954,0,0,1,11,669.877V643.688a1.954,1.954,0,0,1,1.951-1.954h4.281v5.9a3.955,3.955,0,0,0,3.951,3.949H26.91v11.569L38.6,651.571h5.687v5.753a3.947,3.947,0,0,0,3.916,3.97H70.388l11.689,11.585V661.31H87.8a3.956,3.956,0,0,0,3.951-3.952V631.17A3.958,3.958,0,0,0,87.8,627.215ZM37.777,649.571l-8.867,8.788v-8.771H21.183a1.952,1.952,0,0,1-1.951-1.949V621.447a1.954,1.954,0,0,1,1.951-1.952H60.72a1.993,1.993,0,0,1,1.98,1.952v5.768H48.267a3.972,3.972,0,0,0-3.98,3.955v18.4Zm16.692,0H46.287v-7.837h6.2a1.994,1.994,0,0,1,1.981,1.954Zm-8.182,7.753v-5.753h8.182v7.723H48.2A1.946,1.946,0,0,1,46.287,657.324Zm43.468.034A1.954,1.954,0,0,1,87.8,659.31H80.077v8.771l-8.866-8.787H56.469v-7.723h4.316A3.945,3.945,0,0,0,64.7,647.6V632.137h-2V647.6a1.943,1.943,0,0,1-1.915,1.967H56.469v-5.883a3.972,3.972,0,0,0-3.981-3.954h-6.2V631.17a1.993,1.993,0,0,1,1.98-1.955H87.8a1.956,1.956,0,0,1,1.951,1.955Z"/>
 						</g>
 					</svg>
 					<p class="card-text js--card-content">From event details to promotional materials to help you fundraise, we&lsquo;ll be here with you every step of the way.  </p>
-					<p class="card-text"><a class="btn btn-secondary" href="../SPageServer/?pagename=FieldDay_FAQ">FAQ</a></p>
+					<p class="card-text"><a class="btn btn-secondary" href="SPageServer/?pagename=FieldDay_Frequently_Asked_Questions" aria-label="F A Q">FAQ</a></p>
 				</div>
 			</div>
 		</div><!-- /.container-content -->
@@ -368,19 +369,19 @@
 	<section class="landing-video">
 		<div class="container">
 			<div class="global-video__wrapper">
-				<iframe title="About Field Day" width="560" height="315" src="https://www.youtube.com/embed/LryhjU1bEC4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				<iframe cc_load_policy=1 title="About Field Day" width="560" height="315" src="https://www.youtube.com/embed/LryhjU1bEC4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 			</div>
 		</div>
 	</section>
 	<!-- END VIDEO -->
 
-	<!--SOCIAL -->
+	<!--SOCIAL
 	<section class="landing-social-feed">
 		<div class="container">
 			[insert social feed here]
 		</div>
 	</section>
-	<!-- END SOCIAL -->
+	END SOCIAL -->
 
 	<!--SOCIAL BANNER-->
 	<div class="landing-visual-banner container-fluid"></div>

@@ -11,12 +11,16 @@
         <h2>Field Day is Nationally Sponsored By</h2>
       </div>
     </div>
-    <div class="d-flex justify-content-around py-3">
-      <img class="my-3" src="https://secure3.convio.net/heartdev/images/content/pagebuilder/aha-fieldday-landing-sponsor-att_2x.png" alt="">
+    <div class="sponsor-slideshow d-flex justify-content-center sponsor_slider">
+        <div class="local_sponsors">
+          <div class="global-sponsors__slider tr_sponsorship_logos">
+            [[S51:reus_fieldday_2020_sponsors]]
+          </div>
+        </div>
     </div>
     <div class="row">
       <div class="col-12">
-        <p><a href="#">Learn More About Becoming a Sponsor</a></p>
+        <p><a href="mailto:fieldday@heart.org">Contact Us to Learn More About Becoming a Sponsor</a></p>
       </div>
     </div>
     </div>
@@ -26,8 +30,7 @@
 ::]]
 
 [[?
-  [[?[[S8]]::fieldday_donate::T::]]
-  [[?x26x9x::x[[S4]]x::T::]]
+  [[?x26x::x[[S4]]x::T::]]
   [[?xteamxcompanyxpersonalxentryx::x[[S334:pg]]x::T::]]
 ::T::
   [[?xx::x[[E416:[[S334:fr_id]]:HORIZONTAL:100:100]]x::::
@@ -44,7 +47,7 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <p><a href="#">Learn More About Becoming a Sponsor</a></p>
+        <p><a href="[[?xx::x[[C1:coordinator_email]]x::mailto:fieldday@heart.org::mailto:[[C1:coordinator_email]]]]">Contact Us to Learn More About Becoming a Sponsor</a></p>
       </div>
     </div>
     </div>
@@ -62,13 +65,7 @@
 <!--PROMO-->
 <section class="global-promo">
   <div class="container">
-    <div class="row">
-      <div class="global-promo__wrapper col-12 col-lg-6">
-        [[S51:reus_fd_national_promo]]
-
-      </div>
-      <div class="global-promo__overlay"></div>
-    </div>
+    [[S51:reus_fd_national_promo]]
   </div>
 </section>
 <!-- END PROMO -->
@@ -78,8 +75,8 @@
 <!-- SPONSORS AND AD SECTION -->
 <div class="bg-white" role="complementary">
     <div class="container container-sm-content">
-      [[?xx::x[[S334:sid]]x::
-        [[?xMyEventsx::x[[S334:pagename]]x::::
+
+          [[?xMyEventsx::x[[S334:pagename]]x::::
           [[?xfieldday_registerx::x[[S334:pagename]]x::::
           [[?[[?x27x9x::x[[S4]]x::T::F]][[?[[S8]]::FieldDay_HQ::T::F]]::T::::
       <div class="row info-boxes">
@@ -93,7 +90,7 @@
         <div class="col-lg col-md-12">
           <h2 class="h4">Contact Us</h2>
           <p>We&rsquo;d love to hear from you! Send us&nbsp;<br> your questions or feedback.</p>
-          <a href="https://www.heart.org/en/about-us/contact-us" target="_blank" aria-label="Contact American Heart Association" onclick="_gaq.push(['_trackEvent', 'navigation', 'footer', 'contact us']);">Contact Us</a>
+          <a href="https://www.heart.org/en/about-us/contact-us" target="_blank" onclick="_gaq.push(['_trackEvent', 'navigation', 'footer', 'contact us']);">Contact Us</a>
         </div>
         <!-- /.w-50 -->
       </div>
@@ -101,7 +98,7 @@
             ]]
           ]]
         ]]
-      ::]]
+
     </div>
     <!-- /.container -->
   </div>

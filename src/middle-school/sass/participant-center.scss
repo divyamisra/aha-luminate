@@ -1,6 +1,17 @@
 .social-iframe {
 	min-height: 950px;
 }
+.ym-pc-dashboard-social-iframe {
+  .embed-responsive-16by9 {
+    padding-bottom: 62%;
+  }
+}
+
+.ym-pc-dashboard-email-section__column {
+  overflow:hidden;
+  padding:10px;
+  margin-bottom:30px;
+}
 a.btn-compose {
 	font-size:18px;
 }
@@ -82,4 +93,257 @@ select#ym-update-challenge {
     font-size: 18px;
     font-weight: 700;
     margin: 0 0 15px;
+}
+
+/* badge list */
+.ym-pc-dashboard-badges-section {
+  background: none !important;
+  margin: 0px !important;
+  padding: 10px 0 0 0 !important;
+  position:relative;
+  overflow:hidden;
+	
+  &.confetti:before {
+    background: url(../image/badge_confetti.png) !important;
+    content: '';
+    width: 100%;
+    height: 200%;
+    display: block;
+    position: absolute;
+    opacity: 0.3;
+    animation: slide 6s linear infinite;
+    -webkit-animation: slide 6s linear infinite;
+    -ms-animation: slide 6s linear infinite;
+ }
+  .ym-pc-dashboard-mission-accomplished {
+    color: $event-secondary;
+    font-weight:bold;
+  }
+  .ym-pc-dashboard-completed-label {
+    font-size:14px;
+  }
+  a {
+    text-decoration:none;
+  }
+  .btn {
+    white-space:normal;
+  }
+}
+
+.ym-pc-dashboard-badge-path {
+   position: relative;
+   max-width: 663px;
+   margin: 0 auto 40px;
+   svg {
+      @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+         height:750px;
+      }
+	   
+	   g.finn-text text {
+	    font-family: Oswald;
+	    font-size: 24px;
+	}
+   }
+   .agentk {
+     max-width: 25%;
+     margin-bottom: 10px;
+     width: 100%;
+   }
+   .ym-pc-dashboard-badges-header {
+
+     @media (max-width: $screen-sm-min) {
+	position: relative;
+	left: auto;
+        margin-bottom: 10px;
+     }
+	   
+     img {
+	margin-top: -35px;
+	max-width: 70px;
+	margin-bottom: 20px;
+     }
+     p {
+	display: block;
+	margin:0 auto;
+     }
+     em {
+  	font-size:16px;
+     }
+     .ym-pc-dashboard-badges-mission {
+         font-size: 20px;
+	 margin-bottom: 16px;
+	 font-weight:bold;
+	 text-align:center;
+     }
+   }
+   .ym-pc-dashboard-badges-icons {
+ 	position: absolute;
+	top: 18%;
+	left: 0px;
+	img {
+	    margin: 0 0 10px;
+	    max-width: none;
+	    height: 100px;
+	    width: 100px;
+	}
+   }
+   .ym-pc-dashboard-badges-icon {
+	text-align: center;
+	padding: 0 25px 25px;
+	max-width:150px;
+	position:absolute;
+	.earned::after {
+	    background: url(../image/badge_earned_check.png) no-repeat;
+	    content: '';
+	    width: 40px;
+	    height: 40px;
+	    display: block;
+	    position: absolute;
+	    bottom: 30px;
+	    right: 19px;
+	}
+   }
+   /*online registration*/
+   .ym-pc-dashboard-badges-icon:nth-child(1) {
+	offset-path: path("M244 188");
+   }
+   /*take challenge*/
+   .ym-pc-dashboard-badges-icon:nth-child(2) {
+	offset-path: path("M379 188");
+   }
+   /*1st donation*/
+   .ym-pc-dashboard-badges-icon:nth-child(3) {
+	offset-path: path("M528 226");
+   }
+   /*self donation*/
+   .ym-pc-dashboard-badges-icon:nth-child(4) {
+	offset-path: path("M528 396");
+	.earned:after {
+	  bottom: 20px;
+	  right: 82px;
+	}
+   }
+   /*go social*/
+   .ym-pc-dashboard-badges-icon:nth-child(5) {
+	offset-path: path("M379 433");
+   }
+   /*get active*/
+   .ym-pc-dashboard-badges-icon:nth-child(9) {
+	offset-path: path("M244 433");
+   }
+   /*send email*/
+   .ym-pc-dashboard-badges-icon:nth-child(6) {
+	offset-path: path("M95 465");
+	.earned:after {
+	  bottom: 20px;
+	  right: 82px;
+	}
+   }
+   /*CPR Quiz*/
+   .ym-pc-dashboard-badges-icon:nth-child(7) {
+	offset-path: path("M95 647");
+   }
+   /*heart facts quiz*/
+   .ym-pc-dashboard-badges-icon:nth-child(8) {
+	offset-path: path("M303 675");
+   }
+   .secret-box {
+     position: absolute;
+     color: #fff;
+     font-size: 20px;
+     max-width: 185px;
+     right: 40px;
+     bottom: 26px;
+     text-align: center;
+     &.not-secret-finn:before {
+	    background: url(../image/not_secret_finn.png) no-repeat;
+	    content: '';
+	    width: 96px;
+	    height: 53px;
+	    display: block;
+	    position: absolute;
+	    bottom: 97px;
+	    right: 39px;
+     }
+     &.secret-finn:before {
+	    background: url(../image/secret_finn.png) no-repeat;
+	    content: '';
+	    width: 178px;
+	    height: 96px;
+	    display: block;
+	    position: absolute;
+	    bottom: 96px;
+	    right: -5px;
+     }
+   }
+   path.badge-path:hover {
+     	transition: all 0.3s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+	pointer-events:all;
+	opacity:0;
+   }
+}
+
+@keyframes slide{
+   0%{
+	transform: translate3d(0, -1186px, 0);
+   }
+   100%{
+   	transform: translate3d(0, 0, 0);
+   }
+}
+
+.ym-pc-dashboard-coordinator-resources-contact {
+	text-align:center;
+	font-weight:bold;
+	margin-top:15px;
+	color: $event-secondary;
+}
+
+.ym-pc-dashboard-livestream-box {
+	padding: 20px;
+	.ym-pc-dashboard-livestream-title {
+		text-align: center;
+		margin-bottom: 20px;
+	}
+	.ym-pc-dashboard-livestream-images {
+		.pc-livestream-character {
+			max-width:210px;
+			margin-right:50px;
+			@media (max-width: 992px) {
+				max-width:130px;
+			}
+		}
+		.pc-livestream-hearts {
+			max-height: 210px;
+			margin-bottom: 10px;
+			@media (max-width: 992px) {
+				max-height:130px;
+			}
+		}
+	}
+	.ym-pc-dashboard-livestream-buttons {
+		margin-top: 10px;
+		padding-top: 10px;
+		border-top: 1px solid #38b5bd;
+		overflow: hidden;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+
+		a:nth-child(1) {
+			float:left;
+		}
+		a:nth-child(2) {
+			float:right;
+		}
+		a {
+			margin-bottom: 10px;
+			@media (max-width: 480px) {
+				text-align: center;
+				float: none !important;
+				margin-bottom: 10px;
+			}
+		}
+	}
 }

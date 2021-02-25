@@ -1,0 +1,101 @@
+[[U0:eventLocationMapLink=[[T9:[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:map_link]]" dup 0 swap "|" indexof substring]]]]]]
+<header aria-label="American Heart Site">
+    <!-- NAVIGATION -->
+    <nav id="skipNav" aria-labelledby="skip-main">
+        <a id="skip-main" class="skip-to js__skip-to aural-only" href="[[S8]]#contentStart">Skip to main content</a>
+    </nav>
+    [[?xx::x[[S1:first_name]]x::::
+    <!-- Logged In -->
+    <nav class="mobile-utility-nav d-block d-lg-none" aria-label="American Heart Site">
+        <ul>
+            <li class="nav-item">
+                <p class="font-weight-bold mb-0">Welcome, [[S1:first_name]]!</p>
+                <a class="nav-link utility-nav-item" href="SPageServer?pagename=MyEvents">Your Events</a> | <a class="nav-link utility-nav-item" href="ConsProfileUser?dispMode=edit">Your Profile</a> | <a class="nav-link utility-nav-item" href="UserLogin?logout=0&amp;NEXTURL=[[T1:[[E130:[[T8:[[S8]]]] [[T8:&amp;]] [[T8:&]] replaceall]]]]">Log Out</a>
+            </li>
+        </ul>
+    </nav>
+    ]]
+    <nav class="navbar navbar-expand-lg static-top" aria-label="American Heart Site">
+        [[?xMyEventsx::x[[S334:pagename]]x::
+	    <a class="navbar-brand" href="http://www.heart.org">
+		    <span class="sr-only">Return to home page</span>
+		    <div class="aha-header-logo-container">
+   		       <img alt="American Heart Association. Life is Why" class="ahalogo-noborder" src="../images/content/pagebuilder/NEW_Heart_Torch_May_18_152.png">
+		    </div>
+	    </a>
+        ::
+		[[?
+		  [[?x27x26x9x::x[[S4]]x::T::]]
+ 	          [[?[[S8]]::heartwalk_register::T::]]
+	          [[?[[S8]]::heartwalk_donate::T::]]
+		::T::
+		<a class="navbar-brand" href="TR/?fr_id=[[S80:evID]]&amp;pg=entry">
+		    <span class="sr-only">Return to event page</span>
+		    <div class="aha-header-logo-container">
+				  <img alt="Lawyers Have Heart"  class="aha-header-logo" src="../images/content/pagebuilder/AHA_LHH_logo.png">
+		    </div>
+		</a>
+		::
+
+		<span class="navbar-brand">
+		    <div class="aha-header-logo-container">
+          <img alt="Lawyers Have Heart"  class="aha-header-logo" src="../images/content/pagebuilder/AHA_LHH_logo.png">
+		    </div>
+		</span>
+
+		]]
+	]]
+        <button id="mobile-toggle" class="navbar-toggler float-right" type="button" aria-label="Open Main Navigation">
+            <span class="navbar-toggler-icon fas fa-align-justify"></span>
+        </button>
+
+        [[?xMyEventsx::x[[S334:pagename]]x::
+		<ul class="nav navbar-nav ml-auto">
+		    [[?xx::x[[S1:first_name]]x::
+		    <li class="nav-item d-lg-none d-md-block" id="mobile-login">
+			<a class="nav-link" href="UserLogin?NEXTURL=[[T1:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer?pagename=MyEvents]]" onclick="_gaq.push(['_trackEvent', 'navigation', 'log in']);">Log In</a>
+		    </li>
+		    ::]]
+		    [[?xx::x[[S1:first_name]]x::
+		    <!-- NOT LOGGED IN -->
+		    <li class="nav-item login d-md-none d-lg-block">
+			<a class="nav-link btn btn-primary" href="UserLogin?NEXTURL=[[T1:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer?pagename=MyEvents]]" onclick="_gaq.push(['_trackEvent', 'navigation', 'log in']);">Log In <i class="fas fa-sign-in-alt" aria-hidden="true"></i> </a>
+		    </li>
+		    ::
+		    <li class="nav-item logged-in d-md-none d-lg-block">
+			<p class="font-weight-bold mb-0">Welcome, [[S1:first_name]]!</p>
+			<a class="nav-link utility-nav-item" href="SPageServer?pagename=MyEvents" onclick="_gaq.push(['_trackEvent', 'navigation', 'logged in your events']);">Your Events</a> | <a class="nav-link utility-nav-item" href="ConsProfileUser?dispMode=edit" onclick="_gaq.push(['_trackEvent', 'navigation', 'logged in your profile']);">Your Profile</a> | <a class="nav-link utility-nav-item" href="UserLogin?logout=0&amp;NEXTURL=[[T1:[[E130:[[T8:[[S8]]]] [[T8:&amp;]] [[T8:&]] replaceall]]]]" onclick="_gaq.push(['_trackEvent', 'navigation', 'log out']);">Log Out</a>
+		    </li>
+		    ]]
+		</ul>
+	::
+		[[?xHeartWalk_Searchxheartwalk_registerx::x[[S334:pagename]]x::::
+		[[?
+		  [[?x27x9x::x[[S4]]x::::F]]
+		::F::
+		<a class="d-lg-none d-md-block float-right mobile-search-trigger" id="mobile-search">
+		    <i class="fas fa-search" aria-hidden="true"></i><span class="sr-only">Search</span>
+		</a>
+		::]]
+		]]
+		<div class="clearfix"></div>
+		<!-- /#mobile-search.d-lg-none d-md-block -->
+		<div class="collapse navbar-collapse" id="navbar-container">
+				[[?xHeartWalk_Searchxheartwalk_registerx::x[[S334:pagename]]x::::
+				[[?
+				  [[?x27x9x::x[[S4]]x::::F]]
+				::F::
+		    <div id="mobile-search-input" class="d-lg-none d-md-block d-sm-block mobile-search-trigger">
+			Find an Event, Walker, or Team <i class="fas fa-search" aria-hidden="true"></i>
+		    </div>
+		    <!-- /#mobile-search-input -->
+		    ::]]
+				]]
+
+        [[S51:reus_lhh_2020_main_nav]]
+
+		</div>
+	]]
+    </nav>
+    <!-- END NAVIGATION -->
+</header>

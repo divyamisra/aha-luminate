@@ -39,6 +39,12 @@ main > .container {
     max-width: 320px;
     margin: 0 auto 7px;
   }
+
+  @media (min-width: 670px) {
+    > div {
+      display:flex;
+    }
+  }
   
   a {
     &,
@@ -52,24 +58,27 @@ main > .container {
       line-height: 16px;
       text-align: center;
       text-decoration: none;
-      width: 100px;
+      width: auto;
       height: 40px;
-      padding: 12px 6px 0;
+      padding: 12px 0 0;
       margin: 0 3px 5px;
-      vertical-align: bottom;
+      vertical-align: top;
+      flex: 1 1 0;
       
       @media (max-width: 350px) {
         max-width: 85px;
       }
       
       @media (min-width: 560px) {
-        border-right: 2px solid $event-accent;
         font-size: 18px;
         line-height: 22px;
-        width: 20%;
         height: 50px;
-        padding: 14px 12px 0;
-        margin: 0;
+        padding: 14px 0 0;
+        margin: 0 3px 0 0;
+      }
+      @media only screen and (max-width: $screen-xs-max) {
+        width: 48%;
+        margin: 0 3px 5px;
       }
     }
     
@@ -143,11 +152,12 @@ main > .container {
         height: 40px;
         padding: 12px 6px 0;
         margin: 0 3px 5px;
+        flex: 1 1 0;
       }
       
       @media (min-width: 670px) {
         font-size: 17px;
-        width: 16.66666667%;
+        /*width: 16.66666667%;*/
       }
       
       @media (min-width: 690px) {
@@ -156,14 +166,14 @@ main > .container {
       
       &.ng-pc-nav-item--resources,
       &.ng-pc-nav-item--order-gifts {
-        padding: 3px 6px 0;
+        padding: 3px 0 0;
         
         @media (min-width: 670px) {
-          padding: 3px 12px 0;
+          padding: 3px 0 0;
         }
         
         @media (min-width: 1170px) {
-          padding: 14px 12px 0;
+          padding: 14px 0 0;
         }
         
         > span {
@@ -180,14 +190,14 @@ main > .container {
       }
       
       &.ng-pc-nav-item--student-view {
-        padding: 3px 6px 0;
+        padding: 3px 0 0;
         
         @media (min-width: 670px) {
-          padding: 8px 12px 0;
+          padding: 8px 0 0;
         }
         
         @media (min-width: 890px) {
-          padding: 14px 12px 0;
+          padding: 14px 0 0;
         }
         
         > span {

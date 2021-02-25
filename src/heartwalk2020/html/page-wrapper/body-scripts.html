@@ -25,30 +25,54 @@ crossorigin="anonymous"></script> -->
 ::]]
 
 [[?[[S8]]::heartwalk_donate_amazon::
+  <script src="https://static-na.payments-amazon.com/checkout.js"></script>
+  <script src="../amazonpay/heartwalk/amazon/js/amazon-pay-v2.js"></script>  
   <script src="../amazonpay/heartwalk/amazon/js/luminateExtend-custom.js"></script>
-  <script src="../amazonpay/heartwalk/amazon/js/amazon-pay.js"></script>
+  <script src="../amazonpay/heartwalk/js/donation.js"></script>
+  <script src="https://doublethedonation.com/api/js/ddplugin.js"></script>
+  <link href="https://doublethedonation.com/api/css/ddplugin.css" rel="stylesheet" />
+  <script>
+  var amazonPayButton = amazon.Pay.renderButton('.amazon-pay', {
+     merchantId: 'A1ZM7MXG16NQQB',
+     ledgerCurrency: 'USD',
+     sandbox: [[?x[[S334:df_preview]]x::xtruex::true::false]],
+     checkoutLanguage: 'en_US',
+     productType: 'PayOnly',
+     placement: 'Cart',
+     buttonColor: 'Gold'
+  });
+  </script>
 ::]]
 [[?[[S8]]::heartwalk_donate_applepay::
-  <script src="https://js.braintreegateway.com/web/3.61.0/js/client.min.js"></script>
-  <script src="https://js.braintreegateway.com/web/3.61.0/js/apple-pay.min.js"></script>
-  <script src="https://js.braintreegateway.com/web/3.61.0/js/data-collector.min.js"></script>
+  <script src="https://js.braintreegateway.com/web/3.64.2/js/client.min.js"></script>
+  <script src="https://js.braintreegateway.com/web/3.64.2/js/apple-pay.min.js"></script>
+  <script src="https://js.braintreegateway.com/web/3.64.2/js/data-collector.min.js"></script>
   <script src="../amazonpay/heartwalk/applepay/js/braintree-luminate.js"></script>
   <script src="../amazonpay/heartwalk/applepay/js/donation-custom.js"></script>
+  <script src="../amazonpay/heartwalk/js/donation.js"></script>
+  <script src="https://doublethedonation.com/api/js/ddplugin.js"></script>
+  <link href="https://doublethedonation.com/api/css/ddplugin.css" rel="stylesheet" />
 ::]]
 [[?[[S8]]::heartwalk_donate_venmo::
-  <script src="https://js.braintreegateway.com/web/3.61.0/js/client.min.js"></script>
-  <script src="https://js.braintreegateway.com/web/3.61.0/js/venmo.min.js"></script>
-  <script src="https://js.braintreegateway.com/web/3.61.0/js/data-collector.min.js"></script>
+  <script src="https://js.braintreegateway.com/web/3.64.2/js/client.min.js"></script>
+  <script src="https://js.braintreegateway.com/web/3.64.2/js/venmo.min.js"></script>
+  <script src="https://js.braintreegateway.com/web/3.64.2/js/data-collector.min.js"></script>
   <script src="../amazonpay/heartwalk/venmo/js/braintree-luminate.js"></script>
   <script src="../amazonpay/heartwalk/venmo/js/donation-custom.js"></script>
+  <script src="../amazonpay/heartwalk/js/donation.js"></script>
+  <script src="https://doublethedonation.com/api/js/ddplugin.js"></script>
+  <link href="https://doublethedonation.com/api/css/ddplugin.css" rel="stylesheet" />
 ::]]
 [[?[[S8]]::heartwalk_donate_googlepay::
   <script src="https://pay.google.com/gp/p/js/pay.js"></script>
-  <script src="https://js.braintreegateway.com/web/3.61.0/js/client.min.js"></script>
-  <script src="https://js.braintreegateway.com/web/3.61.0/js/google-payment.min.js"></script>
-  <script src="https://js.braintreegateway.com/web/3.61.0/js/data-collector.min.js"></script>
+  <script src="https://js.braintreegateway.com/web/3.64.2/js/client.min.js"></script>
+  <script src="https://js.braintreegateway.com/web/3.64.2/js/google-payment.min.js"></script>
+  <script src="https://js.braintreegateway.com/web/3.64.2/js/data-collector.min.js"></script>
   <script src="../amazonpay/heartwalk/googlepay/js/braintree-luminate.js"></script>
   <script src="../amazonpay/heartwalk/googlepay/js/donation-custom.js"></script>
+  <script src="../amazonpay/heartwalk/js/donation.js"></script>
+  <script src="https://doublethedonation.com/api/js/ddplugin.js"></script>
+  <link href="https://doublethedonation.com/api/css/ddplugin.css" rel="stylesheet" />
 ::]]
 
 [[?

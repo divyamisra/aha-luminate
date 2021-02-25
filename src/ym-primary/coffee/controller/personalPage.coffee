@@ -29,18 +29,33 @@ angular.module 'ahaLuminateControllers'
       $scope.companyProgress = {}
 
       $scope.prizes = []
+      $scope.prizesEarned = 0
+      $scope.has_bonus = 0
+      $scope.current_mission_completed_count = ''
+      $scope.current_mission_completed_header = ''
+      $scope.current_mission_action = ''
+      $scope.current_mission_title = ''
+      $scope.current_mission_message = ''      
       $scope.schoolChallenges = []
       BoundlessService.getBadges $scope.frId + '/' + $scope.participantId
       .then (response) ->
         prizes = response.data.prizes
+        $scope.current_mission_completed_count = response.data.current_mission_completed_count
+        $scope.current_mission_completed_header = response.data.current_mission_completed_header
+        $scope.current_mission_action = response.data.current_mission_action
+        $scope.current_mission_title = response.data.current_mission_title
+        $scope.current_mission_message = response.data.current_mission_message
+        $scope.has_bonus = response.data.has_bonus
         angular.forEach prizes, (prize) ->
+          $scope.prizes.push
+            id: prize.id
+            label: prize.label
+            sku: prize.sku
+            status: prize.status
+            earned: prize.earned_datetime
+
           if prize.status is 1
-            $scope.prizes.push
-              id: prize.id
-              label: prize.label
-              sku: prize.sku
-              status: prize.status
-              earned: prize.earned_datetime
+            $scope.prizesEarned++
       , (response) ->
         # TODO
 
@@ -107,13 +122,10 @@ angular.module 'ahaLuminateControllers'
           success: (response) ->
             if response.data.student.student_id isnt null and typeof response.data.student.avatar_url isnt 'undefined'
               avatarURL = response.data.student.avatar_url
+              if avatarURL.indexOf("default") > 0
+                avatarURL = ""
             else
-              if $rootScope.tablePrefix is 'heartdev'
-                avatarURL = 'https://hearttools.heart.org/aha_ym21_dev/virtualworld/img/avatar-charger.png'
-              else if $rootScope.tablePrefix is 'heartnew'
-                avatarURL = 'https://hearttools.heart.org/aha_ym21_testing/virtualworld/img/avatar-charger.png'
-              else
-                avatarURL = 'https://hearttools.heart.org/aha_ym21/virtualworld/img/avatar-charger.png'
+              avatarURL = ""
             $scope.personalInfo.avatar = avatarURL
       $scope.getPersonalAvatar()
 

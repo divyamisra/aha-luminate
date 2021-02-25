@@ -25,34 +25,50 @@ crossorigin="anonymous"></script> -->
 ::]]
 
 [[?[[S8]]::fieldday_donate_amazon::
+  <script src="https://static-na.payments-amazon.com/checkout.js"></script>
+  <script src="../amazonpay/fieldday/js/amazon-pay-v2.js"></script>
   <script src="../amazonpay/fieldday/js/luminateExtend-custom.js"></script>
-  <script src="../amazonpay/fieldday/js/amazon-pay.js"></script>
   <script src="../amazonpay/fieldday/js/donation.js"></script>
+  <script src="https://doublethedonation.com/api/js/ddplugin.js"></script>
+  <script>
+  var amazonPayButton = amazon.Pay.renderButton('.amazon-pay', {
+     merchantId: 'A1ZM7MXG16NQQB',
+     ledgerCurrency: 'USD',
+     sandbox: [[?x[[S334:df_preview]]x::xtruex::true::false]],
+     checkoutLanguage: 'en_US',
+     productType: 'PayOnly',
+     placement: 'Cart',
+     buttonColor: 'Gold'
+  });
+  </script>
 ::]]
 [[?[[S8]]::fieldday_donate_applepay::
-  <script src="https://js.braintreegateway.com/web/3.61.0/js/client.min.js"></script>
-  <script src="https://js.braintreegateway.com/web/3.61.0/js/apple-pay.min.js"></script>
-  <script src="https://js.braintreegateway.com/web/3.61.0/js/data-collector.min.js"></script>
+  <script src="https://js.braintreegateway.com/web/3.64.2/js/client.min.js"></script>
+  <script src="https://js.braintreegateway.com/web/3.64.2/js/apple-pay.min.js"></script>
+  <script src="https://js.braintreegateway.com/web/3.64.2/js/data-collector.min.js"></script>
   <script src="../amazonpay/fieldday/js/braintree-luminate.js"></script>
   <script src="../amazonpay/fieldday/js/donation-applepay.js"></script>
   <script src="../amazonpay/fieldday/js/donation.js"></script>
+  <script src="https://doublethedonation.com/api/js/ddplugin.js"></script>
 ::]]
 [[?[[S8]]::fieldday_donate_venmo::
-  <script src="https://js.braintreegateway.com/web/3.61.0/js/client.min.js"></script>
-  <script src="https://js.braintreegateway.com/web/3.61.0/js/venmo.min.js"></script>
-  <script src="https://js.braintreegateway.com/web/3.61.0/js/data-collector.min.js"></script>
+  <script src="https://js.braintreegateway.com/web/3.64.2/js/client.min.js"></script>
+  <script src="https://js.braintreegateway.com/web/3.64.2/js/venmo.min.js"></script>
+  <script src="https://js.braintreegateway.com/web/3.64.2/js/data-collector.min.js"></script>
   <script src="../amazonpay/fieldday/js/braintree-luminate.js"></script>
   <script src="../amazonpay/fieldday/js/donation-venmo.js"></script>
   <script src="../amazonpay/fieldday/js/donation.js"></script>
+  <script src="https://doublethedonation.com/api/js/ddplugin.js"></script>
 ::]]
 [[?[[S8]]::fieldday_donate_googlepay::
   <script src="https://pay.google.com/gp/p/js/pay.js"></script>
-  <script src="https://js.braintreegateway.com/web/3.61.0/js/client.min.js"></script>
-  <script src="https://js.braintreegateway.com/web/3.61.0/js/google-payment.min.js"></script>
-  <script src="https://js.braintreegateway.com/web/3.61.0/js/data-collector.min.js"></script>
+  <script src="https://js.braintreegateway.com/web/3.64.2/js/client.min.js"></script>
+  <script src="https://js.braintreegateway.com/web/3.64.2/js/google-payment.min.js"></script>
+  <script src="https://js.braintreegateway.com/web/3.64.2/js/data-collector.min.js"></script>
   <script src="../amazonpay/fieldday/js/braintree-luminate.js"></script>
   <script src="../amazonpay/fieldday/js/donation-googlepay.js"></script>
   <script src="../amazonpay/fieldday/js/donation.js"></script>
+  <script src="https://doublethedonation.com/api/js/ddplugin.js"></script>
 ::]]
 
 [[?
@@ -83,10 +99,15 @@ crossorigin="anonymous"></script> -->
 
 </script>
 
-[[?x27x9x::x[[S4]]x::::<script src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/fieldday/js/pushy.js"></script>
+<script src="[[S666:template_macros/aha_luminate_filepath.tpt::fieldday/js/main::js::@@buildTimestamp]]"></script>
+
+[[?xentryxteamxcompanyxpersonalx::x[[S334:pg]]x::::
+  [[?x27x9x::x[[S4]]x::::
+    <script src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/fieldday/js/pushy.js"></script>
+  ]]
 ]]
 
-<script src="[[S666:template_macros/aha_luminate_filepath.tpt::fieldday/js/main::js::@@buildTimestamp]]"></script>
+
 [[?x27x::x[[S4]]x::
 <script src="[[S666:template_macros/aha_luminate_filepath.tpt::fieldday/js/registration::js::@@buildTimestamp]]"></script>
 ::]]
@@ -94,8 +115,12 @@ crossorigin="anonymous"></script> -->
 <script src="[[S666:template_macros/aha_luminate_filepath.tpt::fieldday/js/donation::js::@@buildTimestamp]]"></script>
 ::]]
 <script src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/fieldday/js/amazonpay.js?v=1"></script>
-<script>console.log(jQuery().jquery);</script>
-<script src="https://cdn.jsdelivr.net/npm/parsleyjs@2.8.0/dist/parsley[[?xtruex::x[[S80:debug]]x::::.min]].js" defer></script>
+
+[[?xentryxteamxcompanyx::x[[S334:pg]]x::::
+  <script src="https://cdn.jsdelivr.net/npm/parsleyjs@2.8.0/dist/parsley[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
+]]
+
+
 
 [[?xheartdevx::x[[S29:TABLE_PREFIX]]x::
 <script src="https://static.heart.org/ahaanywhere/sitecore/dist/ahaHeaderFooterSitecore.dev.js"></script>
@@ -138,5 +163,32 @@ crossorigin="anonymous"></script> -->
   });
 </script>
 
+
+::]]
+
+[[?
+  [[?[[S8]]::FieldDay_Landing_Page::T::]]
+  [[?x19x23x::x[[S4]]x::T::]]
+::T::
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/unslider/2.0.3/js/unslider-min.js" integrity="sha512-mGetBI3EloHb9QY+HpWMJz+ca+gaJB5MnbFm3SqEujV56YyQMoxI8V5GkZvQsHz/srjXrUSLzyz547fTCy0B3A==" crossorigin="anonymous"></script>
+
+<script>
+	Y.use("jquery-noconflict",  function(Y)
+	{
+		jQuery(function($)
+		{
+			$(".global-sponsors__slider img.tr_sponsorship_logo_image").each(function()
+				{
+					var $img = $(this);
+					var h = $img.height();
+					var w = $img.width();
+					$img.css('margin-top', + h / -2 + "px");
+					$img.css('margin-left', + w / -2 + "px");
+				}
+            ).show();
+		});
+	});
+</script>
 
 ::]]
