@@ -38,7 +38,14 @@
 
 @media not all and (min-resolution:.001dpcm) {
 .paymentSelType .applepay {
-    display: inline-block !important;
+    display: block !important;
+}
+.paymentSelType a:focus {
+  outline: 2px solid $red;
+  outline-offset: 2px;
+}
+.paymentSelType img:focus {
+  outline-offset: 2px;
 }
 }
 

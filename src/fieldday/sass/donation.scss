@@ -276,7 +276,7 @@ div.responsive select, select[size] {
  }
 }
 div.responsive .donation-level-user-entered input[type="text"] {
-	margin: 0 0 0 15px;
+	margin: 0 0 0 8px;
 	max-width: 90px;
 }
 /*div.responsive .level4.active .donation-level-user-entered input[type="text"] {
@@ -610,9 +610,14 @@ body.ie11 label + div.donation-level-user-entered {
 /*.form-content > .form-input-label-block {
 	display:none;
 }*/
- [type="checkbox"]:not(:checked), [type="checkbox"]:checked, [type="radio"]:not(:checked), [type="radio"]:checked {
+ [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
      position: absolute;
-     left: -9999px;
+     left: 0;
+     opacity: 0;	 
+}
+[type="radio"]:not(:checked), [type="radio"]:checked {
+     position: absolute;
+     left: -999px;
 }
 [type="checkbox"]:not(:checked) + label,
 [type="checkbox"]:checked + label,

@@ -33,6 +33,7 @@ angular.module 'trPcControllers'
       $scope.activity1amt = ''
       $scope.activity2amt = ''
       $scope.activity3amt = ''
+      $scope.schoolBadges = ''
       $scope.companyProgress = []
       $scope.companyId = $scope.participantRegistration.companyInformation.companyId
       theDate = new Date
@@ -240,6 +241,14 @@ angular.module 'trPcControllers'
         getSchoolInformation()
       $scope.refreshFundraisingProgress()
 
+      BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.participantRegistration.companyInformation.companyId
+      .then (response) ->
+        $scope.schoolBadgesRegistrations = response.data.registration_badges
+        $scope.schoolBadgesFundraising = response.data.fundraising_badges
+        $scope.companyInfo.participantCount = response.data.students_registered
+        $scope.companyProgress.raised = response.data.total_amount
+        $scope.companyProgress.raisedFormatted = $filter('currency')(response.data.total_amount, '$')
+        
       $scope.emailChallenge = {}
       setEmailSampleText = ->
         sampleText = 'What if I told you that together, we can help save the lives of millions of people? Seriously, we can!\n\n' +

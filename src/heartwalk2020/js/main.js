@@ -596,7 +596,7 @@
                             $(participantData).each(function () {
                                 if (counter <= 4) {
                                     var participantName = this.name.first + ' ' + this.name.last;
-                                    var participantRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
+                                    var participantRaised = (parseFloat(this.amountRaised) * 0.01).toFixed(2);
 
                                     var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
                                     var participantId = this.consId;
@@ -630,7 +630,7 @@
 
                             $(teamData).each(function (i) {
                                 var teamName = this.name;
-                                var teamRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
+                                var teamRaised = (parseFloat(this.amountRaised) * 0.01).toFixed(2);
 
                                 var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
                                 var teamId = this.id;
@@ -719,7 +719,7 @@
                         $(sortedAncestorCompanies).each(function (i) {
                             if (i < 5) {
                                 var companyName = this.companyName;
-                                var companyRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
+                                var companyRaised = (parseFloat(this.amountRaised) * 0.01).toFixed(2);
                                 var companyRaisedFormmatted = companyRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
                                 var topCompanyHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR?company_id=' + this.companyId + '&fr_id=' + evID + '&pg=company">' + companyName + '</a></div><div class="raised">Raised<br><strong>$' + companyRaisedFormmatted + '</strong></div></div></li>';
                                 $('.js--company-top-list ul').append(topCompanyHtml);
@@ -775,7 +775,7 @@
                         $(response.activities).each(function(){
                             if (participantsFound < 5) {
                                 var participantName = this.name;
-                                var steps = parseFloat(this.total).formatMoney(0);
+                                var steps = parseFloat(this.total).formatMoney(2);
                                 var participantPage = "https://" + ((isProd) ? "www2" : "dev2") + ".heart.org/site/TR?px="+this.id+"&pg=personal&fr_id="+eventId;
 
                                 var topWalkerHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a title="' + participantName + ' Minutes" href="' + participantPage + '">' + participantName + '</a></div><div class="raised"><strong>' + steps + '</strong><br/>Minutes</div></div></li>';
@@ -812,7 +812,7 @@
                         $(response.activities).each(function(){
                             if (teamsFound < 5) {
                                 var teamName = this.name;
-                                var steps = parseFloat(this.total).formatMoney(0);
+                                var steps = parseFloat(this.total).formatMoney(2);
                                 var topTeamRow = '<li><div class="d-flex"><div class="flex-grow-1"><a title="' + teamName + ' Minutes" href="TR/?team_id=' + this.id + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a></div><div class="raised"><strong>' + steps + '</strong><br/>Minutes</div></div></li>';
                                 $('.js--team-top-list-steps ul').append(topTeamRow);
                             }
@@ -848,7 +848,7 @@
                         $(response.activities).each(function(){
                             if (companiesFound < 5) {
                                 var companyName = this.name;
-                                var steps = parseFloat(this.total).formatMoney(0);
+                                var steps = parseFloat(this.total).formatMoney(2);
                                 var topCompanyRow = '<li><div class="d-flex"><div class="flex-grow-1"><a title="' + companyName + ' Minutes" href="TR/?company_id=' + this.id + '&amp;pg=company&amp;fr_id=' + evID + '">' + companyName + '</a></div><div class="raised"><strong>' + steps + '</strong><br/>Minutes</div></div></li>';
                                 $('.js--company-top-list-steps ul').append(topCompanyRow);
                             }
@@ -898,7 +898,7 @@
         cd.reorderPageForMobile = function () {
             // Reorganize page for mobile views
             if (screenWidth <= 767) {
-                $('.tr-page-info').insertAfter('.sidebar-hero');
+                $('.tr-page-info').insertAfter('.personal-image-container');
                 $('.fundraising-amounts').prepend($('.fundraising-amounts .col-12'));
 
                 if ($('body').is('.pg_team')) {
@@ -1312,12 +1312,14 @@
 
                                     var participantRaised = (parseInt(participant.amountRaised) * 0.01).toFixed(2);
                                     var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
-
-                                    $('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"><td class="donor-name"><a href="' + participant.personalPageUrl + '">' +
-                                        participant.name.first + ' ' + participant.name.last +
-                                        '</a>' + (participant.aTeamCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
-                                    if (participant.aTeamCaptain === 'true') {
-                                        $('.js--team-captain-link').attr('href', participant.personalPageUrl).text(participant.name.first + ' ' + participant.name.last);
+                                    
+                                    if (participant.name.first != null) {
+                                        $('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"><td class="donor-name"><a href="' + participant.personalPageUrl + '">' +
+                                            participant.name.first + ' ' + participant.name.last +
+                                            '</a>' + (participant.aTeamCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
+                                        if (participant.aTeamCaptain === 'true') {
+                                            $('.js--team-captain-link').attr('href', participant.personalPageUrl).text(participant.name.first + ' ' + participant.name.last);
+                                        }
                                     }
                                 });
 
@@ -1469,7 +1471,7 @@
                             } else {
                                 var teams = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
                                 $(teams).each(function (i, team) {
-                                    var teamRaised = (parseInt(team.amountRaised) * 0.01).toFixed(2);
+                                    var teamRaised = (parseFloat(team.amountRaised) * 0.01).toFixed(2);
                                     var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
                                     $('#team-roster tbody').append('<tr class="' + (numTeamRows > 4 ? 'd-none' : '') + '"> <td class="team-name"> <a href="' + team.teamPageURL + '" data-sort="' + team.name + '">' + team.name + '</a> </td><td class="donor-name"> <a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '" data-sort="' + team.captainFirstName + ' ' + team.captainLastName + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a> </td><td class="company-name"> <a href="' + luminateExtend.global.path.secure + 'TR/?pg=company&company_id=' + team.companyId + '&fr_id=' + team.EventId + '" data-sort="' + companyName + '">' + companyName + '</a> </td><td class="raised" data-sort="' + teamRaisedFormmatted + '"> <span><strong>$' + teamRaisedFormmatted + '</strong></span> </td><td> <a href="' + team.joinTeamURL + '">' + (screenWidth <= 480 ? 'Join' : 'Join Team') + '</a> </td></tr>');
                                     numTeamRows++;
@@ -1677,7 +1679,7 @@
 
             cd.buildParticipantList = function (participants) {
                 $(participants).each(function (i, participant) {
-                    var participantRaised = (parseInt(participant.amountRaised) * 0.01).toFixed(2);
+                    var participantRaised = (parseFloat(participant.amountRaised) * 0.01).toFixed(2);
                     var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
 
                     $('#participant-roster tbody').append('<tr class="' + (numWalkerRows > 4 ? 'd-none' : '') + '"><td class="participant-name"><a href="' + participant.personalPageUrl + '">' +

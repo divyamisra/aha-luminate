@@ -53,7 +53,7 @@
 		min-height:84px;
 	}
 }
-.ym-activity-box--virtual img {
+.ym-activity --virtual img {
 	max-width:100%;
 }
 
@@ -71,6 +71,14 @@ a.ym-pc-dashboard-download-certificates {
   img {
     max-height: 150px;
     margin-top: -10px;
+  }
+}
+
+.ym-pc-dashboard-coordinator-daily-challenges {
+  margin: 0px !important;
+	
+  img.students-challenge-image {
+    max-height: 120px;
   }
 }
 
@@ -540,9 +548,10 @@ div[id^="taTextElement"]:focus {
 		margin-bottom: 20px;
 	}
 	.ym-pc-dashboard-livestream-images {
+		display:flex;
+		justify-content: space-around;
 		.pc-livestream-character {
 			max-width:210px;
-			margin-right:50px;
 			@media (max-width: 992px) {
 				max-width:130px;
 			}
@@ -550,6 +559,7 @@ div[id^="taTextElement"]:focus {
 		.pc-livestream-hearts {
 			max-height: 210px;
 			margin-bottom: 10px;
+			margin-left: 50px;
 			@media (max-width: 992px) {
 				max-height:130px;
 			}
@@ -560,14 +570,12 @@ div[id^="taTextElement"]:focus {
 		padding-top: 10px;
 		border-top: 1px solid #38b5bd;
 		overflow: hidden;
-		
-		a:nth-child(1) {
-			float:left;
-		}
-		a:nth-child(2) {
-			float:right;
-		}
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+
 		a {
+			margin-bottom: 10px;
 			@media (max-width: 480px) {
 				text-align: center;
 				float: none !important;
@@ -639,4 +647,47 @@ div[id^="taTextElement"]:focus {
   .ym-pc-dashboard-bottom-section {
 	display:flex;
   }
+}
+
+.ym-pc-dashboard-coordinator-students-box {
+  .students-challenge-image img {
+    max-width: 170px;
+  }
+}
+
+.school-badges {
+  margin-top:20px;
+  
+  .ym-pc-dashboard-school-badges-box {
+    .ym-badges__item {
+        max-width:75px;
+	margin: 10px 15px 5px;
+        img.img-responsive {
+          max-width: 80px;
+        }
+	    
+        .text.ng-binding {
+	    font-size: 14px;
+	    font-weight: bold;
+	    display: block;
+	    margin-top: 5px;
+	    margin-bottom: 10px;
+	}
+    }
+  }
+}
+#ym-pc-dashboard-company-panel--coordinator {
+    margin-bottom:20px;
+}
+.fundraisingStatusTitle {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 15px;
+    text-align:center;
+}
+.fundraisingStatusTitle + .ym-progress__thermometer {
+    margin-top: 0px;
+}
+.fundraisingStatusTitle + .ym-progress__thermometer + .ym-progress-related {
+    margin-top: 15px;
 }

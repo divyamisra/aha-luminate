@@ -369,10 +369,10 @@
         }
 
         .custom-amount {
-          margin: 10px 0 0 !important;
+          /* margin: 10px 0 0 !important; */
 
           input {
-            width: 100%;
+          /*  width: 100%; */
           }
         }
       }
@@ -678,8 +678,9 @@
           }
 
           .custom-amount {
+            margin: 28px 15px 0 0;
             input {
-              width: 75px;
+             // width: 75px;
             }
           }
         }
@@ -883,8 +884,8 @@
           }
 
           .custom-amount {
-            width: 31%;
-            margin: 8px 0 0 0 !important;
+            width: 40%;
+            margin: 28px 0 0 7px !important;
             float: left;
 
             label {
@@ -893,7 +894,7 @@
 
             input {
               // width: 100%;
-              height: 40px;
+              // height: 40px;
             }
           }
         }

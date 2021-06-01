@@ -55,7 +55,33 @@ angular.module 'ahaLuminateApp'
             response
           , (response) ->
             response
-      
+
+      getSchoolBadges: (requestData) ->
+        if $rootScope.tablePrefix is 'heartdev'
+          url = 'https://khc.staging.ootqa.org/api/badges/school/' + requestData
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = 'https://khc.staging.ootqa.org/api/badges/school/' + requestData
+        else
+          url = 'https://kidsheartchallenge.heart.org/api/badges/school/' + requestData
+        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
+          .then (response) ->
+            response
+          , (response) ->
+            response
+
+      setMoveMoreFlag: (requestData) ->
+        if $rootScope.tablePrefix is 'heartdev'
+          url = 'https://khc.staging.ootqa.org/api/badges/earn/motion/' + requestData
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = 'https://khc.staging.ootqa.org/api/badges/earn/motion/' + requestData
+        else
+          url = 'https://kidsheartchallenge.heart.org/api/badges/earn/motion/' + requestData
+        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
+          .then (response) ->
+            response
+          , (response) ->
+            response
+            
       getPrizes: ->
         if $rootScope.tablePrefix is 'heartdev'
           url = 'https://khc.staging.ootqa.org/api/coordinator/students/standard-prizes/' +  + $rootScope.frId + '/' + $rootScope.consId 

@@ -3,8 +3,14 @@
 }
 .ym-pc-dashboard-social-iframe {
   .embed-responsive-16by9 {
-    padding-bottom: 60.25%;
+    padding-bottom: 62%;
   }
+}
+
+.ym-pc-dashboard-email-section__column {
+  overflow:hidden;
+  padding:10px;
+  margin-bottom:30px;
 }
 a.btn-compose {
 	font-size:18px;
@@ -292,4 +298,88 @@ select#ym-update-challenge {
 	font-weight:bold;
 	margin-top:15px;
 	color: $event-secondary;
+}
+
+.ym-pc-dashboard-livestream-box {
+	padding: 20px;
+	.ym-pc-dashboard-livestream-title {
+		text-align: center;
+		margin-bottom: 20px;
+	}
+	.ym-pc-dashboard-livestream-images {
+		.pc-livestream-character {
+			max-width:210px;
+			margin-right:50px;
+			@media (max-width: 992px) {
+				max-width:130px;
+			}
+		}
+		.pc-livestream-hearts {
+			max-height: 210px;
+			margin-bottom: 10px;
+			@media (max-width: 992px) {
+				max-height:130px;
+			}
+		}
+	}
+	.ym-pc-dashboard-livestream-buttons {
+		margin-top: 10px;
+		padding-top: 10px;
+		border-top: 1px solid #38b5bd;
+		overflow: hidden;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+
+		a:nth-child(1) {
+			float:left;
+		}
+		a:nth-child(2) {
+			float:right;
+		}
+		a {
+			margin-bottom: 10px;
+			@media (max-width: 480px) {
+				text-align: center;
+				float: none !important;
+				margin-bottom: 10px;
+			}
+		}
+	}
+}
+.school-badges {
+  margin-top:20px;
+  
+  .ym-pc-dashboard-school-badges-box {
+    .ym-badges__item {
+        max-width:75px;
+	margin: 10px 15px 5px;
+        img.img-responsive {
+          max-width: 80px;
+        }
+	    
+        .text.ng-binding {
+	    font-size: 14px;
+	    font-weight: bold;
+	    display: block;
+	    margin-top: 5px;
+	    margin-bottom: 10px;
+	}
+    }
+  }
+}
+#ym-pc-dashboard-company-panel--coordinator {
+    margin-bottom:20px;
+}
+.fundraisingStatusTitle {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 15px;
+    text-align:center;
+}
+.fundraisingStatusTitle + .ym-progress__thermometer {
+    margin-top: 0px;
+}
+.fundraisingStatusTitle + .ym-progress__thermometer + .ym-progress-related {
+    margin-top: 15px;
 }

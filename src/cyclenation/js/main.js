@@ -156,6 +156,14 @@
        motion_event = 1061;
     }
 
+    function convertMinutes(mins) {
+        mins = mins.replace(/,/g,'');
+        var totalMinutes = parseFloat(mins);
+        var hours = Math.floor(totalMinutes / 60);          
+        var minutes = totalMinutes % 60;
+        return hours + " hr " + minutes + " min";
+    }
+    
     cd.getParticipants = function (firstName, lastName, searchAllEvents) {
       luminateExtend.api({
         api: 'teamraiser',
@@ -977,7 +985,7 @@
                         var participantName = this.name;
                         var miles = parseFloat(this.total).formatMoney(0);
                         var participantPage = "https://" + ((isProd) ? "www2" : "dev2") + ".heart.org/site/TR?px="+this.id+"&pg=personal&fr_id="+eventId;
-                        var topParticipantHtml = '<div class="top-list-entry row pb-2"><div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"><a class="participant-name" href="' + participantPage + '">' + participantName + ' <span class="hidden" aria-hidden="true">Participant Duration</span></a><span class="amount-raised">' + miles + ' Miles</span></div></div>';
+                        var topParticipantHtml = '<div class="top-list-entry row pb-2"><div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"><a class="participant-name" href="' + participantPage + '">' + participantName + ' <span class="hidden" aria-hidden="true">Participant Duration</span></a><span class="amount-raised">' + convertMinutes(miles) + '</span></div></div>';
                         $('.js__top-participants-miles').append(topParticipantHtml);
                     });
                 }
@@ -1007,7 +1015,7 @@
                     $(response.activities).each(function(){
                         var teamName = this.name;
                         var miles = parseFloat(this.total).formatMoney(0);
-                        var topTeamRow = '<div class="top-list-entry row pb-2"><div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="team-name" href="TR/?team_id=' + this.id + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + ' <span class="hidden" aria-hidden="true">Team Duration</span></a> <span class="amount-raised">' + miles + ' Miles</span> </div></div>';
+                        var topTeamRow = '<div class="top-list-entry row pb-2"><div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="team-name" href="TR/?team_id=' + this.id + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + ' <span class="hidden" aria-hidden="true">Team Duration</span></a> <span class="amount-raised">' + convertMinutes(miles) + '</span> </div></div>';
                         $('.js__top-teams-miles').append(topTeamRow);
                     });
                 }
@@ -1038,7 +1046,7 @@
                     $(response.activities).each(function(){
                         var companyName = this.name;
                         var miles = parseFloat(this.total).formatMoney(0);
-                        var topCompanyHtml = '<div class="top-list-entry row pb-2"> <div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="company-name" href="TR?company_id=' + this.id + '&fr_id=' + evID + '&pg=company">' + companyName + ' <span class="hidden" aria-hidden="true">Company Duration</span></a> <span class="amount-raised">' + miles + ' Miles</span> </div></div>';
+                        var topCompanyHtml = '<div class="top-list-entry row pb-2"> <div class="badges col-2"> </div><div class="names-amounts col-10 pl-0"> <a class="company-name" href="TR?company_id=' + this.id + '&fr_id=' + evID + '&pg=company">' + companyName + ' <span class="hidden" aria-hidden="true">Company Duration</span></a> <span class="amount-raised">' + convertMinutes(miles) + '</span> </div></div>';
                         $('.js__top-companies-miles').append(topCompanyHtml);
                     });
                 }
@@ -1103,7 +1111,7 @@
             topEventHtml += '    <a class="event-name" href="/site/TR?pg=entry&fr_id='+event_id+'"><span class="city">'+event_city+'</span>, <span class="fullstate">'+event_state+'</span></a>';
             topEventHtml += '  </div>';
             topEventHtml += '  <div class="names-amounts col-4 pl-0 text-right">';
-            topEventHtml += '    <span class="distance">'+parseFloat(this.total).formatMoney(2)+' Miles</span>';
+            topEventHtml += '    <span class="distance">' + convertMinutes(this.total) + '</span>';
             topEventHtml += '  </div>';
             topEventHtml += '</div>';
             if (cnt >= 4) return false;
