@@ -1,0 +1,115 @@
+[[S51:reus_leaders_default_image]]
+[[U0:team_goal=[[E130:"[[E43:[[S334:fr_id]]:goal-dollars:[[S334:team_id]]]]" ".00" "" replaceall]]]]
+[[U0:team_raised=[[E130:"[[E43:[[S334:fr_id]]:dollars:[[S334:team_id]]]]" ".00" "" replaceall]]]]
+<div class="container tr-page-container hero">
+    <div class="row">
+        <div class="col-lg-4 col-md-12 sidebar">
+                [[?xx::x[[C4:graphic_upload]]x::
+                <img class="sidebar-hero" src="[[S80:defaultTeamImage]]"
+                      alt="[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]] fundraising page" />
+              ::
+                <img class="sidebar-hero" src="[[C4:graphic_upload]]"
+                      alt="[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]] fundraising page" />
+              ]]
+            <!-- /.sidebar-->
+            <div class="donor-roll box-shadow">
+              <div class="donor-roll__title">
+                <h5>[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]]&rsquo; Donors:</h5>
+              </div>
+                <div class="donations-container js--donor-roll"></div>
+                <!-- /.donations-container -->
+                <a class="honor-roll-expander js--honor-roll-expander text-center hidden" href="javascript:void(0);" aria-label="View more donors"><i
+                        class="fas fa-chevron-down"></i></a>
+            </div>
+            <!-- /.donor-roll -->
+        </div>
+        <!-- /.sidebar -->
+        <div class="col-lg-8 col-md-12">
+
+            <!-- TEAM PAGE INFO BOX -->
+            <div class="tr-page-info bg-white information-box js--information-box">
+              <div class="information-box__name box-shadow">
+                <h1>[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]]</h1>
+                <div class="information-box__team-members">[[E43:0:num-members:[[S334:team_id]]]] Team Members</div>
+              </div>
+                <!--/.information-box__name-->
+              <div class="information-box__content box-shadow">
+                <div class="clearfix"></div>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="content-area">
+                      <h2>I'm proud to be a Leader's for Life Nominee</h2>
+                      <div class="js--team-text">
+                        <p>I'm excited to be nominated for the Leaders for Life campaign this year.  As part of this
+                          year's class of changemakers, I'm dedicated to making a lasting impact on the health of our
+                          community and hope that I can count on your support!</p>
+                        <p>Despite many advances, cardiovascular disease is still the No.1 killer in the US. And while
+                          approximately 80% of cardiovascular disease could be prevented through a healthy diet,
+                          physical activity, a healthy weight, not smoking, controlled blood pressure, diabetes, and
+                          lipid levels - the disparities in access to care, nutrition, and healthy environments make
+                          achieving these goals far too difficult for far too many people. That's why I am committed
+                          to being a part of this relentless force for a world of longer, healthier lives.</p>
+                         <p>Are you with me in making a real impact on the health of our community? Please click on the
+                           donate button next to my name below to support my efforts. Every dollar counts, and I'm counting
+                           on you!</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row buttons-row text-center">
+                        [[?x2x3x::x[[S42:0:status]]x::
+                        <a class="scroll-link btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0 js--team-member-donate" href="Donation2?df_id=[[E42:[[S334:fr_id]]:form-id]]&PROXY_ID=[[S334:team_id]]&PROXY_TYPE=22&FR_ID=[[S334:fr_id]]" onclick="_gaq.push(['_trackEvent', 'team', 'banner', 'donate to team member button']);">Donate to Nominee</a>
+                        ::]]
+                  </div>
+              </div>
+          </div>
+          <!--/.information-box-->
+
+          <!-- END TEAM PAGE INFO BOX -->
+            <!-- TEAM ROSTER -->
+            <div id="teamRoster" class="information-box team-roster bg-gray-100">
+                 <div class="team-roster-header">
+                    <h1>Team Roster</h1>
+                 </div>
+                <!-- /.team-roster-header -->
+                <div class="js--gen-team-don-container" style="display:none;">
+                    <span class="team-donate-label text-small">General Team Donations: <span class="js--gen-team-don-total">$0</span></span>
+                    <a href="Donation2?df_id=[[E42:[[S334:fr_id]]:form-id]]&PROXY_ID=[[S334:team_id]]&PROXY_TYPE=22&FR_ID=[[S334:fr_id]]" class="d-block text-small mb-1" onclick="_gaq.push(['_trackEvent', 'team', 'roster', 'donate to team link']);">Donate to Team</a>
+                </div>
+                <div class="clearfix"></div>
+                <!-- /.clearfix -->
+                <table id="team-roster" class="table-responsive float-left w-100 table mb-0">
+                    <thead>
+                        <tr>
+                            <th class="border-0"><span class="sr-only">Name</span></th>
+                            <th class="border-0"></th>
+                            <th class="border-0" data-orderable="false"><span class="sr-only">Donation Link</span></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <div class="clearfix"></div>
+                <!-- /.clearfix -->
+                <div class="d-flex justify-content-center">
+                    <a href="#" class="js--more-participant-results btn btn-tertiary-black" hidden>Show All Team Members</a>
+                </div>
+                <!-- /.d-flex justify-content-center -->
+            </div>
+            <!-- /.information-box -->
+            <!-- END TEAM ROSTER -->
+          [[?x2x3x::x[[S42:0:status]]x::
+            <div class="row join-button-row text-center">
+              <div class="col-12">
+                  <a class="btn btn-secondary col-lg col-sm-12 mx-md-2 mx-sm-0" href="TRR/?fr_tjoin=[[S334:team_id]]&pg=tfind&fr_id=[[S334:fr_id]]" onclick="_gaq.push(['_trackEvent', 'team', 'roster', 'join team button']);">Join This Team</a>
+              </div>
+            </div>
+          ::]]
+        </div>
+        <!-- /.col-lg-8 -->
+        <!-- /.video-container -->
+      </div>
+        <!-- /.col-12 -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->

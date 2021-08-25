@@ -1,0 +1,150 @@
+.pg_team, .pg_company {
+
+  .container {
+    h2 {
+      font-size: 1.5em;
+    }
+  }
+
+  .information-box {
+    padding: 40px;
+
+    h1 {
+      margin: 0 0 40px;
+    }
+
+    .team-members {
+      font-family: $font-family-light;
+      font-size: 1.333rem;
+    }
+  }
+
+ .team-roster {
+   padding: 0;
+   overflow: hidden;
+
+   .dataTables_wrapper {
+     .btn {
+       @include border-radius(0, 4px, 4px, 0);
+       width: 40px;
+     }
+
+     h1 {
+       margin: 40px;
+     }
+     div.row {
+      padding: 0 40px 15px;
+     }
+     thead {
+      tr {
+        font-size: 0.8rem;
+        padding: 0 40px;
+      }
+    }
+     tbody {
+      tr {
+       font-size: 0.8rem;
+       padding: 0 40px 15px;
+
+       label {
+         margin: 0;
+       }
+     }
+    }
+   }
+
+   .dropdown-menu a {
+     text-decoration: none;
+     display: block;
+     padding: 0 0 0 10px;
+   }
+
+   table {
+
+    tbody {
+      background-color: $white;
+     tr {
+       border-bottom: solid 1px $team-roster-bg-gray;
+       font-size: 0.9rem;
+       padding: 17px 40px;
+
+       &:last-child {
+         border: none;
+       }
+     }
+   }
+  }
+
+   .btn-tertiary-black {
+      margin: 25px 0;
+   }
+ }
+
+  .content-area {
+    margin: 0 0 40px;
+
+    .video-container {
+      margin: 0;
+    }
+  }
+}
+
+.coach {
+  margin-right: 3px;
+}
+
+.coach i {
+  color: $red;
+}
+
+.pg_team .team-roster {
+  margin: 40px 0;
+
+  .team-roster-header {
+    padding: 20px;
+    overflow: hidden;
+    background-color: $red;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+      color: $white;
+      margin: 0 !important;
+    }
+    .team-roster__icon {
+      display: flex;
+      align-items: center;
+      i {
+        color: $white;
+      }
+      p {
+        color: $white;
+        font-size: 0.78em;
+        margin: 0 0 0 7px;
+      }
+    }
+  }
+
+  .btn{
+    padding: 11px;
+    width: 260px;
+  }
+
+  .table th {
+    padding: 0;
+  }
+
+}
+
+.join-button-row {
+    margin-bottom: 50px;
+    @include media-breakpoint-up(md) {
+      margin-bottom: 100px;
+    }
+    .btn {
+      max-width: 265px;
+      padding: 11px 0;
+      font-size: 1rem;
+    }
+}

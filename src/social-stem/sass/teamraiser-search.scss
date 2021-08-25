@@ -1,0 +1,53 @@
+#eventResultsTable {
+  .col-cta {
+    padding-left: 10px !important;
+  }
+}
+
+.pg_Leaders_For_Life_Search {
+  .tab-content {
+    input[type="text"],
+    select {
+      background-color: #F8F9FA;
+    }
+  }
+  .alert {
+    margin-top: 30px;
+  }
+  .event-state-select-container--search-page::after {
+      font-family: "Font Awesome 5 Free";
+      font-weight: 600;
+      content: "\f0d7";
+      color: #fff;
+      background-color: $red;
+      right: 0;
+      top: 0;
+      height: 55px;
+      padding-top: 0.4em;
+      border-top-right-radius: 0.25rem;
+      border-bottom-right-radius: 0.25rem;
+      position: absolute;
+      pointer-events: none;
+      text-align: center;
+      font-size: 1.5em;
+      width: 16.667%;
+      display: block;
+      top: 32px;
+      cursor: pointer;
+      &:hover {
+        background-color: $red-deep;
+      }
+  }
+
+  .table td {
+    @media (max-width: 768px) {
+      border: none;
+    }
+
+  }
+
+  .col-cta .btn {
+    max-width: 250px;
+  }
+
+}
