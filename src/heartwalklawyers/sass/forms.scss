@@ -44,8 +44,8 @@
   &.filled {
     display:block;
   }
-} 
-.pg_HeartWalk_Search {
+}
+.pg_HeartWalk_Search, .pg_HeartWalk_LHH_Search {
   .table {
     &.dataTable {
       &.no-footer {
@@ -94,7 +94,7 @@
         }
       }
     }
-  
+
     .btn-rounded {
       font-size:18px;
       font-weight:bold;

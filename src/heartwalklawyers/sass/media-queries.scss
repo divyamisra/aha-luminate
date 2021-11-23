@@ -433,7 +433,7 @@
       .dataTables_wrapper tr {
         padding: 0 20px 20px !important;
         font-size:1rem;
-        
+
       }
     }
 
@@ -469,7 +469,7 @@
 
   nav {
     margin: 6px auto 0px !important;
-    
+
     .navbar-brand {
       margin: 0px 0px 0px 20px;
       padding: 0;
@@ -478,7 +478,7 @@
         margin: 0;
         max-width: 200px;;
       }
-      
+
       img {
         max-width: 90%;
       }
@@ -728,7 +728,7 @@
   }
   /* END PERSONAL, TEAM, COMPANY PAGE STYLES */
 
-  .pg_HeartWalk_Search {
+  .pg_HeartWalk_Search, .pg_HeartWalk_LHH_Search {
     .js--event-results-rows,
     .js--participants-results-rows,
     .js--team-results-rows {
@@ -1061,4 +1061,3 @@
     height: 59px;
   }
 }
-
