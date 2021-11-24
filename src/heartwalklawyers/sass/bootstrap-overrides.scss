@@ -6,6 +6,8 @@
   max-width: 1630px;
 }
 
-.navbar-nav {
-  margin-right: 15px;
+@media (min-width: 768px) {
+  .navbar-nav {
+    margin-right: 15px;
+  }
 }
