@@ -308,9 +308,9 @@ module.exports = (grunt) ->
     config.watch['heartwalk2020'].tasks.forEach (task) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
-    # config.watch['fieldday'].tasks.forEach (task) ->
-    #   if task.indexOf('notify:') is -1
-    #     devTasks.push task
+    config.watch['fieldday'].tasks.forEach (task) ->
+      if task.indexOf('notify:') is -1
+        devTasks.push task
     config.watch['heartwalklawyers'].tasks.forEach (task) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
