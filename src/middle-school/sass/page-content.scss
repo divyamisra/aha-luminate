@@ -1,3 +1,17 @@
+a.btn.btn-donate {
+	font-size: 18px;
+	width:100%;
+	line-height: 22px;
+	@media (max-width: 767px) {
+		width: auto;
+		max-width: 190px;
+		font-size: 14px;
+		line-height: 18px;
+		display: block;
+		padding: 10px 12px;
+	}
+}
+
 .ym-section-divider {
   border: 0;
   border-top: 1px solid $event-secondary;

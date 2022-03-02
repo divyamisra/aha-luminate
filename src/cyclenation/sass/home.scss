@@ -1,0 +1,66 @@
+.pg_cn_home .background-red {
+	background: #c10e21;
+	background: -webkit-gradient(linear,left top,left bottom,color-stop(60%,#c10e21),to(black));
+	background: linear-gradient(180deg,#c10e21 60%,#000 100%);
+	border-top: 6px solid #000;
+}
+.pg_cn_home .section-leaderboard {
+   .leaderboard-container {
+      .top-list {
+         .top-list-title {
+	    background-color: #000;
+	    a {
+ 	       text-decoration: none;
+            }
+	 }
+        .top-list-container {
+  	   background-color: #fff;
+	   border: 0 none;
+	   min-height: 150px;
+         
+	   .top-list-entry .names-amounts {
+   	      /*overflow: hidden;*/
+	      word-wrap: break-word;
+	      text-overflow: ellipsis;
+	      font-size:18px;
+	      line-height: 22px;
+	      font-weight:bold;
+           }
+	}
+     }
+   }
+}
+.headerTherm .thermometers {
+	text-align: center;
+	padding: 0;
+	background: #111f46;
+	font-size: 19px;
+	display: block;
+	overflow:hidden;
+	
+	p {
+	  font-size: 19px;
+          color: #fff;
+          margin-top: 5px;
+	}
+	.therm--bar {
+  	  position: relative;
+	  width: 100%;
+	  height: 40px;
+	  background-color: #e7edf4;
+	  border-radius: 100px;
+        }
+	.therm--rounded {
+	  height: 100%;
+	  border-radius: 100px;
+	  overflow: hidden;
+	  transform: translateZ(0);
+        }
+	.therm--progress {
+	  position: relative;
+	  max-width: 100%;
+	  height: 100%;
+	  background-color: #c10e21;
+	  transition: width 2s linear;
+        }
+}

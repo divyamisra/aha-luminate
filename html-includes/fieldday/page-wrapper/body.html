@@ -1,0 +1,83 @@
+[[?COMMENT::::::
+NOT PART OF DEPLOYMENT PROCESS. MUST BE MANUALLY COPIED TO PAGE WRAPPER EDITOR.
+]]
+
+[[E84:[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/fieldday/html/set-evid.html]]
+
+<script type="text/javascript">
+  var loggedIn = "[[?xx::x[[S1:user_name]]x::Logged Out.::Logged In.]]";
+  // var EventType ="[[S403:event_type1]]";
+  var EventTitle ="[[S42:0:title]]";
+  
+  // <![CDATA[
+      _gaq.push(['t2._setAccount', 'UA-13230711-2']);
+      _gaq.push(['t2._setDomainName', 'none']);
+      // Always put setting custom variables code before the _trackPageview
+      _gaq.push(['t2._setCustomVar',1,'loggedIn', loggedIn, 1]);      
+      _gaq.push(['t2._setCustomVar',2,'EventTitle', EventTitle, 1]); 
+     
+      _gaq.push(['t2._setAllowLinker', true]);
+      
+    _gaq.push(['t3._setAccount', 'UA-13230711-7']);
+      _gaq.push(['t3._setDomainName', 'none']);
+      _gaq.push(['t3._setAllowLinker', true]);
+      _gaq.push(['t3._trackPageview']);
+     (function () {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+  // [[LR]]></script>
+
+[[E84:[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/fieldday/html/page-wrapper/header.html]]
+[[S51:reus_fieldday_2020_style_overrides]]
+<main>
+  <a name="contentStart" id="contentStart" tabindex="-1"></a>
+  [[?xentryxpersonalxteamxcompanyx::x[[S334:pg]]x::
+  [[E51:reus_fd_[[S334:pg]]_tpt]]
+  <div class="default-tr-content" style="display:none;">
+    [[S63:3]]
+  </div>
+  ::
+    [[?xFieldDay_Landing_Pagex::x[[S334:pagename]]x::
+      <!-- Field Day Landing Page -->
+        <!-- begin content -->
+        [[S63:3]]
+        <!-- end content -->
+    ::
+    <!-- Default Page -->
+    <div class="container">
+      <div class="row">
+        <div class="col-12 content">
+          <!-- begin content -->
+          [[S63:3]]
+          <!-- end content -->
+        </div>
+      </div>
+    </div>
+    ]]
+  ]]
+  
+[[?xentryx::x[[S334:pg]]x::
+  [[S51:reus_fd_why_we_walk_promo]]
+::]]
+
+</main>
+
+[[E84:[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/fieldday/html/page-wrapper/footer.html]]
+[[E84:[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/fieldday/html/page-wrapper/body-scripts.html]]
+  [[?x1073x::x[[S334:sid]]x::
+  <!-- add two-click confirmation message to sponsor links on sponsor page -->
+  <script>
+  Y.use('jquery-noconflict', function (Y) {
+    jQuery('#page_body_container a').on('click', function(e){
+      e.preventDefault();
+      var sponsorUrl = jQuery(this).attr('href');
+        if (confirm("These are proud sponsors of the American Heart Association's Heart Walk. By clicking on this link, you will be taken outside American Heart Association and this is not an endorsement of either the linked-to entity or any product or service.")) {
+          window.location.href = sponsorUrl;
+        } 
+    });
+    });
+  </script>
+  ::]]
+[[S51:reus_fieldday_complist_js]]

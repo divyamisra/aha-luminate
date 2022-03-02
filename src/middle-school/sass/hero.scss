@@ -1,3 +1,6 @@
+.ym-hero {
+  min-height: 310px;
+}
 .ym-hero-top__find-your-school {
   margin-top: 20px;
   padding-bottom: 24px;
@@ -13,6 +16,8 @@
 }
 
 .ym-hero__text {
+  bottom: 5px;
+  
   h1 {
     font-size: 30px;
   }

@@ -10,7 +10,7 @@
               Donate
             </h1>
             <p class="text-large">
-              Thank you for donating to the American Heart Association. With your life-saving donation, we can build healthier lives, free of cardiovascular disease and stroke.
+              Thank you for donating to the American Heart Association. With your lifesaving donation, we can build healthier lives, free of cardiovascular disease and stroke.
             </p>
           ]]
         ::]]
@@ -39,11 +39,11 @@
               ::
                 <!-- company ID is non-null -->
                 <p class="school-name">
-                  My School: <a aria-label="My School: [[E43:[[S80:trID]]:company-name:[[E48:[[S80:trID]]-[[S1:cons_id]]:team-id]]]]" title="My School" href="TR?fr_id=[[S80:trID]]&pg=company&company_id=[[E43:[[S80:trID]]:company-id:[[E48:[[S80:trID]]-[[S1:cons_id]]:team-id]]]]"><span class="sr-only">View</span> [[E43:[[S80:trID]]:company-name:[[E48:[[S80:trID]]-[[S1:cons_id]]:team-id]]]] <span class="sr-only">page</span></a>
+                  My School: <a title="[[E43:[[S80:trID]]:company-name:[[E48:[[S80:trID]]-[[S1:cons_id]]:team-id]]]]" href="TR?fr_id=[[S80:trID]]&pg=company&company_id=[[E43:[[S80:trID]]:company-id:[[E48:[[S80:trID]]-[[S1:cons_id]]:team-id]]]]">[[E43:[[S80:trID]]:company-name:[[E48:[[S80:trID]]-[[S1:cons_id]]:team-id]]]]</a>
                 </p>
               ]]
               <p class="team-name" ng-if="companyInfo.teamCount > 1" ng-cloak>
-                My Team: <a aria-label="My Team: [[E48:[[S80:trID]]-[[S1:cons_id]]:team-name]]" title="My Team" href="TR?fr_id=[[S80:trID]]&pg=team&team_id=[[E48:[[S80:trID]]-[[S1:cons_id]]:team-id]]"><span class="sr-only">View</span> [[E48:[[S80:trID]]-[[S1:cons_id]]:team-name]] <span class="sr-only">page</span></a>
+                My Team: <a title="[[E48:[[S80:trID]]-[[S1:cons_id]]:team-name]]" href="TR?fr_id=[[S80:trID]]&pg=team&team_id=[[E48:[[S80:trID]]-[[S1:cons_id]]:team-id]]">[[E48:[[S80:trID]]-[[S1:cons_id]]:team-name]]</a>
               </p>
             ]]
           ::
@@ -69,11 +69,11 @@
                 [[?xx::x[[E43:[[S80:trID]]:company-id:[[E48:[[S80:trID]]-[[S334:px]]:team-id]]]]x::::
                   <!-- company ID is non-null -->
                   <p class="school-name">
-                    My School: <a aria-label="My School: [[E43:[[S80:trID]]:company-name:[[E48:[[S80:trID]]-[[S334:px]]:team-id]]]]" href="TR?fr_id=[[S80:trID]]&pg=company&company_id=[[E43:[[S80:trID]]:company-id:[[E48:[[S80:trID]]-[[S334:px]]:team-id]]]]"><span class="sr-only">View</span> [[E43:[[S80:trID]]:company-name:[[E48:[[S80:trID]]-[[S334:px]]:team-id]]]] <span class="sr-only">page</span></a>
+                    My School: <a title="[[E43:[[S80:trID]]:company-name:[[E48:[[S80:trID]]-[[S334:px]]:team-id]]]]" href="TR?fr_id=[[S80:trID]]&pg=company&company_id=[[E43:[[S80:trID]]:company-id:[[E48:[[S80:trID]]-[[S334:px]]:team-id]]]]">[[E43:[[S80:trID]]:company-name:[[E48:[[S80:trID]]-[[S334:px]]:team-id]]]]</a>
                   </p>
                 ]]
                 <p class="team-name" ng-if="numTeams > 1" ng-cloak>
-                  My Team: <a aria-label="My Team: [[E48:[[S80:trID]]-[[S334:px]]:team-name]]" href="TR?pg=team&fr_id=[[S80:trID]]&team_id=[[E48:[[S80:trID]]-[[S334:px]]:team-id]]"><span class="sr-only">View</span> [[E48:[[S80:trID]]-[[S334:px]]:team-name]] <span class="sr-only">page</span></a>
+                  My Team: <a title="[[E48:[[S80:trID]]-[[S334:px]]:team-name]]" href="TR?pg=team&fr_id=[[S80:trID]]&team_id=[[E48:[[S80:trID]]-[[S334:px]]:team-id]]">[[E48:[[S80:trID]]-[[S334:px]]:team-name]]</a>
                 </p>
               ]]
             ::]]
@@ -85,7 +85,7 @@
               [[?xx::x[[E43:[[S80:trID]]:company-id:[[S334:team_id]]]]x::::
                 <!-- company ID is non-null -->
                 <p class="school-name">
-                  School: <a aria-label="My School: [[E43:[[S80:trID]]:company-name:[[S334:team_id]]]]" href="TR?fr_id=[[S80:trID]]&pg=company&company_id=[[E43:[[S80:trID]]:company-id:[[S334:team_id]]]]"><span class="sr-only">View</span> [[E43:[[S80:trID]]:company-name:[[S334:team_id]]]] <span class="sr-only">page</span></a>
+                  School: <a title="[[E43:[[S80:trID]]:company-name:[[S334:team_id]]]]" href="TR?fr_id=[[S80:trID]]&pg=company&company_id=[[E43:[[S80:trID]]:company-id:[[S334:team_id]]]]">[[E43:[[S80:trID]]:company-name:[[S334:team_id]]]]</a>
                 </p>
               ]]
             ::]]
@@ -109,11 +109,11 @@
           [[?xx::x[[S80:frCompanyId]]x::::
             <div ng-if="companyName" ng-cloak>
               <p class="school-name">
-                My School: <a aria-label="My School: {{companyName}}" href="TR?fr_id=[[S80:trID]]&pg=company&company_id=[[S80:frCompanyId]]"><span class="sr-only">View</span> <span ng-bind-html="companyName"> <span class="sr-only">page</span></span></a>
+                My School: <a title="{{companyName}}" href="TR?fr_id=[[S80:trID]]&pg=company&company_id=[[S80:frCompanyId]]"><span ng-bind-html="companyName"></a>
               </p>
               [[?xx::x[[S80:frTJoin]]x::::
                 <p class="team-name">
-                  My Team: <a aria-label="My Team: [[E43:[[S80:trID]]:name:[[S80:frTJoin]]]]" href="TR?fr_id=[[S80:trID]]&pg=team&team_id=[[S80:frTJoin]]"><span class="sr-only">View</span> [[E43:[[S80:trID]]:name:[[S80:frTJoin]]]] <span class="sr-only">page</span></a>
+                  My Team: <a title="[[E43:[[S80:trID]]:name:[[S80:frTJoin]]]]" href="TR?fr_id=[[S80:trID]]&pg=team&team_id=[[S80:frTJoin]]">[[E43:[[S80:trID]]:name:[[S80:frTJoin]]]]</a>
                 </p>
               ]]
             </div>

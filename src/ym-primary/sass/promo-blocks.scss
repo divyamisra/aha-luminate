@@ -1,6 +1,16 @@
-.ym-promo-block__item, 
-.cms .ym-promo-block__item {
-  .h2 {
-    line-height: 0.75;
+.ym-promo-block__item {
+  padding: 0 10px;
+  font-size:14px;
+  width: 175px;
+  height: 175px;
+  
+  .h2, 
+  h2 {
+    font-size: 50px;
+    margin: 35px 0 10px;
+  }
+  
+  @media (max-width: $screen-xs-max) {
+    border-bottom: 0;
   }
 }

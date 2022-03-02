@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="657.835" height="701.965" viewBox="0 0 657.835 701.965">
+  <defs>
+    <filter id="Rectangle_685" x="207.849" y="584.653" width="188.845" height="117" filterUnits="userSpaceOnUse">
+      <feOffset dx="1" dy="1" input="SourceAlpha"/>
+      <feGaussianBlur result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_1518" x="0" y="524.202" width="197.453" height="177.764" filterUnits="userSpaceOnUse">
+      <feOffset dx="1" dy="1" input="SourceAlpha"/>
+      <feGaussianBlur result="blur-2"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_1519" x="0.16" y="343.476" width="172.189" height="172.189" filterUnits="userSpaceOnUse">
+      <feOffset dx="1" dy="1" input="SourceAlpha"/>
+      <feGaussianBlur result="blur-3"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-3"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_1532" x="181.849" y="342.653" width="126" height="117" filterUnits="userSpaceOnUse">
+      <feOffset dx="1" dy="1" input="SourceAlpha"/>
+      <feGaussianBlur result="blur-4"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-4"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Rectangle_680" x="316.849" y="342.653" width="126" height="117" filterUnits="userSpaceOnUse">
+      <feOffset dx="1" dy="1" input="SourceAlpha"/>
+      <feGaussianBlur result="blur-5"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-5"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_1529" x="451.166" y="282.971" width="165.195" height="176.789" filterUnits="userSpaceOnUse">
+      <feOffset dx="1" dy="1" input="SourceAlpha"/>
+      <feGaussianBlur result="blur-6"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-6"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_1528" x="451.166" y="96.832" width="165.195" height="176.789" filterUnits="userSpaceOnUse">
+      <feOffset dx="1" dy="1" input="SourceAlpha"/>
+      <feGaussianBlur result="blur-7"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-7"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Rectangle_682" x="315.849" y="96.653" width="126" height="117" filterUnits="userSpaceOnUse">
+      <feOffset dx="1" dy="1" input="SourceAlpha"/>
+      <feGaussianBlur result="blur-8"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-8"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_1523" x="180.849" y="96.653" width="126" height="117" filterUnits="userSpaceOnUse">
+      <feOffset dx="1" dy="1" input="SourceAlpha"/>
+      <feGaussianBlur result="blur-9"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-9"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Background" x="405.849" y="584.653" width="251.987" height="117" filterUnits="userSpaceOnUse">
+      <feOffset dx="1" dy="1" input="SourceAlpha"/>
+      <feGaussianBlur result="blur-10"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-10"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_1533" x="6.565" y="0" width="110.919" height="43.714" filterUnits="userSpaceOnUse">
+      <feOffset dx="1" dy="1" input="SourceAlpha"/>
+      <feGaussianBlur result="blur-11"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-11"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Path_1530" x="7.496" y="36.917" width="162.444" height="177.87" filterUnits="userSpaceOnUse">
+      <feOffset dx="1" dy="1" input="SourceAlpha"/>
+      <feGaussianBlur result="blur-12"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur-12"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <pattern id="image" patternUnits="userSpaceOnUse" x="0" y="0" width="1" height="1">
+       <image width="100" height="100" xlink:href="https://dev2.heart.org/ym-dean-pc/aha-luminate/dist/middle-school/image/badge-challenge-school.png"></image>
+    </pattern>
+  </defs>
+  <g id="Winding_Road" data-name="Winding Road" transform="translate(-651.151 -785.347)">
+    <g id="Heart_Facts_Quiz" data-name="Heart Facts Quiz" transform="translate(902.698 1377.846)">
+      <g transform="matrix(1, 0, 0, 1, -251.55, -592.5)" filter="url(#Rectangle_685)">
+        <rect id="Rectangle_685-2" data-name="Rectangle 685" width="187.845" height="116" transform="translate(207.85 584.65)" fill="#fdda00"/>
+      </g>
+    </g>
+    <g id="CPR_Quiz" data-name="CPR Quiz" transform="translate(696.894 1344.056)">
+      <g transform="matrix(1, 0, 0, 1, -45.74, -558.71)" filter="url(#Path_1518)">
+        <path id="Path_1518-2" data-name="Path 1518" d="M319.854,601.273H207.4c-1.232,99.545,37.375,177.981,196.424,176.749V661.663C361.516,666.912,318.377,638.933,319.854,601.273Z" transform="translate(-207.37 -77.07)" fill="#e02826"/>
+	  </g>
+    </g>
+    <g id="Send_Email" data-name="Send Email" transform="translate(685.29 1158.916)">
+      <g transform="matrix(1, 0, 0, 1, -34.14, -373.57)" filter="url(#Path_1519)">
+        <path id="Path_1519-2" data-name="Path 1519" d="M378.587,554.527V439.35c-93.085,2.927-168.261,78.1-171.189,171.189H320.242C322.944,579.605,347.653,557.23,378.587,554.527Z" transform="translate(-207.24 -95.87)" fill="#8f4199"/>
+      </g>
+    </g>
+    <g id="Get_Active" data-name="Get Active" transform="translate(845.951 1136.23)">
+      <g transform="matrix(1, 0, 0, 1, -194.8, -350.88)" filter="url(#Path_1532)">
+        <path id="Path_1532-2" data-name="Path 1532" d="M0,0H125V116H0Z" transform="translate(181.85 342.65)" fill="#ff67b3"/>
+      </g>
+    </g>
+    <g id="Share_on_Social" data-name="Share on Social" transform="translate(4 35)">
+      <g transform="matrix(1, 0, 0, 1, 647.15, 750.35)" filter="url(#Rectangle_680)">
+        <rect id="Rectangle_680-2" data-name="Rectangle 680" width="125" height="116" transform="translate(316.85 342.65)" fill="#00bed9"/>
+      </g>
+    </g>
+    <g id="Make_a_Donation" data-name="Make a Donation" transform="translate(1133.816 1094.399)">
+      <g transform="matrix(1, 0, 0, 1, -482.66, -309.05)" filter="url(#Path_1529)">
+        <path id="Path_1529-2" data-name="Path 1529" d="M680.742,387.248H572.509c-2.592,31.766-26.292,57.139-55.962,59.914V563.036C605.829,560.029,677.933,482.834,680.742,387.248Z" transform="translate(-65.38 -104.28)" fill="#5aba47"/>
+      </g>
+    </g>
+    <g id="Ask_for_a_Donation" data-name="Ask for a Donation" transform="translate(1134.107 936.446)">
+      <g transform="matrix(1, 0, 0, 1, -482.96, -151.1)" filter="url(#Path_1528)">
+        <path id="Path_1528-2" data-name="Path 1528" d="M680.742,563.036H572.509c-2.592-31.766-26.292-56.193-55.962-58.967V387.248C605.829,390.255,677.933,467.45,680.742,563.036Z" transform="translate(-65.38 -290.42)" fill="#f48220"/>
+      </g>
+    </g>
+    <g id="Facebook">
+      <g transform="matrix(1, 0, 0, 1, 651.15, 785.35)" filter="url(#Rectangle_682)">
+        <rect id="Rectangle_682-2" data-name="Rectangle 682" width="125" height="116" transform="translate(315.85 96.65)" fill="#e1eed2"/>
+      </g>
+    </g>
+    <g id="Register">
+      <g transform="matrix(1, 0, 0, 1, 651.15, 785.35)" filter="url(#Path_1523)">
+        <path id="Path_1523-2" data-name="Path 1523" d="M222.1,225.236v116h125v-116h-125Z" transform="translate(-41.25 -128.58)" fill="#e1eed2"/>
+      </g>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 651.15, 785.35)" filter="url(#Background)">
+      <rect id="Background-2" data-name="Background" width="250.987" height="116" transform="translate(405.85 584.65)" fill="#444"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 651.15, 785.35)" filter="url(#Path_1533)">
+      <path id="Path_1533-2" data-name="Path 1533" d="M0,0H109.919V42.714L1.043,37.569Z" transform="translate(6.57)" fill="#444"/>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 651.15, 785.35)" filter="url(#Path_1530)">
+      <path id="Path_1530-2" data-name="Path 1530" d="M518.028,387.986H626.261c2.592,32.209,23.541,56.566,53.211,59.379V564.856C590.19,561.807,520.837,484.905,518.028,387.986Z" transform="translate(-510.53 -351.07)" fill="#444"/>
+    </g>
+  </g>
+</svg>

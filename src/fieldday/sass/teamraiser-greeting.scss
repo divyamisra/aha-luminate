@@ -1,0 +1,280 @@
+.pg_entry {
+  main {
+    margin-bottom: 60px;
+    & > .container {
+  	padding: 0 !important;
+	  background: none;
+    }
+  }
+
+  .event-info-banner {
+    min-height: 210px;
+    width: 100%;
+    background-image: url('https://www2.heart.org/images/content/pagebuilder/aha-fieldday-greeting-hero_2x.jpg');
+    background-size: cover;
+    background-position: top center;
+    @include media-breakpoint-up(lg) {
+      background-position: center;
+    }
+  }
+
+  .event-info__content {
+    @include media-breakpoint-up(lg) {
+      padding: 0 72px;
+    }
+  }
+
+
+  /* Event information box at top of page */
+  .event-info {
+      margin: 0;
+
+      @include media-breakpoint-up(lg) {
+        flex: 720px 0 0;
+      }
+
+      .event-info__header h1 {
+        font-size: 1em;
+        color: $red;
+        background-color: $white;
+        padding: 20px;
+        margin-bottom: 25px;
+        @include media-breakpoint-up(md) {
+          font-size: 1.875em!important;
+        }
+      }
+
+      .event-info__details h2 {
+        font-family: $font-family-bold;
+        color: $red;
+        font-size: 0.875em;
+        @include media-breakpoint-up(md) {
+          font-size: 1em!important;
+        }
+      }
+
+      .event-info__details p {
+        font-size: 0.875em!important;
+        @include media-breakpoint-up(md) {
+          font-size: 1em!important;
+        }
+      }
+
+      .event-name, .event-date {
+        letter-spacing: 0.7px;
+      }
+
+      .event-name, .info-columns a, .info-columns .fas {
+        color: $red;
+      }
+
+      .info-columns {
+        margin: 31px 0 0 0;
+
+        .event-info-collapse {
+          &:hover {
+            a, i {
+              color: $red-deep;
+            }
+          }
+        }
+
+        h3, p {
+          line-height: 1.2;
+        }
+
+        h3, p, a, .fas {
+          font-size: 1rem;
+        }
+
+        a {
+          line-height: 1;
+        }
+
+        p {
+          margin: 0 0 17px;
+        }
+      }
+
+      .event-date {
+        margin: 1px 0 31px;
+        font-size: 1.44rem;
+        font-family:$font-family-medium;
+        font-weight: normal;
+      }
+
+      .btn {
+        max-width: 260px;
+        padding: 13px 0;
+        font-size: 1rem;
+      }
+
+      .fundraising-amounts {
+        margin-top: 90px;
+        margin-bottom: 0px;
+        padding: 0 72px 67px;
+
+        span {
+          font-size: 0.78em;
+          margin: 14px 0 -3px;
+          @include media-breakpoint-up(md) {
+            font-size: 1em;
+          }
+        }
+
+        .amount {
+          font-size: 0.875em;
+          font-family: $font-family-bold;
+          line-height: 1.4;
+          margin: 0;
+          @include media-breakpoint-up(md) {
+            font-size: 1.667em!important;
+            color: $red-deep;
+          }
+        }
+      }
+    }
+
+  .greeting-about {
+    padding-top: 30px;
+    padding-bottom: 80px;
+    h2 {
+      color: $red;
+    }
+    .btn {
+      padding: 13px;
+    }
+  }
+
+  .greeting-visual-banner {
+    height: 200px;
+    @include media-breakpoint-up(xl) {
+      height: 623px;
+      background-attachment: fixed;
+    }
+    width: 100%;
+    background-image: url('https://www2.heart.org/images/content/pagebuilder/aha-fieldday-greeting-banner_2x.jpg');
+    background-size: cover;
+    background-position: center;
+
+  }
+
+  .top-lists {
+    background-color: $red-deep;
+    background-image: url('https://www2.heart.org/images/content/pagebuilder/background-squiggles.png');
+    background-repeat: no-repeat;
+    background-position: right top;
+    background-size: 100%;
+    @include media-breakpoint-up(md) {
+      background-size: 60%;
+    }
+  }
+
+  .top-lists-container {
+    padding: 0 30px 40px;
+    @include media-breakpoint-up(md) {
+      padding: 0 0 91px;
+    }
+
+
+    .btn-tertiary {
+      color: $red;
+      border-color: $red;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin: 0 0 24px;
+      color: $white;
+    }
+    ol,ul{
+      list-style:none;
+    }
+    .top-list {
+      background-color: $white;
+      padding: 0;
+      @include media-breakpoint-up(lg) {
+        max-width: 32%;
+      }
+
+      h3 {
+        font-size: 1.4rem;
+        color: $red;
+        padding: 38px 43px 37px 45px;
+        font-family: $font-family-bold;
+        margin: 0;
+
+        .text-small {
+          margin: 6px 0 0 0;
+          font-size: 1rem;
+        }
+      }
+
+      ul {
+        height: 380px;
+      }
+
+      li {
+        border-bottom: solid 2px $gray-200;
+        a {
+          font-size: 1rem;
+          padding: 26px 0 23px 47px;
+          line-height: 1.6;
+          display: block;
+        }
+      }
+
+      .raised {
+        font-size: 0.9rem;
+        padding: 15px 58px 0 0;
+        text-align: right;
+      }
+
+      .raised strong {
+        font-size: 0.9rem;
+        font-family: $font-family-bold;
+      }
+
+      .top-list-footer {
+        padding: 30px 0;
+
+        .btn-tertiary {
+          width: 100%;
+          max-width: 263px;
+          padding: 5px 0px !important;
+        }
+      }
+    }
+  }
+  .global-sponsors {
+    .container {
+      border: none;
+    }
+  }
+  .marketing-call-out {
+    background-color: $red-light;
+    padding: 25px 0 55px;
+    h2 {
+      color: $red;
+      font-size: 1.3em;
+      @include media-breakpoint-up(lg) {
+        font-size: 2.2em;
+      }
+    }
+    p {
+      font-size: 0.78em;
+      @include media-breakpoint-up(lg) {
+        font-size: 1em;
+      }
+      &.marketing-call-out_button {
+        text-align: center;
+      }
+    }
+
+    .btn {
+      max-width: 260px;
+      padding: 13px;
+      margin: auto;
+    }
+  }
+}

@@ -109,9 +109,9 @@
     //$('h2:contains("Matching Gift:")').wrap('<div id="matching_gift_section"></div>');
     //$('.matching-gift-container').appendTo('#matching_gift_section');
     //if matching gift section is not there, hide section title.
-    if ($('.matching-gift-container').length == 0) {
-	    $('h2:contains(Matching)').hide();
-    }
+    //if ($('.matching-gift-container').length == 0) {
+	    //$('h2:contains(Matching)').hide();
+    //}
     //$('#matching_gift_section').insertAfter('.form-donation-level');
     $('.donation-level-user-entered input').attr("placeholder","Amount").after("<div class='other-amt-note'><em>$25 minimum donation</em></div>");
 
@@ -372,6 +372,11 @@
 (function() {
     Y.use('jquery-noconflict', function() {
         jQuery(function($) {
+	    var formatter = new Intl.NumberFormat('en-US', {
+	    	style: 'currency',
+	    	currency: 'USD',
+	    	minimumFractionDigits: 2
+	    });
 	    //change default radio button to checkbox
 	    $("#cover_fee_radio_Yes").attr("type","checkbox");
 	    $('label[for=cover_fee_dropdown]').closest('.form-input-label-block').remove();
@@ -387,12 +392,12 @@
             if (getDonationAmount() > 0 && $('#cover_fee_radio_Yes').is(':checked')) {
                var initAmt = parseFloat(getDonationAmount());
                var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
-               $('button#pstep_finish').html("Donate $" + toDonate);
+               $('button#pstep_finish').html("Donate " + formatter.format(toDonate));
                $('.bb-additional-amount').text(toDonate)
             } else {
                var initAmt = parseFloat(getDonationAmount());
                var toDonate =  initAmt +0;
-               $('button#pstep_finish').html("Donate $" + toDonate);
+               $('button#pstep_finish').html("Donate " + formatter.format(toDonate));
                $('.bb-additional-amount').text(toDonate)
 	    }
 
@@ -400,36 +405,36 @@
                if ($(this).is(':checked')) {
                   var initAmt = parseFloat(getDonationAmount());
                   var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
-                  $('button#pstep_finish').html("Donate $" + toDonate);
+                  $('button#pstep_finish').html("Donate " + formatter.format(toDonate));
                   $('.bb-additional-amount').text(toDonate)
                } else {
                   $('.bb-additional-amount').text(0)
                   var initAmt = parseFloat(getDonationAmount());
-                  $('button#pstep_finish').html("Donate $" + initAmt);
+                  $('button#pstep_finish').html("Donate " + formatter.format(initAmt));
                }
             });
             jQuery('[id^=level_]').change(function() {
                if ($("#cover_fee_radio_Yes").is(':checked')) {
                   var initAmt = parseFloat(getDonationAmount());
                   var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
-                  $('button#pstep_finish').html("Donate $" + toDonate);
+                  $('button#pstep_finish').html("Donate " + formatter.format(toDonate));
                   $('.bb-additional-amount').text(toDonate)
                } else {
                   $('.bb-additional-amount').text(0)
                   var initAmt = parseFloat(getDonationAmount());
-                  $('button#pstep_finish').html("Donate $" + initAmt);
+                  $('button#pstep_finish').html("Donate " + formatter.format(initAmt));
                }
             });
             $('.donation-level-user-entered input').blur(function() {
                if ($("#cover_fee_radio_Yes").is(':checked')) {
                   var initAmt = parseFloat(getDonationAmount());
                   var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
-                  $('button#pstep_finish').html("Donate $" + toDonate);
+                  $('button#pstep_finish').html("Donate " + formatter.format(toDonate));
                   $('.bb-additional-amount').text(toDonate)
                } else {
                   $('.bb-additional-amount').text(0)
                   var initAmt = parseFloat(getDonationAmount());
-                  $('button#pstep_finish').html("Donate $" + initAmt);
+                  $('button#pstep_finish').html("Donate " + formatter.format(initAmt));
                }
             });
 

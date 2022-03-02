@@ -1,4 +1,59 @@
-.ym-activity-box--virtual img {
+.ym-pc-student-view-text {
+  float: none;
+  width: auto !important;
+  margin: 0 3% 0 0;
+
+  @media (min-width: $screen-sm-min) {
+    width: auto !important;
+  }
+
+  p {
+    @media (min-width: $screen-sm-min) {
+      margin: 0 0 32px;
+    }
+  }
+  .ym-pc-student-view-image {
+    width: 115px;
+    margin: 0 0 15px 10px;
+
+    @media (min-width: $screen-sm-min) {
+      float: none;
+      width: 125px;
+      margin: 0 0 15px;
+    }
+    @media (min-width: $screen-lg-min) {
+      float: right;
+      width: 125px;
+      margin: 0 0 15px 10px;
+    }
+  }
+}
+
+.ym-pc-dashboard-progress-section .row .ym-pc-dashboard-progress-section__column {
+    overflow: hidden;
+}
+.ym-pc-dashboard-progress-section {
+    #ym-pc-dashboard-badges-panel--student {
+        margin-top:25px;
+	.ym-badges__item img {
+	    max-width:100px;
+	}
+    }
+    #ym-pc-dashboard-company-panel--student {
+       .row {
+            margin-bottom: 0;
+       }
+    }
+}
+.ym-pc-dashboard-school-challange {
+      margin-bottom: 20px;
+}
+.ym-pc-dashboard-coordinators-message-section {
+	.ym-pc-dashboard-section-header {
+		min-height:84px;
+	}
+}
+.ym-activity --virtual img {
 	max-width:100%;
 }
 
@@ -8,6 +63,23 @@ a.ym-progress-update-goal {
 
 a.ym-pc-dashboard-download-certificates {
 	color: $event-primary-acc;
+}
+
+.ym-pc-dashboard-coordinator-create-message {
+  margin: 0px !important;
+	
+  img {
+    max-height: 150px;
+    margin-top: -10px;
+  }
+}
+
+.ym-pc-dashboard-coordinator-daily-challenges {
+  margin: 0px !important;
+	
+  img.students-challenge-image {
+    max-height: 120px;
+  }
 }
 
 /* Hero Popup Styles */
@@ -92,7 +164,21 @@ a.ym-pc-dashboard-download-certificates {
   background: none !important;
   margin: 0px !important;
   padding: 10px 0 0 0 !important;
-  
+  position:relative;
+  overflow:hidden;
+	
+  &.confetti:before {
+    background: url(../image/badge_confetti.png) !important;
+    content: '';
+    width: 100%;
+    height: 200%;
+    display: block;
+    position: absolute;
+    opacity: 0.3;
+    animation: slide 6s linear infinite;
+    -webkit-animation: slide 6s linear infinite;
+    -ms-animation: slide 6s linear infinite;
+ }
   .ym-pc-dashboard-mission-accomplished {
     color: $event-secondary;
     font-weight:bold;
@@ -100,46 +186,178 @@ a.ym-pc-dashboard-download-certificates {
   .ym-pc-dashboard-completed-label {
     font-size:14px;
   }
+  a {
+    text-decoration:none;
+  }
   .btn {
     white-space:normal;
   }
 }
 
-.ym-pc-dashboard-badges-header {
-   background: #feeec7;
-   width: 100%;
-   padding-bottom: 20px;
-   margin-top: 50px;
+.ym-pc-dashboard-badge-path {
    position: relative;
-   font-size:20px;
-   img {
+   max-width: 663px;
+   margin: 0 auto 40px;
+   svg {
+      @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+         height:750px;
+      }
+	   
+	   g.finn-text text {
+	    font-family: "Luckiest Guy",cursive;
+	    font-size: 24px;
+	}
+   }
+   .agentk {
+     max-width: 25%;
+     margin-bottom: 10px;
+     width: 100%;
+   }
+   .ym-pc-dashboard-badges-header {
+     top: 0;
+     position: absolute;
+     font-size: 16px;
+     left: 29%;
+     @media (max-width: $screen-sm-min) {
+	position: relative;
+	left: auto;
+        margin-bottom: 10px;
+     }
+	   
+     img {
 	margin-top: -35px;
 	max-width: 70px;
 	margin-bottom: 20px;
-   }
-   p {
+     }
+     p {
 	display: block;
-	max-width: 475px;
 	color: indigo;
 	margin:0 auto;
+     }
+     em {
+  	font-size:16px;
+     }
+     .ym-pc-dashboard-badges-mission {
+         font-size: 20px;
+	 margin-bottom: 16px;
+	 font-weight:bold;
+     }
    }
-   em {
-      font-size:16px;
+   .ym-pc-dashboard-badges-icons {
+ 	position: absolute;
+	top: 18%;
+	left: 0px;
+	img {
+	    margin: 0 0 10px;
+	    max-width: none;
+	    height: 100px;
+	    width: 100px;
+	}
    }
-}
-.ym-pc-dashboard-badges-icons {
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: row;
-	justify-content: center;
-	align-items: flex-start;
-	padding: 20px;
-	background: #feeec7;
-}
-.ym-pc-dashboard-badges-icon {
+   .ym-pc-dashboard-badges-icon {
 	text-align: center;
 	padding: 0 25px 25px;
-	max-width:200px;
+	max-width:150px;
+	position:absolute;
+	.earned::after {
+	    background: url(../image/badge_earned_check.png) no-repeat;
+	    content: '';
+	    width: 40px;
+	    height: 40px;
+	    display: block;
+	    position: absolute;
+	    bottom: 30px;
+	    right: 19px;
+	}
+   }
+   /*online registration*/
+   .ym-pc-dashboard-badges-icon:nth-child(1) {
+	offset-path: path("M244 188");
+   }
+   /*take challenge*/
+   .ym-pc-dashboard-badges-icon:nth-child(2) {
+	offset-path: path("M379 188");
+   }
+   /*1st donation*/
+   .ym-pc-dashboard-badges-icon:nth-child(3) {
+	offset-path: path("M528 226");
+   }
+   /*self donation*/
+   .ym-pc-dashboard-badges-icon:nth-child(4) {
+	offset-path: path("M528 396");
+	.earned:after {
+	  bottom: 20px;
+	  right: 82px;
+	}
+   }
+   /*go social*/
+   .ym-pc-dashboard-badges-icon:nth-child(5) {
+	offset-path: path("M379 433");
+   }
+   /*get active*/
+   .ym-pc-dashboard-badges-icon:nth-child(9) {
+	offset-path: path("M244 433");
+   }
+   /*send email*/
+   .ym-pc-dashboard-badges-icon:nth-child(6) {
+	offset-path: path("M95 465");
+	.earned:after {
+	  bottom: 20px;
+	  right: 82px;
+	}
+   }
+   /*CPR Quiz*/
+   .ym-pc-dashboard-badges-icon:nth-child(7) {
+	offset-path: path("M95 647");
+   }
+   /*heart facts quiz*/
+   .ym-pc-dashboard-badges-icon:nth-child(8) {
+	offset-path: path("M303 675");
+   }
+   .secret-box {
+     position: absolute;
+     color: #fff;
+     font-size: 20px;
+     max-width: 185px;
+     right: 40px;
+     bottom: 26px;
+     text-align: center;
+     &.not-secret-finn:before {
+	    background: url(../image/not_secret_finn.png) no-repeat;
+	    content: '';
+	    width: 96px;
+	    height: 53px;
+	    display: block;
+	    position: absolute;
+	    bottom: 97px;
+	    right: 39px;
+     }
+     &.secret-finn:before {
+	    background: url(../image/secret_finn.png) no-repeat;
+	    content: '';
+	    width: 178px;
+	    height: 96px;
+	    display: block;
+	    position: absolute;
+	    bottom: 96px;
+	    right: -5px;
+     }
+   }
+   path.badge-path:hover {
+     	transition: all 0.3s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+	pointer-events:all;
+	opacity:0;
+   }
+}
+
+@keyframes slide{
+   0%{
+	transform: translate3d(0, -1186px, 0);
+   }
+   100%{
+   	transform: translate3d(0, 0, 0);
+   }
 }
 
 .ym-pc-dashboard-coordinator-resources-contact {
@@ -310,10 +528,18 @@ div[id^="taTextElement"]:focus {
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
 }
 
+.ym-pc-dashboard-coordinator-school-challenge-section,
+.ym-pc-dashboard-coordinator-school-level-section,
 .ym-pc-dashboard-coordinator-school-years-section {
 	background-color: $event-accent-light;
 	padding: 36px;
 	margin: 0 0 30px;
+}
+
+.ym-pc-dashboard-coordinator-school-challenge-section {
+	.schoolChallenge {
+	    margin-bottom: 20px;
+	}
 }
 
 .ym-pc-dashboard-livestream-box {
@@ -322,9 +548,10 @@ div[id^="taTextElement"]:focus {
 		margin-bottom: 20px;
 	}
 	.ym-pc-dashboard-livestream-images {
+		display:flex;
+		justify-content: space-around;
 		.pc-livestream-character {
 			max-width:210px;
-			margin-right:50px;
 			@media (max-width: 992px) {
 				max-width:130px;
 			}
@@ -332,6 +559,7 @@ div[id^="taTextElement"]:focus {
 		.pc-livestream-hearts {
 			max-height: 210px;
 			margin-bottom: 10px;
+			margin-left: 50px;
 			@media (max-width: 992px) {
 				max-height:130px;
 			}
@@ -342,14 +570,12 @@ div[id^="taTextElement"]:focus {
 		padding-top: 10px;
 		border-top: 1px solid #38b5bd;
 		overflow: hidden;
-		
-		a:nth-child(1) {
-			float:left;
-		}
-		a:nth-child(2) {
-			float:right;
-		}
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+
 		a {
+			margin-bottom: 10px;
 			@media (max-width: 480px) {
 				text-align: center;
 				float: none !important;
@@ -357,4 +583,111 @@ div[id^="taTextElement"]:focus {
 			}
 		}
 	}
+}
+
+.ym-pc-dashboard-coordinator-school-years-section,
+.ym-pc-dashboard-coordinator-school-challenge-section,
+.ym-pc-dashboard-coordinator-school-level-section {
+	div.ym-pc-dashboard-section-header {
+		font-size: 20px;
+		color: indigo;
+		font-family: "Luckiest Guy",cursive;
+		line-height: 28px;
+
+		select {
+			width: auto;
+			display: inline-block;
+			padding-right: 25px;
+			font-size: 20px;
+			line-height: 26px;
+			padding-bottom: 5px;
+		}
+		
+		.schoolCreateMessage {
+			font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+			font-size: 18px;
+			
+			.coordinatorMessage {
+			  font-size: .8em;
+			  font-style:italic;
+			}
+		}
+	}
+}
+
+.schoolStatusTitle {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 15px;
+}
+
+.giftApp {
+    width: 75%;
+    margin-top: 10%;
+    text-align: center;
+    h3.h5 {
+       color: #440075;
+       font-family: "Luckiest Guy",cursive;
+       text-transform:uppercase;
+    }
+}
+
+.play-circle {
+    position: absolute;
+    top: 2%;
+    left: 4%;
+    font-size: 24px;
+    border: 2px solid #c10e21;
+    padding: 5px 11px 5px 15px;
+    border-radius: 28px; 
+    display:none;
+}
+
+@media (min-width: 992px) {
+  .ym-pc-dashboard-bottom-section {
+	display:flex;
+  }
+}
+
+.ym-pc-dashboard-coordinator-students-box {
+  .students-challenge-image img {
+    max-width: 170px;
+  }
+}
+
+.school-badges {
+  margin-top:20px;
+  
+  .ym-pc-dashboard-school-badges-box {
+    .ym-badges__item {
+        max-width:75px;
+	margin: 10px 15px 5px;
+        img.img-responsive {
+          max-width: 80px;
+        }
+	    
+        .text.ng-binding {
+	    font-size: 14px;
+	    font-weight: bold;
+	    display: block;
+	    margin-top: 5px;
+	    margin-bottom: 10px;
+	}
+    }
+  }
+}
+#ym-pc-dashboard-company-panel--coordinator {
+    margin-bottom:20px;
+}
+.fundraisingStatusTitle {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 15px;
+    text-align:center;
+}
+.fundraisingStatusTitle + .ym-progress__thermometer {
+    margin-top: 0px;
+}
+.fundraisingStatusTitle + .ym-progress__thermometer + .ym-progress-related {
+    margin-top: 15px;
 }

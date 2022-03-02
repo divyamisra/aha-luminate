@@ -4,7 +4,7 @@
   padding-top: 45.2991452%;
 
   @media (min-width: $screen-md-min) {
-    background-position: 0 center;
+    background-position: center center;
     min-height: 290px;
     padding: 0;
   }
@@ -57,7 +57,7 @@
   background: $brand-white;
   padding: 20px 20px 0;
   
-  @media (min-width: $screen-sm-min) {
+  @media (min-width: $screen-md-min) {
     position: absolute;
     bottom: 20px;
     background: rgb(255, 255, 255);

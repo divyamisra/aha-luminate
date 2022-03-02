@@ -19,7 +19,7 @@ angular.module 'ahaLuminateControllers'
       if not consId or not luminateExtend.global.isParticipant
         setRegEventId()
       else
-        TeamraiserParticipantService.getRegisteredTeamraisers 'cons_id=' + consId + '&event_type=' + encodeURIComponent('American Heart Challenge'),
+        TeamraiserParticipantService.getRegisteredTeamraisers 'cons_id=' + consId + '&event_type=' + encodeURIComponent('American Heart Challenge 2021'),
           error: ->
             setRegEventId()
           success: (response) ->

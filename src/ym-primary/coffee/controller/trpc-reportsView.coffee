@@ -58,7 +58,7 @@ angular.module 'trPcControllers'
                     firstName: gift.name.first
                     lastName: gift.name.last
                     email: gift.email
-                  gift.giftAmountFormatted = $filter('currency') gift.giftAmount / 100, '$', 0
+                  gift.giftAmountFormatted = $filter('currency') gift.giftAmount / 100, '$'
                   if gift.giftMessage
                     gift.showMessage = false
                   participantGifts.push gift
@@ -147,7 +147,7 @@ angular.module 'trPcControllers'
                       firstName: gift.name.first
                       lastName: gift.name.last
                       email: gift.email
-                    gift.giftAmountFormatted = $filter('currency') gift.giftAmount / 100, '$', 0
+                    gift.giftAmountFormatted = $filter('currency') gift.giftAmount / 100, '$'
                     teamGifts.push gift
                   $scope.teamGifts.gifts = teamGifts
                 $scope.teamGifts.totalNumber = if response.data.getGiftsResponse.totalNumberResults then Number(response.data.getGiftsResponse.totalNumberResults) else 0

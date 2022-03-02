@@ -1,27 +1,18 @@
+<script src="//static.heart.org/ahaanywhere/sitecore/dist/ahaHeaderFooterSitecore.js"></script>
+<!-- Activate header/footer plugin -->
 <script>
-  var showDualLogo = false,
-  ahaFooterLoadBootstrap = false,
-  showAHAPrivacyPolicyBanner = false;
-
-  // ***** Initialize javascript object (hash) ***** //
-  var footer_contact = [];
-
-  // ***** create a hash key (associative arrays) and assign a new Array as its value ***** //
-  footer_contact[0] = [];
-  footer_contact[0]['header'] = 'Address';
-  footer_contact[0]['body'] = '<p class="address"><span>7272 Greenville Ave.</span><span>Dallas, TX 75231</span></p>';
-  footer_contact[1] = [];
-  footer_contact[1]['header'] = 'Youth Market Customer Service';
-  footer_contact[1]['body'] = '1-877-824-8531';
-  footer_contact[2] = [];
-  footer_contact[2]['header'] = 'Need Help';
-  footer_contact[2]['body'] = '<a href="https://kidsheartchallenge.zendesk.com/hc/en-us" target="_blank">Visit the Help Center</a>';
-  footer_contact[3] = [];
-  footer_contact[3]['header'] = 'Text to Chat';
-  footer_contact[3]['body'] = '214-444-6688';
-</script>
-<script id="footerScriptTag" src="//static.heart.org/ahaanywhere/responsive/js/aha-footer-external-responsive.v2.js" data-site-contact="true"></script>
-
+  jQuery(function() {
+    jQuery('body.aha-luminate').ahaHeaderFooterSitecore({
+      showSearch: true,
+      showFooterSupportBar: true,
+      supportBarContent:
+      {'title':'CPR-Related Inquiries:','info':'1-877-AHA-4CPR or 1-877-242-4277'},
+      supportBarCallToActions:
+      [{'title':'International Inquiries','link':'#'}]
+    });
+  });
+</script >
+  
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.17/angular-filter[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper[[?xtruex::x[[S80:debug]]x::::.min]].js" crossorigin="anonymous"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
@@ -53,7 +44,7 @@
     ajaxProxyAuth: '[[S86:true]]',
     [[?
       [[?xx::x[[S1:cons_id]]x::T::
-        [[?[[S39:0*#000000*10pt*true*1*0*0*Events:true:YM Kids Heart Challenge:::]]:: href=::::T]]
+        [[?[[S39:0*#000000*10pt*true*1*0*0*Events:true:YM Kids Heart Challenge 2021:::]]:: href=::::T]]
       ]]
     ::T::
       isParticipant: false
@@ -134,12 +125,12 @@
       
       var scriptTag = document.createElement('script');
       [[?xheartdevx::x[[S29:TABLE_PREFIX]]x::
-        scriptTag.src = 'https://hearttools.heart.org/aha_ym20_dev/visitlink_record.php?ecard_linktrack=' + uparts[0];
+        scriptTag.src = 'https://tools.heart.org/aha_ym21_dev/visitlink_record.php?ecard_linktrack=' + uparts[0];
       ::
         [[?xheartnewx::x[[S29:TABLE_PREFIX]]x::
-          scriptTag.src = 'https://hearttools.heart.org/aha_ym20_testing/visitlink_record.php?ecard_linktrack=' + uparts[0];
+          scriptTag.src = 'https://tools.heart.org/aha_ym21_testing/visitlink_record.php?ecard_linktrack=' + uparts[0];
         ::
-          scriptTag.src = 'https://hearttools.heart.org/aha_ym20/visitlink_record.php?ecard_linktrack=' + uparts[0];
+          scriptTag.src = 'https://tools.heart.org/aha_ym21/visitlink_record.php?ecard_linktrack=' + uparts[0];
         ]]
       ]]
       document.body.appendChild(scriptTag);
@@ -158,16 +149,16 @@
 [[?x9x::x[[S4]]x::
 <script>
   jQuery(document).ready(function($){
-    if  ($('#tos_radio_true').length > 0){
-      $('label[for="tos_dropdown"]').parent().hide();
-      $('label[for="tos_dropdown"]').parent().next('fieldset').hide();
-      $('label[for="tos_dropdown"]').parent().before('<input type="checkbox" name="terms-of-service-checkbox" id="terms-of-service-checkbox"><label for="terms-of-service-checkbox">&nbsp;Yes, I agree to the <a href="https://www.heart.org/en/about-us/statements-and-policies/privacy-statement" target="_blank">AHA Privacy Policy</a></label>');
-      $('#terms-of-service-checkbox').change(function(){
-        if($(this).is(':checked')){
-          $('#tos_radio_true').prop('checked',true);
+    if  (jQuery('#tos_radio_true').length > 0 || jQuery('#tos_radio_Yes').length > 0){
+      jQuery('label[for="tos_dropdown"]').parent().hide();
+      jQuery('label[for="tos_dropdown"]').parent().next('fieldset').hide();
+      jQuery('label[for="tos_dropdown"]').parent().before('<input type="checkbox" name="terms-of-service-checkbox" id="terms-of-service-checkbox"><label for="terms-of-service-checkbox">&nbsp;Yes, I agree to the <a href="https://www.heart.org/en/about-us/statements-and-policies/privacy-statement" target="_blank">AHA Privacy Policy</a></label>');
+      jQuery('#terms-of-service-checkbox').change(function(){
+        if(jQuery(this).is(':checked')){
+          jQuery('#tos_radio_true, #tos_radio_Yes').prop('checked',true);
         }
         else {
-          $('#tos_radio_true').prop('checked',false);
+          jQuery('#tos_radio_true, #tos_radio_Yes').prop('checked',false);
         }
       });
     }

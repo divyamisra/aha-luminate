@@ -13,7 +13,7 @@
         <img class="hidden-md hidden-lg" ng-src="{{companyPagePhoto1.customUrl && companyPagePhoto1.customUrl != '' ? companyPagePhoto1.customUrl : companyPagePhoto1.defaultUrl}}" alt="School Photo" ng-cloak>
       </div>
     </div>
-    <div class="col-md-6 ym-progress ym-secondary-medium-color">
+    <div class="col-md-6 ym-progress ym-secondary-medium-color" ng-class="{'challenge-slime': schoolChallenge == 'Slime Challenge','challenge-pie': schoolChallenge == 'Pie in the Face','challenge-activity': schoolChallenge == 'Activity, Party or Event'}">
       <h2 class="ym-progress__title h4">
         [[C1:title]]
       </h2>
@@ -58,7 +58,7 @@
     </div>
     <div class="clearfix"></div>
   </div>
-    <div class="ym-page-section ym-page-section__main" ng-show="participantCount > 0 && (activity1amt != 0 || activity2amt != 0 || activity3amt != 0)" ng-cloak>
+    <div class="ym-page-section ym-page-section__main" ng-show="totalFundraisers > 0 || participantCount > 0 || (activity1amt != 0 || activity2amt != 0 || activity3amt != 0)" ng-cloak>
     <div class="container">
       <div class="ym-our-stats ym-promo-block">
         <h2 class="ym-headline">
@@ -79,6 +79,14 @@
               students registered
             </p>
           </div>
+        </div>
+        <div class="ym-promo-block__item ym-promo-block--circle" ng-if="companyParticipants.totalFundraisers != 0" ng-cloak>
+          <div class="h2 ym-headline">
+            {{companyParticipants.totalFundraisers}}
+          </div>
+          <p>
+            students raising money
+          </p>
         </div>
         <div class="ym-promo-block__item ym-promo-block--circle">
           <div class="h2 ym-headline">
@@ -109,7 +117,7 @@
             {{activity2amt}}
           </div>
           <p>
-            daily challenges of leading the way, no tobacco or vaping.
+            daily challenges of learning hands-only CPR.
           </p>
         </div>
         <div class="ym-promo-block__item ym-promo-block--circle" ng-if="activity3amt != 0" ng-cloak>
@@ -117,7 +125,7 @@
             {{activity3amt}}
           </div>
           <p>
-            daily challenges of choosing water over sugary drinks.
+            daily challenges of leading the way, no tobacco or vaping.
           </p>
         </div>
       </div>

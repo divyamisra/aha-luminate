@@ -5,13 +5,13 @@
     </h2>
   </div>
   <div class="modal-body">
-    <div uib-alert class="alert-danger" ng-if="schoolYearsInfo.errorMessage">
-      <div ng-bind-html="schoolYearsInfo.errorMessage"></div>
+    <div uib-alert class="alert-danger" ng-if="schoolInfo.errorMessage">
+      <div ng-bind-html="schoolInfo.errorMessage"></div>
     </div>
     <div class="form-group">
       <label for="years" class="">Number of Years</label>
       <div class="input-group">
-        <input type="text" class="form-control" id="years" ng-model="schoolYearsInfo.years" aria-label="School Years" required>
+        <input type="text" class="form-control" id="years" ng-model="schoolInfo.years" aria-label="School Years" required>
       </div>
     </div>
   </div>

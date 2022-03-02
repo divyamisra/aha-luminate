@@ -7,11 +7,11 @@ header {
     }
     
     @media (min-width: $screen-sm-min) {
-      padding-top: 20px;
+      padding-top: 10px;
     }
 
     @media (min-width: $screen-lg-min) {
-      padding: 20px 0 0;
+      padding: 10px 0 0;
     }
   }
   
@@ -49,7 +49,7 @@ header {
   .ym-header-logo {
     float: left;
     border-left: 1px solid #838181;
-    height: 76px;
+    margin-bottom:15px;
     
     &:first-child {
       border-left: 0;
@@ -127,7 +127,7 @@ header {
       li {
         float: left;
         padding: 15px 0;
-        margin: 0 75px 0 0;
+        margin: 0 50px 0 0;
         
         &:last-child {
           margin: 0;
@@ -193,6 +193,10 @@ header {
       width: 266px;
       padding: 0;
       z-index: 1000;
+      
+      @media (max-width: 1023px) {
+        padding-right: 40px;
+      }
       
       @media (max-width: $screen-xs-max) {
         left: 0;
@@ -450,7 +454,7 @@ header {
       border: 1px solid #c9cccc;
       border-right: 0;
       font-size: $font-size-sm;
-      width: 140px;
+      width: 250px;
       padding: 0;
       z-index: 1000;
       

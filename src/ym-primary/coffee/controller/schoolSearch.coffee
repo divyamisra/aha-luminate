@@ -4,6 +4,6 @@ angular.module 'ahaLuminateControllers'
     'SchoolSearchService'
     ($scope, SchoolSearchService) ->
       # on init - last param true = get events by location on load; false = do nothing on load
-      SchoolSearchService.init $scope, 'YM Kids Heart Challenge', (location.protocol is 'https:')
+      SchoolSearchService.init $scope, 'YM Kids Heart Challenge 2021', (location.protocol is 'https:')
       # SchoolSearchService.init $scope, 'YM Kids Heart Challenge', false
   ]

@@ -3,24 +3,9 @@
     <div class="container">
       <div class="ym-header-logos clearfix">
         <div class="ym-header-logo ym-header-logo--aha">
-          <a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageNavigator/khc_resources_search.html" target="_blank"><img src="[[?x0x::x[[S4]]x::[[E130:[[T8:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]]] [[T8:/site/]] [[T8:/]] replaceall]]::../]][[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/youth-markets/image/aha-logo.png" alt="American Heart Association Logo"></a>
+          <a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageNavigator/khc_resources_search.html" target="_blank"><img src="[[?x0x::x[[S4]]x::[[E130:[[T8:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]]] [[T8:/site/]] [[T8:/]] replaceall]]::../]][[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy21/khc-logo-2021.png" alt="Kids Heart Challenge Logo"></a>
         </div>
-        [[?x27x::x[[S4]]x::::
-          <div class="ym-header-logo ym-header-logo--khc">
-            <a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageNavigator/khc_resources_search.html"><img src="[[?x0x::x[[S4]]x::[[E130:[[T8:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]]] [[T8:/site/]] [[T8:/]] replaceall]]::../]][[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/khc-logo.png" alt="Kids Heart Challenge Logo"></a>
-          </div>
-        ]]
       </div>
-      [[?x9x27x::x[[S4]]x::::
-        <!--
-        <div class="ym-header-title visible-xs">
-          Kids Heart Challenge
-        </div>
-        <div class="ym-header-post-text hidden-xs">
-          SHAPE America and the American Heart Association collaborate on the Jump Rope For Heart and Hoops For Heart programs.
-        </div>
-        -->
-      ]]
     </div>
   ]]
   [[?x9x::x[[S4]]x::::
@@ -39,25 +24,26 @@
                   For Parents
                 </a> -->
                 <a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer?pagename=khc_resources_parents_corner">
-                  For Parents
+                  Parents
                 </a>
               </li>
               <li>
-<!--                <a href="http://american.heart.org/kidsheartchallenge/for-students/">
-                  For Students
-                </a> -->
                 <a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer?pagename=khc_resources_event_resources">
-                  For Students
+                  Students
                 </a>
               </li>
+              <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+                <a href="http://www.heart.org/educationalresources">
+                  Teachers
+                </a>
+              </li>
+              [[?xx::x[[S1:user_name]]x::
               <li>
-<!--                <a href="http://american.heart.org/kidsheartchallenge/for-teachers-welcome/">
-                  For Teachers
-                </a> -->
-                <a href="https://www.heart.org/en/professional/educator/school-programs/elementary-schools">
-                  For Teachers
+                <a href="https://www.heart.org/en/professional/educator/school-programs/elementary-schools" target="_blank">
+                  Start a New Program
                 </a>
               </li>
+              ::]]
             </ul>
           ]]
           [[?xx::x[[S1:cons_id]]x::
@@ -65,8 +51,8 @@
             <div class="ym-header-login">
               [[?xx[[S8]]::xxhttps::
                 <!-- secure page -->
-                <button type="button" class="btn btn-global-primary ym-header-login-toggle" ng-click="toggleLoginMenu()" title="Login to Fundraise">
-                  Log In to Fundraise <span class="fa fa-chevron-down" ng-class="{'fa-chevron-down': !loginMenuOpen, 'fa-chevron-up': loginMenuOpen}"></span>
+                <button type="button" class="btn btn-global-primary ym-header-login-toggle" ng-click="toggleLoginMenu()" title="Student/Coordinator Login">
+                  Student/Coordinator Log In <span class="fa fa-chevron-down" ng-class="{'fa-chevron-down': !loginMenuOpen, 'fa-chevron-up': loginMenuOpen}"></span>
                 </button>
                 <div class="ym-header-login-dropdown" ng-class="{'open': loginMenuOpen}" ng-cloak>
                   <div class="ym-header-login-form">
@@ -97,7 +83,7 @@
               ::
                 <!-- non-secure page -->
 <!--                <a class="btn btn-global-primary ym-header-login-toggle" href="[[T7:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]UserLogin?NEXTURL=[[T1:[[E130:[[T8:[[S8]]]] [[T8:&amp;]] [[T8:&]] replaceall]]]]]]">Log In to Headquarters</a> -->
-                <a class="btn btn-global-primary ym-header-login-toggle" href="[[T7:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]UserLogin?NEXTURL=[[T1:SPageServer?pagename=ym_khc_my_events]]]]">Log In to Headquarters</a>
+                <a class="btn btn-global-primary ym-header-login-toggle" href="[[T7:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]UserLogin?NEXTURL=[[T1:SPageServer?pagename=ym_khc_my_events]]]]">Student/Coordinator Log In</a>
               ]]
             </div>
           ::
@@ -171,11 +157,18 @@
                       For Students
                     </a>
                   </li>
-                  <li>
-                    <a href="https://www.heart.org/en/professional/educator/school-programs/elementary-schools">
+                  <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+                    <a href="http://www.heart.org/educationalresources">
                       For Teachers
                     </a>
                   </li>
+                  [[?xx::x[[S1:user_name]]x::
+                  <li>
+                    <a href="https://www.heart.org/en/professional/educator/school-programs/elementary-schools" target="_blank">
+                      Start a New Program
+                    </a>
+                  </li>
+                  ::]]
                 </ul>
               </div>
             </div>

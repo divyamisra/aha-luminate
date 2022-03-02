@@ -1,26 +1,17 @@
+<script src="//static.heart.org/ahaanywhere/sitecore/dist/ahaHeaderFooterSitecore.js"></script>
+<!-- Activate header/footer plugin -->
 <script>
-  var showDualLogo = true,
-  ahaFooterLoadBootstrap = false,
-  showAHAPrivacyPolicyBanner = false;
-
-  // ***** Initialize javascript object (hash) ***** //
-  var footer_contact = [];
-
-  // ***** create a hash key (associative arrays) and assign a new Array as its value ***** //
-  footer_contact[0] = [];
-  footer_contact[0]['header'] = 'Address';
-  footer_contact[0]['body'] = '<p class="address"><span>7272 Greenville Ave.</span><span>Dallas, TX 75231</span></p>';
-  footer_contact[1] = [];
-  footer_contact[1]['header'] = 'Youth Market Customer Service';
-  footer_contact[1]['body'] = '1-877-824-8531';
-  footer_contact[2] = [];
-  footer_contact[2]['header'] = 'Need Help';
-  footer_contact[2]['body'] = '<a href="https://jumphoops.zendesk.com/hc/en-us" target="_blank">Visit the Help Center</a>';
-  footer_contact[3] = [];
-  footer_contact[3]['header'] = 'Text to Chat';
-  footer_contact[3]['body'] = '214-444-6688';
-</script>
-<script id="footerScriptTag" src="//static.heart.org/ahaanywhere/responsive/js/aha-footer-external-responsive.v2.js" data-site-contact="true"></script>
+  jQuery(function() {
+    jQuery('body.aha-luminate').ahaHeaderFooterSitecore({
+      showSearch: true,
+      showFooterSupportBar: true,
+      supportBarContent:
+      {'title':'CPR-Related Inquiries:','info':'1-877-AHA-4CPR or 1-877-242-4277'},
+      supportBarCallToActions:
+      [{'title':'International Inquiries','link':'#'}]
+    });
+  });
+</script >
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.17/angular-filter[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper[[?xtruex::x[[S80:debug]]x::::.min]].js" crossorigin="anonymous"></script>
@@ -53,7 +44,7 @@
     ajaxProxyAuth: '[[S86:true]]',
     [[?
       [[?xx::x[[S1:cons_id]]x::T::
-        [[?[[S39:0*#000000*10pt*true*1*0*0*Events:true:American Heart Challenge:::]]:: href=::::T]]
+        [[?[[S39:0*#000000*10pt*true*1*0*0*Events:true:American Heart Challenge 2021:::]]:: href=::::T]]
       ]]
     ::T::
       isParticipant: false
@@ -124,6 +115,27 @@
     }
   })();
 </script>
+
+[[?xpersonalx::x[[S334:pg]]x::
+  <script>
+    if(window.location.href.indexOf('ecard_linktrack=') > 0) {
+      var uparts = window.location.href.split('ecard_linktrack=');
+      uparts = uparts[1].split('&');
+      
+      var scriptTag = document.createElement('script');
+      [[?xheartdevx::x[[S29:TABLE_PREFIX]]x::
+        scriptTag.src = 'https://tools.heart.org/aha_ahc21_dev/visitlink_record.php?ecard_linktrack=' + uparts[0];
+      ::
+        [[?xheartnewx::x[[S29:TABLE_PREFIX]]x::
+          scriptTag.src = 'https://tools.heart.org/aha_ahc21_testing/visitlink_record.php?ecard_linktrack=' + uparts[0];
+        ::
+          scriptTag.src = 'https://tools.heart.org/aha_ahc21/visitlink_record.php?ecard_linktrack=' + uparts[0];
+        ]]
+      ]]
+      document.body.appendChild(scriptTag);
+    }
+  </script>
+::]]
 
 <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5789174373b4a027&amp;async=1"></script>
 <script>

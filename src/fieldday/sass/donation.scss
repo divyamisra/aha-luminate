@@ -1,0 +1,840 @@
+@import "variables.scss";
+@import "mixins.scss";
+
+ @media (max-width: 767px) {
+	footer.l-footer .btn--select {
+		width: auto;
+	}
+}
+
+/* validation styling */
+ input.error, select.error {
+     border-color: #ff0000 !important;
+     box-shadow: none !important;
+}
+ label.error {
+     color: #ff0000;
+     font-weight: normal;
+     white-space: nowrap;
+}
+
+.app_donation {
+  background-color: #900;
+  background-image: url(https://www2.heart.org/images/content/pagebuilder/background-squiggles.png);
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-size: 70%;
+
+  header {
+    background-color: transparent;
+    background-image: none;
+    nav{
+      background-color: transparent;
+      &.mobile-utility-nav {
+        background-color: #eee;
+      }
+    }
+  }
+
+  main {
+    background-color: transparent;
+    padding: 48px 20px 67px;
+  }
+
+  .nav-item--about, .nav-item--find {
+    display: none!important;
+  }
+
+  .global-sponsors, .mobile-utility-nav{
+    display: none;
+  }
+
+  &.logged-in {
+    .mobile-utility-nav {
+      display: none;
+    }
+  }
+}
+
+
+ a#skip-main:hover, a#skip-main:active, a#skip-main:focus {
+     left: 0;
+     width: auto;
+     height: auto;
+}
+ @media (min-width: 1200px) {
+     main .content {
+         margin: 0 auto;
+    }
+}
+ main > .container {
+     background-color: #ffffff;
+     padding: 40px 20px;
+}
+
+ label {
+     font-weight: 400 !important;
+}
+ legend {
+     border-bottom: 0;
+}
+@media all and (max-width:767px) {
+ p {
+  font-size:100%;
+ }
+}
+div.html-caption-container {
+	max-width: none;
+}
+ .impactStatement {
+     display: none;
+     font-size:100%;
+}
+ .section-header-container {
+     margin-bottom: 15px;
+     border-top: 1px solid #cccccc;
+}
+ @media (min-width: 992px) {
+     .heart-page-main h2.section-header-container {
+         margin: 0 0 20px;
+    }
+}
+/*.tributes-caption + .form-row + .section-header-container {
+	border: none;
+}
+*/
+ h1#formTitle {
+     font-weight: 600;
+     font-size: 30px;
+     margin-bottom: 30px;
+}
+ .billingSection .left, .billingSection .right {
+     float: left;
+     margin-right: 20px;
+}
+.container > .row {
+    padding: 0 7px;
+}
+ .donation-form-content {
+     background-color: #ffffff;
+     border-radius: 0;
+     padding: 0;
+}
+ div.donation-form-container.responsive {
+     font-size: 18px !important;
+     padding: 0;
+     display: block;
+}
+div.form-row {
+  margin-right:0px;
+  margin-left:0px;
+  display:block;
+}
+@media (max-width:767px) {
+   main {
+	padding-right: 5px;
+	padding-left: 5px;
+	background: none;
+	padding: 0;
+   }
+   .mobile div.responsive div.form-row {
+	margin-top: 0px;
+	margin-bottom: 0px;
+   }
+   .mobile div.responsive div.form-content {
+	margin-top: 5px;
+	margin-bottom: 5px;
+   }
+   .mobile div.html-caption-container {
+	width: auto;
+   }
+}
+ div.form-row div.form-content {
+     display: inline-block !important;
+     width: 100%;
+     padding-left: 0px;
+}
+#level_flexible_row {
+	margin-bottom:25px;
+}
+
+/*
+.custom-field-container span.field-required {
+	display: none !important;
+}
+*/
+
+div.donation-level-container {
+	background: #fff;
+	border-radius: 35px;
+	border: 0;
+	float: left;
+	width: 125px;
+	margin: 10px 2% 10px 0;
+	position: relative;
+	border: 2px solid #000;
+}
+/* hide duration selection by default until recurring selected */
+#level_flexibleduration_row {
+    display:none;
+}
+
+.donation-form-container #level_flexiblegift_type_Row .designated-giving-recurring-row {
+	float: left;
+	border: 2px solid #000;
+	border-radius: 60px;
+	position: relative;
+	margin-right:10px;
+	margin-bottom:10px;
+}
+.donation-form-container #level_flexiblegift_type_Row .designated-giving-recurring-row.active {
+	color: #ffffff;
+}
+.donation-form-container input[type="checkbox"] + label,
+.donation-form-container input[type="radio"] + label {
+	margin-right: 3.7em;
+}
+
+#tr_recognition_nameanonymous_row {
+	display: none;
+}
+.tr-recognition-name-view,
+#tr_show_gift_to_public_row {
+	margin-left: 35px;
+}
+
+
+.matching-gift-container ul {
+     margin-left: 30px;
+    	margin-bottom: 20px;
+}
+ input#donor_matching_employersearchname {
+     float: left;
+     margin-bottom: 20px;
+}
+div.responsive div.matching-gift-container button.step-button {
+	float: left;
+	line-height: 45px;
+	height: 45px;
+	margin-left: 20px;
+	background: #fff !important;
+	color: #000;
+	border: 2px solid #000;
+	border-radius: 60px;
+}
+ div.responsive a.next-step,
+div.responsive button.next-step,
+div.responsive button.action-button,
+div.responsive a.step-button,
+div.responsive button.step-button,
+div.responsive input.step-button {
+     min-width: 190px;
+     height: 60px;
+     padding: 0 20px;
+     line-height: 60px;
+     font-size: 24px;
+     font-weight: 400;
+     background: none;
+     background-color: #d01d20 !important;
+     color: #ffffff;
+     text-decoration: none;
+     border: 0;
+     max-width: none;
+     border-radius:60px;
+}
+div.responsive a.step-button:hover,
+div.responsive button.step-button:hover,
+div.responsive input.step-button:hover {
+	background:$red-deep !important;
+}
+ div.responsive input[type="text"],
+div.responsive input[type="number"],
+div.responsive input[type="password"],
+div.responsive textarea, select,
+div.responsive select, select[size] {
+     border: 1px solid #acacac !important;
+     border-radius: 0 !important;
+     width: 280px;
+     margin: 0;
+     line-height: 45px;
+     padding: 0 0 0 10px;
+     height: 45px;
+     max-height: 45px;
+     background: #ffffff;
+     background-color: #ffffff;
+}
+@media all and (max-width: 480px) {
+  #tr_recognition_namerec_namename {
+    width: 200px;
+  }
+ div.responsive input[type="text"],
+ div.responsive input[type="number"],
+ div.responsive input[type="password"],
+ div.responsive textarea, select,
+ div.responsive select, select[size] {
+   width: 220px;
+ }
+}
+div.responsive .donation-level-user-entered input[type="text"] {
+	margin: 0 0 0 8px;
+	max-width: 90px;
+}
+/*div.responsive .level4.active .donation-level-user-entered input[type="text"] {
+	border: 2px solid #000 !important;
+	color: #fff;
+	background: #000;
+	box-shadow: none;
+}*/
+.other-amt-note {
+	margin: 0px 5px 20px;
+	font-style: italic;
+	font-size: 0.8em;
+	text-align:center;
+	color: #000000;
+}
+.active .other-amt-note {
+	color: #ffffff;
+}
+
+ div.payment-field-container #responsive_payment_typecc_number_row input {
+     width: 280px;
+}
+
+#level_flexiblegift_type_Row {
+	margin-top:20px;
+}
+ .designated-giving-recurring-row {
+     margin-bottom: 0px;
+}
+ div.designated-giving-recurring-row input, div.designated-giving-recurring-row label {
+     line-height: initial;
+}
+
+.payment-type-selection-container {
+	margin-bottom:10px;
+}
+.payment-type-element-container h3 {
+	display: none;
+}
+
+ #employer_street_row input,
+#billing_addr_street1_row input,
+#billing_addr_street2_row input,
+#billing_addr_street3_row input,
+#billing_addr_country_row input.ui-autocomplete-input,
+#donor_addr_street1_row input,
+#donor_addr_street2_row input,
+#donor_addr_street3_row input,
+#donor_addr_country_row input.ui-autocomplete-input,
+#shipping_addr_street1_row input,
+#shipping_addr_street2_row input,
+#shipping_addr_street3_row input,
+#shipping_addr_country_row input.ui-autocomplete-input,
+#tribute_notify_recip_street1_row input,
+#tribute_notify_recip_street2_row input,
+#tribute_notify_recip_street3_row input,
+#tribute_notify_recip_country_row input.ui-autocomplete-input,
+#tribute_signature_row input,
+#tribute_message_closing_row input,
+div.employer-address-container input#employer_street {
+     width: 280px;
+}
+ #billing_first_name_row,
+#billing_last_name_row,
+#billing_addr_street1_row,
+#billing_addr_street2_row,
+#billing_addr_city_row,
+#billing_addr_state_row,
+#billing_addr_zip_row,
+#billing_addr_country_row {
+     display:inline-block;
+     vertical-align: top;
+     width: auto;
+     margin-right: 20px;
+}
+.billing-fields-container {
+	width: 100%;
+	max-width: 767px;
+}
+div.responsive button.finish-step {
+	float: none;
+}
+.don-level-total-row {
+	display:none;
+}
+ div#responsive_payment_typecc_number_row {
+     float: left;
+     margin-right: 20px;
+}
+ div#responsive_payment_typecc_exp_date_row {
+     float: left;
+}
+ div#responsive_payment_typecc_cvv_row {
+     clear: both;
+}
+ .cvv-input {
+     margin-right: 0;
+     position: relative;
+     width: auto;
+}
+ .cardExpGroup {
+     width: 330px;
+}
+ select#responsive_payment_typecc_exp_date_MONTH, select#responsive_payment_typecc_exp_date_YEAR {
+     width: 40%;
+     margin-right: 5%;
+     margin-top: 3px;
+}
+ #donor_email_opt_in_Row {
+     display: none;
+}
+ div.payment-field-container #responsive_payment_typecc_cvv_row input {
+     width: 280px;
+}
+ div#responsive_payment_typepay_typeradio_payment_types label, div#responsive_payment_typepay_typeradiopaypal label {
+     width: 125px;
+     height: 55px;
+     line-height: 55px;
+     display: block;
+     text-align: center;
+}
+.internal-payment a,
+.external-payment a {
+     display: block;
+}
+ a.payment-type-label, a.payment-type-label:link, div.responsive a.payment-type-label {
+     color: #000000;
+     font-weight: 400;
+     font-size: 24px;
+     text-align: center;
+}
+ div.payment-field-container span.payment-type-option.selected a:link {
+     color: #ffffff;
+}
+ div.payment-field-container div.payment-type-selections .payment-type-option span {
+     display: block;
+}
+ div.payment-field-container span.internal-payment, div.payment-field-container span.external-payment {
+     border: 0;
+     cursor: pointer;
+}
+ div.payment-field-container span.payment-type-option {
+     padding: 0;
+     margin: 0;
+     border: 2px solid #000 !important;
+     background: #ffffff;
+     border-radius: 60px;
+}
+ div.payment-field-container span.external-payment span.payment-type-option {
+     border-radius: 60px;
+     padding: 0;
+     border: 2px solid #000;
+}
+/* DH - add override styles for payment types */
+ div.payment-field-container span.internal-payment {
+     background: none;
+}
+ div.payment-field-container span.internal-payment span:nth-child(1) {
+     margin-right: 15px;
+}
+/* --- */
+ div.payment-field-container span.payment-type-option.selected {
+     border-color: #c10e21 !important;
+     background: #c10e21;
+}
+ div.payment-field-container span.payment-type-option.selected a:link {
+     width: 125px;
+     height: 55px;
+}
+ div.payment-field-container span.payment-type-option input {
+     display: block;
+}
+ #donor_matching_employer_company_information [type="radio"]:checked, #donor_matching_employer_company_information [type="radio"]:not(:checked) {
+     position: relative;
+     left: 0;
+}
+ .donation-form-container #donor_matching_employer_company_information input {
+     width: auto;
+}
+/* Don Form Buttons */
+ div.form-row.form-donation-level div.form-content {
+     display: block;
+}
+ div.form-row .donation-levels div.form-content, div.form-row .donation-levels div.form-content div.donation-level-input-container {
+     width: 100%;
+     padding: 0;
+}
+ div.donation-level-input-container {
+     line-height: inherit;
+     postion:relative;
+}
+ div.responsive .donation-levels .donation-level-input-container label {
+     clear: both;
+     display: block;
+     top: 0;
+     right: 0;
+     width: 100%;
+     font-size: 24px;
+     font-weight: 400 !important;
+     color: #000000;
+     cursor: pointer;
+}
+div.responsive .donation-levels .donation-level-container.active .donation-level-input-container label,
+div.responsive .donation-levels .donation-level-container:hover .donation-level-input-container label{
+	color: #fff;
+}
+ div.donation-level-amount-container,
+ div.donation-level-label-container {
+     display: block;
+     text-align: center;
+     padding: 10px 0px;
+}
+div.donation-level-label-container {
+    text-indent: -9999px;
+}
+div.donation-level-label-container::after {
+    content: "Other";
+    display: block;
+    text-indent: 0;
+    margin-top: -28px;
+    position: relative;
+}
+ #team_find_page label, .regSurvey label, div.responsive label {
+     font-weight: 400;
+     font-size: 18px;
+     margin-bottom: 0;
+     border-radius: 0;
+     width: auto;
+     min-width: auto;
+     vertical-align: top;
+}
+ .heart-page-main div.donation-level-container {
+     background: #515151;
+     border-radius: 0;
+     border: 0;
+     float: left;
+     width: 125px;
+     margin: 10px 2% 10px 0;
+     position: relative;
+}
+.donation-form-container #level_flexiblegift_type_Row .designated-giving-recurring-row.active,
+div.donation-level-container.active,
+div.donation-level-container:hover {
+     background-color: #c10e21;
+     border-color:#c10e21;
+}
+ label + div.donation-level-user-entered {
+     margin-left: 0px;
+     margin-top: 0px;
+     display:none;
+}
+body.ie11 label + div.donation-level-user-entered {
+     margin-left: 0px;
+     margin-top: 0px;
+     display:block !important;
+}
+/*div.responsive .donation-levels .enterAmt .donation-level-input-container > label {
+	display: none;
+}
+ div.donation-level-container.enterAmt, .donation-level-container.enterAmt.active {
+     margin: 10px 2% 10px 0;
+     padding: 0;
+     background: 0 0;
+     width: auto;
+     border: none;
+}
+ div.responsive .donation-levels .enterAmt .donation-level-input-container label {
+     top: -54px;
+     color: #000000;
+     font-size: 18px;
+}*/
+ div.responsive div.ErrorMessage > span.field-error-indicator {
+     height: 23px;
+     width: 18px;
+     background-image: url(../images/page_error_icon.png);
+     vertical-align: top;
+     background-repeat: no-repeat;
+     display: inline-block;
+     zoom: 1;
+}
+ div.donation-level-label-input-container {
+     display: block;
+}
+ div.responsive div.ErrorMessage.page-error > span.field-error-indicator, div.responsive span.header-warning-message {
+     display: inline-block;
+}
+ @media only screen and (max-width: 767px) {
+     .mobile div.donation-form-container.responsive {
+         padding: 0;
+    }
+     .mobile div.donation-level-label-container {
+         max-width: 100%;
+    }
+     .mobile div.responsive div.form-checkbox label, label.custom-element-checkbox-label {
+         max-width: 100%;
+    }
+     #billing_first_name_row, #billing_last_name_row, #billing_addr_street1_row, #billing_addr_street2_row, #billing_addr_city_row, #billing_addr_state_row, #billing_addr_zip_row, #billing_addr_country_row {
+         width: 100%;
+    }
+     .mobile #billing_addr_street1_row input, .mobile #billing_addr_street2_row input, .mobile #billing_addr_street3_row input, .mobile #billing_addr_country_row input.ui-autocomplete-input, .mobile #donor_addr_street1_row input, .mobile #donor_addr_street2_row input, .mobile #donor_addr_street3_row input, .mobile #donor_addr_country_row input.ui-autocomplete-input, .mobile #shipping_addr_street1_row input, .mobile #shipping_addr_street2_row input, .mobile #shipping_addr_street3_row input, .mobile #shipping_addr_country_row input.ui-autocomplete-input, .mobile #tribute_notify_recip_street1_row input, .mobile #tribute_notify_recip_street2_row input, .mobile #tribute_notify_recip_street3_row input, .mobile #tribute_notify_recip_country_row input.ui-autocomplete-input, .mobile #tribute_signature_row input, .mobile #tribute_message_closing_row input, .mobile div.employer-address-container input#employer_street {
+         width: 280px;
+    }
+     .mobile #billing_addr_country_row select, .mobile #billing_addr_state_row select, .mobile #donor_addr_state_row select, .mobile #donor_addr_country_row select, .mobile #donor_occupation_row select, .mobile #shipping_addr_country_row select, .mobile #shipping_addr_state_row select, .mobile #tribute_notify_recip_state_row select, .mobile #tribute_notify_recip_country_row select, .mobile .custom-field-container select, .mobile div.employer-address-container select {
+         max-width: 280px;
+    }
+     .mobile div.payment-field-container div.payment-type-selections {
+         width: 100%;
+    }
+     div#responsive_payment_typepay_typeradio_payment_types label, div#responsive_payment_typepay_typeradiopaypal label, div.payment-field-container span.payment-type-option.selected a:link {
+         width: auto;
+    }
+     .mobile div.responsive button.step-button {
+         width: 100%;
+         max-width: 100%;
+    }
+     .mobile div.button-sub-container {
+         width: 100%;
+    }
+}
+ @media (max-width: 599px) {
+     .donation-level-container:nth-last-child(2):nth-of-type(odd) {
+         display: block;
+    }
+}
+/******** Custom Checkboxes ********/
+/* Base for label styling */
+/* hide cover fiee custom field */
+#additional_amount_row{
+	display:none;
+}
+/*.form-content > .form-input-label-block {
+	display:none;
+}*/
+ [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+     position: absolute;
+     left: 0;
+     opacity: 0;	 
+}
+[type="radio"]:not(:checked), [type="radio"]:checked {
+     position: absolute;
+     left: -999px;
+}
+[type="checkbox"]:not(:checked) + label,
+[type="checkbox"]:checked + label,
+[type="radio"]:not(:checked) + label,
+[type="radio"]:checked + label,
+[type="checkbox"]:not(:checked) + .form-input-label-block > label,
+[type="checkbox"]:checked + .form-input-label-block > label {
+     position: relative;
+     padding-left: 35px;
+     cursor: pointer;
+}
+/* checkbox aspect */
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before,
+[type="radio"]:checked + label:before,
+[type="checkbox"]:not(:checked) + .form-input-label-block > label:before,
+[type="checkbox"]:checked + .form-input-label-block > label:before {
+     content: '';
+     position: absolute;
+     left: 0;
+     top: 0;
+     width: 25px;
+     height: 25px;
+     border: 1px solid #acacac;
+     background: #ffffff;
+     border-radius: 0;
+}
+/* checked mark aspect */
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after,
+[type="radio"]:checked + label:after,
+[type="checkbox"]:not(:checked) + .form-input-label-block > label:after,
+[type="checkbox"]:checked + .form-input-label-block > label:after {
+     content: '\f00c';
+     position: absolute;
+     top: 5px;
+     left: 4px;
+     font-size: 1.2rem;
+     line-height: 0.8;
+     color: #000000;
+     -webkit-transition: all .2s;
+     transition: all .2s;
+     font-family: Font Awesome\ 5 Free;
+     font-weight: 900;
+}
+/* checked mark aspect changes */
+input[type=radio]:focus {
+    outline: 2px solid $outline-blue;
+    outline-offset: 2px;
+    /*outline: 2px solid #c10e21;*/
+}
+[type="checkbox"]:not(:checked) + label:after,
+[type="radio"]:not(:checked) + label:after,
+[type="checkbox"]:not(:checked) + .form-input-label-block > label:after {
+     opacity: 0;
+     -webkit-transform: scale(0);
+     -ms-transform: scale(0);
+     transform: scale(0);
+}
+[type="checkbox"]:checked + label:after,
+[type="radio"]:checked + label:after,
+[type="checkbox"]:checked + .form-input-label-block > label:after {
+     opacity: 1;
+     -webkit-transform: scale(1);
+     -ms-transform: scale(1);
+     transform: scale(1);
+}
+/* disabled checkbox */
+[type="checkbox"]:disabled:not(:checked) + label:before,
+[type="checkbox"]:disabled:checked + label:before,
+[type="checkbox"]:disabled:not(:checked) + .form-input-label-block > label:before,
+[type="checkbox"]:disabled:checked + .form-input-label-block > label:before {
+     -webkit-box-shadow: none;
+     box-shadow: none;
+     border-color: #bbb;
+     background-color: #ddd;
+}
+[type="checkbox"]:disabled:checked + label:after,
+[type="radio"]:disabled:checked + label:after,
+[type="checkbox"]:disabled:checked + .form-input-label-block > label:after {
+     color: #999;
+}
+[type="checkbox"]:disabled + label,
+[type="radio"]:disabled + label,
+[type="checkbox"]:disabled + .form-input-label-block > label {
+     color: #aaa;
+}
+/* accessibility */
+ [type="checkbox"]:focus + label:before,
+[type="checkbox"]:checked:focus + label:before,
+[type="checkbox"]:not(:checked):focus + label:before,
+[type="radio"]:focus + label:before,
+[type="radio"]:checked:focus + label:before,
+[type="radio"]:not(:checked):focus + label:before,
+[type="radio"]:focus + .form-input-label-block > label:before,
+[type="checkbox"]:checked:focus + .form-input-label-block > label:before,
+[type="checkbox"]:not(:checked):focus + .form-input-label-block > label:before {
+     outline-offset: 2px;
+     outline: 2px solid $outline-blue;
+}
+ .designated-giving-recurring-row input:checked, .designated-giving-recurring-row input:not(:checked) {
+     left: 0;
+     position: relative;
+}
+ .designated-giving-recurring-row [type="radio"]:not(:checked) + label:before, .designated-giving-recurring-row [type="radio"]:checked + label:before, .designated-giving-recurring-row [type="radio"]:not(:checked) + label:after, .designated-giving-recurring-row [type="radio"]:checked + label:after {
+     content: none;
+}
+div.designated-giving-recurring-row [type="radio"]:checked, div.designated-giving-recurring-row [type="radio"]:not(:checked) {
+	position: absolute;
+	top: 15px;
+	left:20px;
+}
+div.designated-giving-recurring-row [type="radio"]:checked + label, div.designated-giving-recurring-row [type="radio"]:not(:checked) + label {
+     padding: 15px 15px 15px 40px;
+     margin-right: 10px;
+}
+div.button-container {
+	border: none;
+}
+#donor_email_address_row {
+	margin-bottom:20px;
+}
+/* hide select an amount */
+div.responsive .form-donation-level div.form-content > span,
+div.responsive .donation-level-general-ask {
+	display: none;
+}
+
+
+/******** End Custom Checkboxes ********/
+ .form-info-message {
+     display: none;
+}
+ .donation label {
+     line-height: inherit;
+     text-transform: none;
+     margin: 0;
+}
+ .donation-level-input-container, .donation-levels {
+     display: block;
+     -webkit-box-pack: initial;
+     -ms-flex-pack: initial;
+     justify-content: initial;
+     -ms-flex-wrap: initial;
+     flex-wrap: initial;
+}
+
+ div.responsive .donation-levels .donation-level-input-container [type="radio"]:not(:checked),
+ div.responsive .donation-levels .donation-level-input-container [type="radio"]:checked {
+     position: absolute;
+     left: 10px;
+     top:20px;
+}
+/* div.responsive .donation-levels .enterAmt .donation-level-input-container [type="radio"]:not(:checked),
+ div.responsive .donation-levels .enterAmt .donation-level-input-container [type="radio"]:checked {
+     position: relative;
+     left: -9999px;
+}*/
+ div.responsive .donation-levels .enterAmt .donation-level-input-container label {
+     line-height: 32px;
+     /*top: -25px !important;*/
+}
+ div.responsive .donation-levels .enterAmt .donation-level-input-container label.error {
+     color: #ff0000;
+     line-height: initial;
+     padding-top: 10px;
+     position: relative;
+     width: 100%;
+}
+ div.responsive div.form-content {
+     margin: 0;
+}
+ .heart-page-main div.donation-level-container:hover {
+     background-color: #d01d20;
+}
+ .heart-page-main div.donation-level-container.enterAmt:hover {
+     background-color: transparent;
+}
+ div.donation-level-amount-container {
+     cursor: pointer;
+}
+.custom-field-container.form-row {
+	overflow: hidden;
+	clear: both;
+	padding-top: 20px;
+}
+
+/******** Donation Page Lightbox ********/
+ #modalDonationForm {
+     text-align: center;
+     background: rgba(0, 0, 0, 0.5);
+}
+ #modalDonationForm p {
+     font-size: 15px;
+}
+ #modalDonationForm .modal-title {
+     font-weight: bold;
+}
+ #modalDonationForm .modal-footer {
+     text-align: center;
+}
+ #modalDonationForm .modal-content {
+     background: #C10E21;
+     color: white;
+     font-family: 'Montserrat', arial, sans-serif;
+}
+ #modalDonationForm .modal-header {
+     border-bottom: none;
+}
+ #modalDonationForm .modal-footer {
+     text-align: center;
+     border-top: none;
+}
+ #modalDonationForm a.btn.btn-outline-white {
+     background: #C10E21;
+     border: 1px solid white;
+     color: #ffffff;
+}

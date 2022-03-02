@@ -1,0 +1,378 @@
+/* skip nav styles */
+#skip-main {
+  position: absolute;
+  left:-999999px;
+  top: 0;
+}
+a#skip-main:hover,
+a#skip-main:active,
+a#skip-main:focus {
+  left: 0;
+  width: 200px;
+  height: 40px;
+  margin: 5px;
+}
+
+a#skip-main:active,
+a#skip-main:focus,
+.skip-to:active,
+.skip-to:focus  {
+position: static;
+width: auto;
+height: auto;
+clip: unset;
+clip-path: none;
+display: block;
+background: rgb(248, 249, 250);
+padding: 0.625rem 1.25rem;
+}
+#skipNav {
+  margin:0 !important;
+}
+/* Main navigation styles */
+
+#home, #find, #about {
+  &:hover {
+    @include media-breakpoint-up(md) {
+      color: $white!important;
+    }
+  }
+}
+.nav-wrapper {
+  margin-left: auto;
+}
+nav {
+  margin: 12px auto 0px !important;
+  max-width: 1350px;
+  padding: 0 !important;
+
+  &.navbar {
+    display: flex!important;
+    margin-top: 0!important;
+    padding-top: 10px!important;
+  }
+
+  /* Logo */
+  .navbar-brand {
+    max-width: 291px;
+    svg {
+      margin: -17px 0px 1px -1px;
+      width:100%;
+    }
+  }
+
+  /* Navigation links */
+  .nav-link {
+    color: $white;
+    font-size: 1.4rem;
+    text-decoration: none;
+    font-family: $font-family-bold;
+    padding: 6px 0 0 0 !important;
+
+    &:hover {
+      color: $red;
+      text-decoration: underline;
+    }
+    &.btn-primary {
+      color: $red-deep!important;
+      background-color: $white!important;
+    }
+  }
+
+  li.nav-item {
+    margin: 30px 0 0 50px;
+    position: relative;
+    height: 96px;
+    list-style:none;
+
+    @include media-breakpoint-up(sm) {
+      color: $white;
+    }
+
+    &.dropdown {
+      a {
+        &.nav-link{
+          &:hover{
+            color: $white;
+          }
+        }
+      }
+    }
+
+
+    &.logged-in:hover {
+      a {
+        text-decoration: none !important;
+        color: $white!important;
+        &.nav-link.utility-nav-item:hover {
+          text-decoration: underline !important;
+        }
+      }
+    }
+
+    a.nav-link:hover {
+        @include media-breakpoint-up(sm) {
+          color: $red-deep;
+        }
+        text-decoration: underline;
+      }
+
+    &:hover {
+
+      .dropdown-menu-container, .dropdown-menu {
+        display: block;
+      }
+    }
+    &.logged-in {
+      margin-right: 15px;
+
+      p {
+        color: $white;
+      }
+      a {
+        display:inline-block;
+        font-size:16px;
+        color:$white;
+        font-weight:bold;
+      }
+    }
+    /* Dropdown styles */
+
+    /* Speech bubble styles for subnavs */
+    .dropdown-menu:before,
+    .dropdown-menu:after {
+      content: "\0020";
+      display: block;
+      position: absolute;
+      top: -20px;
+      z-index: 2;
+      width: 0;
+      height: 0;
+      overflow: hidden;
+      border: solid 20px transparent;
+      border-top: 0;
+      border-bottom-color: $white;
+    }
+
+    .dropdown-menu:before {
+      top: -21px;
+      z-index: 1;
+      border-bottom-color: $gray-200;
+    }
+
+    a.dropdown-item {
+      font-size: 1.333rem;
+      text-decoration: none;
+      font-family: $font-family-bold;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+
+    .dropdown-toggle::after {
+      display: none;
+    }
+
+    .about {
+      left: -133px;
+      width: 25rem;
+      padding: 30px 100px 39px;
+
+      &:before,
+      &:after {
+        left: 146px;
+      }
+
+      a {
+        &:hover {
+          color: $red-deep;
+          text-decoration: underline;
+        }
+      }
+
+    }
+
+    .find {
+      left: -360px;
+      width: 48rem;
+      padding: 45px 150px;
+
+      h1 {
+        font-size: 2.222rem;
+        margin: 0 0 32px;
+      }
+
+      &:before,
+      &:after {
+        left: 368px;
+      }
+
+      .nav-tabs {
+        border: none;
+        justify-content: center;
+
+        .nav-link {
+          font-size: 1rem;
+          color: $black !important;
+          text-decoration: none !important;
+          border: none;
+          margin: 0 30px 32px 0;
+          &:hover {
+            color: $red-deep!important;
+            text-decoration: underline !important;
+          }
+        }
+
+        .nav-link.active {
+          color: $red !important;
+          text-decoration: underline !important;
+        }
+      }
+
+    }
+  }
+  &.mobile-utility-nav {
+    background-color: $gray-400;
+    width:100%;
+    padding:10px 15px !important;
+    margin-top:0 !important;
+    li {
+      &.nav-item {
+        color: $black;
+      }
+    }
+
+    a {
+      display:inline-block;
+      font-size:16px;
+      color:$primary;
+      font-weight:bold;
+    }
+  }
+  /* Login button */
+  li.login {
+    margin: 30px 0px -11px 45px;
+
+    &:hover {
+
+      a.nav-link {
+        color: $white;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .nav-item.login a {
+    color: $white;
+    padding: 9px 35px 9px !important;
+    margin: 0 0 0 0;
+  }
+
+  .nav-item.login a, .nav-item.login .fas {
+    font-size: 1.1rem;
+  }
+
+  /* Main nav icons */
+  .nav-link .fas {
+    font-size: 1.2rem;
+  }
+
+  /* Event search tabs under "Find" */
+  .tab-pane {
+    p {
+      margin: 0 0 5px;
+    }
+
+    .input-group-append {
+      .btn {
+        font-size: 1rem;
+      }
+      .btn-primary .fas {
+        font-size: 0.8rem;
+      }
+    }
+  }
+
+  /* Mobile specific styles */
+  .navbar-toggler {
+    padding: 0;
+
+    .navbar-toggler-icon {
+      width: 30px;
+      height: auto;
+      font-size: 2rem;
+    }
+  }
+
+  #mobile-search {
+    font-size: 1.6rem;
+    cursor: pointer;
+
+    &.active {
+      color: $white;
+    }
+  }
+
+  #mobile-search-input {
+    padding: 25px;
+    text-align: left;
+    color: $black;
+    font-weight: 600;
+    background-color: $gray;
+    cursor: pointer;
+  }
+
+  #mobile-toggle {
+    .fa-times {
+      color: $white;
+    }
+  }
+
+  /*
+   * Since the mobile view has a different button that shows just the event search
+   * we add a "is-search" class dynamically to the navigation to show/hide elements
+   * appropriately.
+   */
+  .is-search {
+    #mobile-search-input, #home, #find, #about, .about, .dropdown-menu:after, .dropdown-menu:before, .dropdown-menu.about, #mobile-login {
+      display: none !important;
+    }
+
+    .dropdown-menu.find {
+      display: block !important;
+    }
+
+    .find {
+      position: static !important;
+      margin: 0 !important;
+      width: 100% !important;
+      padding: 40px 20px !important;
+      border: none !important;
+    }
+
+    li.nav-item {
+      margin: 0 !important;
+    }
+  }
+
+  #mobile-login a {
+    color: $red!important;
+    border-top: solid 1px #E3E3E3;
+    padding: 18px 0 !important;
+    margin: 0 20px 0 0;
+    font-size: 1rem !important;
+    font-weight: 600;
+  }
+}
+
+.nav-item--find {
+  a {
+    cursor: pointer;
+  }
+  &.open {
+    .dropdown-menu {
+      display: block;
+    }
+  }
+}

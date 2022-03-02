@@ -1,0 +1,88 @@
+a.btn {
+  text-decoration: none;
+}
+
+.btn {
+  @include border-radius(60px, 60px, 60px, 60px);
+  color: $white;
+  border: none;
+  font-family: 'LubDubMedium', Helvetica, Arial, sans-serif !important;
+}
+
+.content {
+  .btn {
+    padding: 15px 20px;
+    line-height: 1;
+  }
+
+  .btn-primary {
+    border: solid 2px $red !important;
+
+    &:hover {
+      border: solid 2px $red-deep !important;
+    }
+  }
+}
+
+.btn-primary {
+  background-color: $red;
+
+  &:hover {
+    background-color: $red-deep;
+  }
+}
+
+.btn-secondary {
+  background-color: $white;
+  border: solid 2px $red;
+  color: $red;
+}
+
+.btn-tertiary {
+  border: solid 2px $white;
+}
+
+.btn-tertiary-black {
+  border: solid 2px $black !important;
+  color: $black !important;
+  padding: 5px 20px !important;
+}
+
+.btn-secondary, .btn-tertiary, .btn-tertiary-black {
+  &:hover {
+    background-color: $red !important;
+    border: solid 2px $red !important;
+    color: $white !important;
+  }
+}
+
+.input-group-append .btn {
+  @include border-radius(4px, 4px, 0, 0);
+}
+
+.donation-amount-btn {
+  border: solid 2px $black;
+  color: $black;
+  background-color: $white;
+  padding: 11px 0;
+  width: 99px;
+  float: left;
+  margin: 0 15px 0 0;
+  max-height:50px;
+  position:relative;
+
+  &:hover, &.active {
+    background-color: $black;
+    color: $white;
+  }
+  .form-check-input {
+    margin-left:auto;
+    left:5px;
+  }
+}
+
+.btn-primary:focus, a.btn.btn-primary:focus, #login-div-content a.btn.btn-primary:focus, div.responsive a.btn.btn-primary:focus, .btn-primary.focus, a.focus.btn.btn-primary, #login-div-content a.focus.btn.btn-primary, div.responsive a.focus.btn.btn-primary, .btn:focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(158,202,237, 0.75);
+  box-shadow: 0 0 0 0.2rem rgba(158,202,237, 0.75);
+}
+

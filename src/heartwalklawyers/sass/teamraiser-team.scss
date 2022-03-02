@@ -1,0 +1,99 @@
+.pg_team, .pg_company {
+
+  .information-box {
+    padding: 40px;
+
+    h1 {
+      margin: 0 0 40px;
+    }
+
+    .team-members {
+      font-family: $font-family-light;
+      font-size: 1.333rem;
+    }
+  }
+
+ .team-roster {
+   padding: 0;
+   overflow: hidden;
+
+   .dataTables_wrapper {
+     .btn {
+       @include border-radius(0, 4px, 4px, 0);
+     }
+
+     h1 {
+       margin: 40px 0 0 40px;
+     }
+     div.row {
+      padding: 0 40px 15px;
+     }
+     thead {
+      tr {
+        font-size: 0.8rem;
+        padding: 0 40px;
+      }
+    }
+     tbody {
+      tr {
+       font-size: 0.8rem;
+       padding: 0 40px 15px;
+
+       label {
+         margin: 0;
+       }
+     }
+    }
+   }
+
+   .dropdown-menu a {
+     text-decoration: none;
+     display: block;
+     padding: 0 0 0 10px;
+   }
+
+   table {
+
+    tbody {
+      background-color: $team-roster-bg-gray;
+     tr {
+       border-bottom: solid 1px $white;
+       font-size: 0.9rem;
+       padding: 17px 40px;
+
+       &:last-child {
+         border: none;
+       }
+     }
+   }
+  }
+
+   .btn-tertiary-black {
+      margin: 25px 0;
+   }
+ }
+
+  .content-area {
+    border-top: solid 1px $thermometer-border;
+    padding: 80px 0;
+    margin-left: 40px;
+    margin-right: 40px;
+
+    .video-container {
+      margin: 0;
+    }
+  }
+}
+
+.pg_team .team-roster {
+  margin: 80px 0 0 30px;
+
+  .team-roster-header {
+    padding: 20px 0 0 20px;
+    overflow: hidden;
+
+    h1 {
+      margin: 0 !important;
+    }
+  }
+}

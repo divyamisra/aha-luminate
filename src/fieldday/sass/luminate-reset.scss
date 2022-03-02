@@ -1,0 +1,155 @@
+/* ********** */
+/* typography */
+/* ********** */
+
+p,
+ol,
+ul,
+li,
+table,
+tr,
+th,
+td,
+.Explicit,
+div.responsive {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* **************** */
+/* elements to hide */
+/* **************** */
+.hidden {
+  display: none !important;
+}
+div.responsive span.header-warning-message,
+div.responsive div.ErrorMessage.page-error>span.field-error-indicator {
+  display: none;
+}
+
+/* ***** */
+/* links */
+/* ***** */
+a.btn, a.btn:visited, a.editBtn, a.editBtn:visited, input.btn, input.btnMini, input.btnSm, input.btnMed, input.btnLg {
+  font-family: $font-family-medium;
+  font-size: initial;
+  font-weight: initial;
+  text-decoration: initial;
+  font-size: initial;
+  font-weight: initial;
+  color: initial;
+  background: none;
+  border: initial;
+  padding: initial;
+}
+
+a,
+#login-div-content a,
+div.responsive a {
+  &:link,
+  &:visited,
+  &:hover,
+  &:focus,
+  &:active {
+    // color: $link-color;
+    // color:initial;
+    color:#C10E21;
+  }
+  &.btn.btn-primary {
+    color: $white;
+    @extend .btn-primary;
+  }
+  &.btn.btn-secondary {
+    color: $white;
+    @extend .btn-secondary;
+  }
+  &.btn.btn-tertiary {
+    color: $white;
+    @extend .btn-tertiary;
+  }
+  &.btn.btn-outline-dark {
+    color: $dark;
+  }
+}
+
+
+
+// .button {
+//   @extend .btn;
+// }
+
+
+/* ******************* */
+/* warnings and errors */
+/* ****** */
+
+div.responsive div.ErrorMessage.page-error>span.field-error-text {
+  background: transparent;
+  border: 0;
+}
+
+/* **************** */
+/* responsive pages */
+/* **************** */
+
+div.responsive {
+  color: inherit;
+  width: auto !important;
+}
+
+/* ********** */
+/* teamraiser */
+/* ********** */
+
+div.tr-page-container {
+  border: 0;
+}
+
+.mobile div.tr-page-container #entry_page_custom_html {
+  max-height: none;
+  padding: 0;
+}
+
+div.tr-page-header {
+  background: transparent;
+}
+
+div.registration-page-container div.section-container {
+  border-radius: 0;
+}
+
+div.registration-page-container div.section-header {
+  border-radius: 0;
+}
+
+#find_participant div.participant-find-search-container {
+  width: auto !important;
+  max-width: 450px !important;
+}
+
+@media (max-width: 1199px) {
+  div.tr-page-main-content,
+  div.tr-page-container div.side-bar {
+    width: 100%;
+  }
+}
+.mobile div#find_participant li {
+  width: 135px !important;
+
+  // @media (min-width: $screen-sm-min) {
+  //   width: auto !important;
+  // }
+}
+
+
+/* ************** */
+/* donation forms */
+/* ************** */
+
+div.donation-form-container.responsive {
+  background: transparent;
+  border: 0;
+}
+label {
+  white-space: inherit;
+}

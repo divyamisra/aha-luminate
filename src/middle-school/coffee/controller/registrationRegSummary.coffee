@@ -33,4 +33,6 @@ angular.module 'ahaLuminateControllers'
       $scope.submitRegSummary = ->
         angular.element('.js--default-regsummary-form').submit()
         false
+        
+      $scope.submitRegSummary()
   ]

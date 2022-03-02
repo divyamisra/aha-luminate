@@ -34,9 +34,7 @@
 .ym-pc-dashboard-progress-section {
   .row {
     .ym-pc-dashboard-progress-section__column {
-      &:first-child {
         padding: 0;
-      }
     }
   }
 }
@@ -202,9 +200,32 @@
     text-transform: none;
     color: $event-secondary-heading;
   }
+
+}
+
+.ym-spread-the-word-box {
+  background: $event-secondary-medium;
+  border: 5px solid $event-secondary;
+  border-radius: 20px;
+  box-shadow: 0 5px 0 0 rgb(50, 50, 50);
+  box-shadow: 0 5px 0 0 rgba(50, 50, 50, 1);
+  padding: 25px 20px;
+  margin: 0 0 20px;
+  
+  @media (min-width: $screen-sm-min) {
+    margin: 0;
+  }
+  
+  @media (min-width: $screen-md-min) {
+    margin: 25px 50px;
+  }
 }
 
 .ym-pc-dashboard-spread-section {
+  padding: 0;	
+  @media (min-width: $screen-sm-min) {
+    padding: 0;
+  }  
   .ym-pc-dashboard-section-header {
     h3, 
     .h3 {

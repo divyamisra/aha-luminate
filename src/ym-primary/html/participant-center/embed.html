@@ -1,5 +1,5 @@
 [[E84:[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/html/set-tr-id.html]]
-<div class="ng-pc-container" ng-controller="NgPcMainCtrl" data-embed-root data-app-version="0.1.0" data-api-key="[[S0:CONVIO_API_KEY]]" data-fr-id="[[S334:fr_id]]" data-prev-one-fr-id="[[?xxUnrecognized type parameterx::x[[E42:[[S334:fr_id]]:prev-fr-id]]x::::[[E42:[[S334:fr_id]]:prev-fr-id]]]]" data-prev-two-fr-id="[[?xxUnrecognized type parameterx::x[[E42:[[S334:fr_id]]:prev-fr-id]]x::::[[?xxUnrecognized type parameterx::x[[E42:[[E42:[[S334:fr_id]]:prev-fr-id]]:prev-fr-id]]x::::[[E42:[[E42:[[S334:fr_id]]:prev-fr-id]]:prev-fr-id]]]]]]" data-auth-token="[[S86:true]]" data-locale="[[S72:locale]]" data-pc-page="[[S334:pc2_page]]" data-cons-name="[[S1:first_name]] [[S1:last_name]]" data-cons-first-name="[[S1:first_name]]" data-cons-last-name="[[S1:last_name]]" data-student-reg-goal="[[?xxUser Provided No Responsex::x[[E48:[[S80:trID]]-[[S1:cons_id]]:question:Student registration goal:]]x::0::[[E48:[[S80:trID]]-[[S1:cons_id]]:question:Student registration goal:]]]]" data-challenge-taken='[[?xxUser Provided No Responsex::x[[E48:[[S80:trID]]-[[S1:cons_id]]:question:Pick from one of the choices below and we will customize your message letting friends and family know you have taken the challenge. We will also send you some information to help you meet your goal.]]x::::[[T6:[[E48:[[S80:trID]]-[[S1:cons_id]]:question:Pick from one of the choices below and we will customize your message letting friends and family know you have taken the challenge. We will also send you some information to help you meet your goal.]]]]]]' data-coordinator-message-id="[[?xheartdevx::x[[S29:TABLE_PREFIX]]x::1010::1010]]">
+<div class="ng-pc-container" ng-controller="NgPcMainCtrl" data-embed-root data-app-version="0.1.0" data-api-key="[[S0:CONVIO_API_KEY]]" data-fr-id="[[S334:fr_id]]" data-prev-one-fr-id="[[?xxUnrecognized type parameterx::x[[E42:[[S334:fr_id]]:prev-fr-id]]x::::[[E42:[[S334:fr_id]]:prev-fr-id]]]]" data-prev-two-fr-id="[[?xxUnrecognized type parameterx::x[[E42:[[S334:fr_id]]:prev-fr-id]]x::::[[?xxUnrecognized type parameterx::x[[E42:[[E42:[[S334:fr_id]]:prev-fr-id]]:prev-fr-id]]x::::[[E42:[[E42:[[S334:fr_id]]:prev-fr-id]]:prev-fr-id]]]]]]" data-auth-token="[[S86:true]]" data-locale="[[S72:locale]]" data-pc-page="[[S334:pc2_page]]" data-cons-name="[[S1:first_name]] [[S1:last_name]]" data-cons-first-name="[[S1:first_name]]" data-cons-last-name="[[S1:last_name]]" data-student-reg-goal="[[?xxUser Provided No Responsex::x[[E48:[[S80:trID]]-[[S1:cons_id]]:question:Student registration goal:]]x::0::[[E48:[[S80:trID]]-[[S1:cons_id]]:question:Student registration goal:]]]]" data-challenge-taken='[[?xxUser Provided No Responsex::x[[E48:[[S80:trID]]-[[S1:cons_id]]:question:Pick from one of the choices below and we will customize your message letting friends and family know you have taken the challenge. We will also send you some information to help you meet your goal.]]x::::[[T6:[[E48:[[S80:trID]]-[[S1:cons_id]]:question:Pick from one of the choices below and we will customize your message letting friends and family know you have taken the challenge. We will also send you some information to help you meet your goal.]]]]]]' data-coordinator-message-id="[[?xheartdevx::x[[S29:TABLE_PREFIX]]x::1071::1080]]"  data-move-more-flag-id="[[?xheartdevx::x[[S29:TABLE_PREFIX]]x::1081::1090]]">
   <nav role="navigation" aria-label="Headquarters" class="ng-pc-nav" ng-class="{'ng-pc-nav--coordinator': participantRegistration.companyInformation.isCompanyCoordinator == 'true'}" ng-if="participantRegistration" ng-cloak>
     <div class="clearfix" role="list">
       <a role="listitem" ng-href="{{baseUrl}}#/dashboard" class="ng-pc-nav-item" ng-class="{'active': location == '/dashboard'}">
@@ -8,7 +8,7 @@
       <a role="listitem" ng-href="{{baseUrl}}#/email" class="ng-pc-nav-item" ng-class="{'active': location.indexOf('/email/') != -1}">
         <span><strong>Email</strong></span>
       </a>
-      <a role="listitem" ng-href="{{baseUrl}}#/reports" class="ng-pc-nav-item" ng-class="{'active': location == '/reports'}">
+      <a role="listitem" ng-href="{{baseUrl}}#/reports" class="ng-pc-nav-item hidden" ng-class="{'active': location == '/reports'}">
         <span><strong>My Donors</strong></span>
       </a>
       <a role="listitem" ng-href="{{baseUrl}}#/student-resources" class="ng-pc-nav-item ng-pc-nav-item--resources" ng-class="{'active': location == '/student-resources'}" ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true'" ng-cloak>
@@ -17,23 +17,30 @@
       <a role="listitem" ng-href="{{baseUrl}}#/teacher-resources" class="ng-pc-nav-item ng-pc-nav-item--resources" ng-class="{'active': location == '/teacher-resources'}" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
         <span><strong>Teacher Resources</strong></span>
       </a>
-      <a role="listitem" class="ng-pc-nav-item ng-pc-nav-item--order-gifts" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev' && participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-show="hasOOTDashboard">
+      <a role="listitem" class="ng-pc-nav-item ng-pc-nav-item--order-gifts" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev' && participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-show="hasOOTDashboard">
          <span><strong>Manage Event</strong></span>
       </a>
-      <a role="listitem" class="ng-pc-nav-item ng-pc-nav-item--order-gifts" ng-href="https://khc.dev.ootqa.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartnew' && participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-show="hasOOTDashboard">
+      <a role="listitem" class="ng-pc-nav-item ng-pc-nav-item--order-gifts" ng-href="https://khc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartnew' && participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-show="hasOOTDashboard">
          <span><strong>Manage Event</strong></span>
       </a>
-      <a role="listitem" class="ng-pc-nav-item ng-pc-nav-item--order-gifts" ng-href="https://kidsheartchallenge.heart.org/coordinator/login/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart' && participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-show="hasOOTDashboard"> 
+      <a role="listitem" class="ng-pc-nav-item ng-pc-nav-item--order-gifts" ng-href="https://kidsheartchallenge.heart.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart' && participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-show="hasOOTDashboard"> 
         <span><strong>Manage Event</strong></span>
       </a>
-      <a role="listitem" ng-href="{{baseUrl}}#/gifts" class="ng-pc-nav-item ng-pc-nav-item--gifts" ng-class="{'active': location == '/gifts'}" ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true'" ng-cloak>
+      <a role="listitem" ng-href="{{baseUrl}}#/gifts" class="ng-pc-nav-item ng-pc-nav-item--gifts" ng-class="{'active': location == '/gifts'}" ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true' && hideGifts != 'Y' && has_bonus != 3" ng-cloak>
         <span><strong>Gifts</strong></span>
       </a>
       <a role="listitem" ng-href="{{baseUrl}}#/social" class="ng-pc-nav-item" ng-class="{'active': location == '/social'}">
         <span><strong>Social</strong></span>
       </a>
+      <a role="listitem" class="ng-pc-nav-item" href="https://kidsheartchallenge.zendesk.com/hc/en-us/categories/202312477-Students-Parents" target="_blank" ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true'">
+         <span><strong>FAQ</strong></span>
+      </a>
+      <a role="listitem" class="ng-pc-nav-item" href="https://kidsheartchallenge.zendesk.com/hc/en-us/categories/202312447-School-Coordinators" target="_blank" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'">
+         <span><strong>FAQ</strong></span>
+      </a>
     </div>
   </nav>
+  <a name="contentStart" id="contentStart" tabindex="-1"></a>
   <div ng-view class="ng-pc-view-container"></div>
 </div>
 

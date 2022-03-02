@@ -1,0 +1,492 @@
+body {
+  font-family: $font-family-medium;
+  font-size: 16px;
+}
+
+main {
+    padding: 0;
+}
+@media (max-width:767px) {
+  main {
+    padding: 0;
+  }
+}
+@media (min-width: 1200px) {
+     main .content {
+         margin: 0 auto;
+    }
+}
+ main > .container {
+     background-color: #ffffff;
+     padding: 40px 20px !important;
+}
+
+@media (max-width:767px) {
+   main > .container {
+     padding-top: 10px !important;
+   }
+}
+
+a {
+  color: $red;
+  text-decoration: underline;
+  &:focus{
+    outline: 2px solid $outline-blue;
+    outline-offset: 2px;
+    p {
+      outline: 2px solid $outline-blue;
+      outline-offset: 2px;
+    }
+  }
+}
+
+// *:focus {
+//   outline: none !important;
+// }
+
+.text-small {
+  font-size: small;
+}
+
+.bg-gray-700 {
+  background-color: $gray-700;
+}
+
+.bg-gray-100 {
+  background-color: $gray-100;
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, strong {
+  font-family: $font-family-bold;
+  font-weight: bold;
+}
+
+ul {
+  margin: 0;
+}
+
+.container-content {
+  max-width: 1350px;
+}
+
+.text-red {
+  color: $red;
+}
+
+img {
+  max-width: 100%;
+}
+
+.box-shadow {
+  @include box-shadow(0px, 15px, 30px, rgba(0,0,0,0.2));
+}
+
+.information-box {
+  width: 100%;
+  margin: 0;
+  @include media-breakpoint-up(md) {
+      @include box-shadow(0px, 15px, 30px, rgba(0,0,0,0.2));
+  }
+  padding: 0!important;
+
+  .information-box__content {
+    padding: 80px 25px 0;
+    @include media-breakpoint-up(md) {
+      padding: 50px 65px 52px 73px;
+    }
+  }
+  .information-box__name {
+      padding: 17px 65px 9px 73px;
+      display: flex;
+      flex-direction: column;
+      @include media-breakpoint-up(md) {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      h1 {
+        display: block;
+        margin: 0!important;
+      }
+  }
+  .information-box__team-members {
+    color: $red;
+    font-size: 1em;
+    @include media-breakpoint-up(md) {
+      font-size: 1.333em;
+    }
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin: 0 0 5px;
+    color: $red;
+
+    .badges-container {
+      margin: -9px 0 0 36px;
+      float: left;
+
+      svg {
+        display: block;
+        float: left;
+        width: 76px;
+        margin: 0 15px 0 0;
+      }
+    }
+  }
+
+  .donation-amounts {
+    padding: 0 13px;
+    margin-bottom: 50px;
+
+    .custom-amount {
+      //margin: -20px 0 0 0;
+      border: solid 2px #000;
+      color: #000;
+      background-color: #fff;
+      padding: 11px 0;
+      float: left;
+      margin: 0 1% 0 0;
+      position: relative;
+      border-radius: 25px;
+      max-height: 50px;
+      label {
+        font-size: 1rem;
+        margin: 0;
+        padding-left: 23px;
+        padding-right: 14px;
+        line-height: 1;
+        text-align: left;;
+      }
+      input.js--personal-amt-other {
+        width: 100px;
+        background-color: #f8f9fa;
+        height: 40px;
+      }
+      .other-amt-radio {
+        margin: auto;
+        margin-top: 6px;
+        left: 5px;
+      }
+    }
+  }
+
+
+
+  .fundraising-amounts {
+    margin-bottom: 45px;
+    span {
+      font-size: 1rem;
+    }
+
+    .amount {
+      font-size: 1.4rem;
+      font-family: 'LubDubBold', Helvetica, Arial, sans-serif;
+      margin: -6px 0 0 0;
+      display: block;
+      color: $red-deep;
+    }
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  .buttons-row {
+    margin-bottom: 50px;
+    .btn {
+      max-width: 265px;
+      padding: 11px 0;
+      font-size: 1rem;
+    }
+  }
+}
+
+.achievements {
+  margin: 0 0 10px;
+  p {
+    font-size: 10px;
+  }
+}
+
+.donor-roll {
+  margin: 80px 0 0 0;
+  padding-bottom: 15px;
+
+  .donations-container{
+    padding: 40px 33px 37px;
+  }
+
+  .donor-roll__title {
+    background-color: $red;
+    padding: 27px 33px 22px;
+    h5,
+    span.h5 {
+      color: $white;
+      font-size: 1em;
+      margin: 0;
+      display: block;
+    }
+  }
+
+  span {
+    font-size: 0.8889rem;
+  }
+
+  .donations-container {
+    overflow: hidden;
+
+    div {
+      width: 100%;
+      float: left;
+      margin: 0 0 20px;
+    }
+
+    .name {
+      float: left;
+    }
+
+    .amount {
+      float: right;
+    }
+  }
+
+  .honor-roll-expander {
+    color: $red;
+    display: block;
+
+    i {
+      border: solid 2px $red;
+      padding: 6px 8px 5px;
+      @include border-radius(100%, 100%, 100%, 100%);
+    }
+  }
+}
+
+.video-container {
+  margin: 70px 0;
+}
+
+.sponsors {
+  padding: 81px 0 0;
+
+  h4 {
+    margin: 0 0 36px;
+  }
+
+  a {
+    margin: 44px 0 0;
+  }
+}
+
+.info-boxes {
+  width: 1080px;
+  margin: 55px auto;
+  border-left: solid 1px $gray-200;
+  border-right: solid 1px $gray-200;
+
+  .col-lg {
+    padding-left: 100px;
+
+    &:first-child {
+      border-right: solid 1px $gray-200;
+    }
+  }
+
+  p {
+    margin: 0 0 32px;
+  }
+}
+
+.tr-page-container {
+  max-width: 1290px;
+
+  &.hero {
+    padding: 77px 0 0;
+  }
+
+  .sidebar {
+    .sidebar-hero {
+      width: 100%;
+    }
+    .sidebar-content {
+      padding: 0;
+      @include media-breakpoint-up(md) {
+        padding: 22px 54px 22px 44px;
+      }
+
+      background: #fff;
+    }
+
+    li {
+      color: $black;
+      padding: 11px;
+      font-size: 0.97rem;
+      line-height: 1.4;
+      list-style: none;
+      &:not(.sidebar__achievements) {
+        display: flex;
+      }
+      .sidebar__icon {
+        padding-right: 10px;
+        color: $red;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      a {
+        color: $red;
+        //margin: 0 0 12px;
+        display: block;
+        &:hover {
+          color: $red-deep;
+        }
+      }
+    }
+
+    .achievements {
+      svg, img {
+        display: block;
+        padding: 10px 0;
+        width: 100%;
+      }
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .achievement-badge {
+        width: 31%;
+        @include media-breakpoint-up(md) {
+          width: 48%;
+        }
+        @include media-breakpoint-up(xl) {
+          width: 22%;
+        }
+        margin: 1%;
+        &:last-child {
+          margin-right: auto;
+        }
+        p {
+          font-family: $font-family-bold;
+        }
+      }
+      .badge-label {
+        font-size: 10px;
+      }
+
+    }
+  }
+
+  .content-area {
+    margin: 67px 0 0 40px;
+    font-size: 1rem;
+
+    h2 {
+      margin: 0 0 21px;
+      &.h4 {
+        color: $red;
+      }
+    }
+  }
+}
+
+.pg_personal, .pg_team, .pg_company {
+  header {
+    height: 250px;
+    @include media-breakpoint-up(md) {
+      height: 350px;
+    }
+    &.mobile-open {
+      height: auto;
+    }
+  }
+  main {
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-color: $white;
+    position: relative;
+  }
+
+  .tr-page-container {
+    &.static {
+      position: static;
+    }
+    position: relative;
+    top: -150px;
+    margin: 0 auto -180px;
+    @include media-breakpoint-up(md) {
+      top: -200px;
+      margin: 0 auto -250px;
+    }
+    background-color: transparent;
+  }
+
+  &.logged-in {
+    .tr-page-container {
+      top: -80px;
+      margin: 0 auto -110px;
+      @include media-breakpoint-up(md) {
+        top: -200px;
+        margin: 0 auto -250px;
+      }
+      background-color: transparent;
+    }
+  }
+
+  .sponsors {
+    border-top: solid 1px $gray-200;
+  }
+  .donation-amount-btn.active,
+  .donation-amount-btn:hover {
+    background-color: $red;
+    border-color: $red;
+    color: $white;
+  }
+
+  .fundraising-amounts {
+    border-bottom: 45px;
+  }
+
+  .content-area {
+    h2 {
+      color: $red;
+    }
+  }
+}
+
+
+
+#globalFooter {
+  background-color: #e9ecef;
+  .medical-statement {
+    text-align: center;
+    font-size: 0.74375rem;
+    padding: 15px 0 0;
+  }
+}
+
+.pg_informational {
+  .tr-page-container {
+    max-width: 814px;
+    margin: auto;
+  }
+}
+
+.header__page-icon {
+  svg {
+    width: 100%;
+  }
+}
+
+.table-responsive {
+  @include media-breakpoint-up(sm) {
+    display: table!important;
+  }
+}
+
+div.form-input-label-block, div.donation-level-expanded-label {
+  overflow: visible;
+}

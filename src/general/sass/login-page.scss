@@ -21,7 +21,7 @@ body.myevents-page{
     font-family: LubDubMedium,Helvetica,Arial,sans-serif !important;
     margin-right: 10px;
   }
-  input#login { 
+  input#login {
     font-size:18px !important;
     margin-top:10px;
   }
@@ -36,11 +36,11 @@ body.myevents-page{
     clip-path: none;
     white-space: initial;
   }
-  input[type="text"], 
+  input[type="text"],
   input[type="password"] {
 	  width: 100%;
   }
-	
+
   .myevents-container {
 	font-size: 14px;
 	a {
@@ -61,7 +61,7 @@ body.myevents-page{
 .heart-page-container--login,
 body.myevents-page .Generalmain > .container {
   padding: 20px 20px 72px;
-  
+
   @media (min-width: $screen-md-min) {
     padding: 80px 20px;
   }
@@ -82,71 +82,71 @@ body.myevents-page .Generalmain > .container {
     border-radius: 0;
     text-align: center;
     padding: 32px 28px 0 28px;
-    
+
     @media (min-width: $screen-sm-min) {
       padding: 42px 48px 0 48px;
     }
   }
-  
+
   .panel-title {
     font-size: 28px;
     text-align:left;
     font-weight: bold;
   }
-  
+
   > .panel-body {
     padding: 15px 28px 20px;
-    
+
     @media (min-width: $screen-sm-min) {
       padding: 15px 48px 28px;
     }
-    
+
     .alert {
       font-size: 16px;
       padding: 15px 25px;
-      
+
       @media (min-width: $screen-sm-min) {
         padding: 15px 30px;
       }
     }
-    
+
     form {
       .form-group {
         margin: 0 0 8px;
       }
-      
-      .checkbox, 
+
+      .checkbox,
       .radio {
         margin: 8px 0;
       }
-      
+
       .form-control {
         height: 60px;
         padding: 6px 10px;
-        
+
         @media (min-width: $screen-sm-min) {
           padding: 6px 15px;
         }
       }
     }
-	  
+
     .heart-login-forgot-password a {
       text-decoration: none;
     }
     .heart-login-forgot-password a i {
       font-size: 1.2em;
     }
-	  
+
   }
-  
+
   > .panel-footer {
     text-align: center;
     padding: 32px 28px;
-    
+
     @media (min-width: $screen-sm-min) {
       padding: 32px 48px 48px;
     }
-    
+
     .btn {
       margin: 10px 0 0;
     }
@@ -157,4 +157,8 @@ body.myevents-page .Generalmain > .container {
   font-size: 12px;
   text-align: center;
   margin: 8px 0 0;
+}
+
+.footer_logo a img {
+  max-width: 340px;
 }

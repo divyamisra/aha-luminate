@@ -5,7 +5,7 @@
   </div>
   <div class="modal-body">
     <p>
-      Download our Mobile Fundraising App today!
+      Download our free KHC app to join our Move More Challenge and be physically active as a family for 150 minutes each week.
     </p>
     <div class="ym-pc-dashboard-mobile-downloads">
       <a href="https://itunes.apple.com/us/app/ym-primary/id548389448?mt=8" target="_blank">
@@ -15,6 +15,15 @@
         <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/google-play-logo.png" alt="Download the Android App">
       </a>
     </div>
+    <p>&nbsp;</p>
+    <div class="checkbox" custom-checkbox ng-class="{'checked': moveMoreFlag.message}" ng-if="!prizes[5].earned" ng-cloak>
+        <label for="registrationInfo-fr_check_move_more">
+          <input ng-change="updateMoveMoreFlag()" type="checkbox" name="fr_check_move_more" id="registrationInfo-fr_check_move_more" ng-model="moveMoreFlag.message"> 
+          <span>I have completed 150 minutes of activity over a 7 day period during this event.</span>
+        </label>
+        <span ng-bind="moveMoreFlag.errorMessage" ng-cloak></span>
+    </div>
+    <div ng-if="moveMoreFlag.successMessage" ng-cloak>Your selection has been recorded. Your Move More Activity is now completed!</div>
   </div>
   <div class="modal-footer">
     <div class="clearfix">

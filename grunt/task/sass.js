@@ -5,74 +5,74 @@ const sass = require('node-sass')
 module.exports = {
   options: {
     implementation: sass
-  }, 
-  
+  },
+
   "general": {
     files: {
       'dist/general/css/main.css': [
         'src/general/sass/main.scss'
       ]
     }
-  }, 
-  
+  },
+
   "heart-walk": {
     files: {
       'dist/heart-walk/css/main.css': [
         'src/heart-walk/sass/main.scss'
-      ], 
+      ],
       'dist/heart-walk/css/participant.css': [
         'src/heart-walk/sass/participant-center/main.scss'
-      ], 
+      ],
       'dist/heart-walk/css/pageEdit.css': [
         'src/heart-walk/sass/page-edit/main.scss'
       ]
     }
-  }, 
-  
+  },
+
   "ym-primary": {
     files: {
       'dist/ym-primary/css/main.css': [
         'src/ym-primary/sass/main.scss'
-      ], 
+      ],
       'dist/ym-primary/css/participant.css': [
         'src/ym-primary/sass/participant.scss'
       ]
     }
-  }, 
-  
+  },
+
   "middle-school": {
     files: {
       'dist/middle-school/css/main.css': [
         'src/middle-school/sass/main.scss'
-      ], 
+      ],
       'dist/middle-school/css/participant.css': [
         'src/middle-school/sass/participant.scss'
       ]
     }
-  }, 
-  
+  },
+
   "high-school": {
     files: {
       'dist/high-school/css/main.css': [
         'src/high-school/sass/main.scss'
-      ], 
+      ],
       'dist/high-school/css/participant.css': [
         'src/high-school/sass/participant.scss'
       ]
     }
-  }, 
-  
+  },
+
   "district-heart": {
     files: {
       'dist/district-heart/css/main.css': [
         'src/district-heart/sass/main.scss'
-      ], 
+      ],
       'dist/district-heart/css/participant.css': [
         'src/district-heart/sass/participant.scss'
       ]
     }
   },
-  
+
   "nchw": {
     files: {
       'dist/nchw/css/main.css': [
@@ -80,7 +80,7 @@ module.exports = {
       ]
     }
   },
-  
+
   "heartchase": {
     files: {
       'dist/heartchase/css/main.css': [
@@ -88,7 +88,7 @@ module.exports = {
       ]
     }
   },
-  
+
   "cyclenation": {
     files: {
       'dist/cyclenation/css/main.css': [
@@ -107,6 +107,34 @@ module.exports = {
       ],
       'dist/heartwalk2020/css/donation.css': [
         'src/heartwalk2020/sass/donation.scss'
+      ]
+    }
+  },
+
+  "fieldday": {
+    files: {
+      'dist/fieldday/css/main.css': [
+        'src/fieldday/sass/main.scss'
+      ],
+      'dist/fieldday/css/registration.css': [
+        'src/fieldday/sass/registration.scss'
+      ],
+      'dist/fieldday/css/donation.css': [
+        'src/fieldday/sass/donation.scss'
+      ]
+    }
+  },
+
+  "heartwalklawyers": {
+    files: {
+      'dist/heartwalklawyers/css/main.css': [
+        'src/heartwalklawyers/sass/main.scss'
+      ],
+      'dist/heartwalklawyers/css/registration.css': [
+        'src/heartwalklawyers/sass/registration.scss'
+      ],
+      'dist/heartwalklawyers/css/donation.css': [
+        'src/heartwalklawyers/sass/donation.scss'
       ]
     }
   }

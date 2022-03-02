@@ -42,7 +42,7 @@
         </p>
       </div>
       <div class="ym-pc-first-login-image">
-        <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/intro_scaresquad.png" alt="Join the Heart Heroes">
+        <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/PC_popup.png" alt="Join the Heart Heroes">
       </div>
       <div class="ym-pc-first-login-close">
         <button type="button" tabindex="0" class="btn btn-primary" ng-click="closeFirstLogin()">
@@ -50,11 +50,11 @@
         </button>
       </div>
       <div class="hidden" hidden aria-hidden="true">
-        <img ng-src="//hearttools.heart.org/aha_ym20_dev/api/student/register/{{frId}}/{{consId}}?team_id={{participantRegistration.teamId}}&amp;school_id={{participantRegistration.companyInformation.companyId}}" alt="" ng-if="tablePrefix == 'heartdev'">
-        <img ng-src="//hearttools.heart.org/aha_ym20_testing/api/student/register/{{frId}}/{{consId}}?team_id={{participantRegistration.teamId}}&amp;school_id={{participantRegistration.companyInformation.companyId}}" alt="" ng-if="tablePrefix == 'heartnew'">
-        <img ng-src="//hearttools.heart.org/aha_ym20/api/student/register/{{frId}}/{{consId}}?team_id={{participantRegistration.teamId}}&amp;school_id={{participantRegistration.companyInformation.companyId}}" alt="" ng-if="tablePrefix == 'heart'">
+        <img ng-src="//tools.heart.org/aha_ym21_dev/api/student/register/{{frId}}/{{consId}}?team_id={{participantRegistration.teamId}}&amp;school_id={{participantRegistration.companyInformation.companyId}}" alt="" ng-if="tablePrefix == 'heartdev'">
+        <img ng-src="//tools.heart.org/aha_ym21_testing/api/student/register/{{frId}}/{{consId}}?team_id={{participantRegistration.teamId}}&amp;school_id={{participantRegistration.companyInformation.companyId}}" alt="" ng-if="tablePrefix == 'heartnew'">
+        <img ng-src="//tools.heart.org/aha_ym21/api/student/register/{{frId}}/{{consId}}?team_id={{participantRegistration.teamId}}&amp;school_id={{participantRegistration.companyInformation.companyId}}" alt="" ng-if="tablePrefix == 'heart'">
         <img ng-src="//khc.staging.ootqa.org/api/webhooks/team/refresh/{{frId}}/{{participantRegistration.teamId}}" alt="" ng-if="tablePrefix == 'heartdev'">
-        <img ng-src="//khc.dev.ootqa.org/api/webhooks/team/refresh/{{frId}}/{{participantRegistration.teamId}}" alt="" ng-if="tablePrefix == 'heartdev'">
+        <img ng-src="//khc.staging.ootqa.org/api/webhooks/team/refresh/{{frId}}/{{participantRegistration.teamId}}" alt="" ng-if="tablePrefix == 'heartnew'">
         <img ng-src="//kidsheartchallenge.heart.org/api/webhooks/team/refresh/{{frId}}/{{participantRegistration.teamId}}" alt="" ng-if="tablePrefix == 'heart'">
       </div>
     </div>

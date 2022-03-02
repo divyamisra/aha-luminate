@@ -1,0 +1,187 @@
+[[S51:reus_fieldday_default_image]]
+[[U0:team_goal=[[E130:"[[E43:[[S334:fr_id]]:goal-dollars:[[S334:team_id]]]]" ".00" "" replaceall]]]]
+[[U0:team_raised=[[E130:"[[E43:[[S334:fr_id]]:dollars:[[S334:team_id]]]]" ".00" "" replaceall]]]]
+<div class="container tr-page-container hero">
+    <div class="row">
+        <div class="col-lg-4 col-md-12 sidebar">
+                [[?xx::x[[C4:graphic_upload]]x::
+                <img class="sidebar-hero" src="[[S80:defaultTeamImage]]"
+                      alt="[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]] fundraising page" />
+              ::
+                <img class="sidebar-hero" src="[[C4:graphic_upload]]"
+                      alt="[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]] fundraising page" />
+              ]]
+
+            <div data-company="[[E43:[[S334:fr_id]]:company-id::[[S334:team_id]]]]" class="js--sidebar-content sidebar-content box-shadow">
+                <ul>
+                    <li>
+                        <div class="sidebar__icon">
+                          <i class="far fa-flag" aria-hidden="true"></i>
+                        </div>
+                        <div class="sidebar__details js--field-day-details">
+                          <p><strong>Field Day Details:</strong></p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="sidebar__icon">
+                          <i class="fal fa-clock" aria-hidden="true"></i>
+                        </div>
+                        <div class="sidebar__details js--event-date">
+                        </div>
+                    </li>
+                    <li>
+                      <div class="sidebar__icon">
+                        <i class="fal fa-megaphone" aria-hidden="true"></i>
+                      </div>
+                      <div class="sidebar__details js--team-captain">
+                        <p><strong>Team Captain:</strong></p>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="sidebar__icon">
+                        <i class="fal fa-map-marker-alt" aria-hidden="true"></i>
+                      </div>
+                      <div class="sidebar__details js--company-location">
+                        <p><strong>Company Location:</strong></p>
+                        <p class="js--company-link"></p>
+                      </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.sidebar-->
+            <div class="donor-roll box-shadow">
+              <div class="donor-roll__title">
+                <h5>[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]]&rsquo; Donors:</h5>
+              </div>
+                <div class="donations-container js--donor-roll"></div>
+                <!-- /.donations-container -->
+                <a class="honor-roll-expander js--honor-roll-expander text-center hidden" href="javascript:void(0);" aria-label="View more donors"><i
+                        class="fas fa-chevron-down"></i></a>
+            </div>
+            <!-- /.donor-roll -->
+        </div>
+        <!-- /.sidebar -->
+        <div class="col-lg-8 col-md-12">
+
+            <!-- TEAM PAGE INFO BOX -->
+            <div class="tr-page-info bg-white information-box js--information-box">
+              <div class="information-box__name box-shadow">
+                <h1>[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]]</h1>
+                <div class="information-box__team-members">[[E43:0:num-members:[[S334:team_id]]]] Members</div>
+              </div>
+                <!--/.information-box__name-->
+              <div class="information-box__content box-shadow">
+                <div class="clearfix"></div>
+                <div class="row fundraising-amounts">
+                  <div class="col-12">
+                      <div class="thermometer">
+                          <div class="thermometer-inner js__progress-bar">
+
+                          [[?[[E:130 [[S80:team_raised]] [[S80:team_goal]] > ]]::T::
+                          <!--insert animated gift-->
+                          <img src="../images/content/pagebuilder/AHA_FieldDayCup_GIF.gif" alt="Goal reached!">
+                          ::
+                          <svg focusable="false" xmlns="http://www.w3.org/2000/svg" width="58.488" height="67.104" viewBox="0 0 58.488 67.104"><g transform="translate(-18.061 -12.899)"><g transform="translate(18.061 12.899)"><g transform="translate(0 4.981)"><path d="M41.821,71.893l-.93-1.445.723-.465a3.187,3.187,0,0,0,1.467-2.689V60.4a17.728,17.728,0,0,1-10.846-7.632,3.65,3.65,0,0,0-1.781-1.45,19.387,19.387,0,0,1-12.341-16.3l-.016-.185A9.25,9.25,0,0,1,27.312,24.76h.246l-.573-5.9,1.711-.166.755,7.784H27.312a7.532,7.532,0,0,0-7.5,8.2l.017.184A17.656,17.656,0,0,0,31.066,49.712a5.359,5.359,0,0,1,2.615,2.125A15.982,15.982,0,0,0,44.1,58.858l.7.132v8.3a4.9,4.9,0,0,1-2.256,4.134Z" transform="translate(-18.061 -18.695)"/></g><g transform="translate(6.445)"><rect width="45.118" height="1.719"/></g><g transform="translate(31.268 4.981)"><path d="M57.42,71.893l-.723-.465a4.894,4.894,0,0,1-2.256-4.134v-8.3l.7-.132A16,16,0,0,0,65.454,52a5.474,5.474,0,0,1,2.783-2.134,17.587,17.587,0,0,0,11.658-15l.016-.186a7.531,7.531,0,0,0-7.5-8.2H69.79l.755-7.784,1.711.166-.572,5.9h.726a9.251,9.251,0,0,1,9.214,10.072l-.016.186a19.313,19.313,0,0,1-12.8,16.467,3.764,3.764,0,0,0-1.92,1.461A17.748,17.748,0,0,1,56.16,60.4v6.894a3.185,3.185,0,0,0,1.467,2.689l.723.465Z" transform="translate(-54.441 -18.695)"/></g><g transform="translate(13.85 60.656)"><path d="M64.482,89.92H62.763V85.191H35.895V89.92H34.176V83.472H64.482Z" transform="translate(-34.176 -83.472)"/></g><g transform="translate(4.497 15.487)"><path d="M32.277,48.856l-1.508-.841A14.537,14.537,0,0,1,23.337,36.46l-.029-.359a4.8,4.8,0,0,1,4.785-5.183H30.45l1.492,15.367q.036.434.1.861ZM28.092,32.637a3.08,3.08,0,0,0-3.071,3.327l.029.358a12.81,12.81,0,0,0,5.094,9.244L28.89,32.637Z" transform="translate(-23.292 -30.918)"/></g><g transform="translate(44.469 15.487)"><path d="M69.8,49.057l.257-1.649q.086-.556.136-1.124l1.491-15.366h2.839A4.8,4.8,0,0,1,79.307,36.1l-.028.358a14.647,14.647,0,0,1-7.986,11.85Zm3.444-16.42-1.291,13.3a12.732,12.732,0,0,0,5.612-9.615l.028-.358a3.079,3.079,0,0,0-3.07-3.327Z" transform="translate(-69.8 -30.918)"/></g></g><g transform="translate(36.447 28.785)"><path d="M50.139,49.313h-.005a22.046,22.046,0,0,1-8.67-6.295,7.476,7.476,0,0,1-1.45-6.866c1.188-3.933,4.008-4.521,5.582-4.521a6.448,6.448,0,0,1,4.548,1.826,6.432,6.432,0,0,1,4.546-1.826c1.888,0,4.377.785,5.507,4.522a7.522,7.522,0,0,1-1.489,6.94,21.844,21.844,0,0,1-8.568,6.219ZM45.6,32.672c-1.571,0-3.642.657-4.587,3.782-.858,2.836.37,5.656,3.649,8.382a25.33,25.33,0,0,0,5.48,3.391,25.1,25.1,0,0,0,5.446-3.391c3.258-2.725,4.475-5.545,3.617-8.382-.759-2.51-2.277-3.783-4.511-3.783a5.342,5.342,0,0,0-4.124,1.856.524.524,0,0,1-.846,0A5.359,5.359,0,0,0,45.6,32.672Z" transform="translate(-39.488 -31.417)"/><path d="M50.144,49.5l-.044,0-.042,0-.028-.014c-.7-.18-6.007-2.64-8.774-6.37a7.678,7.678,0,0,1-1.483-7.055C41,31.99,43.926,31.382,45.56,31.382a6.677,6.677,0,0,1,4.547,1.745,6.68,6.68,0,0,1,4.547-1.745c1.961,0,4.545.811,5.712,4.674a7.726,7.726,0,0,1-1.522,7.132,22.035,22.035,0,0,1-8.679,6.3ZM45.56,32.852c-1.5,0-3.476.63-4.381,3.629-.831,2.746.374,5.489,3.581,8.155A24.911,24.911,0,0,0,50.1,47.956a24.828,24.828,0,0,0,5.307-3.32c3.186-2.664,4.381-5.409,3.55-8.155-.728-2.408-2.177-3.63-4.306-3.63A5.126,5.126,0,0,0,50.7,34.63a.8.8,0,0,1-.576.292.817.817,0,0,1-.6-.291A5.136,5.136,0,0,0,45.56,32.852Z" transform="translate(-39.453 -31.382)"/></g></g></svg>
+                          ]]
+                          </div>
+                          <!-- /.thermometer-inner -->
+                      </div>
+                      <!-- /.thermometer -->
+                  </div>
+                  <!-- /.col-12 -->
+                    <div class="col-6">
+                        <span class="d-block">Fundraising Progress</span>
+                        <span id="progress-amount" class="amount">
+                            [[E130:"[[E43:[[S334:fr_id]]:dollars:[[S334:team_id]]]]" ".00" "" replaceall]]
+                        </span>
+                        <!-- /.amount -->
+                    </div>
+                    <!-- /.col-6 -->
+                    <div class="col-6 text-right">
+                        <span class="d-block">Fundraising Goal</span>
+                        <span id="goal-amount" class="amount">
+                          [[E130:"[[E43:[[S334:fr_id]]:goal-dollars:[[S334:team_id]]]]" ".00" "" replaceall]]
+                      </span>
+                        <!-- /.amount -->
+                    </div>
+                    <!-- /.col-6 -->
+                </div>
+                <!-- /.row -->
+                <div class="row buttons-row">
+                        [[?x2x3x::x[[S42:0:status]]x::
+                        <a class="scroll-link btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0 js--team-member-donate" href="#teamRoster" onclick="_gaq.push(['_trackEvent', 'team', 'banner', 'donate to team member button']);">Donate to a Team Member</a>
+                        ::]]
+                        [[?x1x2x::x[[S42:0:status]]x::
+
+                         [[?[[E130:[[E43:[[S334:fr_id]]:num-members:[[S334:team_id]]]] number 9 > ]]::T::
+
+                          <a class="btn btn-secondary col-lg col-sm-12 mx-md-2 mx-sm-0" href="TRR?pg=tfind&fr_tm_opt=new&fr_id=[[S334:fr_id]]" onclick="_gaq.push(['_trackEvent', 'team', 'banner', 'create team button']);">This team is full. Create your own team!</a>
+
+                          ::
+
+                          <a class="btn btn-secondary col-lg col-sm-12 mx-md-2 mx-sm-0" href="TRR/?fr_tjoin=[[S334:team_id]]&pg=tfind&fr_id=[[S334:fr_id]]" onclick="_gaq.push(['_trackEvent', 'team', 'banner', 'join team button']);">Join This Team</a>
+
+                          ]]
+
+                        ::]]
+                  </div>
+
+                <!-- <a href="TRGiftForm?fr_id=[[S334:fr_id]]&px=[[S334:px]]" class="d-block text-small mt-3">Mail in a Donation</a> -->
+                <a href="Donation2?df_id=[[E42:[[S334:fr_id]]:form-id]]&PROXY_ID=[[S334:team_id]]&PROXY_TYPE=22&FR_ID=[[S334:fr_id]]" class="d-block text-small mt-3" onclick="_gaq.push(['_trackEvent', 'team', 'banner', 'donate to team link']);">Make a General Donation to this Team</a>
+            </div>
+          </div>
+          <!--/.information-box-->
+
+          <!-- END TEAM PAGE INFO BOX -->
+          <div class="col-12">
+              <div class="content-area">
+                <h2>Why We Play to WIN</h2>
+                <div class="js--team-text"></div>
+              </div>
+          </div>
+
+            <!-- TEAM ROSTER -->
+            <div id="teamRoster" class="information-box team-roster bg-gray-100">
+                 <div class="team-roster-header">
+                    <h1>Team Roster</h1>
+                    <span class="team-roster__icon"><i class="fal fa-megaphone" aria-hidden="true"></i> <p>Team Captain</p></span>
+                 </div>
+                <!-- /.team-roster-header -->
+                <div class="js--gen-team-don-container" style="display:none;">
+                    <span class="team-donate-label text-small">General Team Donations: <span class="js--gen-team-don-total">$0</span></span>
+                    <a href="Donation2?df_id=[[E42:[[S334:fr_id]]:form-id]]&PROXY_ID=[[S334:team_id]]&PROXY_TYPE=22&FR_ID=[[S334:fr_id]]" class="d-block text-small mb-1" onclick="_gaq.push(['_trackEvent', 'team', 'roster', 'donate to team link']);">Donate to Team</a>
+                </div>
+                <div class="clearfix"></div>
+                <!-- /.clearfix -->
+                <table id="team-roster" class="table-responsive float-left w-100 table mb-0">
+                    <thead>
+                        <tr>
+                            <th class="border-0">Name</th>
+                            <th class="border-0">Raised</th>
+                            <th class="border-0" data-orderable="false"><span class="sr-only">Donation Link</span></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <div class="clearfix"></div>
+                <!-- /.clearfix -->
+                <div class="d-flex justify-content-center">
+                    <a href="#" class="js--more-participant-results btn btn-tertiary-black" hidden>Show All Team Members</a>
+                </div>
+                <!-- /.d-flex justify-content-center -->
+            </div>
+            <!-- /.information-box -->
+            <!-- END TEAM ROSTER -->
+        </div>
+        <!-- /.col-lg-8 -->
+        <div class="col-12">
+          <div class="video-container embed-responsive embed-responsive-16by9">
+            <iframe cc_load_policy=1 title="About Field Day" width="560" height="315" src="https://www.youtube.com/embed/LryhjU1bEC4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        <!-- /.video-container -->
+      </div>
+        <!-- /.col-12 -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->

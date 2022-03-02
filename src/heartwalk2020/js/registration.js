@@ -1,6 +1,10 @@
 'use strict';
 (function($) {
     $(document).ready(function() {
+        /*************/
+        /* Namespace */
+        /*************/
+        window.cd = {};
         // BEGIN LANDING PAGES
         /******************/
         /* SEARCH SCRIPTS */
@@ -1423,6 +1427,9 @@
 
         $('.survivor_yes_no input[type=radio]').addClass("required survivorq");
 
+        $('.survivor_yes_no .survey-question-label').after('<small id="isSurvivor" class="form-text text-muted">Answering yes will display a small banner over your personal photo on your fundraising page that will proudly say, "I\'m a survivor."</small>');
+        
+
         $('.survivor_yes_no li').click(function() {
             $('.survivor_yes_no li').removeClass('survivor_active');
             $(this).addClass('survivor_active');
@@ -1564,10 +1571,14 @@
 	   	$('button#btn_prev').after('<a href="javascript:window.history.go(-1)" class="step-button previous-step backBtnReg">Back</a>').hide();
 
 		$('button.next-step').click(function(){
-			if ($('form').valid()) {
+			if ($('.payment-type-option.selected input').val() == "paypal") {
 				return true;
 			} else {
-				return false;
+				if ($('form').valid()) {
+					return true;
+				} else {
+					return false;
+				}
 			}
 		});
 	}
@@ -1919,6 +1930,14 @@
             }
 
 //start sort function
+            if (!String.prototype.startsWith) {
+              Object.defineProperty(String.prototype, 'startsWith', {
+                value: function(search, rawPos) {
+                  var pos = rawPos > 0 ? rawPos|0 : 0;
+                  return this.substring(pos, pos + search.length) === search;
+                }
+              });
+            }
             if ($('#fr_co_list').length > 0 || $('#fr_part_co_list').length > 0){
 
               $.coList = $('#fr_co_list');
@@ -1960,8 +1979,8 @@
 
               $('.parentCompany').each(function(){
                 var parentName = $(this).text();
-                parentName = parentName.split(' ');
-                parentName = parentName[0];
+                parentName = parentName.replace(/\s/g, '');
+                parentName = parentName.replace(/[^a-z0-9]/gi,'');
                 $(this).nextUntil('.parentCompany').addClass(parentName);
               });
 
@@ -1978,9 +1997,9 @@
                   var parentName = $(this).text();
                   $.parentCompany = $(this);
 
-                  var parentClass = parentName.split(' ');
-                  parentClass = parentClass[0];
-
+                  var parentClass = parentName
+                  parentClass = parentClass.replace(/\W/g, '');
+                  parentClass = parentClass.replace(/\W/g, '');
                   var children = [];
 
                   var subParentNum = 0;
@@ -2043,7 +2062,7 @@
                   $.each(children,function(){
                     var options = '';
                     var option = '<option value="'+this.val+'" class="subCompany">'+this.name+'</option>';
-                    console.log('option ' + option);
+//                    console.log('option ' + option);
                     options += option;
 
                     if ($(this.subChildren).length > 0){

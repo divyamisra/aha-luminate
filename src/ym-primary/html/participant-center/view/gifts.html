@@ -8,17 +8,18 @@
    <section class="ym-pc-dashboard-standard-gifts-section" aria-label="My Standard Gifts" ng-if="standardGifts && standardGifts.length > 0" ng-cloak>
       <div class="ym-pc-dashboard-standard-gifts-icons" role="list" aria-label="Standard Gifts">
         <div class="ym-pc-dashboard-standard-gifts-icon" ng-class="{'not-earned': !standardGift.prize_status}" ng-repeat="standardGift in standardGifts" ng-cloak>
-           <a href="" ng-click="showPrize(standardGift.prize_sku,standardGift.prize_label,standardGift.prize_status)">
-              <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes2020/{{standardGift.prize_sku}}.png" alt="{{standardGift.prize_label}}">
+           <a href="" ng-click="showPrize(standardGift.prize_sku,standardGift.prize_label,standardGift.prize_status,standardGift.prize_video)">
+              <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes2021/{{standardGift.prize_sku}}.png" alt="{{standardGift.prize_label}}">
+              <div class="play-circle"><i class="fa fa-play"></i></div>
               <div class="ym-pc-dashboard-standard-gift-earned" ng-if="standardGift.prize_status">
                  <h4 class="gift-title" ng-bind-html="standardGift.earned_title"></h4>
                  <div class="gift-subtitle1"><span ng-bind-html="standardGift.earned_subtitle1"></span></div>
-                 <div class="gift-subtitle2">You've earned <span ng-bind-html="standardGift.earned_subtitle2"></span>.</div>
+                 <div class="gift-subtitle2"><span ng-bind-html="standardGift.earned_subtitle2"></span></div>
               </div>
               <div class="ym-pc-dashboard-standard-gift-notearned" ng-if="!standardGift.prize_status">
                  <h4 class="gift-title">Up next...</h4>
                  <div class="gift-subtitle1">Raise <span ng-bind-html="standardGift.prize_level"></span></div>
-                 <div class="gift-subtitle2">and you'll get <span ng-bind-html="standardGift.earned_subtitle2"></span>.</div>
+                 <div class="gift-subtitle2"><span ng-bind-html="standardGift.earned_subtitle3"></span></div>
               </div>
               <div class="ym-pc-dashboard-standard-gifts-text">
                 <span class="sr-only" ng-if="standardGift.prize_status">(earned)</span><span class="sr-only" ng-if="!standardGift.prize_status">(not yet earned)</span>
@@ -26,5 +27,19 @@
               <div class="more-details-button">More Details</div>
            </a>
         </div>
+        <div class="giftApp">
+           <div class="ym-pc-dashboard-section-header">
+              <h3 class="h5">Fundraise on the Go!</h3>
+           </div>
+           <p>Check in on your fundraising and gifts progress by<br/>downloading the Kids Heart Challenge mobile app today!</p>
+           <div class="ym-pc-dashboard-mobile-downloads">
+              <a href="https://itunes.apple.com/us/app/ym-primary/id548389448?mt=8" target="_blank">
+                 <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/apple-store-logo.png" alt="Download the iPhone App"> 
+              </a>
+              <a href="https://play.google.com/store/apps/details?id=com.aha_jump.android.communicator&amp;hl=en" target="_blank">
+                 <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/google-play-logo.png" alt="Download the Android App">
+              </a>
+           </div>
+         </div>
       </div>
    </section>
