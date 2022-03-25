@@ -170,15 +170,15 @@ angular.module 'ahaLuminateControllers'
           populateBtnAmt $scope.donationInfo.levelType
 
       $scope.selectLevel = (event, type, level, amount, addFee) ->
-        console.log('selectLevel event: ' + event + ' type: ' + type + ' level: ' + level + ' amount: ' + amount + ' addFee ' + addFee)
+#        console.log('selectLevel event: ' + event + ' type: ' + type + ' level: ' + level + ' amount: ' + amount + ' addFee ' + addFee)
         if amount is undefined
           amount = $scope.donationInfo.otherAmt
-          console.log('amount ' + amount)
+#          console.log('amount ' + amount)
 
         coverFee = angular.element('#cover_fee_radio_Yes').prop 'checked'
-        console.log('coverFee ' + coverFee)
+#        console.log('coverFee ' + coverFee)
         addFee = addFee
-        console.log('addFee ' + addFee)
+#        console.log('addFee ' + addFee)
 
 #        if coverFee == true && addFee != true
 #          angular.element('#cover-fee-checkbox').prop 'checked' false
@@ -187,7 +187,7 @@ angular.module 'ahaLuminateControllers'
 #        console.log('type ' + type)
 
         levelSelect = ->
-          console.log('levelSelect')
+#          console.log('levelSelect')
 
           angular.element('.ym-donation-levels__amount .btn-toggle.active').removeClass 'active'
           angular.element('.ym-donation-levels__amount .btn-toggle.level' + level).addClass 'active'
@@ -198,20 +198,20 @@ angular.module 'ahaLuminateControllers'
           angular.element('.donation-level-container.level' + level + ' input').click()
 
           $scope.donationInfo.amount = amount
-          console.log('$scope.donationInfo.amount ' +$scope.donationInfo.amount)
+#          console.log('$scope.donationInfo.amount ' +$scope.donationInfo.amount)
           $scope.donationInfo.levelType = type
-          console.log('$scope.donationInfo.levelType ' +$scope.donationInfo.levelType)
+#          console.log('$scope.donationInfo.levelType ' +$scope.donationInfo.levelType)
           localStorage['levelType'] = type
-          console.log('localStorage[levelType] ' +localStorage['levelType'])
+#          console.log('localStorage[levelType] ' +localStorage['levelType'])
 
           populateBtnAmt type
 
           if type is 'level'
-            console.log('if type is level')
+#            console.log('if type is level')
             angular.element('.btn-enter').val ''
             $scope.donationInfo.otherAmt = ''
             if amount isnt undefined
-              console.log('amount is not undefined and goes into localStorage amount')
+#              console.log('amount is not undefined')
               localStorage['amount'] = amount
             localStorage['otherAmt'] = ''
 
@@ -301,15 +301,13 @@ angular.module 'ahaLuminateControllers'
           levelSelect()
 
       $scope.enterAmount = (amount) ->
-        console.log('enter amount function')
-        console.log('amount ' + amount)
+#        console.log('enter amount function')
+#        console.log('amount ' + amount)
         angular.element('#pstep_finish span').text ''
         angular.element('#pstep_finish span').prepend ' $' + amount
         angular.element('.donation-level-user-entered input').val amount
         $scope.donationInfo.amount = amount
-        console.log('this amount being put into localStorage amount: ' + $scope.donationInfo.amount = amount)
         $scope.donationInfo.otherAmt = amount
-        console.log('this otherAmt being put into localStorage amounotherAmtt: ' +  $scope.donationInfo.otherAmt = amount)
         localStorage['amount'] = amount
         localStorage['otherAmt'] = amount
 
@@ -492,7 +490,6 @@ angular.module 'ahaLuminateControllers'
         angular.element('#billing_info_same_as_donorname').prop 'checked', false
 
       loadLocalStorage = ->
-        console.log('loadLocalStorage function')
         if localStorage['giftType']
           $scope.donationInfo.giftType = localStorage['giftType']
           if localStorage['giftType'] is 'monthly'
@@ -503,7 +500,6 @@ angular.module 'ahaLuminateControllers'
             $scope.donationInfo.sustainingDuration = localStorage['sustainingDuration']
             $scope.donationInfo.sustainingFrequency = localStorage['sustainingFrequency']
         if localStorage['amount']
-          console.log('localStorage amount: ' + localStorage['amount'])
           if localStorage['amount'] is 'undefined'
             $scope.donationInfo.otherAmt = ''
           else
@@ -570,7 +566,6 @@ angular.module 'ahaLuminateControllers'
           resolve()
 
       calculateGiftAmt = (type) ->
-        console.log('calculateGiftAmt function')
         if type == 'add'
           amount = $scope.donationInfo.amount.replace '$', ''
           amount = Number amount
@@ -584,14 +579,23 @@ angular.module 'ahaLuminateControllers'
         angular.element('#cover_fee_radio_Yes').prop 'checked', state
 #        console.log('$scope.donationGiftType ' + $scope.donationGiftType)
         if state is true
+          if $scope.donationInfo.amount.indexOf('$') > -1
+            localStorage['coverFeeOriginalAmt'] = $scope.donationInfo.amount.split('$')[1]
+          else
+            localStorage['coverFeeOriginalAmt'] = $scope.donationInfo.amount
           giftAmt = calculateGiftAmt('add')
           $scope.enterAmount giftAmt
           $scope.selectLevel null, 'other', $scope.donationInfo.otherLevelId, giftAmt, true
           return
         else
-          giftAmt = calculateGiftAmt('remove')
-          $scope.enterAmount giftAmt
-          $scope.selectLevel null, 'other', $scope.donationInfo.otherLevelId, giftAmt, true
+          #giftAmt = calculateGiftAmt('remove')
+          #$scope.enterAmount giftAmt
+          coverFeeOriginalAmt = localStorage['coverFeeOriginalAmt']
+          $scope.enterAmount coverFeeOriginalAmt
+          console.log('coverFeeOriginalAmt ' + coverFeeOriginalAmt)
+          #$scope.selectLevel null, 'other', $scope.donationInfo.otherLevelId, giftAmt, true
+          $scope.selectLevel null, 'other', $scope.donationInfo.otherLevelId, coverFeeOriginalAmt
+          localStorage['coverFeeOriginalAmt'] = ''
           return
 
       addFeeCheckbox = ->
