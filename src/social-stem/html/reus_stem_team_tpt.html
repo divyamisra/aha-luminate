@@ -1,0 +1,110 @@
+[[S51:reus_stem_default_image]]
+[[U0:team_goal=[[E130:"[[E43:[[S334:fr_id]]:goal-dollars:[[S334:team_id]]]]" ".00" "" replaceall]]]]
+[[U0:team_raised=[[E130:"[[E43:[[S334:fr_id]]:dollars:[[S334:team_id]]]]" ".00" "" replaceall]]]]
+<div class="container tr-page-container hero">
+    <div class="row">
+        <div class="col-lg-4 col-md-12 sidebar">
+                [[?xx::x[[C4:graphic_upload]]x::
+                <img class="sidebar-hero" src="[[S80:defaultTeamImage]]"
+                      alt="[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]] fundraising page" />
+              ::
+                <img class="sidebar-hero" src="[[C4:graphic_upload]]"
+                      alt="[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]] fundraising page" />
+              ]]
+            <!-- /.sidebar-->
+            <div class="donor-roll box-shadow">
+              <div class="donor-roll__title">
+                <h5>[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]]&rsquo;s Donors:</h5>
+              </div>
+                <div class="donations-container js--donor-roll"></div>
+                <!-- /.donations-container -->
+                <a class="honor-roll-expander js--honor-roll-expander text-center hidden" href="javascript:void(0);" aria-label="View more donors"><i
+                        class="fas fa-chevron-down"></i></a>
+            </div>
+            <!-- /.donor-roll -->
+        </div>
+        <!-- /.sidebar -->
+        <div class="col-lg-8 col-md-12">
+
+            <!-- TEAM PAGE INFO BOX -->
+            <div class="tr-page-info bg-white information-box js--information-box">
+              <div class="information-box__name box-shadow">
+                <h1>[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]]</h1>
+                <div class="information-box__team-members">[[E43:0:num-members:[[S334:team_id]]]] Team Members</div>
+              </div>
+                <!--/.information-box__name-->
+              <div class="information-box__content box-shadow">
+                <div class="clearfix"></div>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="content-area">
+                      <h2>Why We're Fundraising</h2>
+                      <div class="js--team-text">
+                        <p>As a STEM Goes Red mentors, we not only share our experience and insight, inspiring the next generation, but have the opportunity to make an even greater impact by participating in Mentors with Heart. Beyond investing in the students, we raise funds to support the life-saving mission of the American Heart Association and to help provide scholarships to STEM Goes Red students, further supporting their career goals and aspirations.</p>
+                        <p>Fortune 500 companies, start-ups, small business and moms everywhere know what we know: we need a new generation of female scientists, doctors, inventors and changemakers to secure their future, as well as our own.</p>
+                        <p>That’s why the American Heart Association is working to involve more young women in STEM through STEM Goes Red. The program draws from the Association’s strong legacy of science, education and discovery to help propel young women into rewarding careers in STEM.</p>
+                        <p>STEM Goes Red brings interesting careers in science, technology, engineering and mathematics to life for young women by giving them access to leading employers and experts and an insider look at what they do.</p>
+                        <p>STEM Goes Red attendees will gain first-hand experience, connect with professionals at all career stages, learn about jobs they never knew they could have, and walk away feeling like a whole new world of STEM has been revealed—a world in which they can truly love what they do and make a tremendous impact.</p>
+                        <p><strong>We must invest in the next generation of young women innovators</strong> who will develop the research, technology and solutions for the next generations challenges in fighting heart disease and ensure health equity in our communities. That’s why our team of mentors is committed to making a lasting impact by helping the brilliant young women leaders of tomorrow uncover their potential and find their path today.</p>
+                        <p>To learn more about one of our team members or make a donation, select the mentor from the list below to visit their personal page.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row buttons-row text-center">
+                        [[?x2x3x::x[[S42:0:status]]x::
+                        <a class="scroll-link btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0 js--team-member-donate" href="Donation2?df_id=[[E42:[[S334:fr_id]]:form-id]]&PROXY_ID=[[S334:team_id]]&PROXY_TYPE=22&FR_ID=[[S334:fr_id]]" onclick="_gaq.push(['_trackEvent', 'team', 'banner', 'donate to team member button']);">Donate to Team</a>
+                        ::]]
+                  </div>
+              </div>
+          </div>
+          <!--/.information-box-->
+
+          <!-- END TEAM PAGE INFO BOX -->
+            <!-- TEAM ROSTER -->
+            <div id="teamRoster" class="information-box team-roster bg-gray-100">
+                 <div class="team-roster-header">
+                    <h1>Team Roster</h1>
+                 </div>
+                <!-- /.team-roster-header -->
+                <div class="js--gen-team-don-container" style="display:none;">
+                    <span class="team-donate-label text-small">General Team Donations: <span class="js--gen-team-don-total">$0</span></span>
+                    <a href="Donation2?df_id=[[E42:[[S334:fr_id]]:form-id]]&PROXY_ID=[[S334:team_id]]&PROXY_TYPE=22&FR_ID=[[S334:fr_id]]" class="d-block text-small mb-1" onclick="_gaq.push(['_trackEvent', 'team', 'roster', 'donate to team link']);">Donate to Team</a>
+                </div>
+                <div class="clearfix"></div>
+                <!-- /.clearfix -->
+                <table id="team-roster" class="table-responsive float-left w-100 table mb-0">
+                    <thead>
+                        <tr>
+                            <th class="border-0"><span class="sr-only">Name</span></th>
+                            <th class="border-0"></th>
+                            <th class="border-0" data-orderable="false"><span class="sr-only">Donation Link</span></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <div class="clearfix"></div>
+                <!-- /.clearfix -->
+                <div class="d-flex justify-content-center">
+                    <a href="#" class="js--more-participant-results btn btn-tertiary-black" hidden>Show All Team Members</a>
+                </div>
+                <!-- /.d-flex justify-content-center -->
+            </div>
+            <!-- /.information-box -->
+            <!-- END TEAM ROSTER -->
+          [[?x2x3x::x[[S42:0:status]]x::
+            <div class="row join-button-row text-center">
+              <div class="col-12">
+                  <a class="btn btn-secondary col-lg col-sm-12 mx-md-2 mx-sm-0" href="TRR/?fr_tjoin=[[S334:team_id]]&pg=tfind&fr_id=[[S334:fr_id]]" onclick="_gaq.push(['_trackEvent', 'team', 'roster', 'join team button']);">Join This Team</a>
+              </div>
+            </div>
+          ::]]
+        </div>
+        <!-- /.col-lg-8 -->
+        <!-- /.video-container -->
+      </div>
+        <!-- /.col-12 -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->

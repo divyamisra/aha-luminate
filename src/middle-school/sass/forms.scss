@@ -14,3 +14,17 @@ select {
     }
   }
 }
+
+.form-control:focus {
+    border-color: $event-secondary;
+    border-width:2px;
+}
+
+:disabled, 
+div.responsive input[disabled] {
+  color: $event-primary;
+}
+
+.ym-optional {
+  color: $event-secondary-medium;
+}

@@ -401,7 +401,7 @@
         }
 
         .buttons-row .btn {
-          font-size: 0.8rem;
+          font-size: 1rem;
         }
       }
     }
@@ -695,6 +695,85 @@
       }
     }
   }
+  .pg_team, .pg_company {
+    .tr-page-container .sidebar-hero {
+      width: 100%!important;
+    }
+    .tr-page-container .sidebar {
+      padding: 0 10px;
+    }
+    .fundraising-amounts > div {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+    .buttons-row + a {
+      font-size: 13px
+    }
+    .information-box .information-box__name {
+      padding: 15px;
+      p {
+        text-align: left!important;
+        font-size: 18px;
+      }
+      h1 {
+        padding: 5px 0;
+      }
+      .information-box__team-members {
+        font-size: 18px;
+      }
+      .js--sidebar-content {
+          -webkit-box-shadow: 0px 15px 15px rgba(0,0,0,.2);
+          -ms-box-shadow: 0 15px 15px rgba(0,0,0,.2);
+          -o-box-shadow: 0 15px 15px rgba(0,0,0,.2);     
+          box-shadow: 0 15px 15px rgba(0,0,0,.2); 
+      }
+    }
+    .sidebar__details p {
+      font-size: 1.125rem!important;
+    }
+    .team-roster__icon p {
+      font-size: 1rem!important;
+      margin-right: 5px!important;
+    }
+    .team-roster {
+      thead tr th {
+        font-size: 1rem;
+      }
+      tbody tr td {
+        font-size: 1rem;
+        a {
+          font-size: 1rem;
+        }
+      }
+    }
+    .donor-roll {
+      margin-top: 50px!important;
+      span {
+        font-size: 1rem;
+        font-weight: 700;
+      }
+    }
+  }
+  .pg_company {
+    .fundraising-amounts {
+      margin-bottom: 25px!important;
+    }
+    .buttons-row {
+      margin: 0 0 28px!important;
+    }
+    .information-box__content {
+      padding: 80px 35px 20px!important;
+    }
+    .fundraising-amounts div span:first-of-type {
+      font-size: .87rem!important
+    }
+    .information-box + ul {
+      padding-left: 2.5rem!important
+    }
+    td.donor-name {
+      padding-left: 0!important;
+    }
+  }
   /* END PERSONAL, TEAM, COMPANY PAGE STYLES */
 
   .pg_FieldDay_Search {
@@ -902,7 +981,7 @@
         .buttons-row {
           .btn {
             max-width: 100% !important;
-            margin: 0px 10px 10px !important;
+            margin: 10px 0 !important;
           }
         }
       }
@@ -979,10 +1058,11 @@
 
     #our-teams, #our-walkers, .team-roster {
       .team-roster-header {
-        padding: 20px 0 0 32px !important;
+        padding: 15px 0 !important;
 
         h1 {
-          margin: 0 0 15px 0 !important;
+          max-width: 150px;
+          margin: 0 0 0 25px!important
         }
       }
 

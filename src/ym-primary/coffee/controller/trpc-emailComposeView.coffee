@@ -46,9 +46,13 @@ angular.module 'trPcControllers'
         ]
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
           contactFilters.push 'email_rpt_show_company_coordinator_participants'
+          contactFilters.push 'email_custom_rpt_show_company_coordinator_new_participants'
+          contactFilters.push 'email_custom_rpt_show_company_coordinator_weekly_participants'
+          contactFilters.push 'email_custom_rpt_show_company_coordinator_0_dollar_participants'
+          contactFilters.push 'email_custom_rpt_show_company_coordinator_250_dollar_participants'
           contactFilters.push 'email_custom_rpt_show_past_company_coordinator_participants'
         angular.forEach contactFilters, (filter) ->
-          if filter is 'email_custom_rpt_show_past_company_coordinator_participants'
+          if filter is 'email_custom_rpt_show_company_coordinator_new_participants' or filter is 'email_custom_rpt_show_company_coordinator_weekly_participants' or filter is 'email_custom_rpt_show_company_coordinator_0_dollar_participants' or filter is 'email_custom_rpt_show_company_coordinator_250_dollar_participants' or filter is 'email_custom_rpt_show_past_company_coordinator_participants'
             $scope.contactCounts[filter] = ''
           else
             # contactCountPromise = NgPcContactService.getTeamraiserAddressBookContacts 'tr_ab_filter=' + filter + '&skip_groups=true&list_page_size=1'
@@ -130,7 +134,30 @@ angular.module 'trPcControllers'
                 $scope.emailComposer.subject = messageInfo.subject
                 messageBody = messageInfo.messageBody
                 setEmailMessageBody messageBody
-      
+
+      sortOrder = {
+        "Get a Jump Start/Past Participant wTeaser Video": 0,
+        "Get a Jump Start/Past Participant (No Teaser Video)": 1,
+        "One week before Kick-off": 2,
+        "Non Kick-off Event Email/All School Kick-off Email": 3,
+        "Mid-Event Reminder": 4,
+        "Help Our School Conquer Finn's Mission": 5,
+        "Send 10": 6,
+        "Last Chance Reminder": 7,
+        "Donation Solicitation Email 1": 8,
+        "Donation Solicitation Email 2": 9,
+        "Team Member Thank You Email": 10,
+        "Help me become a FINN's Mission Heart Hero": 11,
+        "I'm Trying to get a Donation from every state!": 12,
+        "Help Me Save Lives": 13,
+        "Have a heart, lend a hand": 14,
+        "Your BIG heart can help save lives": 15,
+        "Get 10 Donations Emails": 16,
+        "Donation Reminder": 17,
+        "Donation Thank you Email": 18,
+        "Thanks for helping me be a Heart Hero": 19
+      }
+
       suggestedMessagesPromise = NgPcTeamraiserEmailService.getSuggestedMessages()
         .then (response) ->
           suggestedMessages = response.data.getSuggestedMessagesResponse.suggestedMessage
@@ -140,15 +167,43 @@ angular.module 'trPcControllers'
             if message.active is 'true'
               if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
                 if message.name.indexOf('Coordinator:') is -1
+                  # if not $scope.suggestedMessageCountByType[message.messageType]
+                  #   $scope.suggestedMessageCountByType[message.messageType] = 0
+                  # $scope.suggestedMessageCountByType[message.messageType] = $scope.suggestedMessageCountByType[message.messageType] + 1
                   message.name = message.name.split('Student: ')[1] or message.name
+                  console.log('message.name x' + message.name + 'x' + 'message type ' + message.messageType)
+                  message.name = message.name.trim()
+                  console.log('message.name x' + message.name + 'x' + 'message type ' + message.messageType)
+                  if sortOrder[message.name]
+                    message.sortOrder = sortOrder[message.name]
+                    console.log('message.sortOrder ' + message.sortOrder + typeof message.sortOrder)
                   $scope.suggestedMessages.push message
               else
                 if message.name.indexOf('Student:') is -1
+                  # if not $scope.suggestedMessageCountByType[message.messageType]
+                  #   $scope.suggestedMessageCountByType[message.messageType] = 0
+                  # $scope.suggestedMessageCountByType[message.messageType] = $scope.suggestedMessageCountByType[message.messageType] + 1
                   message.name = message.name.split('Coordinator: ')[1] or message.name
+                  console.log('message.name x' + message.name + 'x' + 'message type ' + message.messageType)
+                  message.name = message.name.trim()
+                  console.log('message.name x' + message.name + 'x' + 'message type ' + message.messageType)
+                  if message.name == 'Get a Jump Start/Past Participant wTeaser Video'
+                    console.log('gotcha!')
+                    message.sortOrder = 0
+                  if sortOrder[message.name]
+                    message.sortOrder = sortOrder[message.name]
+                    console.log('message.sortOrder ' + message.sortOrder)
                   $scope.suggestedMessages.push message
+              
+              # angular.forEach suggestedMessages, (suggestedMessage, suggestedMessageIndex) ->
+              #   if sortOrder[suggestedMessage.name]
+              #     suggestedMessages[suggestedMessageIndex].sortOrder = sortOrder[suggestedMessage.name]
+              #   return
+            
           response
       $scope.emailPromises.push suggestedMessagesPromise
-      
+
+
       personalizedGreetingEnabledPromise = NgPcTeamraiserEventService.getEventDataParameter 'edp_type=boolean&edp_name=F2F_CENTER_TAF_PERSONALIZED_SALUTATION_ENABLED'
         .then (response) ->
           $scope.personalizedSalutationEnabled = response.data.getEventDataParameterResponse.booleanValue is 'true'

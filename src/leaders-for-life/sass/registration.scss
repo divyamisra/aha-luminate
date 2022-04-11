@@ -1,0 +1,2067 @@
+@import "variables.scss";
+@import "mixins.scss";
+
+// Heat Walk 2020 TeamRaiser Registration SCSS
+/*
+@media screen and (min-color-index:0) and (-webkit-min-device-pixel-ratio:0) {
+	.aural-only {
+		text-indent: -999px;
+		z-index: -1;
+	}
+}
+*/
+
+/* validation styling */
+ input.error, select.error {
+     border-color: #ff0000 !important;
+     box-shadow: none !important;
+}
+ label.error {
+     color: #ff0000;
+     font-weight: normal;
+     white-space: nowrap;
+}
+
+/* main styling */
+main {
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-color: $gray-400;
+    padding: 48px 76px 67px;
+}
+@media (max-width:767px) {
+  main {
+    padding-right:5px;
+    padding-left:5px;
+  }
+}
+@media (min-width: 1200px) {
+     main .content {
+         margin: 0 auto;
+    }
+}
+ main > .container {
+     background-color: #ffffff;
+     padding: 40px 20px;
+}
+.pg_entry main > .container {
+     padding: 0px !important;
+}
+
+.pg_ptype input[type="radio"]:focus {
+	outline: 2px solid $outline-blue;
+  outline-offset: 2px;
+}
+
+h1#pt_title_container,
+h2#pt_title_container,
+h1.ObjTitle {
+	font-size: 16px;
+	margin-top:5px;
+	font-family: $font-family-medium;
+	color: #3c3c3c;
+}
+
+div.responsive div.ErrorMessage.page-error {
+	width: auto;
+}
+div.responsive div.ErrorMessage.page-error > span.field-error-text {
+	width: 90%;
+}
+
+.campaign-banner-container {
+    text-align: center;
+    font-weight: bold;
+    font-size: 26px;
+    line-height: 30px;
+    margin-bottom:15px !important;
+    font-family: LubDubBold,Helvetica,Arial,sans-serif;
+}
+@media (max-width:767px) {
+	.campaign-banner-container,
+	h1#regOptions {
+	    font-size: 20px;
+	    line-height: 24px;
+	}
+}
+#team_find_section_container .section-header,
+#team_find_section_container .section-sub-header {
+	display:none !important;
+}
+div.registration-page-container div.section-body {
+    padding-top: 0px;
+}
+div.registration-page-container span.option-label {
+	margin-right: 10px;
+}
+.reg-summary-part-type::before {
+	content: "Confirm your registration total:";
+	font-size: 1.1em;
+	font-weight: bold;
+	display: block;
+	margin-bottom: 10px;
+	margin-top: 20px;
+}
+#fr_reg_summary_page button.cancel-step {
+	display:none;
+}
+
+
+
+div.responsive span.field-required {
+    vertical-align: baseline;
+}
+.utype-helper {
+    font-size:12px;
+    border:1px solid #3c3c3c;
+    border-radius:20px;
+    vertical-align:middle;
+    padding: 5px 8px;
+    cursor: pointer;
+    position:relative;
+}
+.utype-helper-popup {
+	position: absolute;
+	background: #fff;
+	border: 1px solid #3c3c3c;
+	padding: 10px;
+	min-width: 240px;
+	top: -70px;
+	left: auto;
+	font-size: 14px;
+	line-height: 18px;
+}
+.show-desktop a {
+	margin-top:5px;
+	display:block;
+}
+#chatcode {
+  z-index: 999;
+}
+
+.displayNone {display: none;}
+.left {float: left;}
+
+@media (max-width:767px) {
+   main {
+	padding-right: 5px;
+	padding-left: 5px;
+   }
+   .mobile div.responsive div.form-row {
+	margin-top: 0px;
+	margin-bottom: 0px;
+   }
+   .mobile div.responsive div.form-content {
+	margin-top: 5px;
+	margin-bottom: 5px;
+   }
+   .mobile div.html-caption-container {
+	width: auto;
+   }
+}
+
+/**** STRUCTURE ****/
+
+a#skip-main:hover, a#skip-main:active, a#skip-main:focus {
+    left: 0;
+    width: auto;
+    height: auto;
+}
+#headerWrapper {
+  background-color: #ffffff;
+  z-index: 1040;
+  position: relative;
+  display: none;
+}
+@media (min-width: 992px) {
+  .heart-page-main {
+      width: 822px;
+  }
+}
+.heart-page-rail.heart-page-rail--personal {
+    display: none;
+}
+#footer {
+  background-color: #f6f6f6;
+}
+
+label {font-weight: 400 !important;}
+
+legend {border-bottom: 0;}
+
+.heart-page-container {
+  background-color: #ffffff;
+}
+div.responsive a.next-step, div.responsive button.next-step, div.responsive button.action-button, div.responsive a.step-button, div.responsive button.step-button, div.responsive input.step-button {
+    min-width: 190px;
+    height: 60px;
+    padding: 0 20px;
+    line-height: 60px;
+    font-size: 24px;
+    font-weight: 400;
+    background: none;
+    background-color: #d01d20 !important;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+div.responsive button.step-button,
+div.responsive .donation-level-row-container.donation-amt .donation-level-row-decoration-container,
+div.responsive .survivor_yes_no .input-container {
+    border-radius: 60px 60px 60px 60px;
+    background-clip: padding-box;
+    color: #fff;
+    border: none;
+    font-family: LubDubMedium,Helvetica,Arial,sans-serif!important;
+    margin-right:10px;
+}
+div.responsive button.step-button:hover {
+    background: #900 !important;
+    color: #fff;
+}
+div.responsive button#another_button {
+	text-transform: capitalize;
+}
+div.responsive .donation-level-row-container.donation-amt .donation-level-row-decoration-container,
+div.responsive .survivor_yes_no .input-container{
+    border-radius: 60px 60px 60px 60px;
+    background-clip: padding-box;
+    color: #fff;
+    border: none;
+    font-family: LubDubMedium,Helvetica,Arial,sans-serif!important;
+    margin-right:10px;
+    background: #fff;
+    color: #000;
+    border: 2px solid #000;
+    position:relative;
+}
+div.responsive .survivor_yes_no .input-container input[type=radio] {
+    position: absolute;
+    left:15px;
+    top:15px;
+}
+div.responsive .survivor_yes_no .input-container input[type=radio]:focus {
+	outline: 2px solid $outline-blue;
+  outline-offset: 2px;
+}
+
+div.responsive .donation-level-row-container.donation-amt.active .donation-level-row-decoration-container,
+div.responsive .survivor_yes_no .input-container.survivor_active {
+	background: #000;
+	color: #fff;
+}
+div.responsive .donation-level-row-container.donation-amt.active .donation-level-row-decoration-container:hover,
+div.responsive .survivor_yes_no .input-container:hover,
+div.responsive .survivor_yes_no .input-container:focus {
+	background: #000 !important;
+	color: #fff !important;
+}
+.donation-amt input[type="radio"] {
+	position: absolute;
+	top: 23px;
+	left: 15px;
+	z-index: 1;
+}
+@media (max-width:767px) {
+    div.responsive button.step-button {
+        float:left;
+    }
+    div.responsive button.step-button.previous-button {
+        clear:both;
+    }
+}
+
+div.responsive input[type="email"], div.responsive input[type="text"], div.responsive input[type="number"], div.responsive input[type="password"], div.responsive textarea, select, div.responsive select, select[size] {
+    border: 1px solid #acacac !important;
+    border-radius: 0 !important;
+    width: 280px;
+    margin: 0;
+    line-height: 45px;
+    padding: 0 10px;
+    background: #ffffff;
+    background-color: #ffffff;
+    height: 45px !important;
+    max-height: 45px;
+}
+
+div.responsive button.next-step:hover {
+    background: #900 !important;
+}
+@media (max-width: 767px) {
+  .mobile div.responsive button.step-button {
+      width: 100%;
+  }
+  div.responsive a.step-button {
+    width: 100%;
+  }
+}
+#fr_find_search.action-button {
+    background: none;
+    background-color: #d01d20 !important;
+    font-weight: 400 !important;
+}
+
+a.show-not-sure {
+    font-weight: 400;
+    font-size: 18px;
+    text-align: right;
+    margin-left: 90px;
+}
+div#part_type_fundraising_goal_container #suggested_goal_container {
+	margin-left: 0px;
+	color: #555555;
+}
+/*#part_type_additional_gift_container .enterAmt label {
+	display: inline-block;
+	line-height: 25px;
+	margin-right: 0px;
+}*/
+#part_type_additional_gift_container .enterAmt input[type="text"] {
+	display: inline-block;
+	width: 125px;
+	margin-left: 5px;
+	margin-right: 20px;
+}
+@media (max-width:767px) {
+	#part_type_additional_gift_container .enterAmt input[type=text] {
+	    width: 100px;
+	}
+}
+#part_type_instruction_sub_header, .progress-bar-container {
+    display: none;
+}
+#part_type_anonymous_input_container,
+#part_type_show_public_input_container {
+	display:none;
+}
+.part_type_one_only {
+    margin-top: 10px;
+    font-size: 22px;
+    text-align:center;
+}
+
+#team_find_registration_type_container {
+    display: none;
+}
+.reg-summary-participant-info-container {
+    display: block;
+}
+/*.reg-summary-name-info span.contact-info-name {
+    padding-right: 3px;
+}*/
+
+.heart-hero--personal {
+    background-image: url(../images/content/pagebuilder/fieldday2017_header.jpg);
+}
+.input-container {
+  width: auto;
+}
+.heart-hero {
+    margin-bottom: 17px;
+}
+h1.event-name-header a {
+    font-weight: 700;
+    color: #ffffff;
+}
+.container.custom-progress-bar {
+    background: #e6e6e6 none repeat scroll 0 0;
+    width: 100%;
+}
+.custom-progress-bar .row {
+  margin-left:0;
+  margin-right:0;
+}
+.col-xs-3.p-bar-step {
+    background: #f18b21;
+    height: 45px;
+    width: 33.333%;
+    margin-left: 0 !important;
+    background: url(../images/content/pagebuilder/arrow-right2.png) #f18b21 no-repeat;
+    background-position-x: right;
+}
+div.progressText {
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 45px;
+    text-align: right;
+    margin-right: 25px;
+    font-size: 24px;
+}
+
+.heart-page-main.heart-page-main--personal {
+    margin: auto;
+    float:none;
+}
+div.registration-page-container div.section-container {
+    border: none;
+    padding: 0 10px;
+}
+div.registration-page-container div.section-container {
+    font-size: 18px !important;
+}
+
+.app_tr_registration .search-result-details {
+	border-bottom: 1px solid $gray-500;
+}
+.app_tr_registration .content .search-result-details .btn {
+	padding-right: 10px;
+	padding-left: 10px;
+}
+.app_tr_registration div.responsive input[type=email],
+.app_tr_registration div.responsive input[type=number],
+.app_tr_registration div.responsive input[type=password],
+.app_tr_registration div.responsive input[type=text],
+.app_tr_registration div.responsive select,
+.app_tr_registration div.responsive textarea,
+.form-control {
+ display:block;
+ width:100%;
+ padding:0 .75rem;
+ font-size:1rem;
+ line-height:1.5;
+ color:#495057;
+ background-color:#fff;
+ background-clip:padding-box;
+ border:1px solid #3c3c3c;
+ border-radius:0;
+ -webkit-transition:border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+ transition:border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+ transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+ transition:border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out
+}
+.app_tr_registration div.responsive input[type=email]::-ms-expand,
+.app_tr_registration div.responsive input[type=number]::-ms-expand,
+.app_tr_registration div.responsive input[type=password]::-ms-expand,
+.app_tr_registration div.responsive input[type=text]::-ms-expand,
+.app_tr_registration div.responsive select::-ms-expand,
+.app_tr_registration div.responsive textarea::-ms-expand,
+.form-control::-ms-expand {
+ background-color:transparent;
+ border:0
+}
+.app_tr_registration div.responsive input:focus[type=email],
+.app_tr_registration div.responsive input:focus[type=number],
+.app_tr_registration div.responsive input:focus[type=password],
+.app_tr_registration div.responsive input:focus[type=text],
+.app_tr_registration div.responsive select:focus,
+.app_tr_registration div.responsive textarea:focus,
+.form-control:focus {
+ color:#495057;
+ background-color:#fff;
+ border-color:#f35b6b;
+ outline:0;
+ -webkit-box-shadow:0 0 0 .2rem rgba(193,14,33,.25);
+ box-shadow:0 0 0 .2rem rgba(193,14,33,.25)
+}
+.app_tr_registration div.responsive input[type=email]::-webkit-input-placeholder,
+.app_tr_registration div.responsive input[type=number]::-webkit-input-placeholder,
+.app_tr_registration div.responsive input[type=password]::-webkit-input-placeholder,
+.app_tr_registration div.responsive input[type=text]::-webkit-input-placeholder,
+.app_tr_registration div.responsive select::-webkit-input-placeholder,
+.app_tr_registration div.responsive textarea::-webkit-input-placeholder,
+.form-control::-webkit-input-placeholder {
+ color:#515151;
+ opacity:1
+}
+.app_tr_registration div.responsive input[type=email]::-moz-placeholder,
+.app_tr_registration div.responsive input[type=number]::-moz-placeholder,
+.app_tr_registration div.responsive input[type=password]::-moz-placeholder,
+.app_tr_registration div.responsive input[type=text]::-moz-placeholder,
+.app_tr_registration div.responsive select::-moz-placeholder,
+.app_tr_registration div.responsive textarea::-moz-placeholder,
+.form-control::-moz-placeholder {
+ color:#515151;
+ opacity:1
+}
+.app_tr_registration div.responsive input[type=email]:-ms-input-placeholder,
+.app_tr_registration div.responsive input[type=number]:-ms-input-placeholder,
+.app_tr_registration div.responsive input[type=password]:-ms-input-placeholder,
+.app_tr_registration div.responsive input[type=text]:-ms-input-placeholder,
+.app_tr_registration div.responsive select:-ms-input-placeholder,
+.app_tr_registration div.responsive textarea:-ms-input-placeholder,
+.form-control:-ms-input-placeholder {
+ color:#515151;
+ opacity:1
+}
+.app_tr_registration div.responsive input[type=email]::-ms-input-placeholder,
+.app_tr_registration div.responsive input[type=number]::-ms-input-placeholder,
+.app_tr_registration div.responsive input[type=password]::-ms-input-placeholder,
+.app_tr_registration div.responsive input[type=text]::-ms-input-placeholder,
+.app_tr_registration div.responsive select::-ms-input-placeholder,
+.app_tr_registration div.responsive textarea::-ms-input-placeholder,
+.form-control::-ms-input-placeholder {
+ color:#515151;
+ opacity:1
+}
+.app_tr_registration div.responsive input[type=email]::placeholder,
+.app_tr_registration div.responsive input[type=number]::placeholder,
+.app_tr_registration div.responsive input[type=password]::placeholder,
+.app_tr_registration div.responsive input[type=text]::placeholder,
+.app_tr_registration div.responsive select::placeholder,
+.app_tr_registration div.responsive textarea::placeholder,
+.form-control::placeholder {
+ color:#515151;
+ opacity:1
+}
+.app_tr_registration div.responsive input:disabled[type=email],
+.app_tr_registration div.responsive input:disabled[type=number],
+.app_tr_registration div.responsive input:disabled[type=password],
+.app_tr_registration div.responsive input:disabled[type=text],
+.app_tr_registration div.responsive input[readonly][type=email],
+.app_tr_registration div.responsive input[readonly][type=number],
+.app_tr_registration div.responsive input[readonly][type=password],
+.app_tr_registration div.responsive input[readonly][type=text],
+.app_tr_registration div.responsive select:disabled,
+.app_tr_registration div.responsive select[readonly],
+.app_tr_registration div.responsive textarea:disabled,
+.app_tr_registration div.responsive textarea[readonly],
+.form-control:disabled,
+.form-control[readonly] {
+ background-color:#e9ecef;
+ opacity:1
+}
+.app_tr_registration div.responsive select:not([size]):not([multiple]),
+select.form-control:not([size]):not([multiple]) {
+ height:calc(2.25rem + 2px)
+}
+.app_tr_registration div.responsive select:focus::-ms-value,
+select.form-control:focus::-ms-value {
+ color:#495057;
+ background-color:#fff
+}
+/*utype*/
+#utype-login .col-sm-12 {
+    text-align: center;
+}
+div#user_type_password_input_container label {
+    margin-right: 175px;
+}
+div#user_type_oauth_login_container, .mobile div#user_type_oauth_login_container {
+    margin: auto;
+    float: none;
+}
+#f2fLoginForm button#user_type_login_login_button {
+    margin: 20px auto;
+}
+div#utype-have-we-met {
+    margin-top: 75px;
+    margin-bottom: 75px;
+}
+div#utype-have-we-met h1 {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+div#utype-have-we-met button.btn {
+    background: #515151;
+    height: 60px;
+    width: 190px;
+    font-size: 24px;
+    font-weight: 400;
+    padding: 0;
+    line-height: 60px;
+    margin-bottom: 20px;
+}
+div#utype-have-we-met button.btn:hover, div#utype-have-we-met button.btn:focus {
+    background-color: #d01d20;
+    color: #ffffff;
+}
+
+/*Log In*/
+div#utype-login h4 {
+    font-weight: 600;
+    font-size: 30px;
+}
+.mobile div#user_type_login_container, div#user_type_login_container {
+    float: none;
+    width: auto;
+    margin: auto;
+    background-color: #ffffff;
+    border: 0;
+    padding: 0;
+}
+#f2fLoginForm label {
+    font-weight: 400 !important;
+    font-size: 18px;
+}
+div#user_type_login_container input {
+  width: 280px;
+  max-width: 280px;
+  line-height: 45px;
+  margin: auto;
+}
+#user_type_login_login_container div.input-container {
+    display: block;
+}
+div#user_type_login_email_container #user_type_login_email_button {
+    display: block;
+    margin: auto;
+}
+#user_type_section_container {
+	display:none;
+}
+
+.loginText a {
+	text-decoration: none;
+	text-align: center;
+	max-width: 300px;
+	display: flex;
+	font-size: 14px;
+	margin: 0 auto;
+}
+.btn-social-login.btn-facebook,
+.btn-social-login.btn-amazon {
+	width: 49%;
+	background: #000;
+	color: #fff;
+	padding: 15px 25px;
+	border-radius: 5px;
+  margin-right: 5px;
+}
+.btn-social-login.btn-facebook {
+	background: #445DB5;
+}
+.btn-social-login.btn-amazon {
+	background: #000;
+}
+
+.btn-social-login i {
+	display: block;
+	font-size: 1.7em;
+	margin-bottom: 10px;
+}
+
+
+/*** ptype  ***/
+
+.registration-page-container .section-header-text {
+  font-weight: 600;
+  margin-top: 20px;
+}
+div#part_type_individual_company_input_container {
+    margin-top: 20px;
+}
+
+#part_type_additional_gift_section_header {
+  font-weight: 400;
+  padding: 0;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+div#participation_options_page input,
+div#participation_options_page select {
+    margin-left: 0;
+    max-width: 400px;
+}
+div.required-indicator-legend {
+    text-align: left;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+#part_type_section_body .required-indicator-legend-container.clearfix {
+    display: none;
+}
+
+div#part_type_individual_company_selection_container {
+  margin: 30px 0 !important;
+}
+
+a.step-button.previous-step.backBtnReg {
+	color: #c10e21;
+	background: none !important;
+	border: none;
+	padding: 0;
+	font-size:16px;
+	text-align:left;
+}
+a.step-button.previous-step.backBtnReg:hover {
+	text-decoration: underline;
+}
+label.otherAmt {
+    display: block;
+}
+
+/** tfind page **/
+#team_find_existing_team_search_container, #team_find_existing_company_selection_container, #team_find_search_button_container {
+    display: block;
+}
+#team_find_new_company_selection_container .hint-text {
+	font-size: .65em !important;
+	display:block;
+	margin-top:10px;
+}
+#part_type_individual_company_selection_container .hint-text {
+	font-size: .78em;
+	margin-bottom: 10px;
+	display: block;
+}
+div.responsive #team_find_section_footer button.next-step {
+    float: none;
+}
+@media only screen and (max-width: 767px) {
+  .mobile #team_find_page input#fr_team_member_goal, .mobile #team_find_page input#fr_team_name {
+      max-width: 100%;
+      width: 100%;
+  }
+  div#team_find_new_team_attributes input[type="text"] {
+    width: 100%;
+  }
+}
+
+#team_find_new_fundraising_goal label.input-label {
+	margin-left: 0;
+}
+#team_find_new_team_company select#fr_co_list {
+	margin-top: 5px;
+	display: block;
+}
+#team_find_new_fundraising_goal .input-group-prepend {
+	position: absolute;
+	top: 15px;
+	left: 2px;
+}
+#team_find_new_fundraising_goal .input-group-prepend .input-group-text {
+	border: none;
+}
+.app_tr_registration div.responsive #fr_team_goal {
+	padding-left:20px;
+}
+#team_find_new_team_attributes,
+#team_find_new_team_company {
+	width: 100%;
+	float:none;
+}
+#team_find_new_team_attributes {
+	display: flex;
+}
+#team_find_page div.input-container {
+	flex: 1 1 50%;
+}
+#team_find_new_team_company {
+	max-width:49%;
+	margin-right:10px;
+}
+@media only screen and (max-width: 767px) {
+   #team_find_new_team_attributes,
+   #team_find_new_team_company {
+	display:block;
+	width: 100% !important;
+	max-width:none;
+   }
+   #team_find_section_footer {
+	margin-top:20px;
+   }
+}
+
+/*** page reg ***/
+div#password_component_container span.input-hint {
+	margin-left: 8px;
+	font-style: italic;
+	font-size: 8pt;
+	line-height: 12pt;
+	display: block;
+}
+#registration_options_page label.error {
+	font-size: 0.8em;
+}
+.app_tr_registration #password_component_container .field-required.left {
+	width: 100%;
+}
+div#personal_info_section_one .cons-full-name-label label, .cons-full-address-container .cons-zip-label label, div#cons_info_component_contact_info_section .sub-section-body .cons-full-address-label label {
+    display: none;
+}
+div.registration-page-container div.sub-section-container {
+    background-color: #ffffff;
+}
+div.registration-page-container div.sub-section-header {
+    border: 0;
+    background-color: #ffffff;
+}
+.cons-info-question-container.cons-full-name-container.field-required,
+.app_tr_registration .cons-info-question-container {
+	float: left;
+}
+div.registration-page-container div.sub-section-body {
+    padding: 0;
+}
+
+#reg_instr_container, #contact_hdr_container, #cons_info_component_contact_info_section .sub-section-header {
+  display: none;
+}
+#cons_info_component_container {
+	max-width:680px;
+}
+span#title_container, h1#title_container {
+    font-size: 30px;
+}
+div.registration-page-container div.sub-section-header {
+    font-size: 30px;
+    font-weight: 700;
+}
+#user_name_pword_container input#cons_user_name {
+    width: 100%;
+    max-width: 400px;
+}
+div#registration_options_page div#user_name_pword_container {
+  width: 100%;
+}
+@media only screen and (max-width: 767px) {
+  .mobile div#registration_options_page li.input-container label {
+      max-width: 100%;
+  }
+  #user_name_pword_container input#cons_user_name {
+    width:280px;
+  }
+  #user_name_pword_container input#cons_password,
+  #user_name_pword_container input#cons_rep_password {
+    width:280px;
+  }
+}
+
+div#email_optin label, div#gift_notice_optin label, .mobile div#email_optin label, .mobile div#gift_notice_optin label {
+    max-width: 100%;
+}
+div#email_optin {
+	display:none;
+}
+div#cons_info_component_container div#personal_info_section_one, div#cons_info_component_container div#personal_info_section_two, div#cons_info_component_container div#contact_info_section_one, div#cons_info_component_container div#contact_info_section_two, div#registration_options_page div#user_name_pword_container, div#registration_options_page div#privacy_opts_container, div#registration_options_page div#tribute_component_section_one, div#registration_options_page div#tribute_component_section_two, div#emergency_contact_container, div#gift_notice_optin, div#email_optin {
+  width: auto;
+}
+div.registration-page-container div#reg_options_cons_info_extension.sub-section-container {
+    clear: both;
+}
+/*.cons-info-question-container.cons-address-street-full-container {
+    float: left;
+    margin-right: 15px;
+}*/
+/*.cons-info-question-container {
+    float: left;
+}*/
+.app_tr_registration .cons-full-address-container .cons-info-question-container {
+	max-width: 100%;
+	float: none !important;
+}
+#contact_info_section_one,
+#contact_info_section_two,
+#personal_info_section_one,
+#personal_info_section_two {
+	display:flex;
+	flex-wrap: wrap;
+}
+.survivor_yes_no li.input-container {
+  float: left;
+  margin-right: 25px;
+  background-color: #515151;
+  width: 125px;
+  text-align:center;
+}
+.survivor_yes_no li.input-container:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+.survivor_yes_no label {
+	width: 125px;
+	height: 50px;
+	text-align: center;
+	/* line-height: 60px; */
+	font-size: 24px;
+	cursor: pointer;
+	padding: 8px 42px;
+	margin: 0;
+}
+.survivor_yes_no li.input-container.survivor_active {
+  background-color: #d01d20;
+  color: #ffffff;
+}
+/*.regMobilePhone .input-container {
+    margin-left: 15px;
+}*/
+/* account for spacing for faux required astrix */
+.cons-info-question-container.consZip div.form-content span.field-required {
+    margin-right: 5px;
+}
+/* account for stacking elements after error */
+/*.cons-info-question-container.consZip {
+  height: 98px;
+}*/
+label#cons_zip_code-error {
+    display: block;
+}
+.cons-info-question-container.form-error.consZip {
+    height: auto;
+}
+
+#mobile_optin_outer {
+	margin-top:5px;
+}
+div.responsive div.ErrorMessage>span.field-error-indicator {
+    height: 23px;
+    width: 18px;
+    background-image: url(../images/page_error_icon.png);
+    vertical-align: top;
+    background-repeat: no-repeat;
+    display: inline-block;
+    zoom: 1;
+}
+div.responsive div.ErrorMessage.page-error>span.field-error-indicator, div.responsive span.header-warning-message {
+    display: inline-block;
+  }
+@media (max-width: 767px) {
+  .mobile div.registration-page-container select {
+      max-width: 280px;
+      font-size: 15px;
+      width: 280px;
+  }
+  .survivor_yes_no li.input-container {
+    width: 100%;
+  }
+  .survivor_yes_no label {
+    width: 100%;
+  }
+}
+.app_tr_registration #F2fRegContact,
+.app_tr_registration #F2fRegPartType,
+.app_tr_registration #FriendraiserUserWaiver,
+.app_tr_registration #fr_payment_form {
+	-webkit-box-flex: 0;
+	-ms-flex: 0 0 83.3333333333%;
+	flex: 0 0 83.3333333333%;
+	max-width: 83.3333333333%;
+}
+.app_tr_registration #F2fRegContact,
+.app_tr_registration #F2fRegPartType,
+.app_tr_registration #FriendraiserUserWaiver,
+.app_tr_registration #fr_payment_form {
+	margin: 0 auto;
+}
+.app_tr_registration .part_type_selection_container {
+	text-align:center;
+}
+.app_tr_registration #part_type_section_container h2#pt_title_container::before {
+	content: "*";
+	color: #c10e21;
+	padding-right: 5px;
+}
+.payment-type-selections input[type=radio]:focus {
+	outline: 2px solid $outline-blue;
+}
+/*
+.app_tr_registration div#discount_code_container,
+.app_tr_registration div#part_type_additional_gift_container,
+.app_tr_registration div#part_type_addon_container,
+.app_tr_registration div#part_type_fundraising_goal_container,
+.app_tr_registration div#part_type_individual_company_selection_container,
+.app_tr_registration div#reg_summary_body_container,
+.app_tr_registration div.registration-page-container div.sub-section-body,
+.app_tr_registration div.registration-page-container div.sub-section-container,
+.app_tr_registration div.registration-page-container div.sub-section-header {
+ border:none;
+ background-color:#f6f9f9;
+ padding:15px 30px;
+}
+*/
+@media (max-width:767px) {
+/*
+	.app_tr_registration div#discount_code_container,
+	.app_tr_registration div#part_type_additional_gift_container,
+	.app_tr_registration div#part_type_addon_container,
+	.app_tr_registration div#part_type_fundraising_goal_container,
+	.app_tr_registration div#part_type_individual_company_selection_container,
+	.app_tr_registration div#reg_summary_body_container,
+	.app_tr_registration div.registration-page-container div.sub-section-body,
+	.app_tr_registration div.registration-page-container div.sub-section-container,
+	.app_tr_registration div.registration-page-container div.sub-section-header {
+		 padding:5px;
+	}
+*/
+	div.registration-page-container div.section-container {
+		padding: 0px;
+	}
+}
+.app_tr_registration .campaign-banner-container, .app_tr_registration div.registration-page-container div.section-container {
+	border: none;
+	margin: 0;
+}
+.app_tr_registration div.registration-page-container div.section-header {
+	text-align: center;
+}
+.app_tr_registration div.registration-page-container #F2fRegContact div.section-header {
+	text-align: left;
+}
+.app_tr_registration div.registration-page-container div.section-body, .app_tr_registration div.registration-page-container div.section-footer, .app_tr_registration div.registration-page-container div.section-header, .app_tr_registration div.registration-page-container div.section-sub-header {
+	background-color: #fff;
+	border: none;
+	padding: 0;
+}
+.app_id_9 div.responsive .payment-type-element-container .payment-type-selection-container h3, .h3, h3 {
+	font-size: 1.75rem;
+}
+.app_tr_registration div.registration-page-container div.sub-section-container {
+ 	//overflow:hidden;
+}
+.app_tr_registration div.registration-page-container #personal_info_container,
+.app_tr_registration div.registration-page-container #contact_info_section_one,
+.app_tr_registration div.registration-page-container #contact_info_section_two {
+	margin-bottom: 10px;
+}
+.app_tr_registration div.registration-page-container div.sub-section-header {
+ padding:0;
+ margin:0
+}
+.app_tr_registration .input-container a,
+.app_tr_registration .modal-body a,
+.app_tr_registration small a {
+ text-decoration:underline!important
+}
+.app_tr_registration div.responsive {
+ width:inherit
+}
+.app_tr_registration div.responsive input {
+ vertical-align:middle
+}
+.app_tr_registration div.registration-page-container div.section-header {
+	text-align:center
+}
+.app_tr_registration div.required-indicator-legend {
+	text-align:left;
+	padding:0;
+}
+.app_tr_registration #F2fRegContact,
+.app_tr_registration #F2fRegPartType,
+.app_tr_registration #FriendraiserUserWaiver,
+.app_tr_registration #fr_payment_form {
+ position:relative;
+ width:100%;
+ min-height:1px;
+ padding-right:15px;
+ padding-left:15px;
+ -webkit-box-flex:0;
+ -ms-flex:0 0 100%;
+ flex:0 0 100%;
+ max-width:100%
+}
+@media (max-width:767px) {
+	.app_tr_registration #F2fRegContact,
+	.app_tr_registration #F2fRegPartType,
+	.app_tr_registration #FriendraiserUserWaiver,
+	.app_tr_registration #fr_payment_form {
+        	padding:0px;
+	}
+}
+@media (min-width:576px) {
+ .app_tr_registration #F2fRegContact,
+ .app_tr_registration #F2fRegPartType,
+ .app_tr_registration #FriendraiserUserWaiver,
+ .app_tr_registration #fr_payment_form {
+  -webkit-box-flex:0;
+  -ms-flex:0 0 83.3333333333%;
+  flex:0 0 83.3333333333%;
+  max-width:83.3333333333%;
+  padding-right:0px;
+  padding-left:0px;
+ }
+}
+.app_tr_registration #F2fRegContact {
+ margin:0 auto
+}
+.app_tr_registration div.responsive .sub-section-container span.field-required {
+ float:left;
+ margin-right:2px
+}
+.app_tr_registration #password_component_container .field-required {
+ float:left
+}
+.app_tr_registration #emergency_contact_field_group div.field-required, .app_tr_registration .cons-full-name-container, .app_tr_registration .cons-info-question-container, .app_tr_registration .survey-question-container {
+ position:relative;
+ width:100%;
+ min-height:1px;
+ /*padding-right:15px;
+ padding-left:15px*/
+}
+@media (min-width:576px) {
+ .app_tr_registration #emergency_contact_field_group div.field-required, .app_tr_registration .cons-full-name-container, .app_tr_registration .cons-info-question-container, .app_tr_registration .survey-question-container, .app_tr_registration .cons-full-address-container {
+  -webkit-box-flex:0;
+  -ms-flex:0 0 50%;
+  flex:0 0 50%;
+  max-width:50%;
+ }
+}
+.app_tr_registration #additional_questions_container .survey-question-container select,
+.app_tr_registration #additional_questions_container .survey-question-container input {
+	max-width: 400px;
+}
+.app_tr_registration #reg_options_cons_info_extension_body {
+ display:-webkit-box;
+ display:-ms-flexbox;
+ display:flex;
+ -ms-flex-wrap:wrap;
+ flex-wrap:wrap
+}
+.app_tr_registration #reg_options_cons_info_extension {
+ clear:both
+}
+.app_tr_registration #cons_birth_date_YEAR,
+.app_tr_registration #cons_info_component_contact_info_section,
+.app_tr_registration #cons_info_dob,
+.app_tr_registration #email_optin,
+.app_tr_registration #reg_instr_container,
+.app_tr_registration .survey-question-number {
+}
+.app_tr_registration div#reg_options_cons_info_extension div.sub-section-body,
+.app_tr_registration div.registration-page-container div.sub-section-body {
+ padding:0
+}
+.app_tr_registration div#cons_info_component_container div#contact_info_section_one,
+.app_tr_registration div#cons_info_component_container div#contact_info_section_two,
+.app_tr_registration div#cons_info_component_container div#personal_info_section_one,
+.app_tr_registration div#cons_info_component_container div#personal_info_section_two,
+.app_tr_registration div#email_optin,
+.app_tr_registration div#emergency_contact_container,
+.app_tr_registration div#gift_notice_optin,
+.app_tr_registration div#registration_options_page div#privacy_opts_container,
+.app_tr_registration div#registration_options_page div#tribute_component_section_one,
+.app_tr_registration div#registration_options_page div#tribute_component_section_two,
+.app_tr_registration div#registration_options_page div#user_name_pword_container {
+ width:100%;
+ float: none;
+}
+.app_tr_registration div#email_opt_in_container label,
+.app_tr_registration div#gift_notice_optin label,
+.app_tr_registration div#postal_mail_opt_in_container label,
+.app_tr_registration div#privacy_component_container label,
+.app_tr_registration div#remember_me_container label {
+ max-width:100%
+}
+.app_tr_registration .email-question-container,
+.app_tr_registration .mobile-question-container {
+ position:relative;
+ width:100%;
+ min-height:1px;
+ padding-right:15px;
+ padding-left:15px
+}
+@media (min-width:576px) {
+ .app_tr_registration .email-question-container,
+ .app_tr_registration .mobile-question-container {
+  -webkit-box-flex:0;
+  -ms-flex:0 0 50%;
+  flex:0 0 50%;
+  max-width:50%
+ }
+}
+#participant_info_body_container #password_component_container {
+	max-width: 400px;
+}
+.app_tr_registration #reg_option_custom_html .modal-dialog {
+ overflow-y:initial
+}
+.app_tr_registration #reg_option_custom_html .modal-content {
+ background:0 0;
+ border:none
+}
+.app_tr_registration #reg_option_custom_html .modal-header {
+ border:none
+}
+.app_tr_registration #reg_option_custom_html .modal-header .close {
+ color:#fff;
+ font-weight:700;
+ text-shadow:none;
+ opacity:1;
+ padding:0
+}
+.app_tr_registration #reg_option_custom_html .modal-header .close small {
+ font-weight:500;
+ font-size:.9rem
+}
+.app_tr_registration #reg_option_custom_html .modal-body {
+ height:350px;
+ overflow-y:auto;
+ background:#fff;
+ border:2px solid #ced4da
+}
+.app_tr_registration select#cons_birth_date_DAY,
+.app_tr_registration select#cons_birth_date_MONTH {
+ width:100%
+}
+.app_tr_registration #part_type_additional_gift_section_header {
+ position:relative;
+ width:100%;
+ min-height:1px;
+}
+@media (min-width:768px) {
+ .app_tr_registration #part_type_additional_gift_section_header {
+  -webkit-box-flex:0;
+  -ms-flex:0 0 100%;
+  flex:0 0 100%;
+  max-width:100%
+ }
+}
+.app_tr_registration #additional_questions_container .survey-question-container {
+ width:auto
+}
+/*.app_tr_registration #additional_questions_container .survey-question-container .input-container label {
+ display:inline
+}*/
+.app_tr_registration #additional_questions_container .survey-question-container .survey-date-day,
+.app_tr_registration #additional_questions_container .survey-question-container .survey-date-month,
+.app_tr_registration #additional_questions_container .survey-question-container .survey-date-year {
+ position:relative;
+ width:100%;
+ min-height:1px;
+ padding-right:15px;
+ padding-left:15px;
+ -webkit-box-flex:0;
+ -ms-flex:0 0 33.3333333333%;
+ flex:0 0 33.3333333333%;
+ max-width:33.3333333333%
+}
+.survey-question-number-container .survey-question-number {
+	display: none;
+}
+.app_tr_registration #additional_questions_container .survey-question-container {
+    width: 100%;
+    max-width: none;
+}
+.app_tr_registration .cons-full-address-container {
+    //overflow: hidden;
+}
+.app_tr_registration #remember_me_container {
+	display:none;
+}
+
+/*Reg buttons*/
+
+div#part_type_selection_container {
+	text-align:center;
+}
+div.part-type-container {
+    background-color: #FFFFFF;
+    border: 2px solid #000;
+    margin-top:0;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    display: flex;
+    cursor: pointer;
+    text-align:left;
+    max-width: 680px;
+}
+div.part-type-container.selected,
+div.part-type-container:hover {
+    background-color: transparent;
+    color: #555;
+    margin-top:0;
+    margin-bottom: 20px;
+    outline: none;
+    border: none;
+    border-radius: 0px;
+}
+@media only screen and (max-width: 767px) {
+  div.part-type-container {
+      width: 100%;
+      margin: 0 0 20px 0;
+  }
+ .mobile div.part-type-container .part-type-decoration-messages {
+      width: auto;
+  }
+}
+div#participation_options_page div.part-type-container input {
+	margin: 10px;
+}
+
+div.part-type-container .part-type-decoration-messages {
+    margin: 0;
+    flex: auto;
+}
+div.responsive .part-type-decoration-messages label {
+  color: #000;
+  display: block;
+  padding: 10px 0;
+  text-align: left;
+  margin: 0;
+
+  .part-type-fee-text {
+    font-size: 24px;
+    line-height: 32px;
+    &::before {
+      content: 'Registration fee: ';
+    }
+  }
+  .part-type-description-text {
+    font-size: 0.8em;
+    display: none;
+  }
+}
+div.responsive .part-type-container.selected .part-type-decoration-messages label,div.responsive .part-type-container:hover .part-type-decoration-messages label{
+  color: #555;
+}
+.part-type-name {
+    display: inline-block;
+}
+div.part-type-decoration-messages .part-type-name,
+div.part-type-decoration-messages .part-type-name-value-separator {
+    display: none;
+}
+
+div.part-type-decoration-messages .part-type-description-text,
+div.part-type-decoration-messages span.part-type-name {
+    font-size: inherit;
+    font-weight: 400;
+}
+div.reg-summary-thanks-common-container div.reg-summary-name-info {
+    background-color: rgba(0, 0, 0, 0);
+    border: medium none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding: 0;
+    width: 100%;
+    /*margin-bottom: 15px;*/
+    font-size: 0;
+}
+div.registration-page-container div.section-header {
+  padding-left:0;
+}
+div.reg-summary-thanks-common-container div.reg-summary-name-info span.contact-info-first, div.reg-summary-thanks-common-container div.reg-summary-name-info span.contact-info-name {
+    color: #000000;
+    font-size: 18px;
+    font-weight: bold;
+    display: inline-block;
+}
+div.reg-summary-thanks-common-container div.reg-summary-address-info {
+    border: medium none;
+    display: block;
+    padding: 0;
+    width: 100%;
+}
+div.registration-page-container div.label-value-block-container {
+    border: 0;
+    padding: 0;
+}
+div.reg-summary-thanks-common-container div.reg-summary-event-info, div.reg-summary-thanks-common-container div.reg-summary-total {display: none;}
+
+div.responsive #FriendraiserUserWaiver button.next-step, div.reg-summary-thanks-common-container div.action-button-container, div.responsive #FriendraiserUserWaiver button.previous-step, div.responsive #FriendraiserUserWaiver button.cancel-step {
+  float: none;
+}
+div.reg-summary-thanks-common-container div.reg-summary-address-info > div {
+	padding-bottom: 0;
+}
+#reg_summary_body_container > .manageable-content {
+	display:none;
+}
+
+/*
+div.registration-page-container div.section-footer,
+div.responsive #FriendraiserUserWaiver button.previous-step,
+div.responsive #FriendraiserUserWaiver button.cancel-step {
+  padding: 0 0 0 25px;
+}
+*/
+div.responsive button.previous-step,
+div.responsive button.prev-step {
+	color: #c10e21;
+	background: none !important;
+	border: none;
+	padding: 0;
+	font-size:16px;
+	text-align:left;
+}
+div.responsive button.previous-step:hover,
+div.responsive button.prev-step:hover {
+	background: none !important;
+	color: #d01d20;
+	text-decoration: underline;
+}
+div.responsive button.cancel-step {
+    color: #d01d20;
+    font-size: 24px;
+    font-weight: 400;
+    background-color: #ffffff !important;
+    border: 2px solid #d01d20;
+}
+div.responsive #FriendraiserUserWaiver button.cancel-step:hover {
+    border-color:#900;
+}
+div.reg-summary-thanks-common-container div.action-button-container {
+    float: left;
+    width: auto;
+}
+
+/* page regsummary */
+
+div#waiver_custom_html #fr_html_container div {
+    margin: 10px 0;
+}
+
+div.registration-page-container span.option-amount {
+  float: none;
+}
+
+div.reg-summary-thanks-common-container div.reg-summary-event-info {
+    display: block;
+    border: 0;
+    width: 100%;
+}
+div.reg-summary-thanks-common-container div.reg-summary-event-info > div {
+  background: none;
+  padding: 0;
+}
+
+div.reg-summary-address-info .contact-info-street, div.reg-summary-address-info .contact-info-city, div.reg-summary-address-info .contact-info-state {
+  display: none;
+}
+
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+  .mobile div.reg-summary-thanks-common-container div.reg-summary-address-info {
+      width: auto;
+  }
+}
+
+/* rthanks page */
+div#fr_thanks_page a#part_ctr_container {
+	border-radius: 60px;
+}
+/* hide 2nd pc button */
+#fr_thanks_page .section-footer a#part_ctr_container_step {
+	display:none;
+}
+div#fr_thanks_page #part_ctr_container:hover {
+	background: #d01d20;
+}
+
+
+.reg-summary-edit-link .left-decorator {
+  display: none;
+}
+.mobile div.reg-summary-thanks-common-container .detail-toggle-link {
+    display: none !important;
+}
+@media (max-width: 767px) {
+  div.responsive #FriendraiserUserWaiver button.next-step {
+    width: 100%;
+  }
+  .mobile div.reg-summary-thanks-common-container div.reg-summary-total {
+    display: none;
+  }
+  .mobile div.reg-summary-thanks-common-container div.reg-summary-reg-info .mobile-hidden {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 767px) and (min-width: 480px) {
+  .mobile #fr_reg_summary_page div.action-button-container {
+      float: none;
+  }
+}
+
+/******** Custom Checkboxes ********/
+/* Base for label styling */
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked
+/*[type="radio"]:not(:checked),
+[type="radio"]:checked*/ {
+  position: absolute;
+  left: -9999px;
+}
+
+[type="checkbox"]:not(:checked) + span.manageable-content label,
+[type="checkbox"]:checked + span.manageable-content label,
+[type="checkbox"]:not(:checked) + label,
+[type="checkbox"]:checked + label
+/*[type="radio"]:not(:checked) + label,
+[type="radio"]:checked + label */ {
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+}
+/* checkbox aspect */
+[type="checkbox"]:not(:checked) + span.manageable-content label:before,
+[type="checkbox"]:checked + span.manageable-content label:before,
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before
+/*[type="radio"]:not(:checked) + label:before,
+[type="radio"]:checked + label:before*/ {
+  content: '';
+  position: absolute;
+  left:0;
+  top: 0;
+  width: 25px;
+  height: 25px;
+  border: 1px solid #acacac;
+  background: #ffffff;
+  border-radius: 0;
+  margin-left: 2px;
+}
+
+/* checked mark aspect */
+[type="checkbox"]:not(:checked) + span.manageable-content label:after,
+[type="checkbox"]:checked + span.manageable-content label:after,
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after
+/*[type="radio"]:not(:checked) + label:after,
+[type="radio"]:checked + label:after*/ {
+  content: '\f00c';
+  position: absolute;
+  top: 5px;
+  left: 4px;
+  font-size: 1.2rem;
+  line-height: 0.8;
+  color: #000000;
+  transition: all .2s;
+  font-family: Font Awesome\ 5 Free;
+  font-weight: 900;
+}
+/* checked mark aspect changes */
+[type="checkbox"]:not(:checked) + span.manageable-content label:after,
+[type="checkbox"]:not(:checked) + label:after
+/*[type="radio"]:not(:checked) + label:after*/ {
+  opacity: 0;
+  transform: scale(0);
+}
+[type="checkbox"]:checked + span.manageable-content label:after,
+[type="checkbox"]:checked + label:after
+/*[type="radio"]:checked + label:after*/ {
+  opacity: 1;
+  transform: scale(1);
+}
+/* disabled checkbox */
+[type="checkbox"]:disable:not(:checked) + span.manageable-content label,
+[type="checkbox"]:disabled:checked + span.manageable-content label,
+[type="checkbox"]:disabled:not(:checked) + label:before,
+[type="checkbox"]:disabled:checked + label:before
+/*[type="radio"]:disabled:not(:checked) + label:before,
+[type="radio"]:disabled:checked + label:before*/ {
+  box-shadow: none;
+  border-color: #bbb;
+  background-color: #ddd;
+}
+[type="checkbox"]:disabled:checked + span.manageable-content label,
+[type="checkbox"]:disabled:checked + label:after
+/*[type="radio"]:disabled:checked + label:after*/ {
+  color: #999;
+}
+[type="checkbox"]:disabled + span.manageable-content label,
+[type="checkbox"]:disabled + label
+/*[type="radio"]:disabled + label*/ {
+  color: #aaa;
+}
+/* accessibility */
+[type="checkbox"]:focus + span.manageable-content label:before,
+[type="checkbox"]:checked:focus + span.manageable-content label:before,
+[type="checkbox"]:not(:checked):focus + span.manageable-content label:before,
+[type="checkbox"]:focus + label:before,
+[type="checkbox"]:checked:focus + label:before,
+[type="checkbox"]:not(:checked):focus + label:before
+/*[type="radio"]:focus + label:before,
+[type="radio"]:checked:focus + label:before,
+[type="radio"]:not(:checked):focus + label:before*/ {
+  outline-offset: 2px;
+  outline: 2px solid $outline-blue;
+}
+/*
+@media (max-width: 1010px) {
+  [type="checkbox"]:not(:checked) + span.manageable-content label:before,
+  [type="checkbox"]:checked + span.manageable-content label:before,
+  [type="checkbox"]:not(:checked) + label:before,
+  [type="checkbox"]:checked + label:before,
+  [type="radio"]:not(:checked) + label:before,
+  [type="radio"]:checked + label:before {
+    top: -3px;
+  }
+  [type="checkbox"]:not(:checked) + span.manageable-content label:after,
+  [type="checkbox"]:checked + span.manageable-content label:after,
+  [type="checkbox"]:not(:checked) + label:after,
+  [type="checkbox"]:checked + label:after,
+  [type="radio"]:not(:checked) + label:after,
+  [type="radio"]:checked + label:after {
+    top: 2px;
+  }
+}
+*/
+.notTime input:checked, .notTime input:not(:checked) {
+    left: 0;
+    position: relative;
+}
+.notTime [type="radio"]:not(:checked) + label:before,
+.notTime [type="radio"]:checked + label:before,
+.notTime [type="radio"]:not(:checked) + label:after,
+.notTime [type="radio"]:checked + label:after {
+  content: none;
+}
+div.notTime [type="radio"]:checked + label,
+div.notTime [type="radio"]:not(:checked) + label {
+  padding-left: 5px;
+}
+/******** End Custom Checkboxes ********/
+
+/****** DONATION BUTTONS ******/
+/*#part_type_donation_level_input_container .donation-level-row-container.donation-amt > input, #part_type_donation_level_input_container .donation-level-row-container.donation-level-row-decoration-container
+.input-container input[type="radio"], #participation_options_page #part_type_additional_gift_container .donation-level-row-container.enterAmt .donation-level-row-label {
+  display: none;
+} */
+label.donation-level-row-label.other_amount_label {
+    position: absolute;
+    left: -9999999px;
+}
+.donation-level-row-container.donation-amt {
+    display:inline-block;
+    margin-bottom: 15px;
+    margin-right: 20px;
+    position:relative;
+}
+@media only screen and (max-width: 767px) {
+  .donation-level-row-container.donation-amt {
+    margin-right: 15px;
+  }
+}
+
+.donation-level-row-container.donation-amt .donation-level-row-decoration-container {
+    background-color: #515151;
+    border-radius: 0;
+    color: #ffffff;
+    padding: 0 10px;
+    text-align: center;
+    width: 126px;
+    font-size: 24px;
+    height: 60px;
+    margin: 0 !important;
+    display: inline-block !important;
+    line-height: 60px;
+}
+
+/*div.responsive .donation-level-row-container input[type=radio] {
+  display: none;
+}*/
+#participation_options_page .donation-level-row-container.enterAmt .input-container,
+#participation_options_page .donation-level-row-container.notTime .input-container {
+	margin-top: 0;
+}
+div.responsive .donation-level-row-container.enterAmt .donation-level-row-decoration-container input {
+	margin-right: 10px;
+}
+div.responsive .donation-level-row-container.enterAmt .donation-level-row-decoration-container,
+div.responsive .donation-level-row-container.notTime {
+    border-radius: 60px 60px 60px 60px;
+    background-clip: padding-box;
+    color: #fff;
+    border: none;
+    font-family: LubDubMedium,Helvetica,Arial,sans-serif!important;
+    margin-right:10px;
+    background: #fff;
+    color: #000;
+    border: 2px solid #000;
+    position:relative;
+    padding: 15px;
+    cursor: pointer;
+}
+div.responsive .donation-level-row-container.notTime label {
+    margin-bottom: 0;
+    cursor: pointer;
+}
+.donation-level-row-container.enterAmt,
+.donation-level-row-container.notTime {
+    float: none;
+    clear: both;
+    display: inline-block;
+    vertical-align:top;
+    position:relative;
+    max-width:360px;
+}
+div.responsive .donation-level-row-container.enterAmt.active .donation-level-row-decoration-container,
+div.responsive .donation-level-row-container.enterAmt .donation-level-row-decoration-container:hover,
+div.responsive .donation-level-row-container.notTime.active,
+div.responsive .donation-level-row-container.notTime:hover {
+  background: #000;
+  color: #fff;
+}
+div.responsive .donation-level-row-container.enterAmt label.error {
+        padding:0;
+	border:none;
+	background: none;
+	font-size:14px;
+	color: #ff0000;
+}
+.enterAmt-other {
+	display:inline-block;
+}
+div.donation-level-row-container {
+  padding: 0;
+}
+.donation-level-container {
+  padding: 0;
+  max-width: 680px;
+}
+.donation-level-container:last-of-type {
+  width: 100%;
+}
+.donation-level-row-container.donation-amt .donation-level-row-decoration-container:hover, .donation-level-row-container.donation-amt.active .donation-level-row-decoration-container {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    outline: 2px solid $outline-blue;
+    outline-offset: 2px;
+}
+.donation-level-row-container.donation-amt:hover, .donation-level-row-label:hover {
+  cursor: pointer;
+}
+label.donation-level-row-label {
+    margin: auto;
+}
+
+@media only screen and (max-width: 767px) {
+  .mobile div.donation-level-row-container input[type="text"] {
+      margin-left: 0;
+  }
+}
+.waiverCheck .survey-question-label,
+.privacyCheck .survey-question-label {
+	display:none;
+}
+
+/**** WAIVER LIGHTBOX ****/
+#overlayWaiver, #lightboxWiaver {
+    display: none;
+}
+#overlayWaiver {
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  z-index:1001;
+  -moz-opacity: 0.8;
+  opacity:.80;
+  filter: alpha(opacity=80);
+}
+#lightboxWiaver {
+  position: fixed;
+  top: 15%;
+  left: 25%;
+  width: 50%;
+  height: 30%;
+  padding: 16px;
+  border: 4px solid #dddddd;
+  background-color: white;
+  z-index:1002;
+  overflow: auto;
+  overflow-y: scroll;
+  min-height: 400px;
+  min-width:50%;
+  background-size: cover;
+}
+@media only screen and (max-width: 1199px) {
+  #lightboxWiaver {
+    left: 15%;
+    min-width: 70%;
+  }
+}
+@media only screen and (max-width: 767px) {
+  #lightboxWiaver {
+    left: 5%;
+    min-width: 90%;
+  }
+}
+#lightboxWiaver h1 {
+    margin: 0.5em 0;
+    font-size: 22px;
+}
+.lightboxWiaverContent p {
+  font-size: 16px;
+}
+.lightboxWiaverClose {
+    font-family: Font Awesome\ 5 Free;
+    position: absolute;
+    right: 10px;
+    top: 0;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+    -webkit-appearance: none;
+    font-size: 24px;
+    color: #000;
+    line-height:24px;
+  font-weight: 900;
+}
+span.lightboxWiaverClose i.fa-close {
+    position: fixed;
+}
+/**** END WAIVER LIGHTBOX *****/
+
+#reg_payment_page #fr_payment_form #reg_payment_body_container #reg_billing_info_block #billing_info_name #billing_title_row, #reg_payment_page #fr_payment_form #reg_payment_body_container #reg_billing_info_block #billing_info_name #billing_suffix_row { display: none; }
+
+#reg_payment_page div.form-row {
+	margin-bottom: 0px;
+	margin-left: 0px;
+}
+#reg_payment_page .form-text {
+	margin-top: 0px;
+}
+#reg_payment_page span.internal-payment {
+	border: none;
+	background: none;
+}
+#reg_payment_page span.external-payment a.payment-type-label img {
+	display:none;
+}
+#reg_payment_page span.external-payment a.payment-type-label {
+	color:#000000;
+}
+/*#reg_payment_page span.external-payment a.payment-type-label::after {
+	content: "PayPal";
+	color: #000;
+}*/
+/*#reg_payment_page span.external-payment:hover a.payment-type-label::after {
+	color: #fff;
+}*/
+#reg_payment_page span.internal-payment span.payment-type-option,
+#reg_payment_page span.external-payment span.payment-type-option {
+    border-radius: 60px 60px 60px 60px;
+    background-clip: padding-box;
+    color: #fff;
+    border: none;
+    font-family: LubDubMedium,Helvetica,Arial,sans-serif!important;
+    margin-right:10px;
+    border: 2px solid #000000;
+    padding: 10px 20px 5px;
+    position: relative;
+    background: #fff;
+}
+@media (max-width: 767px) {
+	#reg_payment_page span.internal-payment span.payment-type-option,
+	#reg_payment_page span.external-payment span.payment-type-option {
+		margin-bottom:10px;
+	}
+}
+#reg_payment_page span.internal-payment span.payment-type-option.selected,
+#reg_payment_page span.internal-payment span.payment-type-option:hover,
+#reg_payment_page span.external-payment span.payment-type-option.selected,
+#reg_payment_page span.external-payment span.payment-type-option:hover {
+	background: #000000;
+}
+#reg_payment_page span.internal-payment span.payment-type-option.selected a:link,
+#reg_payment_page span.internal-payment span.payment-type-option:hover a:link,
+#reg_payment_page span.external-payment span.payment-type-option.selected a:link,
+#reg_payment_page span.external-payment span.payment-type-option:hover a:link{
+	color: #ffffff;
+}
+#reg_payment_page span.internal-payment span.payment-type-option label,
+#reg_payment_page span.external-payment span.payment-type-option label {
+    padding-left:25px;
+}
+#reg_payment_page span.payment-type-option input {
+	display: block;
+	position: absolute;
+	top: 18px;
+	left: 20px;
+}
+#responsive_payment_typecc_type_row legend {
+    display:none;
+}
+#reg_payment_page #billing_addr_city_row,
+#reg_payment_page #billing_addr_country_row,
+#reg_payment_page #billing_addr_state_row,
+#reg_payment_page #billing_addr_street1_row,
+#reg_payment_page #billing_addr_street2_row,
+#reg_payment_page #billing_addr_zip_row,
+#reg_payment_page #billing_first_name_row,
+#reg_payment_page #billing_last_name_row {
+	display:inline-block;
+	vertical-align: top;
+	width: auto;
+	margin-right: 20px;
+}
+#reg_payment_page div.form-row div.form-content > select,
+#reg_payment_page div.form-row div.form-content > input {
+	width: 280px;
+}
+#reg_payment_page #billing_addr_street1_row input,
+#reg_payment_page #billing_addr_street2_row input {
+	width: 280px;
+}
+
+#reg_payment_page  div#responsive_payment_typecc_number_row {
+     float: left;
+     margin-right: 20px;
+}
+#reg_payment_page div#responsive_payment_typecc_exp_date_row {
+     float: left;
+}
+#reg_payment_page div#responsive_payment_typecc_cvv_row {
+     clear: both;
+}
+#reg_payment_page .cvv-input {
+     margin-right: 0;
+     position: relative;
+     width: auto;
+}
+#reg_payment_page .cardExpGroup {
+     width: 330px;
+}
+#reg_payment_page select#responsive_payment_typecc_exp_date_MONTH, select#responsive_payment_typecc_exp_date_YEAR {
+     width: 40%;
+     margin-right: 5%;
+     margin-top: 3px;
+     display: inline-block;
+}
+#reg_payment_page div.payment-field-container #responsive_payment_typecc_cvv_row input {
+     width: 280px;
+}
+#reg_billing_info_block {
+	max-width: 700px;
+}
+#reg_payment_page .section-footer {
+	clear:both;
+}
+
+
+div#registration_options_page .indented-field-group {
+  margin-left: 0;
+}
+
+/* utype styling */
+
+div#user_type_oauth_login_container a.janrainEngage.loginHref {
+	background-image: -moz-linear-gradient(top, #e51c22, #cd181d);
+	background: -webkit-gradient(linear, left top, left bottom, from(#e51c22), to(#cd181d));
+	background-image: -moz-linear-gradient(top, #e51c22, #cd181d);
+	background-image: -ms-linear-gradient(top, #E51C22 0%, #CD181D 100%);
+	border: 1px solid #b5cbd9;
+	color: #fff;
+	display: inline-block;
+	text-decoration: none;
+	padding: 8px 7px;
+	border-radius: 3px;
+    -moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	margin-top: 10px;
+}
+div#user_type_oauth_login_container a.janrainEngage.loginHref div.loginLinks {
+	display: none;
+}
+.janrain-provider150-amazon {
+	display: none;
+}
+div.required-indicator-legend {
+	text-align: left;
+	padding-left: 0;
+}
+#user_type_login_login_container div.input-container {
+	width: auto;
+}
+#user_type_login_login_button {
+	vertical-align: bottom;
+}
+#fr_new_user_container, #fr_responsive_social_login_container {
+	display: none;
+}
+#user_type_login_email_button {
+	background-image: -moz-linear-gradient(top, #e51c22, #cd181d);
+	background: -webkit-gradient(linear, left top, left bottom, from(#e51c22), to(#cd181d));
+	background-image: -moz-linear-gradient(top, #e51c22, #cd181d);
+	background-image: -ms-linear-gradient(top, #E51C22 0%, #CD181D 100%);
+	border: 1px solid #b5cbd9;
+	color: #fff;
+}
+#facebook_login_logo, #amazon_login_logo {
+	height: 43px;
+	vertical-align: bottom;
+}
+
+@media (max-width: 1199px) {
+	div#user_type_oauth_login_container {
+		float: none;
+	}
+}
+@media (max-width: 991px) {
+	.mobile div#user_type_oauth_login_container {
+		width: 236px;
+	}
+}
+@media (max-width: 899px) {
+	.mobile div#user_type_new_participant_registration_container, .mobile div#user_type_login_container {
+		clear: left;
+	}
+}
+
+/* registration - start or find a team */
+ div#team_find_search_results_container div.list-component-cell-column-join-link a {
+     display: inline-block;
+     border: 1px solid #b5cbd9 !important;
+     background-color: #d4e8f3 !important;
+     background-image: -moz-linear-gradient(top, #e51c22, #cd181d) !important;
+     background: -webkit-gradient(linear, left top, left bottom, from(#e51c22), to(#cd181d));
+     background-image: -ms-linear-gradient(top, #E51C22 0%, #CD181D 100%);
+     color: #fff !important;
+     text-align: center;
+     font-weight: bold;
+}
+ #team_find_page div.list-component-row {
+     border-radius: 1px !important;
+     background-image: -moz-linear-gradient(top, #ffffff, #fff) !important;
+     background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#fff));
+     background-image: -ms-linear-gradient(top, #ffffff 0%, #fff 100%);
+     border-top: 1px solid #e0e0e0 !important;
+}
+ #find_participant div.list-component-row {
+     border-radius: 1px !important;
+     background-image: -moz-linear-gradient(top, #ffffff, #fff) !important;
+     background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#fff));
+     background-image: -ms-linear-gradient(top, #ffffff 0%, #fff 100%);
+     border-top: 1px solid #e0e0e0 !important;
+}
+
+#registration_options_page .required-indicator-legend .required-indicator-legend-text {
+	font-size: 80%;
+}
+
+/* custom tr page styling */
+#fr_informational_page {
+    padding: 1em 3em;
+}
+#fr_informational_page h1 {
+    margin-bottom: 1em;
+}
+#fr_informational_page h3 {
+    margin-top: 1em;
+}
+
+@media (max-width: 767px) {
+    #fr_informational_page {
+        width: auto;
+    }
+    #fr_informational_page {
+        padding: 0 1em;
+    }
+}
+
+.app_tr_registration, .pg_fieldday_register, .app_donation {
+  background-color: #900;
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-size: 70%;
+
+  header {
+    background-color: transparent;
+    background-image: none;
+    nav{
+      background-color: transparent;
+    }
+  }
+
+  main {
+    background-color: transparent;
+  }
+
+  .nav-item--about, .nav-item--find {
+    display: none!important;
+  }
+
+  .global-sponsors, .mobile-utility-nav{
+    display: none;
+  }
+}
+
+.default-submit-hack {
+  display: none!important;
+}

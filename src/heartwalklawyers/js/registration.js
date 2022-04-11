@@ -1586,7 +1586,7 @@
             $('#fr_team_goal').val('');
             $('#fr_team_name').val('');
         }
-        
+
         $('.part-type-description-text:contains("Free")').html('&nbsp;');
         $('.survey-question-container legend span:contains("Waiver agreement")').parent().parent().addClass('waiverCheck');
         $('.waiverCheck legend').addClass('aural-only');

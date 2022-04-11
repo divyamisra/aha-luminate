@@ -4,21 +4,63 @@
 
 @import "../../youth-markets/sass/participant.scss";
 
+.ym-pc-dashboard-coordinators-tobacco-endgame-section {
+  background-color: $event-accent;
+  text-align: center;
+  margin: 0 0 24px;
+  padding: 12px;
+
+  @media (min-width: $screen-sm-min) {
+    padding: 24px 172px;
+  }
+
+  .ym-pc-dashboard-section-header {
+    color: $event-grey;
+  }
+}
+
+.list-group-item.active {
+  &:focus,
+  &.active,
+  &.active:hover {
+    background-color: $event-primary;
+    border-color: $event-primary;
+  }
+}
+
 .ng-pc-nav {
   a {
     &:link,
     &:visited {
       color: $event-secondary-heading;
+      background: $event-secondary-medium;
     }
 
     &:hover,
     &:focus,
     &:active {
       background: $brand-white;
-      color: $event-secondary-heading;
+      color: $event-secondary-medium;
       
-      @media (min-width: 560px) {
+      @media (max-width: 560px) {
         background: $brand-white;
+        color: $event-secondary-medium;
+      }
+    }
+    &.active {
+      background: $brand-white;
+      color: $event-secondary-medium;
+    }
+  }
+}
+
+@media (max-width:669px) {
+  .ng-pc-nav--coordinator {
+    a { 
+      &:link,
+      &:visited {
+        background: $event-secondary-medium;
+        color: $brand-white;
       }
     }
   }
@@ -35,6 +77,21 @@
   .row {
     .ym-pc-dashboard-progress-section__column {
         padding: 0;
+    }
+  }
+}
+.ym-pc-dashboard-progress-section,
+.ym-pc-dashboard-activities-section {
+  a {
+    &:link,
+    &:visited {
+      color: $event-primary-acc;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: $event-primary-acc;
     }
   }
 }
@@ -55,8 +112,7 @@
   }
 }
 
-.ym-pc-dashboard-captain-page-type, 
-.ym-pc-dashboard-coordinator-page-type {
+.ym-pc-dashboard-captain-page-type {
   a,
   button {
     &, 
@@ -66,6 +122,60 @@
       background-color: rgba(40, 79, 73, 0.2);
       color: rgb(255, 255, 255);
       color: rgba(40, 79, 73, 1);
+    }
+  }
+  a,
+  button {
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $event-secondary;
+      color: $event-secondary-medium;
+    }
+  }
+  &.active {
+    a, 
+    button {
+      &,
+      &:hover,
+      &:link,
+      &:visited {
+        background-color: $event-secondary;
+        color: $event-secondary-medium;
+      }
+    }
+  }
+}
+
+.ym-pc-dashboard-coordinator-page-type {
+  a,
+  button {
+    &, 
+    &:link, 
+    &:visited {
+      background-color: $event-primary;
+      color: $event-secondary-heading;
+    }
+  }
+  a,
+  button {
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $event-secondary;
+      color: $event-secondary-medium;
+    }
+  }
+  &.active {
+    a, 
+    button {
+      &,
+      &:hover,
+      &:link,
+      &:visited {
+        background-color: $event-secondary;
+        color: $event-secondary-medium;
+      }
     }
   }
 }
@@ -85,18 +195,19 @@
     &:hover,
     &:focus,
     &:active {
-      background-color: $event-primary;
-      color: $brand-white;
+      background-color: $event-secondary;
+      color: $event-secondary-medium;
     }
   }
-  
   &.active {
     a, 
     button {
       &,
+      &:hover,
       &:link,
       &:visited {
-        background-color: $event-primary;
+        background-color: $event-secondary;
+        color: $event-secondary-medium;
       }
     }
   }
@@ -195,12 +306,16 @@
 }
 
 .ym-activity-box {
+  color: #ffffff;
   h5, 
   .h5 {
     text-transform: none;
     color: $event-secondary-heading;
-  }
 
+    .ym-activity-box-number {
+       background: $event-primary;
+    }
+  }
 }
 
 .ym-spread-the-word-box {
@@ -223,6 +338,8 @@
 
 .ym-pc-dashboard-spread-section {
   padding: 0;	
+  color: $event-secondary-heading;
+	
   @media (min-width: $screen-sm-min) {
     padding: 0;
   }  
@@ -284,4 +401,17 @@
   .ym_my_challenge__update {
 	  margin-bottom: 20px;
   }
+}
+
+.ym-pc-dashboard-spread-section {
+  .ym-pc-dashboard-section-header {
+    h2,.h3 {
+	    color: $event-secondary-heading;
+    }
+  }
+}
+
+.schoolChallenge, 
+.schoolCreateMessage {
+    color: $event-secondary-heading;
 }

@@ -44,7 +44,7 @@
     ajaxProxyAuth: '[[S86:true]]',
     [[?
       [[?xx::x[[S1:cons_id]]x::T::
-        [[?[[S39:0*#000000*10pt*true*1*0*0*Events:true:YM Kids Heart Challenge 2021:::]]:: href=::::T]]
+        [[?[[S39:0*#000000*10pt*true*1*0*0*Events:true:YM Kids Heart Challenge 2022:::]]:: href=::::T]]
       ]]
     ::T::
       isParticipant: false
@@ -73,6 +73,7 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/ng-csv/0.3.6/ng-csv[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
   <script>
     window.fbAsyncInit = function() {
       FB.init({
@@ -125,12 +126,12 @@
       
       var scriptTag = document.createElement('script');
       [[?xheartdevx::x[[S29:TABLE_PREFIX]]x::
-        scriptTag.src = 'https://tools.heart.org/aha_ym21_dev/visitlink_record.php?ecard_linktrack=' + uparts[0];
+        scriptTag.src = 'https://tools.heart.org/aha_ym22_dev/visitlink_record.php?ecard_linktrack=' + uparts[0];
       ::
         [[?xheartnewx::x[[S29:TABLE_PREFIX]]x::
-          scriptTag.src = 'https://tools.heart.org/aha_ym21_testing/visitlink_record.php?ecard_linktrack=' + uparts[0];
+          scriptTag.src = 'https://tools.heart.org/aha_ym22_testing/visitlink_record.php?ecard_linktrack=' + uparts[0];
         ::
-          scriptTag.src = 'https://tools.heart.org/aha_ym21/visitlink_record.php?ecard_linktrack=' + uparts[0];
+          scriptTag.src = 'https://tools.heart.org/aha_ym22/visitlink_record.php?ecard_linktrack=' + uparts[0];
         ]]
       ]]
       document.body.appendChild(scriptTag);

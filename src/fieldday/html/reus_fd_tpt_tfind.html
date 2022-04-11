@@ -2,7 +2,7 @@
   [[?xxindividualx::x[[S80:regType]]x::
   <style>.pg_tfind .campaign-banner-container {display:none;}</style>
   <!-- BEGIN part 1 of tfind -->
-  [[S51:reus_fd_tpt_reg_options]]
+  [[S51:reus_leaders_tpt_reg_options]]
   <!-- END part 1 of tfind -->
   ::]]
 
@@ -21,6 +21,7 @@
               <div class="section-header">
                 <div class="manageable-editor" data-container="edit_title_container">
                   <h1 class="h3 section-header-text">Start a Team</h1>
+                  <h2 class="h3 js__start-team-company-name section-header-text"></h2>
                 </div>
               </div>
           </div>
@@ -47,17 +48,33 @@
               <div class="section-header">
                 <div class="manageable-editor" data-container="edit_title_container">
                   <h1 class="h3 section-header-text">Find a Team</h1>
+                  <h2 class="h3 js__join-team-company-name section-header-text"></h2>
                 </div>
               </div>
           </div>
         </div>
         <div class="row">
           <div class="reg-text mt-3 col-md-12 text-center">
-            <p>Let's find your team! You can search using any of the following fields. If you are just searching for teams within a company, just enter the company name below.</p>
+            <!--Reg search text-->
+            <p>Lets find your team!</p>
+            <p>You can search using any of the following fields. If you are just searching for teams within a company, just enter the company name below.</p>
           </div>
         </div>
         <div class="my-3">
           <form class="js__reg-team-search-form row">
+            <div class="col-sm-6">
+              <!-- <label class="" for="">Team Member</label> -->
+              <div class="form-group">
+                <label for="regTeamMemberFirst">Team Captain's First Name</label>
+                <input type="text" name="user_password" id="regTeamMemberFirst" class="form-control">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="regTeamMemberLast">Team Captain's Last Name</label>
+                <input type="text" name="user_password" id="regTeamMemberLast" class="form-control">
+              </div>
+            </div>
             <div class="col-sm-6">
               <div class="form-group">
                 <label class="" for="regTeamName">Team's Name</label>
@@ -70,19 +87,6 @@
                 <select name="regCompanyId" id="regCompanyId" class="form-control js__reg-company-name">
                   <option selected="selected" value="">Choose from existing list</option>
                 </select>
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <!-- <label class="" for="">Team Member</label> -->
-              <div class="form-group">
-                <label for="regTeamMemberFirst">Team Captain's First Name</label>
-                <input type="text" name="user_password" id="regTeamMemberFirst" class="form-control">
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="form-group">
-                <label for="regTeamMemberLast">Team Captain's Last Name</label>
-                <input type="text" name="user_password" id="regTeamMemberLast" class="form-control">
               </div>
             </div>
             <div class="col-sm-4 offset-sm-4">
@@ -101,9 +105,17 @@
             </div>
             <div id="custom_team_find">
               Sort by:<br>
-              <button class="sort button btn-light btn-sm" data-sort="team-name-label" tabindex="0">Team name</button>
-              <button class="sort button btn-light btn-sm" data-sort="team-captain-name" tabindex="0">Team Captain</button>
-              <button class="sort button btn-light btn-sm js__company-sort" data-sort="team-company-name" style="display:none;" tabindex="0">Company</button>
+              <div class="d-flex flex-row flex-wrap justify-content-between">
+                <div>
+                  <button class="sort button btn-light btn-sm" data-sort="team-name-label" tabindex="0">Team name</button>
+                  <button class="sort button btn-light btn-sm" data-sort="team-captain-name" tabindex="0">Team Captain</button>
+                </div>
+                <div>
+                  <span class="js__num-team-results"></span>
+                </div>
+              </div>
+              <!--hiding the company sort per user story request for 2021 event -->
+              <!-- <button class="sort button btn-light btn-sm js__company-sort" data-sort="team-company-name" style="display:none;" tabindex="0">Company</button> -->
               <div class="list results-table py-4"></div>
             </div>
           </div>

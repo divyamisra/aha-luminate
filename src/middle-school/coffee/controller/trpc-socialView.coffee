@@ -8,7 +8,7 @@ angular.module('trPcControllers').controller 'NgPcSocialViewCtrl', [
     if $scope.tablePrefix is 'heartdev'
       urlPrefix = 'load'
     else
-      urlPrefix = 'loadprod'
+      urlPrefix = 'loadaha'
     consId = $scope.consId
     frId = $rootScope.frId
     auth = $rootScope.authToken

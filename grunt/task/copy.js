@@ -208,6 +208,55 @@ module.exports = {
         dest: 'dist/heartwalklawyers/js/'
       }
     ]
+  },
+
+  "leaders-for-life-scripts": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/leaders-for-life/js/',
+        src: [
+          '*.js'
+        ],
+        dest: 'dist/leaders-for-life/js/'
+      }
+    ]
+  },
+  "social-stem-scripts": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/social-stem/js/',
+        src: [
+          '*.js'
+        ],
+        dest: 'dist/social-stem/js/'
+      }
+    ]
+  },
+  "women-of-impact-scripts": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/women-of-impact/js/',
+        src: [
+          '*.js'
+        ],
+        dest: 'dist/women-of-impact/js/'
+      }
+    ]
+  },
+  "teens-of-impact-scripts": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/teens-of-impact/js/',
+        src: [
+          '*.js'
+        ],
+        dest: 'dist/teens-of-impact/js/'
+      }
+    ]
   }
 
 }

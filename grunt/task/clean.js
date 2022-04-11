@@ -411,5 +411,133 @@ module.exports = {
         ]
       }
     ]
-  }
+  },
+  "leaders-for-life": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/leaders-for-life/css/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/leaders-for-life/js/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/leaders-for-life/html/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/leaders-for-life/image/',
+        src: [
+          '**/*'
+        ]
+      }
+    ]
+  },
+  "social-stem": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/social-stem/css/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/social-stem/js/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/social-stem/html/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/social-stem/image/',
+        src: [
+          '**/*'
+        ]
+      }
+    ]
+  },
+  "women-of-impact": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/women-of-impact/css/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/women-of-impact/js/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/women-of-impact/html/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/women-of-impact/image/',
+        src: [
+          '**/*'
+        ]
+      }
+    ]
+  },
+  "teens-of-impact": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/teens-of-impact/css/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/teens-of-impact/js/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/teens-of-impact/html/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/teens-of-impact/image/',
+        src: [
+          '**/*'
+        ]
+      }
+    ]
+  },
 }

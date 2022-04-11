@@ -257,5 +257,69 @@ module.exports = {
       'img-copy:heartwalklawyers-images',
       'notify:heartwalklawyers'
     ]
+  },
+  "leaders-for-life": {
+    files: [
+      'src/leaders-for-life/html/**/*',
+      'src/leaders-for-life/image/**/*',
+      'src/leaders-for-life/sass/**/*',
+      'src/leaders-for-life/js/**/*'
+    ],
+    tasks: [
+      'clean:leaders-for-life',
+      'css-dist:leaders-for-life',
+      'js-dist:leaders-for-life',
+      'html-dist:leaders-for-life',
+      'img-copy:leaders-for-life-images',
+      'notify:leaders-for-life'
+    ]
+  },
+  "social-stem": {
+    files: [
+      'src/social-stem/html/**/*',
+      'src/social-stem/image/**/*',
+      'src/social-stem/sass/**/*',
+      'src/social-stem/js/**/*'
+    ],
+    tasks: [
+      'clean:social-stem',
+      'css-dist:social-stem',
+      'js-dist:social-stem',
+      'html-dist:social-stem',
+      'img-copy:social-stem-images',
+      'notify:social-stem'
+    ]
+  },
+  "women-of-impact": {
+    files: [
+      'src/women-of-impact/html/**/*',
+      'src/women-of-impact/image/**/*',
+      'src/women-of-impact/sass/**/*',
+      'src/women-of-impact/js/**/*'
+    ],
+    tasks: [
+      'clean:women-of-impact',
+      'css-dist:women-of-impact',
+      'js-dist:women-of-impact',
+      'html-dist:women-of-impact',
+      'img-copy:women-of-impact',
+      'notify:women-of-impact'
+    ]
+  },
+  "teens-of-impact": {
+    files: [
+      'src/teens-of-impact/html/**/*',
+      'src/teens-of-impact/image/**/*',
+      'src/teens-of-impact/sass/**/*',
+      'src/teens-of-impact/js/**/*'
+    ],
+    tasks: [
+      'clean:teens-of-impact',
+      'css-dist:teens-of-impact',
+      'js-dist:teens-of-impact',
+      'html-dist:teens-of-impact',
+      'img-copy:teens-of-impact',
+      'notify:teens-of-impact'
+    ]
   }
 }

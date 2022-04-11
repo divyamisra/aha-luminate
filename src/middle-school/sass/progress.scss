@@ -3,10 +3,20 @@
 }
 
 .ym-progress__thermometer {
-  border: 8px solid #38b5bd;
+  border: 8px solid #60cfff;
 }
 
 .ym-progress__thermometer--fill {
   background: url('../image/middle-school-therm-fill.png') no-repeat top left;
   height: 35px;
+}
+
+.ym-progress__title {
+  color: $event-secondary-heading;
+}
+
+.ym-progress__stats {
+  p {
+    color: $event-secondary-heading;
+  }
 }

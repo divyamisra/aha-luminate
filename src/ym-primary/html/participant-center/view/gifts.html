@@ -1,4 +1,4 @@
-   <h2 class="text-center h3">You've earned <span ng-bind-html="giftsEarned"></span> out of <span ng-bind-html="standardGifts.length"></span> thank you gifts!</h2>
+   <h2 class="text-center h3">You've earned <span ng-bind-html="giftsEarned"></span> out of <span ng-bind-html="standardGifts.length"></span> thank-you gifts!</h2>
    <h3 class="h6 text-center" ng-if="giftsEarned != standardGifts.length">
      Continue sending emails and e-cards to receive additional thank-you gifts!
    </h3>
@@ -7,22 +7,17 @@
    </h3>   <em class="text-center" style="display: block;">You have raised {{participantProgress.raisedFormatted}}.<br/>Please allow 15 minutes for the system to update your donation.<br/>Please note that prizes can take up to 6 weeks to be delivered after the event has completed.</em>
    <section class="ym-pc-dashboard-standard-gifts-section" aria-label="My Standard Gifts" ng-if="standardGifts && standardGifts.length > 0" ng-cloak>
       <div class="ym-pc-dashboard-standard-gifts-icons" role="list" aria-label="Standard Gifts">
-        <div class="ym-pc-dashboard-standard-gifts-icon" ng-class="{'not-earned': !standardGift.prize_status}" ng-repeat="standardGift in standardGifts" ng-cloak>
+        <div class="ym-pc-dashboard-standard-gifts-icon" ng-class="{'not-earned': !standardGift.prize_status}" ng-repeat="standardGift in standardGifts" role="listitem" aria-label="{{standardGift.prize_label}}" ng-cloak>
            <a href="" ng-click="showPrize(standardGift.prize_sku,standardGift.prize_label,standardGift.prize_status,standardGift.prize_video)">
-              <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes2021/{{standardGift.prize_sku}}.png" alt="{{standardGift.prize_label}}">
+              <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes2022/{{standardGift.prize_sku}}.png" alt="{{standardGift.prize_label}}">
               <div class="play-circle"><i class="fa fa-play"></i></div>
-              <div class="ym-pc-dashboard-standard-gift-earned" ng-if="standardGift.prize_status">
-                 <h4 class="gift-title" ng-bind-html="standardGift.earned_title"></h4>
-                 <div class="gift-subtitle1"><span ng-bind-html="standardGift.earned_subtitle1"></span></div>
-                 <div class="gift-subtitle2"><span ng-bind-html="standardGift.earned_subtitle2"></span></div>
+              <div class="ym-pc-dashboard-standard-gift-earned" ng-if="standardGift.prize_status" arial-label="Earned">
+                 <h4 class="gift-title" ng-bind-html="standardGift.prize_label"></h4>
+                 <div class="gift-subtitle1"><span ng-bind-html="standardGift.msg_earned"></span></div>
               </div>
-              <div class="ym-pc-dashboard-standard-gift-notearned" ng-if="!standardGift.prize_status">
-                 <h4 class="gift-title">Up next...</h4>
-                 <div class="gift-subtitle1">Raise <span ng-bind-html="standardGift.prize_level"></span></div>
-                 <div class="gift-subtitle2"><span ng-bind-html="standardGift.earned_subtitle3"></span></div>
-              </div>
-              <div class="ym-pc-dashboard-standard-gifts-text">
-                <span class="sr-only" ng-if="standardGift.prize_status">(earned)</span><span class="sr-only" ng-if="!standardGift.prize_status">(not yet earned)</span>
+              <div class="ym-pc-dashboard-standard-gift-notearned" ng-if="!standardGift.prize_status" arial-label="Unearned">
+                 <h4 class="gift-title" ng-bind-html="standardGift.prize_label"></h4>
+                 <div class="gift-subtitle1"><span ng-bind-html="standardGift.msg_unearned"></span></div>
               </div>
               <div class="more-details-button">More Details</div>
            </a>

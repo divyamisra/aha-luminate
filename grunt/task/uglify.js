@@ -195,5 +195,86 @@ module.exports = {
         dest: "dist/heartwalklawyers/js/pushy.min.js"
       }
     ]
+  },
+
+  "leaders-for-life": {
+    files: [
+      {
+        src: ["src/leaders-for-life/js/main.js"],
+        dest: "dist/leaders-for-life/js/main." + "<%= timestamp %>" + ".min.js"
+      },
+      {
+        src: ["src/leaders-for-life/js/registration.js"],
+        dest: "dist/leaders-for-life/js/registration." + "<%= timestamp %>" + ".min.js"
+      },
+      {
+        src: ["src/leaders-for-life/js/donation.js"],
+        dest: "dist/leaders-for-life/js/donation." + "<%= timestamp %>" + ".min.js"
+      },
+      {
+        src: ["src/leaders-for-life/js/pushy.js"],
+        dest: "dist/leaders-for-life/js/pushy.min.js"
+      }
+    ]
+  },
+  "social-stem": {
+    files: [
+      {
+        src: ["src/social-stem/js/main.js"],
+        dest: "dist/social-stem/js/main." + "<%= timestamp %>" + ".min.js"
+      },
+      {
+        src: ["src/social-stem/js/registration.js"],
+        dest: "dist/social-stem/js/registration." + "<%= timestamp %>" + ".min.js"
+      },
+      {
+        src: ["src/social-stem/js/donation.js"],
+        dest: "dist/social-stem/js/donation." + "<%= timestamp %>" + ".min.js"
+      },
+      {
+        src: ["src/social-stem/js/pushy.js"],
+        dest: "dist/social-stem/js/pushy.min.js"
+      }
+    ]
+  },
+  "women-of-impact": {
+    files: [
+      {
+        src: ["src/women-of-impact/js/main.js"],
+        dest: "dist/women-of-impact/js/main." + "<%= timestamp %>" + ".min.js"
+      },
+      {
+        src: ["src/women-of-impact/js/registration.js"],
+        dest: "dist/women-of-impact/js/registration." + "<%= timestamp %>" + ".min.js"
+      },
+      {
+        src: ["src/women-of-impact/js/donation.js"],
+        dest: "dist/women-of-impact/js/donation." + "<%= timestamp %>" + ".min.js"
+      },
+      {
+        src: ["src/women-of-impact/js/pushy.js"],
+        dest: "dist/women-of-impact/js/pushy.min.js"
+      }
+    ]
+  },
+  "teens-of-impact": {
+    files: [
+      {
+        src: ["src/teens-of-impact/js/main.js"],
+        dest: "dist/teens-of-impact/js/main." + "<%= timestamp %>" + ".min.js"
+      },
+      {
+        src: ["src/teens-of-impact/js/registration.js"],
+        dest: "dist/teens-of-impact/js/registration." + "<%= timestamp %>" + ".min.js"
+      },
+      {
+        src: ["src/teens-of-impact/js/donation.js"],
+        dest: "dist/teens-of-impact/js/donation." + "<%= timestamp %>" + ".min.js"
+      },
+      {
+        src: ["src/teens-of-impact/js/pushy.js"],
+        dest: "dist/teens-of-impact/js/pushy.min.js"
+      }
+    ]
   }
 }

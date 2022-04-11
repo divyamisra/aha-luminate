@@ -1,6 +1,9 @@
 <!--<script src="https://code.jquery.com/jquery-2.2.4[[?xtruex::x[[S80:debug]]x::::.min]].js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 crossorigin="anonymous"></script> -->
 
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" 
+integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" 
+crossorigin="anonymous"></script> -->
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
 
 [[?x[[?x9x::x[[S4]]x::T::]][[?xpaymentFormx::x[[S334:pg]]x::T::]]::T::
@@ -144,10 +147,10 @@ crossorigin="anonymous"></script> -->
       jQuery('label[for="tos_dropdown"]').parent().next('fieldset').hide();
       var trName = '[[E42:[[S120:dc:teamRaiserId]]:title]]';
       if (trName.indexOf('Lawyer') != -1){
-        jQuery('label[for="tos_dropdown"]').parent().before('<input type="checkbox" name="terms-of-service-checkbox" id="terms-of-service-checkbox"><label for="terms-of-service-checkbox">&nbsp;Yes, I agree to the <a href="DocServer/Field_Days_165966_2020.03.20_TOS.pdf" target="_blank">Terms and Conditions (PDF)</a> and <a href="https://www.heart.org/en/about-us/statements-and-policies/privacy-statement" target="_blank">AHA Privacy Policy</a></label>');
+        jQuery('label[for="tos_dropdown"]').parent().before('<input type="checkbox" name="terms-of-service-checkbox" id="terms-of-service-checkbox"><label for="terms-of-service-checkbox">&nbsp;Yes, I agree to the <a href="DocServer/Field_Days_165966_2020.03.20_TOS.pdf" target="_blank" aria-label="Terms and conditions. Opens PDF in a new window.">Terms and Conditions (PDF)</a> and <a href="https://www.heart.org/en/about-us/statements-and-policies/privacy-statement" target="_blank">AHA Privacy Policy</a></label>');
       }
       else {
-         jQuery('label[for="tos_dropdown"]').parent().before('<input type="checkbox" name="terms-of-service-checkbox" id="terms-of-service-checkbox"><label for="terms-of-service-checkbox">&nbsp;Yes, I agree to the <a href="DocServer/Field_Days_165966_2020.03.20_TOS.pdf" target="_blank">Terms and Conditions (PDF)</a> and <a href="https://www.heart.org/en/about-us/statements-and-policies/privacy-statement" target="_blank">AHA Privacy Policy</a></label>');
+         jQuery('label[for="tos_dropdown"]').parent().before('<input type="checkbox" name="terms-of-service-checkbox" id="terms-of-service-checkbox"><label for="terms-of-service-checkbox">&nbsp;Yes, I agree to the <a href="DocServer/Field_Days_165966_2020.03.20_TOS.pdf" target="_blank" aria-label="Terms and conditions. Opens PDF in a new window.">Terms and Conditions (PDF)</a> and <a href="https://www.heart.org/en/about-us/statements-and-policies/privacy-statement" target="_blank">AHA Privacy Policy</a></label>');
       }
       jQuery('#terms-of-service-checkbox + label').prepend(jQuery('label[for="tos_dropdown"]').closest('.form-content').find('span.field-required'));
       jQuery('label[for="tos_dropdown"]').attr("for","tos_radio_true");

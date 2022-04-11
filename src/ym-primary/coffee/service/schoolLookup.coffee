@@ -11,7 +11,7 @@ angular.module 'ahaLuminateApp'
         $http
           method: 'POST'
           url: $sce.trustAsResourceUrl(requestUrl)
-          data: 'v=1.0&api_key=' + $rootScope.apiKey + '&response_format=json&suppress_response_codes=true&method=getCompaniesByInfo&event_type=' + encodeURIComponent('YM Kids Heart Challenge 2021') + '&' + requestData
+          data: 'v=1.0&api_key=' + $rootScope.apiKey + '&response_format=json&suppress_response_codes=true&method=getCompaniesByInfo&event_type=' + encodeURIComponent('YM Kids Heart Challenge 2022') + '&' + requestData
           headers:
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
       

@@ -130,6 +130,7 @@ padding: 0.625rem 1.25rem;
     border-bottom: 2px solid transparent;
     font-size: $font-size-24;
     font-weight: $font-weight-medium;
+    text-decoration: none !important;
   }
   
   .navbar-nav a.nav-link:hover, .nav-item.active a {
@@ -182,6 +183,21 @@ padding: 0.625rem 1.25rem;
       font-weight: $font-weight-medium;
       margin-right: 1rem;
       margin-left: 1rem;
+    }
+  }
+  @media only screen and (min-width: 1025px) {
+    a.navbar-brand + button.navbar-toggler {
+      display: none;
+    }
+  }
+
+  @media only screen and (max-width: 1024px) {
+    #mainNav {
+      display: none!important;
+    }
+    .navbar-toggler {
+      display: block!important;
+      font-size: 2.5rem!important
     }
   }
   small,

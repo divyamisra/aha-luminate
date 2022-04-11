@@ -24,9 +24,6 @@
      }
    }
 }*/
-.ym-page-header-related {
-  bottom: -20px;
-}
 
 .ym-pc-dashboard-activities-section {
   margin: 0;
@@ -35,7 +32,7 @@
 .ym-coordinator-message-monster {
   display: block;
   max-width: 200px;
-  margin: 0 auto -9px;
+  margin: 0 auto;
 }
 
 .ym-pc-dashboard-activities-section {
@@ -187,7 +184,7 @@
       margin-top:0px;
    }
    .row {
-     a {
+     a, div.challenge-selection {
 	display: block;
 	text-decoration: none;
 	font-weight: bold;
@@ -195,6 +192,7 @@
 	font-size: 24px;
 	line-height: 28px;
         margin-bottom:20px;
+	cursor: pointer;
 
 	&.selected {
 	   font-weight:bold;

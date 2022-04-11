@@ -1266,6 +1266,16 @@
       display: inline;
     }
   }
+  .mobile div.html-caption-container {
+    width: 100%!important;
+    h1 {
+      word-wrap: break-word;
+    }
+  }
+}
+
+.mobile.donation .internal-page {
+  padding: 10px 0 0!important;
 }
 
 #faq_search_form:focus {

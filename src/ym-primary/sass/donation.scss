@@ -36,3 +36,27 @@ div.donation-form-container .custom-field-container.has-error .checkbox label:be
 div.donation-form-container .custom-field-container.has-error input[type=checkbox]+label:before {
   background-color: #fcddde;
 }
+
+div.ym-donation-thanks-flex-conatiner {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+div.ym-donation-thanks-video {
+  flex: 50%;
+}
+div.ym-donation-thanks-confirmation {
+  flex: 50%;
+}
+div.ym-donation-thanks-widget {
+  flex: 100%;
+}
+
+@media (max-width: $screen-md-min) {
+  div.ym-donation-thanks-widget {
+		order: 2;
+	}
+  div.ym-donation-thanks-confirmation {
+    order: 3;
+  }
+}

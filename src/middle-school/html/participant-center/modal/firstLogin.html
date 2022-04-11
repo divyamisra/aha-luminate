@@ -8,46 +8,12 @@
         Thank You!
       </h2>
       <div>
-        Your personal page is built and ready! <strong>Customize your URL</strong> so you can quickly share your page with family and friends:
-      </div>
-      <div class="ym-pc-first-login-url">
-        <div class="alert alert-danger" role="alert" ng-if="setPersonalUrlInfo.errorMessage" ng-cloak>
-          <span ng-bind-html="setPersonalUrlInfo.errorMessage"></span>
-        </div>
-        <div class="alert alert-success" role="alert" ng-if="setPersonalUrlInfo.success" ng-cloak>
-          URL updated.
-        </div>
-        <form method="POST" novalidate ng-submit="setPersonalUrl()">
-          <div class="ym-pc-first-login-url-prefix" ng-cloak>
-            {{nonSecureDomain}}goto/
-          </div>
-          <div class="ym-pc-first-login-url-text">
-            <div class="form-group">
-              <label for="shortcut_text" class="sr-only">
-                URL:
-              </label>
-              <input type="text" class="form-control input-sm" id="shortcut_text" ng-model="setPersonalUrlInfo.updatedShortcut" aria-label="URL">
-            </div>
-          </div>
-          <div class="ym-pc-first-login-url-btn">
-            <button type="submit" class="btn btn-sm btn-primary">
-              <strong>Save</strong>
-            </button>
-          </div>
-        </form>
-      </div>
-      <div class="ym-pc-first-login-self-donor" ng-if="participantRegistration.selfDonor == 'true'">
-        <p>
-          We also received your first donation and your receipt has been emailed to you.
-        </p>
-      </div>
-      <div class="ym-pc-first-login-image">
-        <img class="img-responsive" src="../aha-luminate/dist/middle-school/image/first-login.jpg" alt="Let's Do It">
+        Get started now by uploading a personal photo to your webpage!
       </div>
       <div class="ym-pc-first-login-close">
-        <button type="button" tabindex="0" class="btn btn-primary" ng-click="closeFirstLogin()">
-          <strong>Start Fundraising!</strong>
-        </button>
+        <a class="btn btn-primary" ng-href="TR?fr_id={{frId}}&amp;pg=personal&amp;px={{consId}}">
+          <strong>Upload Photo</strong>
+        </a>
       </div>
     </div>
     <div class="hidden" hidden aria-hidden="true">

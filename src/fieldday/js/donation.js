@@ -273,6 +273,8 @@
             }
         });
         jQuery('.entry-label:contains("Total Gift Amount:")').attr('aria-label','Total Gift Amount');
+        jQuery('.donation-form-content').prepend('<p class="submission_message" role="alert">Your form was successfully submitted.</p>');
+        jQuery('.submission_message').css({'color' : '#c10e21', 'text-align' : 'center'});
     }
 
 
@@ -470,19 +472,54 @@
             });
 
             $('form').validate({
-                errorPlacement: function(error, element) {
-			if ($(element).attr("name") == "terms-of-service-checkbox") {
-				$('#terms-of-service-checkbox').closest('.form-content').after(error);
-			} else {
-				var placement = $(element).data('error');
-				if (placement) {
-					$(placement).append(error)
-				} else {
-					error.insertAfter(element);
-				}
-			}
+              errorPlacement: function(error, element) {
+                if ($(element).attr("name") == "terms-of-service-checkbox") {
+                  $('#terms-of-service-checkbox').closest('.form-content').after(error);
+                } else {
+                  var placement = $(element).data('error');
+                  if (placement) {
+                    $(placement).append(error)
+                  } else {
+                    error.insertAfter(element);
+                  }
                 }
+              }
             });
+
+            $('#billing_addr_zipname').addClass('zipname');
+
+            $('#ProcessForm').validate({
+              rules: {'billing_addr_zipname': {zipcheck: true} },
+              messages: {'billing_addr_zipname': 'Please provide a valid zipcode.'},
+              errorPlacement: function(error, element) {
+                if ($(element).hasClass("zipname")) {
+                  var a11yError = error.attr('role', 'alert');
+                  $('.zipname').before(a11yError);
+                  $('#billing_addr_zipname-error').wrap('<div></div>');
+                }
+              }
+            });
+
+            $.validator.addMethod("zipcheck", function(value) {
+              return /^\d{5}(?:-\d{4})?$/.test(value);
+            }, "Please provide a valid zipcode.");
+
+
+            $('.donation-form').validate({
+              rules: {'zip': {zipcheck: true} },
+              messages: {'zip': 'Please provide a valid zipcode.'},
+              errorPlacement: function(error, element) {
+                if ($(element).hasClass("postal_code")) {
+                  var a11yError = error.attr('role', 'alert');
+                  $('.postal_code').after(a11yError);
+                }
+              }
+            });
+
+            $.validator.addMethod("zipcheck", function(value) {
+              return /^\d{5}(?:-\d{4})?$/.test(value);
+            }, "Please provide a valid zipcode.");
+
 	    $('#pstep_finish').click(function(){
 		    if ($('input[name=donor_matching_employersearchBtn]').val() == "Search") {
 			    return true;

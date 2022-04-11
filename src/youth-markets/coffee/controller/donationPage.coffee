@@ -569,11 +569,11 @@ angular.module 'ahaLuminateControllers'
         if type == 'add'
           amount = $scope.donationInfo.amount.replace '$', ''
           amount = Number amount
-          (amount * 2.6 / 100 + 0.26 + amount).toFixed 2
+          (amount * 2.9 / 100 + 0.29 + amount).toFixed 2
         else
           amount = $scope.donationInfo.amount.replace '$', ''
           amount = Number amount
-          (Math.round(amount / 1.026 - 0.26)).toFixed 2
+          (Math.round(amount / 1.029 - 0.29)).toFixed 2
 
       $scope.toggleCoverFeeCheckbox = (state) ->
         angular.element('#cover_fee_radio_Yes').prop 'checked', state

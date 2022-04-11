@@ -15,12 +15,37 @@
   document.hide_addons = [];
 </script>
 <div class="ym-registration-page-container ym-registration-page-container--ptype" ng-controller="RegistrationPtypeCtrl">
-  <div class="hidden" hidden aria-hidden="true" ng-init="participationOptions.fr_goal = '[[?xx::x[[A15]]x::[[T6:[[A18]]]]::[[T6:[[A15]]]]]]'; participationOptions.min_donation = '$10.00'"></div>
+  [[?
+    [[?[[S42:0:classification]]::YM Kids Heart Challenge::T::]]
+    [[?[[S42:0:classification]]::American Heart Challenge::T::]]
+  ::T::
+    <!-- kids heart challenge and american heart challenge -->
+    [[?
+      [[?xxUnrecognized type parameterx::x[[S42:0:prev-fr-id]]x::T::
+        [[?xx::x[[E48:[[S42:0:prev-fr-id]]:part-type]]x::T::
+          [[?x1x::x[[E130:[[E48:[[S42:0:prev-fr-id]]:dollars]] 250 <]]x::T::]]
+        ]]
+      ]]
+      [[?xx::x[[A21]]x::::
+        [[?x1x::x[[E130:[[A21]] 0 <]]x::::T]]
+      ]]
+    ::T::
+      <!-- not a returning participant in this event or previous amount raised is below $250 -->
+      <div class="hidden" hidden aria-hidden="true" ng-init="participationOptions.fr_goal = '[[?xx::x[[A15]]x::[[T6:[[A18]]]]::[[T6:[[A15]]]]]]'"></div>
+    ::
+      <!-- returning participant in this event and previous amount raised is above $250 -->
+      <div class="hidden" hidden aria-hidden="true" ng-init="participationOptions.fr_goal = '[[?xx::x[[A15]]x::[[T6:[[E48:[[S42:0:prev-fr-id]]:dollars]]]]::[[T6:[[A15]]]]]]'"></div>
+    ]]
+  ::
+    <!-- not kids heart challenge or american heart challenge -->
+    <div class="hidden" hidden aria-hidden="true" ng-init="participationOptions.fr_goal = '[[?xx::x[[A15]]x::[[T6:[[A18]]]]::[[T6:[[A15]]]]]]'"></div>
+  ]]
+  <div class="hidden" hidden aria-hidden="true" ng-init="participationOptions.min_donation = '$10.00'"></div>
   <div class="ym-registration-page-header">
     <div class="manageable-content" data-container="edit_pt_title_container">
       [[?xx::x[[S1:cons_id]]x::::
         <div class="alert alert-info" role="alert">
-          You are currently logged in as <strong>[[S1:first_name]] [[S1:last_name]]</strong>. If you are trying to register someone else, please <a href="UserLogin?logout=&NEXTURL=[[T1:TRR?fr_id=[[S80:trID]]&pg=tfind&fr_tm_opt=existing&company_id=[[S80:frCompanyId]]&s_frCompanyId=[[S80:frCompanyId]]]]">logout</a> before continuing.
+          You are currently logged in as <strong>[[S1:first_name]] [[S1:last_name]]</strong>. If you are trying to register someone else, please <a href="UserLogin?logout=&NEXTURL=[[T1:TRR?fr_id=[[S80:trID]]&pg=tfind&fr_tm_opt=existing&company_id=[[S80:frCompanyId]]&s_frCompanyId=[[S80:frCompanyId]]]]">logout</a> before continuing. <a href="https://kidsheartchallenge.zendesk.com/hc/en-us/articles/4406678498707-How-do-I-register-more-than-one-student-" target="_blank">Here are directions for registering multiple students.</a
         </div>
       ]]
       <h2 class="h4" id="pt_title_container">
@@ -103,16 +128,16 @@
           </div>
           <fieldset>
             <legend class="aural-only">Select Gift Amount</legend>
-          <div class="ym-registration-ptype-donation-levels ym-donation-levels__levels" ng-class="{'active': donationLevels.activeLevel, 'has-error': (participationOptionsForm.$submitted && participationOptionsForm.ng_donation_level_other_amount.$invalid)}" role="list">
-            <button role="listitem" type="button" class="btn btn-toggle" ng-class="{'active': donationLevels.activeLevel.amount == donationLevel.amount}" aria-describedby="ym-registration-ptype-donation-message-{{$index}}" ng-repeat="donationLevel in donationLevels.levels" ng-click="toggleDonationLevel($event, donationLevel.amount)" ng-if="!donationLevel.isOtherAmount && !donationLevel.isNoDonation" ng-cloak>
+          <div class="ym-registration-ptype-donation-levels ym-donation-levels__levels" ng-class="{'active': donationLevels.activeLevel, 'has-error': (participationOptionsForm.$submitted && participationOptionsForm.ng_donation_level_other_amount.$invalid)}">
+            <button type="button" class="btn btn-toggle" ng-class="{'active': donationLevels.activeLevel.amount == donationLevel.amount}" aria-describedby="ym-registration-ptype-donation-message-{{$index}}" ng-repeat="donationLevel in donationLevels.levels" ng-click="toggleDonationLevel($event, 'level', donationLevel.amount)" ng-if="!donationLevel.isOtherAmount && !donationLevel.isNoDonation" title="{{donationLevel.amount}}" ng-cloak>
               <span ng-bind-html="donationLevel.amountFormatted"></span>
             </button>
-            <div role="listitem" class="ym-donation-levels__amount" ng-class="{'active': donationLevels.activeLevel.amount == donationLevel.amount}" aria-describedby="ym-registration-ptype-donation-message-other" ng-repeat="donationLevel in donationLevels.levels" ng-if="donationLevel.isOtherAmount" ng-cloak>
+            <div class="ym-donation-levels__amount" ng-class="{'active': donationLevels.activeLevel.amount == donationLevel.amount}" aria-describedby="ym-registration-ptype-donation-message-other" ng-repeat="donationLevel in donationLevels.levels" ng-if="donationLevel.isOtherAmount" ng-cloak>
               <label class="sr-only" for="participationOptions-ng_donation_level_other_amount">Other Amount</label>
               <span class="ym-donation-levels__dollar-sign">$</span>
-              <input type="text" class="btn btn-enter" ng-class="{'active': donationLevels.activeLevel.amount == donationLevel.amount}" name="ng_donation_level_other_amount" id="participationOptions-ng_donation_level_other_amount" ng-model="participationOptions.ng_donation_level_other_amount" ng-repeat="donationLevel in donationLevels.levels" placeholder="Other" ng-keyup="toggleDonationLevel($event, donationLevel.amount)" ng-if="donationLevel.isOtherAmount" ng-cloak>
+              <input type="text" class="btn btn-enter" ng-class="{'active': donationLevels.activeLevel.amount == donationLevel.amount}" name="ng_donation_level_other_amount" id="participationOptions-ng_donation_level_other_amount" ng-model="participationOptions.ng_donation_level_other_amount" ng-repeat="donationLevel in donationLevels.levels" placeholder="Other" ng-blur="toggleDonationLevel($event, 'other', donationLevel.amount)" ng-if="donationLevel.isOtherAmount" title="Other Amount" ng-cloak ng-keydown="disableCoverFee()">
             </div>
-            <button role="listitem" type="button" class="btn btn-toggle" ng-class="{'active': donationLevels.activeLevel.amount == donationLevel.amount}" ng-repeat="donationLevel in donationLevels.levels" ng-click="toggleDonationLevel($event, donationLevel.amount)" ng-if="donationLevel.isNoDonation" ng-cloak>
+            <button type="button" class="btn btn-toggle" ng-class="{'active': donationLevels.activeLevel.amount == donationLevel.amount}" ng-repeat="donationLevel in donationLevels.levels" ng-click="toggleDonationLevel($event, 'level', donationLevel.amount)" ng-if="donationLevel.isNoDonation" title="No Thanks" ng-cloak>
               <span>No, Thanks</span>
             </button>
             <span class="help-block" role="alert" ng-show="participationOptionsForm.ng_donation_level_other_amount.$error.amount" >Donations of all amounts are greatly appreciated.<br/>Online donations have a $10 minimum</span>
@@ -126,22 +151,35 @@
             </div>
           </div>
           </fieldset>
+
+          <div class="cover-fee-content" ng-class="{'has-error': coverFee == 'disabled' && (!donationLevels.activeLevel.amount || donationLevels.activeLevel.amount == '$0.00')}" ng-show="donationLevels.activeLevel.amount && donationLevels.activeLevel.amount != '$0.00'">
+            <span class="help-block" role="alert" ng-show="coverFee == 'disabled' && (!donationLevels.activeLevel.amount || donationLevels.activeLevel.amount == '$0.00')">Please choose a gift amount.</span>
+            <div class="checkbox" custom-checkbox  ng-class="{'checked': coverFee == true, 'disabled': !donationLevels.activeLevel.amount || donationLevels.activeLevel.amount == '$0.00'}" >
+              <label for="cover-fee-checkbox" ng-click="coverFeeMsg()">
+                <input type="checkbox" name="cover-fee-checkbox" id="cover-fee-checkbox" class="" ng-model="coverFee" ng-change="toggleCoverFee()" disabled> 
+                I'd like to cover all of the transaction fees so 100% of my donation goes to support the American Heart Association. 
+              </label>
+            </div>
+          </div>
+
+          <div class="dtd-content" ng-class="{'hidden': !donationLevels.activeLevel || donationLevels.activeLevel.isNoDonation}"></div>
         ]]
       </div>
+
     ::]]
     [[?xTx::x[[A17]]x::
       <div class="ym-registration-ptype-goal-container">
         <p class="ym-section-header">
-          Set your child's goal! How much can you raise?
+          Set your goal! How much can you raise to save lives?
         </p>
         <p>
           Thank you for being a Heart Hero!
         </p>
-        <div class="form-group [[?[[A6]]::ERR_BAD_GOAL::has-error::]]" ng-class="{'has-error': participationOptionsForm.$submitted && participationOptionsForm.fr_goal.$invalid}">
+        <div class="form-group required [[?[[A6]]::ERR_BAD_GOAL::has-error::]]" ng-class="{'has-error': participationOptionsForm.$submitted && participationOptionsForm.fr_goal.$invalid}">
           <div class="row">
             <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3" data-container="edit_fund_goal_container">
-              <label for="participationOptions-fr_goal">
-                <span class="sr-only">
+              <label for="participationOptions-fr_goal" class="control-label">
+                <span class="">
                   [[?xx::x[[C1:fr_your_fundraising_goal_field]]x::[[M0:friendraiser:your_fundraising_goal_field]]::[[C1:fr_your_fundraising_goal_field]]]]
                 </span>
                 <span class="help-block" role="alert" ng-if="participationOptionsForm.$submitted && participationOptionsForm.fr_goal.$invalid" ng-cloak>
@@ -197,6 +235,9 @@
     </form>
   </div>
 </div>
+
+[[S51:reus_ym_tr_360matchpro_donation_widget]]
+
 [[?xTx::x[[A24]]x::
   <!-- manage mode -->
   <div id="edit_pt_title_container" class="EditContainer" style="display: none;">

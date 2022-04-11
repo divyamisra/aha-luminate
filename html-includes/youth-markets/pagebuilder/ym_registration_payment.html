@@ -28,6 +28,7 @@
         </div>
       ]]
     </div>
+
     <form class="ym-registration-payment-form" method="POST" novalidate ng-submit="submitPayment()">
       <div class="hidden js--registration-payment-billing-info">
         [[C:selectlist-title-element:billing_title]]
@@ -48,29 +49,29 @@
       </div>
       <div class="row" ng-if="paymentQuestions.billing_first_namename || paymentQuestions.billing_last_namename" ng-cloak>
         <div class="col-sm-6">
-          <div class="form-group" ng-class="{'has-error': paymentQuestions.billing_first_namename.hasError}" ng-if="paymentQuestions.billing_first_namename" ng-cloak>
+          <div class="form-group required" ng-class="{'has-error': paymentQuestions.billing_first_namename.hasError}" ng-if="paymentQuestions.billing_first_namename" ng-cloak>
             <label class="control-label" for="paymentInfo-billing_first_namename">
               Billing First Name:
             </label>
-            <input type="text" class="form-control input-lg" name="ng_billing_first_namename" id="paymentInfo-billing_first_namename" ng-model="paymentInfo.billing_first_namename" maxlength="{{paymentQuestions.billing_first_namename.maxLength}}">
+            <input aria-required="true" type="text" class="form-control input-lg" name="ng_billing_first_namename" id="paymentInfo-billing_first_namename" ng-model="paymentInfo.billing_first_namename" maxlength="{{paymentQuestions.billing_first_namename.maxLength}}">
           </div>
         </div>
         <div class="col-sm-6">
-          <div class="form-group" ng-class="{'has-error': paymentQuestions.billing_last_namename.hasError}" ng-if="paymentQuestions.billing_last_namename" ng-cloak>
+          <div class="form-group required" ng-class="{'has-error': paymentQuestions.billing_last_namename.hasError}" ng-if="paymentQuestions.billing_last_namename" ng-cloak>
             <label class="control-label" for="billing_last_namename">
               Billing Last Name:
             </label>
-            <input type="text" class="form-control input-lg" name="ng_billing_last_namename" id="paymentInfo-billing_last_namename" ng-model="paymentInfo.billing_last_namename" maxlength="{{paymentQuestions.billing_last_namename.maxLength}}">
+            <input aria-required="true" type="text" class="form-control input-lg" name="ng_billing_last_namename" id="paymentInfo-billing_last_namename" ng-model="paymentInfo.billing_last_namename" maxlength="{{paymentQuestions.billing_last_namename.maxLength}}">
           </div>
         </div>
       </div>
       <div class="row" ng-if="paymentQuestions.billing_addr_street1name" ng-cloak>
         <div class="col-xs-12">
-          <div class="form-group" ng-class="{'has-error': paymentQuestions.billing_addr_street1name.hasError}">
+          <div class="form-group required" ng-class="{'has-error': paymentQuestions.billing_addr_street1name.hasError}">
             <label class="control-label" for="paymentInfo-billing_addr_street1name">
               Billing Address:
             </label>
-            <input type="text" class="form-control input-lg" name="ng_billing_addr_street1name" id="paymentInfo-billing_addr_street1name" ng-model="paymentInfo.billing_addr_street1name" maxlength="{{paymentQuestions.billing_addr_street1name.maxLength}}">
+            <input aria-required="true" type="text" class="form-control input-lg" name="ng_billing_addr_street1name" id="paymentInfo-billing_addr_street1name" ng-model="paymentInfo.billing_addr_street1name" maxlength="{{paymentQuestions.billing_addr_street1name.maxLength}}">
           </div>
         </div>
       </div>
@@ -86,19 +87,19 @@
       </div>
       <div class="row" ng-if="paymentQuestions.billing_addr_cityname || paymentQuestions.billing_addr_state" ng-cloak>
         <div class="col-sm-6">
-          <div class="form-group" ng-class="{'has-error': paymentQuestions.billing_addr_cityname.hasError}" ng-if="paymentQuestions.billing_addr_cityname" ng-cloak>
+          <div class="form-group required" ng-class="{'has-error': paymentQuestions.billing_addr_cityname.hasError}" ng-if="paymentQuestions.billing_addr_cityname" ng-cloak>
             <label class="control-label" for="paymentInfo-billing_addr_cityname">
               City:
             </label>
-            <input type="text" class="form-control input-lg" name="ng_billing_addr_cityname" id="paymentInfo-billing_addr_cityname" ng-model="paymentInfo.billing_addr_cityname" maxlength="{{paymentQuestions.billing_addr_cityname.maxLength}}">
+            <input aria-required="true" type="text" class="form-control input-lg" name="ng_billing_addr_cityname" id="paymentInfo-billing_addr_cityname" ng-model="paymentInfo.billing_addr_cityname" maxlength="{{paymentQuestions.billing_addr_cityname.maxLength}}">
           </div>
         </div>
         <div class="col-sm-6">
-          <div class="form-group" ng-class="{'has-error': paymentQuestions.billing_addr_state.hasError}" ng-if="paymentQuestions.billing_addr_state" ng-cloak>
+          <div class="form-group required" ng-class="{'has-error': paymentQuestions.billing_addr_state.hasError}" ng-if="paymentQuestions.billing_addr_state" ng-cloak>
             <label class="control-label" for="paymentInfo-billing_addr_state">
               State/Province:
             </label>
-            <select class="form-control input-lg" name="ng_billing_addr_state" id="paymentInfo-billing_addr_state" ng-model="paymentInfo.billing_addr_state">
+            <select aria-required="true" class="form-control input-lg" name="ng_billing_addr_state" id="paymentInfo-billing_addr_state" ng-model="paymentInfo.billing_addr_state">
               <option ng-repeat="questionOption in paymentQuestions.billing_addr_state.options" value="{{questionOption.value}}">{{questionOption.text}}</option>
             </select>
           </div>
@@ -106,19 +107,19 @@
       </div>
       <div class="row" ng-if="paymentQuestions.billing_addr_zipname || paymentQuestions.billing_addr_country" ng-cloak>
         <div class="col-sm-6">
-          <div class="form-group" ng-class="{'has-error': paymentQuestions.billing_addr_zipname.hasError}" ng-if="paymentQuestions.billing_addr_zipname" ng-cloak>
+          <div class="form-group required" ng-class="{'has-error': paymentQuestions.billing_addr_zipname.hasError}" ng-if="paymentQuestions.billing_addr_zipname" ng-cloak>
             <label class="control-label" for="paymentInfo-billing_addr_zipname">
               ZIP/Postal Code:
             </label>
-            <input type="text" class="form-control input-lg" name="ng_billing_addr_zipname" id="paymentInfo-billing_addr_zipname" ng-model="paymentInfo.billing_addr_zipname" maxlength="{{paymentQuestions.billing_addr_zipname.maxLength}}">
+            <input aria-required="true" type="text" class="form-control input-lg" name="ng_billing_addr_zipname" id="paymentInfo-billing_addr_zipname" ng-model="paymentInfo.billing_addr_zipname" maxlength="{{paymentQuestions.billing_addr_zipname.maxLength}}">
           </div>
         </div>
         <div class="col-sm-6">
-          <div class="form-group" ng-class="{'has-error': paymentQuestions.billing_addr_country.hasError}" ng-if="paymentQuestions.billing_addr_country" ng-cloak>
+          <div class="form-group required" ng-class="{'has-error': paymentQuestions.billing_addr_country.hasError}" ng-if="paymentQuestions.billing_addr_country" ng-cloak>
             <label class="control-label" for="paymentInfo-billing_addr_country">
               Country:
             </label>
-            <select class="form-control input-lg" name="ng_billing_addr_country" id="paymentInfo-billing_addr_country" ng-model="paymentInfo.billing_addr_country">
+            <select aria-required="true" class="form-control input-lg" name="ng_billing_addr_country" id="paymentInfo-billing_addr_country" ng-model="paymentInfo.billing_addr_country">
               <option ng-repeat="questionOption in paymentQuestions.billing_addr_country.options" value="{{questionOption.value}}">{{questionOption.text}}</option>
             </select>
           </div>
@@ -156,51 +157,51 @@
       <div ng-if="paymentInfo.responsive_payment_typepay_typeradio == 'credit'" ng-cloak>
         <div class="row" ng-if="paymentQuestions.responsive_payment_typecc_numbername" ng-cloak>
           <div class="col-xs-12 col-sm-8 col-sm-offset-2">
-            <div class="form-group" ng-class="{'has-error': paymentQuestions.responsive_payment_typecc_numbername.hasError}">
+            <div class="form-group required" ng-class="{'has-error': paymentQuestions.responsive_payment_typecc_numbername.hasError}">
               <label class="control-label" for="paymentInfo-responsive_payment_typecc_numbername">
                 Credit Card Number:
               </label>
-              <input type="text" class="form-control input-lg" name="ng_responsive_payment_typecc_numbername" id="paymentInfo-responsive_payment_typecc_numbername" ng-model="paymentInfo.responsive_payment_typecc_numbername" maxlength="{{paymentQuestions.responsive_payment_typecc_numbername.maxLength}}">
+              <input aria-required="true" type="text" class="form-control input-lg" name="ng_responsive_payment_typecc_numbername" id="paymentInfo-responsive_payment_typecc_numbername" ng-model="paymentInfo.responsive_payment_typecc_numbername" maxlength="{{paymentQuestions.responsive_payment_typecc_numbername.maxLength}}">
             </div>
           </div>
         </div>
         <div class="row" ng-if="paymentQuestions.responsive_payment_typecc_exp_date_MONTH || paymentQuestions.responsive_payment_typecc_exp_date_YEAR || paymentQuestions.responsive_payment_typecc_cvvname" ng-cloak>
           <div class="col-xs-6 col-sm-4">
-            <div class="form-group" ng-class="{'has-error': paymentQuestions.responsive_payment_typecc_exp_date_MONTH.hasError}" ng-if="paymentQuestions.responsive_payment_typecc_exp_date_MONTH" ng-cloak>
+            <div class="form-group required" ng-class="{'has-error': paymentQuestions.responsive_payment_typecc_exp_date_MONTH.hasError}" ng-if="paymentQuestions.responsive_payment_typecc_exp_date_MONTH" ng-cloak>
               <label class="control-label" for="paymentInfo-responsive_payment_typecc_exp_date_MONTH">
                 Expiration Month:
               </label>
-              <select class="form-control input-lg" name="ng_responsive_payment_typecc_exp_date_MONTH" id="paymentInfo-responsive_payment_typecc_exp_date_MONTH" ng-model="paymentInfo.responsive_payment_typecc_exp_date_MONTH">
+              <select aria-required="true" class="form-control input-lg" name="ng_responsive_payment_typecc_exp_date_MONTH" id="paymentInfo-responsive_payment_typecc_exp_date_MONTH" ng-model="paymentInfo.responsive_payment_typecc_exp_date_MONTH">
                 <option ng-repeat="questionOption in paymentQuestions.responsive_payment_typecc_exp_date_MONTH.options" value="{{questionOption.value}}">{{questionOption.text}}</option>
               </select>
             </div>
           </div>
           <div class="col-xs-6 col-sm-4">
-            <div class="form-group" ng-class="{'has-error': paymentQuestions.responsive_payment_typecc_exp_date_YEAR.hasError}" ng-if="paymentQuestions.responsive_payment_typecc_exp_date_YEAR" ng-cloak>
+            <div class="form-group required" ng-class="{'has-error': paymentQuestions.responsive_payment_typecc_exp_date_YEAR.hasError}" ng-if="paymentQuestions.responsive_payment_typecc_exp_date_YEAR" ng-cloak>
               <label class="control-label" for="paymentInfo-responsive_payment_typecc_exp_date_YEAR">
                 Expiration Year:
               </label>
-              <select class="form-control input-lg" name="ng_responsive_payment_typecc_exp_date_YEAR" id="paymentInfo-responsive_payment_typecc_exp_date_YEAR" ng-model="paymentInfo.responsive_payment_typecc_exp_date_YEAR">
+              <select aria-required="true" class="form-control input-lg" name="ng_responsive_payment_typecc_exp_date_YEAR" id="paymentInfo-responsive_payment_typecc_exp_date_YEAR" ng-model="paymentInfo.responsive_payment_typecc_exp_date_YEAR">
                 <option ng-repeat="questionOption in paymentQuestions.responsive_payment_typecc_exp_date_YEAR.options" value="{{questionOption.value}}">{{questionOption.text}}</option>
               </select>
             </div>
           </div>
           <div class="hidden-xs col-sm-4">
-            <div class="form-group" ng-class="{'has-error': paymentQuestions.responsive_payment_typecc_cvvname.hasError}" ng-if="paymentQuestions.responsive_payment_typecc_cvvname" ng-cloak>
+            <div class="form-group required" ng-class="{'has-error': paymentQuestions.responsive_payment_typecc_cvvname.hasError}" ng-if="paymentQuestions.responsive_payment_typecc_cvvname" ng-cloak>
               <label class="control-label" for="paymentInfo-responsive_payment_typecc_cvvname">
                 CVV:
               </label>
-              <input type="text" class="form-control input-lg" name="ng_responsive_payment_typecc_cvvname" id="paymentInfo-responsive_payment_typecc_cvvname" ng-model="paymentInfo.responsive_payment_typecc_cvvname" maxlength="{{paymentQuestions.responsive_payment_typecc_cvvname.maxLength}}">
+              <input aria-required="true" type="text" class="form-control input-lg" name="ng_responsive_payment_typecc_cvvname" id="paymentInfo-responsive_payment_typecc_cvvname" ng-model="paymentInfo.responsive_payment_typecc_cvvname" maxlength="{{paymentQuestions.responsive_payment_typecc_cvvname.maxLength}}">
             </div>
           </div>
         </div>
         <div class="row visible-xs" ng-if="paymentQuestions.responsive_payment_typecc_cvvname" ng-cloak>
           <div class="col-xs-6">
-            <div class="form-group" ng-class="{'has-error': paymentQuestions.responsive_payment_typecc_cvvname.hasError}" ng-if="paymentQuestions.responsive_payment_typecc_cvvname" ng-cloak>
+            <div class="form-group required" ng-class="{'has-error': paymentQuestions.responsive_payment_typecc_cvvname.hasError}" ng-if="paymentQuestions.responsive_payment_typecc_cvvname" ng-cloak>
               <label class="control-label" for="paymentInfo-responsive_payment_typecc_cvvname">
                 CVV:
               </label>
-              <input type="text" class="form-control input-lg" name="ng_responsive_payment_typecc_cvvname" id="paymentInfo-responsive_payment_typecc_cvvname" ng-model="paymentInfo.responsive_payment_typecc_cvvname" maxlength="{{paymentQuestions.responsive_payment_typecc_cvvname.maxLength}}">
+              <input aria-required="true" type="text" class="form-control input-lg" name="ng_responsive_payment_typecc_cvvname" id="paymentInfo-responsive_payment_typecc_cvvname" ng-model="paymentInfo.responsive_payment_typecc_cvvname" maxlength="{{paymentQuestions.responsive_payment_typecc_cvvname.maxLength}}">
             </div>
           </div>
           <div class="col-xs-6"></div>

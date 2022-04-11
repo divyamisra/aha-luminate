@@ -238,7 +238,7 @@
             var company = cd.getCompanyByID(data, companyId);
             cd.displayCompanyInfo(company);
 
-            console.log('comany value: ' + company);
+            console.log('company value: ' + company);
 
           },
      		 });
@@ -262,6 +262,8 @@
               var companyLocation = company.eventcity + ', ' + company.eventstate;
 
               $(companyLocation).appendTo('.js--company-location');
+            } else {
+              $('<p>TBD</p>').appendTo('.js--company-location p');
             }
           }
         });
@@ -272,9 +274,12 @@
        cd.generateCompanyInfo = function(companies){
           $('<div class="js--company-data hidden"></div>').insertAfter('main');
           for (var i=0, iLen=companies.length; i<iLen; i++) {
+              var companyLocation = companies[i].eventcity !== "" || companies[i].eventstate !== "" ? companies[i].eventcity + ', ' + companies[i].eventstate : 'TBD';
+              var companyCoordinator = companies[i].coordinatorfirstname !== "" ? companies[i].coordinatorfirstname + ' ' + companies[i].coordinatorlastname : 'TBD';
+
               var dataOutput = '<div id="company-id-' + companies[i].companyid + '">';
-              dataOutput += '<div class="js--company-data-location">'+ companies[i].eventcity + ', ' + companies[i].eventstate + '</div>';
-              dataOutput += '<div class="js--company-data-coordinator">'+ companies[i].coordinatorfirstname + ' ' + companies[i].coordinatorlastname + '</div>';
+              dataOutput += '<div class="js--company-data-location">'+ companyLocation + '</div>';
+              dataOutput += '<div class="js--company-data-coordinator">'+ companyCoordinator + '</div>';
               dataOutput += '</div>';
               $(dataOutput).appendTo('.js--company-data');
            }
@@ -298,46 +303,71 @@
                 eventMapLink = company.eventlocationmapurl;
 
                 if ( eventMapLink.indexOf("http://") == 0 || eventMapLink.indexOf("https://") == 0 || eventMapLink.indexOf("www") == 0)  {
-
-                  var companyMap = '<a target="_blank" aria-title="Google map for '+ company.companyname +' location" href="' + eventMapLink + '">' + company.companyname + '</a>';
-                  $('.js--company-link').html(companyMap);
-
+                  var companyMap = '<a target="_blank" aria-label="'+company.eventlocationname+''+company.eventcity+', '+company.eventstate+'" href="' + eventMapLink + '">' + '<p>' + company.eventlocationname + '</p><p>' + company.eventaddress +  '</p><p>' + company.eventcity + ', ' + company.eventstate + '</p>' + '</a>';
+                   $('.js--company-link').html(companyMap)
                 }
 
               } else {
 
-                if (company.eventstate !== "") {
+                if (company.eventstate !== "" && company.eventlocationname !== "") {
                   var companyAddress = company.eventaddress + ', ' + company.eventcity + ', ' + company.eventstate + ', ' + company.eventzip;
-
                   companyAddress = encodeURIComponent(companyAddress);
-
                   var eventMapLink = 'https://www.google.com/maps/place/' + companyAddress;
-
-                  var companyMap = '<a target="_blank" href="' + eventMapLink + '">' + company.companyname + '</a>';
-
+                  var companyMap = '<a target="_blank" aria-label="'+company.eventlocationname+''+company.eventcity+', '+company.eventstate+'" href="' + eventMapLink + '">' + '<p>' + company.eventlocationname + '</p><p>' + company.eventaddress +  '</p><p>' + company.eventcity + ', ' + company.eventstate + '</p>' + '</a>';
                   $('.js--company-link').html(companyMap);
+                } else {
+                  $('.js--company-link').html('<p>TBD</p>');
                 }
-
               }
 
             }
 
-            var fieldDayDetails = '';
-            fieldDayDetails += '<p>' + company.eventlocationname + '</p>';
-            fieldDayDetails += '<p>' + company.eventcity + ', ' + company.eventstate + '</p>';
-            $(fieldDayDetails).appendTo('.js--field-day-details');
-
-            var companyLead = '<p><a aria-label="Email Company Lead ' + company.coordinatorfirstname + ' ' + company.coordinatorlastname +'" href="mailto:' + company.coordinatoremail +'">' + company.coordinatorfirstname + ' ' + company.coordinatorlastname + '</a></p>' ;
+            var companyLead
+            if (company.coordinatorfirstname !== "") {
+              companyLead = '<p><a aria-label="Email Company Lead ' + company.coordinatorfirstname + ' ' + company.coordinatorlastname +'" href="mailto:' + company.coordinatoremail +'">' + company.coordinatorfirstname + ' ' + company.coordinatorlastname + '</a></p>' ;
+            } else {
+              companyLead = '<p>TBD</p>';
+            }
             $(companyLead).appendTo('.js--company-lead');
 
-            var eventDateFormatted = moment(company.eventdate).format('MMMM D, YYYY');
+            var eventDateFormatted;
+            var eventDate;
+            eventDateFormatted = moment(company.eventdate).format('MMMM D, YYYY');
 
-            var  eventDate = '<p><strong>' + eventDateFormatted + '<br>' + company.eventtime + '</strong></p>';
+            if (company.eventdate !== "" && company.eventtime !== "") {
+              eventDate = '<p>' + eventDateFormatted + ' at ' + company.eventtime + '</p>';
+            } else if (company.eventdate !== "" && company.eventtime === "") {
+              eventDate = '<p>' + eventDateFormatted  + '</p>';
+            } else {
+              eventDate = '<p>TBD</p>';
+            }
+
             $(eventDate).appendTo('.js--event-date');
 
-            var companyLocation = '<p>' + company.eventcity + ', ' + company.eventstate + '</p>'
-            $(companyLocation).appendTo('.js--company-location');
+            var fieldDayDetails = '';
+            if ( company.eventlocationname !== "" || (company.eventcity !== "" || company.eventstate !== "") ) {
+              fieldDayDetails += '<p>' + company.eventlocationname + '</p>';
+              fieldDayDetails += '<p>' + company.eventcity + ', ' + company.eventstate + '</p>';
+            } else {
+              fieldDayDetails += '<p>TBD</p>';
+            }
+            $(fieldDayDetails).appendTo('.js--field-day-details');
 
+
+          //TO DO - do we need to add all companies to the csv file? If so, we can remove the 'else' code below
+          } else {
+            var companyLead = '<p>TBD</p>' ;
+            $(companyLead).appendTo('.js--company-lead');
+
+            var eventDate = '<p>TBD</p>';
+            $(eventDate).appendTo('.js--event-date');
+
+            var fieldDayDetails = '';
+            fieldDayDetails += '<p>TBD</p>';
+
+            $('.js--company-link').html('<p>TBD</p>');
+
+            $(fieldDayDetails).appendTo('.js--field-day-details');
           }
         }
 
@@ -1386,7 +1416,7 @@
             });
         };
 
-        // EXPANDABLE DONOR ROLL
+        // EXPANDABLE DONOR ROLL SECTION
         $('.js--honor-roll-expander').on('click', function (e) {
             if ($(this).children('i').hasClass('fa-chevron-down')) {
                 $(this).children('i').removeClass('fa-chevron-down');
@@ -1471,6 +1501,17 @@
                     window.cdParticipantRosterTable.search($("#js--participant-search-text").val()).draw();
                     $('#participant-roster').att('aria-live', 'polite');
                 }
+            });
+
+        };
+
+        cd.initializeGamePointsRosterTable = function () {
+            window.cdPGamePointsRosterTable = $('#game-points-roster').DataTable({
+                "paging": false,
+                "autoWidth": false,
+                "order": [[0, 'asc']],
+                "searching": false,
+                "info": false
             });
 
         };
@@ -1872,12 +1913,28 @@
             var start_pos = pageTitle.indexOf(':') + 1;
             var end_pos = pageTitle.indexOf('- Field Day', start_pos);
             var currentCompanyName = pageTitle.substring(start_pos, end_pos).trim();
-            var currentCompanyId = getURLParameter(currentUrl, 'company_id');
 
-            console.log('finished assigning company vars');
+            var currentCompanyId = getURLParameter(currentUrl, 'company_id');
+            var visitedFromHQ = getURLParameter(currentUrl, 'ourstats');
+
+            if (visitedFromHQ) {
+                $('#our-points-tab').click();
+            }
+
+            console.log('finished assigning company vars 071621');
+
+            $('.tooltip-trigger').tooltip();
 
             if ( $('.js--company-name').length > 0 ) {
                 $('.js--company-name').text(currentCompanyName);
+                if (currentCompanyName.includes('&')) {
+                  var newCurrentCompanyName = currentCompanyName.replace("&", "ampersand")
+                  $('.company-page-create').attr("href", "TRR/FieldDay/General?pg=tfind&fr_id="+evID+"&fr_tm_opt=new&s_regType=startTeam&s_companyId="+currentCompanyId+"&s_companyName="+newCurrentCompanyName);
+                  $('.company-page-join').attr("href", "TRR/FieldDay/General?pg=tfind&fr_id="+evID+"&s_regType=joinTeam&s_companyId="+currentCompanyId+"&s_companyName="+newCurrentCompanyName);
+                } else {
+                  $('.company-page-create').attr("href", "TRR/FieldDay/General?pg=tfind&fr_id="+evID+"&fr_tm_opt=new&s_regType=startTeam&s_companyId="+currentCompanyId+"&s_companyName="+currentCompanyName);
+                  $('.company-page-join').attr("href", "TRR/FieldDay/General?pg=tfind&fr_id="+evID+"&s_regType=joinTeam&s_companyId="+currentCompanyId+"&s_companyName="+currentCompanyName);
+                }
             }
 
             // var isParentCompany = ($('#company_hierarchy_list_component .lc_Row1').length ? true : false)
@@ -2252,7 +2309,7 @@
                             var html = "<div aria-live='polite' class='paymentSelType' style='padding-top:10px;'>" +
                                 "<h2 class='h6'>How would you like to donate?</h2>" +
                                 "<div class='payment-options-container'><a href='" + dlink + "'><img src='https://www2.heart.org/images/content/pagebuilder/credit-card-logos2.png' alt='Donate with Visa, MasterCard, American Express or Discover cards'/></a>" +
-                                "<a href='" + default_path + "/site/SPageNavigator/fieldday_donate_amazon.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='amazon'><img src='https://donatenow.heart.org/images/amazon-payments_inactive.png' alt='Donate with Amazon Pay'/></a>" +
+                                "<a href='" + default_path + "/site/SPageNavigator/fieldday_donate_amazon.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='amazon'><img src='https://www2.heart.org/images/content/pagebuilder/amazon-payments.png' alt='Donate with Amazon Pay'/></a>" +
                                 "<a href='" + default_path + "/site/SPageNavigator/fieldday_donate_googlepay.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='googlepay'><img src='https://www2.heart.org/donation-forms/donatenow/images/googlepay-button.png' alt='Donate with Google Pay'/></a>" +
                                 "<a href='" + default_path + "/site/SPageNavigator/fieldday_donate_applepay.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='applepay hidden-md hidden-lg'><img src='https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png' alt='ApplePay'/></a>" +
                                 "<a href='" + default_path + "/site/SPageNavigator/fieldday_donate_venmo.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='venmo hidden-md hidden-lg'><img src='https://www2.heart.org/donation-forms/donatenow/images/venmo-button.png' alt='Venmo'/></a>" +
@@ -2264,6 +2321,139 @@
 
             }
 
+            var numGamePointsRows = 0;
+
+            var urlPrefix = (isProd === true ? 'fieldday.rewardscenter.info' : 'fd.staging.ootqa.org');
+
+            cd.getCompanyGamePoints = function (companyId, companyName, numCompanies, companyIndex) {
+
+
+                    $.ajax({
+                        type: 'GET',
+                        url: 'https://'+urlPrefix+'/api/points/leaders/company/'+evID+'/'+companyId,
+                        dataType: 'json',
+                        success: function (response) {
+                            console.log(response);
+                            if (response.teams.length === '0') {
+                                // no search results
+
+                            } else {
+                                var teams = luminateExtend.utils.ensureArray(response.teams);
+                                console.log(teams);
+                                $(teams).each(function (i, team) {
+                                    console.log("each team", team)
+
+                                    team.teamPageURL = "#";
+
+                                    $('#game-points-roster tbody').append('<tr class="' + (numGamePointsRows > 4 ? 'd-none' : '') + '"> <td class="games-team-rank" data-sort="'+team.team_rank+'">' + team.team_rank + '</td> <td class="games-team-name"> <a href="TR/?team_id=' + team.team_id + '&pg=team&fr_id=' + evID + '" data-sort="' + team.team_name + '">' + team.team_name + '</a> </td><td class="games-captain-name"> <a href="TR/?px=' + team.team_captain_consid + '&pg=personal&fr_id=' + evID + '" data-sort="' + team.team_captain_name + '">' + team.team_captain_name + '</a> </td><td class="games-fundraising-points" data-sort="'+team.fundraising_points+'"><strong>'+team.fundraising_points+'</strong></td> <td class="games-game-points" data-sort="'+team.game_points+'"><strong>'+team.game_points+'</strong></td><td class="games-total-points" data-sort="'+team.total_points+'"><strong>'+team.total_points+'</strong></td></tr>');
+
+                                    numGamePointsRows++;
+                                });
+
+                                $('.js--more-game-points-results').on('click', function (e) {
+                                    e.preventDefault();
+                                    $('#game-points-roster tr').removeClass('d-none');
+                                    $(this).attr('hidden', true);
+                                });
+                            }
+
+                            if (companyIndex === numCompanies) {
+                                setTimeout(function () {
+                                    cd.initializeGamePointsRosterTable();
+                                    var totalTeams = $('.games-team-name').length;
+                                    // var totalTeamsText = totalTeams > 1 ? ' Teams' : ' Team';
+                                    // $('.js--num-company-teams').text(totalTeams + totalTeamsText);
+                                    if (totalTeams > 5) {
+                                        $('.js--more-game-points-results').removeAttr('hidden');
+                                    }
+                                }, 250);
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            //$('#error-participant').removeAttr('hidden').text(response.errorResponse.message);
+                            console.log('error response: ', response);
+                        }
+                });
+
+            };
+
+            cd.buildCompanyGamePointsRoster = function () {
+                var numCompanies = allCompanyData.length;
+                for (var i = 0, l = allCompanyData.length; i < l; i++) {
+                    var company = allCompanyData[i];
+                    var companyIndex = i + 1;
+                    var companyId = company.id;
+                    var companyName = company.name;
+                    cd.getCompanyGamePoints(companyId, companyName, numCompanies, companyIndex);
+                }
+            }
+
+            cd.buildCompanyGamePointsRoster();
+
+            // Accessible Nav Tabs:
+            console.log("new tab solution in 01.03");
+            window.addEventListener("DOMContentLoaded", () => {
+                const tabs = document.querySelectorAll('.js--company-page-tabs button[role="tab"]');
+                const tabList = document.querySelector('.js--company-page-tabs[role="tablist"]');
+              
+                // Add a click event handler to each tab
+                tabs.forEach(tab => {
+                  tab.addEventListener("click", changeTabs);
+                });
+              
+                // Enable arrow navigation between tabs in the tab list
+                let tabFocus = 0;
+              
+                tabList.addEventListener("keydown", e => {
+                  // Move right
+                  if (e.keyCode === 39 || e.keyCode === 37) {
+                    tabs[tabFocus].setAttribute("tabindex", -1);
+                    if (e.keyCode === 39) {
+                      tabFocus++;
+                      // If we're at the end, go to the start
+                      if (tabFocus >= tabs.length) {
+                        tabFocus = 0;
+                      }
+                      // Move left
+                    } else if (e.keyCode === 37) {
+                      tabFocus--;
+                      // If we're at the start, move to the end
+                      if (tabFocus < 0) {
+                        tabFocus = tabs.length - 1;
+                      }
+                    }
+              
+                    tabs[tabFocus].setAttribute("tabindex", 0);
+                    tabs[tabFocus].focus();
+                  }
+                });
+              });
+              
+              function changeTabs(e) {
+                const target = e.target;
+                const parent = target.parentNode;
+                const grandparent = parent.parentNode;
+              
+                // Remove all current selected tabs
+                parent
+                  .querySelectorAll('[aria-selected="true"]')
+                  .forEach(t => t.setAttribute("aria-selected", false));
+              
+                // Set this tab as selected
+                target.setAttribute("aria-selected", true);
+              
+                // Hide all tab panels
+                grandparent
+                  .querySelectorAll('[role="tabpanel"]')
+                  .forEach(p => p.setAttribute("hidden", true));
+              
+                // Show the selected panel
+                grandparent.parentNode
+                  .querySelector(`#${target.getAttribute("aria-controls")}`)
+                  .removeAttribute("hidden");
+              }
+            
+            
         }
 
         if ($('body').is('.pg_company')) {
@@ -2297,6 +2487,8 @@
                 clearSearchResults();
                 var companySearched = encodeURIComponent($('#companyNameSearch').val());
                 cd.getCompanies(companySearched, isCrossEventSearch === "true" ? true : false);
+                //add role="status" for screen reading the number of search results
+                $('.js--num-company-results').attr("role", "status");
             });
 
             // Search by Event
@@ -2305,12 +2497,16 @@
                 clearSearchResults();
                 var zipSearched = encodeURIComponent($('#zipCodeSearch').val());
                 cd.getEventsByDistance(zipSearched, isCrossEventSearch === "true" ? true : false);
+                //add role="status" for screen reading the number of search results
+                $('.js--num-event-results').attr("role", "status");
 
             });
             $('#eventStateSearch').on('change', function () {
                 clearSearchResults();
                 var stateSearched = encodeURIComponent($('#eventStateSearch').val());
                 cd.getEventsByState(stateSearched, isCrossEventSearch === "true" ? true : false);
+                //add role="status" for screen reading the number of search results
+                $('.js--num-event-results').attr("role", "status");
             });
 
             $('.js--state-search-form').on('submit', function (e) {
@@ -2318,8 +2514,9 @@
                 clearSearchResults();
                 var stateSearched = encodeURIComponent($('#eventStateSearch').val());
                 cd.getEventsByDistance(stateSearched, isCrossEventSearch === "true" ? true : false);
+                //add role="status" for screen reading the number of search results
+                $('.js--num-event-results').attr("role", "status");
             });
-
 
 
             // Search page by Participant
@@ -2330,6 +2527,8 @@
                 var lastName = encodeURIComponent($('#participantLastName').val());
 
                 cd.getParticipants(firstName, lastName, (isCrossEventSearch === "true" ? true : false));
+                //add role="status" for screen reading the number of search results
+                $('.js--num-participant-results').attr("role", "status");
             });
 
             // Search by Team
@@ -2338,6 +2537,8 @@
                 clearSearchResults();
                 var teamName = encodeURIComponent($('#teamNameSearch').val());
                 cd.getTeams(teamName, (isCrossEventSearch === "true" ? true : false));
+                //add role="status" for screen reading the number of search results
+                $('.js--num-team-results').attr("role", "status");
             });
 
 
@@ -2564,3 +2765,11 @@ if ( $('body').is('.app_donation') || $('body').is('.app_tr_registration') || $(
     $('.nav-item--find').attr('aria-hidden', 'true');
   }
 }
+
+$('.dropdown-menu.find #nav-tab a').addClass('NavTabSub');
+
+$('.NavTabSub, #companySearch, .js--header-company-search button').on('keydown',function(e) {
+    if(e.which == 27) {
+      $('.nav-item--find').removeClass('open');
+    }
+});

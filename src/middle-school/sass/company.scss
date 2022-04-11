@@ -1,12 +1,43 @@
 body.pg-company {
 	.challenge-slime {
-		background: #fff url('../image/school_challenge_1_alt.png') no-repeat center bottom / 100% 100%;
+		background: #fff url('../image/fy22/school_challenge_slime.jpg') no-repeat center bottom / 100% 100%;
+		.ym-progress__title {
+			color: $event-secondary-medium;
+		}
+		.ym-progress__stats p {
+  		        color: $event-secondary-medium;
+		}
 	}
 	.challenge-pie {
-		background: #fff url('../image/school_challenge_2_alt.png') no-repeat center bottom / 100% 100%;
+		background: #fff url('../image/fy22/school_challenge_pie_in_face.jpg') no-repeat center bottom / 100% 100%;
+		.ym-progress__title {
+			color: $event-secondary-medium;
+		}
+		.ym-progress__stats p {
+  		        color: $event-secondary-medium;
+		}
 	}
-	.challenge-activity {
-		background: #fff url('../image/school_challenge_3_alt.png') no-repeat center bottom / 100% 100%;
+	.challenge-color {
+		background: #fff url('../image/fy22/school_challenge_chalk.jpg') no-repeat center bottom / 100% 100%;
+		.ym-progress__title {
+			color: $event-secondary-medium;
+		}
+		.ym-progress__stats p {
+  		        color: $event-secondary-medium;
+		}
+	}
+	.challenge-hair {
+		background: #fff url('../image/fy22/school_challenge_hair_dye.jpg') no-repeat center bottom / 100% 100%;
+		.ym-progress__title {
+			color: $event-secondary-medium;
+			margin-left:65px;
+		}
+		.ym-progress__cta {
+			margin-left:65px;
+		}
+		.ym-progress__stats p {
+  		        color: $event-secondary-medium;
+		}
 	}
 }
 .ym-school-participation-years {
@@ -26,7 +57,7 @@ body.pg-company {
     margin: 0 27px;
     line-height: 18px;
     font-size: 14px;
-    color: $event-secondary;
+    color: $event-secondary-medium;
     
     span {
       display: block;
@@ -34,4 +65,9 @@ body.pg-company {
       line-height: 1.3em;
     }
   }
+}
+
+.app-26 .ym-progress__thermometer {
+	max-width: 80%;
+	margin-right: 4%;
 }

@@ -35,14 +35,14 @@
     <div class="ym-donation-levels__type" role="list" aria-label="Choose your gift type">
       <button role="listitem" type="button" class="btn btn-toggle btn-lg ym-donation-levels__type--onetime" ng-class="{'active': donationInfo.giftType == 'onetime'}" ng-click="giftType('onetime')">One-time Gift</button>
       <button role="listitem" type="button" class="btn btn-toggle btn-lg ym-donation-levels__type--monthly" ng-class="{'active': donationInfo.giftType == 'monthly'}" ng-click="giftType('monthly')" ng-if="donationGiftType == 'installment'" ng-cloak>Installment Gift</button>
-      <button role="listitem" type="button" class="btn btn-toggle btn-lg ym-donation-levels__type--monthly" ng-class="{'active': donationInfo.giftType == 'monthly'}" ng-click="giftType('monthly')" ng-if="donationGiftType == 'flexible'" ng-cloak>Sustaining Gift</button>
+      <button role="listitem" type="button" class="btn btn-toggle btn-lg ym-donation-levels__type--monthly" ng-class="{'active': donationInfo.giftType == 'monthly'}" ng-click="giftType('monthly')" ng-if="donationGiftType == 'flexible'" ng-cloak>Recurring Gift</button>
     </div>
     <hr>
     <fieldset>
       <legend class="aural-only">Select Gift Amount</legend>
-      <div class="ym-donation-levels__levels" role="list" aria-label="Choose Your Donation Amount">
-        <div role="listitem" class="ym-donation-levels__amount" ng-repeat="donationLevel in donationLevels" ng-class="{'active': donationInfo.levelChecked == donationLevel.classLevel}" aria-describedby="message-level-{{donationLevel.levelId}}">
-          <button type="button" class="btn btn-toggle btn-lg {{donationLevel.classLevel}}" ng-class="{'active': donationInfo.levelChecked == donationLevel.classLevel}" ng-if="donationLevel.userSpecified == 'false'" ng-click="selectLevel($event, 'level', donationLevel.levelId, donationLevel.amount);" title="{{donationLevel.amount}}">
+      <div class="ym-donation-levels__levels" aria-label="Choose Your Donation Amount">
+        <div class="ym-donation-levels__amount" ng-repeat="donationLevel in donationLevels" ng-class="{'active': donationInfo.levelChecked == donationLevel.classLevel}" aria-describedby="message-level-{{donationLevel.levelId}}">
+          <button type="button" class="btn btn-toggle btn-lg {{donationLevel.classLevel}}" ng-class="{'active': donationInfo.levelChecked == donationLevel.classLevel}" ng-if="donationLevel.userSpecified == 'false'" ng-click="selectLevel($event, 'level', donationLevel.levelId, donationLevel.amount);" title="{{donationLevel.levelLabel}}">
             {{donationLevel.amount}}
           </button>
           <label ng-if="donationLevel.userSpecified == 'true'" class="sr-only" for="other_amount">Other Amount</label>
@@ -66,7 +66,7 @@
     </div>
     <div class="ym-donation-levels__message--sustaining level--sustaining"  ng-class="{'hidden': donationInfo.giftType != 'monthly'}" ng-if="donationGiftType == 'flexible'" ng-cloak>
       <p>
-        A sustaining gift allows you the flexibility to choose the duration of your donations.
+        A recurring gift allows you the flexibility to choose the duration of your donations.
       </p>
     </div>
   </div>

@@ -4,13 +4,25 @@
   width: 175px;
   height: 175px;
   
+  p {
+    color: $event-secondary-medium;
+  }
+  
   .h2, 
   h2 {
     font-size: 50px;
     margin: 35px 0 10px;
+    color: $event-secondary-medium;
   }
   
   @media (max-width: $screen-xs-max) {
     border-bottom: 0;
+  }
+}
+
+.ym-promo-block {
+  .ym-headline, 
+  h2 {
+    color: $event-secondary-medium;
   }
 }

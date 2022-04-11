@@ -19,18 +19,28 @@ body.pg-company {
 			font-size: 48px;
 			color: indigo;
 			font-family: "Luckiest Guy",cursive;
+			margin: 10px 0 0;
+		}
+		.ym-progress__stats {
+		    margin: 10px auto 0;
 		}
 	}
+	.challenge-ice {
+		background: #fff url('../image/fy22/school_challenge_splash.jpg') no-repeat center top / 100% 100%;
+	}
 	.challenge-slime {
-		background: #fff url('../image/school_challenge_1_alt.png') no-repeat center bottom / 100% 100%;
+		background: #fff url('../image/fy22/school_challenge_ooze.jpg') no-repeat center top / 100% 100%;
 	}
 	.challenge-pie {
-		background: #fff url('../image/school_challenge_2_alt.png') no-repeat center bottom / 100% 100%;
+		background: #fff url('../image/fy22/school_challenge_splat.jpg') no-repeat center top / 100% 100%;
 	}
 	.challenge-activity {
-		background: #fff url('../image/school_challenge_3_alt.png') no-repeat center bottom / 100% 100%;
+		background: #fff url('../image/fy22/school_challenge_bubbles.jpg') no-repeat center top / 100% 100%;
 	}
-
+	.challenge-color {
+		background: #fff url('../image/fy22/school_challenge_chalk.jpg') no-repeat center top / 100% 100%;
+	}
+	
      @media (max-width: $screen-sm-max) {
           .ym-our-stats {
                margin-bottom:40px;
@@ -195,31 +205,44 @@ body.pg-company {
      }
 }
 
-.ym-school-participation-years {
-    position: absolute;
-    max-width: 180px;
-    padding: 5px;
-    bottom: 0;
-    right: 0;
-
-  img {
-    width: 100%;
+.ym-school-achievements {
+  display:flex;
+  justify-content:space-evenly;
+  flex-wrap:wrap;
+	
+  .ym-school-badge-participation-years {
+    position:relative;
+	  
+    .ym-school-participation-years-text {
+      position: absolute;
+      top: 42px;
+      font-size: 40px;
+      color: white;
+      font-weight: bold;
+       width: 100%;
+    }
   }
-  .ym-school-participation-years-text {
-    position: absolute;
-    top: 31px;
-    left: 5%;
-    text-align: center;
-    font-weight: bold;
-    margin: 0 27px;
-    line-height: 18px;
-    font-size: 14px;
-    color: $event-secondary;
-    
-    span {
-      display: block;
-      font-size: 1.5em;
-      line-height: 1.3em;
+  .ym-school-badge-heartsaver {
+      display:none;
+  }
+  .ym-school-badge-best-year {
+    position:relative;
+
+    .ym-school-badge-best-year-date {
+        position: absolute;
+	top: 48px;
+	font-size: 40px;
+	font-weight: bold;
+	color: #fff;
+	width: 100%;
+    }
+    .ym-school-badge-best-year-amount {
+	position: absolute; 
+	top: 100px;
+	font-size: 18px;
+	font-weight: bold;
+	color: #fff;
+	width: 100%;
     }
   }
 }

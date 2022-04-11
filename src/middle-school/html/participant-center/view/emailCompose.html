@@ -68,6 +68,30 @@
                 School Participants
               </a>
             </li>
+            <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+              <a ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_new_participants/list">
+                <span class="badge"><span class="fa fa-star"></span></span>
+                New to American Heart Challenge
+              </a>
+            </li>
+            <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+              <a ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_weekly_participants/list">
+                <span class="badge"><span class="fa fa-star"></span></span>
+                New Registrations
+              </a>
+            </li>
+            <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+              <a ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_0_dollar_participants/list">
+                <span class="badge"><span class="fa fa-star"></span></span>
+                $0 Participants
+              </a>
+            </li>
+            <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+              <a ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_250_dollar_participants/list">
+                <span class="badge"><span class="fa fa-star"></span></span>
+                $250 Participants
+              </a>
+            </li>
             <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' && prev1FrId && prev1FrId != ''" ng-cloak>
               <a ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_past_company_coordinator_participants/list">
                 <span class="badge"><span class="fa fa-star"></span></span>
@@ -123,6 +147,22 @@
             <span class="badge">{{contactCounts.email_rpt_show_company_coordinator_participants}}</span>
             School Participants
           </a>
+          <a class="list-group-item" ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_new_participants/list" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+            <span class="badge"><span class="fa fa-star"></span></span>
+            New to American Heart Challenge
+          </a>
+          <a class="list-group-item" ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_weekly_participants/list" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+            <span class="badge"><span class="fa fa-star"></span></span>
+            New Registrations
+          </a>
+          <a class="list-group-item" ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_0_dollar_participants/list" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+            <span class="badge"><span class="fa fa-star"></span></span>
+            $0 Participants
+          </a>
+          <a class="list-group-item" ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_250_dollar_participants/list" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+            <span class="badge"><span class="fa fa-star"></span></span>
+            $250 Participants
+          </a>
           <a class="list-group-item" ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_past_company_coordinator_participants/list" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' && prev1FrId && prev1FrId != ''" ng-cloak>
             <span class="badge"><span class="fa fa-star"></span></span>
             Past School Participants
@@ -146,15 +186,36 @@
           <label for="emailComposer-suggested_message_id" class="sr-only">Sample Message:</label>
           <select class="form-control input-lg" id="emailComposer-suggested_message_id" name="suggested_message_id" ng-model="emailComposer.suggested_message_id" ng-change="loadSuggestedMessage()">
             <option value="">Choose a sample message</option>
-            <option ng-repeat="suggestedMessage in suggestedMessages" value="{{suggestedMessage.messageId}}">
+            <option ng-repeat="suggestedMessage in suggestedMessages | orderBy:'-sortOrder':true" value="{{suggestedMessage.messageId}}">
               {{suggestedMessage.name}}
             </option>
+            <!-- <optgroup label="Build Your Team" ng-if="suggestedMessageCountByType.RECRUIT > 0">
+              <option value="{{suggestedMessage.messageId}}" ng-repeat="suggestedMessage in suggestedMessages|filter:{messageType: 'RECRUIT'}">
+                {{suggestedMessage.name}}
+              </option>
+            </optgroup>
+            <optgroup label="Ask for Donations" ng-if="suggestedMessageCountByType.SOLICIT > 0">
+              <option value="{{suggestedMessage.messageId}}" ng-repeat="suggestedMessage in suggestedMessages|filter:{messageType: 'SOLICIT'}">
+                {{suggestedMessage.name}}
+              </option>
+            </optgroup>
+            <optgroup label="Say Thank You" ng-if="suggestedMessageCountByType.THANKS > 0">
+              <option value="{{suggestedMessage.messageId}}" ng-repeat="suggestedMessage in suggestedMessages|filter:{messageType: 'THANKS'}">
+                {{suggestedMessage.name}}
+              </option>
+            </optgroup>
+            <optgroup label="Other" ng-if="suggestedMessageCountByType.OTHER > 0">
+              <option value="{{suggestedMessage.messageId}}" ng-repeat="suggestedMessage in suggestedMessages|filter:{messageType: 'OTHER'}">
+                {{suggestedMessage.name}}
+              </option>
+            </optgroup> -->
           </select>
         </div>
         <div class="form-group">
           <label for="emailComposer-subject" class="sr-only">Subject</label>
           <input type="text" class="form-control input-lg" id="emailComposer-subject" name="subject" ng-model="emailComposer.subject" placeholder="Subject" autocorrect="on" autocapitalize="on" spellcheck="true">
         </div>
+        <p><em>To add a photo - Click the photo icon and add image URL and click OK, or drag and drop a photo into body of email and resize as needed. Click image to resize and choose 25%.</em></p>
         <div class="form-group" ng-if="personalizedSalutationEnabled && false">
           <div class="checkbox" custom-checkbox ng-class="{'checked': emailComposer.prepend_salutation}">
             <label>

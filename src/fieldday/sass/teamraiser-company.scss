@@ -5,8 +5,20 @@
         margin: 28px 0;
 
         .btn {
-          max-width: 350px;
+          max-width: 320px;
         }
+      }
+      .information-box__name {
+        padding: 17px 45px 20px 45px;
+      }
+      .information-box__content {
+        padding: 70px 45px 52px 45px;
+        .buttons-row {
+          margin: 85px 0 28px;
+        }
+      }
+      p {
+        color: #000;
       }
     }
 
@@ -18,6 +30,7 @@
         color: $black;
         background-color: #EFEFEF;
         border-bottom: none;
+        padding: 0.75rem 1rem;
         text-align: center;
         text-decoration: none;
         font-family: $font-family-bold;
@@ -38,13 +51,83 @@
       width: 260px;
     }
 
+    .nav-item {
+      width: 33.33%;
+
+      .nav-link {
+        @include media-breakpoint-down(md) {
+          font-size: 1.75rem;
+        }
+        @include media-breakpoint-down(sm) {
+          padding: .5rem .25rem!important;
+        }
+      }
+
+      a span:first-of-type {
+        display: block;
+        @include media-breakpoint-down(lg) {
+          display: none;
+        }
+      }
+      a span:last-of-type {
+        display: none;
+        @include media-breakpoint-down(lg) {
+          display: block;
+        }
+      }
+    }
+    .tabs {
+      button[role="tab"] {
+        width: 33.33%;
+        font-size: 2rem;
+        color: #000;
+        background-color: #efefef;
+        border-bottom: none;
+        padding: .75rem 1rem;
+        text-align: center;
+        text-decoration: none;
+        font-family: LubDubBold,Helvetica,Arial,sans-serif;
+        border-radius: 0;
+        background-clip: padding-box;
+        border: 1px solid transparent;
+        @include media-breakpoint-down(md) {
+          font-size: 1.75rem;
+        }
+        @include media-breakpoint-down(sm) {
+          padding: .5rem .25rem!important;
+        }
+        @media all and (max-width: 620px) {
+          font-size: 1rem!important;
+        }
+      }
+      button[aria-selected="true"] {
+        background-color: #c10e21;
+        color: #fff;
+      }
+    }
+  }
+  
+  .sidebar__details p {
+    line-height: 1.5rem;
   }
 
   .company-message {
     h2 {
-      font-size: 1.5em;
+      font-size: 27px;
+      line-height: 32px;
       color: $red;
+      font-family: LubDubMedium,Helvetica,Arial,sans-serif!important;
     }
+  }
+  .js--company-text p, .js--company-text p span, .js--company-text span {
+    font-family: "LubDubMedium", Helvetica, Arial, sans-serif!important;
+    font-size: 18px!important;
+    line-height: 27px!important;
+  }
+
+  #team-roster_info, label[for=js--team-search-text], #participant-roster_info, label[for=js--participant-search-text] {
+    font-size: 18px!important;
+    line-height: 27px!important;
   }
 }
 
@@ -80,7 +163,7 @@
   }
 }
 
-//view all companies page
+//view all companies page2
 @media (max-width: 767px) {
   th.trr-table-participant-amount,
   th.trr-table-number-amount {
@@ -92,4 +175,40 @@
   .mobile div.tr-page-container div#team_page_main_content, .mobile div.tr-page-container div.tr-page-main-content {
       width: 100%;
   }
+}
+.gamess-help-text {
+  padding: .8rem;
+  font-size: .8rem;
+  p {
+    font-size: 18px!important;
+    line-height: 27px!important;
+  }
+}
+#game-points-roster {
+  td {
+    text-align: center;
+    &.games-team-name,
+    &.games-captain-name {
+      text-align: left;
+    }
+  }
+  @media (min-width: 1024px) { 
+    .games-team-rank {
+      width: 5%
+    }
+    .games-fundraising-points {
+      width: 15%;
+    }
+    .games-total-points {
+      width: 12%;
+    }
+    .games-game-points {
+      width: 13%;
+    }
+  }
+}
+
+.pg_company #ourstats {
+  font-weight: 700!important;
+  overflow-x: hidden!important;
 }

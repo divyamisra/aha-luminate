@@ -14,14 +14,21 @@
       <a role="listitem" ng-href="{{baseUrl}}#/student-resources" class="ng-pc-nav-item ng-pc-nav-item--resources" ng-class="{'active': location == '/student-resources'}" ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true'" ng-cloak>
         <span><strong>Resources</strong></span>
       </a>
-      <a role="listitem" ng-href="{{baseUrl}}#/teacher-resources" class="ng-pc-nav-item ng-pc-nav-item--resources" ng-class="{'active': location == '/teacher-resources'}" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
-        <span><strong>Teacher Resources</strong></span>
-      </a>
       <a role="listitem" ng-href="{{baseUrl}}#/dashboard-student" class="ng-pc-nav-item ng-pc-nav-item--student-view" ng-class="{'active': location == '/dashboard-student'}" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
         <span><strong>Student View</strong></span>
       </a>
+      <a role="listitem" class="ng-pc-nav-item ng-pc-nav-item--student-view" ng-href="https://ahc.staging.ootqa.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heartdev' && participantRegistration.companyInformation.isCompanyCoordinator == 'true' && hasOOTDashboard" ng-cloak> 
+        <span><strong>Manage Event</strong></span>
+      </a> 
+      <a role="listitem" class="ng-pc-nav-item ng-pc-nav-item--student-view" ng-href="https://middleschool.heart.org/coordinator/login/{{frId}}/{{authToken}}/{{sessionCookie}}" target="_blank" ng-if="tablePrefix == 'heart' && participantRegistration.companyInformation.isCompanyCoordinator == 'true' && hasOOTDashboard" ng-cloak> 
+        <span><strong>Manage Event</strong></span>
+      </a> 
+      <a role="listitem" ng-href="{{baseUrl}}#/teacher-resources" class="ng-pc-nav-item ng-pc-nav-item--resources" ng-class="{'active': location == '/teacher-resources'}" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+        <span><strong>Teacher Resources</strong></span>
+      </a>
     </div>
   </nav>
+  <a name="contentStart" id="contentStart" tabindex="-1"></a>
   <div ng-view class="ng-pc-view-container"></div>
 </div>
 
