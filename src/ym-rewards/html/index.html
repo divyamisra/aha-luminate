@@ -1,10 +1,10 @@
 [[?xx::x[[S1:cons_id]]x::::
 <!-- logged in -->
 <div cg-busy="dashboardPromises">
-    <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true'" ng-cloak>
+    <div ng-if="isCoordinator != 'YES'" ng-cloak>
         You must be a coordinator to access this page
     </div>
-    <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+    <div ng-if="isCoordinator == 'YES'" ng-cloak>
         <div class="d-lg-flex" ng-if="TotalPointsSpent == 0 && productView == 'list'" ng-cloak>
             <div class="filter-column">
                 <div class="h3">
@@ -42,7 +42,7 @@
                     Products
                 </div>
                 <div class="productList d-lg-flex flex-wrap d-md-block justify-content-between">
-                    <product ng-repeat="product in productList" ng-if="product.quantity > 0">
+                    <product ng-repeat="product in productList" ng-if="product.quantity > 10">
                         <div style="margin-bottom:20px;" class="{{product.productId}} d-flex overflow-hidden">
                             <div class="me-4" style="min-height:150px;">
                                 <div class="productImage mb-3" tabindex="0">
@@ -61,14 +61,14 @@
                                 </div>
                                 <div class="productSizes" ng-if="product.detail.length > 0" ng-cloak>
                                     Sizes:
-                                    <span class="sizeText" ng-repeat="detail in product.detail">
-					{{detail.productSizeText}}
-				    </span>
+                                    <span class="sizeText" ng-repeat="detail in product.detail" ng-class="{'strikethrough': detail.quantity == 0}">
+																			{{detail.productSizeText}}
+																		</span>
                                     <br />
                                 </div>
                                 <div class="productSize" ng-if="product.detail.length > 0" ng-cloak>
                                     Size:
-                                    <select aria-label="Product Size" id="size_{{product.productId}}" name="size" ng-model="product.productSize" ng-options="detail.productSizeId as detail.sizeName for detail in product.detail track by detail.productSizeId"></select>
+                                    <select aria-label="Product Size" id="size_{{product.productId}}" name="size" ng-model="product.productSize" ng-options="detail.productSizeId as detail.sizeName for detail in product.detail | filter:quantityFilter track by detail.productSizeId"></select>
                                     <br />
                                 </div>
                                 <div class="productQuantity">
@@ -78,7 +78,7 @@
                                 <div class="productPointsTotal" tabindex="0">
 				    <strong>Cost:</strong> {{product.quantitySel * product.points}} Points
 				    <div ng-if="(product.detail.length > 0 && product.productSize == '') && ((product.quantitySel * product.points) <= TotalPointsAvailable)">
-                                        <em>Choose a size before adding to basket</em>
+                                        <em>Choose a size before adding to cart</em>
                                     </div>
                                     <div ng-if="((product.quantitySel * product.points) > TotalPointsAvailable)">
                                         <em>Not enough points available</em>
@@ -86,7 +86,7 @@
                                 </div>
                                 <div class="addToBasket">
                                     <button title="Product {{product.productName}}" type="button" ng-disabled="(product.detail.length > 0 && product.productSize == '') || ((product.quantitySel * product.points) > TotalPointsAvailable)" class="btn btn-primary" ng-if="TotalPointsSpent == 0" href="" ng-model="product.productSize" name="{{product.productName}}" limit="{{product.quantity}}" productid="{{product.productId}}" sizeexists="{{product.detail.length > 0}}" points="{{product.points}}" imgsrc="{{product.imageSrc}}" ng-click="addProductToCart($event)">
-					Add to Basket
+					Add to Cart
   				    </button><br/><em></em>
                                 </div>
                                 <div class="d-none">
@@ -99,16 +99,16 @@
             </div>
           </div>
         <div class="d-lg-flex" ng-if="TotalPointsSpent == 0 && productView == 'basket'" ng-cloak>
-            <div class="ps-4">
+            <div class="ps-4 w-100">
                 <a href="" ng-click="viewProducts($event)" class="d-block mb-2">Return to Catalog</a>
                 <div class="h3 mb-4">
-                    Basket
+                    Cart
                 </div>
                 <div class="shoppingCart">
                     <div class="productList d-lg-flex flex-wrap d-md-block justify-content-between">
                         <product ng-repeat="cartProduct in cartProductList" class="position-relative"> 
                             <div class="position-absolute top-0 end-0 me-2 mt-3">
-                                <button title="Remove {{cartProduct.productName}} from Basket" type="button" class="btn btn-primary py-1 px-2" href="" name="{{cartProduct.productName}}" productid="{{cartProduct.productId}}" ng-click="removeProduct($event)">
+                                <button title="Remove {{cartProduct.productName}} from Cart" type="button" class="btn btn-primary py-1 px-2" href="" name="{{cartProduct.productName}}" productid="{{cartProduct.productId}}" ng-click="removeProduct($event)">
 			  	X
 				</button>
 			    </div>
@@ -139,10 +139,10 @@
   						        Redeem Products
           					</button>
                     <div class="totalPoints pointsInCart" ng-if="TotalPointsInCart > 0" ng-cloak>
-                        Total Points in Basket: {{TotalPointsInCart}}
+                        Total Points in Cart: {{TotalPointsInCart}}
                     </div>
                     <div class="totalPoints noPointsInCart" ng-if="TotalPointsInCart == 0" ng-cloak>
-                        No items in Basket
+                        No items in Cart
                     </div>
            	    <p><em>Unused points will carry over to next year.</em></p>
                 </div>
@@ -152,7 +152,7 @@
     <div class="row" ng-if="TotalPointsSpent > 0" ng-cloak>
         <div class="col-md-12">
             <div class="h3 mb-4">
-                Purchase Summary
+                Redemption Summary
             </div>
             <div class="productSummary d-lg-flex flex-wrap justify-content-start">
                 <product class="pointSummary flex-grow-0 p-2 me-3" ng-repeat="product in productSummary">
@@ -176,8 +176,10 @@
             <p class="totalPointsUsed" ng-if="TotalPointsSpent > 0" ng-cloak>
                 <strong>Total Points Used: {{TotalPointsSpent}}</strong>
             </p>
-            <p><em>Unused points will carry over to next year.<br/>Gifts will be included in the Thank-You Gifts you receive for your students.</em></p>
-            <a class="btn btn-primary" href="" name="delPurchase" ng-click="deletePurchase($event)">
+            <p><em>Unused points will carry over to next year.<br/>
+		    Thank you for your redemption. 
+		    Rewards will be included in the Thank-You Gifts you receive for your students post program.</em></p>
+            <a class="btn btn-primary" href="" name="delPurchase" ng-click="deletePurchase($event)" ng-if="tablePrefix == 'heartdev'" ng-cloak>
 		TEST ONLY: Remove Purchase 
   	    </a>
         </div>
@@ -222,7 +224,7 @@
     </div>
     ::
     <!-- non-secure page -->
-    <a class="btn btn-global-primary ym-header-login-toggle" href="[[T7:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]UserLogin?NEXTURL=[[T1:SPageServer?pagename=ym_coordinator_reward_center&amp;fr_id=[[S334:fr_id]]]]]]">
+    <a class="btn btn-global-primary ym-header-login-toggle" href="[[T7:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]UserLogin?NEXTURL=[[T1:SPageServer?pagename=ym_coordinator_reward_center]]]]">
 	Coordinator Log In 
     </a>
 ]]

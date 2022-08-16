@@ -3,6 +3,12 @@ option {
   font-size: 18px;
 }
 
+.ym-pc-dashboard-coordinator-resources-contact {
+  a {
+    color: $event-primary-acc;
+  }
+}
+
 .btn.btn-secondary:focus, 
 a.btn.btn-secondary:focus {
     outline-color: $event-primary;
@@ -473,8 +479,17 @@ div[id^="taTextElement"]:focus {
 	border-radius:10px;
 }
 
+.ym-pc-dashboard-materials {
+   .modal-body {
+	max-height:63vh;
+	.img-fluid {
+	   max-height: 90%;
+	}
+   }
+}
+
 .ym-pc-dashboard-school-plan {
-	max-height:600px;
+	max-height:63vh;
 	overflow:scroll;
 	
   hr {
@@ -497,26 +512,10 @@ div[id^="taTextElement"]:focus {
 		margin-bottom:5px;
 	}
 
-	.row {
-		margin: 0px;
-		
-		@media (min-width:768px) {
-			display:flex;
-			margin: 0px;
-		}
-		
-		.ym-pc-dashboard-coordinator-progress-section__column {
-			background-color: $event-accent-light;
-			padding: 30px;
-		}
-		
-		@media (min-width: 992px) {
-			.ym-pc-dashboard-coordinator-progress-section__column:first-child {
-			    margin: 0 30px 0 0;
-			}
-		}
+	.ym-pc-dashboard-coordinator-progress-section__column {
+		background-color: $event-accent-light;
 	}
-	
+
 	.schoolChallenge {
 	    margin-bottom: 20px;
 	}

@@ -1,12 +1,12 @@
 <div ng-controller="CompanyPageCtrl" ng-cloak>
-   <div class="hidden" hidden aria-hidden="true" ng-init="parentCompanyId = '[[?xx::x[[E417:[[S334:company_id]]]]x::::[[E130:[[T8:[[E417:[[S334:company_id]]]]]] dup dup [[T8:company_id=]] indexof 11 + swap length substring dup 0 swap [[T8:&]] indexof substring]]]]'; companyPagePhoto1.customUrl = '[[C4:responsive_company_logo]]'"></div>
-   <div class="ym-page-section ym-page-section__top">
+   <div class="d-none" hidden aria-hidden="true" ng-init="parentCompanyId = '[[?xx::x[[E417:[[S334:company_id]]]]x::::[[E130:[[T8:[[E417:[[S334:company_id]]]]]] dup dup [[T8:company_id=]] indexof 11 + swap length substring dup 0 swap [[T8:&]] indexof substring]]]]'; companyPagePhoto1.customUrl = '[[C4:responsive_company_logo]]'"></div>
+   <div class="ym-page-section d-md-flex">
       <div class="col-md-6 ym-user-image" ng-style="{'background-image': (companyPagePhoto1.customUrl && companyPagePhoto1.customUrl != '') ? ('url(' + companyPagePhoto1.customUrl + ')') : ('url(' + companyPagePhoto1.defaultUrl + ')')}">
          <div class="ym-user-image-inner">
             <button type="button" class="btn btn-md-wide btn-toggle" ng-click="editCompanyPhoto1()" ng-if="participantRegistration.companyInformation.companyId == '[[S334:company_id]]' && participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
             <span class="fa fa-camera"></span> Edit Photo
             </button>
-            <img class="hidden-md hidden-lg" ng-src="{{companyPagePhoto1.customUrl && companyPagePhoto1.customUrl != '' ? companyPagePhoto1.customUrl : companyPagePhoto1.defaultUrl}}" alt="School Photo" ng-cloak>
+            <img class="d-xs-block d-sm-block d-md-none" ng-src="{{companyPagePhoto1.customUrl && companyPagePhoto1.customUrl != '' ? companyPagePhoto1.customUrl : companyPagePhoto1.defaultUrl}}" alt="School Photo" ng-cloak>
          </div>
       </div>
       <div class="ym-story col-md-6 ym-secondary-medium-color" ng-class="{'challenge-ice': schoolChallenge == 'Ice Bucket/Water Challenge','challenge-color': schoolChallenge == 'Color Blast','challenge-slime': schoolChallenge == 'Slime Challenge','challenge-pie': schoolChallenge == 'Pie in the Face','challenge-activity': schoolChallenge == 'Activity, Party or Event','challenge-other': schoolChallenge.indexOf('*') >= 0}">
@@ -26,7 +26,7 @@
                </button>
             </div>
          </div>
-         <div class="hidden js--default-page-content" hidden aria-hidden="true" ng-non-bindable>
+         <div class="d-none js--default-page-content" hidden aria-hidden="true" ng-non-bindable>
             [[C6:fr_rich_text]]
          </div>
          <div ng-show="companyPageContent.mode == 'view'">
@@ -55,7 +55,7 @@
       </div>
       <div class="clearfix"></div>
    </div>
-   <div class="ym-page-section ym-page-section__list ym-accent-color">
+   <div class="ym-page-section ym-page-section__list ym-accent-color d-md-flex justify-content-between flex-wrap">
       <div class="ym-progress" ng-class="companyParticipants.totalFundraisers > 0 ? 'col-md-6' : 'col-md-12'">
          <h2 class="ym-progress__title h4">
             [[C1:title]]
@@ -77,21 +77,12 @@
                </p>
             </div>
          </div>
-         <div class="ym-progress__thermometer" name="School Progress Bar" role="progressbar" aria-label="{{companyProgress.percent}} percent of fundraising progress" aria-valuetext="{{companyProgress.percent}} percent of fundraising goal" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100" ng-if="companyProgress.goal && companyProgress.goal != 0" ng-cloak>
-            <div class="ym-progress__thermometer--fill" ng-style="{'width': companyProgress.percent + '%'}"></div>
+         <div class="d-flex mx-5">
+   	       <div ng-if="hideAmount != 'Y'" class="col-6 text-start fw-bold"><span ng-bind-html="companyProgress.amountRaisedFormatted"></span> raised</div> 
+	          <div ng-if="companyProgress.goalFormatted && companyProgress.goalFormatted != '' && companyProgress.goalFormatted != '$0'" class="col-6 text-end fw-bold"><span ng-bind-html="companyProgress.goalFormatted"></span> goal</div> 
          </div>
-         <div class="clearfix"></div>
-         <div class="ym-progress__stats">
-            <div ng-if="hideAmount != 'Y'" class="ym-progress__amount" ng-class="(companyProgress.goalFormatted && companyProgress.goalFormatted != '' && companyProgress.goalFormatted != '$0') ? 'col-md-6' : 'col-md-12'" ng-cloak>
-               <p>
-                  We've raised <strong><span ng-bind-html="companyProgress.amountRaisedFormatted"></span></strong>
-               </p>
-            </div>
-            <div class="ym-progress__goal col-sm-6" ng-if="companyProgress.goalFormatted && companyProgress.goalFormatted != '' && companyProgress.goalFormatted != '$0'" ng-cloak>
-               <p>
-                  Our goal is <strong><span ng-bind-html="companyProgress.goalFormatted"></span></strong>
-               </p>
-            </div>
+         <div class="ym-progress__thermometer mx-5 my-0 mw-100" name="School Progress Bar" role="progressbar" aria-label="{{companyProgress.percent}} percent of fundraising progress" aria-valuetext="{{companyProgress.percent}} percent of fundraising progress" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100" ng-if="companyProgress.goal && companyProgress.goal != 0" ng-cloak>
+       	   <div class="ym-progress__thermometer--fill" ng-class="(companyProgress.percent < 15) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': companyProgress.percent + '%'}">{{companyProgress.percent}}%</div>
          </div>
       </div>
       <div class="ym-list col-md-6" aria-label="Top Fundraisers List" ng-if="companyParticipants.totalFundraisers > 0" ng-cloak>
@@ -109,6 +100,9 @@
         School Achievements
      </h2>
      <div class="ym-school-achievements">
+			 <div class="ym-school-badge-participation-years" ng-if="schoolYears == 0 || schoolYears == 1" ng-cloak>
+					<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/badge-first-year.png" alt="First Year Participating Badge">
+			 </div>
 			 <div class="ym-school-badge-participation-years" ng-if="schoolYears > 0" ng-cloak>
 					<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/badge-years.png" alt="School Participation Years">
 					<div class="ym-school-participation-years-text">{{schoolYears}}</div>
@@ -246,7 +240,7 @@
                </div>
             </div>
          </div>
-         <div class="col-md-3 hidden" ng-show="topCompanySteps.length > 0" ng-cloak>
+         <div class="col-md-3 d-none" ng-show="topCompanySteps.length > 0" ng-cloak>
            <div class="ym-steps-leaderboard-block">
              <h3>Top students<br/>by minutes</h3>
              <div class="ym-tl-registered-students" role="list">
@@ -262,10 +256,10 @@
          </div>
       </div>
    </div>
-   <hr class="hidden-xs ym-zuri-animation__divider" ng-show="companyParticipants.participants.length > 0" ng-cloak>
+   <hr class="d-xs-none d-sm-block ym-zuri-animation__divider" ng-show="companyParticipants.participants.length > 0" ng-cloak>
    <div class="ym-page-section ym-page-section__main" ng-show="companyParticipants.participants.length > 0" ng-cloak>
       <div class="container">
-         <div class="container hidden-xs">
+         <div class="container d-xs-none d-sm-block">
             <div class="ym-school-animation">
                <iframe title="School Animation" id="school-animation"  ng-src="{{schoolAnimationURL}}"></iframe>
             </div>
@@ -305,7 +299,7 @@
          </div>
       </div>
    </div>
-   <div class="ym-page-section ym-page-section__list ym-progress ym-school-donate hidden">
+   <div class="ym-page-section ym-page-section__list ym-progress ym-school-donate d-none">
       <a class="btn btn-primary btn-lg" aria-label="Donate to {{companyName}}" href="[[S8]]#" data-toggle="modal" data-target="#schoolDonation">
       Donate Directly to School
       </a>

@@ -39,5 +39,8 @@
   }
   .ym-page-header-related {
     top: -25px;
+    @media (max-width: $screen-sm-min) {
+      top: -15px;
+    }
   }
 }

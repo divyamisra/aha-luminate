@@ -6,10 +6,10 @@
   <div class="modal-body">
     <div class="form-group">
       <p>Total Points Available: <strong>{{TotalPointsAvailable}}</strong></p>
-      <p>Your Basket: <strong>{{cartProductList.length}} Products ({{TotalPointsInCart}} Points)</strong></p>
-      <p>Points to redeem will be subtracted from your total points available.
+      <p>Your Cart: <strong>{{cartProductList.length}} Products ({{TotalPointsInCart}} Points)</strong></p>
+      <p>Points redeemed will be subtracted from your total points available.
          Any unused points will be carried over to next year.</p>
-         <p>Press Confirm below to redeem selected products.</p>
+      <p>Press <strong>Redeem Points</strong> below to redeem selected products.</p>
     </div>
   </div>
   <div class="modal-footer">
@@ -21,7 +21,7 @@
       </div>
       <div class="submitButton">
         <button type="button" class="btn btn-toggle active" ng-click="acceptConfirmation()" aria-label="Click to Confirm Product Redemption" autofocus>
-          Confirm
+          Redeem Points
         </button>
       </div>
     </div>

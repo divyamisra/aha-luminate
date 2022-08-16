@@ -167,6 +167,38 @@ angular.module 'ahaLuminateApp'
           , (response) ->
             callback.failure response
             
+      getSchools: (requestData, callback) ->
+        if $rootScope.tablePrefix is 'heartdev'
+          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?env=_dev&EventProgram=KHC&method=GetSchools' + requestData
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?env=_new&EventProgram=KHC&method=GetSchools' + requestData
+        else
+          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?EventProgram=KHC&method=GetSchools' + requestData
+        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
+          .then (response) ->
+            if response.data.success is false
+              callback.error response
+            else
+              callback.success response
+          , (response) ->
+            callback.failure response
+            
+      getSchoolDetail: (requestData, callback) ->
+        if $rootScope.tablePrefix is 'heartdev'
+          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?env=_dev&EventProgram=KHC&method=GetSchoolDetail' + requestData
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?env=_new&EventProgram=KHC&method=GetSchoolDetail' + requestData
+        else
+          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?EventProgram=KHC&method=GetSchoolDetail' + requestData
+        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
+          .then (response) ->
+            if response.data.success is false
+              callback.error response
+            else
+              callback.success response
+          , (response) ->
+            callback.failure response
+            
       schoolPlanData: (requestData, callback) ->
         if $rootScope.tablePrefix is 'heartdev'
           url = '//tools.heart.org/ym-school-plan/schoolPlan.php?env=_dev&EventProgram=KHC' + requestData
@@ -182,5 +214,36 @@ angular.module 'ahaLuminateApp'
               callback.success response
           , (response) ->
             callback.failure response
+
+      schoolTop15: (requestData, callback) ->
+        if $rootScope.tablePrefix is 'heartdev'
+          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?env=_dev&EventProgram=KHC&method=GetTop15Schools' + requestData
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?env=_new&EventProgram=KHC&method=GetTop15Schools' + requestData
+        else
+          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?EventProgram=KHC&method=GetTop15Schools' + requestData
+        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
+          .then (response) ->
+            if response.data.success is false
+              callback.error response
+            else
+              callback.success response
+          , (response) ->
+            callback.failure response
             
+      getStudentDetail: (requestData, callback) ->
+        if $rootScope.tablePrefix is 'heartdev'
+          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?env=_dev&EventProgram=KHC&method=GetStudentDetail' + requestData
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?env=_new&EventProgram=KHC&method=GetStudentDetail' + requestData
+        else
+          url = '//tools.heart.org/ym-school-plan/schoolPlan.php?EventProgram=KHC&method=GetStudentDetail' + requestData
+        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
+          .then (response) ->
+            if response.data.success is false
+              callback.error response
+            else
+              callback.success response
+          , (response) ->
+            callback.failure response
   ]

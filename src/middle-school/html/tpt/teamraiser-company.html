@@ -1,15 +1,15 @@
 <div ng-controller="CompanyPageCtrl" ng-cloak>
-  <div class="hidden" hidden aria-hidden="true" ng-init="parentCompanyId = '[[?xx::x[[E417:[[S334:company_id]]]]x::::[[E130:[[T8:[[E417:[[S334:company_id]]]]]] dup dup [[T8:company_id=]] indexof 11 + swap length substring dup 0 swap [[T8:&]] indexof substring]]]]'; companyPagePhoto1.customUrl = '[[C4:responsive_company_logo]]'"></div>
+  <div class="d-none" hidden aria-hidden="true" ng-init="parentCompanyId = '[[?xx::x[[E417:[[S334:company_id]]]]x::::[[E130:[[T8:[[E417:[[S334:company_id]]]]]] dup dup [[T8:company_id=]] indexof 11 + swap length substring dup 0 swap [[T8:&]] indexof substring]]]]'; companyPagePhoto1.customUrl = '[[C4:responsive_company_logo]]'"></div>
   <div class="ym-page-section ym-page-section__top">
-    <div class="col-md-6 ym-user-image" ng-style="{'background-image': (companyPagePhoto1.customUrl && companyPagePhoto1.customUrl != '') ? ('url(' + companyPagePhoto1.customUrl + ')') : ('url(' + companyPagePhoto1.defaultUrl + ')')}">
+    <div class="col-lg-6 ym-user-image" ng-style="{'background-image': (companyPagePhoto1.customUrl && companyPagePhoto1.customUrl != '') ? ('url(' + companyPagePhoto1.customUrl + ')') : ('url(' + companyPagePhoto1.defaultUrl + ')')}">
       <div class="ym-user-image-inner">
         <button type="button" class="btn btn-md-wide btn-toggle" ng-click="editCompanyPhoto1()" ng-if="participantRegistration.companyInformation.companyId == '[[S334:company_id]]' && participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
           <span class="fa fa-camera"></span> Edit Photo
         </button>
-        <img class="hidden-md hidden-lg" ng-src="{{companyPagePhoto1.customUrl && companyPagePhoto1.customUrl != '' ? companyPagePhoto1.customUrl : companyPagePhoto1.defaultUrl}}" alt="School Photo" ng-cloak>
+        <img class="d-block d-lg-none" ng-src="{{companyPagePhoto1.customUrl && companyPagePhoto1.customUrl != '' ? companyPagePhoto1.customUrl : companyPagePhoto1.defaultUrl}}" alt="School Photo" ng-cloak>
       </div>
     </div>
-    <div class="col-md-6 ym-progress ym-secondary-medium-color" ng-class="{'challenge-slime': schoolChallenge == 'Slime Challenge','challenge-pie': schoolChallenge == 'Pie in the Face','challenge-hair': schoolChallenge == 'Dye my Hair','challenge-color': schoolChallenge == 'Color Blast','challenge-none': schoolChallenge == ''}">
+    <div class="col-lg-6 ym-progress ym-secondary-medium-color" ng-class="{'challenge-slime': schoolChallenge == 'Slime Challenge','challenge-pie': schoolChallenge == 'Pie in the Face','challenge-hair': schoolChallenge == 'Dye my Hair','challenge-color': schoolChallenge == 'Color Blast','challenge-none': schoolChallenge == ''}">
       <h2 class="ym-progress__title h4">
         [[C1:title]]
       </h2>
@@ -28,23 +28,14 @@
           </a> -->
         </div>
       </div>
-      <div class="ym-progress__thermometer" name="School Progress Bar" role="progressbar" aria-label="{{companyProgress.percent}} percent of fundraising progress" aria-valuetext="{{companyProgress.percent}} percent of fundraising progress" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100" ng-if="companyProgress.goal && companyProgress.goal != 0" ng-cloak>
-        <div class="ym-progress__thermometer--fill" ng-style="{'width': companyProgress.percent + '%'}"></div>
+      <div class="d-flex mx-5">
+	<div ng-if="hideAmount != 'Y'" class="col-6 text-start fw-bold"><span ng-bind-html="companyProgress.amountRaisedFormatted"></span> raised</div> 
+	<div ng-if="companyProgress.goalFormatted && companyProgress.goalFormatted != '' && companyProgress.goalFormatted != '$0'" class="col-6 text-end fw-bold"><span ng-bind-html="companyProgress.goalFormatted"></span> goal</div> 
+      </div>
+      <div class="ym-progress__thermometer mx-5 my-0 mw-100" name="School Progress Bar" role="progressbar" aria-label="{{companyProgress.percent}} percent of fundraising progress" aria-valuetext="{{companyProgress.percent}} percent of fundraising progress" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100" ng-if="companyProgress.goal && companyProgress.goal != 0" ng-cloak>
+        <div class="ym-progress__thermometer--fill" ng-class="(companyProgress.percent < 15) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': companyProgress.percent + '%'}">{{companyProgress.percent}}%</div>
       </div>
       <div class="ym-progress__stats">
-        <div ng-if="hideAmount != 'Y'" class="ym-progress__amount" ng-class="(companyProgress.goalFormatted && companyProgress.goalFormatted != '' && companyProgress.goalFormatted != '$0') ? 'col-md-6' : 'col-md-12'" ng-cloak>
-          <p>
-            We've raised <strong><span ng-bind-html="companyProgress.amountRaisedFormatted"></span></strong>
-          </p>
-        </div>
-        <div class="ym-progress__goal col-sm-6">
-          <div ng-if="companyProgress.goalFormatted && companyProgress.goalFormatted != '' && companyProgress.goalFormatted != '$0'" ng-cloak>
-            <p>
-              Our goal is <strong><span ng-bind-html="companyProgress.goalFormatted"></span></strong>
-            </p>
-          </div>
-        </div>
-        <div class="clearfix"></div>
         <div class="ym-progress__date" ng-if="schoolPlan.EventStartDate && schoolPlan.EventStartDate != '' && schoolPlan.EventStartDate != 'User Provided No Response' && schoolPlan.EventStartDate != '0000-00-00'" ng-cloak>
           <p>
 	    Our event is kicking off on <strong>{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}}</strong><span ng-if="(schoolPlan.EventStartDate | date:'MM/dd/yyyy') !== (schoolPlan.EventEndDate | date:'MM/dd/yyyy') && schoolPlan.EventEndDate != ''" ng-cloak> and<br/>will conclude on <strong>{{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}</strong></span>.
@@ -126,7 +117,7 @@
             {{activity1amt}}
           </div>
           <p>
-            daily challenges of getting ZZZs.
+            daily challenges of thinking positive.
           </p>
         </div>
         <div class="ym-promo-block__item ym-promo-block--circle" ng-if="activity2amt != 0" ng-cloak>
@@ -134,15 +125,7 @@
             {{activity2amt}}
           </div>
           <p>
-            daily challenges of completing an act of kindness.
-          </p>
-        </div>
-        <div class="ym-promo-block__item ym-promo-block--circle" ng-if="activity3amt != 0" ng-cloak>
-          <div class="h2 ym-headline">
-            {{activity3amt}}
-          </div>
-          <p>
-            daily challenges of moving for one hour every day.
+            daily challenges of choosing kindness.
           </p>
         </div>
         <div class="ym-promo-block__item ym-promo-block--circle" ng-if="schoolYears > 0" ng-cloak>
@@ -163,7 +146,7 @@
       </div>
     </div>
   </div>
-  <div class="ym-page-section ym-page-section__list ym-accent-color">
+  <div class="ym-page-section ym-page-section__list ym-accent-color d-md-flex justify-content-between">
     <div class="ym-story" ng-class="companyParticipants.totalFundraisers > 0 ? 'col-md-6' : 'col-md-12'">
       <div class="ym-story-edit-btns" ng-if="participantRegistration.companyInformation.companyId == '[[S334:company_id]]' && participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
         <button type="button" class="btn btn-md-wide btn-toggle" ng-click="editCompanyPageContent()" ng-if="companyPageContent.mode == 'view'">
@@ -178,7 +161,7 @@
           </button>
         </div>
       </div>
-      <div class="hidden js--default-page-content" hidden aria-hidden="true" ng-non-bindable>
+      <div class="d-none js--default-page-content" hidden aria-hidden="true" ng-non-bindable>
         [[C6:fr_rich_text]]
       </div>
       <div ng-show="companyPageContent.mode == 'view'">
@@ -193,7 +176,7 @@
         <div text-angular name="ng_rich_text" ng-model="companyPageContent.ng_rich_text" ta-toolbar="{{companyPageContent.textEditorToolbar}}" serial="{{companyPageContent.serial}}"></div>
       </div>
     </div>
-    <div class="ym-list" class="col-md-6" role="list" aria-label="Top Fundraisers List" ng-if="companyParticipants.totalFundraisers > 0" ng-cloak>
+    <div class="ym-list col-md-6" role="list" aria-label="Top Fundraisers List" ng-if="companyParticipants.totalFundraisers > 0" ng-cloak>
       <h2 class="h5">
         Top Fundraisers
       </h2>

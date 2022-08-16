@@ -23,7 +23,7 @@ angular.module 'ahaLuminateControllers'
       $scope.productSelected = ''
 
       $scope.getSchoolPlan = ->
-        CatalogService.schoolPlanData '&method=GetSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
+        CatalogService.schoolPlanData '&method=GetSchoolPlan&CompanyId=' + $scope.companyId + '&EventId=' + $scope.frId,
           failure: (response) ->
           error: (response) ->
           success: (response) ->
@@ -38,7 +38,7 @@ angular.module 'ahaLuminateControllers'
               $scope.getProductCart()
 
       $scope.getProductCart = ->
-        CatalogService.schoolPlanData '&method=GetProductCart&CompanyId=' + $scope.participantRegistration.companyInformation.companyId,
+        CatalogService.schoolPlanData '&method=GetProductCart&CompanyId=' + $scope.companyId,
           failure: (response) ->
           error: (response) ->
           success: (response) ->
@@ -57,7 +57,7 @@ angular.module 'ahaLuminateControllers'
         $scope.TotalPointsAvailable = ($scope.TotalPointsEarned - $scope.TotalPointsSpent) - $scope.TotalPointsInCart
 
       $scope.getSchoolProducts = ->
-        CatalogService.schoolPlanData '&method=GetSchoolProducts&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
+        CatalogService.schoolPlanData '&method=GetSchoolProducts&CompanyId=' + $scope.companyId + '&EventId=' + $scope.frId,
           failure: (response) ->
           error: (response) ->
           success: (response) ->
@@ -73,7 +73,7 @@ angular.module 'ahaLuminateControllers'
             $scope.productPoints = response.data.company['points']
 
       $scope.saveProductCart = ->
-        CatalogService.schoolPlanData '&method=SaveProductCart&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&cart=' + angular.toJson($scope.cartProductList),
+        CatalogService.schoolPlanData '&method=SaveProductCart&CompanyId=' + $scope.companyId + '&cart=' + angular.toJson($scope.cartProductList),
           failure: (response) ->
           error: (response) ->
           success: (response) ->
@@ -198,7 +198,10 @@ angular.module 'ahaLuminateControllers'
           $scope.productList = productList
         if angular.element('.sizes input[id^=chk_]:checked').length == 0 and angular.element('.points input[id^=chk_]:checked').length == 0
           $scope.productList = $scope.allProducts
-
+          
+      $scope.quantityFilter = (row) ->
+        return parseInt(row['quantity']) > 0
+    
       $scope.onFileChange = (event) ->
         data = this
         $scope.status = false
@@ -216,7 +219,7 @@ angular.module 'ahaLuminateControllers'
                 console.log 'good', response
 
       $scope.getProductSummary = ->
-        CatalogService.schoolPlanData '&method=PurchaseSummary&CompanyId=' + $scope.participantRegistration.companyInformation.companyId,
+        CatalogService.schoolPlanData '&method=PurchaseSummary&CompanyId=' + $scope.companyId,
           failure: (response) ->
           error: (response) ->
           success: (response) ->
@@ -225,7 +228,7 @@ angular.module 'ahaLuminateControllers'
               getTotalPoints(false)
 
       $scope.deletePurchase = ->
-        CatalogService.schoolPlanData '&method=DelPurchase&CompanyId=' + $scope.participantRegistration.companyInformation.companyId,
+        CatalogService.schoolPlanData '&method=DelPurchase&CompanyId=' + $scope.companyId,
           failure: (response) ->
           error: (response) ->
           success: (response) ->
@@ -239,6 +242,7 @@ angular.module 'ahaLuminateControllers'
           $scope.addedToBasket.close()
         $scope.productView = 'list'
         jQuery('html,body').animate({ scrollTop: 0 }, 'fast');
+        jQuery('.header-totals button:first').focus()
       
       $scope.viewBasket = ->
         if typeof $scope.addedToBasket == 'object' 
@@ -255,7 +259,7 @@ angular.module 'ahaLuminateControllers'
         $scope.redeemConfirm.close()
           
       $scope.acceptConfirmation = ->
-        CatalogService.schoolPlanData '&method=RedeemProducts&ConsId=' + $rootScope.consId + '&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&cart=' + angular.toJson($scope.cartProductList),
+        CatalogService.schoolPlanData '&method=RedeemProducts&ConsId=' + $rootScope.consId + '&CompanyId=' + $scope.companyId + '&cart=' + angular.toJson($scope.cartProductList),
           failure: (response) ->
           error: (response) ->
           success: (response) ->
@@ -275,16 +279,19 @@ angular.module 'ahaLuminateControllers'
             angular.element('.js--default-header-login-form').submit()
           success: ->
             if not $scope.headerLoginInfo.ng_nexturl or $scope.headerLoginInfo.ng_nexturl is ''
-              window.location = $rootScope.secureDomain + 'site/SPageServer?pagename=ym_coordinator_reward_center&fr_id=' + $rootScope.frId
+              window.location = $rootScope.secureDomain + 'site/SPageServer?pagename=ym_coordinator_reward_center'
             else
               window.location = $scope.headerLoginInfo.ng_nexturl
       
-      if $scope.consId
-        TeamraiserRegistrationService.getRegistration
+      if $rootScope.consId
+        CatalogService.getStudentDetail '&cons_id=' + $rootScope.consId,
+          failure: (response) ->
+          error: (response) ->
           success: (response) ->
-            participantRegistration = response.getRegistrationResponse?.registration
-            if participantRegistration
-              $rootScope.participantRegistration = participantRegistration
+            if response.data.company[0] != null 
+              $rootScope.frId = response.data.company[0].EventId
+              $scope.companyId = response.data.company[0].CompanyId
+              $scope.isCoordinator = response.data.company[0].isCoordinator
               $scope.getSchoolPlan()
               $scope.getSchoolProducts()
   ]

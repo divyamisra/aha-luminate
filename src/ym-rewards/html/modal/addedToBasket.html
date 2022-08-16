@@ -5,7 +5,7 @@
   </div>
   <div class="modal-body">
     <div class="form-group">
-      <p>{{productSelected.productName}} has been added to your basket.</p>
+      <p>({{productSelected.quantitySel}}) {{productSelected.productName}} {{(productSelected.quantitySel > 1) ? "have" : "has"}} been added to your cart.</p>
     </div>
   </div>
   <div class="modal-footer">
@@ -16,8 +16,8 @@
         </button>
       </div>
       <div class="submitButton">
-        <button type="button" class="btn btn-toggle active" ng-click="viewBasket($event)" aria-label="Click to view Basket" autofocus>
-          View Basket
+        <button type="button" class="btn btn-toggle active" ng-click="viewBasket($event)" aria-label="Click to view Cart" autofocus>
+          View Cart
         </button>
       </div>
     </div>

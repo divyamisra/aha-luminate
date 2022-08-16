@@ -1,65 +1,52 @@
 <!-- SESSION TAGS -->
-[[U0:greetingPercentage=[[E130:[[E130:"[[E42:[[S334:fr_id]]:dollars]]" ".00" "" replaceall]] [[E130:"[[E42:[[S334:fr_id]]:goal]]" ".00" "" replaceall]] / 100 * int 100 min]]]]
+[[U0:greetingPercentage=[[E130:[[E130:"[[E42:[[S334:fr_id]]:dollars]]" ".00" "" replaceall]]
+[[E130:"[[E42:[[S334:fr_id]]:goal]]" ".00" "" replaceall]] / 100 * int 100 min]]]]
 
 <!-- GREETING HEADER -->
-<section class="greeting-header d-flex flex-column flex-lg-row justify-content-center box-shadow">
-  <div class="event-info-banner"></div>
-  <div class="event-info bg-white">
-    <div class="event-info__header text-center box-shadow">
-      <h1>[[E47:[[S334:fr_id]]:fr_info:1:event_title]]</h1>
-    </div>
-    <div class="container">
-      <div class="event-info__content">
-        <div class="event-info__details">
-          <h2 class="mt-6">Leaders for Life nominees are a class of changemakers bringing the mission of the American
-            Heart Association to life in their community.</h2>
-
-          <p class="text-center"><strong>Questions?</strong> <a href="mailto:[[E47:[[S334:fr_id]]:fr_info:1:coordinator_email]]">Contact us</a>.</p>
-        </div>
-        <div class="col-12 justify-content-center d-flex mt-5">
-          <a href="#top-list" class="scroll-link btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0">View All Nominees</a>
-          [[?xx::x[[S48:0:part-type-id]]x::::
-            <a href="TRC?pg=center&fr_id=[[S334:fr_id]]" class="scroll-link btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0">Visit My HQ</a>
-          ]]
-        </div>
+<section class="greeting-header">
+  <div class="little-gold-bars d-flex flex-column flex-md-row justify-content-center align-items-center">
+    <div class="event-info-banner" aria-hidden="true"></div>
+    <div class="event-info">
+      <div class="event-info__header">
+        <h1 class="p-0 text-dark text-uppercase">[[E47:[[S334:fr_id]]:fr_info:1:event_title]]</h1>
+        <h2 class="text-dark pb-5 pt-3 text-uppercase">[[E47:[[S334:fr_id]]:fr_info:1:event_location]]</h2>
+        <!-- Note: Using aria-label instead of (more appropriate) aria-description to provide a more robust solution (https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-description) -->
+        <a href="#nominee-section" class="scroll-link btn btn-primary rounded-0 mb-5 mb-md-0" aria-label="[[S51:reus_aha_nomineeBtn_accessibility]]">Meet the Nominees</a>
       </div>
-      <!-- /.row -->
     </div>
   </div>
-  <!-- /.event-info -->
 </section>
 <!-- END GREETING HEADER -->
 
-<!--GREETING ABOUT-->
+<!-- COUNTDOWN WIDGET -->
+<section id="countdownWidget-section" class="bg-primary">
+  <div class="container text-white">
+    <div class="row align-items-center">
+      <div class="col-md-5 p-4">
+        <p class="m-0"><strong>The Countdown Begins!</strong></p>
+        <p>Text here about what the countdown clock is for.</p>
+      </div>
+      <div id="countdownWidget" class="col-md-7"></div>
+
+    </div>
+  </div>
+</section>
+
+<!-- About -->
 <section id="about-field-day" class="greeting-about bg-white mt-5">
   <div class="container">
-    <h2 class="text-center pb-3 pb-md-5">About Leaders for Life</h2>
+    <h2>About [[E47:[[S334:fr_id]]:fr_info:1:event_title]]</h2>
     <div class="row">
       <div class="col-lg-12 js--greeting-text"></div>
     </div>
   </div>
 </section>
-<!--END GREETING ABOUT-->
 
-<!-- TOP LISTS -->
-<section id="top-list" class="top-lists">
-  <div class="container container-wide top-lists-container">
-    <div class="row">
-      <!-- /.col -->
-      <div class="my-4 col-12 top-list box-shadow js--team-top-list">
-        <h3 class="d-flex justify-content-center box-shadow">
-         Nominees
-        </h3>
-        <ul></ul>
-        <div class="col-md-4 m-auto pt-3 pb-4 text-center">
-          <a href="SPageServer/?pagename=Leaders_For_Life_Search&search_type=team&cross_event=false&fr_id=[[S334:fr_id]]&search_list=true" class="btn btn-secondary col-9 py-2">View All</a>
-        </div>
-        <!-- /.top-list-footer -->
-      </div>
-      <!-- /.col -->
-    </div>
-    <!-- /.row -->
-  </div>
-  <!-- /.container container-wide -->
-</section>
-<!-- END TOP LISTS -->
+<!-- NOMINEES -->
+[[S51:reus_aha_nominees_gold]]
+
+<!-- MOVEMENT -->
+[[S51:reus_aha_movement_old_man]]
+
+<!-- SOCIALS -->
+[[S51:reus_aha_social_feed]]

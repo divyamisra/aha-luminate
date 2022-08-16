@@ -3,20 +3,58 @@
 }
 
 .ym-progress__thermometer {
-  border: 8px solid #60cfff;
+  border: none;
+}
+.pg-personal.app-26 .ym-progress__thermometer {
+    max-width: none;
 }
 
 .ym-progress__thermometer--fill {
-  background: url('../image/middle-school-therm-fill.png') no-repeat top left;
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(193,14,33,0.999019676229867) 29%, rgba(193,14,33,1) 100%);
   height: 35px;
+  border-radius:10px;
+  padding-top:5px;
+  text-align:center;
+  font-size: 18px;
+  font-weight:bold;
+  white-space:nowrap;
 }
 
+/*
+.ym-progress__thermometer--fill::after {
+	border-left: .25rem solid transparent;
+	border-right: .25rem solid transparent;
+	border-top: .444rem solid #c10e21;
+	bottom: -.444rem;
+	content: "";
+	height: 0;
+	position: absolute;
+}
+*/
 .ym-progress__title {
   color: $event-secondary-heading;
 }
 
-.ym-progress__stats {
+/*.ym-progress__stats {
   p {
     color: $event-secondary-heading;
   }
+}*/
+
+.therm-text-black {
+  color: #000000;
+  text-indent: 100%;
+  white-space: nowrap;
+  
+  &::before {
+    content: " ";
+    margin-left: 5px;
+    position: relative;
+  }
+}
+
+.therm-text-white {
+  color: #ffffff;
+  text-indent: 5px;
+  white-space: nowrap;
 }

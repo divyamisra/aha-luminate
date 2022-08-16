@@ -1,17 +1,16 @@
 header {
-  background-color: $red-deep;
+  background-color: $white;
   @include media-breakpoint-up(lg) {
-    background-color: #c10e21;
+    background-color: $white;
   }
 
   background-image: none;
-  @include media-breakpoint-up(lg) {
-    background-image: url(https://secure3.convio.net/heartdev/images/content/pagebuilder/background-leaders.png);
-  }
+  // @include media-breakpoint-up(lg) {
+  //   background-image: url(https://secure3.convio.net/heartdev/images/content/pagebuilder/background-leaders.png);
+  // }
   background-repeat: no-repeat;
   background-position: center right;
   background-size: auto 100%;
-
 
   .container {
     max-width: 1350px!important;

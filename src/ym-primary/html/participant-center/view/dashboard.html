@@ -1,15 +1,15 @@
 <div cg-busy="dashboardPromises">
   <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true' || location == '/dashboard-student'" ng-cloak>
-    <div class="row ym-pc-dashboard-coordinators-message-section" ng-if="EventStartDate || DonationDueDate" ng-cloak>
+    <div class="row ym-pc-dashboard-coordinators-message-section mb-2" ng-if="EventStartDate || DonationDueDate" ng-cloak>
 	<div class="ym-pc-dashboard-event-date" ng-if="EventStartDate" ng-cloak>Event Date: {{EventStartDate | date:'MM/dd/yyyy'}} <span ng-if="EventStartDate != EventEndDate && EventEndDate != ''" ng-cloak> thru  {{EventEndDate | date:'MM/dd/yyyy'}}</span></div>
 	<div class="ym-pc-dashboard-money-date" ng-if="DonationDueDate" ng-cloak>Donation Due Date: {{DonationDueDate | date:'MM/dd/yyyy'}}</div>
     </div>  
-    <div class="row ym-pc-dashboard-school-challange">
+    <div class="row ym-pc-dashboard-school-challange mb-2">
       <div ng-class="col-sm-12" ng-if="coordinatorMessage.message && coordinatorMessage.message != ''" ng-cloak> 
         <div class="hv-image" ng-init="hvImgNotesrc='note-peek.png';" ng-mouseover="hvImgNotesrc='note-peek-animated.gif';" ng-mouseout="hvImgNotesrc='note-peek.png';">
-	  <img class="ym-coordinator-message-monster" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/teacher-note.png" alt="Teacher Note Sign">
+	  <img class="ym-coordinator-message-monster" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/teacher-note.png" alt="Note From Your Teacher">
         </div>
-        <section class="ym-pc-dashboard-coordinators-message-section" aria-label="Note From Your Teacher">
+        <section class="ym-pc-dashboard-coordinators-message-section mb-2" aria-label="Note From Your Teacher">
 	  <div class="ym-pc-dashboard-section-header">
 	    <div ng-bind-html="coordinatorMessage.message"></div>
     	  </div>
@@ -107,9 +107,6 @@
 					<pattern id="8_earned" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
 						<image aria-hidden="true" width="53" height="53" xlink:href="" ng-href="{{prizes[7].locked_image_url}}" alt="{{prizes[7].label}}" /> 
 					</pattern>
-					<pattern id="9_earned" filterunits="objectBoundingBox" x="0" y="0" width="1" height="1">
-						<image aria-hidden="true" width="53" height="53" xlink:href="" ng-href="{{prizes[8].locked_image_url}}" alt="{{prizes[8].label}}" /> 
-					</pattern>
 			   </defs>
          <g data-name="Winding Road">
 				  <g transform="translate(-.001 .003)">
@@ -118,56 +115,58 @@
 				  <g transform="translate(-.001 .003)">
 					 <path fill="url(#road)" d="M27 68v245h600v-245h-600z"></path>
 				  </g>
-		 		  <g id="online-registration" role="button" tabindex="0" ng-focus="mouseover(0, 0, 59, this, -10)" ng-blur="mouseout()" aria-label="{{prizes[0].aria_label}}">
-				    <path class="badge-path" d="M22 129v53h53v-53x-53z" fill="url(#1_delivered)" ng-mouseover="mouseover(0, 0, 59, this, -10)" ng-mouseout="mouseout()"/>
+		 		  <g id="take-challenge" role="image" tabindex="0" ng-focus="mouseover(0, 0, 59, this, -10)" ng-blur="mouseout()" title="Pick a Challenge">
+				    <path class="badge-path" d="M22 129v53h53v-53x-53z" fill="url(#1_delivered)" ng-mouseover="mouseover(0, 0, 59, this, -10)" ng-mouseout="mouseout()"  aria-label="{{prizes[0].aria_label}}"/>
  					  <text fill="#000" font-size="10" font-weight="bold"><tspan x="35" y="195">Pick a</tspan></text>
  					  <text fill="#000" font-size="10" font-weight="bold"><tspan x="27" y="207">Challenge</tspan></text>
    			  </g>
-				  <g id="take-challenge" data-name="Take Challenge" role="button" ng-focus="mouseover(1, 118, 80, this, 0)" ng-blur="mouseout()" aria-label="{{prizes[1].aria_label}}">
-				    <path class="badge-path" d="M150 150v53h53v-53x-53z" fill="url(#2{{(prizes[1].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(1, 118, 80, this, 0)" ng-mouseout="mouseout()"/>
- 					  <text fill="#000" font-size="10" font-weight="bold"><tspan x="145" y="215">Self-Donation</tspan></text>
+				  <g id="self-donation" data-name="Self Donation">
+					  <a role="link" xlink:href="" ng-href="{{prizes[1].final_url}}" title="Self-Donation" ng-focus="mouseover(1, 118, 80, this, 0)" ng-blur="mouseout()" aria-label="{{prizes[1].aria_label}}">
+ 				     <path class="badge-path" d="M150 150v53h53v-53x-53z" fill="url(#2{{(prizes[1].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(1, 118, 80, this, 0)" ng-mouseout="mouseout()"/>
+ 					   <text fill="#000" font-size="10" font-weight="bold"><tspan x="145" y="215">Self-Donation</tspan></text>
+ 					  </a>
 				  </g>
-				  <g id="personal-page" data-name="Personal Page" aria-label="{{prizes[2].aria_label}}">
-					  <a role="button" xlink:href="" ng-href="{{prizes[2].final_url}}{{(facebookFundraisersEnabled) ? 'fb' : ''}}" title="Personal Page" ng-focus="mouseover(2, 45, 190, this, 0)" ng-blur="mouseout()" aria-labelledby="personal-page">
+				  <g id="social-share" data-name="Share on Social">
+					  <a role="link" xlink:href="" ng-href="{{prizes[2].final_url}}{{(facebookFundraisersEnabled) ? 'fb' : ''}}" title="Share on Social" ng-focus="mouseover(2, 45, 190, this, 0)" ng-blur="mouseout()" aria-label="{{prizes[3].aria_label}}">
 						 <path class="badge-path" d="M77 260v53h53v-53x-53z" fill="url(#3{{(prizes[2].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(2, 45, 190, this, 0)" ng-mouseout="mouseout()"/>
   					 <text fill="#000" font-size="10" font-weight="bold"><tspan x="90" y="325">Share</tspan></text>
   					 <text fill="#000" font-size="10" font-weight="bold"><tspan x="82" y="337">on Social</tspan></text>
   					</a>
 				  </g>
-				  <g id="self-donation" data-name="Self Donor" aria-label="{{prizes[3].aria_label}}">
-					  <a role="button" xlink:href="" ng-href="{{prizes[3].final_url}}" title="Self Donor" ng-focus="mouseover(3, 153, 170, this, 0)" ng-blur="mouseout()" aria-labelledby="self-donation">
+				  <g id="personal-page" data-name="Personal Page">
+					  <a role="link" xlink:href="" ng-href="{{prizes[3].final_url}}" title="Edit Your Page" ng-focus="mouseover(3, 153, 170, this, 0)" ng-blur="mouseout()" aria-label="{{prizes[3].aria_label}}">
 						 <path class="badge-path" d="M185 240v53h53v-53x-53z" fill="url(#4{{(prizes[3].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(3, 153, 170, this, 0)" ng-mouseout="mouseout()"/>
+    				 <text fill="#000" font-size="10" font-weight="bold"><tspan x="203" y="303">Edit</tspan></text>
+  					 <text fill="#000" font-size="10" font-weight="bold"><tspan x="191" y="315">Your Page</tspan></text>
 					  </a>
- 					  <text fill="#000" font-size="10" font-weight="bold"><tspan x="203" y="303">Edit</tspan></text>
- 					  <text fill="#000" font-size="10" font-weight="bold"><tspan x="191" y="315">Your Page</tspan></text>
 				  </g>
-				  <g id="cpr-quiz" data-name="CPR Quiz" aria-label="{{prizes[4].aria_label}}">
-					  <a role="button" xlink:href="" ng-href="{{prizes[4].final_url}}" title="CPR Quiz" ng-focus="mouseover(4, 233, 100, this, 0)" ng-blur="mouseout()" aria-labelledby="cpr-quiz">
+				  <g id="cpr-quiz" data-name="CPR Quiz">
+					  <a role="link" xlink:href="" ng-href="{{prizes[4].final_url}}" title="Hands-Only CPR" ng-focus="mouseover(4, 233, 100, this, 0)" ng-blur="mouseout()" aria-label="{{prizes[4].aria_label}}">
 						 <path class="badge-path" d="M265 170v53h53v-53x-53z" fill="url(#5{{(prizes[4].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(4, 233, 100, this, 0)" ng-mouseout="mouseout()"/>
+ 					   <text fill="#000" font-size="10" font-weight="bold"><tspan x="265" y="234">Hands-Only</tspan></text>
+ 					   <text fill="#000" font-size="10" font-weight="bold"><tspan x="281" y="246">CPR</tspan></text>
 					  </a> 
- 					  <text fill="#000" font-size="10" font-weight="bold"><tspan x="265" y="234">Hands-Only</tspan></text>
- 					  <text fill="#000" font-size="10" font-weight="bold"><tspan x="281" y="246">CPR</tspan></text>
 				  </g>
-				  <g id="send-email" data-name="Send email/ecard" aria-label="{{prizes[6].aria_label}}">
-					  <a role="button" xlink:href="" ng-href="{{prizes[6].final_url}}" title="Send email/ecard" ng-focus="mouseover(6, 323, 170, this, 0)" ng-blur="mouseout()" aria-labelledby="send-email">
-						 <path class="badge-path" d="M355 240v53h53v-53x-53z" fill="url(#7{{(prizes[6].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(6, 323, 170, this, 0)" ng-mouseout="mouseout()"/>
+				  <g id="send-email" data-name="Send email/ecard">
+					  <a role="link" xlink:href="" ng-href="{{prizes[5].final_url}}" title="Send emails" ng-focus="mouseover(5, 323, 170, this, 0)" ng-blur="mouseout()" aria-label="{{prizes[5].aria_label}}">
+						 <path class="badge-path" d="M355 240v53h53v-53x-53z" fill="url(#6{{(prizes[5].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(5, 323, 170, this, 0)" ng-mouseout="mouseout()"/>
+ 					   <text fill="#000" font-size="10" font-weight="bold"><tspan x="369" y="303">Send</tspan></text>
+ 					   <text fill="#000" font-size="10" font-weight="bold"><tspan x="366" y="315">Emails</tspan></text>
 						</a>
- 					  <text fill="#000" font-size="10" font-weight="bold"><tspan x="369" y="303">Send</tspan></text>
- 					  <text fill="#000" font-size="10" font-weight="bold"><tspan x="366" y="315">Emails</tspan></text>
 				  </g>
-				  <g id="first-donation" data-name="First Online Donation" aria-label="{{prizes[7].aria_label}}">
-					  <a role="button" xlink:href="" ng-href="{{prizes[7].final_url}}" title="First Online Donation" ng-focus="mouseover(7, 378, 104, this, 0)" ng-blur="mouseout()" aria-labelledby="first-donation">
-						 <path class="badge-path" d="M410 174v53h53v-53x-53z" fill="url(#8{{(prizes[7].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(7, 378, 104, this, 0)" ng-mouseout="mouseout()"/>
+				  <g id="first-donation" data-name="First Online Donation">
+					  <a role="link" xlink:href="" ng-href="{{prizes[6].final_url}}" title="First Donation" ng-focus="mouseover(6, 378, 104, this, 0)" ng-blur="mouseout()" aria-label="{{prizes[6].aria_label}}">
+						 <path class="badge-path" d="M410 174v53h53v-53x-53z" fill="url(#7{{(prizes[6].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(6, 378, 104, this, 0)" ng-mouseout="mouseout()"/>
+ 					   <text fill="#000" font-size="10" font-weight="bold"><tspan x="422" y="157">First</tspan></text>
+ 					   <text fill="#000" font-size="10" font-weight="bold"><tspan x="412" y="169">Donation</tspan></text>
 						</a>
- 					  <text fill="#000" font-size="10" font-weight="bold"><tspan x="422" y="157">First</tspan></text>
- 					  <text fill="#000" font-size="10" font-weight="bold"><tspan x="412" y="169">Donation</tspan></text>
 				  </g>
-				  <g id="stroke-quiz" data-name="Stroke Quiz" aria-label="{{prizes[8].aria_label}}">
-					  <a role="button" xlink:href="" ng-href="{{prizes[8].final_url}}" title="Stroke Quiz" ng-focus="mouseover(8, 438, 0, this, 55, 180, 35)" ng-blur="mouseout()" aria-labelledby="stroke-quiz">
-						 <path class="badge-path" d="M500 42v53h53v-53x-53z" fill="url(#9{{(prizes[8].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(8, 438, 0, this, 55, 180, 35)" ng-mouseout="mouseout()"/>
+				  <g id="stroke-quiz" data-name="Stroke Quiz">
+					  <a role="link" xlink:href="" ng-href="{{prizes[7].final_url}}" title="Warning Signs of Stroke" ng-focus="mouseover(7, 438, 0, this, 55, 180, 35)" ng-blur="mouseout()" aria-label="{{prizes[7].aria_label}}">
+						 <path class="badge-path" d="M500 42v53h53v-53x-53z" fill="url(#8{{(prizes[7].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(7, 438, 0, this, 55, 180, 35)" ng-mouseout="mouseout()"/>
+ 					   <text fill="#000" font-size="10" font-weight="bold"><tspan x="493" y="105">Warning Signs</tspan></text>
+ 					   <text fill="#000" font-size="10" font-weight="bold"><tspan x="506" y="117">of Stroke</tspan></text>
 						</a>
- 					  <text fill="#000" font-size="10" font-weight="bold"><tspan x="493" y="105">Warning Signs</tspan></text>
- 					  <text fill="#000" font-size="10" font-weight="bold"><tspan x="506" y="117">of Stroke</tspan></text>
 				  </g> 
 				  <g>
 					 <path fill="url(#finn-wing-right)" d="M385 10v80h130v-80h-130z"></path>
@@ -175,13 +174,13 @@
 					 <path fill="url(#finn-wing-left)" d="M365 15v80h130v-80h-130z"></path>
 					 <path fill="url(#finn-mouth)" d="M435 57v20h20v-20h-20z"></path>
 				  </g>
-				  <g id="intro-text" filter="url(#a)" data-name="Intro Text" ng-if="prizesEarned != prizes.length" ng-cloak tabindex="0" aria-label="Click the icons in an order to complete the path and reveal Finn's message here!">
-					 <text fill="#000" font-size="9" font-weight="bold"><tspan x="225" y="340">Click the icons in any order to complete</tspan></text>
-					 <text fill="#000" font-size="9" font-weight="bold"><tspan x="240" y="352">the path and reveal the Treasure!</tspan></text>
+				  <g id="intro-text" filter="url(#a)" data-name="Intro Text" ng-if="prizesEarned != prizes.length" ng-cloak>
+					 <text fill="#000" font-size="9" font-weight="bold" aria-label="Click the icons in an order to complete"><tspan x="225" y="340">Click the icons in any order to complete</tspan></text>
+					 <text fill="#000" font-size="9" font-weight="bold" aria-label="the path and reveal the Treasure!"><tspan x="240" y="352">the path and reveal the Treasure!</tspan></text>
 				  </g> 
-		      <g id="intro-text" filter="url(#a)" data-name="Intro Text" ng-if="prizesEarned == prizes.length" ng-cloak tabindex="0" aria-label="You did it! Thank you for being a hero for Kids Heart Challenge!">
-					 <text fill="#000" font-size="9" font-weight="bold"><tspan x="230" y="340">You did it! Thank you for being</tspan></text>
-					 <text fill="#000" font-size="9" font-weight="bold"><tspan x="230" y="352">a hero for Kids Heart Challenge!</tspan></text>
+		                  <g id="intro-text" filter="url(#a)" data-name="Intro Text" ng-if="prizesEarned == prizes.length" ng-cloak>
+					 <text fill="#000" font-size="9" font-weight="bold" aria-label="You did it! Thank you for being"><tspan x="230" y="340">You did it! Thank you for being</tspan></text>
+					 <text fill="#000" font-size="9" font-weight="bold" aria-label="a hero for Kids Heart Challenge!"><tspan x="230" y="352">a hero for Kids Heart Challenge!</tspan></text>
 				  </g>
 				  <g>
 					 <path fill="url(#finn)" d="M105 45v101h101v-101h-101z"></path>
@@ -189,16 +188,15 @@
 				  <g ng-if="prizesEarned != prizes.length" ng-cloak>
 					 <path fill="url(#finn)" d="M105 45v101h101v-101h-101z"></path>
 					 <path fill="url(#chest-closed)" d="M460 210v195h225v-195h-225z"></path>
-		                         <g id="status-text" filter="url(#b)" data-name="Status Text" tabindex="0" aria-label="{{prizesEarned}} out of {{prizes.length}} steps complete!" transform="rotate(24 300 182)">
-					   <text fill="#fff" font-size="9" font-weight="bold" font-style="italic">
+		                         <g id="status-text" filter="url(#b)" data-name="Status Text" transform="rotate(24 300 182)">
+					   <text fill="#fff" font-size="9" font-weight="bold" font-style="italic" aria-label="{{prizesEarned}} out of {{prizes.length}}" >
 				             <tspan x="498" y="150" class="ng-binding">{{prizesEarned}} out of {{prizes.length}}</tspan>
 					   </text>
-                                           <text fill="#fff" font-size="9" font-weight="bold" font-style="italic">
+                                           <text fill="#fff" font-size="9" font-weight="bold" font-style="italic" aria-label="steps complete!" >
 					     <tspan x="485" y="161" class="ng-binding">steps complete!</tspan>
 					   </text>
 					  </g>
   	                           </g>
-				  </g>
 				  <g ng-if="prizesEarned == prizes.length" ng-cloak>
 					 <path fill="url(#chest-open)" d="M460 160v195h225v-195h-225z"></path>
   			   <foreignObject width="30" height="30" x="520" y="220">
@@ -300,7 +298,7 @@
 				  <g>
 					 <path aria-hidden="true" fill="url(#bgm)" d="M0 0v1180h658v-1180h-658z"></path>
 				  </g>
-          <g id="into-text-mobile1" filter="url(#am)" data-name="Intro Text" ng-if="prizesEarned != prizes.length" tabindex="0" aria-label="Click the icons in an order to complete the path and reveal Finn's message here!" class="ng-scope">
+                                  <g id="into-text-mobile1" filter="url(#am)" data-name="Intro Text" ng-if="prizesEarned != prizes.length" tabindex="0" aria-label="Click the icons in an order to complete the path and reveal the Treasure!" class="ng-scope">
 					 <text fill="#000" font-size="20" font-weight="bold"><tspan x="55" y="60">Click the icons in any order</tspan></text>
 					 <text fill="#000" font-size="20" font-weight="bold"><tspan x="55" y="82">to complete the path and</tspan></text>
 					 <text fill="#000" font-size="20" font-weight="bold"><tspan x="55" y="104">reveal the Treasure!</tspan></text>
@@ -310,70 +308,70 @@
 					 <text fill="#000" font-size="20" font-weight="bold"><tspan x="55" y="82">for being a hero for</tspan></text>
 					 <text fill="#000" font-size="20" font-weight="bold"><tspan x="55" y="104">Kids Heart Challenge!</tspan></text>
 				  </g>
-				  <g role="button" id="online-registration-mobile" data-name="Online Registration" tabindex="0" ng-focus="mouseoverm(0, 20, 220, this, 0)" ng-blur="mouseoutm()" aria-label="{{prizes[0].aria_label}}">
+                                  <g>
+          		 		<path aria-hidden="true" fill="url(#finnm)" d="M55 155v100h100v-100h-100z"></path>
+          			  </g>
+				  <g role="image" id="take-challenge-mobile" data-name="Take Challenge" tabindex="0" aria-label="{{prizes[0].aria_label}}">
 					 <path class="badge-path" d="M60 330v100h100v-100x-100z" fill="url(#1_deliveredm)" ng-mouseover="mouseoverm(0, 20, 220, this, 0)" ng-mouseout="mouseoutm()"/>
  					  <text fill="#000" font-size="18" font-weight="bold"><tspan x="81" y="448">Pick a</tspan></text>
  					  <text fill="#000" font-size="18" font-weight="bold"><tspan x="62" y="470">Challenge</tspan></text>
-  		 	  </g>
-				  <g id="personal-page-mobile" data-name="Self Donor" aria-label="{{prizes[2].aria_label}}">
-					  <a role="button" xlink:href="" ng-href="{{prizes[2].final_url}}" title="Personal Page" ng-focus="mouseoverm(2, 240, 275, this, 0)" ng-blur="mouseoutm()" aria-labelledby="personal-page-mobile">
-						 <path class="badge-path" d="M280 385v100h100v-100x-100z" fill="url(#2{{(prizes[2].earned) ? '_deliveredm' : '_earnedm'}})" ng-mouseover="mouseoverm(2, 240, 275, this, 0)" ng-mouseout="mouseoutm()"/>
+  		 	          </g>
+				  <g id="self-donor-mobile" data-name="Self Donor" aria-label="{{prizes[1].aria_label}}">
+					  <a role="link" xlink:href="" ng-href="{{prizes[1].final_url}}" title="Self Donation" ng-focus="mouseoverm(1, 240, 275, this, 0)" ng-blur="mouseoutm()" aria-labelledby="self-donor-mobile">
+						 <path class="badge-path" d="M280 385v100h100v-100x-100z" fill="url(#2{{(prizes[1].earned) ? '_deliveredm' : '_earnedm'}})" ng-mouseover="mouseoverm(1, 240, 275, this, 0)" ng-mouseout="mouseoutm()"/>
+ 					   <text fill="#000" font-size="18" font-weight="bold"><tspan x="274" y="503">Self-Donation</tspan></text>
 						</a>
- 					  <text fill="#000" font-size="18" font-weight="bold"><tspan x="274" y="503">Self-Donation</tspan></text>
 				  </g>
-				  <g id="self-donor-mobile" data-name="Self Donor" aria-label="{{prizes[3].aria_label}}">
-					  <a role="button" xlink:href="" ng-href="{{prizes[3].final_url}}" title="Self Donor" ng-focus="mouseoverm(3, 430, 325, this, 0)" ng-blur="mouseoutm()" aria-labelledby="self-donor-mobile">
-						 <path class="badge-path" d="M470 435v100h100v-100x-100zv" fill="url(#3{{(prizes[3].earned) ? '_deliveredm' : '_earnedm'}})" ng-mouseover="mouseoverm(3, 430, 325, this, 0)" ng-mouseout="mouseoutm()"/>
+				  <g id="social-share-mobile" data-name="Share on Social" aria-label="{{prizes[2].aria_label}}">
+					  <a role="link" xlink:href="" ng-href="{{prizes[2].final_url}}" title="Share on Social" ng-focus="mouseoverm(2, 430, 325, this, 0)" ng-blur="mouseoutm()" aria-labelledby="social-share-mobile">
+						 <path class="badge-path" d="M470 435v100h100v-100x-100zv" fill="url(#3{{(prizes[2].earned) ? '_deliveredm' : '_earnedm'}})" ng-mouseover="mouseoverm(2, 430, 325, this, 0)" ng-mouseout="mouseoutm()"/>
+ 					   <text fill="#000" font-size="18" font-weight="bold"><tspan x="482" y="553">Share on</tspan></text>
+ 					   <text fill="#000" font-size="18" font-weight="bold"><tspan x="493" y="575">Social</tspan></text>
 						</a>
- 					  <text fill="#000" font-size="18" font-weight="bold"><tspan x="482" y="553">Share on</tspan></text>
- 					  <text fill="#000" font-size="18" font-weight="bold"><tspan x="493" y="575">Social</tspan></text>
 				  </g>
-				  <g id="go-social-mobile" data-name="Go Social" aria-label="{{prizes[4].aria_label}}">
-					  <a role="button" xlink:href="" ng-href="{{prizes[4].final_url}}{{(facebookFundraisersEnabled) ? 'fb' : ''}}" title="Go Social" ng-focus="mouseoverm(4, 100, 395, this, 0)" ng-blur="mouseoutm()" aria-labelledby="go-social-mobile">
-						 <path class="badge-path" d="M140 505v100h100v-100x-100z" fill="url(#4{{(prizes[4].earned) ? '_deliveredm' : '_earnedm'}})" ng-mouseover="mouseoverm(4, 100, 395, this, 0)" ng-mouseout="mouseoutm()"/>
+				  <g id="personal-page-mobile" data-name="Edit Your Page" aria-label="{{prizes[3].aria_label}}">
+					  <a role="link" xlink:href="" ng-href="{{prizes[3].final_url}}{{(facebookFundraisersEnabled) ? 'fb' : ''}}" title="Edit Your Page" ng-focus="mouseoverm(3, 100, 395, this, 0)" ng-blur="mouseoutm()" aria-labelledby="personal-page-mobile">
+						 <path class="badge-path" d="M140 505v100h100v-100x-100z" fill="url(#4{{(prizes[3].earned) ? '_deliveredm' : '_earnedm'}})" ng-mouseover="mouseoverm(3, 100, 395, this, 0)" ng-mouseout="mouseoutm()"/>
+ 					   <text fill="#000" font-size="18" font-weight="bold"><tspan x="152" y="623">Edit Your</tspan></text>
+ 					   <text fill="#000" font-size="18" font-weight="bold"><tspan x="166" y="645">Page</tspan></text>
 					  </a>
- 					  <text fill="#000" font-size="18" font-weight="bold"><tspan x="152" y="623">Edit Your</tspan></text>
- 					  <text fill="#000" font-size="18" font-weight="bold"><tspan x="166" y="645">Page</tspan></text>
 				  </g>
-				  <g id="send-ecard-mobile" data-name="Send email/ecard" aria-label="{{prizes[5].aria_label}}">
-					  <a role="button" xlink:href="" ng-href="{{prizes[5].final_url}}" title="Send email/ecard" ng-focus="mouseoverm(5, 90, 580, this, 0)" ng-blur="mouseoutm()" aria-labelledby="send-ecard-mobile">
-						 <path class="badge-path" d="M130 690v100h100v-100x-100z" fill="url(#5{{(prizes[5].earned) ? '_deliveredm' : '_earnedm'}})" ng-mouseover="mouseoverm(5, 90, 580, this, 0)" ng-mouseout="mouseoutm()"/>
+				  <g id="cpr-quiz-mobile" data-name="Hands-Only CPR" aria-label="{{prizes[4].aria_label}}">
+					  <a role="link" xlink:href="" ng-href="{{prizes[4].final_url}}" title="Hands-Only CPR" ng-focus="mouseoverm(4, 90, 580, this, 0)" ng-blur="mouseoutm()" aria-labelledby="cpr-quiz-mobile">
+						 <path class="badge-path" d="M130 690v100h100v-100x-100z" fill="url(#5{{(prizes[4].earned) ? '_deliveredm' : '_earnedm'}})" ng-mouseover="mouseoverm(4, 90, 580, this, 0)" ng-mouseout="mouseoutm()"/>
+ 					   <text fill="#000" font-size="18" font-weight="bold"><tspan x="130" y="808">Hands-Only</tspan></text>
+ 					   <text fill="#000" font-size="18" font-weight="bold"><tspan x="160" y="830">CPR</tspan></text>
 						</a> 
- 					  <text fill="#000" font-size="18" font-weight="bold"><tspan x="130" y="808">Hands-Only</tspan></text>
- 					  <text fill="#000" font-size="18" font-weight="bold"><tspan x="160" y="830">CPR</tspan></text>
 				  </g>
-				  <g id="first-donation-mobile" data-name="First Online Donation" aria-label="{{prizes[6].aria_label}}">
-					  <a role="button" xlink:href="" ng-href="{{prizes[6].final_url}}" title="First Online Donation" ng-focus="mouseoverm(6, 340, 470, this, 0)" ng-blur="mouseoutm()" aria-labelledby="first-donation-mobile">
-						 <path class="badge-path" d="M380 580v100h100v-100x-100z" fill="url(#6{{(prizes[6].earned) ? '_deliveredm' : '_earnedm'}})" ng-mouseover="mouseoverm(6, 340, 470, this, 0)" ng-mouseout="mouseoutm()"/>
+				  <g id="send-emails-mobile" data-name="Send Emails" aria-label="{{prizes[5].aria_label}}">
+					  <a role="link" xlink:href="" ng-href="{{prizes[5].final_url}}" title="Send Emails" ng-focus="mouseoverm(5, 340, 470, this, 0)" ng-blur="mouseoutm()" aria-labelledby="send-emails-mobile">
+						 <path class="badge-path" d="M380 580v100h100v-100x-100z" fill="url(#6{{(prizes[5].earned) ? '_deliveredm' : '_earnedm'}})" ng-mouseover="mouseoverm(5, 340, 470, this, 0)" ng-mouseout="mouseoutm()"/>
+ 					   <text fill="#000" font-size="18" font-weight="bold"><tspan x="408" y="698">Send</tspan></text>
+ 					   <text fill="#000" font-size="18" font-weight="bold"><tspan x="402" y="720">Emails</tspan></text>
 						</a>
- 					  <text fill="#000" font-size="18" font-weight="bold"><tspan x="408" y="698">Send</tspan></text>
- 					  <text fill="#000" font-size="18" font-weight="bold"><tspan x="402" y="720">Emails</tspan></text>
 				  </g>
-				  <g id="cpr-quiz-mobile" data-name="CPR Quiz" aria-label="{{prizes[7].aria_label}}">
-					  <a role="button" xlink:href="" ng-href="{{prizes[7].final_url}}" title="CPR Quiz" ng-focus="mouseoverm(7, 395, 620, this, 0)" ng-blur="mouseoutm()" aria-labelledby="cpr-quiz-mobile">
-						 <path class="badge-path" d="M435 730v100h100v-100x-100z" fill="url(#7{{(prizes[7].earned) ? '_deliveredm' : '_earnedm'}})" ng-mouseover="mouseoverm(7, 395, 620, this, 0)" ng-mouseout="mouseoutm()"/>
+				  <g id="first-donation-mobile" data-name="First Donation" aria-label="{{prizes[6].aria_label}}">
+					  <a role="link" xlink:href="" ng-href="{{prizes[6].final_url}}" title="First Donation" ng-focus="mouseoverm(6, 395, 620, this, 0)" ng-blur="mouseoutm()" aria-labelledby="first-donation-mobile">
+						 <path class="badge-path" d="M435 730v100h100v-100x-100z" fill="url(#7{{(prizes[6].earned) ? '_deliveredm' : '_earnedm'}})" ng-mouseover="mouseoverm(6, 395, 620, this, 0)" ng-mouseout="mouseoutm()"/>
+ 					   <text fill="#000" font-size="18" font-weight="bold"><tspan x="465" y="848">First</tspan></text>
+ 					   <text fill="#000" font-size="18" font-weight="bold"><tspan x="447" y="870">Donation</tspan></text>
 						</a>
- 					  <text fill="#000" font-size="18" font-weight="bold"><tspan x="465" y="848">First</tspan></text>
- 					  <text fill="#000" font-size="18" font-weight="bold"><tspan x="447" y="870">Donation</tspan></text>
 				  </g>
-				  <g id="move-more-mobile" data-name="Move More" aria-label="{{prizes[8].aria_label}}">
-				  	<a role="button" xlink:href="" ng-click="showMobileApp()" href="javascript:void(0)" title="Move More" ng-focus="mouseoverm(8, 160, 715, this, 0)" ng-blur="mouseoutm()" aria-labelledby="move-more-mobile">
-					 		<path class="badge-path" d="M200 825v100h100v-100x-100z" fill="url(#8{{(prizes[8].earned) ? '_deliveredm' : '_earnedm'}})" ng-mouseover="mouseoverm(8, 160, 715, this, 0)" ng-mouseout="mouseoutm()"/>
+				  <g id="stroke-quiz-mobile" data-name="Warning Signs of Stroke" aria-label="{{prizes[7].aria_label}}">
+				  	<a role="link" xlink:href="" ng-href="{{prizes[7].final_url}}" title="Warning Sings of Stroke" ng-focus="mouseoverm(7, 160, 715, this, 0)" ng-blur="mouseoutm()" aria-labelledby="stroke-quiz-mobile">
+					 	 <path class="badge-path" d="M200 825v100h100v-100x-100z" fill="url(#8{{(prizes[7].earned) ? '_deliveredm' : '_earnedm'}})" ng-mouseover="mouseoverm(7, 160, 715, this, 0)" ng-mouseout="mouseoutm()"/>
+ 					   <text fill="#000" font-size="18" font-weight="bold"><tspan x="189" y="943">Warning Signs</tspan></text>
+ 					   <text fill="#000" font-size="18" font-weight="bold"><tspan x="212" y="965">of Stroke</tspan></text>
 					 	</a>
- 					  <text fill="#000" font-size="18" font-weight="bold"><tspan x="189" y="943">Warning Signs</tspan></text>
- 					  <text fill="#000" font-size="18" font-weight="bold"><tspan x="212" y="965">of Stroke</tspan></text>
 				  </g>
-          <g>
-          		<path fill="url(#finnm)" d="M55 155v100h100v-100h-100z"></path>
-          </g>
 				  <g ng-if="prizesEarned != prizes.length" ng-cloak>
-					 <path fill="url(#chest-closedm)" d="M327 950v285h300v-285h-300z"></path>
-           <g id="status-text-mobile" filter="url(#bm)" data-name="Status Text" tabindex="0" arial-label="{{prizesEarned}} out of {{prizes.length}} steps complete!" transform="rotate(25 468 370)">
- 				     <text fill="#fff" font-size="14" font-weight="bold" font-style="italic"><tspan x="647" y="975">{{prizesEarned}} out of {{prizes.length}}</tspan></text>
+					 <path aria-hidden="true" fill="url(#chest-closedm)" d="M327 950v285h300v-285h-300z"></path>
+           				 <g id="status-text-mobile" filter="url(#bm)" data-name="Status Text" tabindex="0" arial-label="{{prizesEarned}} out of {{prizes.length}} steps complete!" transform="rotate(25 468 370)">
+ 				           <text fill="#fff" font-size="14" font-weight="bold" font-style="italic"><tspan x="647" y="975">{{prizesEarned}} out of {{prizes.length}}</tspan></text>
 					   <text fill="#fff" font-size="14" font-weight="bold" font-style="italic"><tspan x="625" y="995">steps complete!</tspan></text>
-				   </g>
+				         </g>
 				  </g>
-				  <g ng-if="prizesEarned == prizes.length" ng-cloak>
+				  <g aria-hidden="true" ng-if="prizesEarned == prizes.length" ng-cloak>
 					 <path fill="url(#chest-openm)" d="M327 875v345h335v-345h-335z"></path>
   			   <foreignObject width="30" height="30" x="370" y="1000">
 						<div class="template shine small"></div>
@@ -389,9 +387,9 @@
 					 </foreignObject>
 				  </g>
 				</g>
-				<g id="tooltipm" font-size="35">
+				<g aria-hidden="true" id="tooltipm" font-size="35">
 					<rect id="tRctm" width="180" height="100" fill="transparent" rx="3" aria-hidden="true"></rect>
-					<foreignObject id="tTipm" width="180" height="100">
+					<foreignObject id="tTipm" width="180" height="100" aria-hidden="true">
 							<div xmlns="http://www.w3.org/1999/xhtml" style="padding: 5px;font-size:16px;color:#fff;"></div>
 					</foreignObject>
 					<polygon id="tTrim" fill="#850BAA" aria-hidden="true"/>
@@ -406,8 +404,9 @@
           My Fundraising
         </h2>
       </div>
-      <div class="row">
-        <div class="col-sm-6 ym-pc-dashboard-progress-section__column event-secondary-medium">
+      <div class="d-md-flex justify-content-between flex-wrap">
+        <div class="col-sm-6 p-2">
+	        <div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3 h-100">
           <div class="ym-pc-dashboard-progress-box">
             <div id="ym-pc-dashboard-personal-panel--student" aria-label="Personal Progress">
               <div class="ym-pc-dashboard-section-header">
@@ -418,18 +417,41 @@
               <div class="ym-progress__thermometer" name="Personal Progress Bar" aria-label="{{participantProgress.percent}} percent of fundraising progress" aria-valuetext="{{participantProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{participantProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
                 <div class="ym-progress__thermometer--fill" ng-class="(participantProgress.percent < 13) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': participantProgress.percent + '%'}">{{participantProgress.percent}}%</div>
               </div>
-              <div class="ym-progress-related">
-                <div class="ym-progress-donate">
+              <div class="ym-progress-related d-lg-flex justify-content-between flex-wrap">
+                <div class="ym-progress-donate col-lg-6">
                   <p>
-                    <a class="btn btn-lg btn-primary" ng-href="{{baseUrl}}#/reports" title="Click to view your donation reports"><strong>Donation Reports</strong></a>
+                    <a class="btn btn-md btn-primary" ng-href="{{baseUrl}}#/reports" title="Click to view your donation reports"><strong>Donation Reports</strong></a>
                   </p>
                   <p>
-                    <a class="btn btn-lg btn-primary" ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}">
+                    <a class="btn btn-md btn-primary" href="#paymentSelType" data-bs-toggle="collapse">
                       <strong>Donate to Personal Page</strong>
                     </a>
                   </p>
+		  <div id="paymentSelType" class="collapse">
+			<h7>How would you like to donate?</h7>
+			<div class="d-flex justify-content-between flex-wrap align-items-center text-center">
+				<a class="col-md-6 p-2" href="Donation2?df_id={{eventInfo.donationFormId}}&FR_ID={{frId}}&PROXY_TYPE=20&PROXY_ID={{consId}}">
+					<img class="img-fluid" src="https://www2.heart.org/images/content/pagebuilder/credit-card-logos.png" alt="Donate using Credit Card">
+				</a>
+				<a class="col-md-6 p-2" href="SPageNavigator/ym_khc_donate_amazon.html?FR_ID={{frId}}&mfc_pref=T&PROXY_ID={{consId}}&PROXY_TYPE=20" class="amazon">
+					<img class="img-fluid" src="https://www2.heart.org/images/content/pagebuilder/amazon-payments.png" alt="Donate using Amazon">
+				</a>
+				<a class="col-md-6 p-2" href="SPageNavigator/ym_khc_donate_googlepay.html?FR_ID={{frId}}&mfc_pref=T&PROXY_ID={{consId}}&PROXY_TYPE=20" class="googlepay">
+					<img class="img-fluid" src="https://www2.heart.org/donation-forms/donatenow/images/googlepay-button.png" alt="Donate using Google Pay">
+				</a>
+				<a class="col-md-6 p-2" href="SPageNavigator/ym_khc_donate_applepay.html?FR_ID={{frId}}&mfc_pref=T&PROXY_ID={{consId}}&PROXY_TYPE=20" class="applepay ">
+					<img class="img-fluid" src="https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png" alt="Donate using ApplePay">
+				</a>
+				<a class="col-md-6 p-2" href="SPageNavigator/ym_khc_donate_venmo.html?FR_ID={{frId}}&mfc_pref=T&PROXY_ID={{consId}}&PROXY_TYPE=20" class="venmo">
+					<img class="img-fluid" src="https://www2.heart.org/donation-forms/donatenow/images/venmo-button.png" alt="Donate using Venmo">
+				</a>
+				<a class="col-md-6 p-2" href="Donation2?df_id={{eventInfo.donationFormId}}&FR_ID={{frId}}&PROXY_TYPE=20&PROXY_ID={{consId}}&amp;paypal=true">
+					<img class="img-fluid" src="https://www2.heart.org/images/content/pagebuilder/PP_logo_h_100x26.png" alt="Donate using Paypal">
+				</a>
+			</div>
+		</div>
                 </div>
-                <div class="ym-progress-amounts">
+                <div class="ym-progress-amounts col-lg-6">
                   <p>
                     <strong><span ng-bind-html="participantProgress.raisedFormatted"></span></strong> raised
                   </p>
@@ -454,10 +476,10 @@
 			My student will be participating in Kids Heart Challenge next year!
 		  </div>
 		  <div class="col-md-4">
-  		    <select class="form-control" id="participatingNextYear" ng-model="participatingNextYear" aria-label="Next Year Participation" ng-change="updateParticipatingNextYear()">
-		      <option value="Yes">Yes</option>
-		      <option value="No">No</option>
-		      <option value="Still Considering">Still Considering</option>
+  		    <select class="form-control" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear" aria-label="Participating Next Year" ng-change="putSchoolPlan($event,'ParticipatingNextYear')">
+		      <option value="YES">Yes</option>
+		      <option value="NO">No</option>
+		      <option value="I'M NOT SURE">Still Considering</option>
 		    </select>
  		  </div>
 		</div>
@@ -470,7 +492,9 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-6 ym-pc-dashboard-progress-section__column event-secondary-medium">
+        </div>
+        <div class="col-sm-6 p-2">
+  	      <div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3 h-100">
           <div class="ym-pc-dashboard-progress-box">
             <div id="ym-pc-dashboard-company-panel--student" aria-label="School Progress">
               <div class="ym-pc-dashboard-section-header">
@@ -481,8 +505,8 @@
               <div class="ym-progress__thermometer" name="School Progress Bar" aria-label="{{participantProgress.percent}} percent of fundraising progress" aria-valuetext="{{companyProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{companyProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
                 <div class="ym-progress__thermometer--fill" ng-class="(companyProgress.percent < 13) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': companyProgress.percent + '%'}">{{companyProgress.percent}}%</div>
               </div>
-	            <div class="row">
-                <div class="ym-pc-dashboard-badges-box col-xs-8">
+	      <div class="d-md-flex">
+                <div class="ym-pc-dashboard-badges-box col-md-8">
                   <div id="ym-pc-dashboard-badges-panel--school" aria-label="School Challenge Badge">
                     <div class="ym-pc-dashboard-badges-challenge">
                       <strong>School Goal Challenge:</strong><br/>
@@ -501,7 +525,7 @@
             		    </div>
             		  </div>
             		</div>
-                <div class="col-xs-4">
+                <div class="col-md-4">
                   <div class="ym-progress-related">
                     <div class="ym-progress-amounts">
                 		  <p>
@@ -515,35 +539,34 @@
                     </div>
                   </div>
                 </div>
- 	            </div>
-       	      <div class="row">
-    	          <div class="col-md-12 ym-pc-dashboard-school-challenge" ng-if="schoolChallenge == 1" ng-cloak>
+ 	      </div>
+              <div class="ym-pc-dashboard-school-challenge" ng-if="schoolChallenge == 1" ng-cloak>
                   <strong>School Challenge:</strong><br/>
                   Raise more than {{companyProgress.schoolChallengeLevel}} to participate in your school challenge - {{companyProgress.schoolChallenge == "Other" ? companyProgress.schoolChallengeOther : companyProgress.schoolChallenge}}. Keep fundraising to help your school reach its goal of {{companyProgress.goalFormatted}}.
-                </div>
-      	        <div class="col-md-12 ym-pc-dashboard-school-challenge" ng-if="schoolChallenge == 2" ng-cloak>
-            		  <strong>School Challenge:</strong><br/>
-            		  Since you raised more than {{companyProgress.schoolChallengeLevel}} you can now participate in your school challenge - {{companyProgress.schoolChallenge == "Other" ? companyProgress.schoolChallengeOther : companyProgress.schoolChallenge}}. Keep fundraising to help your school reach its goal of {{companyProgress.goalFormatted}}.
-             		</div>
-	              <div class="col-md-12 ym-pc-dashboard-school-challenge" ng-if="schoolChallenge == 3" ng-cloak>
-            		  <strong>School Challenge:</strong><br/>
-            	 	  Raise more than {{companyProgress.schoolChallengeLevel}} to participate in your school challenge - {{companyProgress.schoolChallenge == "Other" ? companyProgress.schoolChallengeOther : companyProgress.schoolChallenge}}. Keep fundraising to help your school raise more than its goal of {{companyProgress.goalFormatted}}.
-             		</div>
-            		<div class="col-md-12 ym-pc-dashboard-school-challenge" ng-if="schoolChallenge == 4" ng-cloak>
-            		  <strong>School Challenge:</strong><br/>
-            		  Since you raised more than {{companyProgress.schoolChallengeLevel}} you can now participate in your school challenge - {{companyProgress.schoolChallenge == "Other" ? companyProgress.schoolChallengeOther : companyProgress.schoolChallenge}}. Keep fundraising to help your school raise more than its goal of {{companyProgress.goalFormatted}}.
-             		 </div>
-	             </div>
-            </div>
+              </div>
+	      <div class="ym-pc-dashboard-school-challenge" ng-if="schoolChallenge == 2" ng-cloak>
+		  <strong>School Challenge:</strong><br/>
+		  Since you raised more than {{companyProgress.schoolChallengeLevel}} you can now participate in your school challenge - {{companyProgress.schoolChallenge == "Other" ? companyProgress.schoolChallengeOther : companyProgress.schoolChallenge}}. Keep fundraising to help your school reach its goal of {{companyProgress.goalFormatted}}.
+	      </div>
+	      <div class="ym-pc-dashboard-school-challenge" ng-if="schoolChallenge == 3" ng-cloak>
+		  <strong>School Challenge:</strong><br/>
+		  Raise more than {{companyProgress.schoolChallengeLevel}} to participate in your school challenge - {{companyProgress.schoolChallenge == "Other" ? companyProgress.schoolChallengeOther : companyProgress.schoolChallenge}}. Keep fundraising to help your school raise more than its goal of {{companyProgress.goalFormatted}}.
+		</div>
+		<div class="ym-pc-dashboard-school-challenge" ng-if="schoolChallenge == 4" ng-cloak>
+		  <strong>School Challenge:</strong><br/>
+		  Since you raised more than {{companyProgress.schoolChallengeLevel}} you can now participate in your school challenge - {{companyProgress.schoolChallenge == "Other" ? companyProgress.schoolChallengeOther : companyProgress.schoolChallenge}}. Keep fundraising to help your school raise more than its goal of {{companyProgress.goalFormatted}}.
+		 </div>
+	     </div>
           </div>
+        </div>
         </div>
       </div>
     </section>
-    <section class="ym-pc-dashboard-facebook-section" aria-label="Facebook Fundraising" ng-show="facebookFundraisersEnabled" ng-cloak>
+    <section class="ym-pc-dashboard-facebook-section p-2 mb-2" aria-label="Facebook Fundraising" ng-show="facebookFundraisersEnabled" ng-cloak>
       <div class="ym-pc-dashboard-facebook-box" ng-show="!facebookFundraiserId">
         <div class="container">
           <div class="ym-pc-dashboard-section-header">
-            <h3 class="h5">
+            <h3 class="h5 text-white">
               Let's Get Fundraising<span ng-if="consNameFirst && consNameFirst != ''">, <span ng-bind-html="consNameFirst"></span></span>!
             </h3>
           </div>
@@ -572,7 +595,7 @@
       <div class="ym-pc-dashboard-facebook-box js--facebook-fundraiser-completed-section" ng-show="facebookFundraiserId">
         <div class="container">
           <div class="ym-pc-dashboard-section-header">
-            <h3 class="h5">
+            <h3 class="h5 text-white">
               Your Fundraiser is Connected to Facebook!
             </h3>
           </div>
@@ -590,9 +613,10 @@
         </div>
       </div>
     </section>
-    <section class="ym-pc-dashboard-progress-section" aria-label="Spread the Word and Livestream Sections">
-      <div class="row">
-        <div class="col-sm-6 ym-pc-dashboard-progress-section__column event-secondary-medium">
+    <section class="ym-pc-dashboard-progress-section mb-2" aria-label="Spread the Word and Livestream Sections">
+      <div class="d-md-flex justify-content-between flex-wrap">
+        <div class="col-sm-6 p-2">
+	        <div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3 h-100">
           <div class="ym-pc-dashboard-email-challenge-box">
             <div class="ym-pc-dashboard-section-header">
               <h3 class="h5">
@@ -612,15 +636,16 @@
                 </a>
 	      </div>
               <div class="ym-pc-dashboard-email-challenge-buttons">
-                <a class="btn btn-md-wide btn-primary" ng-href="{{baseUrl}}#/email">
+                <a class="btn btn-md-wide btn-primary mb-2" ng-href="{{baseUrl}}#/email">
                   <strong>Send Email</strong>
                 </a> 
-                <a class="btn btn-md-wide btn-primary" ng-href="https://tools.heart.org/aha_ym23{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank">
+                <a class="btn btn-md-wide btn-primary mb-2" ng-href="https://tools.heart.org/aha_ym23{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank">
                   <strong>Send e-card</strong>
                 </a>
               </div>
             </div>
           </div>
+        </div>
         </div>
         <!-- 
         <div class="col-sm-6 ym-pc-dashboard-progress-section__column event-secondary-medium">
@@ -657,7 +682,7 @@
         -->
       </div>
     </section>
-    <section class="ym-pc-dashboard-standard-gifts-section" aria-label="My Gifts" ng-if="hideGifts != 'Y' && has_bonus != 3" ng-cloak>
+    <section class="ym-pc-dashboard-standard-gifts-section mb-2" aria-label="My Gifts" ng-if="schoolPlan.hideGifts != 'Y' && has_bonus != 3" ng-cloak>
       <div class="ym-pc-dashboard-section-header">
         <h2 class="h3">
           You Earned <span ng-bind-html="giftsEarned"></span> out of <span ng-bind-html="totalGifts"></span> Thank-You Gifts!
@@ -671,8 +696,8 @@
       </div>
       <div class="ym-pc-dashboard-standard-gifts-icons" role="list" aria-label="Standard Gifts">
         <div class="ym-pc-dashboard-standard-gifts-icon" role="listitem" ng-class="{'not-earned': !upcomingGift.prize_status}" ng-repeat="upcomingGift in upcomingGifts" aria-label="{{standardGift.prize_label}}" ng-cloak>
-           <a href="" ng-click="showPrize(upcomingGift.prize_sku,upcomingGift.prize_label,upcomingGift.prize_status,upcomingGift.prize_video)">
-              <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes2022/{{upcomingGift.prize_sku}}.png" alt="{{upcomingGift.prize_label}}">
+           <a role="button" href="" ng-click="showPrize(upcomingGift.prize_sku,upcomingGift.prize_label,upcomingGift.prize_status,upcomingGift.prize_video)">
+              <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/prizes2023/{{upcomingGift.prize_sku}}.png" alt="{{upcomingGift.prize_label}}">
 	      <div class="play-circle"><i class="fa fa-play"></i></div>
 	      <div class="ym-pc-dashboard-standard-gift-earned" ng-if="upcomingGift.prize_status" aria-label="Earned">
                  <h4 class="gift-title" ng-bind-html="upcomingGift.prize_label"></h4>
@@ -692,14 +717,15 @@
         </a>
       </div>
     </section>
-    <section class="ym-pc-dashboard-activities-section" aria-label="My Fundraising Activities">
+    <section class="ym-pc-dashboard-activities-section mb-2" aria-label="My Fundraising Activities">
       <div class="ym-pc-dashboard-section-header">
         <h2 class="h3">
           My Activities
         </h2>
       </div>
-      <div class="row">
-        <div class="col-sm-6 ym-activity-box ym-activity-box--next-step">
+      <div class="d-md-flex justify-content-between flex-wrap">
+        <div class="col-sm-6 p-2 mb-2">
+        	<div class="ym-activity-box ym-activity-box--next-step p-3 h-100 m-0">
           <h3 class="h5">
             My Donors
           </h3>
@@ -812,7 +838,9 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-6 ym-activity-box ym-activity-box--page">
+        </div>
+        <div class="col-sm-6 p-2 mb-2">
+        	<div class="ym-activity-box ym-activity-box--page p-3 h-100 m-0 mb-2">
           <h3 class="h5">
             My Page
           </h3>
@@ -855,9 +883,9 @@
             </div>
           </div>
         </div>
+        </div>
       </div>
-      <div class="row">
-        <div class="col-sm-12 ym-activity-box ym-activity-box--challenge">
+      <div class="ym-activity-box ym-activity-box--challenge p-2 mx-2">
           <h3 class="h5">
             Family Heart-Healthy Challenge
           </h3>
@@ -865,51 +893,53 @@
             Loading Your Challenge...
           </div>
           <div class="ym_my_challenge__current" ng-if="personalChallenge.id != '-1'" ng-cloak>
-            <div class="row">
-               <div class="challenge-days">
-                  <div class="row challenge-day-streak">
+            <div class="d-md-flex justify-content-between flex-wrap">
+              <div class="col-md-6 challenge-days">
+                  <div class="d-flex challenge-day-streak px-3">
                      <div class="col-xs-3 col-sm-4">
                        <div class="challenge-day-count"><span ng-bind-html="personalChallenge.numCompleted"></span></div>
                     </div>
-                    <div class="col-xs-9 col-sm-8">
+                    <div class="col-xs-9 col-sm-8" style="z-index:9999">
                        <div class="challenge-day-title text_with_1px_border">Day Streak</div>
                        <div class="challenge-day-challenge text_with_1px_border" ng-if="personalChallenge.id == '1'" ng-cloak>for moving more</div>
                        <div class="challenge-day-challenge text_with_1px_border" ng-if="personalChallenge.id == '2'" ng-cloak>for being kind</div>
                    </div>
                  </div>
-                 <div class="row challenge-day-add-day" ng-if="!personalChallenge.completedToday" ng-cloak>
-     		    	      <div class="col-xs-4 col-sm-4 challenge-day-add-icon">
+                 <div class="d-flex challenge-day-add-day" ng-if="!personalChallenge.completedToday" ng-cloak>
+     		    <div class="col-4 challenge-day-add-icon">
                       <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/pc-challenge-add-day-icon.png" alt="Add a Day to your Challenge">
                     </div>
-                    <div class="col-xs-8 col-sm-8">
+                    <div class="col-8">
                       <button type="button" class="btn btn-md-wide btn-primary" ng-class="{'disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" ng-click="logChallenge()" aria-label="Add a day to your challenge"><strong>Add Day</strong></button>
                    </div>
                  </div>
      	      </div>
-              <div class="col-sm-12">
+              <div class="col-md-6 challenge-buttons">
                 <p class="ym_my_challenge__description text-center">
                   <strong>Change Your Challenge</strong>
                 </p>
-                <div class="col-xs-12 col-sm-6">
-                  <div role="button" ng-click="updateDayChallenge(1)" class="text-center challenge-selection" ng-class="{'selected': personalChallenge.id == '1','disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" ng-init="imghover1=false">
-                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/badge-active{{personalChallenge.id == '1' ? '-hover':''}}.png" ng-mouseover="imghover1=true" ng-mouseout="imghover1=false" alt="Move More" ng-show="!imghover1" ng-cloak>
-                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/badge-active-hover.png" ng-mouseover="imghover1=true" ng-mouseout="imghover1=false" alt="Move More" ng-show="imghover1" ng-cloak>
-                    Move<br/>More
-                  </div>
-                </div>
-                <div class="col-xs-12 col-sm-6">
-                  <div role="button" ng-click="updateDayChallenge(2)" class="text-center challenge-selection" ng-class="{'selected': personalChallenge.id == '2','disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" ng-init="imghover2=false">
-                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/badge-kind{{personalChallenge.id == '2' ? '-hover':''}}.png" ng-mouseover="imghover2=true" ng-mouseout="imghover2=false" alt="Be Kind" ng-show="!imghover2" ng-cloak>
-                    <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/badge-kind-hover.png" ng-mouseover="imghover2=true" ng-mouseout="imghover2=false" alt="Be Kind" ng-show="imghover2" ng-cloak>
-                    Be<br/>Kind
-                  </div>
+                <div class="d-flex justify-content-around flex-wrap">
+									<div class="">
+										<div role="button" ng-click="updateDayChallenge(1)" class="text-center challenge-selection" ng-class="{'selected': personalChallenge.id == '1','disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" ng-init="imghover1=false">
+											<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/badge-active{{personalChallenge.id == '1' ? '-hover':''}}.png" ng-mouseover="imghover1=true" ng-mouseout="imghover1=false" alt="Move More {{personalChallenge.id == '1' ? 'Active' : ''}}" ng-show="!imghover1" ng-cloak>
+											<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/badge-active-hover.png" ng-mouseover="imghover1=true" ng-mouseout="imghover1=false" alt="Move More {{personalChallenge.id == '1' ? 'Active' : ''}}" ng-show="imghover1" ng-cloak>
+											<p class="text-bold">Move<br/>More</p>
+										</div>
+									</div>
+									<div class="">
+										<div role="button" ng-click="updateDayChallenge(2)" class="text-center challenge-selection" ng-class="{'selected': personalChallenge.id == '2','disabled': personalChallenge.updatePending}" ng-disabled="personalChallenge.updatePending" ng-init="imghover2=false">
+											<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/badge-kind{{personalChallenge.id == '2' ? '-hover':''}}.png" ng-mouseover="imghover2=true" ng-mouseout="imghover2=false" alt="Be Kind {{personalChallenge.id == '2' ? 'Active' : ''}}" ng-show="!imghover2" ng-cloak>
+											<img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/badge-kind-hover.png" ng-mouseover="imghover2=true" ng-mouseout="imghover2=false" alt="Be Kind {{personalChallenge.id == '2' ? 'Active' : ''}}" ng-show="imghover2" ng-cloak>
+											<p class="text-bold">Be<br/>Kind</p>
+										</div>
+									</div>
                 </div>
               </div>
             </div>
-            <div class="col-sm-12 text-center">To learn more about how you and your student can meet your family challenge <a href="SPageServer?pagename=khc_resources_parents_corner" target="_blank" title="Click here to learn more about how you and your student can meet your family challenge" aria-label="Click here to learn more about how you and your student can meet your family challenge">click here</a>.</div>
+            <div class="col-sm-12 text-center"><a href="SPageServer?pagename=khc_resources_calming_series" target="_blank" title="Click here to view the Mindfulness Resources" aria-label="Click here to view the Mindfulness Resources">Mindfulness Resources</a></div>
           </div>
         </div>
-        <div class="col-sm-6 ym-activity-box ym-activity-box--virtual hide">
+      <div class="col-sm-6 ym-activity-box ym-activity-box--virtual d-none">
           <div class="row" ng-if="personalInfo.avatar == ''" ng-cloak>
              <div class="col-md-6">
                 <h3 class="h5">Create your own hero!</h3>
@@ -949,21 +979,16 @@
 	     </a>
 	  </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
-          <hr class="ym-zuri-animation__divider" ng-show="companyParticipants.totalFundraisers > 0" ng-cloak>
-          <div class="ym-page-section ym-page-section__main" ng-show="companyParticipants.totalFundraisers > 0" ng-cloak>
-  	    <div class="ym-school-animation">
-	      <iframe title="School Animation" id="school-animation"  ng-src="{{schoolAnimationURL}}"></iframe>
-	    </div>
-          </div>
-        </div>
+			<hr class="ym-zuri-animation__divider" ng-show="companyParticipants.totalFundraisers > 0" ng-cloak>
+			<div class="ym-page-section ym-page-section__main" ng-show="companyParticipants.totalFundraisers > 0" ng-cloak>
+				<div class="ym-school-animation">
+					<iframe title="School Animation" id="school-animation"  ng-src="{{schoolAnimationURL}}"></iframe>
+				</div>
       </div>
     </section>
-    <section class="row ym-pc-dashboard-bottom-section" aria-label="Top 5 list and Spreading the Word">
+    <section class="d-md-flex justify-content-center flex-wrap ym-pc-dashboard-bottom-section" aria-label="Top 5 list and Spreading the Word">
       <div class="col-md-6" ng-show="topClassRaised.length > 0 || topClassStudents.length > 0" ng-cloak>
-        <div class="container ym-teachers-leaderboard-block">
+        <div class="container ym-teachers-leaderboard-block ps-0">
 	  <div class="ym-teachers-leaderboard ym-promo-block">
 	      <h2 class="ym-headline">Leaderboard</h2>
   	   </div>
@@ -1042,31 +1067,32 @@
   </div>
   <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' && location != '/dashboard-student'" ng-cloak>
     <section class="ym-pc-dashboard-coordinator-school-challenge-section" aria-label="School Challenge Selection">
-      <div class="row">
-        <div class="col-sm-6 ym-pc-dashboard-coordinator-progress-section__column">
+      <div class="d-md-flex justify-content-between flex-wrap">
+        <div class="col-md-6 p-2">
+	 <div class="ym-pc-dashboard-coordinator-progress-section__column p-3 h-100">
           <div class="ym-pc-dashboard-coordinator-progress-box">
 	    <h2 class="h3 text-center">
 		  School Plan
 	    </h2>
-	    <div class="ym-pc-dashboard-section-plan" ng-if="schoolPlan.EventStartDate != ''" ng-cloak>
+	    <div class="ym-pc-dashboard-section-plan" ng-if="schoolPlan != null && schoolPlan != ''" ng-cloak>
 		<div class="schoolPlanDates text-center">
 		  <p>
 		    Your event is kicking off on <strong>{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}}</strong><span ng-if="(schoolPlan.EventStartDate | date:'MM/dd/yyyy') !== (schoolPlan.EventEndDate | date:'MM/dd/yyyy') && schoolPlan.EventEndDate != ''" ng-cloak> and will conclude on <strong>{{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}</strong></span>.
 		    <span ng-if="schoolPlan.DonationDueDate != '0000-00-00'" ng-cloak>All donations are due on <strong>{{schoolPlan.DonationDueDate | date:'MM/dd/yyyy'}}</strong>.</span>
 		  </p>
 		</div>
-	      <div class="row ym-pc-dashboard-event-dates">
-		<div class="col-sm-6">
+	      <div class="d-md-flex align-items-end ym-pc-dashboard-event-dates flex-wrap mb-2">
+		<div class="col-md-6 pe-2 pb-2">
                   <div class="form-group">
-                    <label for="EventStartDate"><strong>Event Start Date</strong></label>
+                    <label for="EventStartDate"><strong>Event Start/Distribute Envelopes Date</strong></label>
                     <div class="input-group-old">
 			<!-- <span ng-if="schoolPlan.EventStartDate == '0000-00-00'" ng-cloak>--/--/----</span>
 			<span ng-if="schoolPlan.EventStartDate != '0000-00-00'" ng-cloak>{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}}</span> -->
-                        <input type="date" class="form-control" id="EventStartDate" ng-model="schoolPlan.EventStartDate" aria-label="Event Start Date" ng-blur="putSchoolPlan($event)" />
+                        <input type="date" class="form-control" id="EventStartDate" ng-model="schoolPlan.EventStartDate" aria-label="Event Start/Distribute Envelopes Date" ng-blur="putSchoolPlan($event)" />
                     </div>
                   </div>
  		</div>
-		<div class="col-sm-6">
+		<div class="col-md-6 pe-2 pb-2">
 			<div class="form-group">
 				<label for="EventEndDate"><strong>Event End Date</strong></label>
 				<div class="input-group-old">
@@ -1076,9 +1102,7 @@
 				</div>
 			</div>
 		</div>
-	      </div>
-	      <div class="row ym-pc-dashboard-point-field" ng-cloak>
-					<div class="col-sm-6 text-center">
+					<div class="col-md-6 pe-2 pb-2">
 						<div class="form-group">
 							<label for="KickOffDate"><strong>Kick Off/Assembly Date</strong></label>
 							<div class="input-group-old">
@@ -1088,7 +1112,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-6">
+					<div class="col-md-6 pe-2 pb-2">
 						<div class="form-group">
 							<label for="DonationDueDate"><strong>Donation Due Date</strong></label>
 							<div class="input-group-old">
@@ -1098,76 +1122,87 @@
 							</div>
 						</div>
 					</div>
+					<div class="col-md-6 pe-2 pb-2">
+						<div class="form-group">
+							<label for="DonationDueDate"><strong>Last Day of School</strong></label>
+							<div class="input-group-old">
+								<input type="date" class="form-control" id="LastDayOfSchool" ng-model="schoolPlan.LastDayOfSchool" aria-label="Last Day of School" ng-blur="putSchoolPlan($event)" />
+							</div>
+						</div>
+					</div>
 	      </div>
 	      <div class="ym-pc-dashboard-school-goals" ng-cloak>
-					<div class="form-group">
-						<label for="StudentRecruitmentGoal">Student Recruitment Goal:</label>
-						<input type="number" class="form-control" id="StudentRecruitmentGoal" ng-model="schoolPlan.StudentRecruitmentGoal" aria-label="Student Recruitment Goal" ng-blur="putSchoolPlan($event)">
+					<div class="form-group mb-2 pe-2">
+						<label for="StudentRecruitmentGoal">Student Participant Goal:</label>
+						<input type="number" class="form-control" id="StudentRecruitmentGoal" ng-model="schoolPlan.StudentRecruitmentGoal" aria-label="Student Recruitment Goal" ng-blur="putSchoolPlan($event)" ng-change="putSchoolPlan($event)">
 					</div>
-					<div class="form-group">
+					<div class="form-group mb-2 pe-2">
 						<label for="FinnsMissionCompletedGoal">Finn's Mission Completion Goal:</label>
-						<input type="number" class="form-control" id="FinnsMissionCompletedGoal" ng-model="schoolPlan.FinnsMissionCompletedGoal" aria-label="Finn's Mission Completion Goal" ng-blur="putSchoolPlan($event)">
+						<input type="number" class="form-control" id="FinnsMissionCompletedGoal" ng-model="schoolPlan.FinnsMissionCompletedGoal" aria-label="Finn's Mission Completion Goal" ng-blur="putSchoolPlan($event)" ng-change="putSchoolPlan($event)">
 					</div>
-					<div class="form-group hidden">
+					<div class="form-group d-none">
 						<label for="school_goal">Fundraising Goal:</label>
 						<input type="text" class="form-control" id="school_goal" ng-model="companyProgress.goalFormatted" aria-label="School Fundraising Goal" ng-blur="putSchoolPlan($event)" onkeypress="return event.charCode == 36 || event.charCode == 44 || event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)">
 					</div>
 	      </div>
-	      <div class="ym-pc-dashboard-send-emails checkbox" custom-checkbox ng-class="{'checked': schoolPlan.SendEmailOnBehalfOfCoordinator == true}" ng-cloak>
+	      <div class="ym-pc-dashboard-send-emails checkbox mb-2 pe-2" custom-checkbox ng-class="{'checked': schoolPlan.SendEmailOnBehalfOfCoordinator == 'ALLOW'}" ng-cloak>
 	        <label for="SendEmailOnBehalfOfCoordinator">
-          	<input type="checkbox" name="SendEmailOnBehalfOfCoordinator" id="SendEmailOnBehalfOfCoordinator" ng-model="schoolPlan.SendEmailOnBehalfOfCoordinator" ng-true-value="true" ng-false-value="false" ng-click="putSchoolPlan($event)"> 
+          	<input type="checkbox" name="SendEmailOnBehalfOfCoordinator" id="SendEmailOnBehalfOfCoordinator" ng-model="schoolPlan.SendEmailOnBehalfOfCoordinator" ng-true-value="'ALLOW'" ng-false-value="'DONOTALLOW'" ng-click="putSchoolPlan($event)"> 
           	Allow AHA to Send Emails to my students on my behalf
         	</label>
 	      </div>
-              <div class="ym-pc-dashboard-participate-next-year">
-		<div class="row participatingNextYear text-left">
+              <div class="ym-pc-dashboard-participate-next-year mb-2 pe-2">
+		<div class="d-md-flex participatingNextYear text-left">
 		  <div class="col-md-8 pl-0">
 		    My school will be participating in Kids Heart Challenge next year!
 		  </div>
 		  <div class="col-md-4 pr-0">
-  		    <select class="form-control" id="participatingNextYear" ng-model="participatingNextYear" aria-label="Next Year Participation" ng-change="updateParticipatingNextYear()">
-		      <option value="Yes">Yes</option>
-		      <option value="No">No</option>
-		      <option value="Still Considering">Still Considering</option>
+  		    <select class="form-control" id="ParticipatingNextYear" ng-model="schoolPlan.ParticipatingNextYear" aria-label="Participating Next Year" ng-change="putSchoolPlan($event,'ParticipatingNextYear')">
+		      <option value="YES">Yes</option>
+		      <option value="NO">No</option>
+		      <option value="I'm not sure'">Still Considering</option>
 		    </select>
  		  </div>
 		</div>
 	      </div>
               <div class="ym-pc-dashboard-materials-needed mt-sm">
-		<div class="row materialsNeeded text-left"> 
-		  <div class="col-md-8 pl-0">
+		<div class="d-md-flex materialsNeeded text-left"> 
+		  <div class="col-md-8  pe-2">
 		    My school would like materials in the form of:
 		    <button aria-label="Click the icon to see an example of the materials." data-balloon-pos="up" data-balloon-length="large" ng-click="showMaterialTypes()"><i class="fa fa-info-circle"></i></button> 
 		  </div>
-		  <div class="col-md-4 pr-0">
- 		    <select class="form-control" id="MaterialsNeeded" ng-model="schoolPlan.MaterialsNeeded" aria-label="Materials Needed" ng-change="updateMaterialsNeeded()">
-		      <option value="Envelope">Envelope</option>
+		  <div class="col-md-4">
+ 		    <select class="form-control" id="MaterialsNeeded" ng-model="schoolPlan.MaterialsNeeded" aria-label="Materials Needed" ng-change="putSchoolPlan($event,'MaterialsNeeded')">
+		      <option value="Envelopes">Envelopes</option>
 		      <option value="Parent Letter">Parent Letter</option>
+ 		      <option value="Digital Only">Digital Only</option>
 		    </select>
  		  </div>
 		</div>
 	      </div>
 		    <div class="ym-pc-dashboard-total-points text-center">
 					<div><strong>Total Points: <span ng-bind-html="schoolPlan.TotalPointsEarned"></span></strong></div>
-					<p>Points updated nightly at 3am<br/>
+					<p>Points updated nightly at 3 a.m.<br/>
 					  <button ng-click="showSchoolPlan()" class="btn btn-md-wide btn-primary ym-progress-show-plan" aria-label="Click here for more information">
 					    <strong>Click here for more information</strong>
 					  </button>
 					</p>
 				</div>
-				        <div class="ym-pc-dashboard-multi-coord checkbox hidden" custom-checkbox ng-class="{'checked': schoolPlan.MultipleCoordinators == true}" ng-cloak>
+				        <div class="ym-pc-dashboard-multi-coord checkbox d-none" custom-checkbox ng-class="{'checked': schoolPlan.MultipleCoordinators == 'YES'}" ng-cloak>
 					  <label for="MultipleCoordinators">
-					  <input type="checkbox" name="MultipleCoordinators" id="MultipleCoordinators" ng-model="schoolPlan.MultipleCoordinators" ng-true-value="1" ng-false-value="0" ng-click="putSchoolPlan($event)"> 
+					  <input type="checkbox" name="MultipleCoordinators" id="MultipleCoordinators" ng-model="schoolPlan.MultipleCoordinators" ng-true-value="'YES'" ng-false-value="'NO'" ng-click="putSchoolPlan($event)"> 
 					  My school has two or more coordinators responsible for the Kids Heart Challenge program.
 					  </label>
 				        </div>
 		  </div>
      </div>
-     <div class="ym-pc-dashboard-section-plan text-center" ng-if="schoolPlan.EventStartDate == ''" ng-cloak>
+     <div class="ym-pc-dashboard-section-plan text-center" ng-if="schoolPlan == null || schoolPlan == ''" ng-cloak>
        <p>No plan data available for this School.</p>
      </div>
  </div>
- <div class="col-sm-6 ym-pc-dashboard-coordinator-progress-section__column">
+	      </div>
+ <div class="col-md-6 p-2">
+  <div class="ym-pc-dashboard-coordinator-progress-section__column p-3 h-100">
    <div class="ym-pc-dashboard-coordinator-progress-box">
 	   <h2 class="h3 text-center">
 		  School Challenge
@@ -1213,14 +1248,15 @@
 		    <option value="$150">$150</option>
 		    <option value="$200">$200</option>
 		    <option value="$250">$250</option>
-		    <option value="Other">Other</option>
+		    <option value="$300">$300</option>
+		    <option value="$350">$350</option>
 		  </select>
 		  <div uib-alert class="alert-danger" ng-if="schoolChallengeLevelInfo.errorMessage">
 		    <div ng-bind-html="schoolChallengeLevelInfo.errorMessage"></div>
 		  </div>
 		</div>
 	      </div>
-  	   <div class="ym-pc-dashboard-school-report text-center" ng-cloak>
+  	   <div class="ym-pc-dashboard-school-report text-center" ng-if="companyParticipants.participants.length > 0" ng-cloak>
  	     <button type="button" class="btn btn-md-wide btn-primary" ng-class="{'disabled': companyProgress.schoolChallengeLevel == ''}" ng-click="showSchoolChallengeReport()" ng-disabled="companyProgress.schoolChallengeLevel == ''">
 	       <strong>Generate School Challenge Report</strong>
 	     </button>
@@ -1245,19 +1281,20 @@
 		</div>
 	      </div>
           </div>
-  	  <div class="ym-pc-dashboard-qrcode hidden-xs hidden-sm" ng-cloak>
+  	  <div class="ym-pc-dashboard-qrcode d-xs-none d-sm-none d-md-block" ng-cloak>
             <div class="ym-pc-dashboard-section-header">
        	      <div class="schoolQRCode text-center">
                  School QR Code
 	      </div>
 	      <p>Click the Copy button to share QR code onto documents, social media and websites.</p>
  	      <div id="qrcode" load-qrcode="{{secureDomain}}/site/TR?pg=company&fr_id={{frId}}&company_id={{companyId}}"></div>
-	      <img src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/khc-logo-qrcode.png" class="qrcode-logo hidden">
+	      <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/khc-logo-qrcode.png" class="qrcode-logo d-none">
               <button type="button" class="btn btn-md-wide btn-primary" id="copyable" role="button" copy-qrcode><strong>Copy</strong></button>
 	    </div>
 	  </div>
         </div>
       </div>
+    </div>
     </section>
     <section class="ym-pc-dashboard-coordinator-school-years-section" aria-label="Years School Participated">
       <div class="ym-pc-dashboard-section-header">
@@ -1277,8 +1314,9 @@
       </div>
     </section>
     <section class="ym-pc-dashboard-coordinator-progress-section" aria-label="Fundraising Progress Meters">
-      <div class="row">
-        <div class="col-sm-5 ym-pc-dashboard-coordinator-progress-section__column event-secondary-medium">
+      <div class="d-md-flex justify-content-between flex-wrap">
+        <div class="col-md-5 p-2">
+        <div class="ym-pc-dashboard-coordinator-progress-section__column event-secondary-medium p-3 h-100">
           <div class="ym-pc-dashboard-coordinator-progress-box">
             <div class="ym-pc-dashboard-section-header">
               <h2 class="h5">
@@ -1357,10 +1395,33 @@
                     <a class="btn btn-lg btn-primary" ng-href="{{baseUrl}}#/reports" title="Click to view your donation reports"><strong>Donation Reports</strong></a>
                   </p>
                   <p>
-                    <a class="btn btn-lg btn-primary" ng-href="Donation2?df_id={{eventInfo.donationFormId}}&amp;FR_ID={{frId}}&amp;PROXY_TYPE=20&amp;PROXY_ID={{consId}}">
+                    <a class="btn btn-md btn-primary" href="#paymentSelType2" data-bs-toggle="collapse">
                       <strong>Donate to Personal Page</strong>
                     </a>
                   </p>
+		  <div id="paymentSelType2" class="collapse">
+			<h7>How would you like to donate?</h7>
+			<div class="d-flex justify-content-between flex-wrap align-items-center text-center">
+				<a class="col-md-6 p-2" href="Donation2?df_id={{eventInfo.donationFormId}}&FR_ID={{frId}}&PROXY_TYPE=20&PROXY_ID={{consId}}">
+					<img class="img-fluid" src="https://www2.heart.org/images/content/pagebuilder/credit-card-logos.png" alt="Donate using Credit Card">
+				</a>
+				<a class="col-md-6 p-2" href="SPageNavigator/ym_khc_donate_amazon.html?FR_ID={{frId}}&mfc_pref=T&PROXY_ID={{consId}}&PROXY_TYPE=20" class="amazon">
+					<img class="img-fluid" src="https://www2.heart.org/images/content/pagebuilder/amazon-payments.png" alt="Donate using Amazon">
+				</a>
+				<a class="col-md-6 p-2" href="SPageNavigator/ym_khc_donate_googlepay.html?FR_ID={{frId}}&mfc_pref=T&PROXY_ID={{consId}}&PROXY_TYPE=20" class="googlepay">
+					<img class="img-fluid" src="https://www2.heart.org/donation-forms/donatenow/images/googlepay-button.png" alt="Donate using Google Pay">
+				</a>
+				<a class="col-md-6 p-2" href="SPageNavigator/ym_khc_donate_applepay.html?FR_ID={{frId}}&mfc_pref=T&PROXY_ID={{consId}}&PROXY_TYPE=20" class="applepay ">
+					<img class="img-fluid" src="https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png" alt="Donate using ApplePay">
+				</a>
+				<a class="col-md-6 p-2" href="SPageNavigator/ym_khc_donate_venmo.html?FR_ID={{frId}}&mfc_pref=T&PROXY_ID={{consId}}&PROXY_TYPE=20" class="venmo">
+					<img class="img-fluid" src="https://www2.heart.org/donation-forms/donatenow/images/venmo-button.png" alt="Donate using Venmo">
+				</a>
+				<a class="col-md-6 p-2" href="Donation2?df_id={{eventInfo.donationFormId}}&FR_ID={{frId}}&PROXY_TYPE=20&PROXY_ID={{consId}}&amp;paypal=true">
+					<img class="img-fluid" src="https://www2.heart.org/images/content/pagebuilder/PP_logo_h_100x26.png" alt="Donate using Paypal">
+				</a>
+			</div>
+		</div>
                 </div>
                 <div class="ym-progress-amounts">
                   <p>
@@ -1384,7 +1445,9 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-7 ym-pc-dashboard-coordinator-progress-section__column event-secondary-medium">
+        </div>
+        <div class="col-sm-7 p-2">
+        <div class="ym-pc-dashboard-coordinator-progress-section__column event-secondary-medium p-3 h-100">
           <div class="ym-pc-dashboard-coordinator-students-box" ng-if="companyInfo.participantCount" ng-cloak>
             <div class="ym-pc-dashboard-section-header">
               <h2 class="h5">
@@ -1394,7 +1457,7 @@
             <div class="row">
               <div class="ym-pc-dashboard-coordinator-create-message col-md-6">
                 <div class="schoolStatusTitle">School Achievement</div>
-                <p class="students-registered hidden">
+                <p class="students-registered d-none">
                   <strong>{{companyInfo.participantCount|number}}</strong> student<span ng-if="companyInfo.participantCount > 1 || activity1amt == 0">s are</span><span ng-if="companyInfo.participantCount == 1"> is</span> registered 
                 </p>
 		<p class="students-fundraising">
@@ -1449,6 +1512,7 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
     <section class="ym-pc-dashboard-coordinator-steps-section" aria-label="Fundraising Steps">
       <div class="ym-pc-dashboard-section-header">
@@ -1456,8 +1520,9 @@
           Coordinator Fundraising Steps
         </h2>
       </div>
-      <div class="row">
-        <div class="col-md-4 ym-activity-box ym-activity-box--coordinator-pages">
+      <div class="d-md-flex justify-content-between flex-wrap">
+        <div class="col-md-4 p-2">
+	        <div class="ym-activity-box ym-activity-box--coordinator-pages m-0 h-100">
           <h3 class="h5 clearfix">
             <span class="ym-activity-box-number">1</span> Edit My Pages
           </h3>
@@ -1511,10 +1576,10 @@
                     <p>
                       <strong>Share My School&nbsp;Page:</strong>
                     </p>
-                    <a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--company-social-share', 'facebook')">
+                    <a class="d-inline-block me-2" ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--company-social-share', 'facebook')">
                       <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/facebook-logo.png" alt="Facebook">
                     </a> 
-                    <a ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--company-social-share', 'twitter')">
+                    <a class="d-inline-block" ng-href="{{baseUrl}}#" ng-click="delegatedAddThis('.js--company-social-share', 'twitter')">
                       <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/twitter-logo.png" alt="Twitter">
                     </a>
                   </div>
@@ -1601,14 +1666,16 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 ym-activity-box ym-activity-box--coordinator-student-view">
+        </div>
+        <div class="col-md-4 p-2">
+  	      <div class="ym-activity-box ym-activity-box--coordinator-student-view m-0 h-100">
           <h3 class="h5 clearfix">
             <span class="ym-activity-box-number">2</span> Student View
           </h3>
           <div class="clearfix">
             <div class="ym-pc-student-view-text">
               <div class="ym-pc-student-view-image">
-                <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/student-view-2022.png" alt="Student View">
+                <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/student-view-2023.png" alt="Student View">
               </div>
               <p>
                 Use the "Student View" to show your students all of the great tools and games in their Headquarters and encourage them to fundraise!
@@ -1621,7 +1688,9 @@
             </div>
           </div>
         </div>
-        <div class="col-md-4 ym-activity-box">
+        </div>
+        <div class="col-md-4 p-2">
+	        <div class="ym-activity-box m-0 h-100">
           <div class="ym-activity-box--coordinator-reports">
             <h3 class="h5 clearfix">
               <span class="ym-activity-box-number">3</span> Manage Event
@@ -1660,6 +1729,7 @@
               </a>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </section>
@@ -1726,6 +1796,42 @@
           <strong>{{notifyName}}</strong>
         </a>
       </div>
+    </section>
+
+    <section class="ym-pc-dashboard-coordinator-resources-section" aria-label="Top 15 school list" ng-show="schoolTop15.length > 0 || schoolTop15ByState.length > 0" ng-cloak>
+				<div class="school-leaderboard">
+					<h2 class="h3 text-center">School Leaderboard</h2>
+				</div>
+			  <div class="row">
+					<div class="col-md-6 px-4">
+						<h3 class="h5 text-center">Top 15 Schools Nationally</h3>
+						<div class="ym-tl-dollars-raised" role="list">
+							<div class="d-flex justify-content-between" ng-repeat="topSchool in schoolTop15" role="listitem" ng-if="schoolTop15.length > 0" ng-cloak>
+								<div class="col-xs-1 top-index">#{{$index+1}}</div>
+								<div class="col-xs-8 top-detail">
+									<div class="top-name">{{topSchool.SchoolName}}</div>
+								</div>
+								<div class="col-xs-3 top-amount">
+									<div class="top-raised">{{topSchool.SchoolTotalAmountRaised | currency:"$":0}}</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 px-4">
+						<h3 class="h5 text-center">Top 15 Schools in {{stateList[schoolPlan.SchoolState]}}</h3>
+						<div class="ym-tl-dollars-raised" role="list">
+							<div class="d-flex justify-content-between" ng-repeat="topSchool2 in schoolTop15ByState" role="listitem" ng-if="schoolTop15ByState.length > 0" ng-cloak>
+								<div class="col-xs-1 top-index">#{{$index+1}}</div>
+								<div class="col-xs-8 top-detail">
+									<div class="top-name">{{topSchool2.SchoolName}}</div>
+								</div>
+								<div class="col-xs-3 top-amount">
+									<div class="top-raised">{{topSchool2.SchoolTotalAmountRaised | currency:"$":0}}</div>
+								</div>
+							</div>
+						</div>
+					</div>
+			  </div>
     </section>
     <section class="ym-pc-dashboard-spread-section event-secondary-medium" aria-label="Resources for Spreading the Word">
       <div class="ym-pc-dashboard-section-header">

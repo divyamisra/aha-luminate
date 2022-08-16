@@ -3,6 +3,7 @@ angular.module 'ahaLuminateControllers'
     '$scope'
     '$rootScope'
     '$location'
+    '$sce'
     '$filter'
     '$timeout'
     '$uibModal'
@@ -13,7 +14,7 @@ angular.module 'ahaLuminateControllers'
     'BoundlessService'
     'TeamraiserParticipantPageService'
     'TeamraiserSurveyResponseService'
-    ($scope, $rootScope, $location, $filter, $timeout, $uibModal, APP_INFO, TeamraiserParticipantService, TeamraiserCompanyService, ZuriService, BoundlessService, TeamraiserParticipantPageService, TeamraiserSurveyResponseService) ->
+    ($scope, $rootScope, $location, $sce, $filter, $timeout, $uibModal, APP_INFO, TeamraiserParticipantService, TeamraiserCompanyService, ZuriService, BoundlessService, TeamraiserParticipantPageService, TeamraiserSurveyResponseService) ->
       $dataRoot = angular.element '[data-aha-luminate-root]'
       $scope.participantId = $location.absUrl().split('px=')[1].split('&')[0].split('#')[0]
       $scope.companyId = $dataRoot.data('company-id') if $dataRoot.data('company-id') isnt ''
@@ -27,12 +28,14 @@ angular.module 'ahaLuminateControllers'
       $scope.challengeCompleted = 0
       $rootScope.survivor = false
       $scope.companyProgress = {}
+      $scope.returningStudent = false
 
       $scope.prizes = []
       $scope.prizesEarned = 0
       $scope.has_bonus = 0
       $scope.studentChallengeBadge = false
       $scope.schoolChallengeBadge = false
+
       BoundlessService.getBadges $scope.frId + '/' + $scope.participantId
       .then (response) ->
         prizes = response.data.prizes
@@ -115,6 +118,13 @@ angular.module 'ahaLuminateControllers'
           $scope.challengeName = response.data.challenges.text
           $scope.challengeCompleted = response.data.challenges.completed
           $rootScope.survivor = response.data.show_banner
+          ZuriService.getStudentDetail '&cons_id=' + $scope.participantId,
+            failure: (response) ->
+            error: (response) ->
+            success: (response) ->
+              if response.data.company[0] != "" and response.data.company[0] != null
+                if response.data.company[0].PriorYearEventId > 0
+                  $scope.returningStudent = true
 
       $scope.personalInfo = {}
       $scope.personalInfo.avatar = ''

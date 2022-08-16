@@ -7,6 +7,16 @@ angular.module 'ahaLuminateControllers'
     '$timeout'
     '$q'
     ($scope, $rootScope, $compile, DonationService, $timeout, $q) ->
+       
+      currentUrl = window.location.href
+      queryString = if currentUrl.indexOf('?') == -1 then undefined else decodeURIComponent(currentUrl.split('?')[1])
+
+      getQueryParameter = (paramName) ->
+        if !queryString or queryString.indexOf(paramName + '=') == -1
+          undefined
+        else
+          queryString.split(paramName + '=')[1].split('&')[0]
+    
       $scope.paymentInfoErrors =
         errors: []
       $scope.donationGiftType = "installment";
@@ -587,6 +597,18 @@ angular.module 'ahaLuminateControllers'
                   userSpecified: userSpecified
                   levelLabel: levelLabel
                   levelChecked: levelChecked
+                  
+              if getQueryParameter('amount')
+                $scope.donationInfo.levelType = 'level'
+                $scope.donationInfo.amount = getQueryParameter('amount')
+                giftAmt = $scope.donationInfo.amount
+                $scope.enterAmount(giftAmt)
+                $scope.selectLevel(null, 'other', $scope.donationInfo.otherLevelId, giftAmt, true)
+                $scope.donationInfo.levelChecked = 'level' + $scope.donationInfo.otherLevelId
+                $scope.donationInfo.classLevel = 'level' + $scope.donationInfo.otherLevelId
+            
+              if getQueryParameter('paypal') == "true"
+                setTimeout $scope.togglePaymentType 'paypal', 1000
           resolve()
 
       calculateGiftAmt = (type) ->

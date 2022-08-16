@@ -4,6 +4,11 @@
     margin-top: 0px !important;
 }
 
+.form-selectlist {
+    font-size: .875em;
+    color: #6c757d;
+}
+
 select {
   &, 
   &.form-control {
@@ -21,6 +26,13 @@ select {
   }
 }
 
+.form-control, 
+div.responsive input[type="text"], 
+div.responsive select, 
+div.responsive textarea {
+  margin-bottom:10px;
+}
+
 .form-control:focus {
     border-color: $event-secondary;
     border-width:2px;
@@ -31,6 +43,10 @@ div.responsive input[disabled] {
   color: $event-primary;
 }
 
-.ym-optional {
-  color: $event-secondary-medium;
+.ym-pc-dashboard-email-challenge-option {
+  form {
+    textarea.form-control[readonly] {
+      height: 270px;
+    }
+  }
 }

@@ -56,9 +56,19 @@ a {
   background-color: $gray-100;
 }
 
-h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, strong {
+h1, .h1, h3, .h3, h4, .h4, h5, .h5, strong {
   font-family: $font-family-bold;
   font-weight: bold;
+}
+
+h2, .h2 {
+  font-size: 46px;
+  font-weight: 300;
+}
+
+P, LI, OL, UL, TABLE, TR, TH, TD, .Explicit {
+  font-family: 'Montserrat', arial, sans-serif;
+  font-weight: 400;
 }
 
 ul {
@@ -71,6 +81,14 @@ ul {
 
 .text-red {
   color: $red;
+}
+
+.text-red-deep {
+  color: $red-deep;
+}
+
+.bg-red-deep {
+  background-color: $red-deep;
 }
 
 img {
@@ -182,7 +200,7 @@ img {
 
     .amount {
       font-size: 1.4rem;
-      font-family: 'LubDubBold', Helvetica, Arial, sans-serif;
+      font-family: 'Montserrat', arial, sans-serif;
       margin: -6px 0 0 0;
       display: block;
       color: $red-deep;

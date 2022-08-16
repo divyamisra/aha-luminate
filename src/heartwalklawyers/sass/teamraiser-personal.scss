@@ -14,3 +14,9 @@
   left: 0;
   max-height:91px;
 }
+
+@media (max-width:767px) {
+  .achievements-container {
+    display:none;
+  }
+}

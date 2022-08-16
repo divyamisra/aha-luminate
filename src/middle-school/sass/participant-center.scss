@@ -3,6 +3,26 @@ option {
   font-size: 18px;
 }
 
+span.input-group-addon {
+    display: inline-block;
+    line-height: 40px;
+    padding-right: 5px;
+}
+
+.ahc-social-share-slot {
+	.row>* {
+		flex: 1 0 0;
+	}
+	a {
+		min-width:150px;
+	}
+}
+
+.ym-pc-dashboard-coordinator-school-years-section {
+	select {
+		min-width:70px;
+	}
+}
 .ym-pc-dashboard-coordinator-progress-section,
 .ym-pc-dashboard-coordinator-steps-section,
 .ym-pc-dashboard-coordinator-school-challenge-section,
@@ -33,7 +53,7 @@ option {
   }
   .ym-activity-box {
     h2.h3 {
-      color: $event-secondary-heading;
+      color: $title-color;
     } 
   }
 }
@@ -73,7 +93,6 @@ div[id^="taTextElement"]:focus {
 }
 
 select#ym-update-challenge {
-	color: $event-secondary-medium;
 	font-size:18px;
 }
 
@@ -109,7 +128,7 @@ select#ym-update-challenge {
 
 	h2.h3 {
 		margin-bottom: 20px;
-		color: $event-secondary-heading;
+		color: $title-color;
 	}
 
 	div.ym-pc-dashboard-section-header {
@@ -145,7 +164,7 @@ select#ym-update-challenge {
   overflow:scroll;
 	
   h2.h3 {
-    color: $event-secondary-heading;
+    color: $title-color;
   }
   
   hr {
@@ -320,7 +339,7 @@ select#ym-update-challenge {
   
   .ym-pc-dashboard-school-badges-box {
     .ym-badges__item {
-        max-width:75px;
+        max-width:90px;
 	margin: 10px 15px 5px;
         img.img-responsive {
           max-width: 80px;
@@ -332,6 +351,7 @@ select#ym-update-challenge {
 	    display: block;
 	    margin-top: 5px;
 	    margin-bottom: 10px;
+	    text-align: center;
 	}
     }
   }
@@ -396,4 +416,16 @@ select#ym-update-challenge {
 }
 textarea#feedbackMessage {
 	height: 30vh;
+}
+
+.ym-pc-dashboard-qrcode canvas {
+	max-width:150px;
+	max-height:150px;
+}
+
+.clipboard-copy {
+    font-weight: 400;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-style: italic;
 }

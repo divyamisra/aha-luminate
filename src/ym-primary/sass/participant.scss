@@ -25,6 +25,17 @@
    }
 }*/
 
+.list-group-item > .badge {
+    float: right;
+}
+
+a.list-group-item:focus, 
+a.list-group-item:hover {
+    color: #555;
+    text-decoration: none;
+    background-color: #f5f5f5;
+}
+
 .ym-pc-dashboard-email-challenge-images {
   a {
     &,
@@ -102,12 +113,7 @@
    a {
       color: $event-primary-acc;
    }
-   .ym_my_challenge__current > .row {
-      display: flex;
-      @media (max-width:767px) {
-        display:block;
-      }
-   }
+
    .challenge-days {
       position:relative;
       flex: 0 0 50%;
@@ -157,6 +163,12 @@
       border: 2px solid #293B90;
       font-weight: bold;
       margin-bottom: 7px;
+	   
+      @media only screen and (max-width: $screen-md-max) {
+        width: 80px;
+        line-height: 56px;
+        padding: 8px 10px 12px 10px;
+      }
    }
    .text_with_1px_border {
       text-shadow: 
@@ -173,7 +185,7 @@
       text-transform: uppercase;
       font-size: 44px;
       @media only screen and (max-width: $screen-md-max) {
-	      font-size:3rem;
+	      font-size:1.5rem;
       }
       color: #fff;
       margin-top: 25px;
@@ -183,7 +195,7 @@
       font-size:33px;
       color:#ffffff;
       @media only screen and (max-width: $screen-md-max) {
-	      font-size:2.5rem;
+	      font-size:1.5rem;
       }
    }
    .ym_my_challenge__description {
@@ -191,32 +203,30 @@
       font-size: 26px;
       margin-top:0px;
    }
-   .row {
-     a, div.challenge-selection {
-	display: block;
-	text-decoration: none;
-	font-weight: bold;
-	color: #293b90;
-	font-size: 24px;
-	line-height: 28px;
-        margin-bottom:20px;
-	cursor: pointer;
+   div.challenge-selection {
+      display: block;
+      text-decoration: none;
+      font-weight: bold;
+      color: #293b90;
+      font-size: 24px;
+      line-height: 28px;
+      margin-bottom:20px;
+      cursor: pointer;
 
-	&.selected {
-	   font-weight:bold;
-	}
-	&.disabled {
-   	   cursor: not-allowed;
-           filter: alpha(opacity=65);
-           -webkit-box-shadow: none;
-           box-shadow: none;
-     	   opacity: .65;
-        }
-	img {
-           margin:0 auto 5px;
-	}
+      &.selected {
+	font-weight:bold;
       }
-   }
+      &.disabled {
+        cursor: not-allowed;
+        filter: alpha(opacity=65);
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        opacity: .65;
+      }
+      img {
+         margin:0 auto 5px;
+      }
+    }
 }
 .ym-activity-box.ym-activity-box--virtual {
    a.entry-button{
@@ -258,4 +268,46 @@
     bottom: 24px;
     width: 45%;
     right: 20px;
+}
+
+.khc-btn-copy::before {
+    content: $copy-icon;
+    padding-right: 10px;
+}
+
+.khc-social-share {
+  .grid {
+    grid-auto-rows: 1fr;
+  }
+  .btn {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    font-weight:bold;
+  }
+}
+
+.khc-share-facebook,
+.khc-connect-facebook {
+  &::before {
+    content: $facebook-icon;
+    padding-right: 10px;
+  }
+}
+
+.khc-share-facebook {
+  @include button-variant($white, $facebook-blue, $facebook-blue);
+}
+
+.khc-connect-facebook {
+  @include button-variant($white, $facebook-blue-dark, $facebook-blue-dark);
+}
+
+.khc-share-twitter {
+  @include button-variant($white, $twitter-blue, $twitter-blue, $white, #1989ce, $white);
+
+  &::before {
+    content: $twitter-icon;
+    padding-right: 10px;
+  }
 }

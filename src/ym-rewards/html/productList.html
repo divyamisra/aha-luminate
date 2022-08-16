@@ -1,10 +1,10 @@
 [[?xx::x[[S1:cons_id]]x::::
 <!-- logged in -->
 <div cg-busy="dashboardPromises">
-  <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true'" ng-cloak>
+  <div ng-if="isCoordinator != 'YES'" ng-cloak>
   	You must be a coordinator to access this page
   </div> 
-  <div ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+  <div ng-if="isCoordinator == 'YES'" ng-cloak>
 	 	<div class="row">
   		<div class="col-md-12">
 				<h2>Products</h2>

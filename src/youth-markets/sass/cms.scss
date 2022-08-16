@@ -634,6 +634,11 @@
     
     th {
       min-width: 65px;
+      text-align:left;
+      
+      &:last-child {
+        text-align:right;
+      }
       
       a {
         &:hover {
