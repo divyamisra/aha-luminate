@@ -47,6 +47,11 @@
     }
   }
 }
+.invalid-feedback {
+  &.filled {
+    display:block;
+  }
+} 
 // .has-success input,
 // .has-success select,
 // input.parsley-success,
@@ -230,8 +235,8 @@ div.payment-field-container {
     margin-bottom:10px;
   }
   #responsive_payment_typecc_exp_date_MONTH,#responsive_payment_typecc_exp_date_YEAR {
-    width: 49% !important;
-    max-width:49%;
+    width: 60% !important;
+    max-width:60%;
   }
   &.mobile div.responsive div.form-checkbox label, label.custom-element-checkbox-label {
     max-width: 280px;

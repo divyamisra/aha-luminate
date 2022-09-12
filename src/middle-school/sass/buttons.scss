@@ -1,3 +1,8 @@
+.btn-global-primary,
+a.btn-global-primary {
+  @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border, $btn-primary-color, $btn-primary-darker-bg, $btn-primary-darker-border);
+}
+
 button.btn {
   &.btn-secondary {
     &:hover,
@@ -6,4 +11,78 @@ button.btn {
       color: $event-grey;
     }
   }
+}
+
+.btn,
+a.btn {
+  &.btn-primary {
+    &,
+    &:link,
+    &:visited {
+      background: $event-primary;
+      color: $brand-white;
+    }
+    
+    &:hover,
+    &:focus,
+    &:active {
+      background: $event-primary-dark;
+    }
+	  
+    &:focus {
+      outline: auto 2px Highlight;
+      outline: auto 2px -webkit-focus-ring-color;
+    }
+  }
+  &.btn-secondary {
+    &,
+    &:link,
+    &:visited {
+      background: $event-primary;
+      color: $brand-white;
+    }
+    
+    &:hover,
+    &:focus,
+    &:active {
+      background: $event-secondary-dark;
+    }
+  }
+}
+
+div.responsive {
+  .btn,
+  a.btn {
+    &:hover,
+    &:focus,
+    &:active {
+      background: $event-primary;
+      color: #ffffff;
+    }
+  }
+}
+
+div.responsive {
+  .step-button,
+  button.step-button {
+    &:hover,
+    &:focus,
+    &:active {
+      color: #ffffff;
+    }
+  }
+}
+
+.ahc-copy:not(.ahc-btn-copy) {
+	background-position: calc(100% - .75rem) .5rem;
+	background-repeat: no-repeat;
+	background-size: .875em;
+	padding-right: 2.25rem !important;
+	transition: all .2s ease-in-out;
+	transition-duration: .3s;
+}
+.ahc-copy:not(.ahc-btn-copy):focus, .ahc-copy:not(.ahc-btn-copy):hover {
+	background-color: rgba(95,194,23,.3) !important;
+	background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 16"><path fill="gray" d="M13.561 2.061 11.94.44a1.496 1.496 0 0 0-1.061-.439H5.5a1.5 1.5 0 0 0-1.5 1.5v1.5H1.5a1.5 1.5 0 0 0-1.5 1.5v10a1.5 1.5 0 0 0 1.5 1.5h7a1.5 1.5 0 0 0 1.5-1.5v-1.5h2.5a1.5 1.5 0 0 0 1.5-1.5V3.122c0-.414-.168-.789-.439-1.061zM8.313 14.5H1.688a.188.188 0 0 1-.188-.188V4.687c0-.104.084-.188.188-.188h2.313v7a1.5 1.5 0 0 0 1.5 1.5h3v1.313a.188.188 0 0 1-.188.188zm4-3H5.688a.188.188 0 0 1-.188-.188V1.687c0-.104.084-.188.188-.188h3.313v2.75c0 .414.336.75.75.75h2.75v6.313a.188.188 0 0 1-.188.188zm.187-8h-2v-2h.301c.05 0 .097.02.133.055l1.511 1.512a.187.187 0 0 1 .055.133v.301z"/></svg>');
+	cursor: pointer;
 }

@@ -1,5 +1,76 @@
+option {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 18px;
+}
+
+span.input-group-addon {
+    display: inline-block;
+    line-height: 40px;
+    padding-right: 5px;
+}
+
+.ahc-social-share-slot {
+	.row>* {
+		flex: 1 0 0;
+	}
+	a {
+		min-width:150px;
+	}
+}
+
+.ym-pc-dashboard-coordinator-school-years-section {
+	select {
+		min-width:70px;
+	}
+}
+.ym-pc-dashboard-coordinator-progress-section,
+.ym-pc-dashboard-coordinator-steps-section,
+.ym-pc-dashboard-coordinator-school-challenge-section,
+.ym-pc-dashboard-coordinator-school-years-section,
+.ym-spread-the-word-box {
+  a {
+    &,
+    &:link,
+    &:visited {
+      color: $event-primary-acc;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: $event-primary-acc;
+    }
+  }
+}
+
+.ym-progress-related-school {
+	margin-top:30px;
+}
+
+.ym-pc-dashboard-coordinator-steps-section {
+  .h3 {
+    color: $event-secondary-medium;
+  }
+  .ym-activity-box {
+    h2.h3 {
+      color: $title-color;
+    } 
+  }
+}
+	
 .social-iframe {
 	min-height: 950px;
+}
+.ym-pc-dashboard-social-iframe {
+  .embed-responsive-16by9 {
+    padding-bottom: 62%;
+  }
+}
+
+.ym-pc-dashboard-email-section__column {
+  overflow:hidden;
+  padding:10px;
+  margin-bottom:30px;
 }
 a.btn-compose {
 	font-size:18px;
@@ -11,7 +82,7 @@ a.btn-compose {
 a.btn.btn-secondary:active, 
 a.btn.btn-secondary:focus, 
 a.btn.btn-secondary:hover {
-	background: #337ab7;
+	background: $event-primary;
 }
 
 div[id^="taTextElement"]:focus {
@@ -22,7 +93,7 @@ div[id^="taTextElement"]:focus {
 }
 
 select#ym-update-challenge {
-	color: #000000;
+	font-size:18px;
 }
 
 .ym-pc-dashboard-coordinator-school-detail-section {
@@ -41,20 +112,29 @@ select#ym-update-challenge {
 	color: $event-grey;
 }
 
+.ym-pc-dashboard-section-header {
+  h2,.h3 {
+	color: $event-secondary-medium;
+  }
+}
+
 .ym-pc-dashboard-coordinator-school-years-section,
 .ym-pc-dashboard-coordinator-school-challenge-section,
 .ym-pc-dashboard-coordinator-school-level-section {
-	background-color: $event-accent-light;
+	background-color: $event-secondary-medium;
 	padding: 36px;
 	margin: 0 0 30px;
+	color: $event-secondary-heading;
 
 	h2.h3 {
 		margin-bottom: 20px;
+		color: $title-color;
 	}
 
 	div.ym-pc-dashboard-section-header {
 		font-size: 18px;
 		line-height: 22px;
+		color: $event-secondary-medium;
 
 		select {
 			width: auto;
@@ -78,8 +158,274 @@ select#ym-update-challenge {
 	}
 }
 
+.ym-pc-dashboard-coordinator-school-plan-section,
+.ym-pc-dashboard-school-plan {
+  max-height:600px;
+  overflow:scroll;
+	
+  h2.h3 {
+    color: $title-color;
+  }
+  
+  hr {
+    margin-top:5px;
+    margin-bottom:5px;
+  }
+	
+  .plan-heading {
+    color: $event-secondary-medium;
+    font-weight: bold;
+  }
+
+  .ym-pc-dashboard-school-goals {
+    input {
+      max-width:200px;
+    }
+  }
+  .ym-pc-dashboard-total-points {
+    margin-top:20px;
+    border:1px solid $event-secondary-heading;
+    padding:10px;
+    border-radius:10px;
+    
+    a, a:active, a:focus, a:hover {
+      color: $event-primary-acc;
+    }
+  }
+}
+
 .schoolStatusTitle {
     font-size: 18px;
     font-weight: 700;
     margin: 0 0 15px;
+}
+
+/* badge list */
+.ym-pc-dashboard-badges-section {
+  background: none !important;
+  margin: 0px !important;
+  padding: 10px 0 0 0 !important;
+  position:relative;
+  overflow:hidden;
+	
+  &.confetti:before {
+    background: url(../image/badge_confetti.png) !important;
+    content: '';
+    width: 100%;
+    height: 200%;
+    display: block;
+    position: absolute;
+    opacity: 0.3;
+    animation: slide 6s linear infinite;
+    -webkit-animation: slide 6s linear infinite;
+    -ms-animation: slide 6s linear infinite;
+ }
+  .ym-pc-dashboard-mission-accomplished {
+    color: $event-secondary;
+    font-weight:bold;
+  }
+  .ym-pc-dashboard-completed-label {
+    font-size:14px;
+  }
+  a {
+    text-decoration:none;
+  }
+  .btn {
+    white-space:normal;
+  }
+  h2, .h3 {
+    color: $event-secondary-medium;
+  }
+}
+
+.ym-pc-dashboard-badge-path {
+   position: relative;
+   margin: 0 auto 40px;
+   svg {
+      @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+         height:750px;
+      }
+	   
+	   g.finn-text text {
+	    font-family: Oswald;
+	    font-size: 24px;
+	}
+   }
+   .ym-pc-dashboard-badges-header {
+
+     @media (max-width: $screen-sm-min) {
+	position: relative;
+	left: auto;
+        margin-bottom: 10px;
+     }
+	   
+     em {
+  	font-size:16px;
+     }
+     .ym-pc-dashboard-badges-mission {
+         font-size: 20px;
+	 margin-bottom: 16px;
+	 font-weight:bold;
+	 text-align:center;
+     }
+   }
+}
+
+@keyframes slide{
+   0%{
+	transform: translate3d(0, -1186px, 0);
+   }
+   100%{
+   	transform: translate3d(0, 0, 0);
+   }
+}
+
+.ym-pc-dashboard-coordinator-resources-contact {
+	text-align:center;
+	font-weight:bold;
+	margin-top:15px;
+	color: $event-secondary;
+}
+
+.ym-pc-dashboard-livestream-box {
+	padding: 20px;
+	.ym-pc-dashboard-livestream-title {
+		text-align: center;
+		margin-bottom: 20px;
+	}
+	.ym-pc-dashboard-livestream-images {
+		.pc-livestream-character {
+			max-width:210px;
+			margin-right:50px;
+			@media (max-width: 992px) {
+				max-width:130px;
+			}
+		}
+		.pc-livestream-hearts {
+			max-height: 210px;
+			margin-bottom: 10px;
+			@media (max-width: 992px) {
+				max-height:130px;
+			}
+		}
+	}
+	.ym-pc-dashboard-livestream-buttons {
+		margin-top: 10px;
+		padding-top: 10px;
+		border-top: 1px solid #38b5bd;
+		overflow: hidden;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+
+		a:nth-child(1) {
+			float:left;
+		}
+		a:nth-child(2) {
+			float:right;
+		}
+		a {
+			margin-bottom: 10px;
+			@media (max-width: 480px) {
+				text-align: center;
+				float: none !important;
+				margin-bottom: 10px;
+			}
+		}
+	}
+}
+.school-badges {
+  margin-top:20px;
+  
+  .ym-pc-dashboard-school-badges-box {
+    .ym-badges__item {
+        max-width:90px;
+	margin: 10px 15px 5px;
+        img.img-responsive {
+          max-width: 80px;
+        }
+	    
+        .text.ng-binding {
+	    font-size: 14px;
+	    font-weight: bold;
+	    display: block;
+	    margin-top: 5px;
+	    margin-bottom: 10px;
+	    text-align: center;
+	}
+    }
+  }
+}
+#ym-pc-dashboard-company-panel--coordinator {
+    margin-bottom:20px;
+}
+.fundraisingStatusTitle {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 15px;
+    text-align:center;
+}
+.fundraisingStatusTitle + .ym-progress__thermometer {
+    margin-top: 0px;
+}
+.fundraisingStatusTitle + .ym-progress__thermometer + .ym-progress-related {
+    margin-top: 15px;
+}
+
+.ym-pc-first-login-modal {
+  .h3 {
+    color: #02517b;
+  }
+}
+
+#status-text,
+#status-text-mobile {
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+}
+
+.winding-road, .winding-road-mobile {display:none;}
+@media (min-width:1024px) {
+	.winding-road {display:block;}
+}
+@media (max-width:1023px) {
+	.winding-road-mobile {display:block;}
+}
+
+.middleschool {
+	display: block;
+	/*justify-content: flex-start;
+	flex-wrap: wrap;*/
+}
+.box {
+	margin: 10px;
+	max-width: 300px;
+	border: 1px solid #d3d3d3;
+	padding: 10px;
+	min-height:235px;
+}
+.box a {text-decoration:none;}
+.box > a {
+    display: block;
+    height: 25px;
+}
+.box img {max-width:235px;width:100%;}
+.box .item-title {text-align:center;color:#000;font-weight:bold;height:40px;color:#c10e21;}
+
+.ym-pc-feedback {
+	margin-top:10px;
+}
+textarea#feedbackMessage {
+	height: 30vh;
+}
+
+.ym-pc-dashboard-qrcode canvas {
+	max-width:150px;
+	max-height:150px;
+}
+
+.clipboard-copy {
+    font-weight: 400;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-style: italic;
 }

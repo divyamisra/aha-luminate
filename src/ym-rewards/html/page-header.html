@@ -1,0 +1,29 @@
+  <div class="ym-page-header">
+    <div class="container-fluid row">
+      <div class="col-md-12 col-lg-7">
+      [[?xx::x[[S24]]x::::
+        <!-- page title is non-null -->
+        <h1>
+          [[S24]]
+        </h1>
+      ]]
+      <p class="fw-normal text-white">Welcome <span class="fw-bold">[[S1:first_name]]</span></p>
+      </div>
+      <div class="col-md-12 col-lg-5 text-end d-sm-flex justify-content-end">
+	<div class="header-totals p-2">
+          <button type="button" class="btn btn-primary mb-2" href="" name="redeemProducts" ng-click="viewBasket($event)" ng-cloak>
+	    Your Cart: {{cartProductList.length}} ({{TotalPointsInCart}} Points)
+          </button>
+          <p ng-if="TotalPointsEarned > 0" ng-cloak>
+            Points Balance: {{TotalPointsEarned}}
+          </p>
+          <p ng-if="TotalPointsSpent > 0" ng-cloak>
+	    Total Points Used: {{TotalPointsSpent}}
+          </p>
+          <p ng-if="TotalPointsSpent == 0" ng-cloak>
+            Total Points Available: {{TotalPointsAvailable}}
+          </p>
+	</div>
+      </div>
+    </div>
+  </div>

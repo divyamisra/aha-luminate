@@ -48,6 +48,7 @@ div.responsive a {
   }
   &.btn-secondary {
     color: $white;
+    @extend .btn-secondary;
   }
   &.btn-outline-dark {
     color: $dark;

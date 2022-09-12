@@ -69,9 +69,24 @@
       <div class="hidden" hidden aria-hidden="true">
         <img ng-src="//hearttools.heart.org/aha_ym18/api/student/register/[[S80:trID]]/[[S1:cons_id]]?team_id=[[E48:[[S80:trID]]-[[S1:cons_id]]:team-id]]&amp;school_id=[[E43:[[S80:trID]]:company-id:[[E48:[[S80:trID]]-[[S1:cons_id]]:team-id]]]]" alt="">
       </div>
+      <div class="tracking-code">[[A31]]</div>
       <script>
         var redirectToParticipantCenter = function() {
+
+          if (jQuery('.tracking-code').text().length > 0) {
+              // Add tracking code to local storage for Double the Donation 
+              console.log('there is a tracking code');
+              var trackingCode = jQuery('.tracking-code').text();
+              console.log('trackingCode' + trackingCode);
+              localStorage.trackingCode = trackingCode;
+          }
+          else {
+              console.log('clear tracking code'); 
+              localStorage.trackingCode = "";
+          }
+          
           window.location = 'https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]TRSC?fr_id=[[A2]]&pg=center';
+
         };
         if(pushRegSuccessToDataLayer) {
           pushRegSuccessToDataLayer();

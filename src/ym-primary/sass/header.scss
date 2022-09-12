@@ -7,6 +7,15 @@ header {
       margin: -2px 12px 0;
     }
   }
+
+  .ym-header-logos {
+    height: auto;
+    margin: 0;
+    
+    @media (min-width: $screen-sm-min) {
+      height: auto;
+    }
+  }
 }
 
 .ym-header-welcome {
@@ -27,4 +36,13 @@ header {
 }
 header nav .ym-header-welcome-toggle:focus {
   outline: 5px auto -webkit-focus-ring-color;
+}
+
+.ym-page-header-monster {
+  img {
+    max-height:135px;
+    @media (max-width: $screen-sm-min) {
+       max-height: 100px;
+    }
+  }
 }

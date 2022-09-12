@@ -1,0 +1,79 @@
+div#registration-reg-page-steps {
+    display: none;
+
+    button {
+        &.btn-secondary {
+            color: $gray-900;
+            border-color: $gray-900;
+
+            &:hover {
+                color: $gray-900 !important;
+                border-color: $gray-900 !important;
+                background-color: $gray-200 !important;
+            }
+        }
+    }
+
+    .survey-question-container {
+        width: 100%;
+        max-width: none;
+    }
+
+    div.registration-reg-page-step {
+        display: none;
+
+        > h1 {
+            display: none;
+        }
+
+        .font-size-24 {
+            font-size: 24px;
+        }
+
+        .display-table {
+            display: table;
+        }
+
+        .display-table-cell {
+            display: table-cell;
+        }
+
+        .cons-info-question-container {
+            float: none;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .img-item {
+            width: 100%;
+            max-width: 100%;
+            max-height: 100%;
+        }
+    }
+
+    div#registration-reg-page-step-2 {
+        .survey-number-required-container {
+            display: none;
+        }
+
+        .survivor_yes_no {
+            ul {
+                margin-top: 25px;
+                text-align: center;
+
+                li {
+                    float: none;
+                    display: inline-block;
+
+                    > div {
+                        position: relative;
+
+                        > input {
+                            top: 19px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -3,6 +3,7 @@ angular.module 'ahaLuminateControllers'
     '$scope'
     '$rootScope'
     '$location'
+    '$sce'
     '$filter'
     '$timeout'
     '$uibModal'
@@ -13,7 +14,7 @@ angular.module 'ahaLuminateControllers'
     'BoundlessService'
     'TeamraiserParticipantPageService'
     'TeamraiserSurveyResponseService'
-    ($scope, $rootScope, $location, $filter, $timeout, $uibModal, APP_INFO, TeamraiserParticipantService, TeamraiserCompanyService, ZuriService, BoundlessService, TeamraiserParticipantPageService, TeamraiserSurveyResponseService) ->
+    ($scope, $rootScope, $location, $sce, $filter, $timeout, $uibModal, APP_INFO, TeamraiserParticipantService, TeamraiserCompanyService, ZuriService, BoundlessService, TeamraiserParticipantPageService, TeamraiserSurveyResponseService) ->
       $dataRoot = angular.element '[data-aha-luminate-root]'
       $scope.participantId = $location.absUrl().split('px=')[1].split('&')[0].split('#')[0]
       $scope.companyId = $dataRoot.data('company-id') if $dataRoot.data('company-id') isnt ''
@@ -27,24 +28,17 @@ angular.module 'ahaLuminateControllers'
       $scope.challengeCompleted = 0
       $rootScope.survivor = false
       $scope.companyProgress = {}
+      $scope.returningStudent = false
 
       $scope.prizes = []
       $scope.prizesEarned = 0
       $scope.has_bonus = 0
-      $scope.current_mission_completed_count = ''
-      $scope.current_mission_completed_header = ''
-      $scope.current_mission_action = ''
-      $scope.current_mission_title = ''
-      $scope.current_mission_message = ''      
-      $scope.schoolChallenges = []
+      $scope.studentChallengeBadge = false
+      $scope.schoolChallengeBadge = false
+
       BoundlessService.getBadges $scope.frId + '/' + $scope.participantId
       .then (response) ->
         prizes = response.data.prizes
-        $scope.current_mission_completed_count = response.data.current_mission_completed_count
-        $scope.current_mission_completed_header = response.data.current_mission_completed_header
-        $scope.current_mission_action = response.data.current_mission_action
-        $scope.current_mission_title = response.data.current_mission_title
-        $scope.current_mission_message = response.data.current_mission_message
         $scope.has_bonus = response.data.has_bonus
         angular.forEach prizes, (prize) ->
           $scope.prizes.push
@@ -53,12 +47,35 @@ angular.module 'ahaLuminateControllers'
             sku: prize.sku
             status: prize.status
             earned: prize.earned_datetime
+            image_url: prize.earned_image_url
 
-          if prize.status is 1
+          if prize.status isnt 0
             $scope.prizesEarned++
       , (response) ->
         # TODO
 
+      $scope.getSchoolPlan = () ->
+        ZuriService.schoolPlanData '&method=GetSchoolPlan&CompanyId=' + $scope.companyId + '&EventId=' + $scope.frId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            $scope.schoolPlan = response.data.company[0]
+            if $scope.schoolPlan.EventStartDate != undefined
+              if $scope.schoolPlan.EventStartDate != '0000-00-00'
+                $scope.schoolPlan.EventStartDate = new Date($scope.schoolPlan.EventStartDate.replace(/-/g, "/") + ' 00:01')
+              if $scope.schoolPlan.EventEndDate != '0000-00-00'
+                $scope.schoolPlan.EventEndDate = new Date($scope.schoolPlan.EventEndDate.replace(/-/g, "/") + ' 00:01')
+              if $scope.schoolPlan.DonationDueDate != '0000-00-00'
+                $scope.schoolPlan.DonationDueDate = new Date($scope.schoolPlan.DonationDueDate.replace(/-/g, "/") + ' 00:01')
+              if $scope.schoolPlan.KickOffDate != '0000-00-00'
+                $scope.schoolPlan.KickOffDate = new Date($scope.schoolPlan.KickOffDate.replace(/-/g, "/") + ' 00:01')
+              $scope.coordinatorPoints = JSON.parse($scope.schoolPlan.PointsDetail)
+            else
+              $scope.schoolPlan.EventStartDate = ''
+              $scope.schoolPlan.DonationDueDate = ''
+              $scope.schoolPlan.KickOffDate = ''
+      $scope.getSchoolPlan()
+      
       checkSchoolChallenges = (amountRaised) ->
         amt = amountRaised / 100
         ZuriService.getSchoolData $scope.companyId,
@@ -80,17 +97,8 @@ angular.module 'ahaLuminateControllers'
                     $scope.companyProgress.schoolChallenge = meta.value
                   if meta.name == 'school-goal'
                     $scope.companyProgress.schoolChallengeLevel = meta.value
-                if amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, '')) and $scope.companyProgress.schoolChallenge != "No School Challenge"
-                  # check if student badge already added
-                  schoolChallengeAdded = false
-                  angular.forEach $scope.schoolChallenges, (schoolChallenge, schoolChallengeIndex) ->
-                    if schoolChallenge.id == "student"
-                      schoolChallengeAdded = true
-                  if not schoolChallengeAdded
-                    $scope.schoolChallenges.push
-                      id: 'student'
-                      label: 'Individual Challenge Completed'
-                      earned: true
+                if amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, ''))
+                  $scope.studentChallengeBadge = true
             else
               $scope.companyProgress.schoolYears = 0
               $scope.companyProgress.schoolChallenge = ''
@@ -110,6 +118,13 @@ angular.module 'ahaLuminateControllers'
           $scope.challengeName = response.data.challenges.text
           $scope.challengeCompleted = response.data.challenges.completed
           $rootScope.survivor = response.data.show_banner
+          ZuriService.getStudentDetail '&cons_id=' + $scope.participantId,
+            failure: (response) ->
+            error: (response) ->
+            success: (response) ->
+              if response.data.company[0] != "" and response.data.company[0] != null
+                if response.data.company[0].PriorYearEventId > 0
+                  $scope.returningStudent = true
 
       $scope.personalInfo = {}
       $scope.personalInfo.avatar = ''
@@ -143,11 +158,8 @@ angular.module 'ahaLuminateControllers'
               .then (response) ->
                 $scope.eventDate = response.data.coordinator?.event_date
                 
-          if amountRaised >= goal 
-            $scope.schoolChallenges.push
-              id: 'school'
-              label: 'School Challenge Completed'
-              earned: true
+          if amountRaised >= goal and goal > 0
+            $scope.schoolChallengeBadge = true
                 
       setParticipantProgress = (amountRaised, goal) ->
         $scope.personalProgress =
@@ -224,7 +236,7 @@ angular.module 'ahaLuminateControllers'
           $scope.personalDonors.totalNumber = $defaultPersonalDonors.length
 
       $scope.personalPagePhoto1 =
-        defaultUrl: APP_INFO.rootPath + 'dist/ym-primary/image/personal-default.png'
+        defaultUrl: APP_INFO.rootPath + 'dist/ym-primary/image/fy23/default-personal-photo.jpg'
 
       $scope.editPersonalPhoto1 = ->
         delete $scope.updatePersonalPhoto1Error
@@ -264,9 +276,10 @@ angular.module 'ahaLuminateControllers'
           delete $scope.updatePersonalPhoto1Error
           if not $scope.$$phase
             $scope.$apply()
+          BoundlessService.logPersonalPageUpdated()
           successResponse = response.successResponse
           photoNumber = successResponse.photoNumber
-
+          
           TeamraiserParticipantPageService.getPersonalPhotos
             error: (response) ->
               # TODO
@@ -285,7 +298,7 @@ angular.module 'ahaLuminateControllers'
               if not $scope.$$phase
                 $scope.$apply()
               $scope.closePersonalPhoto1Modal()
-
+      
       $scope.personalPageContent =
         mode: 'view'
         serial: new Date().getTime()

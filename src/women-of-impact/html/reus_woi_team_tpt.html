@@ -1,0 +1,114 @@
+[[S51:reus_woi_default_image]]
+[[U0:team_goal=[[E130:"[[E43:[[S334:fr_id]]:goal-dollars:[[S334:team_id]]]]" ".00" "" replaceall]]]]
+[[U0:team_raised=[[E130:"[[E43:[[S334:fr_id]]:dollars:[[S334:team_id]]]]" ".00" "" replaceall]]]]
+<div class="container tr-page-container hero">
+    <div class="row">
+        <div class="col-lg-4 col-md-12 sidebar">
+                [[?xx::x[[C4:graphic_upload]]x::
+                <img class="sidebar-hero" src="[[S80:defaultTeamImage]]"
+                      alt="[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]] fundraising page" />
+              ::
+                <img class="sidebar-hero" src="[[C4:graphic_upload]]"
+                      alt="[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]] fundraising page" />
+              ]]
+            <!-- /.sidebar-->
+            <div class="donor-roll box-shadow">
+              <div class="donor-roll__title">
+                <h5>[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]]&rsquo;s Donors:</h5>
+              </div>
+                <div class="donations-container js--donor-roll"></div>
+                <!-- /.donations-container -->
+                <a class="honor-roll-expander js--honor-roll-expander text-center hidden" href="javascript:void(0);" aria-label="View more donors"><i
+                        class="fas fa-chevron-down"></i></a>
+            </div>
+            <!-- /.donor-roll -->
+        </div>
+        <!-- /.sidebar -->
+        <div class="col-lg-8 col-md-12">
+
+            <!-- TEAM PAGE INFO BOX -->
+            <div class="tr-page-info bg-white information-box js--information-box">
+              <div class="information-box__name box-shadow">
+                <h1>[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]]</h1>
+                <div class="information-box__team-members">[[E43:0:num-members:[[S334:team_id]]]] Team Members</div>
+              </div>
+                <!--/.information-box__name-->
+              <div class="information-box__content box-shadow">
+                <div class="clearfix"></div>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="content-area">
+                      <h2>Why I'm Fundraising</h2>
+                      <div class="js--team-text">
+                        <p>I’m excited to be nominated for Go Red for Women’s <em>Woman of Impact</em> campaign. As part of this year’s class of changemakers, I’ve brought together a team that’s working to make the greatest impact possible on women’s health. We will be raising much-needed funds for the American Heart Association and working to improve the health of our communities. I hope we can count on your support! </p>
+
+                        <p>In 2004, Go Red For Women was born as a campaign to raise awareness among women about their greatest health threat — heart disease. Slowly, the campaign grew into a movement bringing together thousands of women. Go Red for Women is the trusted, passionate force for change. It provides a platform for women and their families to lead healthier lives and transform communities. It’s not just about wearing red. It’s not just about sharing heart-health facts. It’s about:</p>
+                        <ul>
+                          <li>Providing opportunities for women to take charge of their health</li>
+                          <li>Building communities that support access to healthy choices</li>
+                          <li>Demanding equal access to health care for all women and their families</li>
+                          <li>Increasing women in STEM in upcoming generations</li>
+                        </ul>
+                        <p>Our team is focused on preventing heart disease and stroke. We’re promoting healthy lifestyles, building awareness and raising critically-needed funds to support research and education initiatives. Cardiovascular diseases, which include heart disease and stroke, claim the life of a woman about every 80 seconds. We hope you will join us on our mission because about 80% of these diseases may be prevented.</p>
+                        <p><strong>The time is now.</strong> Women are leaning into the idea that when we take a stand, commit, and work together, <strong><i>real change is possible</i>.</strong> To support my campaign, click on the Donate to Nominee button below.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row buttons-row text-center">
+                        [[?x2x3x::x[[S42:0:status]]x::
+                        <a class="scroll-link btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0 js--team-captain-link" href="Donation2?df_id=[[E42:[[S334:fr_id]]:form-id]]&PROXY_ID=[[S334:team_id]]&PROXY_TYPE=22&FR_ID=[[S334:fr_id]]" onclick="_gaq.push(['_trackEvent', 'team', 'banner', 'donate to team member button']);">Donate to Nominee</a>
+                        ::]]
+                  </div>
+              </div>
+          </div>
+          <!--/.information-box-->
+
+          <!-- END TEAM PAGE INFO BOX -->
+            <!-- TEAM ROSTER -->
+            <div id="teamRoster" class="information-box team-roster bg-gray-100">
+                 <div class="team-roster-header">
+                    <h1>Team Roster</h1>
+                 </div>
+                <!-- /.team-roster-header -->
+                <div class="js--gen-team-don-container" style="display:none;">
+                    <span class="team-donate-label text-small">General Team Donations: <span class="js--gen-team-don-total">$0</span></span>
+                    <a href="Donation2?df_id=[[E42:[[S334:fr_id]]:form-id]]&PROXY_ID=[[S334:team_id]]&PROXY_TYPE=22&FR_ID=[[S334:fr_id]]" class="d-block text-small mb-1" onclick="_gaq.push(['_trackEvent', 'team', 'roster', 'donate to team link']);">Donate to Nominee</a>
+                </div>
+                <div class="clearfix"></div>
+                <!-- /.clearfix -->
+                <table id="team-roster" class="table-responsive float-left w-100 table mb-0">
+                    <thead>
+                        <tr>
+                            <th class="border-0"><span class="sr-only">Name</span></th>
+                            <th class="border-0"></th>
+                            <th class="border-0" data-orderable="false"><span class="sr-only">Donation Link</span></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <div class="clearfix"></div>
+                <!-- /.clearfix -->
+                <div class="d-flex justify-content-center">
+                    <a href="#" class="js--more-participant-results btn btn-tertiary-black" hidden>Show All Nominee Members</a>
+                </div>
+                <!-- /.d-flex justify-content-center -->
+            </div>
+            <!-- /.information-box -->
+            <!-- END TEAM ROSTER -->
+          [[?x1x2x::x[[S42:0:status]]x::
+            <div class="row join-button-row text-center">
+              <div class="col-12">
+                  <a class="btn btn-secondary col-lg col-sm-12 mx-md-2 mx-sm-0" href="TRR/?fr_tjoin=[[S334:team_id]]&pg=tfind&fr_id=[[S334:fr_id]]" onclick="_gaq.push(['_trackEvent', 'team', 'roster', 'join team button']);">Join This Nominee</a>
+              </div>
+            </div>
+          ::]]
+        </div>
+        <!-- /.col-lg-8 -->
+        <!-- /.video-container -->
+      </div>
+        <!-- /.col-12 -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->

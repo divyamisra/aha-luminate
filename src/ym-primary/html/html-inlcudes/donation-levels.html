@@ -1,4 +1,42 @@
 <div class="donation-form-container">
+  [[?[[S51:reus_ym_khc_student_fundraising_closed_teams]]::x[[E48:[[S334:FR_ID]]-[[S334:PROXY_ID]]:team-id]]x::
+    [[?x20x::x[[S334:PROXY_TYPE]]x::
+      <style>
+        .app-9 .ym-page-content .col-md-8 {
+          flex:none;
+          margin: 50px 0 0 0;
+        }
+        .ym-donation-headlines,
+        .ym-donation-levels,
+        #ProcessForm,
+        .ym-donation-sidebar__text--top,
+        .ym-donation-sidebar hr {
+          display: none;
+        }
+
+        .ym-donation-giving-closed p {
+          font-size: 24px;
+          font-weight: bold;
+          text-align: center;
+        }
+/* 
+        .screen-reader-only {
+          position: absolute;
+          height: 1px;
+          width: 1px;
+          clip: rect(1px 1px 1px 1px); 
+          clip: rect(1px,1px,1px,1px);
+          clip-path: polygon(0px 0px, 0px 0px, 0px 0px);
+          -webkit-clip-path: polygon(0px 0px, 0px 0px, 0px 0px);
+          overflow: hidden !important;
+          } */
+
+      </style>
+      <div class="ym-donation-giving-closed">
+        <p>[[S120:dc:participantName]]'s personal fundraiser has ended but you can still support our school's overall fundraising efforts <a href="Donation2?[[S120:dc:donFormId]].donation=form1&df_id=[[S120:dc:donFormId]]&FR_ID=[[S334:FR_ID]]&mfc_pref=T&PROXY_TYPE=22&PROXY_ID=[[E48:[[S334:FR_ID]]-[[S334:PROXY_ID]]:team-id]][[?xtruex::x[[S334:paypal]]x::&paypal=true::]]" aria-label="donate here">here</a>.</p>
+      </div>
+    ::]]
+  ::]]
   <div class="ym-donation-headlines">
     [[?xx::x[[S1:user_name]]x::::
       <p>You are currently logged in as [[S1:first_name]] [[S1:last_name]]. <a href="UserLogin?logout=t&NEXTURL=[[T1:[[S8]]]]">Log out if you are not [[S1:first_name]] [[S1:last_name]]</a>.
@@ -14,12 +52,12 @@
       ]]
     ]]
     </h2>
-    <div class="pull-right hidden-xs hidden-sm">
-      <img style="height: 48px;" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/suggested-donation-40-2021.png" alt="Suggested Donation of $40">
+    <div class="pull-right d-none d-md-block">
+      <img style="height: 60px;" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/suggested-donation-100.png" alt="Consider $100 to celebrate the 100 year anniversary of the American Heart Association">
     </div>
     <h2 class="h4">Your Gift</h2>
-    <div class="hidden-md hidden-lg">
-      <img style="height: 48px;" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy21/suggested-donation-40-2021.png" alt="Suggested Donation of $40">
+    <div class="d-block d-md-none">
+      <img style="height: 60px;" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/suggested-donation-100.png" alt="Consider $100 to celebrate the 100 year anniversary of the American Heart Association">
     </div>
   </div>
   <div class="alert alert-danger" role="alert" ng-if="paymentInfoErrors.errors.length > 0" ng-cloak>
@@ -35,14 +73,14 @@
     <div class="ym-donation-levels__type" role="list" aria-label="Choose your gift type">
       <button role="listitem" type="button" class="btn btn-toggle btn-lg ym-donation-levels__type--onetime" ng-class="{'active': donationInfo.giftType == 'onetime'}" ng-click="giftType('onetime')">One-time Gift</button>
       <button role="listitem" type="button" class="btn btn-toggle btn-lg ym-donation-levels__type--monthly" ng-class="{'active': donationInfo.giftType == 'monthly'}" ng-click="giftType('monthly')" ng-if="donationGiftType == 'installment'" ng-cloak>Installment Gift</button>
-      <button role="listitem" type="button" class="btn btn-toggle btn-lg ym-donation-levels__type--monthly" ng-class="{'active': donationInfo.giftType == 'monthly'}" ng-click="giftType('monthly')" ng-if="donationGiftType == 'flexible'" ng-cloak>Sustaining Gift</button>
+      <button role="listitem" type="button" class="btn btn-toggle btn-lg ym-donation-levels__type--monthly" ng-class="{'active': donationInfo.giftType == 'monthly'}" ng-click="giftType('monthly')" ng-if="donationGiftType == 'flexible'" ng-cloak>Recurring Gift</button>
     </div>
     <hr>
     <fieldset>
       <legend class="aural-only">Select Gift Amount</legend>
-      <div class="ym-donation-levels__levels" role="list" aria-label="Choose Your Donation Amount">
-        <div role="listitem" class="ym-donation-levels__amount" ng-repeat="donationLevel in donationLevels" ng-class="{'active': donationInfo.levelChecked == donationLevel.classLevel}" aria-describedby="message-level-{{donationLevel.levelId}}">
-          <button type="button" class="btn btn-toggle btn-lg {{donationLevel.classLevel}}" ng-class="{'active': donationInfo.levelChecked == donationLevel.classLevel}" ng-if="donationLevel.userSpecified == 'false'" ng-click="selectLevel($event, 'level', donationLevel.levelId, donationLevel.amount);" title="{{donationLevel.amount}}">
+      <div class="ym-donation-levels__levels" aria-label="Choose Your Donation Amount">
+        <div class="ym-donation-levels__amount" ng-repeat="donationLevel in donationLevels" ng-class="{'active': donationInfo.levelChecked == donationLevel.classLevel}" aria-describedby="message-level-{{donationLevel.levelId}}">
+          <button type="button" class="btn btn-toggle btn-lg {{donationLevel.classLevel}}" ng-class="{'active': donationInfo.levelChecked == donationLevel.classLevel}" ng-if="donationLevel.userSpecified == 'false'" ng-click="selectLevel($event, 'level', donationLevel.levelId, donationLevel.amount);" title="{{donationLevel.levelLabel}}">
             {{donationLevel.amount}}
           </button>
           <label ng-if="donationLevel.userSpecified == 'true'" class="sr-only" for="other_amount">Other Amount</label>
@@ -66,7 +104,7 @@
     </div>
     <div class="ym-donation-levels__message--sustaining level--sustaining"  ng-class="{'hidden': donationInfo.giftType != 'monthly'}" ng-if="donationGiftType == 'flexible'" ng-cloak>
       <p>
-        A sustaining gift allows you the flexibility to choose the duration of your donations.
+        A recurring gift allows you the flexibility to choose the duration of your donations.
       </p>
     </div>
   </div>

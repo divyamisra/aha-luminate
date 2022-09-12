@@ -1,0 +1,21 @@
+  <div class="modal-header">
+    <h2 class="h5 modal-title">
+      Available Volunteer Activities
+    </h2>
+  </div>
+  <div class="modal-body">
+    <div class="volunteerActivities p-3 mb-3 ms-md-auto">
+      <ul class="ps-3">
+	<li class="text-black me-5" ng-repeat="activity in volunteerActivities | orderBy: 'name'">{{activity.name}}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="clearfix">
+      <div class="pull-left">
+        <button type="button" class="btn btn-toggle" ng-click="cancelViewVolunteerActivities()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>

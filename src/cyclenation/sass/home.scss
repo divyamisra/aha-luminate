@@ -19,11 +19,11 @@
 	   min-height: 150px;
          
 	   .top-list-entry .names-amounts {
-   	      overflow: hidden;
-	      white-space: nowrap;
+   	      /*overflow: hidden;*/
 	      word-wrap: break-word;
 	      text-overflow: ellipsis;
 	      font-size:18px;
+	      line-height: 22px;
 	      font-weight:bold;
            }
 	}
@@ -63,4 +63,10 @@
 	  background-color: #c10e21;
 	  transition: width 2s linear;
         }
+}
+
+@media (min-width: 1550px) {
+  #why-we-ride .photos-box {
+    background-size: auto !important;
+  }
 }

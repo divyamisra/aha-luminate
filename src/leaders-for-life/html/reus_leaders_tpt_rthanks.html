@@ -1,0 +1,49 @@
+      <style>
+        body {
+          display: none;
+        }
+      </style>
+      <script>
+        var sfmc = {
+          vars: {
+            postUrl: "https://fe3b11727164047d741074.pub.s1.sfmc-content.com/nut0mrbb0gn",
+            consId: "[[S1:cons_id]]",
+            fname: "[[S48:0:cons.first_name]]",
+            lname: "[[S48:0:cons.last_name]]",
+            zip: "[[S48:0:cons.home_zip]]",
+            email: "[[S48:0:cons.primary_email]]",
+            mobile: "[[S48:0:cons.mobile_phone]]",
+            eventId: "[[?xx::x[[S334:fr_id]]x::[[S80:evID]]::[[S334:fr_id]]]]",
+            mobileOptIn: localStorage.mobile_optin=="on" ? true : false
+          },
+          formatPhone: function(){
+            this.vars.mobile = "1-"+this.vars.mobile.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3");
+          },
+          queueMO: function(){
+            this.formatPhone();
+            if (sfmc.vars.mobileOptIn) {
+              var xhttp = new XMLHttpRequest();
+              xhttp.open("POST", this.vars.postUrl, true);
+              xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+              xhttp.send("cons_luminate_id="+ this.vars.consId +"&cons_first_name="+ this.vars.fname +"&cons_last_name="+ this.vars.lname +"&cons_email="+ this.vars.email +"&cons_zip_code="+ this.vars.zip +"&cons_mobile="+ this.vars.mobile +"&cons_sms_opt_in=True&cons_event_id="+ this.vars.eventId +"&platform=Luminate");
+            }
+          }
+        };
+        
+        var redirectToParticipantCenter = function() {
+          window.location = 'https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]TRSC?fr_id=[[S80:evID]]&pg=center';
+        };
+        if(pushRegSuccessToDataLayer) {
+          sfmc.queueMO();
+          pushRegSuccessToDataLayer();
+          setTimeout(function() {
+            redirectToParticipantCenter();
+          }, 3000);
+        }
+        else {
+          sfmc.queueMO();
+          setTimeout(function() {
+            redirectToParticipantCenter();
+          }, 3000);
+        }
+      </script>

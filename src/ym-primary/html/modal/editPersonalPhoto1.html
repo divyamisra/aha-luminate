@@ -36,22 +36,20 @@
       <input type="text" class="form-control" name="graphic_caption" id="personal-photo-1-caption" value="{{personalPagePhoto1.caption}}">
     </div>
   </div>
-  <div class="modal-footer">
-    <div class="clearfix">
-      <div class="pull-left">
-        <button type="button" class="btn btn-toggle" ng-click="cancelEditPersonalPhoto1()">
-          Cancel
-        </button>
-      </div>
-      <div class="pull-right">
-        <button type="submit" class="btn btn-primary">
-          <strong>Save</strong>
-        </button>
-      </div>
+  <div class="modal-footer d-flex justify-content-between flex-wrap">
+    <div class="">
+      <button type="button" class="btn btn-toggle" ng-click="cancelEditPersonalPhoto1()">
+        Cancel
+      </button>
+    </div>
+    <div class="">
+      <button type="submit" class="btn btn-primary">
+        <strong>Save</strong>
+      </button>
     </div>
   </div>
 </form>
-<div class="hidden" hidden aria-hidden="true">
+<div class="d-none" hidden aria-hidden="true">
   <form class="js--delete-personal-photo-1-form" action="{{teamraiserAPIPath}}" method="POST" enctype="multipart/form-data" target="edit-personal-photo-1-shim">
     <input type="hidden" name="v" value="1.0">
     <input type="hidden" name="api_key" value="{{apiKey}}">

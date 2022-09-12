@@ -1,0 +1,37 @@
+@mixin border-radius($radius-tl, $radius-tr, $radius-br ,$radius-bl) {
+  -webkit-border-radius: $radius-tl $radius-tr $radius-br $radius-bl;
+  -moz-border-radius: $radius-tl $radius-tr $radius-br $radius-bl;
+  -ms-border-radius: $radius-tl $radius-tr $radius-br $radius-bl;
+  -o-border-radius: $radius-tl $radius-tr $radius-br $radius-bl;
+  border-radius: $radius-tl $radius-tr $radius-br $radius-bl;
+  background-clip: padding-box;  /* stops bg color from leaking outside the border: */
+}
+
+@mixin box-shadow($x, $y, $blur, $rgba) {
+  -webkit-box-shadow: $x $y $blur $rgba;
+  -moz-box-shadow: $x $y $blur $rgba;
+  -ms-box-shadow: $x $y $blur $rgba;
+  -o-box-shadow: $x $y $blur $rgba;
+  box-shadow: $x $y $blur $rgba;
+}
+
+@mixin two-color-gradient($color1, $color2) {
+  background: $color2; /* Old browsers */
+  background: -moz-linear-gradient(top, $color2 0%, $color1 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, $color2 0%, $color1 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, $color2 0%, $color1 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$color2, endColorstr=$color1,GradientType=0 ); /* IE6-9 */
+}
+
+@mixin justify-content-center {
+  -webkit-box-pack: center !important;
+  -webkit-justify-content: center !important;
+  -ms-flex-pack: center !important;
+  justify-content: center !important;
+}
+
+@mixin display-inline-grid {
+  display: inline-grid !important;
+  display: -moz-inline-grid !important;
+  display: -ms-inline-grid !important;
+}

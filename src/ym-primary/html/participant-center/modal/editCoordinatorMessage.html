@@ -13,18 +13,16 @@
       <input type="text" class="form-control" id="coordinatorMessage" ng-model="coordinatorMessage.text" aria-label="Coordinator Message" ng-value="coordinatorMessage.text">
     </div>
   </div>
-  <div class="modal-footer">
-    <div class="clearfix">
-      <div class="pull-left">
-        <button type="button" class="btn btn-toggle" ng-click="cancelEditCoordinatorMessage()">
-          Cancel
-        </button>
-      </div>
-      <div class="pull-right">
-        <button type="submit" class="btn btn-primary">
-          <strong>Save</strong>
-        </button>
-      </div>
+  <div class="modal-footer d-flex justify-content-between flex-wrap">
+    <div class="">
+      <button type="button" class="btn btn-toggle" ng-click="cancelEditCoordinatorMessage()">
+        Cancel
+      </button>
+    </div>
+    <div class="">
+      <button type="submit" class="btn btn-primary">
+        <strong>Save</strong>
+      </button>
     </div>
   </div>
 <form>

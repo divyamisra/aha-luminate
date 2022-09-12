@@ -54,8 +54,12 @@
                                 <p>
                                     <span class="tr-event-date">
                                     [[E47:[[S334:fr_id]]:fr_info:1:event_date]]<br></span>
+                                    [[?xx::x[[E47:[[S334:fr_id]]:fr_info:1:sponsor_1]]x::::
                                     <span class="tr-event-checkin">Check-In: [[E47:[[S334:fr_id]]:fr_info:1:sponsor_1]]<br></span>
+                                    ]]
+                                    [[?xx::x[[E47:[[S334:fr_id]]:fr_info:1:sponsor_2]]x::::
                                     <span class="tr-event-start">Start Time: [[E47:[[S334:fr_id]]:fr_info:1:sponsor_2]]</span>
+                                    ]]
                                 </p>
                                 <div>
                                     <i class="fas fa-info-circle" aria-hidden="true"></i>
@@ -66,6 +70,7 @@
                             <!-- /.event-info-collapse -->
                         </div>
                         <!-- /.col -->
+                        [[?xx::x[[E47:[[S334:fr_id]]:fr_info:1:event_location]]x::::
                         <div class="col-lg col-md col-sm-12 pl-md-3 pl-sm-0 event-info-expand">
                             <h3>Location <span class="d-none d-sm-block d-md-none float-right"><i class="fas fa-plus" aria-hidden="true"></i><span class="sr-only">Toggle Location Info</span></span></h3>
                             <div class="event-info-collapse d-sm-none d-xsm-none d-md-block">
@@ -78,6 +83,7 @@
                                 </div>
                             </div>
                         </div>
+                        ]]
                         <!-- /.col -->
 
                   <div class="col-lg col-md col-sm-12 pl-md-3 pl-sm-0 event-info-expand">
@@ -139,10 +145,10 @@
 
       <!-- TOP LISTS -->
       <div class="container container-wide top-lists-container">
-          <h2 class="text-center">Outstanding Fundraisers&nbsp;<span class="d-sm-none d-md-inline">-</span>&nbsp; <br class="d-sm-block d-md-none"/> <span class="event-name">[[E47:[[S334:fr_id]]:fr_info:1:event_title]]</span></h2>
+          <h2 class="text-center" id="packLeaderboard">Outstanding Fundraisers&nbsp;<span class="d-sm-none d-md-inline">-</span>&nbsp; <br class="d-sm-block d-md-none"/> <span class="event-name">[[E47:[[S334:fr_id]]:fr_info:1:event_title]]</span></h2>
           <div class="row">
               <div class="col-lg col-md-12 top-list js--company-top-list">
-                  <h3 class="d-flex bg-gray-700">
+                  <h3 class="d-flex bg-gray-700" aria-describedby="packLeaderboard">
                       <span class="flex-grow-1">
                           Top 5 Companies
                       </span>
@@ -157,7 +163,7 @@
               </div>
               <!-- /.col -->
               <div class="col-lg col-md-12 top-list js--team-top-list">
-                  <h3 class="d-flex bg-gray-700">
+                  <h3 class="d-flex bg-gray-700" aria-describedby="packLeaderboard">
                       <span class="flex-grow-1">Top 5 Teams</span>
                       <span class="text-small">Out of [[E42:[[S334:fr_id]]:num-teams]] Total</span>
                   </h3>
@@ -177,7 +183,7 @@
               </div>
               <!-- /.col -->
               <div class="col-lg col-md-12 top-list js--walker-top-list">
-                  <h3 class="d-flex bg-gray-700">
+                  <h3 class="d-flex bg-gray-700" aria-describedby="packLeaderboard">
                       <span class="flex-grow-1">Top 5  [[?x4234x::x[[S80:evID]]x::Participants::Walkers]]</span>
                       <span class="text-small">Out of [[E42:[[S334:fr_id]]:num-participants]] Total</span>
                   </h3>
@@ -206,44 +212,44 @@
 
       <!-- TOP LISTS - STEPS TAKEN -->
       <div class="container container-wide top-lists-container top-steps">
-          <h2 class="text-center"><span class="event-name">[[E47:[[S334:fr_id]]:fr_info:1:event_title]]</span> Step Challenge Leaderboard</h2>
-          <p class="text-center"><a href="DocServer/Heart_Walk_Step_Challenge_Toolkit.pdf" target="_new">To learn more about step challenge, click here</a></p>
+          <h2 class="text-center" id="durationLeaderboard">Move More Challenge Leaderboard&nbsp;<span class="d-sm-none d-md-inline">-</span>&nbsp; <br class="d-sm-block d-md-none"/> <span class="event-name">[[E47:[[S334:fr_id]]:fr_info:1:event_title]]</span></h2>
+          <p class="text-center"><a href="DocServer/Heart_Walk_Move_More_Toolkit.pdf" target="_new">To learn more about Move More Challenge, click here</a></p>
           <div class="row">
               <div class="col-lg col-md-12 top-list js--company-top-list-steps">
-                  <h3 class="d-flex bg-gray-700" aria-label="Top 5 Companies by Steps">
+                  <h3 class="d-flex bg-gray-700" aria-describedby="durationLeaderboard">
                       <span class="flex-grow-1">
                           Top 5 Companies
                       </span>
                       <!-- /.flex-grow-1 -->
-                      <span class="text-small">Out of <span class="js--num-companies"></span> Total</span>
+                      <span class="text-small">Out of <span class="js--num-companies-steps"></span> Total</span>
                   </h3>
                   <ul></ul>
                   <div class="top-list-footer bg-gray-700 d-flex justify-content-center">
-                      <a title="See All Companies" aria-label="See All Companies" href="/site/SPageNavigator/heartwalk_activity_leaderboard.html?search_type=company&fr_id=[[S334:fr_id]]&returnurl=[[S8]]" class="btn btn-tertiary" onclick="_gaq.push(['_trackEvent', 'greeting', 'leaderboards', 'see all companies']);">See All Companies</a>
+                      <a title="See All Companies" aria-label="See All Companies" href="/site/SPageNavigator/heartwalk_activity_leaderboard.html?search_type=company&fr_id=[[S334:fr_id]]&returnurl=[[T1:[[S8]]]]" class="btn btn-tertiary" onclick="_gaq.push(['_trackEvent', 'greeting', 'leaderboards', 'see all companies']);">See All Companies</a>
                   </div>
                   <!-- /.top-list-footer -->
               </div>
               <!-- /.col -->
               <div class="col-lg col-md-12 top-list js--team-top-list-steps">
-                  <h3 class="d-flex bg-gray-700" aria-label="Top 5 Teams by Steps">
+                  <h3 class="d-flex bg-gray-700" aria-describedby="durationLeaderboard">
                       <span class="flex-grow-1">Top 5 Teams</span>
-                      <span class="text-small">Out of [[E42:[[S334:fr_id]]:num-teams]] Total</span>
+                      <span class="text-small">Out of <span class="js--num-teams-steps"></span> Total</span>
                   </h3>
                   <ul></ul>
                   <div class="top-list-footer bg-gray-700 d-flex justify-content-center">
-                      <a title="See All Teams" aria-label="See All Teams" href="/site/SPageNavigator/heartwalk_activity_leaderboard.html?search_type=team&fr_id=[[S334:fr_id]]&returnurl=[[S8]]" class="btn btn-tertiary" onclick="_gaq.push(['_trackEvent', 'greeting', 'leaderboards', 'see all teams']);">See All Teams</a>
+                      <a title="See All Teams" aria-label="See All Teams" href="/site/SPageNavigator/heartwalk_activity_leaderboard.html?search_type=team&fr_id=[[S334:fr_id]]&returnurl=[[T1:[[S8]]]]" class="btn btn-tertiary" onclick="_gaq.push(['_trackEvent', 'greeting', 'leaderboards', 'see all teams']);">See All Teams</a>
                   </div>
                   <!-- /.top-list-footer -->
               </div>
               <!-- /.col -->
               <div class="col-lg col-md-12 top-list js--walker-top-list-steps">
-                  <h3 class="d-flex bg-gray-700" aria-label="Top 5 [[?x4234x::x[[S80:evID]]x::Participants::Walkers]] by Steps">
+                  <h3 class="d-flex bg-gray-700" aria-describedby="durationLeaderboard">
                       <span class="flex-grow-1">Top 5 [[?x4234x::x[[S80:evID]]x::Participants::Walkers]]</span>
-                      <span class="text-small">Out of [[E42:[[S334:fr_id]]:num-participants]] Total</span>
+                      <span class="text-small">Out of <span class="js--num-participants-steps"></span> Total</span>
                   </h3>
                   <ul></ul>
                   <div class="top-list-footer bg-gray-700 d-flex justify-content-center">
-                      <a title="See All Participants" aria-label="See All Participants" href="/site/SPageNavigator/heartwalk_activity_leaderboard.html?search_type=participant&fr_id=[[S334:fr_id]]&returnurl=[[S8]]" class="btn btn-tertiary" onclick="_gaq.push(['_trackEvent', 'greeting', 'leaderboards', 'see all participants']);">See All Participants</a>
+                      <a title="See All Participants" aria-label="See All Participants" href="/site/SPageNavigator/heartwalk_activity_leaderboard.html?search_type=participant&fr_id=[[S334:fr_id]]&returnurl=[[T1:[[S8]]]]" class="btn btn-tertiary" onclick="_gaq.push(['_trackEvent', 'greeting', 'leaderboards', 'see all participants']);">See All Participants</a>
                   </div>
                   <!-- /.top-list-footer -->
               </div>

@@ -93,7 +93,7 @@
         var currDate = $('body').data('curr-date') ? new Date($('body').data('curr-date')) : null;
         var fourWeek = $('body').data('ev-date') ? new Date($('body').data('ev-date')) : null;
         if (fourWeek != null) {
-           fourWeek.setDate(fourWeek.getDate() - 28);
+           fourWeek.setDate(fourWeek.getDate() - 30);
         }
 
         var motion_username = 'heartwalkapi';
@@ -354,7 +354,6 @@
                             });
 
                             $('.js--company-results-container').removeAttr('hidden');
-                            $('.js--company-results-container').removeAttr('hidden');
                         }
                     },
                     error: function (response) {
@@ -597,7 +596,7 @@
                             $(participantData).each(function () {
                                 if (counter <= 4) {
                                     var participantName = this.name.first + ' ' + this.name.last;
-                                    var participantRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
+                                    var participantRaised = (parseFloat(this.amountRaised) * 0.01).toFixed(2);
 
                                     var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
                                     var participantId = this.consId;
@@ -631,7 +630,7 @@
 
                             $(teamData).each(function (i) {
                                 var teamName = this.name;
-                                var teamRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
+                                var teamRaised = (parseFloat(this.amountRaised) * 0.01).toFixed(2);
 
                                 var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
                                 var teamId = this.id;
@@ -720,7 +719,7 @@
                         $(sortedAncestorCompanies).each(function (i) {
                             if (i < 5) {
                                 var companyName = this.companyName;
-                                var companyRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
+                                var companyRaised = (parseFloat(this.amountRaised) * 0.01).toFixed(2);
                                 var companyRaisedFormmatted = companyRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
                                 var topCompanyHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR?company_id=' + this.companyId + '&fr_id=' + evID + '&pg=company">' + companyName + '</a></div><div class="raised">Raised<br><strong>$' + companyRaisedFormmatted + '</strong></div></div></li>';
                                 $('.js--company-top-list ul').append(topCompanyHtml);
@@ -759,8 +758,9 @@
         /* STEPS SCRIPTS */
         /******************/
         cd.getTopParticipantsSteps = function (eventId) {
-            var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=participant&list_size=5';
-
+            var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=participant&list_size=5000';
+            var participantsFound = 0;
+            
             $.ajax({ 
                 url: motionApiUrl,
                 async: true,
@@ -773,13 +773,17 @@
                 success: function(response){
                     if (response.activities != undefined) {
                         $(response.activities).each(function(){
-                            var participantName = this.name;
-                            var steps = this.total;
-                            var participantPage = "https://" + ((isProd) ? "www2" : "dev2") + ".heart.org/site/TR?px="+this.id+"&pg=personal&fr_id="+eventId;
+                            if (participantsFound < 5) {
+                                var participantName = this.name;
+                                var steps = parseFloat(this.total).formatMoney(0);
+                                var participantPage = "https://" + ((isProd) ? "www2" : "dev2") + ".heart.org/site/TR?px="+this.id+"&pg=personal&fr_id="+eventId;
 
-                            var topWalkerHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a title="' + participantName + ' Steps" href="' + participantPage + '">' + participantName + '</a></div><div class="raised">Steps<br><strong>' + steps + '</strong></div></div></li>';
-                            $('.js--walker-top-list-steps ul').append(topWalkerHtml);
+                                var topWalkerHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a title="' + participantName + ' Minutes" href="' + participantPage + '">' + participantName + '</a></div><div class="raised"><strong>' + steps + '</strong><br/>Minutes</div></div></li>';
+                                $('.js--walker-top-list-steps ul').append(topWalkerHtml);
+                            }
+                            participantsFound++;
                         });
+                        $('.js--num-participants-steps').text(participantsFound);
                     }
                 },
                 error: function(err) {
@@ -791,8 +795,9 @@
 
         // BEGIN TOP TEAMS STEPS
         cd.getTopTeamsSteps = function (eventId) {
-            var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=team&list_size=5';
-
+            var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=team&list_size=5000';
+            var teamsFound = 0;
+            
             $.ajax({ 
                 url: motionApiUrl,
                 async: true,
@@ -805,11 +810,15 @@
                 success: function(response){
                     if (response.activities != undefined) {
                         $(response.activities).each(function(){
-                            var teamName = this.name;
-                            var steps = this.total;
-                            var topTeamRow = '<li><div class="d-flex"><div class="flex-grow-1"><a title="' + teamName + ' Steps" href="TR/?team_id=' + this.id + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a></div><div class="raised">Steps<br><strong>' + steps + '</strong></div></div></li>';
-                            $('.js--team-top-list-steps ul').append(topTeamRow);
+                            if (teamsFound < 5) {
+                                var teamName = this.name;
+                                var steps = parseFloat(this.total).formatMoney(0);
+                                var topTeamRow = '<li><div class="d-flex"><div class="flex-grow-1"><a title="' + teamName + ' Minutes" href="TR/?team_id=' + this.id + '&amp;pg=team&amp;fr_id=' + evID + '">' + teamName + '</a></div><div class="raised"><strong>' + steps + '</strong><br/>Minutes</div></div></li>';
+                                $('.js--team-top-list-steps ul').append(topTeamRow);
+                            }
+                            teamsFound++;
                         });
+                        $('.js--num-teams-steps').text(teamsFound);
                     }
                 },
                 error: function(err) {
@@ -822,8 +831,9 @@
 
         // BEGIN TOP COMPANIES STEPS
         cd.getTopCompaniesSteps = function (eventId) {
-            var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=company&list_size=5';
-
+            var motionApiUrl = 'https://' + motion_urlPrefix + '.boundlessfundraising.com/mobiles/' + motionDb + '/getMotionActivityRoster?event_id=' + motion_event + '&roster_type=company&list_size=5000';
+            var companiesFound = 0;
+            
             $.ajax({ 
                 url: motionApiUrl,
                 async: true,
@@ -836,18 +846,22 @@
                 success: function(response){
                     if (response.activities != undefined) {
                         $(response.activities).each(function(){
-                            var companyName = this.name;
-                            var steps = this.total;
-                            var topCompanyRow = '<li><div class="d-flex"><div class="flex-grow-1"><a title="' + companyName + ' Steps" href="TR/?company_id=' + this.id + '&amp;pg=company&amp;fr_id=' + evID + '">' + companyName + '</a></div><div class="raised">Steps<br><strong>' + steps + '</strong></div></div></li>';
-                            $('.js--company-top-list-steps ul').append(topCompanyRow);
+                            if (companiesFound < 5) {
+                                var companyName = this.name;
+                                var steps = parseFloat(this.total).formatMoney(0);
+                                var topCompanyRow = '<li><div class="d-flex"><div class="flex-grow-1"><a title="' + companyName + ' Minutes" href="TR/?company_id=' + this.id + '&amp;pg=company&amp;fr_id=' + evID + '">' + companyName + '</a></div><div class="raised"><strong>' + steps + '</strong><br/>Minutes</div></div></li>';
+                                $('.js--company-top-list-steps ul').append(topCompanyRow);
+                            }
+                            companiesFound++;
                         });
+                        $('.js--num-companies-steps').text(companiesFound);
                     }
                 },
                 error: function(err) {
                     console.log('getMotionActivityRoster err', err);
                 }
             });
-
+            /*
             luminateExtend.api({
                 api: 'teamraiser',
                 data: 'method=getCompaniesByInfo&fr_id=' + eventId +
@@ -858,7 +872,7 @@
                             var topCompanies = luminateExtend.utils.ensureArray(response.getCompaniesResponse
                                 .company);
                             var totalCompanies = parseInt(response.getCompaniesResponse.totalNumberResults);
-                            $('.js--num-companies').text(totalCompanies);
+                            $('.js--num-companies-steps').text(totalCompanies);
                         }
                     },
                     error: function (response) {
@@ -866,6 +880,7 @@
                     }
                 }
             });
+            */
         };
 
         // EXPANDABLE DONOR ROLL
@@ -883,7 +898,7 @@
         cd.reorderPageForMobile = function () {
             // Reorganize page for mobile views
             if (screenWidth <= 767) {
-                $('.tr-page-info').insertAfter('.sidebar-hero');
+                $('.tr-page-info').insertAfter('.personal-image-container');
                 $('.fundraising-amounts').prepend($('.fundraising-amounts .col-12'));
 
                 if ($('body').is('.pg_team')) {
@@ -1219,6 +1234,7 @@
                                 }
                                 videoEmbedHtml = '<iframe class="embed-responsive-item" src="' + personalVideoEmbedUrl + '" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                             } else {
+
                                 // TODO - show default video
                                 if (isProd) {
                                   if (evID === 5612 || evID === 4854 || evID === 5731) {
@@ -1297,12 +1313,14 @@
 
                                     var participantRaised = (parseInt(participant.amountRaised) * 0.01).toFixed(2);
                                     var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
-
-                                    $('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"><td class="donor-name"><a href="' + participant.personalPageUrl + '">' +
-                                        participant.name.first + ' ' + participant.name.last +
-                                        '</a>' + (participant.aTeamCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
-                                    if (participant.aTeamCaptain === 'true') {
-                                        $('.js--team-captain-link').attr('href', participant.personalPageUrl).text(participant.name.first + ' ' + participant.name.last);
+                                    
+                                    if (participant.name.first != null) {
+                                        $('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"><td class="donor-name"><a href="' + participant.personalPageUrl + '">' +
+                                            participant.name.first + ' ' + participant.name.last +
+                                            '</a>' + (participant.aTeamCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
+                                        if (participant.aTeamCaptain === 'true') {
+                                            $('.js--team-captain-link').attr('href', participant.personalPageUrl).text(participant.name.first + ' ' + participant.name.last);
+                                        }
                                     }
                                 });
 
@@ -1454,7 +1472,7 @@
                             } else {
                                 var teams = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
                                 $(teams).each(function (i, team) {
-                                    var teamRaised = (parseInt(team.amountRaised) * 0.01).toFixed(2);
+                                    var teamRaised = (parseFloat(team.amountRaised) * 0.01).toFixed(2);
                                     var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
                                     $('#team-roster tbody').append('<tr class="' + (numTeamRows > 4 ? 'd-none' : '') + '"> <td class="team-name"> <a href="' + team.teamPageURL + '" data-sort="' + team.name + '">' + team.name + '</a> </td><td class="donor-name"> <a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '" data-sort="' + team.captainFirstName + ' ' + team.captainLastName + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a> </td><td class="company-name"> <a href="' + luminateExtend.global.path.secure + 'TR/?pg=company&company_id=' + team.companyId + '&fr_id=' + team.EventId + '" data-sort="' + companyName + '">' + companyName + '</a> </td><td class="raised" data-sort="' + teamRaisedFormmatted + '"> <span><strong>$' + teamRaisedFormmatted + '</strong></span> </td><td> <a href="' + team.joinTeamURL + '">' + (screenWidth <= 480 ? 'Join' : 'Join Team') + '</a> </td></tr>');
                                     numTeamRows++;
@@ -1662,7 +1680,7 @@
 
             cd.buildParticipantList = function (participants) {
                 $(participants).each(function (i, participant) {
-                    var participantRaised = (parseInt(participant.amountRaised) * 0.01).toFixed(2);
+                    var participantRaised = (parseFloat(participant.amountRaised) * 0.01).toFixed(2);
                     var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
 
                     $('#participant-roster tbody').append('<tr class="' + (numWalkerRows > 4 ? 'd-none' : '') + '"><td class="participant-name"><a href="' + participant.personalPageUrl + '">' +
@@ -1702,7 +1720,7 @@
                             var html = "<div class='paymentSelType text-center' style='padding-top:10px;'>" +
                                 "<h2 class='h6'>How would you like to donate?</h2>" +
                                 "<div class='payment-options-container'><a href='" + dlink + "'><img src='https://www2.heart.org/images/content/pagebuilder/credit-card-logos2.png' alt='Donate with Visa, MasterCard, American Express or Discover cards'/></a>" +
-                                "<a href='" + default_path + "/site/SPageNavigator/heartwalk_donate_amazon.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='amazon'><img src='https://donatenow.heart.org/images/amazon-payments_inactive.png' alt='Donate with Amazon Pay'/></a>" +
+                                "<a href='" + default_path + "/site/SPageNavigator/heartwalk_donate_amazon.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='amazon'><img src='https://www2.heart.org/images/content/pagebuilder/amazon-payments.png' alt='Donate with Amazon Pay'/></a>" +
                                 "<a href='" + default_path + "/site/SPageNavigator/heartwalk_donate_googlepay.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='googlepay'><img src='https://www2.heart.org/donation-forms/donatenow/images/googlepay-button.png' alt='Donate with Google Pay'/></a>" +
                                 "<a href='" + default_path + "/site/SPageNavigator/heartwalk_donate_applepay.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='applepay hidden-md hidden-lg'><img src='https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png' alt='ApplePay'/></a>" +
                                 "<a href='" + default_path + "/site/SPageNavigator/heartwalk_donate_venmo.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='venmo hidden-md hidden-lg'><img src='https://www2.heart.org/donation-forms/donatenow/images/venmo-button.png' alt='Venmo'/></a>" +
@@ -1807,6 +1825,18 @@
         }
     });
 }(jQuery));
+
+Number.prototype.formatMoney = function (c, d, t) {
+  var n = this,
+    c = isNaN(c = Math.abs(c)) ? 2 : c,
+    d = d == undefined ? "." : d,
+    t = t == undefined ? "," : t,
+    s = n < 0 ? "-" : "",
+    i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))),
+    j = (j = i.length) > 3 ? j % 3 : 0;
+  return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d +
+    Math.abs(n - i).toFixed(c).slice(2) : "");
+};
 
 var cdSortByColumnNumber = 1;
 var cdSortByText = 'Amount Raised';

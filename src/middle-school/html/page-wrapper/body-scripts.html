@@ -15,7 +15,6 @@
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.17/angular-filter[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper[[?xtruex::x[[S80:debug]]x::::.min]].js" crossorigin="anonymous"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
 [[?
   [[?xmiddle_school_participant_centerx::x[[S334:pagename]]x::T::]]
@@ -44,7 +43,7 @@
     ajaxProxyAuth: '[[S86:true]]',
     [[?
       [[?xx::x[[S1:cons_id]]x::T::
-        [[?[[S39:0*#000000*10pt*true*1*0*0*Events:true:American Heart Challenge 2021:::]]:: href=::::T]]
+        [[?[[S39:0*#000000*10pt*true*1*0*0*Events:true:American Heart Challenge 2023:::]]:: href=::::T]]
       ]]
     ::T::
       isParticipant: false
@@ -72,6 +71,7 @@
 [[?xmiddle_school_participant_centerx::x[[S334:pagename]]x::
   <script src="//cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/ng-csv/0.3.6/ng-csv[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
   <script>
     window.fbAsyncInit = function() {
       FB.init({
@@ -95,6 +95,11 @@
     }(document, 'script', 'facebook-jssdk'));
   </script>
   <script src="[[S666:template_macros/aha_luminate_filepath.tpt::middle-school/js/participant::js::@@buildTimestamp]]"></script>
+  [[?xheartdevx::x[[S29:TABLE_PREFIX]]x::
+    <script src="https://tools.heart.org/aha_ahc23_dev/heart-card/pc/ahc-heart-card-pc/ahc-heart-card-pc.js" defer></script>
+  ::
+    <script src="https://tools.heart.org/aha_ahc23/heart-card/pc/ahc-heart-card-pc/ahc-heart-card-pc.js" defer></script>
+  ]]
 ::]]
 
 <script>
@@ -115,6 +120,27 @@
     }
   })();
 </script>
+
+[[?xpersonalx::x[[S334:pg]]x::
+  <script>
+    if(window.location.href.indexOf('ecard_linktrack=') > 0) {
+      var uparts = window.location.href.split('ecard_linktrack=');
+      uparts = uparts[1].split('&');
+      
+      var scriptTag = document.createElement('script');
+      [[?xheartdevx::x[[S29:TABLE_PREFIX]]x::
+        scriptTag.src = 'https://tools.heart.org/aha_ahc23_dev/visitlink_record.php?ecard_linktrack=' + uparts[0];
+      ::
+        [[?xheartnewx::x[[S29:TABLE_PREFIX]]x::
+          scriptTag.src = 'https://tools.heart.org/aha_ahc23_testing/visitlink_record.php?ecard_linktrack=' + uparts[0];
+        ::
+          scriptTag.src = 'https://tools.heart.org/aha_ahc23/visitlink_record.php?ecard_linktrack=' + uparts[0];
+        ]]
+      ]]
+      document.body.appendChild(scriptTag);
+    }
+  </script>
+::]]
 
 <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5789174373b4a027&amp;async=1"></script>
 <script>

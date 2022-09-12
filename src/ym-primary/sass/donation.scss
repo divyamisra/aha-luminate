@@ -1,3 +1,16 @@
+.ym-progress,
+.ym-progress-related {
+  #paymentSelType,
+  #paymentSelType2 {
+    img {
+      background: #fff;
+      border-radius: 10px;
+      padding: 10px 20px;
+      max-width:160px;
+    }
+  }
+}
+
 .event-accent {
   .ym-donation-sidebar__text {
     span {
@@ -35,4 +48,28 @@ div.donation-form-container label[for="cover-fee-checkbox"] {
 div.donation-form-container .custom-field-container.has-error .checkbox label:before,
 div.donation-form-container .custom-field-container.has-error input[type=checkbox]+label:before {
   background-color: #fcddde;
+}
+
+div.ym-donation-thanks-flex-conatiner {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+div.ym-donation-thanks-video {
+  flex: 50%;
+}
+div.ym-donation-thanks-confirmation {
+  flex: 50%;
+}
+div.ym-donation-thanks-widget {
+  flex: 100%;
+}
+
+@media (max-width: $screen-md-min) {
+  div.ym-donation-thanks-widget {
+		order: 2;
+	}
+  div.ym-donation-thanks-confirmation {
+    order: 3;
+  }
 }
