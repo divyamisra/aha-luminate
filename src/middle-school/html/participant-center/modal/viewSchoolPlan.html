@@ -1,0 +1,44 @@
+  <div class="modal-header">
+    <h2 class="h5 modal-title">
+      School Plan and Points Earned
+    </h2>
+  </div>
+  <div class="modal-body">
+    <div class="ym-pc-dashboard-school-plan" role="list">
+      <div class="row" role="listitem">
+        <div class="plan-heading col-md-4">Measurement</div>
+        <div class="plan-heading col-md-6">Explanation</div>
+        <div class="plan-heading col-md-2 mb-2">Points Earned</div>
+      </div>
+      <div ng-repeat="pointSummary in coordinatorPoints.PointSummary" role="listitem" ng-cloak>
+        <div class="row">
+          <div class="col-md-4">
+            <div ng-bind-html="pointSummary.PointsCategory.Title"></div>
+          </div>
+          <div class="col-md-6">
+	    <div ng-bind-html="pointSummary.PointsCategory.MeasurementMakeup"></div>
+          </div>
+          <div class="col-md-2 mb-2">
+            <div ng-bind-html="pointSummary.PointsCategory.EarnedPoints"></div>
+          </div>
+        </div>
+        <hr>
+     </div>
+     <div class="row" role="listitem">
+       <div class="plan-heading col-md-4">Total Points:</div>
+         <div class="plan-heading col-md-6">&nbsp;</div>
+         <div class="plan-heading col-md-2 mb-2">
+           <div ng-bind-html="TotalPointsEarned"></div>
+         </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="clearfix">
+      <div class="pull-left">
+        <button type="button" class="btn btn-toggle" ng-click="cancelShowSchoolPlan()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>

@@ -14,4 +14,10 @@ angular.module 'ahaLuminateApp'
       getRegistration: (callback) ->
         dataString = 'method=getRegistration'
         LuminateRESTService.luminateExtendTeamraiserRequest dataString, true, true, callback
+
+      getSurveyResponses: (requestData, callback) ->
+        dataString = 'method=getSurveyResponses'
+        dataString += '&' + requestData if requestData and requestData isnt ''
+        LuminateRESTService.luminateExtendTeamraiserRequest dataString, true, false, callback
+      
   ]

@@ -1,0 +1,24 @@
+  <div class="modal-header">
+    <h2 class="h5 modal-title">
+      Product Added
+    </h2>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <p>({{productSelected.quantitySel}}) {{productSelected.productName}} {{(productSelected.quantitySel > 1) ? "have" : "has"}} been added to your cart.</p>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="d-flex justify-content-between w-100">
+      <div class="cancelButton">
+        <button type="button" class="btn btn-toggle" ng-click="viewProducts($event)" aria-label="Click to Return to Product List">
+          Return to Product List
+        </button>
+      </div>
+      <div class="submitButton">
+        <button type="button" class="btn btn-toggle active" ng-click="viewBasket($event)" aria-label="Click to view Cart" autofocus>
+          View Cart
+        </button>
+      </div>
+    </div>
+  </div>

@@ -580,6 +580,9 @@
     }
     
   }
+  a.btn-primary, a.btn-white {
+    text-decoration: none!important;
+  }
 }
 
 .tr_sponsorship_logo {
@@ -621,4 +624,8 @@
   .modaal-close {
     right: -20px !important;
   }
+}
+
+#headingFour button {
+  border-radius: 0!important;
 }

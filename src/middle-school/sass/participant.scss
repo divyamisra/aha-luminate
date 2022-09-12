@@ -4,23 +4,129 @@
 
 @import "../../youth-markets/sass/participant.scss";
 
-.ng-pc-nav {
+.ng-pc-nav,
+.ng-pc-nav--coordinator {
+  @media (max-width: 669px) {
+    max-width: none;
+  }
+
   a {
+    &,
+    &:link,
+    &:visited,
+    &:hover,
+    &:focus,
+    &:active {
+      @media (max-width: 669px) {
+        width: auto;
+        height: auto;
+        padding: 12px 6px;
+        flex: 0 0 auto;
+	width: 25%;
+      }
+
+      &.ng-pc-nav-item--student-view {
+        padding: 3px 0 0;
+
+        @media (min-width: 670px) {
+          padding: 8px 0 0;
+        }
+
+        @media (min-width: 890px) {
+          padding: 14px 0 0;
+        }
+
+        > span {
+          max-width: 65px;
+
+          @media (min-width: 670px) {
+            max-width: 80px;
+            font-size: 16px;
+            line-height: 18px;
+          }
+
+          @media (min-width: 890px) {
+            max-width: none;
+            font-size: 18px;
+            line-height: 22px;
+          }
+        }
+      }
+    }
+
+    &,
     &:link,
     &:visited {
-      color: $event-secondary-heading;
+      @media (max-width: 669px) {
+        background: $brand-white;
+        color: $event-secondary;
+      }
     }
 
     &:hover,
     &:focus,
     &:active {
-      background: $brand-white;
-      color: $event-secondary-heading;
-      
-      @media (min-width: 560px) {
-        background: $brand-white;
+      @media (max-width: 669px) {
+        background: #cccccc;
+        color: $event-secondary;
       }
     }
+
+    &:last-child {
+      @media (min-width: 560px) and (max-width: 669px) {
+        margin: 0 3px 5px;
+      }
+    }
+
+    &.active {
+      @media (max-width: 669px) {
+        background: #cccccc;
+        color: $event-secondary;
+      }
+    }
+  }
+}
+
+.list-group-item > .badge {
+    float: right;
+}
+
+a.list-group-item:focus, 
+a.list-group-item:hover {
+    color: #fff;
+    text-decoration: none;
+    background-color: #f5f5f5;
+}
+
+.ym-pc-dashboard-email-challenge-box {
+  form {
+    textarea.form-control[readonly] {
+      height: 270px;
+    }
+  }
+}
+
+.ym-pc-dashboard-coordinators-tobacco-endgame-section {
+  background-color: $event-accent;
+  text-align: center;
+  margin: 0 0 24px;
+  padding: 12px;
+
+  @media (min-width: $screen-sm-min) {
+    padding: 24px 172px;
+  }
+
+  .ym-pc-dashboard-section-header {
+    color: $event-grey;
+  }
+}
+
+.list-group-item.active {
+  &:focus,
+  &.active,
+  &.active:hover {
+    background-color: $event-primary;
+    border-color: $event-primary;
   }
 }
 
@@ -35,6 +141,21 @@
   .row {
     .ym-pc-dashboard-progress-section__column {
         padding: 0;
+    }
+  }
+}
+.ym-pc-dashboard-progress-section,
+.ym-pc-dashboard-activities-section {
+  a {
+    &:link,
+    &:visited {
+      color: $event-primary-acc;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: $event-primary-acc;
     }
   }
 }
@@ -55,8 +176,18 @@
   }
 }
 
-.ym-pc-dashboard-captain-page-type, 
-.ym-pc-dashboard-coordinator-page-type {
+span.ym-activity-box-number {
+    padding: 10px;
+    background: $event-primary;
+    text-align: center;
+    border-radius: 50px;
+    width: 50px;
+    display: inline-block;
+    margin-right: 10px;
+    color: #fff;
+}
+
+.ym-pc-dashboard-captain-page-type {
   a,
   button {
     &, 
@@ -66,6 +197,60 @@
       background-color: rgba(40, 79, 73, 0.2);
       color: rgb(255, 255, 255);
       color: rgba(40, 79, 73, 1);
+    }
+  }
+  a,
+  button {
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $event-secondary;
+      color: $event-secondary-medium;
+    }
+  }
+  &.active {
+    a, 
+    button {
+      &,
+      &:hover,
+      &:link,
+      &:visited {
+        background-color: $event-secondary;
+        color: $event-secondary-medium;
+      }
+    }
+  }
+}
+
+.ym-pc-dashboard-coordinator-page-type {
+  a,
+  button {
+    &, 
+    &:link, 
+    &:visited {
+      background-color: $event-primary;
+      color: #ffffff;
+    }
+  }
+  a,
+  button {
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $event-secondary;
+      color: #ffffff;
+    }
+  }
+  &.active {
+    a, 
+    button {
+      &,
+      &:hover,
+      &:link,
+      &:visited {
+        background-color: $event-secondary;
+        color: #ffffff;
+      }
     }
   }
 }
@@ -85,18 +270,19 @@
     &:hover,
     &:focus,
     &:active {
-      background-color: $event-primary;
-      color: $brand-white;
+      background-color: $event-secondary;
+      color: $event-secondary-medium;
     }
   }
-  
   &.active {
     a, 
     button {
       &,
+      &:hover,
       &:link,
       &:visited {
-        background-color: $event-primary;
+        background-color: $event-secondary;
+        color: $event-secondary-medium;
       }
     }
   }
@@ -195,12 +381,16 @@
 }
 
 .ym-activity-box {
+  color: $event-grey;
   h5, 
   .h5 {
     text-transform: none;
-    color: $event-secondary-heading;
-  }
+    color: $title-color;
 
+    .ym-activity-box-number {
+       background: $event-primary;
+    }
+  }
 }
 
 .ym-spread-the-word-box {
@@ -216,13 +406,11 @@
     margin: 0;
   }
   
-  @media (min-width: $screen-md-min) {
-    margin: 25px 50px;
-  }
 }
 
 .ym-pc-dashboard-spread-section {
   padding: 0;	
+	
   @media (min-width: $screen-sm-min) {
     padding: 0;
   }  
@@ -284,4 +472,134 @@
   .ym_my_challenge__update {
 	  margin-bottom: 20px;
   }
+}
+
+.ym-pc-dashboard-spread-section {
+  .ym-pc-dashboard-section-header {
+    h2,.h3 {
+	    color: $event-secondary-heading;
+    }
+  }
+}
+
+.schoolChallenge, 
+.schoolCreateMessage {
+    color: $event-grey;
+}
+
+
+/* student dashboard layout */
+.dashboard-cols {
+  grid-template-columns: 60% 40%;
+  grid-template-areas:
+    "one two"
+    "three two"
+    "three four";
+  @media (max-width:767px) {
+    grid-template-columns: 100%;
+    grid-template-areas: "one" "two" "four" "three";
+  }
+}
+.dashboard-col1 { grid-area: one; }
+.dashboard-col2 { grid-area: two;  }
+.dashboard-col3 { grid-area: three; grid-row-end: none; }
+.dashboard-col4 { grid-area: four; }
+
+.ahc-challenge .btn, 
+.ahc-challenge .form-control, 
+.ahc-challenge .form-select {
+	background-color: #fff;
+	border-color: #fff;
+	color: $event-primary;
+	&:hover {
+		background-color: #fff;
+		border-color: #fff;
+		color: $event-secondary;
+	}
+}
+
+.ahc-btn-add-to-streak {
+  &::before {
+    aspect-ratio: 1/1;
+    background: $add-to-streak-icon no-repeat center;
+    background-size: 1.25rem;
+    content: "";
+    margin-right: 0.5rem;
+    transition: all .2s ease-in-out;
+    min-width: 1.75rem;
+    display: inline-flex;
+    vertical-align: middle;
+  }
+
+  &.active {
+    &::before {
+      background-image: $add-to-streak-active-icon;
+      background-size: 1.5rem;
+    }
+  }
+}
+
+.ahc-challenge-count {
+  align-items: center;
+  aspect-ratio: 1/1;
+  background: $challenge-count-bg no-repeat center;
+  background-size: cover;
+  display: inline-flex;
+  filter: drop-shadow(1px 1px 3px rgba(193, 14, 33, 0.5));
+  font-size: clamp(3rem, 7vw, 4rem);
+  font-weight: inherit;
+  justify-content: center;
+  padding-bottom: 0.25em;
+  padding-inline: 0.7em;
+
+  @media (max-width:767px) {
+    font-size: clamp(3rem, 4vw, 3.5rem);
+  }
+}
+
+.ahc-btn-copy::before {
+    content: $copy-icon;
+    padding-right: 10px;
+}
+
+.ahc-social-share {
+  .grid {
+    grid-auto-rows: 1fr;
+  }
+  .btn {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    font-weight:bold;
+  }
+}
+
+.ahc-share-facebook,
+.ahc-connect-facebook {
+  &::before {
+    content: $facebook-icon;
+    padding-right: 10px;
+  }
+}
+
+.ahc-share-facebook {
+  @include button-variant($white, $facebook-blue, $facebook-blue);
+}
+
+.ahc-connect-facebook {
+  @include button-variant($white, $facebook-blue-dark, $facebook-blue-dark);
+}
+
+.ahc-share-twitter {
+  @include button-variant($white, $twitter-blue, $twitter-blue, $white, #1989ce, $white);
+
+  &::before {
+    content: $twitter-icon;
+    padding-right: 10px;
+  }
+}
+
+.ahc-donor-roll .ahc-donors  {
+   max-height: 20vh;
+   overflow: scroll;
 }

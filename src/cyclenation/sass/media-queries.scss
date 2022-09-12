@@ -1,0 +1,1072 @@
+@media all and (max-width: 1640px) {
+  .container-wide {
+    max-width: 95%;
+  }
+
+  .top-list-footer .js--greeting-walker-search-form .input-group {
+    margin: 0 10px !important;
+  }
+}
+
+@media all and (max-width: 1425px) {
+  .top-list-footer .input-group input[type="text"] {
+    &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      font-size: 14px;
+    }
+    &::-moz-placeholder { /* Firefox 19+ */
+      font-size: 14px;
+    }
+    &:-ms-input-placeholder { /* IE 10+ */
+      font-size: 14px;
+    }
+    &:-moz-placeholder { /* Firefox 18- */
+      font-size: 14px;
+    }
+  }
+}
+
+@media all and (max-width: 1400px) {
+  .container-content {
+    max-width: 95%;
+  }
+
+  .about-event {
+    .about-image-box {
+      background-size: contain;
+      margin-left: 0 !important;
+    }
+
+    .bg-black-gradient {
+      margin: 0 !important;
+    }
+  }
+}
+
+@media all and (max-width: 1370px){
+  nav {
+    max-width: 100%;
+
+    .navbar-brand {
+      margin: 12px 0 0 20px;
+    }
+
+    // li.login {
+    //   margin-right: 20px;
+    // }
+
+    #mobile-toggle, #mobile-search {
+      margin: 15px 20px 20px 20px;
+    }
+  }
+
+  main {
+    background-size: 130% !important;
+  }
+
+  .top-lists-container {
+    .top-list {
+      ul {
+        height: 320px !important;
+      }
+      h3 {
+        padding: 20px 15px !important;
+        font-size: 1rem !important;
+
+        .text-small {
+          margin: 0 !important;
+          font-size: 1rem !important;
+        }
+      }
+
+      a {
+        padding: 20px 0 0 20px !important;
+      }
+
+      .raised {
+        padding: 5px 20px 15px 0 !important;
+      }
+
+      .top-list-footer {
+        padding: 15px 0 !important;
+      }
+    }
+
+    .top-list-footer .input-group.mx-5 {
+      margin-left: 10px !important;
+      margin-right: 10px !important;
+    }
+  }
+}
+
+@media all and (max-width: 1340px) {
+  .tr-page-container {
+    max-width: 98%;
+  }
+}
+
+@media all and (max-width: 1315px) {
+  .information-box {
+    padding: 30px;
+    width: 95%;
+  }
+}
+
+@media all and (max-width: 1300px) {
+  .top-list-footer .input-group input[type="text"] {
+    &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      font-size: 12px;
+    }
+    &::-moz-placeholder { /* Firefox 19+ */
+      font-size: 12px;
+    }
+    &:-ms-input-placeholder { /* IE 10+ */
+      font-size: 12px;
+    }
+    &:-moz-placeholder { /* Firefox 18- */
+      font-size: 12px;
+    }
+  }
+}
+
+@media all and (max-width: 1200px) {
+  .about-event {
+    padding: 0 0 36px !important;
+
+    .about-image-box {
+      margin-top: 36px !important;
+    }
+    .about-content-area {
+      padding: 36px 20px 0 !important;
+    }
+  }
+
+  .why-we-walk {
+    padding: 36px 20px !important;
+  }
+
+  .info-boxes {
+    width: 100% !important;
+  }
+}
+
+@media all and (max-width: 1160px) {
+  .pg_team {
+    .team-roster {
+      .dataTables_wrapper {
+        h1 {
+          margin: 20px 10px;
+        }
+
+        tr {
+          padding: 0 10px 15px;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 1125px) {
+  .top-list-footer .input-group input[type="text"] {
+    &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      font-size: 11px;
+    }
+    &::-moz-placeholder { /* Firefox 19+ */
+      font-size: 11px;
+    }
+    &:-ms-input-placeholder { /* IE 10+ */
+      font-size: 11px;
+    }
+    &:-moz-placeholder { /* Firefox 18- */
+      font-size: 11px;
+    }
+  }
+}
+
+@media all and (max-width: 1035px) {
+  .pg_team {
+    .information-box {
+      width: 98%;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+}
+
+@media all and (max-width: 1023px) {
+  nav {
+    li.login a {
+      padding: 8px 21px !important;
+    }
+    li.login, li.nav-item {
+      margin-left: 15px;
+
+    }
+    .nav-link {
+      font-size: 1.1rem;
+    }
+  }
+
+  .pg_team .team-roster .dataTables_wrapper tr {
+    font-size: 0.7rem;
+  }
+}
+
+@media all and (max-width: 991px) {
+  /* RESPONSIVE NAV STYLES */
+  nav {
+    display: block !important;
+
+    #navbar-container {
+      background-color: $gray-700;
+    }
+
+    .nav-link {
+      .fas {
+        display: none;
+      }
+    }
+
+    #home {
+      color: $white;
+      padding: 18px 0 !important;
+      font-size: 1rem;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    li.nav-item {
+      margin: 0 0 0 20px;
+      height: auto;
+    }
+
+    .dropdown-menu.about {
+      display: block !important;
+      position: static !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      width: 100% !important;
+      background-color: transparent !important;
+      border: none !important;
+
+      &:before,
+      &:after {
+        display: none !important;
+      }
+      a {
+        padding: 18px 0;
+        margin: 0 20px 0 0;
+        color: $white;
+        border-top: solid 1px $white;
+        font-size: 1rem !important;
+        width: auto;
+      }
+    }
+  }
+  /* END RESPONSIVE NAV STYLES */
+
+  .container-sm-content {
+    max-width: 95% !important;
+  }
+
+  .top-lists-container {
+    h2 {
+      font-size: 1.5rem !important;
+    }
+
+    .top-list {
+      margin: 0 0 20px 0;
+    }
+  }
+
+  .about-event {
+    .about-content-area {
+      order: 1;
+      width: 100% !important;
+    }
+    .about-image-box {
+      order: 2;
+      width: 398px !important;
+      margin: 20px auto !important;
+    }
+  }
+
+  .register-today {
+    background-position: right top;
+    padding: 25px !important;
+    margin: 35px 0 !important;
+  }
+
+  .info-boxes {
+    border: none;
+
+    .col-lg {
+      padding: 0 15px 36px;
+
+      &:first-child {
+        border-right: none;
+        border-bottom: solid 1px $gray-200;
+        margin-bottom: 36px;
+      }
+    }
+  }
+
+  /* PERSONAL AND TEAM PAGE STYLES */
+  .pg_personal, .pg_team, .pg_company {
+    main {
+      background: none !important;
+      background-color: $white;
+      border-top: solid 1px $gray-400;
+    }
+  }
+  /* END PERSONAL AND TEAM PAGE STYLES */
+
+  .tr-page-container {
+    // &.hero {
+    //   .col-lg-4 {
+    //     padding: 0 !important;
+    //   }
+    // }
+
+    .sidebar {
+      max-width: 40% !important;
+
+      li {
+        padding: 20px;
+      }
+
+      .donor-roll {
+        margin-bottom: 20px !important;
+      }
+    }
+
+    .col-lg-8 {
+      max-width: 60% !important;
+    }
+
+    .information-box {
+      box-shadow: none !important;
+      margin: 0 auto;
+      width: 100% !important;
+      padding: 10px 30px 30px !important;
+
+      h1 {
+        width: 100%;
+        font-size: 1.33rem;
+
+        div.float-left {
+          margin: 4px 0px 0 0;
+        }
+
+        .badges-container {
+          width: 100%;
+          margin: 10px 0 !important;
+
+          svg {
+            width: 40px;
+            margin: 0 0 0 10px;
+          }
+        }
+      }
+
+      .donation-amounts {
+        .donation-amount-btn {
+          width: 25%;
+        }
+
+        .custom-amount {
+          margin: 10px 0 0 !important;
+
+          input {
+            width: 100%;
+          }
+        }
+      }
+
+      .buttons-row {
+        .btn {
+          max-width: 44% !important;
+
+          &:first-child {
+            margin-right: 15px !important;
+          }
+        }
+      }
+    }
+
+    .content-area {
+      margin: 15px;
+    }
+  }
+
+  /* TEAM PAGE STYLES */
+  .pg_team, .pg_company {
+    .tr-page-container {
+      .information-box {
+        h1 {
+          margin: 0;
+        }
+
+        .buttons-row .btn {
+          font-size: 0.8rem;
+        }
+      }
+    }
+    .team-roster {
+      padding: 0 !important;
+
+      h1 {
+        margin: 20px !important;
+      }
+      li {
+        color: $black;
+        a {
+          color: $red;
+        }
+
+        span {
+          display: block;
+        }
+      }
+
+      .dataTables_wrapper tr {
+        padding: 0 20px 20px !important;
+        font-size:1rem;
+        
+      }
+    }
+
+    .content-area {
+      border: none;
+      padding: 0;
+
+      .col-lg-5 {
+        margin: 30px 0 !important;
+        padding: 0 20px !important;
+      }
+    }
+  }
+  /* END TEAM PAGE STYLES */
+}
+
+@media all and (max-width: 767px) {
+  .d-md-none {
+    display: none !important;
+  }
+
+  h2 {
+    font-size: 1.111rem;
+  }
+
+  h4 {
+    font-size: 1rem;
+  }
+
+  p {
+    font-size: 0.8889rem;
+  }
+
+  nav {
+    margin: 6px auto 0px !important;
+    
+    .navbar-brand {
+      margin: 0px 0px 0px 20px;
+      padding: 0;
+
+      svg {
+        margin: 0;
+        max-width: 200px;;
+      }
+      
+      img {
+        max-width: 90%;
+      }
+    }
+  }
+
+  main {
+    .container {
+      padding: 0 20px;
+    }
+
+    .event-info {
+      margin-top: 66px !important;
+      padding: 25px !important;
+      .event-info {
+        margin-top:0 !important;
+        padding: 25px 0 !important;
+      }
+      h1 {
+        font-size: 1.333rem !important;
+      }
+
+      .event-date {
+        font-size: 1rem !important;
+        margin: 0 0 15px !important;
+      }
+
+      .buttons-row {
+        margin: 0 0 10px;
+      }
+
+      .btn {
+        max-width: none !important;
+        padding: 9px 0 !important;
+        &:first-child {
+          margin-bottom: 10px;
+        }
+      }
+
+      .info-columns {
+        margin: 0 !important;
+
+        .col-lg {
+          border-bottom: solid 1px $gray-200;
+        }
+
+        h3 {
+          margin: 0 0 16px;
+          padding: 16px 0 0;
+          font-family: $font-family-medium;
+          font-size: 0.7778rem !important;
+        }
+
+        .event-info-expand .fas {
+          font-size: 0.7778rem;
+        }
+
+        .event-info-collapse {
+          padding: 0 0 10px;
+        }
+      }
+
+      .fundraising-amounts {
+        border: none !important;
+        margin-top: 3px !important;
+
+        span {
+          font-size: 0.9rem !important;
+        }
+
+        span.amount {
+          font-size: 1rem !important;
+        }
+      }
+
+      .thermometer-inner {
+        height: 50px;
+      }
+    }
+
+    .top-lists-container {
+      margin-top: 25px !important;
+      padding-bottom: 0 !important;
+
+      h2 {
+        font-size: 1rem !important;
+
+        .event-name {
+          font-size: 1rem;
+          font-family: $font-family-medium;
+        }
+      }
+
+      .top-list {
+        h3, .text-small {
+          font-size: 0.7778rem !important;
+          font-family: $font-family-light !important;
+          padding: 15px 20px !important;
+        }
+
+        h3 .text-small {
+          text-align: right;
+          padding: 0 !important;
+          margin: 0 !important;
+          float: right;
+        }
+
+        li .d-flex {
+          display: block !important;
+        }
+
+        .raised {
+          text-align: left !important;
+          padding: 5px 0 15px 20px !important;
+
+          br {
+            display: none;
+          }
+
+          strong {
+            margin: 0 0 0 5px;
+          }
+        }
+      }
+      &.top-steps {
+        .raised {
+          strong {
+            margin: 0 5px 0 0;
+          }
+        }
+      }
+    }
+
+    .about-event {
+      padding: 0 !important;
+
+      .about-content-area {
+        p {
+          font-size: 0.8889rem;
+        }
+      }
+
+      .about-image-box {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+
+        .bg-black-gradient {
+          padding: 20px;
+
+          .btn {
+            margin: 0;
+            padding: 9px 0;
+
+            &:first-child {
+              margin: 0 0 10px;
+            }
+          }
+        }
+      }
+    }
+
+    .why-we-walk {
+      padding-bottom: 25px !important;
+      padding-top: 36px !important;
+
+      h2 {
+        margin: 35px 0 20px;
+      }
+    }
+
+    .sponsors {
+      padding: 35px 0 0;
+      h4 {
+        margin: 0 0 15px;
+      }
+      a {
+        margin: 15px 0;
+      }
+    }
+  }
+
+  /* PERSONAL, TEAM, COMPANY PAGE STYLES */
+  .pg_personal, .pg_team, .pg_company {
+    .tr-page-container {
+      &.hero {
+        padding:0 15px;
+      }
+
+      .sidebar {
+        max-width: unset !important;
+        padding:0;
+      }
+
+      .col-lg-8 {
+        max-width: unset !important;
+      }
+
+      .sidebar-hero {
+        width: 60% !important;
+        margin: 0 auto;
+        display: block;
+      }
+
+      .information-box {
+
+        h1 {
+          margin: 5px 0;
+        }
+
+        .donation-amounts {
+          &.row {
+            display: flex;
+            overflow: hidden;
+          }
+          .donation-amount-btn {
+            margin: 28px 15px 0 0;
+          }
+
+          .custom-amount {
+            input {
+              width: 75px;
+            }
+          }
+        }
+      }
+
+      .donor-roll {
+        margin-top: 0;
+      }
+
+      .video-container {
+        margin: 30px 0;
+      }
+    }
+  }
+  /* END PERSONAL, TEAM, COMPANY PAGE STYLES */
+
+  .pg_HeartWalk_Search {
+    .js--event-results-rows,
+    .js--participants-results-rows,
+    .js--team-results-rows {
+      &.mobile {
+        td {
+          border: none !important;
+          table {
+            border-bottom: solid 1px $gray-100;
+            .btn-primary {
+              margin: 0 0 15px !important;
+            }
+          }
+        }
+        tr table tr td{
+          &:first-child {
+            width: 30% !important;
+            color: $black !important;
+          }
+        }
+      }
+    }
+
+  }
+}
+
+@media all and (max-width: 675px) {
+  .d-sm-block {
+    display: block !important;
+  }
+  .d-sm-none {
+    display: none !important;
+  }
+  .mb-sm-3, .my-sm-3 {
+    margin-bottom: 1rem !important;
+  }
+  .pl-sm-0, .px-sm-0 {
+    padding-left: 0 !important;
+  }
+
+  .js--multi-event-locations {
+    display: none;
+  }
+}
+
+@media all and (max-width: 663px) {
+  .row {
+    .register-today {
+      h2, p, .btn {
+        width: 66%;
+        margin-left: auto !important;
+        margin-right: auto !important;;
+        display: block;
+      }
+
+      img {
+        width: 100px;
+        margin: 0 0 0 17%;
+      }
+
+      h2 {
+        font-size: 1.2rem;
+      }
+
+      p {
+        font-size: 1rem;
+        letter-spacing: normal;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 620px) {
+  .row {
+    .register-today {
+      h2, .btn {
+        font-size: 1rem !important;
+      }
+
+      p {
+        font-size: 0.8889rem !important;
+        letter-spacing: normal !important;
+      }
+
+      .btn {
+        max-width: unset !important;
+        width: 100% !important;
+      }
+    }
+  }
+
+  .info-boxes {
+    margin-bottom: 25px;
+
+    p {
+      margin-bottom: 15px;
+    }
+
+    p br {
+      display: none;
+    }
+
+    .col-lg {
+      padding-bottom: 0;
+      &:first-child {
+        padding-bottom: 35px;
+      }
+    }
+  }
+
+  .pg_company .nav-tabs .nav-link {
+    font-size: 1rem !important;
+  }
+}
+
+@media all and (max-width: 524px) {
+  .dropdown-menu {
+    h1 {
+      font-size: 1.111rem !important;
+      text-align: center;
+    }
+  }
+
+  .register-today {
+    h2, p, .btn {
+      width: auto !important;
+    }
+
+    .btn {
+      font-size: 0.8rem !important;
+    }
+
+    img {
+      margin: 0 !important;
+    }
+
+    br {
+      display: none;
+    }
+  }
+
+  /* PERSONAL, TEAM, COMPANY PAGE STYLES */
+  .pg_personal, .pg_team, .pg_company {
+    .tr-page-container {
+      .information-box {
+
+        h1 .badges-container {
+          width: auto;
+          margin: 0 !important;
+          img {
+            width: 30px;
+            margin: 0 15px 0 5px;
+          }
+        }
+
+        .fundraising-amounts {
+          span {
+            font-size: 0.8rem;
+            margin: 5px 0 0;
+          }
+
+          .amount {
+            font-size: 1.2rem !important;
+          }
+        }
+
+        .donation-amounts {
+
+          .donation-amount-btn {
+            width: 31%;
+            margin: 28px 0 0 0 !important;
+            float: left;
+
+            &:nth-child(1), &:nth-child(3) {
+              margin-top: 0 !important;
+            }
+
+            &:nth-child(2) {
+              margin: 0 7px 0 !important;
+            }
+
+            &:nth-child(5) {
+              margin: 28px 7px 0 !important;
+            }
+          }
+
+          .custom-amount {
+            width: 31%;
+            margin: 8px 0 0 16px !important;
+            float: left;
+
+            label {
+              font-size: 0.6rem;
+            }
+
+            input {
+              // width: 100%;
+              height: 40px;
+            }
+          }
+        }
+
+        .buttons-row {
+          .btn {
+            max-width: 100% !important;
+            margin: 0px 10px 10px !important;
+          }
+        }
+      }
+
+      .tr-page-info .text-small, .tr-page-info p {
+          text-align: center;
+      }
+
+      .thermometer {
+        margin: 5px 0 0;
+      }
+    }
+  }
+  /* END PERSONAL, TEAM, COMPANY PAGE STYLES */
+  .pg_company {
+    .buttons-row {
+      margin-bottom: 0 !important;
+    }
+  }
+
+  .pg_complist {
+    .col-12.content,
+    .mobile div.responsive {
+      margin: 0 !important;
+      width: 100% !important;
+      padding: 0 !important;
+    }
+
+    #mobile_company_list * {
+      font-size: 0.7rem !important;
+    }
+  }
+}
+
+@media all and (max-width: 480px) {
+  nav {
+    .nav-tabs .nav-link {
+      margin: 0 40px 32px 0 !important;
+    }
+  }
+  /* overriding some breaking styles introduced by the footer code */
+  .input-group button.btn {
+    margin: unset;
+    padding: 7px 10px 8px;
+    @include border-radius(0, 4px, 4px, 0);
+  }
+
+  .pg_company .col-12.mt-5 {
+    margin-top: 7px !important;
+  }
+
+  label[for="search-for-team"] {
+    margin: 20px 0 0 !important;
+  }
+
+  .pg_company {
+    #participant-roster {
+      font-size: 0.8rem;
+
+      tr {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+    }
+  }
+
+  .pg_company, .pg_team {
+    #team-roster, #participant-roster {
+      td span {
+        margin: 5px 0 0 0;
+        display: inline-block;
+      }
+    }
+
+    #our-teams, #our-walkers, .team-roster {
+      .team-roster-header {
+        padding: 20px 0 0 10px !important;
+
+        h1 {
+          margin: 0 0 15px 0 !important;
+        }
+      }
+
+      .btn {
+        color: transparent;
+        // width: 40px;
+
+        i {
+          color: #fff;
+          position: absolute;
+          top: 12px;
+          right: 11px;
+        }
+      }
+    }
+  }
+
+  #team-roster_wrapper .row {
+    margin: 0;
+  }
+
+  .table {
+    &.dataTable {
+      th, td {
+        padding: 0.7rem;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 380px) {
+
+  /* PERSONAL PAGE STYLES */
+  .pg_personal {
+    .thermometer-inner {
+      height: 30px;
+    }
+  }
+  /* END PERSONAL PAGE STYLES */
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  // IE10+ specific CSS
+  .information-box h1 .badges-container svg {
+    height: 59px;
+  }
+}
+
+
+@media all and (max-width: 767px) {
+  .sidebar {
+    li {
+      padding: 20px 30px!important;
+    }
+  }
+
+  .pg_team .team-roster table tbody tr .donor-name,  .pg_team .team-roster table th{
+    padding-left: 20px;
+  }
+
+  .pg_team .team-roster table th{
+    font-size: 1rem;
+  }
+
+  .pg_team .team-roster .team-roster-header {
+    padding-left: 20px!important;
+  }
+}

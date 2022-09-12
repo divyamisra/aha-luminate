@@ -1,3 +1,7 @@
+// html {
+//   overflow-x: hidden!important;
+// }
+
 body {
   font-family: $font-family-medium;
   font-size: 16px;
@@ -111,7 +115,7 @@ img {
       }
   }
   .information-box__team-members {
-    color: $red;
+    color: $black;
     font-size: 1em;
     @include media-breakpoint-up(md) {
       font-size: 1.333em;
@@ -206,22 +210,22 @@ img {
 .achievements {
   margin: 0 0 10px;
   p {
-    font-size: 10px;
+    font-size: .625rem;
   }
 }
 
 .donor-roll {
   margin: 80px 0 0 0;
-  padding-bottom: 15px;
+  padding-bottom: 25px;
 
   .donations-container{
-    padding: 40px 33px 37px;
+    padding: 40px 33px 10px;
   }
 
   .donor-roll__title {
     background-color: $red;
     padding: 27px 33px 22px;
-    h5,
+    h1,
     span.h5 {
       color: $white;
       font-size: 1em;
@@ -313,7 +317,7 @@ img {
     .sidebar-content {
       padding: 0;
       @include media-breakpoint-up(md) {
-        padding: 22px 54px 22px 44px;
+        padding: 11px 54px 11px 44px;
       }
 
       background: #fff;

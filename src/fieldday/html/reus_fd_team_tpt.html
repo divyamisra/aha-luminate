@@ -12,21 +12,15 @@
                       alt="[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]] fundraising page" />
               ]]
 
-            <div data-company="[[E43:[[S334:fr_id]]:company-id::[[S334:team_id]]]]" class="js--sidebar-content sidebar-content box-shadow">
+            <div data-company="[[E43:[[S334:fr_id]]:company-id::[[S334:team_id]]]]" class="js--sidebar-content sidebar-content">
                 <ul>
                     <li>
                         <div class="sidebar__icon">
                           <i class="far fa-flag" aria-hidden="true"></i>
                         </div>
-                        <div class="sidebar__details js--field-day-details">
-                          <p><strong>Field Day Details:</strong></p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="sidebar__icon">
-                          <i class="fal fa-clock" aria-hidden="true"></i>
-                        </div>
-                        <div class="sidebar__details js--event-date">
+                        <div class="sidebar__details js--company-location">
+                          <p><strong>Company:</strong></p>
+                          <p><a href="TR?company_id=[[E43:[[S334:fr_id]]:company-id::[[S334:team_id]]]]&fr_id=[[S334:fr_id]]&pg=company">[[E43:[[S334:fr_id]]:company-name:[[S334:team_id]]]]</a>
                         </div>
                     </li>
                     <li>
@@ -39,10 +33,18 @@
                     </li>
                     <li>
                       <div class="sidebar__icon">
+                        <i class="fal fa-clock" aria-hidden="true"></i>
+                      </div>
+                      <div class="sidebar__details js--event-date">
+                        <p><strong>Field Day Details:</strong></p>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="sidebar__icon">
                         <i class="fal fa-map-marker-alt" aria-hidden="true"></i>
                       </div>
-                      <div class="sidebar__details js--company-location">
-                        <p><strong>Company Location:</strong></p>
+                      <div class="sidebar__details">
+                        <p><strong>Field Day Location:</strong></p>
                         <p class="js--company-link"></p>
                       </div>
                     </li>
@@ -51,7 +53,7 @@
             <!-- /.sidebar-->
             <div class="donor-roll box-shadow">
               <div class="donor-roll__title">
-                <h5>[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]]&rsquo; Donors:</h5>
+                <h1>[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]]&rsquo; Donors:</h1>
               </div>
                 <div class="donations-container js--donor-roll"></div>
                 <!-- /.donations-container -->
@@ -66,7 +68,10 @@
             <!-- TEAM PAGE INFO BOX -->
             <div class="tr-page-info bg-white information-box js--information-box">
               <div class="information-box__name box-shadow">
-                <h1>[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]]</h1>
+                <div>
+                  <p class="m-0"><strong>Team:<strong></p>
+                  <h1>[[E43:[[S334:fr_id]]:name:[[S334:team_id]]]]</h1>
+                </div>
                 <div class="information-box__team-members">[[E43:0:num-members:[[S334:team_id]]]] Members</div>
               </div>
                 <!--/.information-box__name-->
@@ -108,26 +113,26 @@
                 </div>
                 <!-- /.row -->
                 <div class="row buttons-row">
-                        [[?x2x3x::x[[S42:0:status]]x::
-                        <a class="scroll-link btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0 js--team-member-donate" href="#teamRoster" onclick="_gaq.push(['_trackEvent', 'team', 'banner', 'donate to team member button']);">Donate to a Team Member</a>
-                        ::]]
-                        [[?x1x2x::x[[S42:0:status]]x::
+                  [[?x2x3x::x[[S42:0:status]]x::
+                    <a class="scroll-link btn btn-primary col-lg col-sm-12 mx-md-3 mx-sm-0 js--team-member-donate" href="#teamRoster" onclick="_gaq.push(['_trackEvent', 'team', 'banner', 'donate to team member button']);">Donate to a Team Member</a>
+                  ::]]
+                  [[?x1x2x::x[[S42:0:status]]x::
 
-                         [[?[[E130:[[E43:[[S334:fr_id]]:num-members:[[S334:team_id]]]] number 9 > ]]::T::
+                  [[?[[E130:[[E43:[[S334:fr_id]]:num-members:[[S334:team_id]]]] number 9 > ]]::T::
 
-                          <a class="btn btn-secondary col-lg col-sm-12 mx-md-2 mx-sm-0" href="TRR?pg=tfind&fr_tm_opt=new&fr_id=[[S334:fr_id]]" onclick="_gaq.push(['_trackEvent', 'team', 'banner', 'create team button']);">This team is full. Create your own team!</a>
+                    <a class="btn btn-secondary col-lg col-sm-12 mx-md-2 mx-sm-0" href="TRR?pg=tfind&fr_tm_opt=new&fr_id=[[S334:fr_id]]" onclick="_gaq.push(['_trackEvent', 'team', 'banner', 'create team button']);">This team is full. Create your own team!</a>
 
-                          ::
+                  ::
 
-                          <a class="btn btn-secondary col-lg col-sm-12 mx-md-2 mx-sm-0" href="TRR/?fr_tjoin=[[S334:team_id]]&pg=tfind&fr_id=[[S334:fr_id]]" onclick="_gaq.push(['_trackEvent', 'team', 'banner', 'join team button']);">Join This Team</a>
+                    <a class="btn btn-secondary col-lg col-sm-12 mx-md-2 mx-sm-0" href="TRR/?fr_tjoin=[[S334:team_id]]&pg=tfind&fr_id=[[S334:fr_id]]&s_companyId=[[E43:[[S334:fr_id]]:company-id::[[S334:team_id]]]]&s_companyName=[[E43:[[S334:fr_id]]:company-name:[[S334:team_id]]]]" onclick="_gaq.push(['_trackEvent', 'team', 'banner', 'join team button']);">Join This Team</a>
 
-                          ]]
+                  ]]
 
-                        ::]]
-                  </div>
+                  ::]]
+                </div>
 
                 <!-- <a href="TRGiftForm?fr_id=[[S334:fr_id]]&px=[[S334:px]]" class="d-block text-small mt-3">Mail in a Donation</a> -->
-                <a href="Donation2?df_id=[[E42:[[S334:fr_id]]:form-id]]&PROXY_ID=[[S334:team_id]]&PROXY_TYPE=22&FR_ID=[[S334:fr_id]]" class="d-block text-small mt-3" onclick="_gaq.push(['_trackEvent', 'team', 'banner', 'donate to team link']);">Make a General Donation to this Team</a>
+                <a href="Donation2?df_id=[[E42:[[S334:fr_id]]:form-id]]&PROXY_ID=[[S334:team_id]]&PROXY_TYPE=22&FR_ID=[[S334:fr_id]]" class="d-block mt-3" onclick="_gaq.push(['_trackEvent', 'team', 'banner', 'donate to team link']);">Make a General Donation to this Team</a>
             </div>
           </div>
           <!--/.information-box-->
@@ -141,7 +146,7 @@
           </div>
 
             <!-- TEAM ROSTER -->
-            <div id="teamRoster" class="information-box team-roster bg-gray-100">
+            <div id="teamRoster" class="information-box team-roster bg-gray-100 box-shadow">
                  <div class="team-roster-header">
                     <h1>Team Roster</h1>
                     <span class="team-roster__icon"><i class="fal fa-megaphone" aria-hidden="true"></i> <p>Team Captain</p></span>

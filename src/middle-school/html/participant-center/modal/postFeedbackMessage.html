@@ -1,0 +1,43 @@
+<style>div.appArea{width:auto;}.Button {display:none;}</style>
+<div ng-if="feedbackMessage.message == ''" ng-cloak>
+  <form method="POST" novalidate ng-submit="saveFeedbackMessage()">
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="feedbackMessage" style="margin:15px 0;">Please provide any feeedback about the American Heart Challenge Program. 
+            If you need assistance with your page or fundraising efforts, please <a href="#" target="_blank">click here</a>.</label>
+        <textarea class="form-control" id="feedbackMessage" ng-model="feedbackMessage.text" aria-label="Feedback Message" autofocus></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="clearfix">
+        <div class="pull-left">
+          <button type="button" class="btn btn-toggle" ng-click="cancelPostFeedbackMessage()">
+            Cancel
+          </button>
+        </div>
+        <div class="pull-right">
+          <button type="submit" class="btn btn-primary">
+            <strong>Submit</strong>
+          </button>
+        </div>
+      </div>
+    </div>
+  <form>
+</div>
+<div ng-if="feedbackMessage.message != ''" ng-cloak>
+  <div uib-alert class="alert-danger" role="alert" ng-if="feedbackMessage.errorMessage">
+    <div ng-bind-html="feedbackMessage.errorMessage"></div>
+  </div>
+  <div ng-if="feedbackMessage.message">
+    <div ng-bind-html="feedbackMessage.message"></div>
+  </div>
+  <div class="modal-footer">
+    <div class="clearfix">
+      <div class="pull-right">
+        <button type="button" class="btn btn-toggle" ng-click="cancelPostFeedbackMessage()" autofocus>
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+
+.volunteer-hours {
+    min-width:250px;
+    max-width:320px;
+    
+    .title {
+      font-size: 26px;
+      @media (max-width:767px) {
+        font-size: 22px;
+      }
+    }
+    .time {
+      font-size: 50px;
+      @media (max-width:767px) {
+        font-size: 42px;
+      }
+    }
+}
+
+.volunteerEntries {
+  select {
+    max-width: 250px;
+  }
+}

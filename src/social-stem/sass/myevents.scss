@@ -1,0 +1,65 @@
+body.myevents-page{
+  main {
+    background-color: #eee;
+    background-image: url(/images/content/pagebuilder/BGImage2x.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 0 140px;
+    > .container {
+       background:transparent;
+    }
+  }
+  .currEventNotFound {
+    background: #333333;
+    padding: 25px;
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    border-radius: 7px;
+	  
+    .btn {
+       display:block;
+       font-size:1.2rem;
+    }
+  }
+  input#login {
+    min-width: 190px;
+    height: 60px;
+    padding: 0 20px;
+    line-height: 60px;
+    font-size: 24px !important;
+    font-weight: 400;
+    background: #d01d20;
+    text-decoration: none;
+    border-radius: 60px 60px 60px 60px;
+    background-clip: padding-box;
+    color: #fff;
+    border: none;
+    font-family: LubDubMedium,Helvetica,Arial,sans-serif !important;
+    margin-right: 10px;
+    margin-top:10px;
+  }
+	
+  .myevents-container {
+    padding: 40px;
+    @media (max-width:767px) {
+      padding-top:25px;
+    }
+    background: #fff;
+    margin: 0 auto;
+    box-shadow: 3px 4px 4px #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: LubDubMedium,Helvetica,Arial,sans-serif;
+	  
+    table.lc_Table {
+       border:none;
+    }
+    td.lc_Cell {
+       border:none;
+    }
+    tr.lc_Row1 {
+       background: none;
+    }
+  }
+}

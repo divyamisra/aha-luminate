@@ -1,0 +1,28 @@
+  <div class="modal-header">
+    <h2 class="h5 modal-title">
+      Confirm Redemption of Points
+    </h2>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <p>Total Points Available: <strong>{{TotalPointsAvailable}}</strong></p>
+      <p>Your Cart: <strong>{{cartProductList.length}} Products ({{TotalPointsInCart}} Points)</strong></p>
+      <p>Points redeemed will be subtracted from your total points available.
+         Any unused points will be carried over to next year.</p>
+      <p>Press <strong>Redeem Points</strong> below to redeem selected products.</p>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="d-flex justify-content-between w-100">
+      <div class="cancelButton">
+        <button type="button" class="btn btn-toggle" ng-click="cancelConfirmation()" aria-label="Click to Cancel Redemption">
+          Cancel
+        </button>
+      </div>
+      <div class="submitButton">
+        <button type="button" class="btn btn-toggle active" ng-click="acceptConfirmation()" aria-label="Click to Confirm Product Redemption" autofocus>
+          Redeem Points
+        </button>
+      </div>
+    </div>
+  </div>

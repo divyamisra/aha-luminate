@@ -115,10 +115,11 @@ angular.module 'ahaLuminateControllers'
         $scope.paymentInfo.responsive_payment_typepay_typeradio = paymentType
       
       $scope.previousStep = ->
-        $scope.ng_go_back = true
-        $timeout ->
-          $scope.submitPayment()
-        , 500
+        window.history.go(-3)
+        #$scope.ng_go_back = true
+        #$timeout ->
+        #  $scope.submitPayment()
+        #, 500
         false
 
       submitted = false

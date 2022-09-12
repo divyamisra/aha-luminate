@@ -33,6 +33,21 @@ header {
   }
 }
 
+.ym-header-login {
+  .btn {
+     &,
+     &:link,
+     &:visited,
+     &:hover,
+     &:focus,
+     &:active,
+     &:active:hover,
+     &:active:focus {
+       color: #fff;
+    }
+  }
+}
+
 .ym-header-welcome {
   .dropdown {
     display:inline-block !important;
@@ -52,4 +67,19 @@ header {
 
 header nav .ym-header-welcome-toggle:focus {
   outline: 5px auto -webkit-focus-ring-color;
+}
+
+header nav .ym-header-welcome-toggle {
+   @media (max-width: 767px) {
+     &,
+     &:link,
+     &:visited,
+     &:hover,
+     &:focus,
+     &:active,
+     &:active:hover,
+     &:active:focus {
+       left: 20px;
+    }
+   }
 }

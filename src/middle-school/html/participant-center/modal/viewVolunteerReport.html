@@ -1,0 +1,29 @@
+  <div class="modal-header">
+    <h2 class="h5 modal-title">
+      Volunteer Report
+    </h2>
+  </div>
+  <div class="modal-body text-center" ng-if="volunteerReportPending" ng-cloak>
+    <div class="ym-volunteer-report-status">
+      <div style="vertical-align: bottom;height: 50px;display: flex;align-items: flex-end;justify-content: center;margin-bottom: 30px;">
+        Report is being generated... <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/loading.gif" alt="Loading Image"></div>
+      </div>
+  </div>
+  <div class="modal-body text-center" ng-if="!volunteerReportPending" ng-cloak>
+    <div class="ym-volunteer-report-status">
+      Report generation is completed.<br/><br/>
+      <button type="button" class="btn btn-md-wide btn-primary" ng-csv="volunteerReportList" filename="community-service-log.csv" csv-header="['Date', 'Activity', 'Hours : Minutes']" csv-fields="['activity_date', 'activity', 'hours']" charset="utf-8"><span class="glyphicon glyphicon-download-alt">&nbsp;</span>Download CSV</button>
+      <div class="alert" role="alert" ng-if="buildCSVPending == 'done'" ng-cloak>
+	      <strong>CSV File has been created and downloaded.</strong>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer" ng-if="!volunteerReportPending" ng-cloak>
+    <div class="clearfix">
+      <div class="text-center">
+        <button type="button" class="btn btn-toggle" ng-click="cancelShowVolunteerReport()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div> 

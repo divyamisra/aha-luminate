@@ -1,0 +1,95 @@
+.pg_company {
+  .tr-page-container {
+    .information-box {
+      .buttons-row {
+        margin: 28px 0;
+
+        .btn {
+          max-width: 350px;
+        }
+      }
+    }
+
+    .nav-tabs {
+      border: none;
+
+      .nav-link {
+        font-size: 2rem;
+        color: $black;
+        background-color: #EFEFEF;
+        border-bottom: none;
+        text-align: center;
+        text-decoration: none;
+        font-family: $font-family-bold;
+        @include border-radius(0,0,0,0);
+
+        &.active {
+          background-color: $red;
+          color: $white;
+        }
+      }
+    }
+
+    .tab-content {
+      margin: 25px 0 0 0;
+    }
+
+    .team-roster .btn-tertiary-black {
+      width: 260px;
+    }
+
+  }
+
+  .company-message {
+    h2 {
+      font-size: 1.5em;
+      color: $red;
+    }
+  }
+}
+
+.evenly-like {
+  display: flex;
+  justify-content: space-between;
+
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+  }
+}
+
+.fieldday-cheer {
+  margin: 30px 0;
+  @include media-breakpoint-up(md) {
+    margin: 50px 0;
+  }
+  h3 {
+    font-size: 1.67em;
+  }
+  h3,
+  p {
+    color: $red;
+    font-family: "LubDubBold", Helvetica, Arial, sans-serif;
+    text-transform: uppercase;
+    font-size: 1.333em;
+    font-weight: normal;
+    @include media-breakpoint-up(lg) {
+      font-size: 2.667em;
+    }
+  }
+}
+
+//view all companies page
+@media (max-width: 767px) {
+  th.trr-table-participant-amount,
+  th.trr-table-number-amount {
+      display: none;
+  }
+}
+
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+  .mobile div.tr-page-container div#team_page_main_content, .mobile div.tr-page-container div.tr-page-main-content {
+      width: 100%;
+  }
+}

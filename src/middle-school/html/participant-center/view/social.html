@@ -1,3 +1,83 @@
-<div class="ng-scope embed-responsive embed-responsive-16by9 social-iframe">
+<div class="ahc-social-share white-box mb-4">
+  <h3 class="h5 mb-4">Share with Friends & Family</h3>
+  <div class="ahc-social-share-slot">
+    <div class="row g-3 mb-3">
+      <div class="col-sm-4">
+        <!--<button type="button" class="ahc-btn-social ahc-copy ahc-btn-copy btn btn-primary btn-sm h-100 py-2 rounded-3 text-start w-100" data-copy="#personalPageUrl" data-toast="#copyToClipboardToast" data-toast-message="Personal page URL copied!">Copy Link to Personal Page</button>-->
+        <div id="personalPageUrlStudent" class="visually-hidden" aria-hidden="true">{{personalPageUrl}}</div>
+        <button type="button" class="ahc-copy ahc-btn-copy ahc-btn-social btn btn-md-wide btn-primary p-2 text-start w-100" title="Copy your link to share" data-clipboard-target="#personalPageUrlStudent" data-clipboard-message="Personal page URL copied!">Copy Your Link to Share</button>
+      </div>
+      <div class="col-sm-4">
+        <a target="_blank" class="ahc-btn-social ahc-share-twitter btn btn-md-wide p-2 text-start w-100 twitter-share-button" href="https://twitter.com/intent/tweet?text={{personalPageUrl}}">Share on Twitter</a>
+      </div> 
+      <div class="col-sm-4">
+        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{personalPageUrl | urlEncode}}" class="ahc-btn-social ahc-connect-facebook btn btn-md-wide p-2 text-start w-100 fb-xfbml-parse-ignore">Share on Facebook</a>
+      </div>
+    </div>
+    <p><small>By clicking the links above, you will leave AHA's website and be redirected to another site not under the control of AHA.</small></p>
+  </div>
+  <div ng-show="facebookFundraisersEnabled" class="mt-1" ng-cloak>
+    <div class="ym-pc-dashboard-facebook-box" ng-show="!facebookFundraiserId">
+      <div class="container">
+        <div class="ym-pc-dashboard-section-header">
+          <h3 class="h5 text-white">
+            Create a Facebook Fundraiser<span ng-if="consNameFirst &amp;&amp; consNameFirst != ''">, <span ng-bind-html="consNameFirst"></span></span>!
+          </h3>
+        </div>
+        <div class="text-center">
+          <p>
+            Link your personal page to a new Facebook Fundraiser to receive donations from your Facebook friends by creating a dedicated Facebook page to raise donations. 
+          </p>
+          <div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'login_error' || facebookFundraiserLoginStatus == 'permission_error' || facebookFundraiserLoginStatus == 'create_fundraiser_error' || facebookFundraiserCreateStatus == 'login_error' || facebookFundraiserCreateStatus == 'permission_error' || facebookFundraiserCreateStatus == 'create_fundraiser_error'" ng-cloak>
+            An error occurred attempting to connect to Facebook. Please try again later. 
+          </div>
+          <div role="alert" class="alert alert-danger" ng-if="facebookFundraiserCreateStatus == 'create_fundraiser_duplicate'" ng-cloak>
+            This Facebook account already has an active Facebook Fundraiser for this school. If you are trying to connect a second student, you will need to use another Facebook account. 
+          </div>
+          <div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'declined_manage_fundraisers'" ng-cloak>
+            We need your permission to create a Facebook Fundraiser on your behalf. 
+          </div>
+          <button type="button" class="btn btn-white" ng-class="{'disabled': facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'}" ng-click="loginToFacebook()" ng-disabled="facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'">
+            <span class="fa fa-facebook-square">
+            </span>
+            <strong>
+              Connect to Facebook Fundraiser
+            </strong>
+          </button>
+          <div class="ym-pc-dashboard-facebook-hint">
+            By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA. 
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ym-pc-dashboard-facebook-box js--facebook-fundraiser-completed-section" ng-show="facebookFundraiserId">
+      <div class="container">
+        <div class="ym-pc-dashboard-section-header">
+          <h3 class="h5 text-white">
+            Your Fundraiser is Connected to Facebook! 
+          </h3>
+        </div>
+        <div class="text-center">
+          <p>
+            Log in to use Facebook's fundraising tools to invite friends, share updates and collect donations. We'll keep track of your progress on Facebook and on your page, so you'll always know how close you are to reaching your goal. 
+          </p>
+          <a class="btn btn-white" ng-class="{'disabled': !facebookFundraiserConfirmedStatus || facebookFundraiserConfirmedStatus == 'pending'}" ng-href="//facebook.com/donate/{{facebookFundraiserId}}/" ng-disabled="!facebookFundraiserConfirmedStatus || facebookFundraiserConfirmedStatus == 'pending'" target="_blank">
+            <span class="fa fa-facebook-square">
+            </span>
+            <strong>
+              Go to Facebook Fundraiser
+            </strong>
+          </a>
+          <div class="ym-pc-dashboard-facebook-hint">
+            By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA. 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="ratio ratio-16x9 social-iframe">
   <iframe ng-src="{{socialIframeURL}}" style="border:0;" title="Social Iframe"></iframe>
 </div>

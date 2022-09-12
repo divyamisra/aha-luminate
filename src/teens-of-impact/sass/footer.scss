@@ -1,0 +1,129 @@
+
+#preFooter {
+  background-color: #fcf8dd;
+  color: #3d3d3d;
+  font-size: 12px;
+}
+
+#preFooter .col-xs-12 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+footer .menu li.menu-item a::before {
+  display: none;
+}
+
+footer {
+  .menu-item {
+    svg {
+    margin-top:4px;
+  }
+}
+}
+@media (min-width: 992px) {
+  #preFooter .container {
+    width: 970px;
+  }
+}
+
+@media (min-width: 768px) {
+  #preFooter .container {
+    width: 750px;
+  }
+}
+
+a.button.footerWarning {
+  font-size: 14px;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  color: #606060;
+  background-image: -webkit-linear-gradient(top, #ffffff, #eeeeee);
+  background-image: -moz-linear-gradient(top, #ffffff, #eeeeee);
+  background-image: -ms-linear-gradient(top, #ffffff, #eeeeee);
+  background-image: -o-linear-gradient(top, #ffffff, #eeeeee);
+  background-image: linear-gradient(to bottom, #ffffff, #eeeeee);
+  -webkit-border-radius: 5;
+  -moz-border-radius: 5;
+  border-radius: 5px;
+  line-height: 12px;
+  font-weight: 400;
+  text-decoration: none;
+  height: auto;
+}
+
+footer {
+  .address,
+  .social-icons {
+    a {
+      &,
+      &:link,
+      &:visited,
+      &:hover,
+      &:focus,
+      &:active {
+        color: #3d3d3d;
+      }
+      &:hover {
+        color: $primary;
+        text-decoration: none;
+      }
+    }
+  }
+  .social-icons {
+    a {
+      &,
+      &:link,
+      &:visited,
+      &:hover,
+      &:focus,
+      &:active {
+        text-decoration: none;
+      }
+    }
+  }
+
+}
+
+.tr_sponsorship_logo_url {
+  &:focus{
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(158,202,237, 0.75);
+    box-shadow: 0 0 0 0.2rem rgba(158,202,237, 0.75);
+    height: 150px;
+    width: 150px;
+    display:block;
+  }
+}
+
+a.unslider-arrow, .unslider-nav {
+  display: none !important;
+}
+.unslider {
+  display: inline-block;
+  margin: 0;
+  overflow: auto;
+  padding: 0;
+  width: 340px;
+}
+.container.sponsor_slider {
+  padding: 0;
+}
+
+.local_sponsors {
+  vertical-align: top;
+  margin-top: 10px;
+}
+.unslider-wrap {
+  position: relative;
+}
+.tr_sponsorship_logo {
+  margin: 30px 0;
+}
+.tr_sponsorship_logos {
+  max-width: initial;
+  margin: initial;
+}
+
+img.tr_sponsorship_logo_image {
+  max-height: 65px;
+  text-align: center;
+}

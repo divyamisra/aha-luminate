@@ -1,0 +1,347 @@
+body {
+  font-family: $font-family-medium;
+  font-size: 18px;
+}
+
+// main {
+//     background-image: url("/images/content/pagebuilder/hw_hero_desktop.jpg");
+//     background-size: 100%;
+//     background-repeat: no-repeat;
+//     background-color: $gray-400;
+//     padding: 48px 76px 67px;
+// }
+@media (max-width:767px) {
+  main {
+    padding-right:5px;
+    padding-left:5px;
+    padding-top: 0px;
+  }
+}
+@media (min-width: 1200px) {
+     main .content {
+         margin: 0 auto;
+    }
+}
+ main > .container {
+     background-color: #ffffff;
+     padding: 40px 20px !important;
+}
+
+@media (max-width:767px) {
+   main > .container {
+     padding-top: 10px !important;
+   }
+}
+
+a {
+  color: $red;
+  text-decoration: underline;
+}
+
+// *:focus {
+//   outline: none !important;
+// }
+
+.text-small {
+  font-size: small;
+}
+
+.bg-gray-700 {
+  background-color: $gray-700;
+}
+
+.bg-gray-100 {
+  background-color: $gray-100;
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, strong {
+  font-family: $font-family-bold;
+  font-weight: bold;
+}
+
+ul {
+  margin: 0;
+}
+
+.container-content {
+  max-width: 1350px;
+}
+
+.text-red {
+  color: $red;
+}
+
+img {
+  max-width: 100%;
+}
+
+.box-shadow {
+  @include box-shadow(0px, 15px, 30px, rgba(0,0,0,0.2));
+}
+
+.information-box {
+  @include box-shadow(0px, 15px, 30px, rgba(0,0,0,0.2));
+  padding: 33px 65px 52px 73px;
+  width: 805px;
+  margin: 0 0 0 30px;
+
+  h1 {
+    font-size: 2rem;
+    margin: 0 0 5px;
+    float: left;
+
+    .badges-container {
+      margin: -9px 0 0 36px;
+      float: left;
+
+      svg {
+        display: block;
+        float: left;
+        width: 76px;
+        margin: 0 15px 0 0;
+      }
+    }
+  }
+
+  .donation-amounts {
+    padding: 0 13px;
+    margin-bottom: 20px;
+
+    .custom-amount {
+      margin: -20px 0 0 0;
+      label {
+        font-size: 0.75rem;
+        margin: 0;
+      }
+      input {
+        width: 100px;
+        background-color: #f8f9fa;
+        height: 40px;
+        border: 1px solid #ccc;
+        border-radius: .25rem;
+      }
+    }
+  }
+
+  .fundraising-amounts {
+    margin-bottom: 20px;
+    span {
+      font-size: 1rem;
+    }
+
+    .amount {
+      font-size: 1.4rem;
+      font-family: 'LubDubBold', Helvetica, Arial, sans-serif;
+      margin: -6px 0 0 0;
+      display: block;
+    }
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  .buttons-row {
+    .btn {
+      max-width: 265px;
+      padding: 11px 0;
+      font-size: 1rem;
+    }
+  }
+}
+
+.achievements {
+  margin: 0 0 10px;
+}
+
+.donor-roll {
+  margin: 0;
+  padding: 40px 33px 37px;
+
+  span.h5 {
+    font-size: 1rem;
+    margin: 0 0 20px;
+    display: block;
+  }
+
+  span {
+    font-size: 0.8889rem;
+  }
+
+  .donations-container {
+    overflow: hidden;
+
+    div {
+      width: 100%;
+      float: left;
+      margin: 0 0 20px;
+    }
+
+    .name {
+      float: left;
+    }
+
+    .amount {
+      float: right;
+    }
+  }
+
+  .honor-roll-expander {
+    color: $gray-700;
+    display: block;
+
+    i {
+      border: solid 2px $gray-700;
+      padding: 6px 8px 5px;
+      @include border-radius(100%, 100%, 100%, 100%);
+    }
+  }
+}
+
+.video-container {
+  margin: 70px 0;
+}
+
+.sponsors {
+  padding: 81px 0 0;
+
+  @media (max-width:767px) {
+    padding: 40px 0 0;
+  }
+
+  h4 {
+    margin: 0 0 5px;
+  }
+
+  a {
+    margin: 44px 0 0;
+  }
+}
+
+.info-boxes {
+  width: 1080px;
+  margin: 55px auto;
+  border-left: solid 1px $gray-200;
+  border-right: solid 1px $gray-200;
+
+  .col-lg {
+    padding-left: 100px;
+
+    &:first-child {
+      border-right: solid 1px $gray-200;
+    }
+  }
+
+  p {
+    margin: 0 0 32px;
+  }
+}
+
+.tr-page-container {
+  max-width: 1290px;
+
+  &.hero {
+    padding: 77px 0 0;
+  }
+
+  .sidebar {
+    .sidebar-hero {
+      width: 100%;
+    }
+
+    li {
+      border-top: solid 1px $white;
+      color: $white;
+      padding: 11px;
+      font-size: 0.97rem;
+      line-height: 1.4;
+
+      p {
+        margin: 0;
+      }
+
+      a {
+        color: $white;
+        margin: 0 0 12px;
+        display: block;
+      }
+    }
+
+    .achievements {
+      svg {
+        width: 100%;
+        max-width: 70px;
+        display: block;
+        margin: 0 auto 5px;
+      }
+    }
+  }
+
+  .content-area {
+    margin: 67px 0 0 40px;
+    font-size: 1rem;
+
+    h4 {
+      margin: 0 0 21px;
+    }
+  }
+}
+
+.pg_personal, .pg_team, .pg_company {
+  main {
+    background-image: url("/images/content/pagebuilder/Cyclenation_Page_Hero.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-color: $white;
+    @media (min-width: $screen-md-min) {
+      padding: 48px 76px 0;
+    }
+    
+  .tr-page-container.hero {
+    background-color: transparent!important;
+    }
+  }
+
+  .achievements .achievement-badge {
+    height: 90px;
+    margin: 15px 0!important;
+  }
+
+  .achievements .achievement-badge:only-of-type {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .sponsors {
+    border-top: solid 1px $gray-200;
+  }
+}
+
+#globalFooter {
+  background-color: #e9ecef;
+  .medical-statement {
+    text-align: center;
+    font-size: 0.74375rem;
+    padding: 15px 0 0;
+  }
+}
+
+.pg_personal, .pg_team, .pg_company {
+  div.tr-page-container {
+    color: #000;
+  }
+  .sidebar ul {
+    padding: 0;
+  }
+}
+
+.js--personal-text, .js--team-text, .js--company-text {
+  p {
+    font-family: LubDubMedium, Helvetica, Arial, sans-serif!important;
+    font-size: 16px!important;
+    span {
+      font-family: LubDubMedium, Helvetica, Arial, sans-serif!important;
+      font-size: 16px!important;
+    }
+  }
+}

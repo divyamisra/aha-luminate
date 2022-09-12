@@ -124,17 +124,9 @@
                   <p class="school-name">
                     My School: <a title="{{companyName}}" href="TR?fr_id=[[S80:trID]]&pg=company&company_id=[[S80:frCompanyId]]"><span ng-bind-html="companyName"></span></a>
                   </p>
-                [[?xx::x[[S80:frTJoin]]x::::
-                  <p class="team-name">
-                    My Team: <a title="[[E43:[[S80:trID]]:name:[[S80:frTJoin]]]]" href="TR?fr_id=[[S80:trID]]&pg=team&team_id=[[S80:frTJoin]]">[[E43:[[S80:trID]]:name:[[S80:frTJoin]]]]</a>
-                  </p>
-                ]]
                 </div>
                 <div ng-if="companyCity" ng-cloak>
-                  <p class="school-name-center text-center h5">
-                    <a title="{{companyName}}" href="TR?fr_id=[[S80:trID]]&pg=company&company_id=[[S80:frCompanyId]]"><span ng-bind-html="companyName"></span></a>
-                  </p>
-                  <p class="school-location text-center h5" ng-if="companyCity" ng-cloak>
+                  <p class="school-location h5" ng-if="companyCity" ng-cloak>
                     Located in <span ng-bind-html="companyCity"></span>, <span ng-bind-html="companyState"></span>
                   </p>
                 </div>
@@ -149,7 +141,9 @@
       ::T::
         <div class="ym-page-header-related hidden-xs">
           <div class="ym-page-header-monster">
-            <img src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy21/pc-hearthealthy-static.png" onmouseover="this.src='../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy21/pc-hearthealthy-animated.gif'" onmouseout="this.src='../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy21/pc-hearthealthy-static.png'" alt="Our 2020-2021 Heart Healthy Heroes">
+            <a class="d-block" href="https://www.youtube.com/watch?v=8hwkS0jYzeI" target="_blank">
+              <img src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy23/header-hearthealthy.png" alt="Our 2022-2023 Heart Heroes">
+            </a>
           </div>
         </div>
       ::]]
