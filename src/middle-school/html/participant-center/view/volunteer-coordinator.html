@@ -1,0 +1,111 @@
+<h2 class="text-center h3">
+	Student Volunteer Report
+</h2>
+<div class="py-3 text-white">
+	<div class="d-md-flex justify-content-center">
+		<div class="volunteer-hours red-bg-gradient border-red rounded mb-4 mx-sm-auto mx-md-0">
+			<div class="d-flex flex-wrap">
+				<div class="title col-5 text-center p-2">
+					Hours
+				</div>
+				<div class="col-2 border-white-left border-white-right">
+				</div>
+				<div class="title col-5 text-center p-2">
+					Minutes
+				</div>
+				<div class="time col-5 text-center bg-white text-red" aria-label="Volunteer Hours">
+					{{volunteerTotal.hours}}
+				</div>
+				<div class="time col-2 text-center bg-white text-red border-red-left border-red-right">
+					:
+				</div>
+				<div class="time col-5 text-center bg-white text-red" aria-label="Volunteer Minutes">
+					{{volunteerTotal.minutes}}
+				</div>
+			</div>
+		</div>
+		<div class="volunteer-buttons px-4 text-center">
+			<div class="py-1">
+				<button type="button" class="btn btn-md-wide btn-primary" ng-class="{'disabled': volunteerActivities.length == 0}" ng-click="viewVolunteerActivities()" ng-disabled="volunteerActivities.length == 0">
+					<strong>Available Activities</strong>
+				</button>
+			</div>
+			<div class="py-1">
+				<button type="button" class="btn btn-md-wide btn-primary" ng-click="showVolunteerAdminReport()">
+					<strong>Download Report</strong>
+				</button>
+			</div>
+		</div>
+		<div class="certImage" aria-hidden="true">
+			<img id="certificate" class="d-none" src="https://tools.heart.org/volunteer/volunteer-certificate.php?name={{consName}}&amp;hours={{volunteerTotal.hours}} Hours {{volunteerTotal.minutes}} Minutes"> 
+		</div>
+	</div>
+	<div>
+		<div class="table-responsive">
+			<div class="table table-striped volunteerEntries">
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<caption class="sr-only">
+							Student Volunteer Report
+						</caption>
+						<thead>
+							<tr>
+								<th scope="col" aria-sort="{{volunteerDetail.sortColumn != 'StudentFirstName' ? 'none' : (volunteerDetail.sortAscending ? 'ascending' : 'descending')}}">
+									<div class="text-left">
+										<button type="button" class="btn btn-link" ng-click="orderVolunteerDetail('StudentFirstName')">
+											<strong>Student</strong>&nbsp;<span class="fa" ng-class="{'fa-caret-down': (volunteerDetail.sortColumn == 'StudentFirstName' && !volunteerDetail.sortAscending) || volunteerDetail.sortColumn != 'StudentFirstName', 'fa-caret-up': volunteerDetail.sortColumn == 'StudentFirstName' && volunteerDetail.sortAscending, 'inactive': volunteerDetail.sortColumn != 'StudentFirstName'}" ng-if="volunteerCoordinatorData.length"><span class="sr-only">Sortable. {{volunteerDetail.sortColumn != 'StudentFirstName' ? 'Not sorted.' : (volunteerDetail.sortAscending ? 'Sorted ascending.' : 'Sorted descending.')}}</span></span>
+										</button>
+									</div>
+								</th>
+								<th scope="col" aria-sort="{{volunteerDetail.sortColumn != 'activity_date' ? 'none' : (volunteerDetail.sortAscending ? 'ascending' : 'descending')}}">
+									<div class="text-center">
+										<button type="button" class="btn btn-link" ng-click="orderVolunteerDetail('activity_date')">
+											<strong>Date</strong>&nbsp;<span class="fa" ng-class="{'fa-caret-down': (volunteerDetail.sortColumn == 'activity_date' && !volunteerDetail.sortAscending) || volunteerDetail.sortColumn != 'activity_date', 'fa-caret-up': volunteerDetail.sortColumn == 'activity_date' && volunteerDetail.sortAscending, 'inactive': volunteerDetail.sortColumn != 'activity_date'}" ng-if="volunteerCoordinatorData.length"><span class="sr-only">Sortable. {{volunteerDetail.sortColumn != 'activity_date' ? 'Not sorted.' : (volunteerDetail.sortAscending ? 'Sorted ascending.' : 'Sorted descending.')}}</span></span>
+										</button>
+									</div>
+								</th>
+								<th scope="col" aria-sort="{{volunteerDetail.sortColumn != 'activity' ? 'none' : (volunteerDetail.sortAscending ? 'ascending' : 'descending')}}">
+									<div class="text-center">
+										<button type="button" class="btn btn-link" ng-click="orderVolunteerDetail('activity')">
+											<strong>Activity</strong>&nbsp;<span class="fa" ng-class="{'fa-caret-down': (volunteerDetail.sortColumn == 'activity' && !volunteerDetail.sortAscending) || volunteerDetail.sortColumn != 'activity', 'fa-caret-up': volunteerDetail.sortColumn == 'activity' && volunteerDetail.sortAscending, 'inactive': volunteerDetail.sortColumn != 'activity'}" ng-if="volunteerCoordinatorData.length"><span class="sr-only">Sortable. {{volunteerDetail.sortColumn != 'activity' ? 'Not sorted.' : (volunteerDetail.sortAscending ? 'Sorted ascending.' : 'Sorted descending.')}}</span></span>
+										</button>
+									</div>
+								</th>
+								<th scope="col" aria-sort="{{volunteerDetail.sortColumn != 'orig_hours' ? 'none' : (volunteerDetail.sortAscending ? 'ascending' : 'descending')}}">
+									<div class="text-center">
+										<button type="button" class="btn btn-link" ng-click="orderVolunteerDetail('orig_hours')">
+											<strong>Hours : Minutes</strong>&nbsp;<span class="fa" ng-class="{'fa-caret-down': (volunteerDetail.sortColumn == 'orig_hours' && !volunteerDetail.sortAscending) || volunteerDetail.sortColumn != 'orig_hours', 'fa-caret-up': volunteerDetail.sortColumn == 'orig_hours' && volunteerDetail.sortAscending, 'inactive': volunteerDetail.sortColumn != 'orig_hours'}" ng-if="volunteerCoordinatorData.length"><span class="sr-only">Sortable. {{volunteerDetail.sortColumn != 'orig_hours' ? 'Not sorted.' : (volunteerDetail.sortAscending ? 'Sorted ascending.' : 'Sorted descending.')}}</span></span>
+										</button>
+									</div>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="entry in volunteerCoordinatorData">
+								<td>
+									<div class="text-left">
+										<span ng-bind-html="entry.StudentFirstName"></span> <span ng-bind-html="entry.StudentLastName"></span>
+									</div>
+								</td>
+								<td>
+									<div class="text-center">
+										{{entry.activity_date | date : 'M/d/yyyy' : 'UTC'}}
+									</div>
+								</td>
+								<td>
+									<div class="text-center">
+										{{entry.activity}}
+									</div>
+								</td>
+								<td>
+									<div class="text-center">
+										{{entry.orig_hours | time}}
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>

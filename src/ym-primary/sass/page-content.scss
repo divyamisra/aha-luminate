@@ -1,3 +1,31 @@
+
+.ym-user-image {
+  @media (min-width: $screen-sm-min) {
+    background-size: 93%;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    box-shadow: inset 0px 0px 10px 7px #999;
+  }
+}
+
+a.btn.btn-donate {
+	font-size: 18px;
+	width:100%;
+	line-height: 22px;
+	@media (max-width: 767px) {
+		width: auto;
+		max-width: 190px;
+		font-size: 14px;
+		line-height: 18px;
+		display: block;
+		padding: 10px 12px;
+	}
+}
+
+body.pg-personal .ym-badge__item {
+    width: 80px;
+}
+
 .ym-section-divider {
   border: 0;
   border-top: 1px solid $event-secondary;
@@ -5,6 +33,12 @@
   margin: 0;
 }
 
+.personal-avatar {
+  max-width:35%;
+  margin-right:20px;
+  margin-bottom:20px;
+  float:left;
+}
 .ym-page-section__list {
   background: $event-accent;
 }
@@ -59,7 +93,7 @@
 
 .ym_my_challenge__stats {
   font-size: 26px;
-  color: #ffffff;
+  color: $event-secondary;
   line-height:48px;
   margin-top:10px;
 
@@ -93,7 +127,7 @@
 .ym-page-section__list {
   .ym-donate-cta {
     .h5 {
-      color: indigo;
+      color: $event-secondary;
     }
   }
 }
@@ -113,3 +147,29 @@ hr.ym-zuri-animation__divider {
   }
 }
 
+.ym-school-student-survivor {
+  position:relative;
+  max-width:180px;
+  padding:5px;
+  
+  img {
+    width: 100%;
+  }
+}
+
+.modal.fade.in {
+   opacity: 1;
+}
+.modal.fade .modal-dialog {
+   transform: translate(0, 0) !important;
+}
+
+.modal-backdrop.fade {
+  opacity: 0.5 !important;
+ }
+.modal-header{
+   display: block;
+}
+.modal-content{
+   border-radius: 1.3rem !important;
+}

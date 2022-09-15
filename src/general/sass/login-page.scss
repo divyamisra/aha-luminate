@@ -1,75 +1,152 @@
-.heart-page-container--login {
+body.login-page,
+body.myevents-page{
+  .Generalmain {
+    background: #eeeeee url(/images/content/pagebuilder/BGImage2x.jpg) no-repeat 5% center;
+    background-size: auto 100%;
+  }
+  input#login,
+  button.btn-primary {
+    min-width: 190px;
+    height: 60px;
+    padding: 0 20px;
+    line-height: 60px;
+    font-size: 24px;
+    font-weight: 400;
+    background: #d01d20;
+    text-decoration: none;
+    border-radius: 60px 60px 60px 60px;
+    background-clip: padding-box;
+    color: #fff;
+    border: none;
+    font-family: LubDubMedium,Helvetica,Arial,sans-serif !important;
+    margin-right: 10px;
+  }
+  input#login {
+    font-size:18px !important;
+    margin-top:10px;
+  }
+  .form-group label.sr-only {
+    position: relative;
+    font-size: 14px;
+    margin: 5px 0;
+    display: block;
+    width: auto;
+    height: auto;
+    color: #000;
+    clip-path: none;
+    white-space: initial;
+  }
+  input[type="text"],
+  input[type="password"] {
+	  width: 100%;
+  }
+
+  .myevents-container {
+	font-size: 14px;
+	a {
+	   font-size: 14px;
+	}
+	table.lc_Table {
+	   border:none;
+	}
+	td.lc_Cell {
+	   border:none;
+	}
+        tr.lc_Row1 {
+	   background: none;
+	}
+  }
+}
+
+.heart-page-container--login,
+body.myevents-page .Generalmain > .container {
   padding: 20px 20px 72px;
-  
+
   @media (min-width: $screen-md-min) {
-    padding: 80px 20px 48px;
+    padding: 80px 20px;
   }
 }
 
 .heart-panel--login {
-  margin: 0;
-  
+  background: #fff;
+  margin: 0 auto;
+  -webkit-box-shadow: 3px 4px 4px #ccc;
+  box-shadow: 3px 4px 4px #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  font-family: LubDubMedium,Helvetica,Arial,sans-serif;
+
   > .panel-heading {
     background: transparent;
     border: 0;
     border-radius: 0;
     text-align: center;
     padding: 32px 28px 0 28px;
-    
+
     @media (min-width: $screen-sm-min) {
       padding: 42px 48px 0 48px;
     }
   }
-  
+
   .panel-title {
-    font-size: inherit;
+    font-size: 28px;
+    text-align:left;
+    font-weight: bold;
   }
-  
+
   > .panel-body {
-    padding: 32px 28px 20px;
-    
+    padding: 15px 28px 20px;
+
     @media (min-width: $screen-sm-min) {
-      padding: 32px 48px 28px;
+      padding: 15px 48px 28px;
     }
-    
+
     .alert {
       font-size: 16px;
       padding: 15px 25px;
-      
+
       @media (min-width: $screen-sm-min) {
         padding: 15px 30px;
       }
     }
-    
+
     form {
       .form-group {
         margin: 0 0 8px;
       }
-      
-      .checkbox, 
+
+      .checkbox,
       .radio {
         margin: 8px 0;
       }
-      
+
       .form-control {
         height: 60px;
-        padding: 6px 25px;
-        
+        padding: 6px 10px;
+
         @media (min-width: $screen-sm-min) {
-          padding: 6px 30px;
+          padding: 6px 15px;
         }
       }
     }
+
+    .heart-login-forgot-password a {
+      text-decoration: none;
+    }
+    .heart-login-forgot-password a i {
+      font-size: 1.2em;
+    }
+
   }
-  
+
   > .panel-footer {
     text-align: center;
     padding: 32px 28px;
-    
+
     @media (min-width: $screen-sm-min) {
       padding: 32px 48px 48px;
     }
-    
+
     .btn {
       margin: 10px 0 0;
     }
@@ -80,4 +157,8 @@
   font-size: 12px;
   text-align: center;
   margin: 8px 0 0;
+}
+
+.footer_logo a img {
+  max-width: 340px;
 }

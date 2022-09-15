@@ -1,5 +1,6 @@
 # compiled output
 dist
+grunt-cli
 
 # dependencies
 node_modules
@@ -12,6 +13,7 @@ node_modules
 .sass-cache
 npm-debug.log
 package-lock.json
+sftp-config.json
 
 # system files
 *.DS_Store

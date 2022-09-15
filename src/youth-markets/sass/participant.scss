@@ -39,6 +39,12 @@ main > .container {
     max-width: 320px;
     margin: 0 auto 7px;
   }
+
+  @media (min-width: 670px) {
+    > div {
+      display:flex;
+    }
+  }
   
   a {
     &,
@@ -52,24 +58,27 @@ main > .container {
       line-height: 16px;
       text-align: center;
       text-decoration: none;
-      width: 100px;
+      width: auto;
       height: 40px;
-      padding: 12px 6px 0;
+      padding: 12px 0 0;
       margin: 0 3px 5px;
-      vertical-align: bottom;
+      vertical-align: top;
+      flex: 1 1 0;
       
       @media (max-width: 350px) {
         max-width: 85px;
       }
       
       @media (min-width: 560px) {
-        border-right: 2px solid $event-accent;
         font-size: 18px;
         line-height: 22px;
-        width: 20%;
         height: 50px;
-        padding: 14px 12px 0;
-        margin: 0;
+        padding: 14px 0 0;
+        margin: 0 3px 0 0;
+      }
+      @media only screen and (max-width: $screen-xs-max) {
+        width: 48%;
+        margin: 0 3px 5px;
       }
     }
     
@@ -143,26 +152,28 @@ main > .container {
         height: 40px;
         padding: 12px 6px 0;
         margin: 0 3px 5px;
+        flex: 1 1 0;
       }
       
       @media (min-width: 670px) {
         font-size: 17px;
-        width: 16.66666667%;
+        /*width: 16.66666667%;*/
       }
       
       @media (min-width: 690px) {
         font-size: 18px;
       }
       
-      &.ng-pc-nav-item--resources {
-        padding: 3px 6px 0;
+      &.ng-pc-nav-item--resources,
+      &.ng-pc-nav-item--order-gifts {
+        padding: 3px 0 0;
         
         @media (min-width: 670px) {
-          padding: 3px 12px 0;
+          padding: 3px 0 0;
         }
         
         @media (min-width: 1170px) {
-          padding: 14px 12px 0;
+          padding: 14px 0 0;
         }
         
         > span {
@@ -179,14 +190,14 @@ main > .container {
       }
       
       &.ng-pc-nav-item--student-view {
-        padding: 3px 6px 0;
+        padding: 3px 0 0;
         
         @media (min-width: 670px) {
-          padding: 8px 12px 0;
+          padding: 8px 0 0;
         }
         
         @media (min-width: 890px) {
-          padding: 14px 12px 0;
+          padding: 14px 0 0;
         }
         
         > span {
@@ -398,15 +409,18 @@ main > .container {
   
   .ym-progress-related {
     position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    @media (max-width:991px) {
+       display:block;
+    }
     margin: 30px 0 0;
   }
 
   .ym-progress-donate {
-    @media (min-width: $screen-sm-min) {
-      float: left;
-    }
-
-    .btn-lg,
+    padding-right: 18px;
+    
+    /*.btn-lg,
     a.btn-lg {
       &,
       &:link,
@@ -439,11 +453,12 @@ main > .container {
           font-size: 18px;
         }
       }
-    }
+    }*/
   }
 
-  .pull-right {
+  .ym-progress-amounts {
     text-align: right;
+    margin-left: auto;
 
     p {
       margin: 0;
@@ -590,7 +605,7 @@ main > .container {
     }
     
     @media(min-width: 640px) {
-      max-width: 540px;
+      /*max-width: 540px;*/
       margin: 0 auto;
     }
   }
@@ -669,13 +684,13 @@ main > .container {
     margin: 0 0 32px;
   }
   
-  .btn {
+  /*.btn {
     @media (min-width: $screen-md-min) {
       position: absolute;
       right: 60px;
       top: 0;
     }
-  }
+  }*/
 }
 
 .ym-pc-dashboard-badges-icons {
@@ -721,11 +736,11 @@ main > .container {
       }
 
       @media (min-width: $screen-md-min) {
-        width: 172px;
+        width: 142px;
       }
 
       @media (min-width: $screen-lg-min) {
-        width: 180px;
+        width: 150px;
       }
 
       img {
@@ -745,6 +760,7 @@ main > .container {
 
   .btn,
   a.btn {
+   
     &,
     &:link,
     &:visited,
@@ -758,6 +774,17 @@ main > .container {
         padding: 7px 25px;
         margin: 0 10px;
       }
+    }
+    @media (min-width: $screen-sm-min) {
+      width: auto;
+    }
+
+    @media (min-width: $screen-md-min) {
+      width: auto;
+    }
+
+    @media (min-width: $screen-lg-min) {
+      width: 150px;
     }
   }
 }
@@ -807,7 +834,7 @@ main > .container {
   }
 
   .ym-pc-dashboard-section-header {
-    color: $brand-white;
+    color: $event-grey;
   }
 }
 
@@ -893,7 +920,7 @@ main > .container {
         display: inline-block;
         text-align: right;
         vertical-align: top;
-        width: 200px;
+        width: 185px;
       }
       
       .btn,
@@ -1153,7 +1180,7 @@ main > .container {
     }
   }
 }
-
+/*
 .ng-pc-nav-list-group {
   .list-group-item-heading {
     padding: 10px;
@@ -1175,7 +1202,7 @@ main > .container {
     }
   }
 }
-
+*/
 .btn + .ng-pc-nav-list-group {
   margin: 12px 0 0;
 }
@@ -1509,14 +1536,14 @@ main > .container {
 
   .ym-progress-related {
     position: relative;
+    display: flex;
     margin: 30px 0 0;
+    flex-wrap: wrap;
   }
 
   .ym-progress-donate {
-    @media (min-width: $screen-sm-min) {
-      float: left;
-    }
-
+    padding-right: 18px;
+    
     .btn-lg,
     a.btn-lg {
       &,
@@ -1531,11 +1558,7 @@ main > .container {
         margin: 0 auto 15px;
 
         @media (min-width: $screen-sm-min) {
-          display: inline-block;
-          position: absolute;
-          bottom: 0;
           max-width: none;
-          margin: 0;
         }
 
         @media (max-width: $screen-sm-max) {
@@ -1553,8 +1576,9 @@ main > .container {
     }
   }
 
-  .pull-right {
+  .ym-progress-amounts {
     text-align: right;
+    margin-left: auto;
 
     p {
       margin: 0;
@@ -1573,7 +1597,7 @@ main > .container {
         }
 
         @media (min-width: $screen-md-min) {
-          max-width: 140px;
+          max-width: 175px;
         }
 
         @media (min-width: $screen-lg-min) {
@@ -1768,7 +1792,7 @@ main > .container {
   margin: 0 0 15px;
 
   @media (min-width: $screen-sm-min) {
-    width: 135px;
+    width: 125px;
     margin: 0;
   }
 }

@@ -1,3 +1,32 @@
+.pg-personal .ym-headline {
+	color: $title-color;
+}
+
+.pg-personal .student-info h1 {
+    color: $title-color;
+    text-shadow: none;
+}
+
+@media (min-width:768px) {
+   .pg-personal .ym-user-image-inner {
+	width: 40%;
+   }
+}
+
+a.btn.btn-donate {
+	font-size: 18px;
+	width:100%;
+	line-height: 22px;
+	@media (max-width: 767px) {
+		width: auto;
+		max-width: 190px;
+		font-size: 14px;
+		line-height: 18px;
+		display: block;
+		padding: 10px 12px;
+	}
+}
+
 .ym-section-divider {
   border: 0;
   border-top: 1px solid $event-secondary;
@@ -7,4 +36,47 @@
 
 .ym-page-section__list {
   background: $event-accent;
+}
+
+.ym-school-student-survivor {
+  position:relative;
+  max-width:100px;
+  padding:5px;
+  
+  img {
+    width: 100%;
+  }
+}
+
+.ym-home-feature {
+  .social-icons {
+    > div {
+      display:flex;
+      justify-content:center;
+    }
+    a {
+      text-decoration:none;
+      margin: 5px;
+      img {
+  	max-height: 70px;
+      }
+    }
+  }
+}
+
+.modal.fade.in {
+   opacity: 1;
+}
+.modal.fade .modal-dialog {
+   transform: translate(0, 0) !important;
+}
+
+.modal-backdrop.fade {
+  opacity: 0.5 !important;
+ }
+.modal-header{
+   display: block;
+}
+.modal-content{
+   border-radius: 1.3rem !important;
 }

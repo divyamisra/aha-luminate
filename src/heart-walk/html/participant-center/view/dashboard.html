@@ -265,9 +265,13 @@
             <img src="../images/content/pagebuilder/heart-walk-$500-milestone-no-text.svg" alt="You've Raised Over $500 Milestone badge">
             <span>$500<br>milestone</span>
           </li>
-          <li class="heart_pc_achievements_badge_item" ng-if="participantProgress.raised / 100 > 999 && participantProgress.raised / 100 < 4999">
+          <li class="heart_pc_achievements_badge_item" ng-if="participantProgress.raised / 100 > 999 && participantProgress.raised / 100 < 2499">
             <img src="../images/content/pagebuilder/heart-walk-$1K-milestone-no-text.svg" alt="You've Raised Over $1000 Milestone badge">
             <span>$1000<br>milestone</span>
+          </li>
+          <li class="heart_pc_achievements_badge_item" ng-if="participantProgress.raised / 100 > 2499 && participantProgress.raised / 100 < 4999">
+            <img src="../images/content/pagebuilder/heart-walk-$2-5K-milestone-no-text.svg" alt="You've Raised Over $2500 Milestone badge">
+            <span>$2500<br>milestone</span>
           </li>
           <li class="heart_pc_achievements_badge_item" ng-if="participantProgress.raised / 100 > 4999">
             <img src="../images/content/pagebuilder/heart-walk-$5K-milestone-no-text.svg" alt="You've Raised Over $5000 Milestone badge">
@@ -697,7 +701,7 @@
               <h2>
                 <span ng-bind-html="companyInfo.companyName"></span> Teams
               </h2>
-              <div class="dropdown" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'">
+              <!-- <div class="dropdown" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'">
                 <a data-toggle="dropdown">
                   <i class="glyphicon glyphicon-cog"></i> <u>Tasks</u>
                 </a>
@@ -706,7 +710,7 @@
                     <a id="download_company_team_list" ng-href="TRParticipantDownload/Company_Teams.csv?download_type=company_teams&amp;fr_id={{frId}}" target="_blank">Download Company Team List</a>
                   </li>
                 </ul>
-              </div>
+              </div> -->
             </div>
             <!-- TODO: empty state -->
             <trpc-company-team-list sort-column="companyTeams.sortColumn" sort-ascending="companyTeams.sortAscending" sort-teams="sortCompanyTeams" teams="companyTeams.teams"></trpc-company-team-list>

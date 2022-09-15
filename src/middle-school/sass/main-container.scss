@@ -1,0 +1,120 @@
+.border-white-left {
+	border-left:1px solid #fff;
+}
+.border-white-right {
+	border-right:1px solid #fff;
+}
+.border-red {
+	border:1px solid $event-secondary-heading;
+}
+.border-red-left {
+	border-left:1px solid $event-secondary-heading;
+}
+.border-red-right {
+	border-right:1px solid $event-secondary-heading;
+}
+.text-red {
+	color: $event-secondary-heading;
+}
+.bg-row {
+	background-color:#eaeaea;
+}
+
+main {
+  > .container {
+    margin: 0px auto 0;
+    
+    @media (max-width: $screen-xs-max) {
+      margin-top: -100px;
+    }
+  }
+}
+
+.app-9 {
+  main {
+    > .container {
+      @media (max-width: $screen-xs-max) {
+        margin-top: 0px;
+      }
+    }
+  }
+}
+:focus {
+    border-color: blue !important;
+    outline: auto 2px Highlight;
+    outline: auto 2px -webkit-focus-ring-color;
+    box-shadow: 0 0 0 .25rem rgba(13,110,253,1);
+    border-width: 2px !important;
+}
+
+.ratio-9x16 {
+    --bs-aspect-ratio: 124.25%;
+}
+@media (min-width:992px) and (max-width:1023px) {
+  .ratio-9x16 {
+    --bs-aspect-ratio: 144.25%;
+  }
+}
+@media (min-width: 768px) and (max-width:991px) {
+  .ratio-9x16 {
+    --bs-aspect-ratio: 148.25%;
+  }
+}
+@media (max-width: 767px) {
+  .ratio-9x16 {
+    --bs-aspect-ratio: 126.25%;
+  }
+}
+
+.personal-cols {
+  grid-template-columns: 50% 50%;
+  grid-template-areas:
+    "two one"
+    "two three"
+    "two four";
+}
+.personal-col1 { grid-area: one; }
+.personal-col2 { grid-area: two;  }
+.personal-col3 { grid-area: three; }
+
+@media (min-width:768px) {
+  .student-donate {max-width:50%;}
+  .ym-story .personalPageContent {max-height: 470px; overflow: scroll;}
+}
+
+/* generic styles */
+.white-box {
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+  overflow: hidden;
+  word-wrap: break-word;
+  background-clip: border-box;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .3333rem;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  position: relative;
+  padding: 25px 20px;
+}
+
+.red-border-left {
+	border-left-color: #c10e21 !important;
+	border-left-width: 1rem !important;
+}
+
+.red-border-bottom {
+	border-bottom-color: #c10e21 !important;
+	border-bottom-width: 1rem !important;
+}
+
+.red-bg-gradient {
+	background-image: linear-gradient(180deg,#6c0101,#cc0101) !important;
+	
+	h3.h5 {
+		color: #ffffff;
+	}
+	p {
+		color: #ffffff;
+	}
+}

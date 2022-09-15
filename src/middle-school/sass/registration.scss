@@ -1,0 +1,37 @@
+.ym-registration-page-container {
+    max-width: none;
+}
+
+.ym-registration-reg-form {
+  .help-block {
+    color: $event-secondary-medium;
+  }
+}
+
+.ym-registration-ptype-donation-message {
+  color: $event-secondary-medium;
+}
+
+.ym-registration-reg-waiver-btns {
+  width: 268px;
+  
+  @media (min-width: 360px) {
+    width: 296px;
+  }
+  
+  @media (min-width: $screen-sm-min) {
+    width: 320px;
+  }
+  
+  .btn {
+    width: 136px;
+    
+    @media (min-width: 360px) {
+      width: 140px;
+    }
+    
+    @media (min-width: $screen-sm-min) {
+      width: 152px;
+    }
+  }
+}

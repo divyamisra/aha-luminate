@@ -40,7 +40,11 @@
     }
   }
 }
-
+.invalid-feedback {
+  &.filled {
+    display:block;
+  }
+} 
 .pg_HeartWalk_Search {
   .table {
     &.dataTable {

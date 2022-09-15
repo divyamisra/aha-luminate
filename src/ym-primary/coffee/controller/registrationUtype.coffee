@@ -6,21 +6,27 @@ angular.module 'ahaLuminateControllers'
     'SchoolLookupService'
     ($rootScope, $scope, TeamraiserCompanyService, SchoolLookupService) ->
       $rootScope.companyName = ''
+      localStorage.companyName = ''
+      localStorage.companyCity = ''
+      localStorage.companyState = ''
       $rootScope.regCompanyId = luminateExtend.global.regCompanyId
       regCompanyId = luminateExtend.global.regCompanyId
       
       setCompanyName = (companyName) ->
         $rootScope.companyName = companyName
+        localStorage.companyName = companyName
         if not $rootScope.$$phase
           $rootScope.$apply()
           
       setCompanyCity = (companyCity) ->
         $rootScope.companyCity = companyCity
+        localStorage.companyCity = companyCity
         if not $rootScope.$$phase
           $rootScope.$apply()
           
       setCompanyState = (companyState) ->
         $rootScope.companyState = companyState
+        localStorage.companyState = companyState
         if not $rootScope.$$phase
           $rootScope.$apply()
           

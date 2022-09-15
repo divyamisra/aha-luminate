@@ -1,6 +1,5 @@
 angular.module 'trPcApp', [
   'ngRoute'
-  'ngCsv'
   'textAngular'
   'trPcControllers'
   'ngAria'
@@ -31,6 +30,8 @@ angular.module 'trPcApp'
       $rootScope.prev1FrId = $embedRoot.data('prev-one-fr-id') or ''
       $rootScope.prev2FrId = $embedRoot.data('prev-two-fr-id') or ''
       $rootScope.consName = $embedRoot.data('cons-name') or ''
+      $rootScope.consNameFirst = $embedRoot.data('cons-first-name') or ''
+      $rootScope.consNameLast = $embedRoot.data('cons-last-name') or ''      
       studentRegGoal = $embedRoot.data('student-reg-goal') or '0'
       if isNaN studentRegGoal
         studentRegGoal = 0
@@ -40,7 +41,10 @@ angular.module 'trPcApp'
   ]
 
 angular.element(document).ready ->
-  if not angular.element(document).injector()
-    angular.bootstrap document, [
-      'trPcApp'
-    ]
+  setTimeout ->
+    if not angular.element(document).injector()
+      angular.bootstrap document, [
+        'trPcApp'
+      ]
+  ,1000
+      

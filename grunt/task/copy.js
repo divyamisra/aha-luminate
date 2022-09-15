@@ -4,108 +4,108 @@ module.exports = {
   "general-images": {
     files: [
       {
-        expand: true, 
-        cwd: 'src/general/image/', 
+        expand: true,
+        cwd: 'src/general/image/',
         src: [
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
-        ], 
+        ],
         dest: 'dist/general/image/'
       }
     ]
-  }, 
-  
+  },
+
   "heart-walk-translations": {
     files: [
       {
-        expand: true, 
-        cwd: 'src/heart-walk/translation/', 
+        expand: true,
+        cwd: 'src/heart-walk/translation/',
         src: [
-          '*.json', 
+          '*.json',
           '**/*.json'
-        ], 
+        ],
         dest: 'dist/heart-walk/translation/'
       }
     ]
-  }, 
-  
+  },
+
   "heart-walk-images": {
     files: [
       {
-        expand: true, 
-        cwd: 'src/heart-walk/image/', 
+        expand: true,
+        cwd: 'src/heart-walk/image/',
         src: [
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
-        ], 
+        ],
         dest: 'dist/heart-walk/image/'
       }
     ]
-  }, 
-  
+  },
+
   "youth-markets-images": {
     files: [
       {
-        expand: true, 
-        cwd: 'src/youth-markets/image/', 
+        expand: true,
+        cwd: 'src/youth-markets/image/',
         src: [
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
-        ], 
+        ],
         dest: 'dist/youth-markets/image/'
       }
     ]
-  }, 
-  
+  },
+
   "ym-primary-images": {
     files: [
       {
-        expand: true, 
-        cwd: 'src/ym-primary/image/', 
+        expand: true,
+        cwd: 'src/ym-primary/image/',
         src: [
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
-        ], 
+        ],
         dest: 'dist/ym-primary/image/'
       }
     ]
-  }, 
-  
+  },
+
   "middle-school-images": {
     files: [
       {
-        expand: true, 
-        cwd: 'src/middle-school/image/', 
+        expand: true,
+        cwd: 'src/middle-school/image/',
         src: [
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
-        ], 
+        ],
         dest: 'dist/middle-school/image/'
       }
     ]
-  }, 
-  
+  },
+
   "high-school-images": {
     files: [
       {
-        expand: true, 
-        cwd: 'src/high-school/image/', 
+        expand: true,
+        cwd: 'src/high-school/image/',
         src: [
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
-        ], 
+        ],
         dest: 'dist/high-school/image/'
       }
     ]
-  }, 
-  
+  },
+
   "district-heart-images": {
     files: [
       {
-        expand: true, 
-        cwd: 'src/district-heart/image/', 
+        expand: true,
+        cwd: 'src/district-heart/image/',
         src: [
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
-        ], 
+        ],
         dest: 'dist/district-heart/image/'
       }
     ]
   },
-  
+
   "nchw-images": {
     files: [
       {
@@ -118,7 +118,7 @@ module.exports = {
       }
     ]
   },
-  
+
   "nchw-scripts": {
     files: [
       {
@@ -131,7 +131,7 @@ module.exports = {
       }
     ]
   },
-  
+
   "heartchase-images": {
     files: [
       {
@@ -144,7 +144,7 @@ module.exports = {
       }
     ]
   },
-  
+
   "heartchase-scripts": {
     files: [
       {
@@ -157,7 +157,7 @@ module.exports = {
       }
     ]
   },
-  
+
   "cyclenation-scripts": {
     files: [
       {
@@ -180,6 +180,93 @@ module.exports = {
           '*.js'
         ],
         dest: 'dist/heartwalk2020/js/'
+      }
+    ]
+  },
+
+  "fieldday-scripts": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/fieldday/js/',
+        src: [
+          '*.js'
+        ],
+        dest: 'dist/fieldday/js/'
+      }
+    ]
+  },
+
+  "heartwalklawyers-scripts": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/heartwalklawyers/js/',
+        src: [
+          '*.js'
+        ],
+        dest: 'dist/heartwalklawyers/js/'
+      }
+    ]
+  },
+
+  "leaders-for-life-scripts": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/leaders-for-life/js/',
+        src: [
+          '*.js'
+        ],
+        dest: 'dist/leaders-for-life/js/'
+      }
+    ]
+  },
+  "social-stem-scripts": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/social-stem/js/',
+        src: [
+          '*.js'
+        ],
+        dest: 'dist/social-stem/js/'
+      }
+    ]
+  },
+  "women-of-impact-scripts": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/women-of-impact/js/',
+        src: [
+          '*.js'
+        ],
+        dest: 'dist/women-of-impact/js/'
+      }
+    ]
+  },
+  "teens-of-impact-scripts": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/teens-of-impact/js/',
+        src: [
+          '*.js'
+        ],
+        dest: 'dist/teens-of-impact/js/'
+      }
+    ]
+  },
+  "ym-rewards-images": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/ym-rewards/images/',
+        src: [
+          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
+        ],
+        dest: 'dist/ym-rewards/images/'
       }
     ]
   }

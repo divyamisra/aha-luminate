@@ -1,8 +1,8 @@
 module.exports = (grunt) ->
   'use strict'
-  
+
   require('time-grunt') grunt
-  
+
   config =
     timestamp: new Date().getTime()
   loadConfig = (path) ->
@@ -24,12 +24,12 @@ module.exports = (grunt) ->
         i++
     grunt.task.run tasks
     return
-  
+
   grunt.util._.extend config, loadConfig('./grunt/task/')
   grunt.initConfig config
-  
+
   require('load-grunt-tasks') grunt
-  
+
   grunt.registerTask 'css-dist', (taskTarget) ->
     runTargetedTask [
       'sass'
@@ -192,10 +192,98 @@ module.exports = (grunt) ->
     runTargetedTask [
       'copy'
     ], 'heartwalk2020-scripts'
+    runTargetedTask [
+      'clean'
+      'sass'
+      'postcss'
+      'cssmin'
+      'uglify'
+      'replace'
+      'htmlmin'
+      'imagemin'
+    ], 'fieldday'
+    runTargetedTask [
+      'copy'
+    ], 'fieldday-scripts'
+    runTargetedTask [
+      'clean'
+      'sass'
+      'postcss'
+      'cssmin'
+      'uglify'
+      'replace'
+      'htmlmin'
+      'imagemin'
+    ], 'heartwalklawyers'
+    runTargetedTask [
+      'copy'
+    ], 'heartwalklawyers-scripts'
+    runTargetedTask [
+      'clean'
+      'sass'
+      'postcss'
+      'cssmin'
+      'uglify'
+      'replace'
+      'htmlmin'
+      'imagemin'
+    ], 'leaders-for-life'
+    runTargetedTask [
+      'copy'
+    ], 'leaders-for-life-scripts'
+    runTargetedTask [
+      'clean'
+      'sass'
+      'postcss'
+      'cssmin'
+      'uglify'
+      'replace'
+      'htmlmin'
+      'imagemin'
+    ], 'social-stem'
+    runTargetedTask [
+      'copy'
+    ], 'social-stem-scripts'
+    runTargetedTask [
+      'clean'
+      'sass'
+      'postcss'
+      'cssmin'
+      'uglify'
+      'replace'
+      'htmlmin'
+      'imagemin'
+    ], 'women-of-impact'
+    runTargetedTask [
+      'copy'
+    ], 'women-of-impact-scripts'
+    runTargetedTask [
+      'clean'
+      'sass'
+      'postcss'
+      'cssmin'
+      'uglify'
+      'replace'
+      'htmlmin'
+      'imagemin'
+    ], 'teens-of-impact'
+    runTargetedTask [
+      'copy'
+    ], 'teens-of-impact-scripts'
+    runTargetedTask [
+      'clean'
+      'sass'
+      'postcss'
+      'cssmin'
+      'coffee'
+      'uglify'
+      'replace'
+      'htmlmin'
+      'imagemin'
+    ], 'ym-rewards'
     return
   grunt.registerTask 'dev', ->
     devTasks = [
-      'configureProxies:dev'
       'connect:dev'
     ]
     config.watch['general'].tasks.forEach (task) ->
@@ -229,6 +317,27 @@ module.exports = (grunt) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
     config.watch['heartwalk2020'].tasks.forEach (task) ->
+      if task.indexOf('notify:') is -1
+        devTasks.push task
+    config.watch['fieldday'].tasks.forEach (task) ->
+      if task.indexOf('notify:') is -1
+        devTasks.push task
+    config.watch['heartwalklawyers'].tasks.forEach (task) ->
+      if task.indexOf('notify:') is -1
+        devTasks.push task
+    config.watch['leaders-for-life'].tasks.forEach (task) ->
+      if task.indexOf('notify:') is -1
+        devTasks.push task
+    config.watch['social-stem'].tasks.forEach (task) ->
+      if task.indexOf('notify:') is -1
+        devTasks.push task
+    config.watch['women-of-impact'].tasks.forEach (task) ->
+      if task.indexOf('notify:') is -1
+        devTasks.push task
+    config.watch['teens-of-impact'].tasks.forEach (task) ->
+      if task.indexOf('notify:') is -1
+        devTasks.push task
+    config.watch['ym-rewards'].tasks.forEach (task) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
     devTasks.push 'watch'

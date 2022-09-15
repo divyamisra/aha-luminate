@@ -1,0 +1,25 @@
+header {
+  background-color: $red-deep;
+  @include media-breakpoint-up(lg) {
+    background-color: #c10e21;
+  }
+
+  background-image: none;
+  @include media-breakpoint-up(lg) {
+    background-image: url(https://secure3.convio.net/heart/images/content/pagebuilder/background-stem.png);
+  }
+  background-repeat: no-repeat;
+  background-position: center right;
+  background-size: auto 100%;
+
+
+  .container {
+    max-width: 1350px!important;
+  }
+  .stem-logo {
+    width: 150px;
+    @include media-breakpoint-down(lg) {
+      width: 100px;
+    }
+  }
+}

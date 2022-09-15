@@ -183,7 +183,7 @@
               font-size: 1.3em;
 
               @include media-breakpoint-down(lg) {
-                font-size: 1.2em;
+                font-size: 1.1em;
               }
 
               @include media-breakpoint-down(md) {
@@ -580,6 +580,9 @@
     }
     
   }
+  a.btn-primary, a.btn-white {
+    text-decoration: none!important;
+  }
 }
 
 .tr_sponsorship_logo {
@@ -609,4 +612,20 @@
 .grid-item img {
   display: block;
   width: 100%;
+}
+
+.modaal-close {
+  position: absolute !important;
+  right: -50px !important;
+  top: -50px !important;
+}
+
+@include media-breakpoint-down(md) {
+  .modaal-close {
+    right: -20px !important;
+  }
+}
+
+#headingFour button {
+  border-radius: 0!important;
 }

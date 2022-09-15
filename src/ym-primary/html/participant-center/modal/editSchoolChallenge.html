@@ -1,0 +1,32 @@
+<form method="POST" novalidate ng-submit="updateSchoolChallenge()">
+  <div class="modal-header">
+    <h2 class="h5 modal-title">
+      Update Challenge
+    </h2>
+  </div>
+  <div class="modal-body">
+    <div uib-alert class="alert-danger" ng-if="schoolInfo.errorMessage">
+      <div ng-bind-html="schoolInfo.errorMessage"></div>
+    </div>
+    <div class="form-group">
+      <label for="challenge" class="">Challenge</label>
+      <div class="input-group">
+        <input type="text" class="form-control" id="challenge" ng-model="schoolInfo.challenge" aria-label="School Challenge" required>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="clearfix">
+      <div class="pull-left">
+        <button type="button" class="btn btn-toggle" ng-click="cancelEditSchoolChallenge()">
+          Cancel
+        </button>
+      </div>
+      <div class="pull-right">
+        <button type="submit" class="btn btn-primary">
+          <strong>Save</strong>
+        </button>
+      </div>
+    </div>
+  </div>
+<form>

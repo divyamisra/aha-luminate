@@ -211,10 +211,6 @@ angular.module 'trPcControllers'
               else
                 $scope.editPersonalGoalModal.close()
                 $scope.refreshFundraisingProgress()
-                if $rootScope.facebookFundraiserId
-                  FacebookFundraiserService.updateFundraiser()
-                    .then ->
-                      FacebookFundraiserService.syncDonations()
               response
           $scope.dashboardPromises.push updatePersonalGoalPromise
       
@@ -286,7 +282,8 @@ angular.module 'trPcControllers'
         $rootScope.facebookFundraiserConfirmedStatus = 'pending'
         FacebookFundraiserService.confirmFundraiserStatus()
           .then (response) ->
-            if not response.data.status?.active
+            confirmOrUnlinkFacebookFundraiserResponse = response.data.confirmOrUnlinkFacebookFundraiserResponse
+            if confirmOrUnlinkFacebookFundraiserResponse?.active is 'false'
               delete $rootScope.facebookFundraiserId
               $rootScope.facebookFundraiserConfirmedStatus = 'deleted'
             else

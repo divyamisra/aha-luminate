@@ -1,3 +1,4 @@
+[[S51:reus_heartwalk_greeting_image]]
 <!-- SESSION TAGS -->
 [[U0:greetingPercentage=[[E130:[[E130:"[[E42:[[S334:fr_id]]:dollars]]" ".00" "" replaceall]] [[E130:"[[E42:[[S334:fr_id]]:goal]]" ".00" "" replaceall]] / 100 * int 100 min]]]]
 
@@ -13,10 +14,14 @@
                 <!-- multi-event -->
                 <div class="row buttons-row">
                         [[?x1x2x::x[[S42:0:status]]x::
-                          <a href="SPageServer/?pagename=heartwalk_register&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'register to walk button']);">Register to Walk</a>
+                            [[?xx::x[[S48:0:part-type-id]]x::
+                            <a href="SPageServer/?pagename=heartwalk_register&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'register to walk button']);">Register</a>
+                            ::
+                            <a href="TRC?pg=center&fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'visit my hq button']);">Visit My HQ</a>
+                            ]]
                         ::]]
                         [[?x2x3x::x[[S42:0:status]]x::
-                          <a href="SPageServer/?pagename=HeartWalk_Search&amp;search_type=walker&amp;cross_event=false&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'donate button']);">Donate</a>
+                          <a href="SPageServer/?pagename=HeartWalk_Search&amp;search_type=walker&amp;cross_event=false&amp;fr_id=[[S334:fr_id]]&amp;event_search=false" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'donate button']);">Donate</a>
                         ::]]
                     </div>
                     <span class="multi-event-info-toggler d-none d-sm-block d-md-none" onclick="toggleMultiEventInfo(this)">See All Locations <i class="fas fa-plus float-right" aria-hidden="true"></i><span class="sr-only">Toggle event data and time info</span></span>
@@ -27,15 +32,19 @@
                             <a href="TR?fr_id=[[S334:fr_id]]&pg=informational&type=fr_informational&sid=1020">More Details</a>
                         </div>
                     </div>
-                    
+
               ::
                 <!-- single event -->
                 <div class="row buttons-row">
                         [[?x1x2x::x[[S42:0:status]]x::
-                          <a href="SPageServer/?pagename=heartwalk_register&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'register to walk button']);">Register to Walk</a>
+                            [[?xx::x[[S48:0:part-type-id]]x::
+                                <a href="SPageServer/?pagename=heartwalk_register&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'register to walk button']);">Register</a>
+                                ::
+                                <a href="TRC?pg=center&fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'visit my hq button']);">Visit My HQ</a>
+                            ]]
                         ::]]
                         [[?x2x3x::x[[S42:0:status]]x::
-                          <a href="SPageServer/?pagename=HeartWalk_Search&amp;search_type=walker&amp;cross_event=false&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'donate button']);">Donate</a>
+                          <a href="SPageServer/?pagename=HeartWalk_Search&amp;search_type=walker&amp;cross_event=false&amp;fr_id=[[S334:fr_id]]&amp;event_search=false" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0" onclick="_gaq.push(['_trackEvent', 'greeting', 'banner', 'donate button']);">Donate</a>
                         ::]]
                     </div>
                     <div class="row info-columns">
@@ -45,8 +54,12 @@
                                 <p>
                                     <span class="tr-event-date">
                                     [[E47:[[S334:fr_id]]:fr_info:1:event_date]]<br></span>
+                                    [[?xx::x[[E47:[[S334:fr_id]]:fr_info:1:sponsor_1]]x::::
                                     <span class="tr-event-checkin">Check-In: [[E47:[[S334:fr_id]]:fr_info:1:sponsor_1]]<br></span>
+                                    ]]
+                                    [[?xx::x[[E47:[[S334:fr_id]]:fr_info:1:sponsor_2]]x::::
                                     <span class="tr-event-start">Start Time: [[E47:[[S334:fr_id]]:fr_info:1:sponsor_2]]</span>
+                                    ]]
                                 </p>
                                 <div>
                                     <i class="fas fa-info-circle" aria-hidden="true"></i>
@@ -57,6 +70,7 @@
                             <!-- /.event-info-collapse -->
                         </div>
                         <!-- /.col -->
+                        [[?xx::x[[E47:[[S334:fr_id]]:fr_info:1:event_location]]x::::
                         <div class="col-lg col-md col-sm-12 pl-md-3 pl-sm-0 event-info-expand">
                             <h3>Location <span class="d-none d-sm-block d-md-none float-right"><i class="fas fa-plus" aria-hidden="true"></i><span class="sr-only">Toggle Location Info</span></span></h3>
                             <div class="event-info-collapse d-sm-none d-xsm-none d-md-block">
@@ -69,8 +83,9 @@
                                 </div>
                             </div>
                         </div>
+                        ]]
                         <!-- /.col -->
-             
+
                   <div class="col-lg col-md col-sm-12 pl-md-3 pl-sm-0 event-info-expand">
                       <h3>Contact <span class="d-none d-sm-block d-md-none float-right"><i class="fas fa-plus" aria-hidden="true"></i><span class="sr-only">Toggle Contact Info</span></span></h3>
                       <div class="event-info-collapse d-sm-none d-xsm-none d-md-block">
@@ -114,8 +129,14 @@
                       <!-- /.thermometer -->
                   </div>
                   <!-- /.col-12 -->
+                  <div class="custom-event-management-link-container hidden col-12 mt-3">
+                    Welcome [[S1:first_name]]. <a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]TREM?tr.emgmt=em_event_center&amp;fr_id=[[S334:fr_id]]" target="_blank">Manage this event</a>
+                    </div>
+                  <!-- /.col-12 -->
               </div>
               <!-- /.row -->
+
+
           </div>
           <!-- /.event-info -->
       </div>
@@ -124,10 +145,10 @@
 
       <!-- TOP LISTS -->
       <div class="container container-wide top-lists-container">
-          <h2 class="text-center">Outstanding Fundraisers&nbsp;<span class="d-sm-none d-md-inline">-</span>&nbsp; <br class="d-sm-block d-md-none"/> <span class="event-name">[[E47:[[S334:fr_id]]:fr_info:1:event_title]]</span></h2>
+          <h2 class="text-center" id="packLeaderboard">Outstanding Fundraisers&nbsp;<span class="d-sm-none d-md-inline">-</span>&nbsp; <br class="d-sm-block d-md-none"/> <span class="event-name">[[E47:[[S334:fr_id]]:fr_info:1:event_title]]</span></h2>
           <div class="row">
               <div class="col-lg col-md-12 top-list js--company-top-list">
-                  <h3 class="d-flex bg-gray-700">
+                  <h3 class="d-flex bg-gray-700" aria-describedby="packLeaderboard">
                       <span class="flex-grow-1">
                           Top 5 Companies
                       </span>
@@ -142,7 +163,7 @@
               </div>
               <!-- /.col -->
               <div class="col-lg col-md-12 top-list js--team-top-list">
-                  <h3 class="d-flex bg-gray-700">
+                  <h3 class="d-flex bg-gray-700" aria-describedby="packLeaderboard">
                       <span class="flex-grow-1">Top 5 Teams</span>
                       <span class="text-small">Out of [[E42:[[S334:fr_id]]:num-teams]] Total</span>
                   </h3>
@@ -162,20 +183,20 @@
               </div>
               <!-- /.col -->
               <div class="col-lg col-md-12 top-list js--walker-top-list">
-                  <h3 class="d-flex bg-gray-700">
-                      <span class="flex-grow-1">Top 5 Walkers</span>
+                  <h3 class="d-flex bg-gray-700" aria-describedby="packLeaderboard">
+                      <span class="flex-grow-1">Top 5  [[?x4234x::x[[S80:evID]]x::Participants::Walkers]]</span>
                       <span class="text-small">Out of [[E42:[[S334:fr_id]]:num-participants]] Total</span>
                   </h3>
                   <ul></ul>
                   <div class="top-list-footer bg-gray-700 d-flex justify-content-center">
                     <form class="js--greeting-walker-search-form d-flex w-100" onsubmit="_gaq.push(['_trackEvent', 'greeting', 'leaderboards', 'participant search']);">
                       <div class="input-group mx-5">
-                        <label for="walkerFirstName" class="sr-only">Walker First Name</label>
+                        <label for="walkerFirstName" class="sr-only">[[?x4234x::x[[S80:evID]]x::Participant::Walker]] First Name</label>
                           <input id="walkerFirstName" name="walkerFirstName" type="text" placeholder="Search by first name" class="form-control">
-                          <label for="walkerLastName" class="sr-only">Walker Last Name</label>
+                          <label for="walkerLastName" class="sr-only">[[?x4234x::x[[S80:evID]]x::Participant::Walker]] Last Name</label>
                           <input id="walkerLastName" type="text" placeholder="Search by last name" class="form-control">
                           <div class="input-group-append">
-                              <button class="btn btn-primary btn-outline-secondary" type="submit"><i class="fas fa-search" aria-hidden="true"></i><span class="sr-only">Walker Search Button</span></button>
+                              <button class="btn btn-primary btn-outline-secondary" type="submit"><i class="fas fa-search" aria-hidden="true"></i><span class="sr-only">[[?x4234x::x[[S80:evID]]x::Participant::Walker]] Search Button</span></button>
                           </div>
                       </div>
                     </form>
@@ -189,6 +210,56 @@
       <!-- /.container container-wide -->
       <!-- END TOP LISTS -->
 
+      <!-- TOP LISTS - STEPS TAKEN -->
+      <div class="container container-wide top-lists-container top-steps">
+          <h2 class="text-center" id="durationLeaderboard">Move More Challenge Leaderboard&nbsp;<span class="d-sm-none d-md-inline">-</span>&nbsp; <br class="d-sm-block d-md-none"/> <span class="event-name">[[E47:[[S334:fr_id]]:fr_info:1:event_title]]</span></h2>
+          <p class="text-center"><a href="DocServer/Heart_Walk_Move_More_Toolkit.pdf" target="_new">To learn more about Move More Challenge, click here</a></p>
+          <div class="row">
+              <div class="col-lg col-md-12 top-list js--company-top-list-steps">
+                  <h3 class="d-flex bg-gray-700" aria-describedby="durationLeaderboard">
+                      <span class="flex-grow-1">
+                          Top 5 Companies
+                      </span>
+                      <!-- /.flex-grow-1 -->
+                      <span class="text-small">Out of <span class="js--num-companies-steps"></span> Total</span>
+                  </h3>
+                  <ul></ul>
+                  <div class="top-list-footer bg-gray-700 d-flex justify-content-center">
+                      <a title="See All Companies" aria-label="See All Companies" href="/site/SPageNavigator/heartwalk_activity_leaderboard.html?search_type=company&fr_id=[[S334:fr_id]]&returnurl=[[T1:[[S8]]]]" class="btn btn-tertiary" onclick="_gaq.push(['_trackEvent', 'greeting', 'leaderboards', 'see all companies']);">See All Companies</a>
+                  </div>
+                  <!-- /.top-list-footer -->
+              </div>
+              <!-- /.col -->
+              <div class="col-lg col-md-12 top-list js--team-top-list-steps">
+                  <h3 class="d-flex bg-gray-700" aria-describedby="durationLeaderboard">
+                      <span class="flex-grow-1">Top 5 Teams</span>
+                      <span class="text-small">Out of <span class="js--num-teams-steps"></span> Total</span>
+                  </h3>
+                  <ul></ul>
+                  <div class="top-list-footer bg-gray-700 d-flex justify-content-center">
+                      <a title="See All Teams" aria-label="See All Teams" href="/site/SPageNavigator/heartwalk_activity_leaderboard.html?search_type=team&fr_id=[[S334:fr_id]]&returnurl=[[T1:[[S8]]]]" class="btn btn-tertiary" onclick="_gaq.push(['_trackEvent', 'greeting', 'leaderboards', 'see all teams']);">See All Teams</a>
+                  </div>
+                  <!-- /.top-list-footer -->
+              </div>
+              <!-- /.col -->
+              <div class="col-lg col-md-12 top-list js--walker-top-list-steps">
+                  <h3 class="d-flex bg-gray-700" aria-describedby="durationLeaderboard">
+                      <span class="flex-grow-1">Top 5 [[?x4234x::x[[S80:evID]]x::Participants::Walkers]]</span>
+                      <span class="text-small">Out of <span class="js--num-participants-steps"></span> Total</span>
+                  </h3>
+                  <ul></ul>
+                  <div class="top-list-footer bg-gray-700 d-flex justify-content-center">
+                      <a title="See All Participants" aria-label="See All Participants" href="/site/SPageNavigator/heartwalk_activity_leaderboard.html?search_type=participant&fr_id=[[S334:fr_id]]&returnurl=[[T1:[[S8]]]]" class="btn btn-tertiary" onclick="_gaq.push(['_trackEvent', 'greeting', 'leaderboards', 'see all participants']);">See All Participants</a>
+                  </div>
+                  <!-- /.top-list-footer -->
+              </div>
+              <!-- /.col -->
+          </div>
+          <!-- /.row -->
+      </div>
+      <!-- /.container container-wide -->
+      <!-- END TOP LISTS - STEPS TAKEN-->
+
       <!-- ABOUT EVENT SECTION -->
       <div class="bg-white about-event">
           <div class="container container-content">
@@ -197,7 +268,7 @@
                       <img src="[[E47:[[S334:fr_id]]:fr_info:1:sponsor_3]]" alt="About the [[E47:[[S334:fr_id]]:fr_info:1:event_title]]"/>
                       <div class="bg-black-gradient">
                           [[?x1x2x::x[[S42:0:status]]x::
-                          <a href="SPageServer/?pagename=heartwalk_register&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary" onclick="_gaq.push(['_trackEvent', 'greeting', 'about', 'register to walk button']);">Register to Walk</a>
+                          <a href="SPageServer/?pagename=heartwalk_register&amp;fr_id=[[S334:fr_id]]" class="btn btn-primary" onclick="_gaq.push(['_trackEvent', 'greeting', 'about', 'register to walk button']);">Register</a>
                           ::]]
                           <!-- /.btn btn-primary -->
                           <!-- <a href="TR?fr_id=[[S334:fr_id]]&pg=informational&type=fr_informational&sid=1071" class="btn btn-tertiary">More Details</a> -->

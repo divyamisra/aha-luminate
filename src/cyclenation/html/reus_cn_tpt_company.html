@@ -1,0 +1,171 @@
+[[S51:reus_cyclenation_default_image]]
+<div class="container tr-page-container hero">
+    <div class="row">
+        <div class="col-lg-4 col-md-12 sidebar">
+             [[?xx::x[[C4:responsive_company_logo]]x::
+                <img class="sidebar-hero" src="[[S80:defaultCompanyImage]]" alt="Company Image" />
+              ::
+                <img class="sidebar-hero" src="[[C4:responsive_company_logo]]" alt="Company Image" />
+              ]]
+            <div class="bg-gray-700 mb-4">
+                <ul>
+                    <li>
+                        <p><strong>Event:</strong></p>
+                        <p><a href="TR?fr_id=[[S334:fr_id]]&pg=entry" onclick="_gaq.push(['_trackEvent', 'company', 'details', 'event link']);">[[E47:[[S334:fr_id]]:fr_info:1:event_title]]</a></p>
+                        [[?xMulti-Eventx::x[[E42:[[S80:evID]]:public-event-type]]x::::
+                        <p>[[E47:[[S334:fr_id]]:fr_info:1:event_date]]</p>]]
+                    </li>
+                </ul>
+            </div>
+            <!-- /.bg-gray-700 -->
+        </div>
+        <!-- /.sidebar -->
+        <div class="col-lg-8 col-md-12">
+
+            <!-- COMPANY PAGE INFO BOX -->
+            <div class="tr-page-info bg-white information-box">
+                <h1 class="w-100">
+                    <div class="float-left js--company-name">
+
+                    </div>
+                    <!-- /.float-left -->
+                    <div class="team-members float-right d-lg-block d-md-none font-weight-light">
+                        <span class="js--num-company-teams"></span> | <span class="js--num-company-participants"></span>
+                    </div>
+                    <!-- /.badges-container -->
+                </h1>
+                <div class="clearfix"></div>
+                <div class="row fundraising-amounts">
+                    <div class="col-6">
+                        <span class="d-block">Fundraising Progress</span>
+                        <span id="progress-amount" class="amount"></span>
+                        <!-- /.amount -->
+                    </div>
+                    <!-- /.col-6 -->
+                    <div class="col-6 text-right">
+                        <span class="d-block">Fundraising Goal</span>
+                        <span id="goal-amount" class="amount"></span>
+                        <!-- /.amount -->
+                    </div>
+                    <!-- /.col-6 -->
+                    <div class="col-12">
+                        <div class="thermometer">
+                            <div class="thermometer-inner js__progress-bar"></div>
+                            <!-- /.thermometer-inner -->
+                        </div>
+                        <!-- /.thermometer -->
+                    </div>
+                    <!-- /.col-12 -->
+                </div>
+                <!-- /.row -->
+                [[?x1x2x::x[[S42:0:status]]x::
+                <form>
+                        <div class="row buttons-row justify-content-between">
+                            <a class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0 font-weight-bold" href="TRR/General?pg=tfind&fr_id=[[S334:fr_id]]&fr_tm_opt=new&s_regType=startTeam" onclick="_gaq.push(['_trackEvent', 'company', 'banner', 'create team button']);">Create a Team</a>
+                            <a class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0 font-weight-bold" href="TRR/General?pg=tfind&fr_id=[[S334:fr_id]]&s_regType=joinTeam" onclick="_gaq.push(['_trackEvent', 'company', 'banner', 'join team button']);">Join a Team</a>
+                        </div>
+                </form>
+                ::]]
+            </div>
+            <!-- /.event-info -->
+            <!-- END COMPANY PAGE INFO BOX -->
+        </div>
+        <!-- /.col-lg-8 -->
+
+        <div class="col-12 mt-5">
+
+            <div class="box-shadow bg-gray-100">
+                <ul class="nav nav-tabs w-100" role="list">
+                    <li class="nav-item w-50">
+                        <a class="nav-link active" id="our-teams-tab" data-toggle="tab" href="#our-teams" role="tab" aria-selected="true">Our Teams</a>
+                    </li>
+                    <li class="nav-item w-50">
+                        <a class="nav-link" id="our-walkers-tab" data-toggle="tab" href="#our-walkers" role="tab"  aria-selected="false">Our Participants</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active mb-4" id="our-teams" role="tabpanel">
+                        <!-- TEAM ROSTER -->
+                        <div class="team-roster bg-gray-100">
+
+                            <table id="team-roster" class="float-left w-100 table mb-0">
+                                <thead>
+                                 <tr>
+                                    <th class="border-0">Team:</th>
+                                    <th class="border-0 text-left"><span class="fullTeamCaptain">Team </span>Captain:</th>
+                                    <th class="border-0 js--company-col-header">Company:</th>
+                                    <th class="border-0">Raised:</th>
+                                    <th class="border-0" data-orderable="false"><span class="sr-only">Join Team Link</span></th>
+                                </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                            <div class="clearfix"></div>
+                            <!-- /.clearfix -->
+                            <!-- <div class="d-flex justify-content-center">
+                                <a href="#" class="js--more-team-results btn btn-tertiary-black" hidden>Show All Teams</a>
+                            </div> -->
+                            <!-- /.d-flex justify-content-center -->
+                        </div>
+                        <!-- /.information-box -->
+                        <!-- END TEAM ROSTER -->
+                    </div>
+                    <div class="tab-pane fade mb-4" id="our-walkers" role="tabpanel" aria-labelledby="our-walkers-tab">
+                        <!-- PARTICIPANT ROSTER -->
+                         <div class="team-roster bg-gray-100">
+                            <table id="participant-roster" class="float-left w-100 table mb-0">
+                                <thead>
+                                <tr>
+                                    <th class="border-0 donor-name">Name:</th>
+                                    <th class="border-0 js--company-col-header">Company:</th>
+                                    <th class="border-0 raised">Raised:</th>
+                                    <th class="border-0" data-orderable="false"><span class="sr-only">Donation Link</span></th>
+                                </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                            <div class="clearfix"></div>
+                            <!-- /.clearfix -->
+                            <!-- <div class="d-flex justify-content-center">
+                                <a href="#" class="js--more-participant-results btn btn-tertiary-black" hidden>Show All Riders</a>
+                            </div> -->
+                            <!-- /.d-flex justify-content-center -->
+                        </div>
+                        <!-- /.information-box -->
+                        <!-- END PARTICIPANT ROSTER -->
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-shadow -->
+        </div>
+        <!-- /.col-12 -->
+        <div class="col-12">
+            <div class="content-area">
+                <div class="row">
+                    <!-- <div class="col-lg-7 col-md-12"> -->
+                        <!-- <div class="video-container embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item" title="American Heart Association CycleNation Video"  src="https://www.youtube.com/embed/6PyBq8AvZNU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div> -->
+                        <!-- /.video-container -->
+                    <!-- </div> -->
+                    <!-- /.col-7 -->
+                    <!-- <div class="col-lg-5 col-md-12 pl-5">
+                        <h2 class="h4">Why We Ride</h2>
+                        <div class="js--company-text"></div>
+                    </div> -->
+                    <div class="col-12">
+                        <h2 class="h4">Why We Ride</h2>
+                        <div class="js--company-text"></div>
+                    </div>
+                    <!-- /.col-5 -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.content-area -->
+        </div>
+        <!-- /.col-12 -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /.container -->
+<div style="display:none;" class="js--company-hierarchy-list-container">[[E344:[[S334:company_id]]]]</div>

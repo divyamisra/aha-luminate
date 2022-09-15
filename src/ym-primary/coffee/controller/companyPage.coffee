@@ -21,8 +21,9 @@ angular.module 'ahaLuminateControllers'
       $scope.companyId = $location.absUrl().split('company_id=')[1].split('&')[0].split('#')[0]
       domain = $location.absUrl().split('/site/')[0]
       $rootScope.companyName = ''
-      $scope.eventDate = ''
-      $scope.moneyDueDate = ''
+      $scope.hideAmount = ''
+      $scope.notifyName = ''
+      $scope.notifyEmail = ''
       $scope.totalTeams = ''
       $scope.teamId = ''
       $scope.studentsPledgedTotal = ''
@@ -31,6 +32,16 @@ angular.module 'ahaLuminateControllers'
       $scope.activity3amt = ''
       $scope.topClassRaised = []
       $scope.topClassStudents = []
+      $scope.topGradeRaised = []
+      $scope.topGradeStudents = []
+      $scope.topCompanySteps = []
+      $scope.schoolChallenge = ''
+      $scope.schoolChallengeGoal = 0
+      $scope.schoolYears = 5
+      $scope.unconfirmedAmountRaised = 0
+      $scope.schoolBadgesRegistrations = []
+      $scope.schoolBadgesFundraising = []
+      $scope.finnsMissionStudentList = []
       
       $scope.trustHtml = (html) ->
         return $sce.trustAsHtml(html)
@@ -76,13 +87,13 @@ angular.module 'ahaLuminateControllers'
             $scope.activity3amt = studentsPledgedActivities['3'].count
           else
             $scope.activity3amt = 0
-      
+
       setCompanyProgress = (amountRaised, goal) ->
         $scope.companyProgress = 
           amountRaised: if amountRaised then Number(amountRaised) else 0
           goal: if goal then Number(goal) else 0
-        $scope.companyProgress.amountRaisedFormatted = $filter('currency')($scope.companyProgress.amountRaised / 100, '$').replace '.00', ''
-        $scope.companyProgress.goalFormatted = $filter('currency')($scope.companyProgress.goal / 100, '$').replace '.00', ''
+        $scope.companyProgress.amountRaisedFormatted = $filter('currency')($scope.companyProgress.amountRaised / 100, '$')
+        $scope.companyProgress.goalFormatted = $filter('currency')($scope.companyProgress.goal / 100, '$')
         $scope.companyProgress.percent = 0
         if not $scope.$$phase
           $scope.$apply()
@@ -95,6 +106,7 @@ angular.module 'ahaLuminateControllers'
           $scope.companyProgress.percent = percent
           if not $scope.$$phase
             $scope.$apply()
+          getBoundlessSchoolData()
         , 500
       
       getCompanyTotals = ->
@@ -119,23 +131,40 @@ angular.module 'ahaLuminateControllers'
               $rootScope.companyName = name
               setCompanyProgress amountRaised, goal
 
-              TeamraiserCompanyPageService.getSchoolDates()
-                .then (response) ->
-                  schoolDataRows = response.data.getSchoolDatesResponse.schoolData
-                  schoolDataHeaders = {}
-                  schoolDates = {}
-                  angular.forEach schoolDataRows[0], (schoolDataHeader, schoolDataHeaderIndex) ->
-                    schoolDataHeaders[schoolDataHeader] = schoolDataHeaderIndex
-                  i = 0
-                  len = schoolDataRows.length
-                  while i < len
-                    if $scope.companyId is schoolDataRows[i][schoolDataHeaders.CID]
-                      $scope.eventDate = schoolDataRows[i][schoolDataHeaders.ED]
-                      $scope.moneyDueDate = schoolDataRows[i][schoolDataHeaders.MDD]
-                      $scope.schoolStudentGoal = schoolDataRows[i][schoolDataHeaders.PG]
-                      break
-                    i++
+              ZuriService.getSchoolDetail '&school_id=' + $scope.companyId + '&EventId=' + $scope.frId,
+                failure: (response) ->
+                error: (response) ->
+                success: (response) ->
+                  if response.data.company[0] != ""
+                    $scope.schoolPlan = response.data.company[0]
+                    $scope.hideAmount = $scope.schoolPlan.HideAmountRaised
+                    $scope.notifyName = $scope.schoolPlan.YMDName
+                    $scope.notifyEmail = $scope.schoolPlan.YMDEmail
+                    $scope.unconfirmedAmountRaised = $scope.schoolPlan.OfflineUnconfirmedRevenue
+                    $scope.highestGift = $scope.schoolPlan.HighestRecordedRaised
+                    $scope.top25school = $scope.schoolPlan.IsTop25School
+                    $scope.highestRaisedAmount = $scope.schoolPlan.HRR
+                    $scope.highestRaisedYear = $scope.schoolPlan.HRRYear
 
+                    if $scope.schoolPlan.EventStartDate != undefined
+                      if $scope.schoolPlan.EventStartDate != '0000-00-00'
+                        $scope.schoolPlan.EventStartDate = new Date($scope.schoolPlan.EventStartDate.replace(/-/g, "/") + ' 00:01')
+                      if $scope.schoolPlan.EventEndDate != '0000-00-00'
+                        $scope.schoolPlan.EventEndDate = new Date($scope.schoolPlan.EventEndDate.replace(/-/g, "/") + ' 00:01')
+                      if $scope.schoolPlan.DonationDueDate != '0000-00-00'
+                        $scope.schoolPlan.DonationDueDate = new Date($scope.schoolPlan.DonationDueDate.replace(/-/g, "/") + ' 00:01')
+                      if $scope.schoolPlan.KickOffDate != '0000-00-00'
+                        $scope.schoolPlan.KickOffDate = new Date($scope.schoolPlan.KickOffDate.replace(/-/g, "/") + ' 00:01')
+                      $scope.coordinatorPoints = JSON.parse($scope.schoolPlan.PointsDetail)
+                    else
+                      $scope.schoolPlan.EventStartDate = ''
+                      $scope.schoolPlan.DonationDueDate = ''
+                      $scope.schoolPlan.KickOffDate = ''
+                    if $scope.schoolPlan.ListOfStudentsCompletingFinnsMission != ""
+                      students = JSON.parse $scope.schoolPlan.ListOfStudentsCompletingFinnsMission
+                      angular.forEach students.StudentList, (student, index) ->
+                        $scope.finnsMissionStudentList.push student
+                  
               if coordinatorId and coordinatorId isnt '0' and eventId
                 TeamraiserCompanyService.getCoordinatorQuestion coordinatorId, eventId
                   .then (response) ->
@@ -161,7 +190,7 @@ angular.module 'ahaLuminateControllers'
               companyTeams = [companyTeams] if not angular.isArray companyTeams
               angular.forEach companyTeams, (companyTeam) ->
                 companyTeam.amountRaised = Number companyTeam.amountRaised
-                companyTeam.amountRaisedFormatted = $filter('currency')(companyTeam.amountRaised / 100, '$').replace '.00', ''
+                companyTeam.amountRaisedFormatted = $filter('currency')(companyTeam.amountRaised / 100, '$')
               totalNumberTeams = response.getTeamSearchByInfoResponse.totalNumberResults
               setCompanyTeams companyTeams, totalNumberTeams
       getCompanyTeams()
@@ -177,15 +206,15 @@ angular.module 'ahaLuminateControllers'
           $scope.$apply()
         if participants and participants.length > 0
           angular.forEach participants, (participant, participantIndex) ->
-            participantsString += '{name: "' + participant.name.first + ' ' + participant.name.last + '", raised: "' + participant.amountRaisedFormatted + '"}'
+            participantsString += '{"name": "' + participant.name.first + ' ' + participant.name.last + '", "raised": "' + participant.amountRaisedFormatted + '", "cons_id": ' + participant.consId + '}'
             if participantIndex < (participants.length - 1)
               participantsString += ', '
-          companyParticipantsString = '{participants: [' + participantsString + '], totalNumber: ' + participants.length + '}'
+          companyParticipantsString = '{"participants": [' + participantsString + '], "totalNumber": ' + participants.length + '}'
           angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
           angular.element('.ym-school-animation iframe').on 'load', ->
             angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
       getCompanyParticipants = ->
-        TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%') + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=team.company_id&list_filter_text=' + $scope.companyId + '&list_sort_column=total&list_ascending=false&list_page_size=50',
+        TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%') + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=team.company_id&list_filter_text=' + $scope.companyId + '&list_sort_column=total&list_ascending=false&list_page_size=500',
             error: ->
               setCompanyParticipants()
             success: (response) ->
@@ -202,7 +231,7 @@ angular.module 'ahaLuminateControllers'
                     participant.lastName = participant.name.last || ""
                     participant.name.last =  participant.lastName.substring(0, 1) + '.'
                     participant.fullName = participant.name.first + ' ' + participant.name.last
-                    participant.amountRaisedFormatted = $filter('currency')(participant.amountRaised / 100, '$').replace '.00', ''
+                    participant.amountRaisedFormatted = $filter('currency')(participant.amountRaised / 100, '$')
                     if participant.donationUrl
                       participant.donationFormId = participant.donationUrl.split('df_id=')[1].split('&')[0]
                     companyParticipants.push participant
@@ -218,7 +247,7 @@ angular.module 'ahaLuminateControllers'
               $scope.participantRegistration = participantRegistration
       
       $scope.companyPagePhoto1 =
-        defaultUrl: APP_INFO.rootPath + 'dist/ym-primary/image/company-default.jpg'
+        defaultUrl: APP_INFO.rootPath + 'dist/ym-primary/image/fy23/default-school-photo.jpg'
       
       $scope.editCompanyPhoto1 = ->
         delete $scope.updateCompanyPhoto1Error
@@ -359,10 +388,10 @@ angular.module 'ahaLuminateControllers'
       $scope.schoolAnimationURL = $sce.trustAsResourceUrl(url)
       
       getLeaderboards = ->
-        BoundlessService.getLeaderboardRaised $scope.companyId
+        BoundlessService.getLeaderboards $scope.companyId
         .then (response) ->
-          teachers = response.data.teachers
-          angular.forEach teachers, (teacher) ->
+          teachers_raised = response.data.most_dollars_by_teacher
+          angular.forEach teachers_raised, (teacher) ->
             grade = teacher.grade_name
             if grade is null
               grade = "N/A"
@@ -371,20 +400,8 @@ angular.module 'ahaLuminateControllers'
               grade: grade
               raised: teacher.total | 0
               msg: 'Amount Raised'
-          ###
-          i = $scope.topClassRaised.length
-          while i < 5
-            $scope.topClassRaised.push
-              name: ''
-              grade: ''
-              raised: ''
-              msg: ''
-            i++ 
-          ###    
-        BoundlessService.getLeaderboardStudents $scope.companyId
-        .then (response) ->
-          teachers = response.data.teachers
-          angular.forEach teachers, (teacher) ->
+          teachers_students = response.data.most_students_by_teacher
+          angular.forEach teachers_students, (teacher) ->
             grade = teacher.grade_name
             if grade is null
               grade = "N/A"
@@ -393,18 +410,35 @@ angular.module 'ahaLuminateControllers'
               grade: grade
               students: teacher.students | 0
               msg: '# Online Students'
-          ###
-          i = $scope.topClassStudents.length
-          while i < 5
-            $scope.topClassStudents.push
-              name: ''
-              grade: ''
-              students: ''
-              msg: ''
-            i++
-          ###
+          grade_raised = response.data.most_dollars_by_grade
+          angular.forEach grade_raised, (sgrade) ->
+            grade = sgrade.grade_name
+            if grade is null
+              grade = "N/A"
+            $scope.topGradeRaised.push
+              name: sgrade.teacher_name
+              grade: grade
+              raised: sgrade.total | 0
+              msg: 'Amount Raised'
+          grade_students = response.data.most_students_by_grade
+          angular.forEach grade_students, (students) ->
+            grade = students.grade_name
+            if grade is null
+              grade = "N/A"
+            $scope.topGradeStudents.push
+              name: students.teacher_name
+              grade: grade
+              students: students.students | 0
+              msg: '# Students'
+
       getLeaderboards()
-              
+
+      BoundlessService.getBMLeaderboard('event_id=' + $scope.frId + '&company_id=' + $scope.companyId).then (response) ->
+        if response.company_member_list != undefined
+          angular.forEach response.company_member_list, (company_member_list) ->
+            if company_member_list.total > 0
+              $scope.topCompanySteps.push company_member_list
+
       setCompanyCity = (companyCity) ->
         $rootScope.companyCity = companyCity
         if not $rootScope.$$phase
@@ -424,4 +458,45 @@ angular.module 'ahaLuminateControllers'
                 setCompanyCity schoolDataRow[1]
                 setCompanyState schoolDataRow[2]
           return
-  ]
+        
+      ZuriService.getSchoolData $scope.companyId,
+        error: (response) ->
+          # TO DO
+        success: (response) ->
+          if response.data.data.length > 0
+            angular.forEach response.data.data, (meta, key) ->
+              if meta.name == 'school-challenge'
+                $scope.schoolChallenge = meta.value
+              if meta.name == 'school-goal'
+                $scope.schoolChallengeGoal = meta.value
+              if meta.name == 'years-participated'
+                $scope.schoolYears = meta.value
+                
+      getBoundlessSchoolData = () ->
+        BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.companyId
+        .then (response) ->
+          if response.data.success
+            percent = Number(response.data.percent) * 100
+            if percent > 100
+              percent = 100
+            $scope.companyProgress = 
+              amountRaised: if response.data.total_amount then Number(response.data.total_amount) else 0
+              goal: if response.data.goal then Number(response.data.goal) else 0
+              percent: percent
+              participantCount: response.data.students_registered
+            $scope.participantCount = response.data.students_registered
+            $scope.companyProgress.amountRaisedFormatted = $filter('currency')($scope.companyProgress.amountRaised, '$')
+            $scope.companyProgress.goalFormatted = $filter('currency')($scope.companyProgress.goal, '$')
+            #if not $scope.$$phase
+            #  $scope.$apply()
+            #$timeout ->
+            #  percent = $scope.companyProgress.percent
+            #  if $scope.companyProgress.goal isnt 0
+            #   percent = Math.ceil($scope.companyProgress.amountRaised / $scope.companyProgress.goal)
+            # if percent > 100
+            #   percent = 100
+            # $scope.companyProgress.percent = percent
+            # if not $scope.$$phase
+            #   $scope.$apply()
+  
+    ]

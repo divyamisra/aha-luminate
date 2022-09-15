@@ -11,17 +11,18 @@ angular.module 'ahaLuminateControllers'
         $rootScope.companyName = companyName
         if not $rootScope.$$phase
           $rootScope.$apply()
-      TeamraiserCompanyService.getCompanies 'company_id=' + regCompanyId,
-        error: ->
-          # TODO
-        success: (response) ->
-          companies = response.getCompaniesResponse.company
-          if not companies
-            # TODO
-          else
-            companies = [companies] if not angular.isArray companies
-            companyInfo = companies[0]
-            setCompanyName companyInfo.companyName
+      #TeamraiserCompanyService.getCompanies 'company_id=' + regCompanyId,
+      #  error: ->
+      #    # TODO
+      #  success: (response) ->
+      #    companies = response.getCompaniesResponse.company
+      #    if not companies
+      #      # TODO
+      #    else
+      #      companies = [companies] if not angular.isArray companies
+      #      companyInfo = companies[0]
+      #      setCompanyName companyInfo.companyName
+      setCompanyName localStorage.companyName
       
       $scope.regSummaryInfo = {}
       
@@ -34,7 +35,7 @@ angular.module 'ahaLuminateControllers'
       $scope.submitRegSummary = ->
         angular.element('.js--default-regsummary-form').submit()
         false
-        
+      
       setCompanyCity = (companyCity) ->
         $rootScope.companyCity = companyCity
         if not $rootScope.$$phase
@@ -45,13 +46,31 @@ angular.module 'ahaLuminateControllers'
         if not $rootScope.$$phase
           $rootScope.$apply()
           
-      SchoolLookupService.getSchoolData()
-        .then (response) ->
-          schoolDataRows = response.data.getSchoolSearchDataResponse.schoolData
-          angular.forEach schoolDataRows, (schoolDataRow, schoolDataRowIndex) ->
-            if schoolDataRowIndex > 0
-              if regCompanyId is schoolDataRow[0]
-                setCompanyCity schoolDataRow[1]
-                setCompanyState schoolDataRow[2]
-                return
+      if localStorage.companyCity != undefined
+        setCompanyCity localStorage.companyCity
+        setCompanyState localStorage.companyState
+
+      # if there is an additional gift amount, put it in local storage for DtD
+      if angular.element(document).find('.additional-gift-amount').text() != '$0.00'
+        console.log 'there is a gift value'
+        addlGiftAmt = angular.element(document).find('.additional-gift-amount').text()
+        addlGiftAmtClean = addlGiftAmt.replace(/[^0-9.]/g, '');
+        addlGiftAmtFormatted = '$'.concat(addlGiftAmtClean);
+        localStorage.addlGiftAmt = addlGiftAmtFormatted
+      else
+        console.log 'clear addGiftAmt'
+        localStorage.addlGiftAmt = ''
+
+      $scope.submitRegSummary()
+      
+      #
+      #SchoolLookupService.getSchoolData()
+      #  .then (response) ->
+      #    schoolDataRows = response.data.getSchoolSearchDataResponse.schoolData
+      #    angular.forEach schoolDataRows, (schoolDataRow, schoolDataRowIndex) ->
+      #      if schoolDataRowIndex > 0
+      #        if regCompanyId is schoolDataRow[0]
+      #          setCompanyCity schoolDataRow[1]
+      #          setCompanyState schoolDataRow[2]
+      #          return
   ]

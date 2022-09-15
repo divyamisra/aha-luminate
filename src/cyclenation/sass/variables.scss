@@ -130,6 +130,9 @@ $display-line-height:         $headings-line-height !default;
 $input-padding-y: 0;
 // $input-border-radius: $border-radius-base !default;
 
+$screen-xs: 450px !default;
+$screen-xs-min: $screen-xs !default;
+
 $screen-sm: 768px !default;
 $screen-sm-min: $screen-sm !default;
 
@@ -149,3 +152,16 @@ $screen-md-max: ($screen-lg-min - 1) !default;
 
 // $panel-border-radius: $border-radius-base !default;
 
+// styles from heartwalk2020
+$gray-700: #495057 !default;
+$gray-400: #EEEEEE !default;
+$gray-200: #E3E3E3 !default;
+$gray-100: #F8F8F8 !default;
+$thermometer-border: #CCCCCC !default;
+$team-roster-bg-gray: #E9ECEE;
+
+// Font family variables
+$font-fallback: Helvetica, Arial, sans-serif;
+$font-family-light: 'LubDubLight', $font-fallback;
+$font-family-medium: 'LubDubMedium', $font-fallback;
+$font-family-bold: 'LubDubBold', $font-fallback;

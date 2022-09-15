@@ -11,17 +11,24 @@ crossorigin="anonymous">
 crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap[[?xtruex::x[[S80:debug]]x::::.min]].js" integrity="sha256-63ld7aiYP6UxBifJWEzz87ldJyVnETUABZAYs5Qcsmc="
 crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/luminateExtend/1.7.1/luminateExtend[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/luminateExtend/1.8.2/luminateExtend[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.8.0/parsley[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
-[[?xcn_searchx::x[[S334:pagename]]x::
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@7/dist/polyfill[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
+
+[[?
+  [[?x27x::x[[S4]]x::T::]]
+  [[?xentryxteamxcompanyx::x[[S334:pg]]x::T::]]
+  [[?xcn_searchx::x[[S334:pagename]]x::T::]]
+::T::
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
 ::]]
 [[?xentryx::x[[S334:pg]]x::
   [[?xx{unassigned}x::x[[E47:[[S334:fr_id]]:fr_info:1:sponsor_4]]x::::
     <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
     <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/1.17.1/simple-lightbox[[?xtruex::x[[S80:debug]]x::::.min]].js" integrity="sha256-94yOmoFMo+cACakZdkeOe9Du9cN7odiEBHJxYArZ5uY=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Modaal/0.4.4/js/modaal[[?xtruex::x[[S80:debug]]x::::.min]].js" integrity="sha256-e8kfivdhut3LQd71YXKqOdkWAG1JKiOs2hqYJTe0uTk=" crossorigin="anonymous"></script>
   ]]
 ::]]
 [[?xcn_homex::x[[S334:pagename]]x::
@@ -51,7 +58,10 @@ crossorigin="anonymous"></script>
 
 <script src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/cyclenation/js/amazonpay.js?v=1"></script>
 [[?xheartdevx::x[[S29:TABLE_PREFIX]]x::
-<script src="https://static.heart.org/ahaanywhere/sitecore/dist/ahaHeaderFooterSitecore.dev.js"></script>
+
+<!--possible to-do: per client request added the prod header/footer to the dev environtment-->
+<script src="https://static.heart.org/ahaanywhere/sitecore/dist/ahaHeaderFooterSitecore.js"></script>
+<!-- <script src="https://static.heart.org/ahaanywhere/sitecore/dist/ahaHeaderFooterSitecore.dev.js"></script> -->
 ::
 <script src="https://static.heart.org/ahaanywhere/sitecore/dist/ahaHeaderFooterSitecore.js"></script>
 ]]
@@ -62,3 +72,24 @@ crossorigin="anonymous"></script>
       jQuery('#globalFooter').ahaHeaderFooterSitecore();
     });
   </script>
+
+[[?x9x::x[[S4]]x::
+<script>
+  jQuery(document).ready(function($){
+    if  ($('#tos_radio_true').length > 0){
+      $('label[for="tos_dropdown"]').parent().hide();
+      $('label[for="tos_dropdown"]').parent().next('fieldset').hide();
+      $('label[for="tos_dropdown"]').parent().before('<input type="checkbox" name="terms-of-service-checkbox" id="terms-of-service-checkbox"><label for="terms-of-service-checkbox">&nbsp;Yes, I agree to the <a href="https://www.heart.org/en/about-us/statements-and-policies/privacy-statement" target="_blank">AHA Privacy Policy</a></label>');
+      $('#terms-of-service-checkbox').change(function(){
+        if($(this).is(':checked')){
+          $('#tos_radio_true').prop('checked',true);
+        }
+        else {
+          $('#tos_radio_true').prop('checked',false);
+        }
+      });
+    }
+  });
+</script>
+
+::]] 

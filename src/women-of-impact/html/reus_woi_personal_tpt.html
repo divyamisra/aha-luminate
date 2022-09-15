@@ -1,0 +1,77 @@
+[[S51:reus_woi_default_image]]
+<div class="container tr-page-container hero">
+  <div class="row">
+    <div class="col-lg-4 col-md-12 sidebar js--sidebar">
+      [[?xx::x[[C4:graphic_upload]]x::
+  <img class="sidebar-hero" src="[[S80:defaultPersonalImage]]"
+        alt="[[E48:[[S334:fr_id]]-[[S334:px]]:cons.first_name]]'s fundraising page" />
+::
+  <img class="sidebar-hero" src="[[C4:graphic_upload]]"
+        alt="[[E48:[[S334:fr_id]]-[[S334:px]]:cons.first_name]]'s fundraising page" />
+]]
+      <!-- /.bg-gray-700 -->
+      <div class="donor-roll box-shadow">
+        <div class="donor-roll__title">
+          <span class="h5">[[E48:[[S334:fr_id]]-[[S334:px]]:cons.first_name]]'s Donors:</span>
+        </div>
+        <div class="donations-container js--donor-roll"></div>
+        <!-- /.donations-container -->
+        <a class="honor-roll-expander js--honor-roll-expander text-center hidden" href="javascript:void(0);" aria-label="View more donors"><i
+            class="fas fa-chevron-down"></i></a>
+      </div>
+      <!-- /.donor-roll -->
+    </div>
+    <!-- /.sidebar -->
+    <div class="col-lg-8 col-md-12">
+      <!-- PERSONAL PAGE INFO BOX -->
+      <div class="d-flex justify-content-center">
+        <div class="tr-page-info bg-white information-box js--information-box">
+            <div class="information-box__name box-shadow">
+              <h1>[[E48:[[S334:fr_id]]-[[S334:px]]:cons.first_name]] [[E48:[[S334:fr_id]]-[[S334:px]]:cons.last_name]]</h1>
+            </div>
+            <!--/.information-box__name-->
+            <div class="information-box__content">
+              <div class="clearfix"></div>
+              <!-- /.col-12 -->
+
+              [[?x2x3x::x[[S42:0:status]]x::
+              <!-- TODO - hide personal donation form until levels have been built via API        -->
+              <form class="js--personal-don-form">
+                <p>Select an Amount to Donate to [[E48:[[S334:fr_id]]-[[S334:px]]:cons.first_name]]:</p>
+                <fieldset>
+                  <legend class="sr-only">Select a donation amount</legend>
+                  <div class="donation-amounts row"></div>
+                  <!-- /.donation-amounts -->
+                </fieldset>
+                <!-- /.row d-flex justify-content-center -->
+                <div class="row buttons-row">
+                [[?x2x3x::x[[S42:0:status]]x::
+                  <!--<button type="submit" class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0 js--personal-don-submit"
+                    data-don-url="Donation2?df_id=[[E42:[[S334:fr_id]]:form-id]]&PROXY_ID=[[S334:px]]&PROXY_TYPE=20&FR_ID=[[S334:fr_id]]" data-final-don-url="Donation2?df_id=[[E42:[[S334:fr_id]]:form-id]]&PROXY_ID=[[S334:px]]&PROXY_TYPE=20&FR_ID=[[S334:fr_id]]" onclick="_gaq.push(['_trackEvent', 'personal', 'banner', 'donate button']);">Donate
+                    <span class="js--don-amt"></span></button>-->
+                  <a class="btn btn-primary col-lg col-sm-12 mx-md-2 mx-sm-0 js--personal-don-submit"
+                         href="" data-don-url="Donation2?df_id=[[E42:[[S334:fr_id]]:form-id]]&PROXY_ID=[[S334:px]]&PROXY_TYPE=20&FR_ID=[[S334:fr_id]]" data-final-don-url="Donation2?df_id=[[E42:[[S334:fr_id]]:form-id]]&PROXY_ID=[[S334:px]]&PROXY_TYPE=20&FR_ID=[[S334:fr_id]]" onclick="_gaq.push(['_trackEvent', 'personal', 'banner', 'donate button']);">Donate
+                    <span class="js--don-amt"></span></a>
+                ::]]
+                </div>
+              </form>
+              ::]]
+            </div>
+            <!-- /.event-info -->
+          </div>
+          <!--/.information-box__content-->
+      </div>
+      <!-- /.container -->
+      <!-- END PERSONAL PAGE INFO BOX -->
+      <div class="content-area">
+        <h2 class="h4">Help Me Save and Change Lives!</h2>
+        <div class="js--personal-text"></div>
+        <!-- /.video-container -->
+      </div>
+      <!-- /.content-area -->
+    </div>
+    <!-- /.col-lg-8 -->
+  </div>
+  <!-- /.row -->
+</div>
+<!-- /.container -->

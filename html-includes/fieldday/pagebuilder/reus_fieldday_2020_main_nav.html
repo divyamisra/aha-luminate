@@ -1,0 +1,91 @@
+<ul class="nav navbar-nav ml-auto">
+    [[?
+        [[?xx::x[[S334:fr_id]]x::::T]]
+        [[?x27x26x::x[[S4]]x::T::]]
+    ::T::
+    <li class="nav-item" >
+        <a class="nav-link" id="home" href="TR/?fr_id=[[S80:evID]]&amp;pg=entry" onclick="_gaq.push(['_trackEvent', 'navigation', 'top', 'home']);">
+            Home
+        </a>
+    </li>
+    ::]]
+    [[?xx::x[[S1:first_name]]x::
+    <li class="nav-item d-lg-none d-md-block" id="mobile-login">
+        <a class="nav-link" href="UserLogin?NEXTURL=[[T1:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer?pagename=MyEvents]]" onclick="_gaq.push(['_trackEvent', 'navigation', 'log in']);">Log In</a>
+    </li>
+    ::]]
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle d-md-none d-lg-block" id="find" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="_gaq.push(['_trackEvent', 'navigation', 'top', 'find']);">
+            Find <i class="fas fa-angle-down" aria-hidden="true"></i>
+        </a>
+            <div class="dropdown-menu find">
+                <h1>What are you looking for?</h1>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="walk-event" data-toggle="tab" href="#walkEvent" role="tab" aria-controls="walk-event" aria-selected="true" onclick="_gaq.push(['_trackEvent', 'navigation', 'top', 'find event']);">A Walk Event</a>
+                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#walker" role="tab" aria-controls="walker" aria-selected="false" onclick="_gaq.push(['_trackEvent', 'navigation', 'find team']);">A Walker</a>
+                    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#team" role="tab" aria-controls="team" aria-selected="false" onclick="_gaq.push(['_trackEvent', 'navigation', 'find walker']);">A Team</a>
+                </div>
+
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="walkEvent" role="tabpanel" aria-labelledby="walk-event">
+                        <form class="js--header-zip-search">
+                            <label for="zipSearch">Search by zip code</label>
+                            <div class="input-group input-group-lg">
+                                <input id="zipSearch" type="text" class="form-control" name="event-search" />
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-primary">Search <i class="fas fa-search" aria-hidden="true"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="walker" role="tabpanel" aria-labelledby="walker">
+                        <form class="js--header-walker-search">
+                            <label for="walkerSearchFirst">Search by First and / or Last Name</label>
+                            <div class="input-group input-group-lg">
+                                <label for="walkerSearchFirst" class="sr-only">Walker's First Name</label>
+                                <input id="walkerSearchFirst" type="text" name="first-name" class="form-control" />
+                                <label for="walkerSearchLast" class="sr-only">Walker's Last Name</label>
+                                <input id="walkerSearchLast" type="text" name="last-name" class="form-control" />
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-primary">Search <i class="fas fa-search" aria-hidden="true"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="team" role="tabpanel" aria-labelledby="team">
+                        <form class="js--header-team-search">
+                            <label for="teamSearch">Search by Team Name</label>
+                            <div class="input-group input-group-lg">
+                                <input id="teamSearch" type="text" class="form-control" name="team-search" />
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-primary">Search <i class="fas fa-search" aria-hidden="true"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle d-md-none d-lg-block js--nav-about" id="about" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="_gaq.push(['_trackEvent', 'navigation', 'about']);">
+            About <i class="fas fa-angle-down" aria-hidden="true"></i>
+        </a>
+            <div class="dropdown-menu about">
+                <a class="dropdown-item" href="SPageServer/?pagename=FieldDay_Why_We_Play" onclick="_gaq.push(['_trackEvent', 'navigation', 'about why we play']);"> Why We Play</a>
+                <a class="dropdown-item" href="[[?xx::x[[S80:evID]]x::SPageServer/?pagename=FieldDay_FAQ::TR?fr_id=[[S80:evID]]&amp;pg=informational&amp;sid=3569]]" onclick="_gaq.push(['_trackEvent', 'navigation', 'about faq']);">FAQ</a>
+                <a class="dropdown-item" href="#" onclick="_gaq.push(['_trackEvent', 'navigation', 'about volunteer']);">Resources</a>
+                <a class="dropdown-item js--top-menu-contact" href="[[?x27x26x::x[[S4]]x::TR?fr_id=[[S80:evID]]&amp;pg=informational&amp;sid=3586::SPageServer/?pagename=FieldDay_Contact_Us]]" aria-label="Contact Heart Walk" onclick="_gaq.push(['_trackEvent', 'navigation', 'about contact us']);">Contact Us</a>
+            </div>
+    </li>
+    [[?xx::x[[S1:first_name]]x::
+    <!-- NOT LOGGED IN -->
+    <li class="nav-item login d-md-none d-lg-block">
+        <a class="nav-link btn btn-primary" href="UserLogin?NEXTURL=[[T1:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer?pagename=MyEvents]]" onclick="_gaq.push(['_trackEvent', 'navigation', 'log in']);">Log In <i class="fas fa-sign-in-alt" aria-hidden="true"></i> </a>
+    </li>
+    ::
+    <li class="nav-item logged-in d-md-none d-lg-block">
+        <p class="font-weight-bold mb-0">Welcome, [[S1:first_name]]!</p>
+        <a class="nav-link utility-nav-item" href="SPageServer?pagename=MyEvents" onclick="_gaq.push(['_trackEvent', 'navigation', 'logged in your events']);">Your Events</a> | <a class="nav-link utility-nav-item" href="ConsProfileUser?dispMode=edit" onclick="_gaq.push(['_trackEvent', 'navigation', 'logged in your profile']);">Your Profile</a> | <a class="nav-link utility-nav-item" href="UserLogin?logout=0&amp;NEXTURL=[[T1:[[E130:[[T8:[[S8]]]] [[T8:&amp;]] [[T8:&]] replaceall]]]]" onclick="_gaq.push(['_trackEvent', 'navigation', 'log out']);">Log Out</a>
+    </li>
+    ]]
+</ul>

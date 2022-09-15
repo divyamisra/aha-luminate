@@ -3,10 +3,31 @@
 }
 
 .ym-progress__thermometer {
-  border: 8px solid #38b5bd;
+  border: 8px solid $event-secondary;
 }
 
 .ym-progress__thermometer--fill {
-  background: url('../image/hj_thermometer-full.png') no-repeat top left;
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(193,14,33,0.999019676229867) 29%, rgba(193,14,33,1) 100%);
   height: 35px;
+  text-align: center;
+  padding-top: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  white-space:nowrap;
+}
+
+.therm-text-black {
+  color: $event-font-color;
+  text-indent: 100%;
+  
+  &::before {
+    content: " ";
+    margin-left: 5px;
+    position: relative;
+  }
+}
+
+.therm-text-white {
+  color: #ffffff;
+  text-indent: 5px;
 }

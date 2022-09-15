@@ -1,5 +1,5 @@
 <div>
   <div ng-if="pageContent" ng-cloak>
-    <div ng-bind-html="pageContent"></div>
+    <div ng-bind-html="trustHtml(pageContent)"></div>
   </div>
 </div>

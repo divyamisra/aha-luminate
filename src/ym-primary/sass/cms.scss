@@ -18,3 +18,9 @@
     color: $acc-purple;
   }
 }
+
+.ym-school-search {
+  .school-name-filter-submit:focus {
+    outline-color: cyan;
+  }
+}

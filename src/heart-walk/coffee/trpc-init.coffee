@@ -62,4 +62,7 @@ angular.module 'trPcApp'
       $rootScope.hasBoundlessApp = $embedRoot.data('has-bf-app') if $embedRoot.data('has-bf-app') isnt ''
       $rootScope.isOnSocial = $embedRoot.data('is-on-social') if $embedRoot.data('is-on-social') isnt ''
       $rootScope.overFiveDonations = $embedRoot.data('donations-badge') if $embedRoot.data('donations-badge') isnt ''
+      $rootScope.defaultPersonalImg = $embedRoot.data 'default-personal-img' if $embedRoot.data('default-personal-img') isnt ''
+      $rootScope.defaultTeamImg = $embedRoot.data 'default-team-img' if $embedRoot.data('default-team-img') isnt ''
+      $rootScope.defaultCompanyImg = $embedRoot.data 'default-company-img' if $embedRoot.data('default-company-img') isnt ''
   ]

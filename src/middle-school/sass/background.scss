@@ -1,9 +1,6 @@
 main {
-  background: $event-accent-medium;
-
-  @media (min-width: $screen-md-min) {
-    background: url('../image/middle-school-bkgrd.png') repeat top left scroll;
-  }
+  background: url(../image/FY23_YM_Wallpaper.png) repeat;
+  background-size: 100% auto;
 }
 
 .event-secondary-medium--diagonal {

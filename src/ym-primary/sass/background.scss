@@ -1,9 +1,6 @@
 main {
-  background: #bddd98;
-  
-  @media (min-width: $screen-md-min) {
-    background: repeating-linear-gradient(135deg, transparent, transparent 10px, #bddd98 10px, #bddd98 20px), linear-gradient(to bottom, #c2bfd7, #c2bfd7);
-  }
+  background: url(../image/FY23_YM_Wallpaper.png) repeat;
+  background-size: 100% auto;
 }
 
 .event-secondary-medium--diagonal {

@@ -1,3 +1,14 @@
+.error {
+    color: #ff0000;
+    display: block;
+    margin-top: 0px !important;
+}
+
+.form-selectlist {
+    font-size: .875em;
+    color: #6c757d;
+}
+
 select {
   &, 
   &.form-control {
@@ -8,10 +19,34 @@ select {
     padding-right: 0.75rem\9;
     background-image: none\9;
     background: url('../image/ym-select-carot.png') right 0.75rem center no-repeat $brand-white;
-    color: $event-secondary;
     
     &::-ms-expand {
       display: none;
+    }
+  }
+}
+
+.form-control, 
+div.responsive input[type="text"], 
+div.responsive select, 
+div.responsive textarea {
+  margin-bottom:10px;
+}
+
+.form-control:focus {
+    border-color: $event-secondary;
+    border-width:2px;
+}
+
+:disabled, 
+div.responsive input[disabled] {
+  color: $event-primary;
+}
+
+.ym-pc-dashboard-email-challenge-option {
+  form {
+    textarea.form-control[readonly] {
+      height: 270px;
     }
   }
 }

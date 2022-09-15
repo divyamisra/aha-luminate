@@ -1,0 +1,65 @@
+<!-- BEGIN reg options container -->
+
+<!-- RESET user session vars -->
+[[U0:teamName=]]
+[[U0:teamGoal=]]
+[[U0:teamCaptain=]]
+[[U0:personalGoal=]]
+
+[[?x1x2x::x[[S42:0:status]]x::
+<!-- BEGIN step 1 of tfind -->
+<div class="row js__reg-type-container">
+    <div class="col-12 text-center">
+      <h1 class="h3 show-desktop" id="regOptions">We are so excited you are registering for:<br/><a target="_blank" href="TR?pg=entry&fr_id=[[S334:fr_id]]">[[E42:[[S334:fr_id]]:title]]!</a></h1>
+      <p>It'll take you about 5 minutes to register. How would you like to join? </p>
+    </div>
+
+    <div class="col-12">
+      <div class="js__reg-type-error-container alert alert-danger d-none" role="alert" aria-atomic="true">
+        <span class="" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        <i class="fas fa-exclamation-triangle" aria-hidden="true" alt=""></i>
+        <span class="js__reg-type-error-message"></span>
+      </div>
+
+      <form id="regTypeForm" class="mt-4 js__reg-type-form text-center">
+        <div class="form-content row justify-content-center">
+            <!-- Stationary v2 Event -->
+            <div class="form-group start-team-container col-lg-4">
+              <a href="TRR/?pg=tfind&fr_id=[[S334:fr_id]]&fr_tm_opt=new&s_regType=startTeam" class="btn btn-primary btn-lg btn-block btn-outline-grey py-3 mb-1">Start a Team</a>
+              <!--<p class="p-2">
+                  I will recruit riders to join my team and together we'll fundraise to crush our squad goal!
+              </p>-->
+            </div>
+            <div class="form-group join-team-container col-lg-4">
+              <a href="TRR/?pg=tfind&fr_id=[[S334:fr_id]]&fr_tm_opt=existing&s_regType=joinTeam" class="btn btn-primary btn-lg btn-block btn-outline-grey js__show-team-join py-3 mb-1">Join a Team</a>
+              <!--<p class="p-2">
+                I know someone who already started a team and I want to join in the fun!
+              </p>-->
+            </div>
+            <div class="form-group breakaway-container col-lg-4">
+              <a href="TRR/?pg=tfind&fr_id=[[S334:fr_id]]&fr_tm_opt=none&s_regType=individual" class="btn btn-primary btn-lg btn-block btn-outline-grey js__reg-individual py-3 mb-1">Join as Individual</a>
+              <!--<p class="p-2">
+                  I don't want to join or start a team. I'm solo and proud. #sorrynotsorry
+              </p>-->
+            </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- END part 1 of tfind -->
+<!-- END reg options container -->
+::
+<!-- Event is closed -->
+<div class="row js__reg-type-container">
+    <div class="col-12 text-center">
+      <h1 class="h3 show-desktop" id="regOptions">We are so excited you are registering for [[E42:[[S334:fr_id]]:title]]!<br>How would you like to join? </h1>
+    </div>
+    <div class="col-12">
+      <p>Sorry. The [[E42:[[S334:fr_id]]:title]] event is no longer accepting registrations. </p>
+    </div>
+    <div class="col-md-4 offset-md-4">
+      <p><a href="SPageServer/?pagename=cn_home" class="button btn-primary  btn-block my-1"></a>
+    </div>
+</div>
+]]

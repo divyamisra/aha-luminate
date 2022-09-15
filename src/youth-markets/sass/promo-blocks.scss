@@ -48,9 +48,9 @@
   h2 {
     font-size: 68px;
     line-height: 1;
-
+    color: $brand-white;
+    
     @media (min-width: $screen-sm-min) {
-      color: $brand-white;
       margin: 50px 0 10px;
     }
   }
@@ -62,36 +62,6 @@
     max-width: 175px;
     margin: 0 auto;
   }
-
-  @media (max-width: $screen-xs-max) {
-    background: transparent;
-    width: 100%;
-    height: auto;
-    margin: 0 auto 25px;
-    padding: 0 0 25px;
-    border-bottom: 1px solid $event-secondary-medium;
-    border-radius: 0;
-
-    &:last-child {
-      margin: 0 auto;
-      padding:0;
-      border: 0 none;
-    }
-
-    h2 {
-      color: $event-secondary;
-      line-height: 1;
-      margin: 0;
-    }
-
-    p {
-      color: inherit;
-      font-weight: 700;
-      max-width: 100%;
-      margin: 0 auto;
-    }
-  }
-
 
   @media (max-width: 1070px) and (min-width: $screen-md-min) {
     margin: 0 5px 20px 0;

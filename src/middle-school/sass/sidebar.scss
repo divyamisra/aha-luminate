@@ -1,0 +1,118 @@
+
+.ahc-sidebar {
+  /*background: linear-gradient(180deg, #990000 42.19%, #660000 100%);*/
+
+  .nav-link {
+    align-items: center;
+    display: flex;
+  }
+}
+
+@media (max-width:991px) {
+  .ahc-sidebar {
+    left: 0;
+    padding: 1rem * 0.75 1rem * 0.5 1rem * 0.5;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1030;
+
+    .ng-pc-nav {
+      justify-content: space-evenly;
+      width: 100%;
+    }
+
+    .nav-item {
+      max-width: 25%;
+      text-align: center;
+    }
+
+    a.nav-link {
+      flex-direction: column;
+      font-size: clamp(12px, 2.5vw, 16px);
+      padding: 0;
+    }
+
+    i {
+      font-size: 1.5em;
+    }
+  }
+}
+
+@media (min-width:992px) {
+  body > .container-fluid,
+  body > .container-fluid > .row,
+  .ahc-sidebar.ng-pc-nav {
+    min-height: 100%;
+    font-size: clamp(.875rem,1.5vw,1.5rem);
+    max-width: calc(3.5rem + 10rem);
+    /*overflow: hidden;*/
+    /*padding-inline: clamp(1em, 2.15vw, 3em);*/
+    transition: max-width 0.35s ease;
+    padding-right:0px;
+
+    .nav {
+      flex-direction: column !important;
+    }
+
+    a.nav-link {
+      padding-inline: 0;
+      transition: all .2s ease-in-out;
+      color: $event-secondary-heading;
+      background: #ffffff;
+      text-align:left;
+      padding: 10px 20px 25px 20px !important;
+      line-height:30px;
+      width:100%;
+      margin-bottom:5px;
+      padding-right:15px;
+      font-size: 16px;
+      
+      > span {
+        max-width:none !important;
+        font-size: 16px;
+        
+        strong {
+          font-size:16px;
+        }
+      }
+      
+      &:hover,
+      &:focus,
+      &.active {
+        position: relative;
+
+        &::before {
+          background-color: #ffffff;
+          border-radius: .2rem;
+          content: "";
+          height: 1.5em;
+          left: -0.5em;
+          opacity: 0.75;
+          position: absolute;
+          width: 0.25rem;
+        }
+      }
+
+      &:hover,
+      &:focus {
+        &::before {
+          background-color: #ffffff;
+        }
+      }
+
+      &.active {
+        color: $event-secondary-heading;
+        background-color: #cccccc;
+
+        &::before {
+          background-color: #cccccc;
+        }
+      }
+
+      i {
+        display: none;
+      }
+    }
+  }
+}

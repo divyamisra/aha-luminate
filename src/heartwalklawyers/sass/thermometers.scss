@@ -1,0 +1,22 @@
+.thermometer{
+  background-color: $gray-200;
+  border: solid 1px $thermometer-border;
+  margin: 4px 0 0;
+}
+.thermometer-inner {
+  background-color: $red-deep;
+  height: 61px;
+  width: 0;
+  margin: -1px 0 -1px -1px;
+  max-width:100%;
+}
+
+.pg_personal, .pg_team, .pg_company {
+  .thermometer {
+    margin: 19px 0 0;
+  }
+
+  .thermometer-inner {
+    height: 50px;
+  }
+}

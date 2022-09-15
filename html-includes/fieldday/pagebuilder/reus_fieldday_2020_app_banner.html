@@ -1,0 +1,633 @@
+[[?xFieldDay_HQx::x[[S334:pagename]]x::
+      <nav id="skipNav" aria-labelledby="skip-main" class="p-0">
+        <a id="skip-main" class="skip-to js__skip-to aural-only" href="#">Skip to main content</a>
+      </nav>
+
+      <script>
+        var skipToLink = document.getElementById("skip-main");
+
+        skipToLink.addEventListener('click', e => {
+          e.preventDefault();
+          document.getElementById("pcBodyContainer").scrollIntoView();
+        });
+      </script>
+:: 
+    <script>
+      jQuery(document).ready(function(){
+        //ACCESSIBIILTY
+        //Add Langauge
+        jQuery('html').attr('xmlns','http://www.w3.org/1999/xhtml').attr('lang','en').attr('xml:lang','en');
+      
+        [[S51:heartwalk_header_analytics_insert]]
+      
+      });
+      jQuery(document).ready(function(){
+        [[?xheartwalk_participant_centerx::x[[S334:pagename]]x::
+        // cd-heartwalk-pc-upates
+        if((jQuery('body').data('device-is-mobile') === true)) {
+          jQuery('#headerWrapper').css('margin-top', '116px');
+          jQuery('.bf-mobile-banner-ad').css('display', 'flex');
+      
+          jQuery('#bf-mobile-banner-close').click(function(){
+            jQuery('.bf-mobile-banner-ad').remove();
+            jQuery('#headerWrapper').css('margin-top', 'initial');
+          })
+        }
+       jQuery('.js__pc-skip-top').click(function(e){
+         e.preventDefault();
+         jQuery('html, body').animate({
+              scrollTop: jQuery("#mainContent").offset().top
+          }, 500);
+       })
+      
+        ::]]
+      
+        // tabbing Me dropdown
+        jQuery( "#meToggle" ).focusin(function() {
+          jQuery( this ).find( "ul" ).css( "display", "block" );
+          jQuery( "#editToggle" ).find( "ul" ).css( "display", "none" );
+        });
+      
+        jQuery( "#editToggle" ).focusin(function() {
+          jQuery( this ).find( "ul" ).css( "display", "block" );
+          jQuery( "#meToggle" ).find( "ul" ).css( "display", "none" );
+        });
+        // jQuery( "#editToggle" ).focusout(function() {
+        //   jQuery( "#editToggle" ).find( "ul" ).css( "display", "none" );
+        // });
+        jQuery( "#logoutLink" ).focusout(function() {
+          console.log('hide dropdown');
+          jQuery( "#editToggle" ).find( "ul" ).css( "display", "none" );
+          jQuery( "#meToggle" ).find( "ul" ).css("display", "none");
+        });
+  
+        jQuery('#editToggle > ul a').click(function(){
+          jQuery('#editToggle > ul').hide();
+        });
+      
+      });
+      </script>
+      <style>
+      /* for the menu bar, to breakout of that overrides file*/
+      .hwlogo2 {
+        padding: 0 10px;
+      }
+      /*end menu bar*/
+      
+      #headerWrapper {
+          position: relative;
+          z-index: 1040;
+          background-color: #ffffff;
+      }
+      @media only screen and (min-width: 992px){
+        #headerWrapper {
+          position: fixed;
+          width: 100%;
+        }
+        body > div#mainContent, body > .heart-page-container {
+          padding-top: 110px;
+        }
+      }
+      a#skip-main:hover, a#skip-main:active, a#skip-main:focus {
+          left: 0;
+          width: auto;
+          height: auto;
+      }
+      .c-skip-to:active, .c-skip-to:focus {
+        position: static;
+        width: auto;
+        height: auto;
+        clip: unset;
+        clip-path: none;
+        display: block;
+        background: rgb(248, 249, 250);
+        padding: 0.625rem 1.25rem;
+      }
+      </style>
+      <style>
+      
+      @import url('https://fonts.googleapis.com/css?family=Montserrat');
+      
+      #primary_menu_pc {
+          margin-top: 13px;
+      }
+      #primary_menu_pc ul
+      {
+        list-style:none;
+        position:relative;
+        float:right;
+        margin: 0;
+        /*margin: 18px 0 0 0;*/
+        padding:0
+      }
+      
+      #primary_menu_pc ul a
+      {
+        display:block;
+        color:#333;
+        text-decoration:none;
+        font-weight:normal;
+        font-size:16px;
+        line-height:32px;
+        padding:0 13px;
+        font-family:"Montserrat","HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif
+      }
+      
+      @media only screen and (max-width: 1199px)  {
+        #primary_menu_pc ul a {
+          padding:0 10px;
+        }
+      }
+      
+      
+      #primary_menu_pc ul li
+      {
+        position:relative;
+        float:left;
+        margin:0;
+        padding:0
+      }
+      
+      #primary_menu_pc ul li:hover
+      {
+        background:#f6f6f6
+      }
+      
+      #primary_menu_pc ul ul
+      {
+        display:none;
+        position:absolute;
+        top:100%;
+        left:0;
+        background:#fff;
+        padding:0
+      }
+      
+      #primary_menu_pc ul ul li
+      {
+        float:none;
+        width:200px
+      }
+      
+      #primary_menu_pc ul ul a
+      {
+        line-height:120%;
+        padding:10px 15px
+      }
+      
+      #primary_menu_pc ul ul ul
+      {
+        top:0;
+        left:100%
+      }
+      
+      #primary_menu_pc ul li:hover > ul
+      {
+        display:block
+      }
+      
+      nav#primary_menu_pc .glyphicon {
+          font-size: 8px;
+          left: 4px;
+      }
+      
+  
+      
+      </style>
+      
+      [[?xheartwalk_participant_centerx::x[[S334:pagename]]x::
+        <a id="skip-main" class="js__pc-skip-top c-skip-to aural-only" href="#">Skip to main content</a>
+      ::
+        <a id="skip-main" class="c-skip-to aural-only" href="[[S8]]#mainContent">Skip to main content</a>
+      ]]
+      
+      [[?xcenterx::x[[S334:pc2_page]]x::
+        [[?x1x::x[[S80:isMobile]]x::
+          <style>
+            .bf-mobile-banner-ad {
+              display: flex;
+              justify-content: flex-start;
+              -webkit-justify-content: flex-start;
+              align-items: center;
+              background: #EAEAEA;
+              padding: 16px 10px;
+              position: fixed;
+              height: 116px;
+              width: 100%;
+              top: 0;
+              z-index: 1041;
+              border-bottom: 1px solid #ddd;
+              display:none;
+            }
+            .bf-mobile-banner-close {
+              text-align: center;
+              font-weight: normal;
+              font-size: 38px;
+              width: 24px;
+              margin: 0 8px;
+            }
+            .bf-mobile-banner-icon {
+              border-radius: 8px;
+              max-width: 76px;
+              margin: 0 4px;
+            }
+            .bf-mobile-banner-content {
+              font-size: 14px;
+              font-weight: bold;
+              margin: 0 8px;
+            }
+            .bf-mobile-banner-meta {
+              font-size: 12px;
+              display: block;
+              margin-bottom: 8px;
+            }
+            .bf-mobile-banner-link {
+              font-weight: 700;
+              font-size: 14px;
+              text-transform: uppercase;
+            }
+            @media screen and (max-width: 376px) {
+              .bf-mobile-banner-close {
+                margin: 0 4px;
+                width: 16px;
+                font-size: 32px;
+              }
+              .bf-mobile-banner-icon {
+                margin: 0 4px;
+                max-width: 60px;
+              }
+              .bf-mobile-banner-content {
+                font-size: 14px;
+                font-weight: bold;
+                margin: 0 0 0 8px;
+              }
+            }
+            @media screen and (max-width: 340px) {
+              .bf-mobile-banner-ad {
+                align-items: center;
+                height: 98px;
+                padding: 16px 4px;
+              }
+              .bf-mobile-banner-close {
+                width: 24px;
+              }
+              .bf-mobile-banner-icon {
+                max-width: 52px;
+              }
+              .bf-mobile-banner-content, .bf-mobile-banner-link {
+                font-size: 13px;
+              }
+            }
+          </style>
+      
+          [[?x[[S80:isMobile_type]]x::xiosx::
+            <!-- mobile ios -->
+            <div class="bf-mobile-banner-ad">
+              <span aria-label="Close Boundless Fundraising Mobile App download banner" id="bf-mobile-banner-close" class="bf-mobile-banner-close">&times;</span>
+              <img class="bf-mobile-banner-icon" src="../images/content/pagebuilder/AHA-mobile-app-icon.svg" alt="Download the American Heart Association Mobile Fundraising Application from the Apple App Store.">
+              
+              [[?xTRUEx::x[[?xheartdevx::x[[S29:TABLE_PREFIX]]x::[[?xTRUEx::x[[S45:228777]]x::TRUE::FALSE]]::[[?xTRUEx::x[[S45:233630]]x::TRUE::FALSE]]]]x::
+                <!-- in the bf-test group -->
+                <p class="bf-mobile-banner-content">You have the Heart Walk App
+                  <span class="bf-mobile-banner-meta">Fundraise on the go!</span>
+                  <a class="bf-mobile-banner-link" class="download-bf-mobile-ios" href="https://itunes.apple.com/us/app/heart-walk/id451276834?ls=1&mt=8" target="blank">
+                    <strong>Open App Now</strong>
+                  </a>
+                </p>
+              ::
+                <!-- not in the bf-test group -->
+                <p class="bf-mobile-banner-content">Get the Heart Walk Mobile App
+                  <span class="bf-mobile-banner-meta">Fundraise on the go!</span>
+                  <a class="bf-mobile-banner-link" class="open-bf-mobile-ios" href="https://itunes.apple.com/us/app/heart-walk/id451276834?ls=1&mt=8" target="blank">
+                    <strong>Download App Now</strong>
+                  </a>
+                </p>
+              ]]
+            </div>
+          ::]]
+      
+          [[?x[[S80:isMobile_type]]x::xandroidx::
+            <!-- mobile android -->
+            <div class="bf-mobile-banner-ad">
+              <span aria-label="Close Boundless Fundraising Mobile App download banner." id="bf-mobile-banner-close" class="bf-mobile-banner-close">&times;</span>
+              <img class="bf-mobile-banner-icon" src="../images/content/pagebuilder/AHA-mobile-app-icon.svg" alt="Download the American Heart Association Mobile Fundraising Application from the Google Play App Store.">
+              [[?xTRUEx::x[[?xheartdevx::x[[S29:TABLE_PREFIX]]x::[[?xTRUEx::x[[S45:228777]]x::TRUE::FALSE]]::[[?xTRUEx::x[[S45:233630]]x::TRUE::FALSE]]]]x::
+                <!-- in the bf-test group -->
+                <p class="bf-mobile-banner-content">You have the Heart Walk App
+                  <span class="bf-mobile-banner-meta">Fundraise on the go!</span>
+                  <a class="bf-mobile-banner-link" class="download-bf-mobile-android" href="https://play.google.com/store/apps/details?id=com.aha.hw.communicator" target="blank">
+                    <strong>Open App Now</strong>
+                  </a>
+                </p>
+              ::
+                <!-- not in the bf-test group -->
+                <p class="bf-mobile-banner-content">Get the Heart Walk Mobile App
+                  <span class="bf-mobile-banner-meta">Fundraise on the go!</span>
+                  <a class="bf-mobile-banner-link" class="open-bf-mobile-android" href="https://play.google.com/store/apps/details?id=com.aha.hw.communicator" target="blank">
+                    <strong>Download App Now</strong>
+                  </a>
+                </p>
+              ]]
+            </div>
+          ::]]
+        ::]]
+      ::]]
+      
+      <div id="headerWrapper">
+        <div class="container mobile-header hidden-sm hidden-xs">
+          <div class="row">
+            [[?xxnullx::x[[S80:trID]]x::::
+              [[?
+                [[?xx::x[[S1:cons_id]]x::::
+                  [[E48:[[S80:trID]]:if-has-participant-center]]
+                ]]
+              ::TRUE::
+                <div class="col-lg-4 col-md-5"> 
+                     [[?x3297x::x[[S80:trID]]x::
+                     <a href="http://www.heartmini.org">
+                        <img alt="Heart Walk" class="hwlogo" src="../images/content/pagebuilder/Heart_Mini_Lockup_-_no_sponsors-01.png">
+                     </a>
+                     ::
+                     [[?x4956x::x[[S80:trID]]x::
+                     <a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer/?pagename=FieldDay_Landing_Page">
+                        <img alt="Heart Walk" class="hwlogo2" src="../images/content/pagebuilder/AHA_HM_W_LOGO_CMYK_r_k-01.png">
+                     </a>
+                     ::
+                     [[?x4985x::x[[S80:trID]]x::
+                     <a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer/?pagename=FieldDay_Landing_Page">
+                        <img alt="Heart Walk" class="hwlogo2" src="../images/content/pagebuilder/AHA_HM_W_LOGO_2020.png">
+                     </a>
+                     ::
+             [[?x3502x3498x4221x4222x4272x4224x4227x::x[[S80:trID]]x::
+             <a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer/?pagename=FieldDay_Landing_Page">
+              <img alt="Heart Walk" class="ahalogo" src="../images/content/pagebuilder/AHA_HSW_LOGO_RGB-HEX_78px.jpg">
+             </a>
+             ::
+             <a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer/?pagename=FieldDay_Landing_Page">
+              <img alt="Heart Walk" class="ahalogo" src="../images/content/pagebuilder/AHA_fd_LOGOAug_rebrand_251.jpg">
+             </a>
+             ]]
+                     ]]
+                     ]]
+                     ]]
+                </div>
+                <div class="col-lg-8 col-md-7">
+                    <nav id="primary_menu_pc">
+                      <ul>
+                      <li>
+                            <a id="home_link" href="TR?fr_id=[[S80:trID]]" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Home nav link']);">Home</a>
+                      </li>
+                      <li>
+                      [[?xheartwalk_participant_centerx::x[[S334:pagename]]x::
+                        <a id="my_dashboard_link" href="[[S8]]#/dashboard" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'My Dashboard nav link']);">My Dashboard</a>
+                      ::
+                        <a href="TRC?fr_id=[[S80:trID]]" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'My Dashboard nav link']);">My Dashboard</a>
+                      ]]
+                      </li>
+                      <li>
+                          <a id="resources_link" href="SPageServer?pagename=heartwalk_fundraising_tools&amp;fr_id=[[S80:trID]]" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Resources nav link']);">Resources</a>
+                      </li>
+                      <li>
+                      [[?xheartwalk_participant_centerx::x[[S334:pagename]]x::
+                        <a id="social_share_link" href="[[S8]]#/social" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Social Share nav link']);">Social Share</a>
+                      ::
+                        <a href="SPageServer?pagename=heartwalk_participant_center&pc2_page=center&fr_id=[[S80:trID]]#/social" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Social Share nav link']);">Social Share</a>
+                      ]]
+                      </li>
+                      <li>
+                      [[?xheartwalk_participant_centerx::x[[S334:pagename]]x::
+                        <a id="send_email_link" href="[[S8]]#/email/compose" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Send Email nav link']);">Send Email</a>
+                      ::
+                        <a href="TRC?fr_id=[[S80:trID]]&amp;pg=mtype" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Send Email nav link']);">Send Email</a>
+                      ]]
+                      </li>
+                      [[?xTRUEx::x[[E48:[[S80:trID]]-[[S1:cons_id]]:if-is-captain]]x::
+                      <li id="editToggle">
+                          <a href="javascript:void(0)" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Edit Pages<span class="glyphicon glyphicon-triangle-bottom"></span></a>
+                          <ul>
+                              <li>
+                                  <a id="edit_personal_page_link" href="SPageServer?pagename=heartwalk_participant_center&amp;pc2_page=center&amp;fr_id=[[S80:trID]]#/edit-personal" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Edit Personal Page nav link']);">My Personal Page</a>
+                                </li>
+                                <li>
+                                  <a id="edit_team_page_link" href="SPageServer?pagename=heartwalk_participant_center&amp;pc2_page=center&amp;fr_id=[[S80:trID]]#/edit-team" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Edit Team Page nav link']);">My Team Page</a>
+                                </li>
+                                <li class="header-company-link" style="display: none;">
+                                  <a id="edit_company_page_link" href="SPageServer?pagename=heartwalk_participant_center&amp;pc2_page=center&amp;fr_id=[[S80:trID]]#/edit-company">My Company Page</a>
+                                </li>
+                            
+                          </ul>
+                        </li>
+                      ::
+                      <li>
+                          <a href="SPageServer?pagename=heartwalk_participant_center&amp;pc2_page=center&amp;fr_id=[[S80:trID]]#/edit-personal" id="header-no-team-or-company">Edit Page</a>
+                        </li>
+                        <li class="dropdown" id="header-company-but-no-team" class="header-company-link" style="display: none;">
+                          <a href="javascript:void(0)">Edit Pages<span class="glyphicon glyphicon-triangle-bottom" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></span></a>
+                          <ul class="dropdown-menu">
+                            <li>
+                              <a id="edit_personal_page_link" href="SPageServer?pagename=heartwalk_participant_center&amp;pc2_page=center&amp;fr_id=[[S80:trID]]#/edit-personal" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Edit Personal Page nav link']);">My Personal Page</a>
+                            </li>
+                            <li>
+                              <a id="edit_company_page_link" href="SPageServer?pagename=heartwalk_participant_center&amp;pc2_page=center&amp;fr_id=[[S80:trID]]#/edit-company" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Edit Company Page nav link']);">My Company Page</a>
+                            </li>
+                          </ul>
+                        </li>
+                      ]]
+                      <li id="meToggle">
+                          <a href="javascript:void(0)">Me<span class="glyphicon glyphicon-triangle-bottom" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"></span></a>
+                          <ul>
+                            <li>
+                              <a id="my_pc_link" href="SPageServer?pagename=MyEvents" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'My Participant Center nav link']);">My Participant Center</a>
+                            </li>
+                            <li>
+                              <a id="edit_my_profile_link" href="ConsProfileUser?dispMode=edit" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Edit my Profile nav link']);">Edit my Profile</a>
+                            </li>
+                            <li id="logoutLink">
+                            [[?xheartwalk_participant_centerx::x[[S334:pagename]]x::
+                              <a id="logout_link" href="UserLogin?logout=&amp;NEXTURL=[[T1:TR?fr_id=[[S80:trID]]]]" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Logout nav link']);">Logout</a>
+                            ::
+                              <a href="UserLogin?logout=&amp;NEXTURL=[[T1:[[S8]]]]" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Logout nav link']);">Logout</a>
+                            ]]
+                            </li>
+                          </ul>
+                      </li>
+                      </ul>
+                    </nav>
+                </div>
+              ::
+                <div class="col-sm-5">
+                     [[?x3297x::x[[S80:trID]]x::
+                     <a href="http://www.heartmini.org">
+                        <img alt="Heart Walk" class="hwlogo2" src="../images/content/pagebuilder/Heart_Mini_Lockup_-_no_sponsors-01.png">
+                     </a>
+                     ::
+                     [[?x4956x::x[[S80:trID]]x::
+                     <a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer/?pagename=FieldDay_Landing_Page">
+                        <img alt="Heart Walk" class="hwlogo2" src="../images/content/pagebuilder/AHA_HM_W_LOGO_CMYK_r_k-01.png">
+                     </a>
+                     ::
+                     [[?x4985x::x[[S80:trID]]x::
+                     <a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer/?pagename=FieldDay_Landing_Page">
+                        <img alt="Heart Walk" class="hwlogo2" src="../images/content/pagebuilder/AHA_HM_W_LOGO_2020.png">
+                     </a>
+                     ::
+                     [[?x3502x3498x4221x4222x4272x4224x4227x::x[[S80:trID]]x::
+                     <a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer/?pagename=FieldDay_Landing_Page">
+                        <img alt="Heart Walk" class="hwlogo2" src="../images/content/pagebuilder/AHA_HSW_LOGO_RGB-HEX_78px.jpg">
+                     </a>
+                     ::
+                     <a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageServer/?pagename=FieldDay_Landing_Page">
+                        <img alt="Heart Walk" class="hwlogo2" src="../images/content/pagebuilder/AHA_fd_LOGOAug_rebrand_251.jpg">
+                     </a>
+                     ]]
+                     ]]
+                     ]]
+                     ]]
+                </div>
+                <div class="col-sm-7">
+                  <nav id="primary_menu_pc">
+                    <ul>
+                      <li>
+                          <a href="TR?fr_id=[[S80:trID]]" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Home nav link']);">Home</a>
+                      </li>
+                      <li>
+                          <a href="SPageServer?pagename=heartwalk_register&amp;fr_id=[[S80:trID]]" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Register nav link']);">Register</a>
+                      </li>
+                      <li>
+                          <a href="TR?fr_id=[[S80:trID]]&amp;pg=pfind" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Donate nav link']);">Donate</a>
+                      </li>
+                      <li>
+                      [[?xx::x[[S1:cons_id]]x::
+                          <a href="UserLogin?NEXTURL=[[T1:[[S8]]]]" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Login nav link']);">Login</a>
+                      ::
+                          <a href="javascript:void(0)">Me<span class="glyphicon glyphicon-triangle-bottom"></span></a>
+                          <ul>
+                              <li>
+                                  <a href="SPageServer?pagename=MyEvents" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'My Participant Center nav link']);">My Participant Center</a>
+                              </li>
+                              <li>
+                                  <a href="ConsProfileUser?dispMode=edit" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Edit my Profile nav link']);">Edit my Profile</a>
+                              </li>
+                              <li>
+                                  <a href="UserLogin?logout=&amp;NEXTURL=[[T1:[[S8]]]]" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Logout nav link']);">Logout</a>
+                              </li>
+                          </ul>
+                      ]]
+                      </li>
+                    </ul>
+                  </nav>
+                </div>
+              ]]
+            ]]
+          </div>
+        </div>
+        <div class="container aha-mobile-header visible-sm visible-xs">
+          <div class="row"></div>
+          <div class="row">
+            <div class="col-xs-8 pull-left">
+                  [[?x3297x::x[[S80:trID]]x::
+                     <img alt="Heart Walk" class="hwlogo2" src="../images/content/pagebuilder/Heart_Mini_Lockup_-_no_sponsors-01.png">
+                  ::
+                     [[?x4985x::x[[S80:trID]]x::
+                     <img alt="Heart Walk" class="hwlogo2" src="../images/content/pagebuilder/AHA_HM_W_LOGO_2020.png">
+                     ::
+                       [[?x4956x::x[[S80:trID]]x::
+                       <img alt="Heart Walk" class="hwlogo2" src="../images/content/pagebuilder/AHA_HM_W_LOGO_2020.png">
+                       ::
+                       <img alt="Heart Walk" class="ahalogo" src="../images/content/pagebuilder/AHA_fd_LOGOAug_rebrand_251.jpg"> 
+                       ]]
+                     ]]
+                  ]]
+            </div>
+            <div class="col-xs-4">
+              <div class="btn-group pull-right">
+                <button type="button" class="btn btn-lg" aria-label="Mobile menu" style="background: none; font-size: 35px; padding:0;"><span class="glyphicon glyphicon-align-justify"></span><span class="aural-only">Menu</span></button>
+                <ul class="dropdown-menu" role="menu">
+                  [[?xx::x[[S1:cons_id]]x::
+                    <li>
+                      <a href="UserLogin?NEXTURL=[[T1:[[S8]]]]" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Login nav link']);">Login</a>
+                    </li>
+                  ::
+                    <li>
+                      [[?xheartwalk_participant_centerx::x[[S334:pagename]]x::
+                        <a href="UserLogin?logout=&amp;NEXTURL=[[T1:TR?fr_id=[[S80:trID]]]]" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Logout nav link']);">Logout</a>
+                      ::
+                        <a href="UserLogin?logout=&amp;NEXTURL=[[T1:[[S8]]]]" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Logout nav link']);">Logout</a>
+                      ]]
+                    </li>
+                  ]]
+                  [[?xxnullx::x[[S80:trID]]x::::
+                    [[?
+                      [[?xx::x[[S1:cons_id]]x::::
+                        [[E48:[[S80:trID]]:if-has-participant-center]]
+                      ]]
+                    ::TRUE::
+                      <li>
+                          <a href="TR?fr_id=[[S80:trID]]" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Home nav link']);">Home</a>
+                      </li>
+                      <li>
+                        [[?xheartwalk_participant_centerx::x[[S334:pagename]]x::
+                          <a href="[[S8]]#/dashboard" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'My Dashboard nav link']);">My Dashboard</a>
+                        ::
+                          <a href="TRC?fr_id=[[S80:trID]]" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'My Dashboard nav link']);">My Dashboard</a>
+                        ]]
+                      </li>
+                      <li>
+                          <a href="SPageServer?pagename=heartwalk_fundraising_tools&amp;fr_id=[[S80:trID]]" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Resources nav link']);">Resources</a>
+                      </li>
+                      <li>
+                      [[?xheartwalk_participant_centerx::x[[S334:pagename]]x::
+                        <a id="social_share_link_mob" href="[[S8]]#/social" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Social Share nav link mobile']);">Social Share</a>
+                      ::
+                        <a href="SPageServer?pagename=heartwalk_participant_center&pc2_page=center&fr_id=[[S80:trID]]#/social" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Social Share nav link']);">Social Share</a>
+                      ]]
+                      </li>
+                      <li>
+                        [[?xheartwalk_participant_centerx::x[[S334:pagename]]x::
+                          <a href="[[S8]]#/email/compose" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Send Email nav link']);">Send Email</a>
+                        ::
+                          <a href="TRC?fr_id=[[S80:trID]]&amp;pg=mtype" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Send Email nav link']);">Send Email</a>
+                        ]]
+                      </li>
+                      <li>
+                          <a href="SPageServer?pagename=heartwalk_participant_center&amp;pc2_page=center&amp;fr_id=[[S80:trID]]#/edit-personal" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Edit Personal Page nav link']);">Edit My Personal Page</a>
+                        </li>
+                        [[?xTRUEx::x[[E48:[[S80:trID]]-[[S1:cons_id]]:if-is-captain]]x::
+                          <li>
+                            <a href="SPageServer?pagename=heartwalk_participant_center&amp;pc2_page=center&amp;fr_id=[[S80:trID]]#/edit-team" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Edit Team Page nav link']);">Edit My Team Page</a>
+                          </li>
+                        ::]]
+                        <li class="header-company-link" style="display: none;">
+                          <a href="SPageServer?pagename=heartwalk_participant_center&amp;pc2_page=center&amp;fr_id=[[S80:trID]]#/edit-company" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Edit Company Page nav link']);">Edit My Company Page</a>
+                        </li>
+                        <li>
+                          <a href="SPageServer?pagename=MyEvents" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'My Participant Center nav link']);">My Participant Center</a>
+                        </li>
+                        <li>
+                          <a href="ConsProfileUser?dispMode=edit" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Edit my Profile nav link']);">Edit my Profile</a>
+                      </li>
+                    ::
+                      <li>
+                        <a href="TR?fr_id=[[S80:trID]]" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Home nav link']);">Home</a>
+                      </li>
+                      <li>
+                        <a href="SPageServer?pagename=heartwalk_register&amp;fr_id=[[S80:trID]]" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Register nav link']);">Register</a>
+                      </li>
+                      <li>
+                        <a href="TR?fr_id=[[S80:trID]]&amp;pg=pfind" onclick="_gaq.push(['t2._trackEvent', 'HW PC', 'click', 'Donate nav link']);">Donate</a>
+                      </li>
+                    ]]
+                  ]]
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      [[S51:heartwalk_header_sidebar_wrapper]]
+    ]]
+   
+
+    [[S51:heartwalk_chat_by_affiliate]]
+
+    

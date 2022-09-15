@@ -1,20 +1,28 @@
 <ul class="list-unstyled list-group">
   <li class="list-group-item" ng-repeat="message in messages">
     <div class="clearfix">
-      <div class="pull-left">
-        <!-- TODO: date -->
-        <a href="" ng-click="selectMessage(message.message_id)">
-          {{message.subject}}
-        </a>
-        <span ng-if="!selectMessage">
-          {{message.subject}}
-        </span>
-      </div>
-      <div class="pull-right">
-        <button type="button" class="btn btn-link" ng-click="deleteMessage(message.message_id)">
-          <span class="fa fa-trash-o"><span class="sr-only">Delete</span></span>
-        </button>
-      </div>
+	<div class="row">
+  	  <div class="col-xs-9">
+	    <!-- TODO: date -->
+	      <a href="" ng-click="selectMessage(message.message_id)">
+		  {{message.subject}}
+	      </a>
+	      <span ng-if="!selectMessage">
+		  {{message.subject}}
+	      </span>
+	      <div class="emailRecipients hidden">
+		{{message.recipients}}
+	      </div>
+	  </div>
+	  <div class="col-xs-2 text-right">
+	    {{message.date}}
+	  </div>
+	  <div class="col-xs-1 text-center">
+	    <button type="button" class="btn btn-link" ng-click="deleteMessage(message.message_id)">
+	      <span class="fa fa-trash-o"><span class="sr-only">Delete</span></span>
+	    </button>
+	  </div>
+       </div>
     </div>
   </li>
 </ul>

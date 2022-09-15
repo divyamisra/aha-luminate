@@ -17,7 +17,7 @@ angular.module 'ahaLuminateControllers'
         $scope.noSchoolLink = noSchoolLink
         if not $scope.$$phase
           $scope.$apply()
-      TeamraiserService.getTeamRaisersByInfo 'event_type=' + encodeURIComponent('YM Kids Heart Challenge') + '&public_event_type=' + encodeURIComponent('School Not Found') + '&name=' + encodeURIComponent('%') + '&list_page_size=1&list_ascending=false&list_sort_column=event_date',
+      TeamraiserService.getTeamRaisersByInfo 'event_type=' + encodeURIComponent('YM Kids Heart Challenge 2023') + '&public_event_type=' + encodeURIComponent('School Not Found') + '&name=' + encodeURIComponent('%') + '&list_page_size=1&list_ascending=false&list_sort_column=event_date',
           error: (response) ->
             # TODO
           success: (response) ->
@@ -29,11 +29,9 @@ angular.module 'ahaLuminateControllers'
               teamraiserInfo = teamraisers[0]
               setNoSchoolLink $scope.nonsecureDomain + 'site/TRR?fr_id=' + teamraiserInfo.id + '&pg=tfind&fr_tm_opt=none&s_frTJoin=&s_frCompanyId='
       if consId
-        TeamraiserParticipantService.getRegisteredTeamraisers 'cons_id=' + consId + '&event_type=' + encodeURIComponent('YM Kids Heart Challenge'),
+        TeamraiserParticipantService.getRegisteredTeamraisers 'cons_id=' + consId + '&event_type=' + encodeURIComponent('YM Kids Heart Challenge 2023'),
           error: ->
-            modalSet = readCookie 'modalSet'
-            if modalSet isnt 'true'
-              setModal()
+            # TODO
           success: (response) ->
             teamraisers = response.getRegisteredTeamraisersResponse.teamraiser
             numberEvents = 0
@@ -128,7 +126,7 @@ angular.module 'ahaLuminateControllers'
           onChanged: ->
             AriaCarouselService.onChange(owlStr)
 
-      $timeout initCarousel, 1000
+      #$timeout initCarousel, 1000
 
       initHeroCarousel = ->
         owl = jQuery '.ym-carousel--hero'
@@ -152,5 +150,5 @@ angular.module 'ahaLuminateControllers'
               onChanged: ->
                 AriaCarouselService.onChange(owlStr)
 
-      $timeout initHeroCarousel, 1000
+      #$timeout initHeroCarousel, 1000
   ]

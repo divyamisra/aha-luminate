@@ -1,0 +1,46 @@
+<script src="//static.heart.org/ahaanywhere/sitecore/dist/ahaHeaderFooterSitecore.js"></script>
+<!-- Activate header/footer plugin -->
+<script>
+  jQuery(function() {
+    jQuery('body.aha-luminate').ahaHeaderFooterSitecore({
+      showSearch: true,
+      showFooterSupportBar: true,
+      supportBarContent:
+      {'title':'CPR-Related Inquiries:','info':'1-877-AHA-4CPR or 1-877-242-4277'},
+      supportBarCallToActions:
+      [{'title':'International Inquiries','link':'#'}]
+    });
+  });
+</script >
+  
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.17/angular-filter[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
+<script src="//cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
+<script src="//cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.6/ui-bootstrap-tpls[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/luminateExtend/1.7.1/luminateExtend[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
+<script>
+  luminateExtend({
+    apiKey: '[[S0:CONVIO_API_KEY]]',
+    path: {
+      nonsecure: 'http://[[S29:DOMAIN]][[S29:PATH]]',
+      secure: decodeURIComponent('[[T1:https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]]]')
+    },
+    tablePrefix: '[[S29:TABLE_PREFIX]]',
+    devBranch: '[[T6:[[S80:dev_branch]]]]',
+    ajaxProxyAuth: '[[S86:true]]',
+    [[?
+      [[?xx::x[[S1:cons_id]]x::T::
+        [[?[[S39:0*#000000*10pt*true*1*0*0*Events:true:YM Kids Heart Challenge 2021:::]]:: href=::::T]]
+      ]]
+    ::T::
+      isParticipant: false
+    ::
+      isParticipant: true
+    ]]
+    [[?xx::x[[S80:frCompanyId]]x::::,
+      regCompanyId: '[[T6:[[S80:frCompanyId]]]]'
+    ]]
+  });
+</script>
+
+<script src="[[S666:template_macros/aha_luminate_filepath.tpt::ym-rewards/js/main::js::@@buildTimestamp]]"></script>

@@ -1,0 +1,64 @@
+<div class="row">
+	<button class="closeMobileApp" ng-click="cancelMobileApp()" ng-enter="cancelMobileApp()" autofocus>
+		Close
+	</button>
+	<div class="col-md-6 col-sm-12">
+		<div class="modal-header">
+			<h2 class="h5 modal-title">
+				Get Moving! 
+			</h2>
+		</div>
+		<div class="modal-body">
+			<p>
+				Mission/Challenge: Complete 150 minutes of physical activity with your family this week to feel great and have fun! 
+			</p>
+			<div class="checkbox" custom-checkbox ng-class="{'checked': moveMoreFlag.message == 2}">
+				<label for="registrationInfo-fr_check_move_more2">
+					<input ng-change="setMoveMoreFlag(this)" type="checkbox" name="fr_check_move_more" id="registrationInfo-fr_check_move_more2" ng-model="moveMoreFlag.message" ng-true-value="2"> 
+					<span>
+						YES! We did it and feeling great!
+					</span>
+				</label>
+			</div>
+			<div class="checkbox" custom-checkbox ng-class="{'checked': moveMoreFlag.message == 1}">
+				<label for="registrationInfo-fr_check_move_more1">
+					<input ng-change="setMoveMoreFlag(this)" type="checkbox" name="fr_check_move_more" id="registrationInfo-fr_check_move_more1" ng-model="moveMoreFlag.message" ng-true-value="1"> 
+					<span>
+						We haven't done it yet, but we have a family plan!
+					</span>
+				</label>
+			</div>
+			<div class="checkbox" custom-checkbox ng-class="{'checked': moveMoreFlag.message == 0}">
+				<label for="registrationInfo-fr_check_move_more0">
+					<input ng-change="setMoveMoreFlag(this)" type="checkbox" name="fr_check_move_more" id="registrationInfo-fr_check_move_more0" ng-model="moveMoreFlag.message" ng-true-value="0"> 
+					<span>
+						Still working on the plan!
+					</span>
+				</label>
+			</div>
+			<div ng-if="moveMoreFlag.errorMessage" ng-bind="moveMoreFlag.errorMessage" ng-cloak></div>
+			<div ng-if="moveMoreFlag.successMessage &amp;&amp; moveMoreFlag.message" ng-cloak>
+				Your selection has been recorded. Your Move More Activity is now completed!
+			</div>
+			<div ng-if="moveMoreFlag.successMessage &amp;&amp; !moveMoreFlag.message" ng-cloak>
+				Your selection has been recorded. Your Move More Activity is now removed!
+			</div>
+		</div>
+		<div class="modal-footer visible-xs visible-sm">
+	    <div class="clearfix">
+				<div class="text-center">
+					<button ng-click="cancelMobileApp()" ng-enter="cancelMobileApp()" class="btn btn-primary">
+						<strong>OK</strong>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6 hidden-xs hidden-sm">
+		<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy22/khc-move-more-modal.jpg" alt="Move More Family" style="width:100%"> 
+	</div>
+</div>
+<script>
+//set focus on close button
+jQuery('button.closeMobileApp').focus();
+</script>

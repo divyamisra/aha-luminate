@@ -10,7 +10,7 @@ angular.module 'trPcControllers'
     ($rootScope, $scope, $filter, $location, NgPcTeamraiserEmailService, NgPcTeamraiserGiftService, NgPcTeamraiserReportsService) ->
       $scope.reportPromises = []
       
-      $scope.activeReportTab = if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true' then 0 else 1
+      $scope.activeReportTab = 1 ##if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true' then 0 else 1
       
       NgPcTeamraiserEmailService.getSuggestedMessages()
         .then (response) ->
@@ -56,7 +56,7 @@ angular.module 'trPcControllers'
                     firstName: gift.name.first
                     lastName: gift.name.last
                     email: gift.email
-                  gift.giftAmountFormatted = $filter('currency') gift.giftAmount / 100, '$', 0
+                  gift.giftAmountFormatted = $filter('currency') gift.giftAmount / 100, '$'
                   if gift.giftMessage
                     gift.showMessage = false
                   participantGifts.push gift
@@ -145,7 +145,7 @@ angular.module 'trPcControllers'
                       firstName: gift.name.first
                       lastName: gift.name.last
                       email: gift.email
-                    gift.giftAmountFormatted = $filter('currency') gift.giftAmount / 100, '$', 0
+                    gift.giftAmountFormatted = $filter('currency') gift.giftAmount / 100, '$'
                     teamGifts.push gift
                   $scope.teamGifts.gifts = teamGifts
                 $scope.teamGifts.totalNumber = if response.data.getGiftsResponse.totalNumberResults then Number(response.data.getGiftsResponse.totalNumberResults) else 0
