@@ -950,7 +950,8 @@
             });
         };
 
-        cd.etEventDateRange = function(str) {
+        cd.getEventDateRange = function(str) {
+            // This function extracts date ranges from strings
             return new Promise((resolve, reject) => {
                 const regexp = /((\b\d{1,2}\D{0,3})?\b(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|(Nov|Dec)(?:ember)?)\D?)(\d{1,2}(st|nd|rd|th)?)?((\s*[,.\-\/]\s*)\D?)?\s*((19[0-9]\d|20\d{2})|\d{2})*/g;
                 // Sample matches: "Jan 2023 - June 2023", "January 2023 - June 2023", "January 1, 2023 - June 30, 2023"
@@ -1135,8 +1136,8 @@
                                                 let doc = parser.parseFromString(html, 'text/html');
                                                 let eventRow;
 
-                                                getEventDateRange(doc.body.dataset.eventDate).then(dateRange => {
-                                                    eventRow = insertEventRow(event, dateRange);
+                                                cd.getEventDateRange(doc.body.dataset.eventDate).then(dateRange => {
+                                                    eventRow = cd.insertEventRow(event, dateRange);
                                                 });
 
                                                 resolve(eventRow);
@@ -1144,7 +1145,7 @@
                                             .catch(error => {
                                                 console.error(error);
                                                 console.warn(`Warning: Unable to parse ${event.greeting_url}.`);
-                                                eventRow = insertEventRow(event, '');
+                                                eventRow = cd.insertEventRow(event, '');
                                                 resolve(eventRow);
                                             });
                                     });
