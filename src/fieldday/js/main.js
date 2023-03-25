@@ -969,8 +969,12 @@
         cd.insertEventRow = function(event, index, dateRange) {
             return '<div class="event-results__company row' + (index > 10 ? ' class="d-none"' : '') + '"><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><h3>' + event.name + '</h3><time>' + dateRange + '</time></div><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><a class="btn btn-primary" href="' +
                 event.greeting_url + '" class="btn btn-primary">Find a Company</a></div></div>';
+        };
 
-            // return eventRow;
+        cd.renderEventRows = function(eventRows) {
+            eventRows.forEach(function(eventRow) {
+                $('.js--event-search-results').attr('aria-live', 'polite').append(eventRow);
+            });
         };
 
         // Get events by zip
@@ -1037,6 +1041,7 @@
         // END getEventsByDistance
 
         // getEventsByStateLanding
+
         cd.getEventsByStateLanding = function(eventState) {
             $('.js--no-event-results').addClass('d-none');
             $('.js--no-event-results').removeAttr('role');
@@ -1123,7 +1128,7 @@
 
                             const eventsLoop = async () => {
                                 const promises = await events.map(async (event, index) => {
-                                    const eventsArrs = new Promise((resolve, reject) => {
+                                    const eventRows = new Promise((resolve, reject) => {
                                         fetch(event.greeting_url)
                                             .then(response => {
                                                 return response.text();
@@ -1135,25 +1140,38 @@
 
                                                 cd.getEventDateRange(doc.body.dataset.eventDate).then(dateRange => {
                                                     eventRow = cd.insertEventRow(event, index, dateRange);
-
                                                     resolve(eventRow);
                                                 });
 
                                             })
                                             .catch(error => {
+                                                let eventRow;
+
                                                 console.error(error);
                                                 console.warn(`Warning: Unable to parse ${event.greeting_url}.`);
                                                 eventRow = cd.insertEventRow(event, index, '');
                                                 resolve(eventRow);
                                             });
                                     });
-                                    return eventsArrs;
+                                    return eventRows;
                                 });
-                                const fullEventsArr = await Promise.all(promises);
-                                console.log(fullEventsArr);
+                                const allEventRows = await Promise.all(promises);
+                                renderEventRows(allEventRows);
+
+                                if (totalEvents > 10) {
+                                    $('.js--more-event-results').removeClass('hidden');
+                                }
+
+                                $('.js--more-event-results').on('click', function(e) {
+                                    e.preventDefault();
+                                    $('.js--event-search-results row').removeClass('d-none');
+                                    $(this).addClass('hidden');
+                                    $('.js--end-event-list').removeAttr('hidden');
+                                });
+
+                                $('.js--event-results-container').removeAttr('hidden');
                             };
                             eventsLoop();
-
                         } else {
                             $('.js--loading').hide();
                             $('.js--no-event-results').attr('role', 'alert').removeClass('d-none');
