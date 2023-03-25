@@ -59,8 +59,8 @@ var CountDownWidget = function(element_id, a, b, c) {
     heading = c[1];
     desc = c[2];
   }
-  wrapper.querySelector('h2').innerHTML = heading;
-  wrapper.querySelector('p').innerHTML = desc;
+  wrapper.querySelector('strong').innerHTML = heading;
+  wrapper.querySelectorAll('p')[1].innerHTML = desc;
 
 };
 
@@ -252,9 +252,9 @@ function convertTime(datetime) {
   let c = a[1].split(':');
 
   let dt = new Date();
-  dt.setFullYear(b[0]);  
-  dt.setDate(b[2]);
+  dt.setFullYear(b[0]);
   dt.setMonth(b[1] - 1);
+  dt.setDate(b[2]);
   dt.setHours(c[0]);
   dt.setMinutes(c[1]);
   dt.setSeconds(0);
