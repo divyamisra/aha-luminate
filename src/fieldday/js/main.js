@@ -1156,7 +1156,7 @@
                                     return eventRows;
                                 });
                                 const allEventRows = await Promise.all(promises);
-                                renderEventRows(allEventRows);
+                                cd.renderEventRows(allEventRows);
 
                                 if (totalEvents > 10) {
                                     $('.js--more-event-results').removeClass('hidden');
