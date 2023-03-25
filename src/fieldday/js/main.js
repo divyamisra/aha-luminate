@@ -966,10 +966,10 @@
             });
         };
 
-        cd.insertEventRow = function(event, dateRange) {
+        cd.insertEventRow = function(event, index, dateRange) {
             console.log(dateRange);
 
-            var eventRow = '<div class="event-results__company row' + (i > 10 ? ' class="d-none"' : '') + '"><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><h3>' + event.name + '</h3><time>' + dateRange + '</time></div><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><a class="btn btn-primary" href="' +
+            var eventRow = '<div class="event-results__company row' + (index > 10 ? ' class="d-none"' : '') + '"><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><h3>' + event.name + '</h3><time>' + dateRange + '</time></div><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><a class="btn btn-primary" href="' +
                 event.greeting_url + '" class="btn btn-primary">Find a Company</a></div></div>';
 
             return eventRow;
@@ -1124,9 +1124,8 @@
                             // $('.js--event-results-container').removeAttr('hidden');
 
                             const eventsLoop = async () => {
-                                const promises = await events.map(async event => {
+                                const promises = await events.map(async (event, index) => {
                                     const eventsArrs = new Promise((resolve, reject) => {
-
                                         fetch(event.greeting_url)
                                             .then(response => {
                                                 return response.text();
@@ -1137,7 +1136,7 @@
                                                 let eventRow;
 
                                                 cd.getEventDateRange(doc.body.dataset.eventDate).then(dateRange => {
-                                                    eventRow = cd.insertEventRow(event, dateRange);
+                                                    eventRow = cd.insertEventRow(event, index, dateRange);
                                                 });
 
                                                 resolve(eventRow);
@@ -1145,7 +1144,7 @@
                                             .catch(error => {
                                                 console.error(error);
                                                 console.warn(`Warning: Unable to parse ${event.greeting_url}.`);
-                                                eventRow = cd.insertEventRow(event, '');
+                                                eventRow = cd.insertEventRow(event, index, '');
                                                 resolve(eventRow);
                                             });
                                     });
