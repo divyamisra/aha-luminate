@@ -1135,9 +1135,10 @@
 
                                                 cd.getEventDateRange(doc.body.dataset.eventDate).then(dateRange => {
                                                     eventRow = cd.insertEventRow(event, index, dateRange);
+
+                                                    resolve(eventRow);
                                                 });
 
-                                                resolve(eventRow);
                                             })
                                             .catch(error => {
                                                 console.error(error);
