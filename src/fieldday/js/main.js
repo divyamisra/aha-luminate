@@ -1048,34 +1048,42 @@
                                         let parser = new DOMParser();
                                         let doc = parser.parseFromString(html, 'text/html');
 
-                                        // insertEventDateRange(doc.body.dataset.eventDate)
-                                        insertEventDateRange('This event occurs April - January 15, 2024');
+
+                                        getEventDateRange(doc.body.dataset.eventDate).then(dateRange => {
+                                            insertEventRow(event, dateRange);
+                                        });
                                     })
                                     .catch(error => {
-                                        console.warn(`Warning: Unable to parse ${greetingPageUrl}.`);
+                                        insertEventRow(event);
+                                        console.warn(`Warning: Unable to parse ${event.greeting_url}.`);
                                     });
 
 
-                                const insertEventDateRange = (str) => {
-                                    const regexp = /((\b\d{1,2}\D{0,3})?\b(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|(Nov|Dec)(?:ember)?)\D?)(\d{1,2}(st|nd|rd|th)?)?((\s*[,.\-\/]\s*)\D?)?\s*((19[0-9]\d|20\d{2})|\d{2})*/g;
-                                    // Sample matches: "Jan 2023 - June 2023", "January 2023 - June 2023", "January 1, 2023 - June 30, 2023"
-                                    const matches = [...str.matchAll(regexp)];
+                                const getEventDateRange = (str) => {
+                                    return new Promise((resolve, reject) => {
+                                        const regexp = /((\b\d{1,2}\D{0,3})?\b(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|(Nov|Dec)(?:ember)?)\D?)(\d{1,2}(st|nd|rd|th)?)?((\s*[,.\-\/]\s*)\D?)?\s*((19[0-9]\d|20\d{2})|\d{2})*/g;
+                                        // Sample matches: "Jan 2023 - June 2023", "January 2023 - June 2023", "January 1, 2023 - June 30, 2023"
+                                        const matches = [...str.matchAll(regexp)];
 
-                                    if (matches.length) {
-                                        let start = matches[0].length ? matches[0][0] : '';
-                                        let end = typeof matches[1] !== 'undefined' && matches[1].length ? matches[1][0] : '';
-                                        console.log(`${start} ${end !== '' ? '- ' : ''}${end}`);
-                                    }
+                                        if (matches.length) {
+                                            let start = matches[0].length ? matches[0][0] : '';
+                                            let end = typeof matches[1] !== 'undefined' && matches[1].length ? matches[1][0] : '';
+                                            resolve(`${start} ${end !== '' ? '- ' : ''}${end}`);
+                                        }
+                                        resolve('');
+                                    });
                                 };
 
+                                const insertEventRow = (event, dateRange = '') => {
+                                    console.log(dateRange);
 
-                                var eventRow = '<div class="event-results__company row' + (i > 10 ? ' class="d-none"' : '') + '"><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><h3>' + event.name + '</h3></div><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><a class="btn btn-primary" href="' +
-                                    event.greeting_url + '" class="btn btn-primary">Find a Company</a></div></div>';
+                                    var eventRow = '<div class="event-results__company row' + (i > 10 ? ' class="d-none"' : '') + '"><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><h3>' + event.name + '</h3><time>' + dateRange + '</time></div><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><a class="btn btn-primary" href="' +
+                                        event.greeting_url + '" class="btn btn-primary">Find a Company</a></div></div>';
 
-
-                                if (eventStatus === '1' || eventStatus === '2' || eventStatus === '3') {
-                                    $('.js--event-search-results').attr('aria-live', 'polite').append(eventRow);
-                                }
+                                    if (eventStatus === '1' || eventStatus === '2' || eventStatus === '3') {
+                                        $('.js--event-search-results').attr('aria-live', 'polite').append(eventRow);
+                                    }
+                                };
                             });
 
                             if (totalEvents > 10) {
