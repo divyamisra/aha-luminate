@@ -1703,6 +1703,62 @@
                 var teamName = encodeURIComponent($('#greeting-search-team').val());
                 window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=team&cross_event=false&fr_id=' + evID + '&team_name=' + teamName;
             });
+
+            const greetingInsertEventDateRange = () => {
+                const parseEventDateRange = (str) => {
+                    const matches = getDateMatches(str);
+
+                    if (matches.length) {
+                        return createDateElements(matches);
+                    }
+                    return null;
+                };
+
+                const getDateMatches = (str) => {
+                    // Sample matches: "Jan 2023 - June 2023", "January 2023 - June 2023", "January 1, 2023 - June 30, 2023"
+                    const regexp = /((\b\d{1,2}\D{0,3})?\b(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|(Nov|Dec)(?:ember)?)\D?)(\d{1,2}(st|nd|rd|th)?)?((\s*[,.\-\/]\s*)\D?)?\s*((19[0-9]\d|20\d{2})|\d{2})*/g;
+
+                    return [...str.matchAll(regexp)];
+                };
+
+                const createDateElements = (matches) => {
+                    const startDate = matches[0].length ? matches[0][0] : '';
+                    const endDate = typeof matches[1] !== 'undefined' && matches[1].length ? matches[1][0] : '';
+                    const container = document.createElement('div');
+                    let dateElements;
+
+                    if (startDate !== '') {
+                        dateElements = `<date datetime="${getDateTime(startDate)}">${startDate}</date>`;
+                        if (endDate !== '') {
+                            dateElements += ` &ndash; <date datetime="${getDateTime(endDate)}">${endDate}</date>`;
+                        }
+                        container.classList.add('d-flex', 'flex-wrap');
+                        container.innerHTML = dateElements;
+                        return container;
+                    }
+                    return null;
+                };
+
+                const getDateTime = (date) => {
+                    return new Date(date).toISOString().substring(0, 10);
+                };
+
+                const insertEventDateRange = (dateRange, referenceNodes) => {
+                    document.querySelectorAll(referenceNodes).forEach(node => node.appendChild(dateRange.cloneNode(true)));
+                };
+
+
+                const eventDateRange = document.body.dataset.eventDate;
+                const referenceNodes = [
+                    '.event-info__header',
+                    '.top-lists-container > .row > .col-12:last-child',
+                ];
+                const parsedEventDateRange = eventDateRange !== '' ? parseEventDateRange(eventDateRange) : null;
+
+                parsedEventDateRange && insertEventDateRange(parsedEventDateRange, referenceNodes);
+            };
+
+            greetingInsertEventDateRange();
         }
 
         if ($('.tr_sponsorship_logos').length > 0) {
