@@ -966,7 +966,7 @@
         };
 
         cd.makeEventRow = function(event, index, dateRange) {
-            return '<div class="event-results__company row' + (index > 10 ? ' class="d-none"' : '') + '"><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><h3>' + event.name + '</h3><time>' + dateRange + '</time></div><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><a class="btn btn-primary" href="' +
+            return '<div class="event-results__company row' + (index > 10 ? ' class="d-none"' : '') + '"><div class="col-12 col-md-6 d-flex flex-wrap align-items-center justify-content-center"><h3>' + event.name + '</h3><time>' + dateRange + '</time></div><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><a class="btn btn-primary" href="' +
                 event.greeting_url + '" class="btn btn-primary">Find a Company</a></div></div>';
         };
 

@@ -2,15 +2,15 @@
   main {
     margin-bottom: 60px;
     & > .container {
-  	padding: 0 !important;
-	  background: none;
+      padding: 0 !important;
+      background: none;
     }
   }
 
   .event-info-banner {
     min-height: 210px;
     width: 100%;
-    background-image: url('https://www2.heart.org/images/content/pagebuilder/aha-fieldday-greeting-hero_2x.jpg');
+    background-image: url("https://www2.heart.org/images/content/pagebuilder/aha-fieldday-greeting-hero_2x.jpg");
     background-size: cover;
     background-position: top center;
     @include media-breakpoint-up(lg) {
@@ -24,116 +24,133 @@
     }
   }
 
-
   /* Event information box at top of page */
   .event-info {
-      margin: 0;
+    margin: 0;
 
-      @include media-breakpoint-up(lg) {
-        flex: 720px 0 0;
-      }
+    @include media-breakpoint-up(lg) {
+      flex: 720px 0 0;
+    }
 
-      .event-info__header h1 {
-        font-size: 1em;
-        color: $red;
-        background-color: $white;
-        padding: 20px;
-        margin-bottom: 25px;
-        @include media-breakpoint-up(md) {
-          font-size: 1.875em!important;
+    .event-info__header h1 {
+      font-size: 1em;
+      color: $red;
+      background-color: $white;
+      padding: 20px;
+      margin-bottom: 25px;
+      &:not(:only-child) {
+        margin-bottom: 0.5rem;
+        padding-bottom: 0;
+
+        + .d-flex {
+          justify-content: center;
+          margin-bottom: 25px;
+          padding-bottom: 20px;
         }
       }
-
-      .event-info__details h2 {
-        font-family: $font-family-bold;
-        color: $red;
-        font-size: 0.875em;
-        @include media-breakpoint-up(md) {
-          font-size: 1em!important;
-        }
+      @include media-breakpoint-up(md) {
+        font-size: 1.875em !important;
       }
+    }
 
-      .event-info__details p {
-        font-size: 0.875em!important;
-        @include media-breakpoint-up(md) {
-          font-size: 1em!important;
-        }
+    .event-info__details h2 {
+      font-family: $font-family-bold;
+      color: $red;
+      font-size: 0.875em;
+      @include media-breakpoint-up(md) {
+        font-size: 1em !important;
       }
+    }
 
-      .event-name, .event-date {
-        letter-spacing: 0.7px;
+    .event-info__details p {
+      font-size: 0.875em !important;
+      @include media-breakpoint-up(md) {
+        font-size: 1em !important;
       }
+    }
 
-      .event-name, .info-columns a, .info-columns .fas {
-        color: $red;
-      }
+    .event-name,
+    .event-date {
+      letter-spacing: 0.7px;
+    }
 
-      .info-columns {
-        margin: 31px 0 0 0;
+    .event-name,
+    .info-columns a,
+    .info-columns .fas {
+      color: $red;
+    }
 
-        .event-info-collapse {
-          &:hover {
-            a, i {
-              color: $red-deep;
-            }
-          }
-        }
+    .info-columns {
+      margin: 31px 0 0 0;
 
-        h3, p {
-          line-height: 1.2;
-        }
-
-        h3, p, a, .fas {
-          font-size: 1rem;
-        }
-
-        a {
-          line-height: 1;
-        }
-
-        p {
-          margin: 0 0 17px;
-        }
-      }
-
-      .event-date {
-        margin: 1px 0 31px;
-        font-size: 1.44rem;
-        font-family:$font-family-medium;
-        font-weight: normal;
-      }
-
-      .btn {
-        max-width: 260px;
-        padding: 13px 0;
-        font-size: 1rem;
-      }
-
-      .fundraising-amounts {
-        margin-top: 90px;
-        margin-bottom: 0px;
-        padding: 0 72px 67px;
-
-        span {
-          font-size: 0.78em;
-          margin: 14px 0 -3px;
-          @include media-breakpoint-up(md) {
-            font-size: 1em;
-          }
-        }
-
-        .amount {
-          font-size: 0.875em;
-          font-family: $font-family-bold;
-          line-height: 1.4;
-          margin: 0;
-          @include media-breakpoint-up(md) {
-            font-size: 1.667em!important;
+      .event-info-collapse {
+        &:hover {
+          a,
+          i {
             color: $red-deep;
           }
         }
       }
+
+      h3,
+      p {
+        line-height: 1.2;
+      }
+
+      h3,
+      p,
+      a,
+      .fas {
+        font-size: 1rem;
+      }
+
+      a {
+        line-height: 1;
+      }
+
+      p {
+        margin: 0 0 17px;
+      }
     }
+
+    .event-date {
+      margin: 1px 0 31px;
+      font-size: 1.44rem;
+      font-family: $font-family-medium;
+      font-weight: normal;
+    }
+
+    .btn {
+      max-width: 260px;
+      padding: 13px 0;
+      font-size: 1rem;
+    }
+
+    .fundraising-amounts {
+      margin-top: 90px;
+      margin-bottom: 0px;
+      padding: 0 72px 67px;
+
+      span {
+        font-size: 0.78em;
+        margin: 14px 0 -3px;
+        @include media-breakpoint-up(md) {
+          font-size: 1em;
+        }
+      }
+
+      .amount {
+        font-size: 0.875em;
+        font-family: $font-family-bold;
+        line-height: 1.4;
+        margin: 0;
+        @include media-breakpoint-up(md) {
+          font-size: 1.667em !important;
+          color: $red-deep;
+        }
+      }
+    }
+  }
 
   .greeting-about {
     padding-top: 30px;
@@ -153,15 +170,14 @@
       background-attachment: fixed;
     }
     width: 100%;
-    background-image: url('https://www2.heart.org/images/content/pagebuilder/aha-fieldday-greeting-banner_2x.jpg');
+    background-image: url("https://www2.heart.org/images/content/pagebuilder/aha-fieldday-greeting-banner_2x.jpg");
     background-size: cover;
     background-position: center;
-
   }
 
   .top-lists {
     background-color: $red-deep;
-    background-image: url('https://www2.heart.org/images/content/pagebuilder/background-squiggles.png');
+    background-image: url("https://www2.heart.org/images/content/pagebuilder/background-squiggles.png");
     background-repeat: no-repeat;
     background-position: right top;
     background-size: 100%;
@@ -176,7 +192,6 @@
       padding: 0 0 91px;
     }
 
-
     .btn-tertiary {
       color: $red;
       border-color: $red;
@@ -186,9 +201,19 @@
       font-size: 2rem;
       margin: 0 0 24px;
       color: $white;
+      &:not(:only-child) {
+        margin-bottom: 0.5rem;
+
+        + .d-flex {
+          color: #fff;
+          justify-content: center;
+          margin-bottom: 24px;
+        }
+      }
     }
-    ol,ul{
-      list-style:none;
+    ol,
+    ul {
+      list-style: none;
     }
     .top-list {
       background-color: $white;
