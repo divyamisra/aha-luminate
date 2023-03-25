@@ -53,10 +53,10 @@
           font-size: 1.875em !important;
         }
       }
-
       time {
         color: $red;
         font-size: 1.125rem;
+        font-weight: 700;
       }
     }
 
@@ -217,10 +217,10 @@
           margin-bottom: 24px;
         }
       }
-      time {
-        font-size: 1.25rem;
-        font-weight: 700;
-      }
+    }
+    time {
+      font-size: 1.25rem;
+      font-weight: 700;
     }
     ol,
     ul {
