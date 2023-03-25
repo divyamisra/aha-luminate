@@ -1728,9 +1728,9 @@
                     let dateElements;
 
                     if (startDate !== '') {
-                        dateElements = `<date datetime="${getDateTime(startDate)}">${startDate}</date>`;
+                        dateElements = `<time datetime="${getDateTime(startDate)}">${startDate}</time>`;
                         if (endDate !== '') {
-                            dateElements += ` &ndash; <date datetime="${getDateTime(endDate)}">${endDate}</date>`;
+                            dateElements += ` &ndash; <time datetime="${getDateTime(endDate)}">${endDate}</time>`;
                         }
                         container.classList.add('d-flex', 'flex-wrap');
                         container.innerHTML = dateElements;
@@ -1746,7 +1746,6 @@
                 const insertEventDateRange = (dateRange, referenceNodes) => {
                     document.querySelectorAll(referenceNodes).forEach(node => node.appendChild(dateRange.cloneNode(true)));
                 };
-
 
                 const eventDateRange = document.body.dataset.eventDate;
                 const referenceNodes = [

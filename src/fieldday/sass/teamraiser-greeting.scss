@@ -32,24 +32,31 @@
       flex: 720px 0 0;
     }
 
-    .event-info__header h1 {
-      font-size: 1em;
-      color: $red;
-      background-color: $white;
-      padding: 20px;
-      margin-bottom: 25px;
-      &:not(:only-child) {
-        margin-bottom: 0.5rem;
-        padding-bottom: 0;
+    .event-info__header {
+      h1 {
+        font-size: 1em;
+        color: $red;
+        background-color: $white;
+        padding: 20px;
+        margin-bottom: 25px;
+        &:not(:only-child) {
+          margin-bottom: 0.5rem;
+          padding-bottom: 0;
 
-        + .d-flex {
-          justify-content: center;
-          margin-bottom: 25px;
-          padding-bottom: 20px;
+          + .d-flex {
+            justify-content: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+          }
+        }
+        @include media-breakpoint-up(md) {
+          font-size: 1.875em !important;
         }
       }
-      @include media-breakpoint-up(md) {
-        font-size: 1.875em !important;
+
+      time {
+        color: $red;
+        font-size: 1.125rem;
       }
     }
 
@@ -209,6 +216,10 @@
           justify-content: center;
           margin-bottom: 24px;
         }
+      }
+      time {
+        font-size: 1.25rem;
+        font-weight: 700;
       }
     }
     ol,
