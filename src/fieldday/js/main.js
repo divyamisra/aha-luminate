@@ -950,8 +950,31 @@
             });
         };
 
-        // Get events by zip
+        cd.etEventDateRange = function(str) {
+            return new Promise((resolve, reject) => {
+                const regexp = /((\b\d{1,2}\D{0,3})?\b(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|(Nov|Dec)(?:ember)?)\D?)(\d{1,2}(st|nd|rd|th)?)?((\s*[,.\-\/]\s*)\D?)?\s*((19[0-9]\d|20\d{2})|\d{2})*/g;
+                // Sample matches: "Jan 2023 - June 2023", "January 2023 - June 2023", "January 1, 2023 - June 30, 2023"
+                const matches = [...str.matchAll(regexp)];
 
+                if (matches.length) {
+                    let start = matches[0].length ? matches[0][0] : '';
+                    let end = typeof matches[1] !== 'undefined' && matches[1].length ? matches[1][0] : '';
+                    resolve(`${start} ${end !== '' ? '- ' : ''}${end}`);
+                }
+                resolve('');
+            });
+        };
+
+        cd.insertEventRow = function(event, dateRange) {
+            console.log(dateRange);
+
+            var eventRow = '<div class="event-results__company row' + (i > 10 ? ' class="d-none"' : '') + '"><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><h3>' + event.name + '</h3><time>' + dateRange + '</time></div><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><a class="btn btn-primary" href="' +
+                event.greeting_url + '" class="btn btn-primary">Find a Company</a></div></div>';
+
+            return eventRow;
+        };
+
+        // Get events by zip
         cd.getEventsByDistanceLanding = function(zipCode) {
             $('.js--no-event-results').addClass('d-none');
             $('.js--no-event-results').removeAttr('role');
@@ -1101,7 +1124,7 @@
 
                             const eventsLoop = async () => {
                                 const promises = await events.map(async event => {
-                                    const eventArrs = new Promise((resolve, reject) => {
+                                    const eventsArrs = new Promise((resolve, reject) => {
 
                                         fetch(event.greeting_url)
                                             .then(response => {
@@ -1110,25 +1133,25 @@
                                             .then(html => {
                                                 let parser = new DOMParser();
                                                 let doc = parser.parseFromString(html, 'text/html');
+                                                let eventRow;
 
-                                                console.log(doc.body.dataset.eventDate);
-                                                // getEventDateRange(doc.body.dataset.eventDate).then(dateRange => {
-                                                //     insertEventRow(event, dateRange);
-                                                // });
+                                                getEventDateRange(doc.body.dataset.eventDate).then(dateRange => {
+                                                    eventRow = insertEventRow(event, dateRange);
+                                                });
 
-                                                resolve(doc.body.dataset.eventDate);
+                                                resolve(eventRow);
                                             })
                                             .catch(error => {
-                                                // insertEventRow(event, '');
+                                                console.error(error);
                                                 console.warn(`Warning: Unable to parse ${event.greeting_url}.`);
-                                                reject();
-
+                                                eventRow = insertEventRow(event, '');
+                                                resolve(eventRow);
                                             });
                                     });
-                                    return eventArrs;
+                                    return eventsArrs;
                                 });
-                                const fullEventArr = await Promise.all(promises);
-                                console.log(fullEventArr);
+                                const fullEventsArr = await Promise.all(promises);
+                                console.log(fullEventsArr);
                             };
                             eventsLoop();
 
