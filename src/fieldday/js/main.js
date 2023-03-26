@@ -1302,54 +1302,31 @@
 
             const insertEventDateRange = () => {
                 const fullEventDateNodes = [
-                    // Display the entire event date text
                     '.top-lists-container > .row > .col-12:last-child',
                 ];
                 const dateRangeOnlyNodes = [
-                    // Only display the date range
                     '.event-info__header',
                 ];
+                const dateRangeElement = document.createElement('div');
 
-                document.querySelectorAll(fullEventDateNodes).forEach(referenceNode => referenceNode.insertAdjacentHTML('beforeend', eventDateRange));
+                // Displays the entire event date text
+                document.querySelectorAll(fullEventDateNodes).forEach(referenceNode => {
+                    dateRangeElement.innerHTML = eventDateRange;
+                    referenceNode.appendChild(dateRangeElement);
+                });
+
+                // Only displays the date range
                 document.querySelectorAll(dateRangeOnlyNodes).forEach(referenceNode => {
                     const parsedDateRange = cd.getDateRange(eventDateRange);
 
-                    parsedDateRange && referenceNode.insertAdjacentHTML('beforeend', parsedDateRange);
+                    if (parsedDateRange) {
+                        dateRangeElement.innerHTML = parsedDateRange;
+                        referenceNode.appendChild(dateRangeElement);
+                    }
                 });
             };
 
             eventDateRange !== '' && insertEventDateRange();
-
-            // const createDateElements = (matches) => {
-            //     const startDate = matches[0].length ? matches[0][0] : '';
-            //     const endDate = typeof matches[1] !== 'undefined' && matches[1].length ? matches[1][0] : '';
-            //     const container = document.createElement('div');
-            //     let dateElements;
-
-            //     if (startDate !== '') {
-            //         dateElements = `<time datetime="${cd.getDateString(startDate)}">${startDate}</time>`;
-            //         if (endDate !== '') {
-            //             dateElements += `&ndash;<time datetime="${cd.getDateString(endDate)}">${endDate}</time>`;
-            //         }
-            //         container.classList.add('d-flex', 'flex-wrap');
-            //         container.innerHTML = dateElements;
-            //         return container;
-            //     }
-            //     return null;
-            // };
-
-
-            // const parseEventDateRange = (str) => {
-            //     const matches = cd.getDateRange(str);
-
-            //     if (matches.length) {
-            //         return createDateElements(matches);
-            //     }
-            //     return null;
-            // };
-
-            // const parsedEventDateRange = eventDateRange !== '' ? parseEventDateRange(eventDateRange) : null;
-            // parsedEventDateRange && insertEventDateRange(parsedEventDateRange, referenceNodes);
         };
 
 
