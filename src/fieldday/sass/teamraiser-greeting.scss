@@ -39,24 +39,18 @@
         background-color: $white;
         padding: 20px;
         margin-bottom: 25px;
-        &:not(:only-child) {
-          margin-bottom: 0.5rem;
-          padding-bottom: 0;
-
-          + .d-flex {
-            justify-content: center;
-            margin-bottom: 25px;
-            padding-bottom: 20px;
-          }
-        }
         @include media-breakpoint-up(md) {
           font-size: 1.875em !important;
         }
-      }
-      time {
-        color: $red;
-        font-size: 1.125rem;
-        font-weight: 700;
+        .event-date-range {
+          color: $body-color;
+          display: block;
+          font-size: 1em;
+          margin-top: 0.5rem;
+          @include media-breakpoint-up(md) {
+            font-size: 1rem;
+          }
+        }
       }
     }
 
@@ -208,19 +202,15 @@
       font-size: 2rem;
       margin: 0 0 24px;
       color: $white;
-      &:not(:only-child) {
-        margin-bottom: 0.5rem;
 
-        + .d-flex {
-          color: #fff;
-          justify-content: center;
-          margin-bottom: 24px;
+      .event-date-range {
+        display: block;
+        font-size: 1em;
+        margin-top: 0.5rem;
+        @include media-breakpoint-up(md) {
+          font-size: 1rem;
         }
       }
-    }
-    time {
-      font-size: 1.25rem;
-      font-weight: 700;
     }
     ol,
     ul {

@@ -1302,30 +1302,34 @@
 
             const insertEventDateRange = () => {
                 const fullEventDateNodes = [
-                    '.top-lists-container > .row > .col-12:last-child',
+                    '.top-lists h2',
                 ];
                 const dateRangeOnlyNodes = [
-                    '.event-info__header',
+                    '.event-info__header h1',
                 ];
-                const dateRangeElement = document.createElement('div');
+                const dateRangeElement = document.createElement('span');
+
+                dateRangeElement.classList.add('event-date-range');
 
                 // Displays the entire event date text
                 document.querySelectorAll(fullEventDateNodes).forEach(referenceNode => {
-                    dateRangeElement.innerHTML = eventDateRange;
-                    referenceNode.appendChild(dateRangeElement);
+                    const clone = dateRangeElement.cloneNode();
+
+                    clone.textContent = eventDateRange;
+                    referenceNode.appendChild(clone);
                 });
 
                 // Only displays the date range
                 document.querySelectorAll(dateRangeOnlyNodes).forEach(referenceNode => {
                     const parsedDateRange = cd.getDateRange(eventDateRange);
+                    const clone = dateRangeElement.cloneNode();
 
                     if (parsedDateRange) {
-                        dateRangeElement.innerHTML = parsedDateRange;
-                        referenceNode.appendChild(dateRangeElement);
+                        clone.textContent = parsedDateRange;
+                        referenceNode.appendChild(clone);
                     }
                 });
             };
-
             eventDateRange !== '' && insertEventDateRange();
         };
 
