@@ -43,12 +43,11 @@
           font-size: 1.875em !important;
         }
         .event-date-range {
-          // color: $body-color;
           display: block;
           font-size: 1em;
           margin-top: 0.5rem;
           @include media-breakpoint-up(md) {
-            font-size: 1rem;
+            font-size: 1.25rem;
           }
         }
       }
@@ -202,14 +201,8 @@
       font-size: 2rem;
       margin: 0 0 24px;
       color: $white;
-
       .event-date-range {
-        display: block;
-        font-size: 1em;
-        margin-top: 0.5rem;
-        @include media-breakpoint-up(md) {
-          font-size: 1.25rem;
-        }
+        margin-top: 0.25rem;
       }
     }
     ol,
