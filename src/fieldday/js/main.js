@@ -1288,7 +1288,7 @@
         /* EVENT DATE RANGE SCRIPTS */
         /***********************/
         cd.getDateRange = (str) => {
-            // Sample matches: "Jan 2023 - June 2023", "January 2023 - June 2023", "January 1, 2023 to June 30, 2023"
+            // Sample matches: "Jan 2023 - June 2023", "January 2023 - June 2023", "January 1, 2023 to June 30, 2023", "January 1, 2023 my long delimiter June 30, 2023"
             const regexp = /((\b\d{1,2}\D{0,3})?\b(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|(Nov|Dec)(?:ember)?)\D?)(\d{1,2}(st|nd|rd|th)?)?((\s*[,.\-\/]\s*)\D?)?\s*((19[0-9]\d|20\d{2})|\d{2})*.*((\b\d{1,2}\D{0,3})?\b(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|(Nov|Dec)(?:ember)?)\D?)(\d{1,2}(st|nd|rd|th)?)?((\s*[,.\-\/]\s*)\D?)?\s*((19[0-9]\d|20\d{2})|\d{2})*/g;
             return str.match(regexp);
         };
@@ -1328,7 +1328,6 @@
 
             eventDateRange !== '' && insertEventDateRange();
         };
-
 
         /***********************/
         /* THERMOMETER SCRIPTS */
