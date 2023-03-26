@@ -950,7 +950,7 @@
             });
         };
 
-        cd.getEventDateRange = function(str) {
+        cd.getEventDateRange = (str) => {
             // This function extracts date ranges from strings
             // Sample matches: "Jan 2023 - June 2023", "January 2023 - June 2023", "January 1, 2023 - June 30, 2023"
             const regexp = /((\b\d{1,2}\D{0,3})?\b(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|(Nov|Dec)(?:ember)?)\D?)(\d{1,2}(st|nd|rd|th)?)?((\s*[,.\-\/]\s*)\D?)?\s*((19[0-9]\d|20\d{2})|\d{2})*/g;
@@ -965,12 +965,12 @@
             return ('');
         };
 
-        cd.makeEventRow = function(event, index, dateRange) {
+        cd.makeEventRow = (event, index, dateRange) => {
             return '<div class="event-results__company row' + (index > 10 ? ' class="d-none"' : '') + '"><div class="col-12 col-md-6 d-flex flex-wrap align-items-center justify-content-center"><h3>' + event.name + '</h3><time>' + dateRange + '</time></div><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><a class="btn btn-primary" href="' +
                 event.greeting_url + '" class="btn btn-primary">Find a Company</a></div></div>';
         };
 
-        cd.renderEventRows = function(eventRows) {
+        cd.renderEventRows = (eventRows) => {
             eventRows.forEach(function(eventRow) {
                 $('.js--event-search-results').attr('aria-live', 'polite').append(eventRow);
             });
@@ -1284,7 +1284,72 @@
         };
         // END getCompaniesLandingPage
 
+        /***********************/
+        /* EVENT DATE RANGE SCRIPTS */
+        /***********************/
+        cd.getDateRange = (str) => {
+            // Sample matches: "Jan 2023 - June 2023", "January 2023 - June 2023", "January 1, 2023 to June 30, 2023"
+            const regexp = /((\b\d{1,2}\D{0,3})?\b(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|(Nov|Dec)(?:ember)?)\D?)(\d{1,2}(st|nd|rd|th)?)?((\s*[,.\-\/]\s*)\D?)?\s*((19[0-9]\d|20\d{2})|\d{2})*.*((\b\d{1,2}\D{0,3})?\b(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|(Nov|Dec)(?:ember)?)\D?)(\d{1,2}(st|nd|rd|th)?)?((\s*[,.\-\/]\s*)\D?)?\s*((19[0-9]\d|20\d{2})|\d{2})*/g;
+            return str.match(regexp);
+        };
 
+        cd.getDateString = (date) => {
+            return new Date(date).toISOString().substring(0, 10);
+        };
+
+        cd.greetingInsertEventDateRange = () => {
+            const eventDateRange = document.body.dataset.eventDate;
+
+            const insertEventDateRange = () => {
+                const referenceNodes = [
+                    '.event-info__header',
+                    '.top-lists-container > .row > .col-12:last-child',
+                ];
+
+                document.querySelectorAll(referenceNodes).forEach(referenceNode => {
+                    if (referenceNode.classList.contains('event-info__header')) {
+                        const parsedDateRange = cd.getDateRange(eventDateRange);
+
+                        parsedDateRange && referenceNode.insertAdjacentHTML('beforeend', parsedDateRange);
+                    } else {
+                        referenceNode.insertAdjacentHTML('beforeend', eventDateRange);
+                    }
+                });
+            };
+
+            eventDateRange !== '' && insertEventDateRange();
+
+            // const createDateElements = (matches) => {
+            //     const startDate = matches[0].length ? matches[0][0] : '';
+            //     const endDate = typeof matches[1] !== 'undefined' && matches[1].length ? matches[1][0] : '';
+            //     const container = document.createElement('div');
+            //     let dateElements;
+
+            //     if (startDate !== '') {
+            //         dateElements = `<time datetime="${cd.getDateString(startDate)}">${startDate}</time>`;
+            //         if (endDate !== '') {
+            //             dateElements += `&ndash;<time datetime="${cd.getDateString(endDate)}">${endDate}</time>`;
+            //         }
+            //         container.classList.add('d-flex', 'flex-wrap');
+            //         container.innerHTML = dateElements;
+            //         return container;
+            //     }
+            //     return null;
+            // };
+
+
+            // const parseEventDateRange = (str) => {
+            //     const matches = cd.getDateRange(str);
+
+            //     if (matches.length) {
+            //         return createDateElements(matches);
+            //     }
+            //     return null;
+            // };
+
+            // const parsedEventDateRange = eventDateRange !== '' ? parseEventDateRange(eventDateRange) : null;
+            // parsedEventDateRange && insertEventDateRange(parsedEventDateRange, referenceNodes);
+        };
 
 
         /***********************/
@@ -1686,6 +1751,8 @@
             cd.getTopTeams(evID);
             cd.getCompanyList(evID);
             cd.getTopCompanies(evID);
+            // Insert event date rang on the greeting page
+            cd.greetingInsertEventDateRange();
 
             // Walker Search
             $('.js--greeting-participant-search-form').on('submit', function(e) {
@@ -1705,56 +1772,57 @@
             });
 
             const greetingInsertEventDateRange = () => {
-                const parseEventDateRange = (str) => {
-                    const matches = getDateMatches(str);
-
-                    if (matches.length) {
-                        return createDateElements(matches);
-                    }
-                    return null;
-                };
-
-                const getDateMatches = (str) => {
-                    // Sample matches: "Jan 2023 - June 2023", "January 2023 - June 2023", "January 1, 2023 - June 30, 2023"
-                    const regexp = /((\b\d{1,2}\D{0,3})?\b(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:tember)?|Oct(?:ober)?|(Nov|Dec)(?:ember)?)\D?)(\d{1,2}(st|nd|rd|th)?)?((\s*[,.\-\/]\s*)\D?)?\s*((19[0-9]\d|20\d{2})|\d{2})*/g;
-
-                    return [...str.matchAll(regexp)];
-                };
-
-                const createDateElements = (matches) => {
-                    const startDate = matches[0].length ? matches[0][0] : '';
-                    const endDate = typeof matches[1] !== 'undefined' && matches[1].length ? matches[1][0] : '';
-                    const container = document.createElement('div');
-                    let dateElements;
-
-                    if (startDate !== '') {
-                        dateElements = `<time datetime="${getDateTime(startDate)}">${startDate}</time>`;
-                        if (endDate !== '') {
-                            dateElements += ` &ndash; <time datetime="${getDateTime(endDate)}">${endDate}</time>`;
-                        }
-                        container.classList.add('d-flex', 'flex-wrap');
-                        container.innerHTML = dateElements;
-                        return container;
-                    }
-                    return null;
-                };
-
-                const getDateTime = (date) => {
-                    return new Date(date).toISOString().substring(0, 10);
-                };
-
-                const insertEventDateRange = (dateRange, referenceNodes) => {
-                    document.querySelectorAll(referenceNodes).forEach(node => node.appendChild(dateRange.cloneNode(true)));
-                };
-
                 const eventDateRange = document.body.dataset.eventDate;
-                const referenceNodes = [
-                    '.event-info__header',
-                    '.top-lists-container > .row > .col-12:last-child',
-                ];
-                const parsedEventDateRange = eventDateRange !== '' ? parseEventDateRange(eventDateRange) : null;
 
-                parsedEventDateRange && insertEventDateRange(parsedEventDateRange, referenceNodes);
+                const insertEventDateRange = () => {
+                    const referenceNodes = [
+                        '.event-info__header',
+                        '.top-lists-container > .row > .col-12:last-child',
+                    ];
+
+                    document.querySelectorAll(referenceNodes).forEach(referenceNode => {
+                        if (referenceNode.classList.contains('event-info__header')) {
+                            const parsedDateRange = cd.getDateRange(eventDateRange);
+
+                            parsedDateRange && referenceNode.insertAdjacentHTML('beforeend', parsedDateRange);
+                        } else {
+                            referenceNode.insertAdjacentHTML('beforeend', eventDateRange);
+                        }
+                    });
+                };
+
+                eventDateRange !== '' && insertEventDateRange();
+
+                // const createDateElements = (matches) => {
+                //     const startDate = matches[0].length ? matches[0][0] : '';
+                //     const endDate = typeof matches[1] !== 'undefined' && matches[1].length ? matches[1][0] : '';
+                //     const container = document.createElement('div');
+                //     let dateElements;
+
+                //     if (startDate !== '') {
+                //         dateElements = `<time datetime="${cd.getDateString(startDate)}">${startDate}</time>`;
+                //         if (endDate !== '') {
+                //             dateElements += `&ndash;<time datetime="${cd.getDateString(endDate)}">${endDate}</time>`;
+                //         }
+                //         container.classList.add('d-flex', 'flex-wrap');
+                //         container.innerHTML = dateElements;
+                //         return container;
+                //     }
+                //     return null;
+                // };
+
+
+                // const parseEventDateRange = (str) => {
+                //     const matches = cd.getDateRange(str);
+
+                //     if (matches.length) {
+                //         return createDateElements(matches);
+                //     }
+                //     return null;
+                // };
+
+                // const parsedEventDateRange = eventDateRange !== '' ? parseEventDateRange(eventDateRange) : null;
+                // parsedEventDateRange && insertEventDateRange(parsedEventDateRange, referenceNodes);
             };
 
             greetingInsertEventDateRange();
@@ -2757,7 +2825,7 @@
             }
         }
 
-        //Landong Page
+        //Landing Page
 
         if ($('body').is('.pg_FieldDay_Landing_Page')) {
             //Search functionality
