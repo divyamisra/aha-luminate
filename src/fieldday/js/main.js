@@ -368,8 +368,6 @@
             }
         };
 
-
-
         /******************/
         /* SEARCH SCRIPTS */
         /******************/
@@ -1044,6 +1042,7 @@
         cd.getEventsByStateLanding = function(eventState) {
             $('.js--no-event-results').addClass('d-none');
             $('.js--no-event-results').removeAttr('role');
+
             $('.js--loading').show();
 
             luminateExtend.api({
@@ -1060,46 +1059,33 @@
                             var events = luminateExtend.utils.ensureArray(response.getTeamraisersResponse.teamraiser);
                             var totalEvents = parseInt(response.getTeamraisersResponse.totalNumberResults);
 
-                            const eventsLoop = async () => {
-                                const promises = await events.map(async (event, index) => {
-                                    const eventRows = new Promise((resolve, reject) => {
-                                        fetch(event.greeting_url)
-                                            .then(response => {
-                                                return response.text();
-                                            })
-                                            .then(html => {
-                                                var parser = new DOMParser();
-                                                var doc = parser.parseFromString(html, 'text/html');
-                                                var dateRange = cd.getEventDateRange(doc.body.dataset.eventDate);
-                                                var eventRow = cd.makeEventRow(event, index, dateRange);
-                                                resolve(eventRow);
-                                            })
-                                            .catch(error => {
-                                                console.error(error);
-                                                console.warn(`Warning: Unable to parse ${event.greeting_url}.`);
-                                                var eventRow = cd.makeEventRow(event, index, '');
-                                                resolve(eventRow);
-                                            });
-                                    });
-                                    return eventRows;
-                                });
-                                const allEventRows = await Promise.all(promises);
-                                cd.renderEventRows(allEventRows);
+                            $(events).each(function(i, event) {
 
-                                if (totalEvents > 10) {
-                                    $('.js--more-event-results').removeClass('hidden');
+                                var eventStatus = event.status;
+                                var acceptsRegistration = event.accepting_registrations;
+
+                                var eventRow = '<div class="event-results__company row' + (i > 10 ? ' class="d-none"' : '') + '"><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><h3>' + event.name + '</h3></div><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><a class="btn btn-primary" href="' +
+                                    event.greeting_url + '" class="btn btn-primary">Find a Company</a></div></div>';
+
+
+                                if (eventStatus === '1' || eventStatus === '2' || eventStatus === '3') {
+                                    $('.js--event-search-results').attr('aria-live', 'polite').append(eventRow);
                                 }
+                            });
 
-                                $('.js--more-event-results').on('click', function(e) {
-                                    e.preventDefault();
-                                    $('.js--event-search-results row').removeClass('d-none');
-                                    $(this).addClass('hidden');
-                                    $('.js--end-event-list').removeAttr('hidden');
-                                });
+                            if (totalEvents > 10) {
+                                $('.js--more-event-results').removeClass('hidden');
+                            }
 
-                                $('.js--event-results-container').removeAttr('hidden');
-                            };
-                            eventsLoop();
+                            $('.js--more-event-results').on('click', function(e) {
+                                e.preventDefault();
+                                $('.js--event-search-results row').removeClass('d-none');
+                                $(this).addClass('hidden');
+                                $('.js--end-event-list').removeAttr('hidden');
+                            });
+
+                            $('.js--event-results-container').removeAttr('hidden');
+                            cd.insertEventDateRangeLanding();
                         } else {
                             $('.js--loading').hide();
                             $('.js--no-event-results').attr('role', 'alert').removeClass('d-none');
@@ -1114,6 +1100,7 @@
             });
         };
         // END getEventsByStateLanding
+
 
 
         // getCompaniesLandingPage
@@ -1297,7 +1284,40 @@
             return new Date(date).toISOString().substring(0, 10);
         };
 
-        cd.greetingInsertEventDateRange = () => {
+        cd.insertEventDateRangeLanding = () => {
+            const events = document.querySelectorAll('.js--event-search-results .event-results__company');
+
+            const eventsLoop = async () => {
+                const promises = await events.map(async (event, index) => {
+                    const eventRows = new Promise((resolve, reject) => {
+                        const greetingUrl = event.querySelector('a')?.getAttribute('href') || '';
+
+                        fetch(event.greetingUrl)
+                            .then(response => {
+                                return response.text();
+                            })
+                            .then(html => {
+                                var parser = new DOMParser();
+                                var doc = parser.parseFromString(html, 'text/html');
+                                var dateRange = doc.body.dataset.eventDate ? cd.getDateRange(doc.body.dataset.eventDate) : '';
+                                resolve(dateRange);
+                            })
+                            .catch(error => {
+                                console.error(error);
+                                console.warn(`Warning: Unable to parse ${event.greeting_url}.`);
+                                reject('');
+                            });
+                    });
+                    return eventRows;
+                });
+                const allEventRows = await Promise.all(promises);
+                console.log();
+                cd.renderEventRows(allEventRows);
+            };
+            eventsLoop();
+        };
+
+        cd.insertEventDateRangeGreeting = () => {
             const eventDateRange = document.body.dataset.eventDate;
 
             const insertEventDateRange = () => {
@@ -1733,7 +1753,7 @@
             cd.getCompanyList(evID);
             cd.getTopCompanies(evID);
             // Insert event date rang on the greeting page
-            cd.greetingInsertEventDateRange();
+            cd.insertEventDateRangeGreeting();
 
             // Walker Search
             $('.js--greeting-participant-search-form').on('submit', function(e) {
