@@ -1309,39 +1309,69 @@
 
             const events = Array.from(document.querySelectorAll('.js--event-search-results .event-results__company a'));
 
-            const eventsLoop = async () => {
-                const promises = await events.map(async event => {
-                    const eventsArrs = new Promise((resolve, reject) => {
+            // const eventsLoop = async () => {
+            //     const promises = await events.map(async event => {
+            //         const eventsArrs = new Promise((resolve, reject) => {
 
-                        fetch(event.getAttribute('href'))
-                            .then(response => {
-                                return response.text();
-                            })
-                            .then(html => {
-                                let parser = new DOMParser();
-                                let doc = parser.parseFromString(html, 'text/html');
-                                let eventRow;
-                                const dateRange = doc.body.dataset.eventDate;
+            //             fetch(event.getAttribute('href'))
+            //                 .then(response => {
+            //                     return response.text();
+            //                 })
+            //                 .then(html => {
+            //                     let parser = new DOMParser();
+            //                     let doc = parser.parseFromString(html, 'text/html');
+            //                     let eventRow;
+            //                     const dateRange = doc.body.dataset.eventDate;
 
-                                // getEventDateRange(doc.body.dataset.eventDate).then(dateRange => {
-                                //     eventRow = insertEventRow(event, dateRange);
-                                // });
+            //                     // getEventDateRange(doc.body.dataset.eventDate).then(dateRange => {
+            //                     //     eventRow = insertEventRow(event, dateRange);
+            //                     // });
 
-                                resolve(dateRange);
-                            })
-                            .catch(error => {
-                                console.error(error);
-                                console.warn(`Warning: Unable to parse greeting page.`);
-                                // eventRow = insertEventRow(event, '');
-                                resolve(null);
-                            });
-                    });
-                    return eventsArrs;
-                });
-                const fullEventsArr = await Promise.all(promises);
-                console.log(fullEventsArr);
-            };
-            eventsLoop();
+            //                     resolve(`${event.getAttribute('href')}: ${dateRange}`);
+            //                 })
+            //                 .catch(error => {
+            //                     console.error(error);
+            //                     console.warn(`Warning: Unable to parse greeting page.`);
+            //                     // eventRow = insertEventRow(event, '');
+            //                     resolve(null);
+            //                 });
+            //         });
+            //         return eventsArrs;
+            //     });
+            //     const fullEventsArr = await Promise.all(promises);
+            //     console.log(fullEventsArr);
+            // };
+            // eventsLoop();
+
+            let array = new Array;
+            var fetches = [];
+
+            for (let i = 0; i < events.length; i++) {
+                console.log(events[i]);
+                fetches.push(
+                    fetch(events[i])
+                        .then(res => { return res.text(); })
+                        .then(html => {
+                            // let reg = /\<meta name="description" content\=\"(.+?)\"/;
+                            // res = res.match(reg);
+                            // array.push(res);
+                            // console.log(res);
+
+                            let parser = new DOMParser();
+                            let doc = parser.parseFromString(html, 'text/html');
+                            let eventRow;
+                            // const dateRange = doc.body.dataset.eventDate;
+
+                            array.push(`${events[i].getAttribute('href')}: ${doc.body.dataset.eventDate}`);
+                            console.log(`${events[i].getAttribute('href')}: ${doc.body.dataset.eventDate}`);
+                        }
+                        )
+                        .catch(status, err => { return console.log(status, err); })
+                );
+            }
+            Promise.all(fetches).then(function() {
+                console.log(array);
+            });
 
         };
 
