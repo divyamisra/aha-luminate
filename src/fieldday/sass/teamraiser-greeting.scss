@@ -203,7 +203,10 @@
       color: $white;
       .event-date-range {
         display: block;
-        margin-top: 0.25rem;
+        margin-top: 0.5rem;
+        @include media-breakpoint-up(md) {
+          font-size: 1.125rem;
+        }
       }
     }
     ol,
