@@ -1104,6 +1104,7 @@
 
 
         // getCompaniesLandingPage
+
         cd.getCompaniesLanding = function(companyName) {
             cd.getCompanyData();
             $('.js--no-participant-results, .js--participant-no-event-results').addClass('d-none');
@@ -1219,6 +1220,7 @@
 
 
         // getCompaniesLandingPage
+
         cd.getParticipantsLanding = function(firstName, lastName) {
             $('.js--no-participant-results, .js--participant-no-event-results').addClass('d-none');
             $('.js--participant-loading').show();
@@ -1285,36 +1287,62 @@
         };
 
         cd.insertEventDateRangeLanding = () => {
-            const events = document.querySelectorAll('.js--event-search-results .event-results__company');
+            // document.querySelectorAll('.js--event-search-results .event-results__company').forEach((event, index) => {
+            //     const greetingUrl = event.querySelector('a')?.getAttribute('href');
+
+            //     fetch(greetingUrl)
+            //         .then(response => {
+            //             return response.text();
+            //         })
+            //         .then(html => {
+            //             var parser = new DOMParser();
+            //             var doc = parser.parseFromString(html, 'text/html');
+            //             var dateRange = doc.body.dataset.eventDate ? cd.getDateRange(doc.body.dataset.eventDate) : '';
+
+            //             console.log(dateRange);
+            //         })
+            //         .catch(error => {
+            //             console.error(error);
+            //             console.warn(`Warning: Unable to parse ${event.greeting_url}.`);
+            //         });
+            // });
+
+            const events = Array.from(document.querySelectorAll('.js--event-search-results .event-results__company a'));
 
             const eventsLoop = async () => {
-                const promises = await events.map(async (event, index) => {
-                    const eventRows = new Promise((resolve, reject) => {
-                        const greetingUrl = event.querySelector('a')?.getAttribute('href') || '';
+                const promises = await events.map(async event => {
+                    const eventsArrs = new Promise((resolve, reject) => {
 
-                        fetch(event.greetingUrl)
+                        fetch(event.getAttribute('href'))
                             .then(response => {
                                 return response.text();
                             })
                             .then(html => {
-                                var parser = new DOMParser();
-                                var doc = parser.parseFromString(html, 'text/html');
-                                var dateRange = doc.body.dataset.eventDate ? cd.getDateRange(doc.body.dataset.eventDate) : '';
+                                let parser = new DOMParser();
+                                let doc = parser.parseFromString(html, 'text/html');
+                                let eventRow;
+                                const dateRange = doc.body.dataset.eventDate;
+
+                                // getEventDateRange(doc.body.dataset.eventDate).then(dateRange => {
+                                //     eventRow = insertEventRow(event, dateRange);
+                                // });
+
                                 resolve(dateRange);
                             })
                             .catch(error => {
                                 console.error(error);
-                                console.warn(`Warning: Unable to parse ${event.greeting_url}.`);
-                                reject('');
+                                console.warn(`Warning: Unable to parse greeting page.`);
+                                // eventRow = insertEventRow(event, '');
+                                resolve(null);
                             });
                     });
-                    return eventRows;
+                    return eventsArrs;
                 });
-                const allEventRows = await Promise.all(promises);
-                console.log();
-                cd.renderEventRows(allEventRows);
+                const fullEventsArr = await Promise.all(promises);
+                console.log(fullEventsArr);
             };
             eventsLoop();
+
         };
 
         cd.insertEventDateRangeGreeting = () => {
