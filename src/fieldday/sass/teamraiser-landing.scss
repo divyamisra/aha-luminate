@@ -234,14 +234,25 @@
     font-weight: 500;
     display: block;
   }
-  time {
-    margin-bottom: 0.5rem;
-    margin-top: -0.25rem;
-    min-width: 100%;
+
+  .event-date {
+    display: block;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+
     &:empty {
       display: none;
     }
   }
+
+  // time {
+  //   margin-bottom: 0.5rem;
+  //   margin-top: -0.25rem;
+  //   min-width: 100%;
+  //   &:empty {
+  //     display: none;
+  //   }
+  // }
 }
 
 .button-primary,

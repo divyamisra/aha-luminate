@@ -1287,92 +1287,43 @@
         };
 
         cd.insertEventDateRangeLanding = () => {
-            // document.querySelectorAll('.js--event-search-results .event-results__company').forEach((event, index) => {
-            //     const greetingUrl = event.querySelector('a')?.getAttribute('href');
+            // Select all the anchor tags which are children of elements with class 'js--event-search-results' and have a parent element with class 'event-results__company'.
+            const greetingLinks = Array.from(document.querySelectorAll('.js--event-search-results .event-results__company a'));
 
-            //     fetch(greetingUrl)
-            //         .then(response => {
-            //             return response.text();
-            //         })
-            //         .then(html => {
-            //             var parser = new DOMParser();
-            //             var doc = parser.parseFromString(html, 'text/html');
-            //             var dateRange = doc.body.dataset.eventDate ? cd.getDateRange(doc.body.dataset.eventDate) : '';
+            // Function to insert date ranges into the event result headings.
+            const insertDateRange = (obj) => {
+                obj = obj[obj.length - 1]; // get the last object in the array
+                // Find the closest ancestor heading element, and create a new span element to hold the date range.
+                const eventRowHeading = obj.link?.closest('.event-results__company.row')?.querySelector('h3');
+                const dateRange = cd.getDateRange(obj.dateRange);
+                const dateRangeContainer = document.createElement('span');
 
-            //             console.log(dateRange);
-            //         })
-            //         .catch(error => {
-            //             console.error(error);
-            //             console.warn(`Warning: Unable to parse ${event.greeting_url}.`);
-            //         });
-            // });
+                // If there is a heading element and date range value, add the 'event-date' class to the dateRangeContainer span and append it to the heading element.
+                if (eventRowHeading && dateRange[0]) {
+                    dateRangeContainer.classList.add('event-date');
+                    dateRangeContainer.textContent = dateRange[0];
+                    eventRowHeading.appendChild(dateRangeContainer);
+                }
+            };
 
-            const events = Array.from(document.querySelectorAll('.js--event-search-results .event-results__company a'));
+            (async () => {
+                const promises = [];
 
-            // const eventsLoop = async () => {
-            //     const promises = await events.map(async event => {
-            //         const eventsArrs = new Promise((resolve, reject) => {
+                // Loop through all greetingLinks, fetch each link's URL as text, parse it into a DOM, and extract its date range attribute value as an object.
+                for (link of greetingLinks) {
+                    const result = await fetch(link.getAttribute('href')).then(response => {
+                        return response.text(); // get the response HTML as text
+                    }).then(html => {
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(html, 'text/html');
+                        const dateRange = doc.body.dataset.eventDate; // get the date range attribute value from the parsed DOM
 
-            //             fetch(event.getAttribute('href'))
-            //                 .then(response => {
-            //                     return response.text();
-            //                 })
-            //                 .then(html => {
-            //                     let parser = new DOMParser();
-            //                     let doc = parser.parseFromString(html, 'text/html');
-            //                     let eventRow;
-            //                     const dateRange = doc.body.dataset.eventDate;
-
-            //                     // getEventDateRange(doc.body.dataset.eventDate).then(dateRange => {
-            //                     //     eventRow = insertEventRow(event, dateRange);
-            //                     // });
-
-            //                     resolve(`${event.getAttribute('href')}: ${dateRange}`);
-            //                 })
-            //                 .catch(error => {
-            //                     console.error(error);
-            //                     console.warn(`Warning: Unable to parse greeting page.`);
-            //                     // eventRow = insertEventRow(event, '');
-            //                     resolve(null);
-            //                 });
-            //         });
-            //         return eventsArrs;
-            //     });
-            //     const fullEventsArr = await Promise.all(promises);
-            //     console.log(fullEventsArr);
-            // };
-            // eventsLoop();
-
-            let array = new Array;
-            var fetches = [];
-
-            for (let i = 0; i < events.length; i++) {
-                console.log(events[i]);
-                fetches.push(
-                    fetch(events[i])
-                        .then(res => { return res.text(); })
-                        .then(html => {
-                            // let reg = /\<meta name="description" content\=\"(.+?)\"/;
-                            // res = res.match(reg);
-                            // array.push(res);
-                            // console.log(res);
-
-                            let parser = new DOMParser();
-                            let doc = parser.parseFromString(html, 'text/html');
-                            let eventRow;
-                            // const dateRange = doc.body.dataset.eventDate;
-
-                            array.push(`${events[i].getAttribute('href')}: ${doc.body.dataset.eventDate}`);
-                            console.log(`${events[i].getAttribute('href')}: ${doc.body.dataset.eventDate}`);
-                        }
-                        )
-                        .catch(status, err => { return console.log(status, err); })
-                );
-            }
-            Promise.all(fetches).then(function() {
-                console.log(array);
-            });
-
+                        return { 'link': link, 'dateRange': dateRange }; // return an object with the link and date range
+                    });
+                    promises.push(await result); // push the result/object into an array of promises.
+                    insertDateRange(await promises); // Call the insertDateRange function to insert the date range.
+                }
+            })();
         };
 
         cd.insertEventDateRangeGreeting = () => {
@@ -1408,6 +1359,7 @@
                     }
                 });
             };
+
             eventDateRange !== '' && insertEventDateRange();
         };
 
