@@ -235,8 +235,9 @@
     display: block;
   }
 
-  .event-date-range {
+  .event-date {
     display: block;
+    font-size: 0.875rem;
     margin-top: 0.25rem;
 
     &:empty {

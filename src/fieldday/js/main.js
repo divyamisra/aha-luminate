@@ -1022,7 +1022,6 @@
                             });
 
                             $('.js--event-results-container').removeAttr('hidden');
-                            cd.insertEventDateRangeLanding();
                         } else {
                             $('.js--loading').hide();
                             $('.js--no-event-results').attr('role', 'alert').removeClass('d-none');
@@ -1301,7 +1300,7 @@
 
                 // If there is a heading element and date range value, add the 'event-date' class to the dateRangeContainer span and append it to the heading element.
                 if (eventRowHeading && dateRange[0]) {
-                    dateRangeContainer.classList.add('event-date-range');
+                    dateRangeContainer.classList.add('event-date');
                     dateRangeContainer.textContent = dateRange[0];
                     eventRowHeading.appendChild(dateRangeContainer);
                 }
