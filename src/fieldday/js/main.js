@@ -1310,7 +1310,7 @@
                 const promises = [];
 
                 // Loop through all greetingLinks, fetch each link's URL as text, parse it into a DOM, and extract its date range attribute value as an object.
-                for (link of greetingLinks) {
+                for (const link of greetingLinks) {
                     const result = await fetch(link.getAttribute('href')).then(response => {
                         return response.text(); // get the response HTML as text
                     }).then(html => {
