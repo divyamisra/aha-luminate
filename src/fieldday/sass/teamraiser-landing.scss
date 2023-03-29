@@ -374,7 +374,7 @@
 }
 
 .landing-visual-banner {
-  background-image: url("https://www2.heart.org/images/content/pagebuilder/aha-fieldday-landing-banner_2x.jpg");
+  background-image: var(--banner-image, url("https://www2.heart.org/images/content/pagebuilder/aha-fieldday-landing-banner_2x.jpg"));
   background-size: cover;
   background-position: top center;
   margin-top: 32px;
@@ -389,6 +389,9 @@
     height: 700px;
   }
   background-color: $red;
+  img {
+    display: none;
+  }
 }
 
 .global-sponsors {
