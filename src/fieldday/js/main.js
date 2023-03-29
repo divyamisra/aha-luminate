@@ -1022,7 +1022,6 @@
                             });
 
                             cd.insertEventDateRangeLanding();
-                            $('.js--event-results-container').removeAttr('hidden');
                         } else {
                             $('.js--loading').hide();
                             $('.js--no-event-results').attr('role', 'alert').removeClass('d-none');
@@ -1086,7 +1085,6 @@
                             });
 
                             cd.insertEventDateRangeLanding();
-                            $('.js--event-results-container').removeAttr('hidden');
                         } else {
                             $('.js--loading').hide();
                             $('.js--no-event-results').attr('role', 'alert').removeClass('d-none');
@@ -1305,6 +1303,7 @@
                     dateRangeContainer.textContent = dateRange[0];
                     eventRowHeading.appendChild(dateRangeContainer);
                 }
+                $('.js--event-results-container').removeAttr('hidden');
             };
 
             (async () => {
