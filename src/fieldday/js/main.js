@@ -1332,10 +1332,10 @@
 
             const insertEventDateRange = () => {
                 const fullEventDateNodes = [
+                    '.event-info__header h1',
                     '.top-lists h2',
                 ];
                 const dateRangeOnlyNodes = [
-                    '.event-info__header h1',
                 ];
                 const dateRangeElement = document.createElement('span');
 
