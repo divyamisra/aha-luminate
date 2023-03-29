@@ -1266,28 +1266,48 @@
 								var teamName = this.name
 								var teamId = this.id
 								var consId = this.captainConsId
-								luminateExtend.api({
-									api: 'teamraiser',
-									data: 'method=getTeamPhoto&fr_id=' + eventId + '&cons_id=' + consId + '&response_format=json',
-									callback: {
-										success: function(response) {
-											var teamImages = luminateExtend.utils.ensureArray(response.getTeamPhotoResponse.photoItem)
-											teamImages[0].originalUrl = '../images/content/pagebuilder/WOI-Default-Photo.png'
-											var teamImage = typeof teamImages[0].customUrl === 'string' && teamImages[0].customUrl.length ? teamImages[0].customUrl : teamImages[0].originalUrl
-											// if (teamImage === teamImages[0].originalUrl) {
-											//   var isDefaultImage = ' style="clip-path: none;"';
-											// } else {
-											//   isDefaultImage = ''
-											// }
-											var topTeamRow = `<div class="col-sm-6 col-md-4 pt-4 px-md-3"><a href="TR/?team_id=${teamId}&amp;pg=team&amp;fr_id=${eventId}" class="bg-white"><div><div><img src="${teamImage}" alt="Photo of ${teamName}"></div></div><div class="align-items-center d-flex justify-content-center text-center"><p class="p-2 text-body"><strong>${teamName}</strong></p></div></a></div>`
+                // here jean
+                if (isProd) {
+                  path = 'https://www2.heart.org/'
+                } else {
+                  path = 'https://dev2.heart.org/'
+                }
+                var teamImage = jQuery.ajax({
+                  url: path+'TR?team_id='+teamId+'&pg=team&fr_id='+eventId+'&pgwrap=n',
+                 headers:{
+                   'X-Requested-With':'Foo'
+                 }
+                });
 
-											deferred.resolve(topTeamRow)
-										},
-										error: function(response) {
-											deferred.resolve('')
-										}
-									}
-								})
+                teamImage.done(function(data){
+                  var teamPhoto = $(data).find('.tr-page-container.hero img.sidebar-hero').attr('href');
+                  console.log('team photo href?? ' + teamPhoto)
+
+                  //var topTeamRow = `<div class="col-sm-6 col-md-4 pt-4 px-md-3"><a href="TR/?team_id=${teamId}&amp;pg=team&amp;fr_id=${eventId}" class="bg-white"><div><div><img src="${teamImage}" alt="Photo of ${teamName}"></div></div><div class="align-items-center d-flex justify-content-center text-center"><p class="p-2 text-body"><strong>${teamName}</strong></p></div></a></div>`
+                });
+
+								// luminateExtend.api({
+								// 	api: 'teamraiser',
+								// 	data: 'method=getTeamPhoto&fr_id=' + eventId + '&cons_id=' + consId + '&response_format=json',
+								// 	callback: {
+								// 		success: function(response) {
+								// 			var teamImages = luminateExtend.utils.ensureArray(response.getTeamPhotoResponse.photoItem)
+								// 			teamImages[0].originalUrl = '../images/content/pagebuilder/WOI-Default-Photo.png'
+								// 			var teamImage = typeof teamImages[0].customUrl === 'string' && teamImages[0].customUrl.length ? teamImages[0].customUrl : teamImages[0].originalUrl
+								// 			// if (teamImage === teamImages[0].originalUrl) {
+								// 			//   var isDefaultImage = ' style="clip-path: none;"';
+								// 			// } else {
+								// 			//   isDefaultImage = ''
+								// 			// }
+								// 			var topTeamRow = `<div class="col-sm-6 col-md-4 pt-4 px-md-3"><a href="TR/?team_id=${teamId}&amp;pg=team&amp;fr_id=${eventId}" class="bg-white"><div><div><img src="${teamImage}" alt="Photo of ${teamName}"></div></div><div class="align-items-center d-flex justify-content-center text-center"><p class="p-2 text-body"><strong>${teamName}</strong></p></div></a></div>`
+
+								// 			deferred.resolve(topTeamRow)
+								// 		},
+								// 		error: function(response) {
+								// 			deferred.resolve('')
+								// 		}
+								// 	}
+								// })
 							})
 							$.when.apply($, pendingGeneratedHTML).done(function() {
 								const isLandscape = (image) => {
