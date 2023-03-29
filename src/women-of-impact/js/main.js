@@ -1267,21 +1267,27 @@
 								var teamId = this.id
 								var consId = this.captainConsId
                 // here jean
+                var path = ''
                 if (isProd) {
-                  path = 'https://www2.heart.org/'
+                  path = 'https://www2.heart.org/site/'
                 } else {
-                  path = 'https://dev2.heart.org/'
+                  path = 'https://dev2.heart.org/site/'
                 }
                 var teamImage = jQuery.ajax({
-                  url: path+'TR?team_id='+teamId+'&pg=team&fr_id='+eventId+'&pgwrap=n',
+                  url: path+'TR?team_id='+teamId+'&pg=team&fr_id='+eventId,
                  headers:{
                    'X-Requested-With':'Foo'
                  }
                 });
 
                 teamImage.done(function(data){
-                  var teamPhoto = $(data).find('.tr-page-container.hero img.sidebar-hero').attr('href');
-                  console.log('team photo href?? ' + teamPhoto)
+                  console.log('data ' + data)
+                  var data = $(data) 
+                  // href = data.split("sidebar-hero")
+                  // console.log('href ' + href[1])
+                  var teamPhoto = $(data).find('.tr-page-container.hero img.sidebar-hero');
+                  console.log('team photo?? ' + $(teamPhoto).find('href'))
+                  console.log(Object.getOwnPropertyNames(teamPhoto[0]));
 
                   //var topTeamRow = `<div class="col-sm-6 col-md-4 pt-4 px-md-3"><a href="TR/?team_id=${teamId}&amp;pg=team&amp;fr_id=${eventId}" class="bg-white"><div><div><img src="${teamImage}" alt="Photo of ${teamName}"></div></div><div class="align-items-center d-flex justify-content-center text-center"><p class="p-2 text-body"><strong>${teamName}</strong></p></div></a></div>`
                 });
