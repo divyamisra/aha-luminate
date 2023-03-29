@@ -43,12 +43,11 @@
           font-size: 1.875em !important;
         }
         .event-date-range {
+          color: #212529;
           display: block;
-          font-size: 1em;
+          font-size: 1rem;
+          font-weight: 400;
           margin-top: 0.5rem;
-          @include media-breakpoint-up(md) {
-            font-size: 1.25rem;
-          }
         }
       }
     }
