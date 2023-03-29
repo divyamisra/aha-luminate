@@ -4,19 +4,30 @@
 }
 .landing-hero__photo {
   height: 200px;
+  overflow: hidden;
+  position: relative;
+
   @include media-breakpoint-up(md) {
     height: 385px;
   }
   @include media-breakpoint-up(xl) {
     height: 685px;
   }
-  background-image: url(https://www2.heart.org/images/content/pagebuilder/fieldday-landing-hero.jpg);
-  background-position: center;
-  @include media-breakpoint-up(lg) {
-    background-position: center center;
+  // background-image: url(https://www2.heart.org/images/content/pagebuilder/fieldday-landing-hero.jpg);
+  // background-position: center;
+  // @include media-breakpoint-up(lg) {
+  //   background-position: center center;
+  // }
+  // background-size: cover;
+  // background-repeat: none;
+
+  img {
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    width: 100%;
   }
-  background-size: cover;
-  background-repeat: none;
 }
 
 .landing-hero__content {
