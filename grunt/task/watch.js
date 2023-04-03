@@ -229,9 +229,10 @@ module.exports = {
   "fieldday": {
     files: [
       'src/fieldday/html/**/*',
-      'src/fieldday/image/**/*',
+      'src/fieldday/img/**/*',
       'src/fieldday/sass/**/*',
-      'src/fieldday/js/**/*'
+      'src/fieldday/js/**/*',
+      'src/fieldday/webfonts/**/*'
     ],
     tasks: [
       'clean:fieldday',
