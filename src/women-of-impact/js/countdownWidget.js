@@ -250,16 +250,11 @@ function convertTime(datetime) {
   let b = a[0].split('-')
   let c = a[1].split(':')
 
-  let dt = new Date()
-  dt.setFullYear(b[0])
-  dt.setMonth(b[1] - 1)
-  dt.setDate(b[2])
-  dt.setHours(c[0])
-  dt.setMinutes(c[1])     
-  dt.setSeconds(0);
+  let now = new Date();
+
+  return new Date(b[0], b[1] - 1, b[2], c[0], c[1], now.getSeconds());
   
 
-  return dt
 }
 
 function getTimeOffset(datetime) {

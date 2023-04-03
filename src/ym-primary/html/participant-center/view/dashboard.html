@@ -866,7 +866,7 @@
 									</div>
 								</div>
 								<div class="ym-pc-dashboard-section-header">
-									<div class="row participatingNextYear text-left">
+									<div class="row participatingNextYear text-left" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
 										<div class="col-md-8">
 											My student will be participating in Kids Heart Challenge next year! 
 										</div>
@@ -882,6 +882,25 @@
 													Still Considering
 												</option>
 											</select>
+										</div>
+									</div>
+									<div class="row participatingNextYear text-left" ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true'" ng-cloak>
+										<div class="col-md-8">
+											I will be participating in Kids Heart Challenge next year! 
+										</div>
+										<div class="col-md-4">
+								                        <select class="form-control" id="participatingNextYear" ng-model="participatingNextYear" aria-label="Next Year Participation" ng-change="updateParticipatingNextYear()">
+												<option value="YES">
+													Yes
+												</option>
+												<option value="NO">
+													No
+												</option>
+												<option value="I'M NOT SURE">
+													Still Considering
+												</option>
+											</select>
+
 										</div>
 									</div>
 								</div>

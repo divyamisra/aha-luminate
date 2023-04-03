@@ -405,6 +405,13 @@ module.exports = {
       },
       {
         expand: true,
+        cwd: 'dist/fieldday2023/webfonts/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
         cwd: 'dist/fieldday2023/image/',
         src: [
           '**/*'

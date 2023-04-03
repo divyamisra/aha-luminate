@@ -247,6 +247,7 @@ module.exports = {
       'src/fieldday2023/html/**/*',
       'src/fieldday2023/image/**/*',
       'src/fieldday2023/sass/**/*',
+      'src/fieldday2023/webfonts/**/*',
       'src/fieldday2023/js/**/*'
     ],
     tasks: [

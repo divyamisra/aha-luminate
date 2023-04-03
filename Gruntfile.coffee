@@ -292,6 +292,9 @@ module.exports = (grunt) ->
       'htmlmin'
       'imagemin'
     ], 'fieldday2023'
+    runTargetedTask [
+      'copy'
+    ], 'fieldday2023-fonts'  
     return
   grunt.registerTask 'dev', ->
     devTasks = [

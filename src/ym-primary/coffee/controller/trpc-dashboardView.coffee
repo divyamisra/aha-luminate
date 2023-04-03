@@ -1139,6 +1139,16 @@ angular.module 'trPcControllers'
               $scope.schoolPlan.HideGifts = "NO"
             if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
               $scope.getSchoolTop15()
+				
+            if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
+              NgPcConstituentService.getUserRecord('fields=custom_string18&cons_id=' + $scope.consId).then (response) ->
+                if response.data.errorResponse
+                  console.log 'There was an error getting user profile. Please try again later.'
+                $scope.constituent = response.data.getConsResponse
+                angular.forEach $scope.constituent.custom.string, (field) ->
+                  if field.id == 'custom_string18'
+                    $scope.schoolPlan.ParticipatingNextYear = field.content
+                  return
       $scope.getSchoolPlan()
 
       $scope.putSchoolPlan = (event, sel) ->
@@ -1174,6 +1184,15 @@ angular.module 'trPcControllers'
               error: (response) ->
               success: (response) ->
 
+      $scope.updateParticipatingNextYear = ->
+        updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_string18=' + this.participatingNextYear + '&cons_id=' + $scope.consId).then (response) ->
+          if response.data.errorResponse
+            console.log 'There was an error processing your update. Please try again later.'
+          updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_date5_MONTH='+(($scope.theDate).getMonth()+1)+'&custom_date5_DAY='+($scope.theDate).getDate()+'&custom_date5_YEAR='+($scope.theDate).getFullYear()+'&cons_id=' + $scope.consId).then (response) ->
+            if response.data.errorResponse
+              console.log 'There was an error processing your update. Please try again later.'
+          $scope.dashboardPromises.push updateUserProfilePromise
+					
       formatDateString = (dateVal) ->
         regex = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}).*$/
         token_array = regex.exec(dateVal.toJSON());
