@@ -18,11 +18,11 @@
 				</div>
 				<section class="ym-pc-dashboard-coordinators-message-section mb-2" aria-label="Note From Your Teacher">
 					<div class="ym-pc-dashboard-section-header">
-						<div ng-if="coordinatorMessage.message == ''" ng-cloak>
+						<!--<div ng-if="coordinatorMessage.message == ''" ng-cloak>
 						  Don't forget to send 10 emails or e-cards to your friends and family tonight and remember to finish&nbsp;Finn's&nbsp;Mission!
 						</div>
-						<div ng-bind-html="coordinatorMessage.message" ng-if="coordinatorMessage.message != ''" ng-cloak>
-						</div>
+						<div ng-bind-html="coordinatorMessage.message" ng-if="coordinatorMessage.message != ''" ng-cloak></div>-->
+						<div>Don't forget to text or send e-cards to your friends and family tonight. Remember to finish Finn's Mission!</div>
 					</div>
 				</section>
 			</div>
@@ -168,7 +168,7 @@
 								</a>
 							</g>
 							<g id="social-share" data-name="Share on Social">
-								<a role="link" xlink:href="" ng-href="{{prizes[2].final_url}}" title="Share on Social" ng-focus="mouseover(2, 45, 190, this, 0)" ng-blur="mouseout()" aria-label="{{prizes[3].aria_label}}">
+								<a role="link" xlink:href="" ng-href="{{prizes[2].final_url}}" title="Share on Social" ng-focus="mouseover(2, 45, 190, this, 0)" ng-blur="mouseout()" aria-label="{{prizes[2].aria_label}}">
 									<path class="badge-path" d="M77 260v53h53v-53x-53z" fill="url(#3{{(prizes[2].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(2, 45, 190, this, 0)" ng-mouseout="mouseout()" /> 
 									<text fill="#000" font-size="10" font-weight="bold">
 										<tspan x="90" y="325">
@@ -213,7 +213,7 @@
 								</a>
 							</g>
 							<g id="send-email" data-name="Send email/ecard">
-								<a role="link" xlink:href="" ng-href="{{prizes[5].final_url}}" title="Send emails" ng-focus="mouseover(5, 323, 170, this, 0)" ng-blur="mouseout()" aria-label="{{prizes[5].aria_label}}">
+								<a role="link" xlink:href="" ng-href="{{prizes[2].final_url}}" title="Send emails" ng-focus="mouseover(5, 323, 170, this, 0)" ng-blur="mouseout()" aria-label="{{prizes[5].aria_label}}">
 									<path class="badge-path" d="M355 240v53h53v-53x-53z" fill="url(#6{{(prizes[5].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(5, 323, 170, this, 0)" ng-mouseout="mouseout()" /> 
 									<text fill="#000" font-size="10" font-weight="bold">
 										<tspan x="369" y="303">
@@ -537,7 +537,7 @@
 								</a>
 							</g>
 							<g id="send-emails-mobile" data-name="Send Emails" aria-label="{{prizes[5].aria_label}}">
-								<a role="link" xlink:href="" ng-href="{{prizes[5].final_url}}" title="Send Emails" ng-focus="mouseoverm(5, 340, 470, this, 0)" ng-blur="mouseoutm()" aria-labelledby="send-emails-mobile">
+								<a role="link" xlink:href="" ng-href="{{prizes[2].final_url}}" title="Send Emails" ng-focus="mouseoverm(5, 340, 470, this, 0)" ng-blur="mouseoutm()" aria-labelledby="send-emails-mobile">
 									<path class="badge-path" d="M380 580v100h100v-100x-100z" fill="url(#6{{(prizes[5].earned) ? '_deliveredm' : '_earnedm'}})" ng-mouseover="mouseoverm(5, 340, 470, this, 0)" ng-mouseout="mouseoutm()" /> 
 									<text fill="#000" font-size="18" font-weight="bold">
 										<tspan x="408" y="698">
@@ -633,7 +633,7 @@
 		</section>
 		<section class="ym-pc-dashboard-progress-section mb-0" aria-label="Spread the Word and Livestream Sections">
 			<div class="d-md-flex justify-content-between flex-wrap">
-				<div class="col-sm-12 p-2">
+				<div class="p-2" ng-class="(!facebookFundraisersEnabled) ? 'col-md-12' : 'col-md-6'">
 					<div class="ym-pc-dashboard-progress-section__column event-secondary-medium p-3 h-100">
 						<div class="ym-pc-dashboard-email-challenge-box">
 							<div class="ym-pc-dashboard-section-header">
@@ -643,10 +643,10 @@
 							</div>
 							<div class="text-center">
 								<p>
-									Spread the word! Send 10 emails or e-cards to friends and family. 
+									Spread the word! Send 10 e-cards to friends and family. 
 								</p>
 								<div class="ym-pc-dashboard-email-challenge-images">
-									<a ng-href="{{baseUrl}}#/email">
+									<a ng-href="{{baseUrl}}#/social">
 										<img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/fy23/spread-the-word-mail-icon.png" alt="Send Email"> 
 									</a>
 									<a ng-href="https://tools.heart.org/aha_ym23{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank">
@@ -654,16 +654,75 @@
 									</a>
 								</div>
 								<div class="ym-pc-dashboard-email-challenge-buttons">
-									<a class="btn btn-md-wide btn-primary mb-2" ng-href="{{baseUrl}}#/email">
+									<!-- <a class="btn btn-md-wide btn-primary mb-2" ng-href="{{baseUrl}}#/email">
 										<strong>
 											Send Email
 										</strong>
-									</a>
+									</a> -->
 									<a class="btn btn-md-wide btn-primary mb-2" ng-href="https://tools.heart.org/aha_ym23{{tablePrefix == 'heartdev' ? '_dev' : (tablePrefix == 'heartnew' ? '_testing' : '')}}/?eid={{frId}}&amp;sid={{consId}}&amp;name={{consNameFirst}}" target="_blank">
 										<strong>
 											Send e-card
 										</strong>
 									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6 p-2" ng-show="facebookFundraisersEnabled">
+					<div class="ym-pc-dashboard-facebook-box h-100" ng-show="!facebookFundraiserId">
+						<div class="container">
+							<div class="ym-pc-dashboard-section-header">
+								<h3 class="h5 text-white">
+									Let's Get Fundraising<span ng-if="consNameFirst && consNameFirst != ''">, <span ng-bind-html="consNameFirst"></span></span>! 
+								</h3>
+							</div>
+							<div class="text-center">
+								<p>
+									Link your personal page to a new Facebook Fundraiser to receive donations from your Facebook friends. 
+								</p>
+								<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'login_error' || facebookFundraiserLoginStatus == 'permission_error' || facebookFundraiserLoginStatus == 'create_fundraiser_error' || facebookFundraiserCreateStatus == 'login_error' || facebookFundraiserCreateStatus == 'permission_error' || facebookFundraiserCreateStatus == 'create_fundraiser_error'" ng-cloak>
+									An error occurred attempting to connect to Facebook. Please try again later. 
+								</div>
+								<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserCreateStatus == 'create_fundraiser_duplicate'" ng-cloak>
+									This Facebook account already has an active Facebook Fundraiser for this school. If you are trying to connect a second student, you will need to use another Facebook account. 
+								</div>
+								<div role="alert" class="alert alert-danger" ng-if="facebookFundraiserLoginStatus == 'declined_manage_fundraisers'" ng-cloak>
+									We need your permission to create a Facebook Fundraiser on your behalf. 
+								</div>
+								<button type="button" class="btn btn-white" ng-class="{'disabled': facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'}" ng-click="loginToFacebook()" ng-disabled="facebookFundraiserLoginStatus == 'pending' || facebookFundraiserCreateStatus == 'pending'">
+									<span class="fa fa-facebook-square">
+									</span>
+									<strong>
+										Connect to Facebook Fundraiser
+									</strong>
+								</button>
+								<div class="ym-pc-dashboard-facebook-hint">
+									By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA. 
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="ym-pc-dashboard-facebook-box js--facebook-fundraiser-completed-section" ng-show="facebookFundraiserId">
+						<div class="container">
+							<div class="ym-pc-dashboard-section-header">
+								<h3 class="h5 text-white">
+									Your Fundraiser is Connected to Facebook! 
+								</h3>
+							</div>
+							<div class="text-center">
+								<p>
+									Log in to use Facebook's fundraising tools to invite friends, share updates and collect donations. We'll keep track of your progress on Facebook and on your page, so you'll always know how close you are to reaching your goal. 
+								</p>
+								<a class="btn btn-white" ng-class="{'disabled': !facebookFundraiserConfirmedStatus || facebookFundraiserConfirmedStatus == 'pending'}" ng-href="//facebook.com/donate/{{facebookFundraiserId}}/" ng-disabled="!facebookFundraiserConfirmedStatus || facebookFundraiserConfirmedStatus == 'pending'" target="_blank">
+									<span class="fa fa-facebook-square">
+									</span>
+									<strong>
+										Go to Facebook Fundraiser
+									</strong>
+								</a>
+								<div class="ym-pc-dashboard-facebook-hint">
+									By clicking this link, you will leave AHA's website and be redirected to another site not under the control of AHA. 
 								</div>
 							</div>
 						</div>
@@ -704,18 +763,12 @@
         -->
 			</div>
 		</section>
-		<section class="ym-pc-dashboard-facebook-section p-2 mb-2" aria-label="Facebook Fundraising" ng-show="facebookFundraisersEnabled" ng-cloak>
+<!--		<section class="ym-pc-dashboard-facebook-section p-2 mb-2" aria-label="Facebook Fundraising" ng-show="facebookFundraisersEnabled" ng-cloak>
 			<div class="ym-pc-dashboard-facebook-box" ng-show="!facebookFundraiserId">
 				<div class="container">
 					<div class="ym-pc-dashboard-section-header">
 						<h3 class="h5 text-white">
-							Let's Get Fundraising
-							<span ng-if="consNameFirst && consNameFirst != ''">
-								, 
-								<span ng-bind-html="consNameFirst">
-								</span>
-							</span>
-							! 
+							Let's Get Fundraising<span ng-if="consNameFirst && consNameFirst != ''">, <span ng-bind-html="consNameFirst"></span></span>! 
 						</h3>
 					</div>
 					<div class="text-center">
@@ -769,6 +822,7 @@
 				</div>
 			</div>
 		</section>
+-->
 		<section class="ym-pc-dashboard-progress-section mb-2" aria-label="Fundraising Progress Meters">
 			<div class="ym-pc-dashboard-section-header">
 				<h2 class="h3 my-2">
