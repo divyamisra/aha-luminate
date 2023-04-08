@@ -376,6 +376,10 @@
 .landing-top-teams {
   .row {
     margin-top: -30px;
+
+    @include media-breakpoint-only(md) {
+      margin-top: -20px;
+    }
   }
 
   .col {
@@ -384,7 +388,13 @@
     width: 50%;
 
     @include media-breakpoint-up(sm) {
-      width: 24%;
+      width: 20%;
+    }
+
+    @include media-breakpoint-only(md) {
+      margin-top: 20px;
+      padding-left: 10px;
+      padding-right: 10px;
     }
   }
 
