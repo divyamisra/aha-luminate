@@ -377,7 +377,7 @@
   .row {
     margin-top: -30px;
 
-    @include media-breakpoint-only(md) {
+    @include media-breakpoint-only(sm) {
       margin-top: -20px;
     }
   }
@@ -391,7 +391,7 @@
       width: 20%;
     }
 
-    @include media-breakpoint-only(md) {
+    @include media-breakpoint-only(sm) {
       margin-top: 20px;
       padding-left: 10px;
       padding-right: 10px;
