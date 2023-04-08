@@ -373,6 +373,27 @@
   }
 }
 
+.landing-top-teams {
+  .row {
+    margin-top: -30px;
+  }
+
+  .col {
+    flex: 0 0 auto;
+    margin-top: 30px;
+    width: 50%;
+
+    @include media-breakpoint-up(sm) {
+      width: 24%;
+    }
+  }
+
+  .card-body {
+    padding: 0.5rem;
+    text-align: center;
+  }
+}
+
 .landing-visual-banner {
   background-image: var(--banner-image, url("https://www2.heart.org/images/content/pagebuilder/aha-fieldday-landing-banner_2x.jpg"));
   background-size: cover;
