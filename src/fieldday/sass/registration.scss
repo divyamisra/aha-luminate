@@ -1,7 +1,5 @@
 @import "variables.scss";
 @import "mixins.scss";
-@import "bootstrap/variables.scss";
-@import "bootstrap/mixins/grid.scss";
 
 // Heat Walk 2020 TeamRaiser Registration SCSS
 /*
@@ -50,8 +48,21 @@ main > .container,
 }
 
 .registration-page-container {
-  @include make-container();
-  @include make-container-max-widths();
+  @include media-breakpoint-up(sm) {
+    max-width: 540px;
+  }
+
+  @include media-breakpoint-up(md) {
+    max-width: 720px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    max-width: 960px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    max-width: 1140px;
+  }
 }
 
 .pg_entry main > .container {
