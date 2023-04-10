@@ -161,6 +161,14 @@
   border: 1px solid #878787;
 }
 
+section#search {
+  scroll-margin-top: 5rem;
+
+  @include media-breakpoint-up(lg) {
+    scroll-margin-top: 7rem;
+  }
+}
+
 .event-city-search {
   background-color: #fff;
   .container {
