@@ -48,7 +48,8 @@ main > .container,
 }
 
 .registration-page-container {
-  @extend .container;
+  @include make-container();
+  @include make-container-max-widths();
 }
 
 .pg_entry main > .container {
