@@ -43,6 +43,7 @@ main {
 }
 main > .container,
 .registration-page-container {
+  @extend .container;
   background-color: #ffffff;
   padding: 40px 20px;
 }
