@@ -43,14 +43,10 @@ main {
 }
 main > .container,
 .registration-page-container {
+  @extend .container;
   background-color: #ffffff;
   padding: 40px 20px;
 }
-
-.registration-page-container {
-  @extend .container;
-}
-
 .pg_entry main > .container {
   padding: 0px !important;
 }
