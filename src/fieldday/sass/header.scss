@@ -10,4 +10,8 @@ header {
   .container {
     max-width: 1350px !important;
   }
+
+  ul.navbar-nav .dropdown-item:focus {
+    outline-color: #000;
+  }
 }
