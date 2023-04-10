@@ -41,9 +41,28 @@ main {
     margin: 0 auto;
   }
 }
-main > .container {
+main > .container,
+.registration-page-container {
   background-color: #ffffff;
   padding: 40px 20px;
+}
+
+.registration-page-container {
+  @include media-breakpoint-up(sm) {
+    max-width: 540px;
+  }
+
+  @include media-breakpoint-up(md) {
+    max-width: 720px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    max-width: 960px;
+  }
+
+  @include media-breakpoint-up(xl) {
+    max-width: 1140px;
+  }
 }
 
 .pg_entry main > .container {
