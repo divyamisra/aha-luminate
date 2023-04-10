@@ -1002,7 +1002,7 @@
                                 var acceptsRegistration = event.accepting_registrations;
 
                                 var eventRow = '<div class="event-results__company row' + (i > 10 ? ' class="d-none"' : '') + '"><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><h3>' + event.name + '</h3></div><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><a href="' +
-                                    event.greeting_url + '" class="btn btn-primary">Find a Company</a></div></div>';
+                                    event.greeting_url + '" class="btn btn-primary" aria-label="Find a Company for ' + event.name + '">Find a Company</a></div></div>';
 
 
                                 if (eventStatus === '1' || eventStatus === '2' || eventStatus === '3') {
@@ -1065,7 +1065,7 @@
                                 var acceptsRegistration = event.accepting_registrations;
 
                                 var eventRow = '<div class="event-results__company row' + (i > 10 ? ' class="d-none"' : '') + '"><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><h3>' + event.name + '</h3></div><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><a class="btn btn-primary" href="' +
-                                    event.greeting_url + '" class="btn btn-primary">Find a Company</a></div></div>';
+                                    event.greeting_url + '" class="btn btn-primary" aria-label="Find a Company for ' + event.name + '">Find a Company</a></div></div>';
 
 
                                 if (eventStatus === '1' || eventStatus === '2' || eventStatus === '3') {
