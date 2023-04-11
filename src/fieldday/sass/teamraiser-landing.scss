@@ -186,33 +186,64 @@ section#search {
     font-weight: bold;
     align-self: center;
   }
-  .event-state-select__button {
-    font-weight: 600;
-    color: #fff;
-    background-color: $red;
-    right: 0;
-    top: 0;
-    height: 55px;
-    padding-top: 0.4em;
-    border-top-right-radius: 0.25rem;
-    border-bottom-right-radius: 0.25rem;
-    position: absolute;
-    pointer-events: none;
-    text-align: center;
-    font-size: 1.5em;
-    width: 16.667%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    border: none;
-    &:hover {
-      background-color: $red-deep;
-    }
-    &:focus {
-      -webkit-box-shadow: 0 0 0 0.2rem rgba(193, 14, 33, 0.5) !important;
-      box-shadow: 0 0 0 0.2rem rgba(193, 14, 33, 0.5) !important;
-      outline: none;
+  // .event-state-select__button {
+  //   font-weight: 600;
+  //   color: #fff;
+  //   background-color: $red;
+  //   right: 0;
+  //   top: 0;
+  //   height: 55px;
+  //   padding-top: 0.4em;
+  //   border-top-right-radius: 0.25rem;
+  //   border-bottom-right-radius: 0.25rem;
+  //   position: absolute;
+  //   pointer-events: none;
+  //   text-align: center;
+  //   font-size: 1.5em;
+  //   width: 16.667%;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   cursor: pointer;
+  //   border: none;
+  //   &:hover {
+  //     background-color: $red-deep;
+  //   }
+  //   &:focus {
+  //     -webkit-box-shadow: 0 0 0 0.2rem rgba(193, 14, 33, 0.5) !important;
+  //     box-shadow: 0 0 0 0.2rem rgba(193, 14, 33, 0.5) !important;
+  //     outline: none;
+  //   }
+  // }
+
+  .event-state-select-container {
+    position: relative;
+
+    &::before {
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: antialiased;
+      align-items: center;
+      background-color: $red;
+      border-bottom-right-radius: 0.25rem;
+      border-top-right-radius: 0.25rem;
+      color: #fff;
+      content: "\f0d7";
+      display: flex;
+      font-family: "Font Awesome 5 Pro";
+      font-size: 1.25em;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 900;
+      height: 55px;
+      justify-content: center;
+      padding-top: 0.4em;
+      pointer-events: none;
+      position: absolute;
+      right: 0;
+      text-rendering: auto;
+      top: 0;
+      width: 16.667%;
+      z-index: 10;
     }
   }
 
