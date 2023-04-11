@@ -918,6 +918,13 @@ angular.module 'trPcControllers'
               final_url = 'TR?fr_id=' + $scope.frId + '&pg=personal&px=' + $scope.consId
             if prize.mission_url_type == 'Tab' 
               final_url = $scope.baseUrl + prize.mission_url
+              if prize.sku == 'BDG-6'
+                if $scope.tablePrefix == 'heartdev'
+                  final_url = 'https://tools.heart.org/aha_ym23_dev/?eid=' + $scope.frId + '&sid=' + $scope.consId + '&name=' + $scope.consNameFirst
+                if $scope.tablePrefix == 'heartnew'
+                  final_url = 'https://tools.heart.org/aha_ym23_testing/?eid=' + $scope.frId + '&sid=' + $scope.consId + '&name=' + $scope.consNameFirst
+                if $scope.tablePrefix == 'heart'
+                  final_url = 'https://tools.heart.org/aha_ym23/?eid=' + $scope.frId + '&sid=' + $scope.consId + '&name=' + $scope.consNameFirst
             if prize.mission_url_type == 'URL' 
               final_url = prize.mission_url
             if prize.mission_url_type == 'Quiz' 
@@ -941,7 +948,7 @@ angular.module 'trPcControllers'
               when "Edit Personal Page" then prize_label = "Edit Your Page"
               when "Self Donor" then prize_label = "Self-Donation"
               when "Go Social" then prize_label = "Share on Social"
-              when "Send Email/Ecard" then prize_label = "Send Emails"
+              when "Send Email/Ecard" then prize_label = "Send E-card"
               when "First Online Donation" then prize_label = "First Donation"
               when "CPR Quiz" then prize_label = "Hands-Only CPR"
               when "Stroke Quiz" then prize_label = "Warning Signs of Stroke"

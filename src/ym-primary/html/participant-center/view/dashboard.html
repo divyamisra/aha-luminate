@@ -213,7 +213,7 @@
 								</a>
 							</g>
 							<g id="send-email" data-name="Send email/ecard">
-								<a role="link" xlink:href="" ng-href="{{prizes[2].final_url}}" title="Send emails" ng-focus="mouseover(5, 323, 170, this, 0)" ng-blur="mouseout()" aria-label="{{prizes[5].aria_label}}">
+								<a role="link" xlink:href="" ng-href="{{prizes[5].final_url}}" title="Send E-card" ng-focus="mouseover(5, 323, 170, this, 0)" ng-blur="mouseout()" aria-label="{{prizes[5].aria_label}}">
 									<path class="badge-path" d="M355 240v53h53v-53x-53z" fill="url(#6{{(prizes[5].earned) ? '_delivered' : '_earned'}})" ng-mouseover="mouseover(5, 323, 170, this, 0)" ng-mouseout="mouseout()" /> 
 									<text fill="#000" font-size="10" font-weight="bold">
 										<tspan x="369" y="303">
@@ -222,7 +222,7 @@
 									</text>
 									<text fill="#000" font-size="10" font-weight="bold">
 										<tspan x="366" y="315">
-											Emails
+											E-card
 										</tspan>
 									</text>
 								</a>
@@ -536,8 +536,8 @@
 									</text>
 								</a>
 							</g>
-							<g id="send-emails-mobile" data-name="Send Emails" aria-label="{{prizes[5].aria_label}}">
-								<a role="link" xlink:href="" ng-href="{{prizes[2].final_url}}" title="Send Emails" ng-focus="mouseoverm(5, 340, 470, this, 0)" ng-blur="mouseoutm()" aria-labelledby="send-emails-mobile">
+							<g id="send-emails-mobile" data-name="Send E-card" aria-label="{{prizes[5].aria_label}}">
+								<a role="link" xlink:href="" ng-href="{{prizes[5].final_url}}" title="Send E-card" ng-focus="mouseoverm(5, 340, 470, this, 0)" ng-blur="mouseoutm()" aria-labelledby="send-emails-mobile">
 									<path class="badge-path" d="M380 580v100h100v-100x-100z" fill="url(#6{{(prizes[5].earned) ? '_deliveredm' : '_earnedm'}})" ng-mouseover="mouseoverm(5, 340, 470, this, 0)" ng-mouseout="mouseoutm()" /> 
 									<text fill="#000" font-size="18" font-weight="bold">
 										<tspan x="408" y="698">
@@ -546,7 +546,7 @@
 									</text>
 									<text fill="#000" font-size="18" font-weight="bold">
 										<tspan x="402" y="720">
-											Emails
+											E-card
 										</tspan>
 									</text>
 								</a>
@@ -669,7 +669,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-6 p-2" ng-show="facebookFundraisersEnabled">
+				<div class="col-md-6 p-2" ng-show="facebookFundraisersEnabled">
 					<div class="ym-pc-dashboard-facebook-box h-100" ng-show="!facebookFundraiserId">
 						<div class="container">
 							<div class="ym-pc-dashboard-section-header">
@@ -703,7 +703,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="ym-pc-dashboard-facebook-box js--facebook-fundraiser-completed-section" ng-show="facebookFundraiserId">
+					<div class="ym-pc-dashboard-facebook-box js--facebook-fundraiser-completed-section h-100" ng-show="facebookFundraiserId">
 						<div class="container">
 							<div class="ym-pc-dashboard-section-header">
 								<h3 class="h5 text-white">
