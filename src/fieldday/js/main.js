@@ -2800,7 +2800,7 @@
                 cd.getEventsByDistanceLanding(zipSearched);
             });
 
-            $('.js--state-search-val').on('change', function() {
+            $('.js--state-search-val').on('input', function() {
                 $('.js--event-search-results').html('');
                 var eventState = encodeURIComponent($('.js--state-search-val').val());
                 if (/^[A-Z]{2}$/.test(eventState)) {
