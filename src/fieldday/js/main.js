@@ -2805,6 +2805,9 @@
                 var eventState = encodeURIComponent($('.js--state-search-val').val());
                 if (/^[A-Z]{2}$/.test(eventState)) {
                     cd.getEventsByStateLanding(eventState);
+                } else {
+                    $('.js--no-event-results').addClass('d-none');
+                    $('.js--no-event-results').removeAttr('role');
                 }
             });
 
