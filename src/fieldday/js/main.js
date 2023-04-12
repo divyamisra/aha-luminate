@@ -2794,6 +2794,7 @@
             //State and Zip search
             $('.js--zip-search').on('submit', function(e) {
                 e.preventDefault();
+                $('.js--state-search-val').val('Search by State');
                 $('.js--event-search-results').html('');
                 var zipSearched = encodeURIComponent($('.js--zip-search-val').val());
                 cd.getEventsByDistanceLanding(zipSearched);
