@@ -2802,7 +2802,7 @@
             $('.js--state-search-val').on('change', function() {
                 $('.js--event-search-results').html('');
                 var eventState = encodeURIComponent($('.js--state-search-val').val());
-                if (eventState !== '') {
+                if (/^[A-Z]{2}$/.test(eventState)) {
                     cd.getEventsByStateLanding(eventState);
                 }
             });
