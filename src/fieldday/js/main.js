@@ -2798,10 +2798,13 @@
                 var zipSearched = encodeURIComponent($('.js--zip-search-val').val());
                 cd.getEventsByDistanceLanding(zipSearched);
             });
+
             $('.js--state-search-val').on('change', function() {
                 $('.js--event-search-results').html('');
                 var eventState = encodeURIComponent($('.js--state-search-val').val());
-                cd.getEventsByStateLanding(eventState);
+                if (eventState !== '') {
+                    cd.getEventsByStateLanding(eventState);
+                }
             });
 
             $('.js--state-search').on('submit', function(e) {
