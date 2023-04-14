@@ -1,6 +1,6 @@
 .landing-hero {
-  position: relative;
   box-shadow: 0px 15px 30px 0px rgba(0, 0, 0, 0.16);
+  position: relative;
 }
 .landing-hero__photo {
   height: 200px;
@@ -31,8 +31,8 @@
 }
 
 .landing-hero__content {
-  width: 100%;
   text-align: center;
+  width: 100%;
   @include media-breakpoint-up(lg) {
     background: rgba(73, 80, 87, 0.5);
   }
@@ -62,20 +62,19 @@
     color: $red;
   }
   @include media-breakpoint-up(lg) {
-    position: absolute;
     bottom: 0;
+    position: absolute;
   }
 }
 
 .landing-about {
   background-color: $red-deep;
-  background-image: url(https://www2.heart.org/images/content/pagebuilder/background-squiggles.png);
-  background-repeat: no-repeat;
   background-position: right top;
+  background-repeat: no-repeat;
   background-size: 60%;
   @include media-breakpoint-up(xl) {
-    padding-top: 80px;
     padding-bottom: 100px;
+    padding-top: 80px;
   }
   .landing-about__container {
     padding-left: 30px;
@@ -85,8 +84,8 @@
     }
   }
   h2 {
-    display: inline-block;
     color: $white;
+    display: inline-block;
     font-size: 1.125em;
     margin: 45px 0;
     @include media-breakpoint-up(xl) {
@@ -98,12 +97,12 @@
     h3 {
       color: $red;
       font-size: 1.125em;
+      line-height: 1;
+      margin: 0;
+      text-align: center;
       @include media-breakpoint-up(xl) {
         font-size: 1.667em;
       }
-      line-height: 1;
-      text-align: center;
-      margin: 0;
     }
     @include media-breakpoint-up(xl) {
       width: 32%;
@@ -115,9 +114,9 @@
   }
   .card-header {
     background-color: $white;
-    padding-top: 16px;
-    padding-bottom: 16px;
     box-shadow: 0px 15px 30px 0px rgba(0, 0, 0, 0.16);
+    padding-bottom: 16px;
+    padding-top: 16px;
     @include media-breakpoint-up(xl) {
       padding: 28px 0;
     }
@@ -128,9 +127,9 @@
     }
   }
   p {
+    display: inline-block;
     font-size: 0.875em;
     line-height: 1.25em;
-    display: inline-block;
     margin-bottom: 25px;
     @include media-breakpoint-up(xl) {
       font-size: 1.333em;
@@ -139,15 +138,15 @@
     }
   }
   a {
-    display: inline-block;
     border: 2px solid $red;
-    color: $red;
-    padding: 8px 24px;
-    width: 200px;
-    text-decoration: none;
     border-radius: 60px;
+    color: $red;
+    display: inline-block;
     font-weight: bold;
     line-height: 1;
+    padding: 8px 24px;
+    text-decoration: none;
+    width: 200px;
     @include media-breakpoint-up(xl) {
       min-width: 260px;
       padding: 12px 28px;
@@ -182,9 +181,9 @@ section#search {
     }
   }
   .form-group-divider {
+    align-self: center;
     font-size: 1.125em;
     font-weight: bold;
-    align-self: center;
   }
   // .event-state-select__button {
   //   font-weight: 600;
@@ -220,8 +219,6 @@ section#search {
     position: relative;
 
     &::before {
-      -moz-osx-font-smoothing: grayscale;
-      -webkit-font-smoothing: antialiased;
       align-items: center;
       background-color: $red;
       border-bottom-right-radius: 0.25rem;
@@ -231,6 +228,8 @@ section#search {
       display: flex;
       font-family: "Font Awesome 5 Pro";
       font-size: 1.25em;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: antialiased;
       font-style: normal;
       font-variant: normal;
       font-weight: 900;
@@ -248,25 +247,25 @@ section#search {
   }
 
   .event-zip-search-submit {
-    height: 55px;
     background: $red;
-    color: white;
-    border-top-right-radius: 0.25rem;
-    border-bottom-right-radius: 0.25rem;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    border-color: #c11d20;
-    padding: 16px;
-    padding-right: 16px;
-    padding-left: 16px;
     border: none;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0.25rem;
+    border-color: #c11d20;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0.25rem;
+    color: white;
     font-size: 1.25em;
+    height: 55px;
+    padding: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
     &:hover {
       background-color: $red-deep;
     }
     &.button {
-      border-top-left-radius: 0;
       border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
     }
   }
 
@@ -280,9 +279,9 @@ section#search {
     margin-bottom: 40px;
   }
   h3 {
+    display: block;
     font-size: 1em;
     font-weight: 500;
-    display: block;
   }
 
   .event-date-range {
@@ -306,20 +305,20 @@ section#search {
 .button-primary,
 .button-primary:visited,
 .button-primary:link {
-  display: inline-block;
-  border: 2px solid $red;
-  color: $white;
   background-color: $red;
-  padding: 16px 32px;
-  min-width: 260px;
-  text-decoration: none;
+  border: 2px solid $red;
   border-radius: 60px;
+  color: $white;
+  display: inline-block;
   font-weight: bold;
+  min-width: 260px;
+  padding: 16px 32px;
+  text-decoration: none;
   &.button--inverse {
-    color: $red;
     background-color: transparent;
-    padding-top: 8px;
+    color: $red;
     padding-bottom: 8px;
+    padding-top: 8px;
   }
 }
 
@@ -345,8 +344,8 @@ section#search {
     }
     a {
       font-size: 0.667em;
-      padding: 1.25em 2.5em;
       font-weight: 600;
+      padding: 1.25em 2.5em;
       @include media-breakpoint-up(md) {
         font-size: 1em;
       }
@@ -354,8 +353,8 @@ section#search {
   }
   .nav-tabs .nav-link {
     border-bottom: none;
-    text-decoration: none;
     color: #495057;
+    text-decoration: none;
     &.active {
       color: #c10e21;
       text-decoration: underline;
@@ -383,32 +382,32 @@ section#search {
 .landing-participant-search__results,
 .event-results__company {
   .btn-primary {
-    width: 200px;
     line-height: 55px;
+    width: 200px;
   }
 }
 
 .landing-video {
-  padding-top: 32px;
   padding-bottom: 32px;
+  padding-top: 32px;
 
   @include media-breakpoint-up(lg) {
-    padding-top: 96px;
     padding-bottom: 96px;
+    padding-top: 96px;
   }
 }
 
 .global-video__wrapper {
-  position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
   height: 0;
+  padding-bottom: 56.25%; /* 16:9 */
+  position: relative;
 
   iframe {
+    height: 100%;
+    left: 0;
     position: absolute;
     top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
   }
 }
 
@@ -444,21 +443,21 @@ section#search {
 }
 
 .landing-visual-banner {
-  background-image: var(--banner-image, url("https://www2.heart.org/images/content/pagebuilder/aha-fieldday-landing-banner_2x.jpg"));
-  background-size: cover;
-  background-position: top center;
-  margin-top: 32px;
-  margin-bottom: 32px;
-  height: 200px;
-  @include media-breakpoint-up(xl) {
-    height: 300px;
-    margin-top: 86px;
-    margin-bottom: 86px;
-    background-position: center;
-    background-attachment: fixed;
-    height: 700px;
-  }
   background-color: $red;
+  background-image: var(--banner-image, url("https://www2.heart.org/images/content/pagebuilder/aha-fieldday-landing-banner_2x.jpg"));
+  background-position: top center;
+  background-size: cover;
+  height: 200px;
+  margin-bottom: 32px;
+  margin-top: 32px;
+  @include media-breakpoint-up(xl) {
+    background-attachment: fixed;
+    background-position: center;
+    height: 300px;
+    height: 700px;
+    margin-bottom: 86px;
+    margin-top: 86px;
+  }
   img {
     display: none;
   }
@@ -474,22 +473,22 @@ section#search {
 .global-promo {
   margin-bottom: 20px;
   .container-fluid {
+    background-image: url("https://www2.heart.org/images/content/pagebuilder/aha-fieldday-landing-promo-mobile_2x.jpg");
+    background-position: cover;
+    background-repeat: none;
+    background-size: cover;
+    padding: 0 15px;
     position: relative;
     z-index: 1;
-    background-image: url("https://www2.heart.org/images/content/pagebuilder/aha-fieldday-landing-promo-mobile_2x.jpg");
     @include media-breakpoint-up(lg) {
       background-image: url("https://www2.heart.org/images/content/pagebuilder/aha-fieldday-landing-promo_2x.jpg");
     }
-    background-repeat: none;
-    background-size: cover;
-    background-position: cover;
-    padding: 0 15px;
   }
   .btn {
     font-size: 0.875em;
-    text-align: center;
     min-width: 230px;
     padding: 13px;
+    text-align: center;
     @include media-breakpoint-up(md) {
       font-size: 1em;
     }
@@ -497,12 +496,12 @@ section#search {
 }
 
 .global-promo__wrapper {
-  position: relative;
   padding: 2em 1.5em;
+  position: relative;
+  z-index: 10;
   @include media-breakpoint-up(lg) {
     padding: 4em 3em;
   }
-  z-index: 10;
   h2,
   p {
     color: #fff;
@@ -525,13 +524,13 @@ section#search {
   }
 }
 .global-promo__overlay {
+  background: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  left: 0;
+  max-width: 100%;
   position: absolute;
   top: 0;
-  left: 0;
   width: 100%;
-  max-width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
   z-index: -10;
   @include media-breakpoint-up(lg) {
     display: none;
@@ -540,9 +539,9 @@ section#search {
 
 .global-promo__icon {
   display: block;
-  width: 80px;
   height: auto;
   margin-bottom: 20px;
+  width: 80px;
   @include media-breakpoint-up(lg) {
     width: 120px;
   }
