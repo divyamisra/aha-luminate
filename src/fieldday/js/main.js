@@ -1341,7 +1341,7 @@
                 dateRangeElement.classList.add('event-date-range');
 
                 // Displays the entire event date text
-                document.querySelectorAll(fullEventDateNodes).forEach(referenceNode => {
+                fullEventDateNodes.length && document.querySelectorAll(fullEventDateNodes).forEach(referenceNode => {
                     const clone = dateRangeElement.cloneNode();
 
                     clone.textContent = eventDateRange;
@@ -1349,7 +1349,7 @@
                 });
 
                 // Only displays the date range
-                document.querySelectorAll(dateRangeOnlyNodes).forEach(referenceNode => {
+                dateRangeOnlyNodes.length && document.querySelectorAll(dateRangeOnlyNodes).forEach(referenceNode => {
                     const parsedDateRange = cd.getDateRange(eventDateRange);
                     const clone = dateRangeElement.cloneNode();
 
@@ -1704,15 +1704,19 @@
         };
         //run unslider anytime sponsor_slider is found
         if ($('.sponsor_slider .local_sponsors').length > 0) {
-            $('.tr_sponsorship_logos').addClass('carousel-inner');
-            $('.tr_sponsorship_logo').each(function(i, logo) {
-                $(logo).addClass('.carousel-item');
-                $(logo).find('img').addClass('d-block w-100');
-            });
+            window.addEventListener('load', function() {
+                $('.tr_sponsorship_logos').addClass('carousel-inner');
+                $('.tr_sponsorship_logo').each(function(i, logo) {
+                    $(logo).removeAttr('style');
+                    $(logo).addClass('carousel-item');
+                    $(logo).find('img').addClass('d-block');
+                    i === 0 && $(logo).addClass('active');
+                });
 
-            $('.sponsor-carousel').carousel({
-                interval: 2000,
-                ride: true,
+                $('.local_sponsors').carousel({
+                    interval: 3000,
+                    ride: true,
+                });
             });
 
             // $('.sponsor_slider .local_sponsors').unslider({
