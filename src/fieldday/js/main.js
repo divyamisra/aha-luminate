@@ -1702,9 +1702,19 @@
                 }
             });
         };
-        //if ($('body').is('.app_id_26') || $('body').is('.app_id_27')) {
         //run unslider anytime sponsor_slider is found
         if ($('.sponsor_slider .local_sponsors').length > 0) {
+            $('.tr_sponsorship_logos').addClass('carousel-inner');
+            $('.tr_sponsorship_logo').each(function(i, logo) {
+                $(logo).addClass('.carousel-item');
+                $(logo).find('img').addClass('d-block w-100');
+            });
+
+            $('.sponsor-carousel').carousel({
+                interval: 2000,
+                ride: true,
+            });
+
             // $('.sponsor_slider .local_sponsors').unslider({
             //     selectors: {
             //         container: 'div.tr_sponsorship_logos',
