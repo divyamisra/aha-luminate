@@ -297,7 +297,7 @@
                 Compose
               </a>
             </li>
-            <li class="divider"></li> -->
+            <li class="divider"></li>
             <li>
               <a ng-href="{{baseUrl}}#/email/message/draft/list">
                 <span class="badge">{{messageCounts.drafts}}</span>
@@ -309,7 +309,7 @@
                 <span class="badge">{{messageCounts.sentMessages}}</span> 
                 Sent Messages
               </a>
-            </li>
+            </li> -->
             <li class="divider"></li>
             <li>
               <a ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_all/list">
@@ -417,7 +417,7 @@
         <a disabled class="btn btn-secondary form-control">
           <strong>Compose</strong>
         </a> -->
-        <div class="list-group list-group-flush ng-pc-nav-list-group">
+        <!-- <div class="list-group list-group-flush ng-pc-nav-list-group">
           <a class="list-group-item" ng-href="{{baseUrl}}#/email/message/draft/list">
             <span class="badge">{{messageCounts.drafts}}</span> 
             Drafts
@@ -426,7 +426,7 @@
             <span class="badge">{{messageCounts.sentMessages}}</span> 
             Sent Messages
           </a>
-        </div>
+        </div> -->
         <div class="list-group list-group-flush ng-pc-nav-list-group">
           <h2 class="h5 list-group-item-heading">
             Contacts
@@ -535,16 +535,21 @@
           <label for="emailComposer-recipients" class="sr-only">Recipients:</label>
           <textarea class="form-control" id="emailComposer-recipients" name="recipients" ng-model="emailComposer.ng_recipients" placeholder="Recipients (separate multiple email addresses with a comma)" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
         </div>
+        
         <div class="form-group mb-2" style="margin-bottom: 30px!important;">
           <label for="emailComposer-suggested_message_id" class="sr-only">Sample Message:</label>
           <select class="form-control input-lg" id="emailComposerMessages" name="messages" ng-model="emailComposer.messages" ng-change="displayMessage()">
               <option value="">Choose a sample message</option>
-              <option value="past-parts">Email to Past Participants</option>
-              <option value="reminder">Mid-Event Reminder</option>
-              <option value="finns-mission">Complete Finn's Mission</option>
+              <option ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" value="past-parts">Email to Past Participants</option>
+              <option ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" value="reminder">Mid-Event Reminder</option>
+              <option ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" value="finns-mission">Complete Finn's Mission</option>
+              <option ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'false'" value="save-lives">Help Me Save Lives</option>
+              <option ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'false'" value="don-reminder">Donation Reminder</option>
+              <option ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'false'" value="don-thanks">Donation Thank You Email</option>
           </select>
         </div>
 
+        <!-- coordinator messages -->
         <div class="email-composer-message" id="past-parts">
           <p><strong>Subject:</strong> Kids Heart Challenge is coming! Have you joined the team?</p>
           <br />
@@ -574,7 +579,6 @@
               <br aria-hidden="true">
               {{secureDomain}}site/TR?fr_id={{frId}}&pg=company&company_id={{participantRegistration.companyInformation.companyId}}
           </div>
-
         </div>
         <div class="email-composer-message" id="reminder">
           <p><strong>Subject:</strong> 3 Things to do Right Now</p>
@@ -651,7 +655,83 @@
             {{secureDomain}}site/TR?fr_id={{frId}}&pg=company&company_id={{participantRegistration.companyInformation.companyId}}
           </div>
         </div>
-        
+        <!-- student messages -->
+        <div class="email-composer-message" id="save-lives">
+          <p><strong>Subject:</strong> Help Me Save Lives</p>
+          <br />
+          <div id="save-lives-message">
+            Want to help students like me live healthier lives?
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Now's your chance!
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Our school is taking part in an amazing worldwide adventure called Kids Heart Challenge and we're raising funds to support lifesaving research for the American Heart Association! My friends and I are learning about how to keep our hearts and brains healthy. We're moving more with fun activities and meeting kids with special hearts all while raising funds that help people everywhere keep their hearts beating strong. We are having so much fun feeling good and doing good!
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Will you support me in helping others by making a donation? Just click on the link below. Your generosity will go a long way.
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Thank you for being a Heart Hero!
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Don't forget: Double your Gift! <a href="http://www.heart.org/matchinggifts">Check to see</a> if your employer will match your donation today! Follow the steps and forward the confirmation to <a href="mailto:matchinggifts@heart.org">matchinggifts@heart.org</a> to have this added to the student's fundraising page.
+            <br aria-hidden="true">
+            <br aria-hidden="true">              
+            <a href="{{secureDomain}}site/Donation2?df_id={{eventInfo.donationFormId}}&FR_ID={{frId}}&PROXY_TYPE=20&PROXY_ID={{consId}}">Donate Now</a>
+            <br aria-hidden="true">
+            {{secureDomain}}site/Donation2?df_id={{eventInfo.donationFormId}}&FR_ID={{frId}}&PROXY_TYPE=20&PROXY_ID={{consId}}
+          </div>
+        </div>
+        <div class="email-composer-message" id="don-reminder">
+          <p><strong>Subject:</strong> Donation Reminder</p>
+          <br />
+          <div id="don-reminder-message">
+            Hi!
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            As you know, I'm taking part in the American Heart Association's Kids Heart Challenge. We're learning so much about how to stay active, eat right and be heart healthy for a lifetime.
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            And we're raising money to fund lifesaving scientific research while making a lifesaving difference for our school, our community and your family!
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            I hope you'll donate today because every dollar can help save lives. Just click on the link below.
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Thank you for helping me to keep more hearts beating strong!
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Don't forget: Double your Gift! <a href="http://www.heart.org/matchinggifts">Check to see</a> if your employer will match your donation today! Follow the steps and forward the confirmation to <a href="mailto:matchinggifts@heart.org">matchinggifts@heart.org</a> to have this added to the student's fundraising page.
+            <br aria-hidden="true">
+            <br aria-hidden="true">              
+            <a href="{{secureDomain}}site/Donation2?df_id={{eventInfo.donationFormId}}&FR_ID={{frId}}&PROXY_TYPE=20&PROXY_ID={{consId}}">Donate Now</a>
+            <br aria-hidden="true">
+            {{secureDomain}}site/Donation2?df_id={{eventInfo.donationFormId}}&FR_ID={{frId}}&PROXY_TYPE=20&PROXY_ID={{consId}}
+          </div>
+        </div>
+        <div class="email-composer-message" id="don-thanks">
+          <p><strong>Subject:</strong> Donation Thank You Email</p>
+          <br />
+          <div id="don-thanks-message">
+            You're the best! I'm so grateful for your support of Kids Heart Challenge (KHC) and the American Heart Association's lifesaving mission.
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Our school created a team of lifesavers, and I couldn't be more proud! You've supported me, our school and our community. THANK YOU!
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            To learn more about the American Heart Association and how your gift is helping save lives, go to <a href="http://www.heart.org/schools">www.heart.org/schools</a>.
+            <br aria-hidden="true">
+            <br aria-hidden="true">
+            Don't forget: Double your Gift! <a href="http://www.heart.org/matchinggifts">Check to see</a> if your employer will match your donation today! Follow the steps and forward the confirmation to <a href="mailto:matchinggifts@heart.org">matchinggifts@heart.org</a> to have this added to the student's fundraising page.
+            <br aria-hidden="true">
+            <br aria-hidden="true">              
+            <a href="{{secureDomain}}site/Donation2?df_id={{eventInfo.donationFormId}}&FR_ID={{frId}}&PROXY_TYPE=20&PROXY_ID={{consId}}">Donate Now</a>
+            <br aria-hidden="true">
+            {{secureDomain}}site/Donation2?df_id={{eventInfo.donationFormId}}&FR_ID={{frId}}&PROXY_TYPE=20&PROXY_ID={{consId}}
+          </div>
+        </div>
+
         <div class="form-group clearfix">
           <div class="pull-left">
             <a class="btn btn-primary" id="copy_recipients" href ng-click="copyRecipients('Copy Recipients to Clipboard button'); copyToClipboard()" class="pc_btn">Copy Recipients</a>
