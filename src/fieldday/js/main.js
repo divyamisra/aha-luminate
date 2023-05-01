@@ -1702,7 +1702,7 @@
                 }
             });
         };
-        //run unslider anytime sponsor_slider is found
+        //run bootstrap carousel anytime sponsor_slider is found
         if ($('.sponsor-carousel .local_sponsors').length > 0) {
             window.addEventListener('load', function() {
                 $('.tr_sponsorship_logos').addClass('carousel-inner');
@@ -1717,17 +1717,10 @@
                     interval: 3000,
                     ride: true,
                 });
-            });
 
-            // $('.sponsor_slider .local_sponsors').unslider({
-            //     selectors: {
-            //         container: 'div.tr_sponsorship_logos',
-            //         slides: 'div.tr_sponsorship_logo'
-            //     },
-            //     autoplay: true
-            // });
+                $('.sponsor-carousel .local_sponsors').addClass('loaded');
+            });
         }
-        //}
 
         if ($('body').is('.pg_entry')) {
             // Greeting Page

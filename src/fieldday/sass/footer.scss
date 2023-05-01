@@ -110,7 +110,13 @@ a.unslider-arrow,
 .local_sponsors {
   margin-bottom: 1rem;
   margin-top: 1rem;
+  opacity: 0;
+  transition: $transition-fade;
   vertical-align: top;
+
+  &.loaded {
+    opacity: 1;
+  }
 }
 
 .tr_sponsorship_logos {
@@ -121,10 +127,11 @@ a.unslider-arrow,
 .tr_sponsorship_logo {
   margin: 0;
   text-align: center;
+  transition-duration: 1s;
 }
 
 img.tr_sponsorship_logo_image {
-  display: none;
+  display: none !important;
   margin: 0 auto !important;
   max-height: 3rem;
   position: static;
@@ -132,6 +139,6 @@ img.tr_sponsorship_logo_image {
 
 .tr_sponsorship_logo.active {
   img.tr_sponsorship_logo_image {
-    display: block;
+    display: block !important;
   }
 }
