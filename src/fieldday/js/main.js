@@ -1703,7 +1703,7 @@
             });
         };
         //run unslider anytime sponsor_slider is found
-        if ($('.sponsor_slider .local_sponsors').length > 0) {
+        if ($('.sponsor-carousel .local_sponsors').length > 0) {
             window.addEventListener('load', function() {
                 $('.tr_sponsorship_logos').addClass('carousel-inner');
                 $('.tr_sponsorship_logo').each(function(i, logo) {
