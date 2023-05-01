@@ -1705,13 +1705,13 @@
         //if ($('body').is('.app_id_26') || $('body').is('.app_id_27')) {
         //run unslider anytime sponsor_slider is found
         if ($('.sponsor_slider .local_sponsors').length > 0) {
-            $('.sponsor_slider .local_sponsors').unslider({
-                selectors: {
-                    container: 'div.tr_sponsorship_logos',
-                    slides: 'div.tr_sponsorship_logo'
-                },
-                autoplay: true
-            });
+            // $('.sponsor_slider .local_sponsors').unslider({
+            //     selectors: {
+            //         container: 'div.tr_sponsorship_logos',
+            //         slides: 'div.tr_sponsorship_logo'
+            //     },
+            //     autoplay: true
+            // });
         }
         //}
 
