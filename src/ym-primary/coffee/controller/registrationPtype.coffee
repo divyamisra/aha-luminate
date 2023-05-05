@@ -67,8 +67,8 @@ angular.module 'ahaLuminateControllers'
       $participationTypes = angular.element '.js--registration-ptype-part-types .part-type-container'
       angular.forEach $participationTypes, ($participationType) ->
         $participationType = angular.element $participationType
-        $participationTypeRadio = $participationType.find 'input[type="radio"][name^="fr_part_radio_"]'
-        console.log('$participationTypeRadio id' + $participationTypeRadio.attr('id'))
+        $participationTypeRadio = $participationType.find 'input[type="radio"][name^="fr_part_radio"]'
+        console.log('$participationTypeRadio id ' + $participationTypeRadio.attr('id'))
         participationId = $participationTypeRadio.val()
         participationName = $participationType.find('.part-type-name').text()
         $scope.participationOptions.participationTypes.push
