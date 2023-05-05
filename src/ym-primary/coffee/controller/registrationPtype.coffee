@@ -29,9 +29,6 @@ angular.module 'ahaLuminateControllers'
       if not $scope.participationOptions
         $scope.participationOptions = {}
       
-      $participationType = angular.element('.js--registration-ptype-part-types input[name="fr_part_radio"]').eq 0
-      $scope.participationOptions.fr_part_radio = $participationType.val()
-      
       $scope.toggleDonationLevel = (event, type, levelAmount) ->
         console.log('TOGGLEDONATIONLEVEL type ' + type + ' levelAmount ' + levelAmount)
         console.log('TOGGLEDONATIONLEVEL $scope.participationOptions.ng_donation_level_other_amount' + $scope.participationOptions.ng_donation_level_other_amount)
@@ -63,7 +60,21 @@ angular.module 'ahaLuminateControllers'
         if levelAmount isnt '-1'
           $scope.participationOptions.ng_donation_level_other_amount = ''
 
+      $participationType = angular.element('.js--registration-ptype-part-types input[name="fr_part_radio"]').eq 0
+      $scope.participationOptions.fr_part_radio = $participationType.val()
 
+      $scope.participationTypes = 
+        types: []
+      $participationTypes = angular.element '.js--registration-ptype-part-types .part-type-container'
+      angular.forEach $participationTypes, ($participationType) ->
+        $participationType = angular.element $participationType
+        $participationTypeRadio = $participationType.find 'input[type="radio"][name^="fr_part_radio_"]'
+        console.log('$participationTypeRadio id' + $participationTypeRadio.attr('id'))
+        participationId = $participationTypeRadio.val()
+        participationName = $participationType.find('.part-type-name').text()
+        $scope.participationOptions.participationTypes.push
+          id: participationId
+          name: participationName
       
       $scope.donationLevels = 
         levels: []
