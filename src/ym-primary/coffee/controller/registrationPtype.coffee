@@ -60,11 +60,10 @@ angular.module 'ahaLuminateControllers'
         if levelAmount isnt '-1'
           $scope.participationOptions.ng_donation_level_other_amount = ''
 
+      $scope.participationOptions.participationTypes = []
       $participationType = angular.element('.js--registration-ptype-part-types input[name="fr_part_radio"]').eq 0
       $scope.participationOptions.fr_part_radio = $participationType.val()
 
-      $scope.participationTypes = 
-        types: []
       $participationTypes = angular.element '.js--registration-ptype-part-types .part-type-container'
       angular.forEach $participationTypes, ($participationType) ->
         $participationType = angular.element $participationType
