@@ -1713,12 +1713,10 @@
                     i === 0 && $(logo).addClass('active')
                 })
 
-                var sponsorCarousel = $('.local_sponsors').carousel({
+                $('.local_sponsors').carousel({
                     interval: 3000,
                     ride: true,
                 })
-
-                $('.tr_sponsorship_logo_image').attr('tabindex', '0')
 
                 $('.tr_sponsorship_logos').on('focus', function() {
                     $('.local_sponsors').carousel('pause')
