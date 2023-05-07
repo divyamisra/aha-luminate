@@ -1705,11 +1705,11 @@
         //run bootstrap carousel anytime sponsor_slider is found
         if ($('.sponsor-carousel .local_sponsors').length > 0) {
             window.addEventListener('load', function() {
-                $('.tr_sponsorship_logos').addClass('carousel-inner')
+                $('.tr_sponsorship_logos').addClass('carousel-inner').attr('tabindex', '0')
                 $('.tr_sponsorship_logo').each(function(i, logo) {
                     $(logo).removeAttr('style')
                     $(logo).addClass('carousel-item')
-                    $(logo).find('img').addClass('d-block').attr('tabindex', '0')
+                    $(logo).find('img').addClass('d-block')
                     i === 0 && $(logo).addClass('active')
                 })
 
@@ -1720,11 +1720,11 @@
 
                 $('.tr_sponsorship_logo_image').attr('tabindex', '0')
 
-                $('.tr_sponsorship_logo_image').on('focus', function() {
+                $('.tr_sponsorship_logos').on('focus', function() {
                     $('.local_sponsors').carousel('pause')
                 })
 
-                $('.tr_sponsorship_logo_image').on('blur', function() {
+                $('.tr_sponsorship_logos').on('blur', function() {
                     $('.local_sponsors').carousel('cycle')
                 })
 
