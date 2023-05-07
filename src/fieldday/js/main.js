@@ -1709,13 +1709,17 @@
                 $('.tr_sponsorship_logo').each(function(i, logo) {
                     $(logo).removeAttr('style')
                     $(logo).addClass('carousel-item')
-                    $(logo).find('img').addClass('d-block')
+                    $(logo).find('img').addClass('d-block').attr('tabindex', '0')
                     i === 0 && $(logo).addClass('active')
                 })
 
-                $('.local_sponsors').carousel({
+                var sponsorCarousel = $('.local_sponsors').carousel({
                     interval: 3000,
                     ride: true,
+                })
+
+                $('.tr_sponsorship_logo_image').on('focus', function() {
+                    $('.local_sponsors').carousel('pause')
                 })
 
                 $('.sponsor-carousel .local_sponsors').addClass('loaded')
