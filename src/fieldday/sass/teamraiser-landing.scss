@@ -436,8 +436,12 @@ section#search {
     }
   }
 
-  .card-body {
+  .card {
     padding: 0.5rem;
+  }
+
+  .card-body {
+    padding: 0.5rem 0 0;
     text-align: center;
   }
 }
