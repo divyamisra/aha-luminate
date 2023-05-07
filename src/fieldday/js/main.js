@@ -1718,8 +1718,14 @@
                     ride: true,
                 })
 
+                $('.tr_sponsorship_logo_image').attr('tabindex', '0')
+
                 $('.tr_sponsorship_logo_image').on('focus', function() {
                     $('.local_sponsors').carousel('pause')
+                })
+
+                $('.tr_sponsorship_logo_image').on('blur', function() {
+                    $('.local_sponsors').carousel('cycle')
                 })
 
                 $('.sponsor-carousel .local_sponsors').addClass('loaded')
