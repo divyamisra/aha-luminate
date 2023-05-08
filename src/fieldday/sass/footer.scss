@@ -117,6 +117,12 @@ a.unslider-arrow,
   &.loaded {
     opacity: 1;
   }
+
+  .tr_sponsorship_logos {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    width: auto;
+  }
 }
 
 .tr_sponsorship_logos {
