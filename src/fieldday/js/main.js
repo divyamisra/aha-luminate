@@ -1718,11 +1718,11 @@
                     ride: true,
                 })
 
-                $('.tr_sponsorship_logos').on('focus', function() {
+                $('.tr_sponsorship_logos').on('focus touchstart', function() {
                     $('.local_sponsors').carousel('pause')
                 })
 
-                $('.tr_sponsorship_logos').on('blur', function() {
+                $('.tr_sponsorship_logos').on('blur touchend', function() {
                     $('.local_sponsors').carousel('cycle')
                 })
 
