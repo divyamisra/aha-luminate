@@ -36,7 +36,7 @@ angular.module 'ahaLuminateControllers'
                 regEventId = teamraisers[0].id
               setRegEventId numberEvents, regEventId
 
-      $scope.participationTypes = []
+      $scope.participationTypes = {}
       TeamraiserRegistrationService.getParticipationTypes
         error: ->
           # TODO
