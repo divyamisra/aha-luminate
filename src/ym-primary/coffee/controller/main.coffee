@@ -34,7 +34,24 @@ angular.module 'ahaLuminateControllers'
               if numberEvents is 1
                 regEventId = teamraisers[0].id
               setRegEventId numberEvents, regEventId
-      
+
+      $scope.participationType = {}
+      setParticipationType = (participationType) ->
+        $scope.participationType = participationType
+        if not $scope.$$phase
+          $scope.$apply()
+      TeamraiserRegistrationService.getParticipationTypes
+        error: ->
+          # TODO
+        success: (response) ->
+          participationTypes = response.getParticipationTypesResponse.participationType
+          participationTypes = [participationTypes] if not angular.isArray participationTypes
+          participationType = participationTypes[0]
+          waiverContent = participationType.waiver?.content
+          if waiverContent
+            participationType.waiver.content = waiverContent.replace /(?:\r\n|\r|\n)/g, '<br />'
+          setParticipationType participationType
+
       $scope.toggleLoginMenu = ->
         if $scope.loginMenuOpen
           delete $scope.loginMenuOpen
