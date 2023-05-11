@@ -36,19 +36,15 @@ angular.module 'ahaLuminateControllers'
                 regEventId = teamraisers[0].id
               setRegEventId numberEvents, regEventId
 
-      $scope.participationType = {}
-      setParticipationType = (participationType) ->
-        $scope.participationType = participationType
-        if not $scope.$$phase
-          $scope.$apply()
+      $scope.participationTypes = []
       TeamraiserRegistrationService.getParticipationTypes
         error: ->
           # TODO
         success: (response) ->
           participationTypes = response.getParticipationTypesResponse.participationType
           participationTypes = [participationTypes] if not angular.isArray participationTypes
-          # participationType = participationTypes[0]
-          setParticipationType participationTypes
+          angular.forEach participationTypes, (ptype) ->
+            $scope.participationTypes[ptype.id] = ptype.name
 
       $scope.toggleLoginMenu = ->
         if $scope.loginMenuOpen
