@@ -5,8 +5,9 @@ angular.module 'ahaLuminateControllers'
     '$httpParamSerializer'
     'AuthService'
     'TeamraiserParticipantService'
+    'TeamraiserRegistrationService'
     '$timeout'
-    ($rootScope, $scope, $httpParamSerializer, AuthService, TeamraiserParticipantService, $timeout) ->
+    ($rootScope, $scope, $httpParamSerializer, AuthService, TeamraiserParticipantService, TeamraiserRegistrationService, $timeout) ->
       $dataRoot = angular.element '[data-aha-luminate-root]'
       consId = $dataRoot.data('cons-id') if $dataRoot.data('cons-id') isnt ''
       $scope.regEventId = ''
@@ -46,11 +47,8 @@ angular.module 'ahaLuminateControllers'
         success: (response) ->
           participationTypes = response.getParticipationTypesResponse.participationType
           participationTypes = [participationTypes] if not angular.isArray participationTypes
-          participationType = participationTypes[0]
-          waiverContent = participationType.waiver?.content
-          if waiverContent
-            participationType.waiver.content = waiverContent.replace /(?:\r\n|\r|\n)/g, '<br />'
-          setParticipationType participationType
+          # participationType = participationTypes[0]
+          setParticipationType participationTypes
 
       $scope.toggleLoginMenu = ->
         if $scope.loginMenuOpen
