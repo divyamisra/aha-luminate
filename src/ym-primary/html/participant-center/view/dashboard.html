@@ -1,5 +1,6 @@
 <div cg-busy="dashboardPromises">
 	<div ng-if="participantRegistration.companyInformation.isCompanyCoordinator != 'true' || location == '/dashboard-student'" ng-cloak>
+		<p class="fw-bold">Participation Type: {{participationTypes[participantRegistration.participationTypeId]}}</p>
 		<div class="row ym-pc-dashboard-coordinators-message-section mb-2" ng-if="EventStartDate || DonationDueDate" ng-cloak>
 			<div class="ym-pc-dashboard-event-date" ng-if="EventStartDate" ng-cloak>
 				Event Date: {{EventStartDate | date:'MM/dd/yyyy'}} 
