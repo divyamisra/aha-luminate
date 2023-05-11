@@ -64,6 +64,9 @@ angular.module 'ahaLuminateControllers'
       $participationType = angular.element('.js--registration-ptype-part-types input[name="fr_part_radio"]').eq 0
       $scope.participationOptions.fr_part_radio = $participationType.val()
 
+      $scope.setParticipationType = (event, id) ->
+        $scope.participationOptions.fr_part_radio = id
+
       $participationTypes = angular.element '.js--registration-ptype-part-types .part-type-container'
       angular.forEach $participationTypes, ($participationType) ->
         $participationType = angular.element $participationType
@@ -74,7 +77,7 @@ angular.module 'ahaLuminateControllers'
         $scope.participationOptions.participationTypes.push
           id: participationId
           name: participationName
-      
+
       $scope.donationLevels = 
         levels: []
       $donationLevels = angular.element '.js--registration-ptype-donation-levels .donation-level-row-container'
