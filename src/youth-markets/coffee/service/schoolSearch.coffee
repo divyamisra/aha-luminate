@@ -196,7 +196,7 @@ angular.module 'ahaLuminateApp'
           schools = []
           angular.forEach companies, (company) ->
             if company.coordinatorId and company.coordinatorId isnt '0'
-              if 'EVENT_PROGRAM' in company
+              if company.hasOwnProperty("EVENT_PROGRAM")
                 event_program = company.EVENT_PROGRAM
               else
                 event_program = ''
@@ -216,7 +216,7 @@ angular.module 'ahaLuminateApp'
           angular.forEach schools, (school, schoolIndex) ->
             schoolData = $scope.schoolDataMap['id' + school.COMPANY_ID]
             if schoolData
-              if 'EVENT_PROGRAM' in schoolData
+              if schoolData.hasOwnProperty("EVENT_PROGRAM")
                 event_program = schoolData.EVENT_PROGRAM
               else
                 event_program = ''
