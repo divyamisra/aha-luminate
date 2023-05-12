@@ -216,10 +216,15 @@ angular.module 'ahaLuminateApp'
           angular.forEach schools, (school, schoolIndex) ->
             schoolData = $scope.schoolDataMap['id' + school.COMPANY_ID]
             if schoolData
+              if 'EVENT_PROGRAM' in schoolData
+                event_program = schoolData.EVENT_PROGRAM
+              else
+                event_program = ''
               schools[schoolIndex].SCHOOL_CITY = schoolData.SCHOOL_CITY
               schools[schoolIndex].SCHOOL_STATE = schoolData.SCHOOL_STATE
               schools[schoolIndex].COORDINATOR_FIRST_NAME = schoolData.COORDINATOR_FIRST_NAME
               schools[schoolIndex].COORDINATOR_LAST_NAME = schoolData.COORDINATOR_LAST_NAME
+              schools[schoolIndex].EVENT_PROGRAM = event_program
           schools
           
         searchOverridesMap = [
