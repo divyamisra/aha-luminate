@@ -196,6 +196,10 @@ angular.module 'ahaLuminateApp'
           schools = []
           angular.forEach companies, (company) ->
             if company.coordinatorId and company.coordinatorId isnt '0'
+              if 'EVENT_PROGRAM' in company
+                event_program = company.EVENT_PROGRAM
+              else
+                event_program = ''
               schools.push
                 FR_ID: company.eventId
                 COMPANY_ID: company.companyId
@@ -204,7 +208,8 @@ angular.module 'ahaLuminateApp'
                 SCHOOL_CITY: company.SCHOOL_CITY
                 SCHOOL_STATE: company.SCHOOL_STATE
                 COORDINATOR_FIRST_NAME: company.COORDINATOR_FIRST_NAME
-                COORDINATOR_LAST_NAME: company.COORDINATOR_LAST_NAME                
+                COORDINATOR_LAST_NAME: company.COORDINATOR_LAST_NAME
+                EVENT_PROGRAM: event_program
           schools
           
         setSchoolsData = (schools) ->
