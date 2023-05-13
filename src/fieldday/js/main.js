@@ -964,7 +964,7 @@
         }
 
         cd.makeEventRow = (event, index, dateRange) => {
-            return '<div class="event-results__company row' + (index > 10 ? ' class="d-none"' : '') + '"><div class="col-12 col-md-6 d-flex flex-wrap align-items-center justify-content-center"><h3>' + event.name + '</h3><time>' + dateRange + '</time></div><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><a class="btn btn-primary" href="' +
+            return '<div class="event-results__company row' + (index > 10 ? ' class="d-none"' : '') + '"><div class="col-12 col-md-6 d-flex flex-wrap align-items-center justify-content-center"><div class="h3">' + event.name + '</div><time>' + dateRange + '</time></div><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><a class="btn btn-primary" href="' +
                 event.greeting_url + '" class="btn btn-primary">Find a Company</a></div></div>'
         }
 
@@ -1001,7 +1001,7 @@
                                 var eventStatus = event.status
                                 var acceptsRegistration = event.accepting_registrations
 
-                                var eventRow = '<div class="event-results__company row' + (i > 10 ? ' class="d-none"' : '') + '"><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><h3>' + event.name + '</h3></div><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><a href="' +
+                                var eventRow = '<div class="event-results__company row' + (i > 10 ? ' class="d-none"' : '') + '"><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><div class="h3">' + event.name + '</div></div><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><a href="' +
                                     event.greeting_url + '" class="btn btn-primary" aria-label="Find a Company for ' + event.name + '">Find a Company</a></div></div>'
 
 
@@ -1064,7 +1064,7 @@
                                 var eventStatus = event.status
                                 var acceptsRegistration = event.accepting_registrations
 
-                                var eventRow = '<div class="event-results__company row' + (i > 10 ? ' class="d-none"' : '') + '"><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><h3>' + event.name + '</h3></div><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><a class="btn btn-primary" href="' +
+                                var eventRow = '<div class="event-results__company row' + (i > 10 ? ' class="d-none"' : '') + '"><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><div class="h3">' + event.name + '</div></div><div class="col-12 col-md-6 d-flex align-items-center justify-content-center"><a class="btn btn-primary" href="' +
                                     event.greeting_url + '" class="btn btn-primary" aria-label="Find a Company for ' + event.name + '">Find a Company</a></div></div>'
 
 
@@ -1293,7 +1293,7 @@
             const insertDateRange = (obj) => {
                 obj = obj[obj.length - 1] // get the last object in the array
                 // Find the closest ancestor heading element, and create a new span element to hold the date range.
-                const eventRowHeading = obj.link?.closest('.event-results__company.row')?.querySelector('h3')
+                const eventRowHeading = obj.link?.closest('.event-results__company.row')?.querySelector('.h3')
                 const dateRange = cd.getDateRange(obj.dateRange)
                 const dateRangeContainer = document.createElement('span')
 
