@@ -2146,23 +2146,15 @@
 															<strong>
 																{{activity1amt|number}}
 															</strong>
-															student
-															<span ng-if="activity1amt > 1 || activity1amt == 0">
-																s are
-															</span>
-															<span ng-if="activity1amt == 1">
-																is
-															</span>
+															student<span ng-if="activity1amt > 1 || activity1amt == 0">s are</span>
+															<span ng-if="activity1amt == 1">is</span>
 															being kind 
 														</p>
 														<p class="students-challenge2">
 															<strong>
 																{{activity2amt|number}}
 															</strong>
-															student
-															<span ng-if="activity2amt > 1 || activity2amt == 0">
-																s are
-															</span>
+															student<span ng-if="activity2amt > 1 || activity2amt == 0">s are</span>
 															<span ng-if="activity2amt == 1">
 																is
 															</span>
@@ -2172,10 +2164,7 @@
 															<strong>
 																{{schoolPlan.CountOfStudentsCompletingFinnsMission|number}}
 															</strong>
-															student
-															<span ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission > 1 || schoolPlan.CountOfStudentsCompletingFinnsMission == 0">
-																s
-															</span>
+															student<span ng-if="schoolPlan.CountOfStudentsCompletingFinnsMission > 1 || schoolPlan.CountOfStudentsCompletingFinnsMission == 0">s</span>
 															completed Finn's&nbsp;Mission 
 														</p>
 													</div>
