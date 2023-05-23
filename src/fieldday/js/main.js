@@ -1704,30 +1704,34 @@
         }
         //run bootstrap carousel anytime sponsor_slider is found
         if ($('.sponsor-carousel .local_sponsors').length > 0) {
+            // window.addEventListener('load', function() {
+            //     $('.tr_sponsorship_logos').addClass('carousel-inner').attr('tabindex', '0')
+            //     $('.tr_sponsorship_logo').each(function(i, logo) {
+            //         $(logo).removeAttr('style')
+            //         $(logo).addClass('carousel-item')
+            //         $(logo).find('img').addClass('d-block')
+            //         i === 0 && $(logo).addClass('active')
+            //     })
+
+            //     $('.local_sponsors').carousel({
+            //         interval: 3000,
+            //         ride: true,
+            //     })
+
+            //     $('.tr_sponsorship_logos').on('focus touchstart', function() {
+            //         $('.local_sponsors').carousel('pause')
+            //     })
+
+            //     $('.tr_sponsorship_logos').on('blur touchend', function() {
+            //         $('.local_sponsors').carousel('cycle')
+            //     })
+
+            //     $('.sponsor-carousel .local_sponsors').addClass('loaded')
+            // })
+
             window.addEventListener('load', function() {
-                $('.tr_sponsorship_logos').addClass('carousel-inner').attr('tabindex', '0')
-                $('.tr_sponsorship_logo').each(function(i, logo) {
-                    $(logo).removeAttr('style')
-                    $(logo).addClass('carousel-item')
-                    $(logo).find('img').addClass('d-block')
-                    i === 0 && $(logo).addClass('active')
-                })
-
-                $('.local_sponsors').carousel({
-                    interval: 3000,
-                    ride: true,
-                })
-
-                $('.tr_sponsorship_logos').on('focus touchstart', function() {
-                    $('.local_sponsors').carousel('pause')
-                })
-
-                $('.tr_sponsorship_logos').on('blur touchend', function() {
-                    $('.local_sponsors').carousel('cycle')
-                })
-
-                $('.sponsor-carousel .local_sponsors').addClass('loaded')
             })
+
         }
 
         if ($('body').is('.pg_entry')) {
