@@ -792,6 +792,7 @@
                             $('.js--loading').hide()
                             $('#error-event').removeClass('d-none')
                             $('#error-event').removeAttr('hidden')
+                            $('#error-event').focus()
                         }
                     },
                     error: function(response) {
@@ -880,6 +881,7 @@
                             $('.js--loading').hide()
                             $('#error-event').removeClass('d-none')
                             $('#error-event').removeAttr('hidden')
+                            $('#error-event').focus()
                         }
                     },
                     error: function(response) {
