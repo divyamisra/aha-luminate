@@ -44,6 +44,14 @@ a#skip-main:focus,
   align-items: center;
   display: flex;
   margin-left: auto;
+
+  .mobile-search-trigger {
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.6rem;
+    margin: 25px 20px 0;
+    text-decoration: none;
+  }
 }
 
 nav {
