@@ -118,21 +118,44 @@
            motion_event = 1061;
         }
 
-        var skipLink = document.getElementById('skip-main');
+        // var skipLink = document.getElementById('skip-main');
+        //
+        // skipLink.addEventListener('click', function (e) {
+        //     e.preventDefault();
+        //     document.getElementById('pcBodyContainer').scrollIntoView();
+        // });
+        //
+        // if ($('body').is('.pg_HeartWalk_HQ')) {
+        //     $('.js__skip-to').on('click', function (e) {
+        //         e.preventDefault();
+        //         $('html, body').animate({
+        //             scrollTop: $('#pcBodyContainer').offset().top
+        //         }, 500);
+        //     });
+        // }
 
-        skipLink.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.getElementById('pcBodyContainer').scrollIntoView();
-        });
+        const pcBodyContainer = document.getElementById("pcBodyContainer");
+        if (typeof(pcBodyContainer) != 'undefined' && pcBodyContainer != null) {
+            pcBodyContainer.setAttribute("tabindex", "-1");
 
-        if ($('body').is('.pg_HeartWalk_HQ')) {
-            $('.js__skip-to').on('click', function (e) {
-                e.preventDefault();
-                $('html, body').animate({
-                    scrollTop: $('#pcBodyContainer').offset().top
-                }, 500);
+            // Get the skip link element
+            const skipLink = document.getElementById("skip-main");
+
+            // Get the main content element
+            const mainContent = document.getElementById("pcBodyContainer");
+
+            // Add a click event listener to the skip link
+            skipLink.addEventListener("click", function(event) {
+                // Prevent the default link behavior
+                event.preventDefault();
+
+                // Scroll to the main content
+                mainContent.scrollIntoView({ behavior: "smooth" });
+                mainContent.focus();
             });
         }
+
+
 
         var addScrollLinks = function () {
             $('a.scroll-link')
