@@ -619,7 +619,7 @@
                 $('#f2fRegPartType #next_step').click();
             });
 
-            $('.janrainEngage').html('<div class="btn-social-login btn-facebook"><i class="fab fa-facebook-f mr-2"></i> Create with Facebook</div><div class="btn-social-login btn-amazon"><i class="fab fa-amazon mr-2"></i> Create with Amazon</div>');
+            $('.janrainEngage').html('<div class="btn-social-login btn-facebook"><i class="fab fa-facebook-f mr-2"></i>Log in with Facebook</div><div class="btn-social-login btn-amazon"><i class="fab fa-amazon mr-2"></i> Log in with Amazon</div>');
 
             $('#janrainModal img').attr('alt', 'Close social login lightbox');
 
@@ -2107,6 +2107,9 @@
             $('#additional_questions_container .survey-question-container:contains("Facebook Fundraiser ID:")').hide();
             $('input#cons_user_name + span.input-hint').html("You can use your email address or a unique name with any of the following: letters, numbers, and these symbols: +, -, _, @, ., %, and : but no spaces!");
             $('input#cons_password + span.input-hint').html("This needs to be at least 5 characters long and can contain any of the following: letters, numbers, and these symbols: !#$%()*+,-./:;=?@[\]^_`{|}~ o");
+
+            $('input#cons_user_name').attr('aria-label','You can use your email address or a unique name with any of the following: letters, numbers, and these symbols: +, -, _, @, ., %, and : but no spaces!');
+            $('input#cons_password').attr('aria-label', 'This needs to be at least 5 characters long and can contain any of the following: letters, numbers, and these symbols: !#$%()*+,-./:;=?@[\]^_`{|}~ o' );
         }
 
         $('#password_component_container #cons_rep_password').parent().parent().parent().addClass('left');
@@ -2826,6 +2829,121 @@
             $('.js__reg-company-name').append($.sortedCoList);
         }
     }
+
+    // AHA-1047
+    const yesBtn = document.getElementById('utype-yes');
+    if (typeof(yesBtn) != 'undefined' && yesBtn != null) {
+        yesBtn.addEventListener("click", function(){
+            const loginUserPass = document.querySelectorAll('#loginForm > #utype_login_container > div > .form-group');
+
+            loginUserPass[0].setAttribute('aria-live', 'assertive');
+            loginUserPass[1].setAttribute('aria-live', 'assertive');
+        });
+    }
+
+    // AHA-1049
+
+    document.addEventListener("DOMContentLoaded", function() {
+        let yearsParticipated = document.querySelectorAll('#relocated_participation_years select option');
+
+        if (yearsParticipated !== null) {
+            yearsParticipated.forEach((year, index)=> {
+                if (year.value === 'NOREPLY') {
+                    return;
+                } else if (year.value === '1') {
+                    year.setAttribute('aria-label', `${year.value} year`);
+                } else {
+                    year.setAttribute('aria-label', `${year.value} years`);
+                }
+                console.log(index, year.value);
+            })
+        }
+    });
+
+
+
+    // AHA-1050
+    let friendPotionNext = document.getElementById('friend_potion_next');
+    if (typeof(friendPotionNext) != 'undefined' && friendPotionNext != null) {
+        document.getElementById('fr_team_name').setAttribute('aria-live', 'assertive');
+    }
+
+
+
+
+    // AHA-1052 - This is a general purpose function to replace elements if they need to be replaced
+    function replaceTagName(element, newTagName) {
+        const newElement = document.createElement(newTagName);
+        const attributes = Array.from(element.attributes);
+
+        attributes.forEach((attr) => {
+            newElement.setAttribute(attr.name, attr.value);
+        });
+
+        newElement.innerHTML = element.innerHTML;
+        element.parentNode.replaceChild(newElement, element);
+
+        return newElement;
+    }
+
+        const element = document.querySelector(".campaign-banner-container");
+        replaceTagName(element, "h1");
+
+
+    const urlParams = new URLSearchParams(window.location.search);
+
+    // Check if the URL contains the "s_regType=joinTeam" parameter
+    if (urlParams.toString().indexOf("s_regType=joinTeam") !== -1) {
+        // Run code if the parameter is present in the URL
+        let button1 = document.querySelector('[data-sort="team-name-label"]');
+             let teamNameLabel = button1.textContent;
+        let button2 = document.querySelector('[data-sort="team-captain-name"]');
+              let teamCaptainLabel = button2.textContent;
+        let button3 = document.querySelector('[data-sort="team-company-name"]');
+               let teamCompanyLabel = button3.textContent;
+
+        button1.setAttribute('aria-label', `Sort by ${teamNameLabel}`);
+        button2.setAttribute('aria-label', `Sort by ${teamCaptainLabel}`);
+        button3.setAttribute('aria-label', `Sort by ${teamCompanyLabel}`);
+
+
+        const tablistDiv = document.createElement("div");
+        tablistDiv.setAttribute("role", "tablist");
+
+        button1.parentElement.insertBefore(tablistDiv, button1);
+        tablistDiv.appendChild(button1);
+        tablistDiv.appendChild(button2);
+        tablistDiv.appendChild(button3);
+
+        const tablist = document.querySelector('[role="tablist"]');
+        const buttons = tablist.querySelectorAll('button');
+
+        buttons.forEach((button, index) => {
+
+            // Add the role attribute
+            button.setAttribute('role', 'tab');
+
+
+            // Add event listener for click events
+            button.addEventListener('click', function (event) {
+                // Deselect all buttons
+                buttons.forEach((otherButton) => {
+                    otherButton.setAttribute('aria-selected', 'false');
+                });
+
+                // Select the clicked button
+                const selectedButton = event.currentTarget;
+                selectedButton.setAttribute('aria-selected', 'true');
+            });
+        });
+    }
+
+    //AHA-1053
+
+    // Updated on the Registration Summary page in TR
+    //$('.reg-summary-event-info .reg-summary-edit-link a.js--edit-ptype').attr('aria-label', 'Edit Personal Goal');
+
+    $('.reg-summary-address-info .reg-summary-edit-link a').attr('aria-label', 'Edit Personal Information');
 
 })(jQuery);
 
