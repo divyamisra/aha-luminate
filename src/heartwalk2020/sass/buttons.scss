@@ -82,7 +82,13 @@ a.btn {
 }
 
 .btn-primary:focus, a.btn.btn-primary:focus, #login-div-content a.btn.btn-primary:focus, div.responsive a.btn.btn-primary:focus, .btn-primary.focus, a.focus.btn.btn-primary, #login-div-content a.focus.btn.btn-primary, div.responsive a.focus.btn.btn-primary, .btn:focus {
-  -webkit-box-shadow: 0 0 0 0.2rem rgba(158,202,237, 0.75);
-  box-shadow: 0 0 0 0.2rem rgba(158,202,237, 0.75);
+  background: #900 !important;
+}
+#login-div-content a.btn.btn-primary:focus, #login-div-content a.focus.btn.btn-primary, .btn-primary.focus, .btn-primary:focus, a.btn.btn-primary:focus, a.focus.btn.btn-primary, div.responsive a.btn.btn-primary:focus, div.responsive a.focus.btn.btn-primary,
+#login-div-content a.btn.btn-primary:focus, #login-div-content a.focus.btn.btn-primary, #login-div-content div.responsive a.btn.btn-primary:focus, #login-div-content div.responsive a.focus.btn.btn-primary, .btn-primary.focus, .btn-primary:focus, a.btn.btn-primary:focus, a.focus.btn.btn-primary, div.responsive #login-div-content a.btn.btn-primary:focus, div.responsive #login-div-content a.focus.btn.btn-primary, div.responsive a.btn.btn-primary:focus, div.responsive a.focus.btn.btn-primary{
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  outline-offset: 0.4rem;
+  outline: 0.2rem solid #000;
 }
 
