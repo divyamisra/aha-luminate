@@ -87,8 +87,6 @@
 
         // Mobile search toggle
         $('.mobile-search-trigger').click(function() {
-
-
             if ($('.navbar-toggler-icon').hasClass('fa-times')) {
                 $('#navbar-container').addClass('is-search')
                 $('.mobile-search-trigger').addClass('active')
@@ -102,10 +100,12 @@
                     // gray navigation appear as it closes
                     $('#navbar-container').slideToggle('fast', function() {
                         $('#navbar-container').toggleClass('is-search')
+                        $('.mobile-search-trigger').attr('aria-expanded', false)
                     })
                 } else {
                     $('#navbar-container').toggleClass('is-search')
                     $('#navbar-container').slideToggle('fast')
+                    $('.mobile-search-trigger').attr('aria-expanded', true)
                 }
             }
 
