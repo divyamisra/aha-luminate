@@ -58,7 +58,7 @@ angular.module 'ahaLuminateControllers'
           success: ->
             if not $scope.headerLoginInfo.ng_nexturl or $scope.headerLoginInfo.ng_nexturl is ''
 #              window.location = window.location.href
-              window.location = $rootScope.secureDomain + 'site/SPageServer?pagename=ym_khc_my_events'
+              window.location = $rootScope.secureDomain + 'site/SPageServer?pagename=ym_my_events'
             else
               window.location = $scope.headerLoginInfo.ng_nexturl
       
