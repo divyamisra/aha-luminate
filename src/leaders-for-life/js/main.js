@@ -170,7 +170,7 @@
 					}
 				})
 		}
-		addScrollLinks()
+		//addScrollLinks()
 
 		var screenWidth = $(window).innerWidth()
 
