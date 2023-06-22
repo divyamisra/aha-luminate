@@ -644,7 +644,7 @@
         $('.js--header-company-search').on('submit', function(e) {
             e.preventDefault()
             var companySearched = encodeURIComponent($('#companySearch').val())
-            if ($('body').is('.pg_FieldDay_General') || $('body').is('.pg_FieldDay_Landing_Page')) {
+            if ($('body').is('.pg_FieldDay_General') || $('body').is('.pg_FieldDay_Landing_Page') || $('body').is('[data-event-type="Field Day"]')) {
                 window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=company&cross_event=true&company=' + companySearched
             } else {
                 window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=company' + (evID ? '&cross_event=false&fr_id=' + evID : '&cross_event=true') + '&company=' + companySearched
@@ -655,7 +655,7 @@
         $('.js--header-zip-search').on('submit', function(e) {
             e.preventDefault()
             var zipSearched = encodeURIComponent($('#zipSearch').val())
-            if ($('body').is('.pg_FieldDay_General') || $('body').is('.pg_FieldDay_Landing_Page')) {
+            if ($('body').is('.pg_FieldDay_General') || $('body').is('.pg_FieldDay_Landing_Page') || $('body').is('[data-event-type="Field Day"]')) {
                 window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=zip&cross_event=true&zip=' + zipSearched
             } else {
                 window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=zip' + (evID ? '&cross_event=false&fr_id=' + evID : '&cross_event=true') + '&zip=' + zipSearched
@@ -666,7 +666,7 @@
         $('.js--header-state-search').on('submit', function(e) {
             e.preventDefault()
             var stateSearch = encodeURIComponent($('#stateSearch').val())
-            if ($('body').is('.pg_FieldDay_General') || $('body').is('.pg_FieldDay_Landing_Page')) {
+            if ($('body').is('.pg_FieldDay_General') || $('body').is('.pg_FieldDay_Landing_Page') || $('body').is('[data-event-type="Field Day"]')) {
                 window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=state&cross_event=true&state=' + stateSearched
             } else {
                 window.location.href = luminateExtend.global.path.secure + 'SPageServer/?pagename=FieldDay_Search&search_type=state' + (evID ? '&cross_event=false&fr_id=' + evID : '&cross_event=true') + '&state=' + stateSearched
