@@ -408,10 +408,10 @@ img {
 .pg_team,
 .pg_company {
   header {
-    height: 250px;
-    @include media-breakpoint-up(md) {
-      height: 350px;
-    }
+    // height: 250px;
+    // @include media-breakpoint-up(md) {
+    //   height: 350px;
+    // }
     &.mobile-open {
       height: auto;
     }
