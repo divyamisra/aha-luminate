@@ -1193,7 +1193,7 @@
                                             eventRow += '<span class="js--company-location">' + companyLocation + '</span>'
                                         }
 
-                                        eventRow += '</p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="' + company.companyURL + '" class="btn btn-primary">Register</a></p></div>'
+                                        eventRow += '</p></div><div class="landing-participant-search__register col-12 col-lg-6"><p><a href="' + company.companyURL + '" class="btn btn-primary" aria-label="Register for ' + company.companyName + '">Register</a></p></div>'
 
                                         $('.js--participant-search-results').attr('aria-live', 'polite').append(eventRow)
                                     }
