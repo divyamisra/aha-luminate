@@ -49,7 +49,7 @@
           <!-- BEGIN company results container -->
           <div class="row">
             <div class="results-tab-pane col-12" id="companySearchResults">
-              <div id="error-company" class="help-block alert alert-danger text-center" tabindex="0" aria-live="assertive" role="alert" hidden>Company not found. Please try different search terms.</div>
+              <div id="error-company" class="help-block alert alert-danger text-center" tabindex="0" aria-live="assertive" role="alert" hidden>No company found to display based on the search criteria. Please try a different search term.</div>
               <div class="js--company-results-container col-md-12" hidden>
                 <div class="d-block d-md-none font-italic mobile-results-count"><span class="js--num-company-results"></span>
                 </div>
@@ -263,7 +263,11 @@
           <!-- BEGIN event results container -->
           <div class="row">
             <div class="results-tab-pane col-12" id="eventSearchResults">
-              <div id="error-event" class="help-block alert alert-danger text-center d-none" tabindex="0" aria-live="assertive" role="alert">Event not found. Please try different search terms.</div>
+              <div id="error-event" class="help-block alert alert-danger text-center d-none" tabindex="0" aria-live="assertive" role="alert">
+                <p class="mb-1">Looks like there are no <strong>Field Day</strong> events in your area at this time.</p>
+                <p class="mb-0"><strong>You can expand your search area or <a href="mailto:fieldday@heart.org">contact us</a> about ways to get
+                    involved.</strong></p>
+              </div>
               <div class="js--event-results-container col-md-12" hidden>
                 <div class="d-block d-md-none font-italic mobile-results-count"><span class="js--num-event-results"></span></div>
                 <table id="eventResultsTable" class="js--events-results-table table mt-4" width="100%">
@@ -336,7 +340,7 @@
           <!-- BEGIN walker results container -->
           <div class="row">
             <div class="results-tab-pane col-12" id="participantSearchResults">
-              <div id="error-participant" class="help-block alert alert-danger text-center" tabindex="0" aria-live="assertive" role="alert" hidden>Teammate not found. Please try different search terms.</div>
+              <div id="error-participant" class="help-block alert alert-danger text-center" tabindex="0" aria-live="assertive" role="alert" hidden>No Team found to display based on the search criteria. Please try a different search term.</div>
               <div class="js--participant-results-container col-md-12" hidden>
                 <div class="d-block d-md-none font-italic mobile-results-count"><span class="js--num-participant-results"></span></div>
                 <table id="participantResultsTable" class="js--participants-results-table table mt-4" width="100%">
