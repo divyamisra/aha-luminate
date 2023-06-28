@@ -387,7 +387,11 @@
                     success: function(response) {
                         if (response.getParticipantsResponse.totalNumberResults === '0') {
                             // no search results
-                            $('#error-participant').removeAttr('hidden').text('Teammate not found. Please try different search terms.')
+                            $('#error-participant').removeAttr('hidden')
+
+                            if ($('#error-participant').text === '') {
+                                $('#error-participant').text('Teammate not found. Please try different search terms.')
+                            }
                         } else {
                             var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant)
                             var totalParticipants = parseInt(response.getParticipantsResponse.totalNumberResults)
@@ -476,7 +480,10 @@
 
                         if (response.getTeamSearchByInfoResponse.totalNumberResults === '0') {
                             // no search results
-                            $('#error-team').removeAttr('hidden').text('Team not found. Please try different search terms.')
+                            $('#error-team').removeAttr('hidden')
+                            if ($('#error-team').text === '') {
+                                $('#error-team').text('Team not found. Please try different search terms.')
+                            }
                             $('.js--error-team-search').show()
                         } else {
                             var teams = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team)
@@ -562,7 +569,10 @@
                         $('#companyResultsTable tbody').empty()
                         if (response.getCompaniesResponse.totalNumberResults === '0') {
                             // no search results
-                            $('#error-company').removeAttr('hidden').text('Company not found. Please try different search terms.')
+                            $('#error-company').removeAttr('hidden')
+                            if ($('#error-company').text === '') {
+                                $('#error-company').text('Company not found. Please try different search terms.')
+                            }
                         } else {
                             var companies = luminateExtend.utils.ensureArray(response.getCompaniesResponse.company)
                             var totalCompanies = parseInt(response.getCompaniesResponse.totalNumberResults)
