@@ -1118,8 +1118,8 @@
 
         cd.getCompaniesLanding = function(companyName) {
             cd.getCompanyData()
-            $('.js--no-participant-results, .js--participant-no-event-results').addClass('d-none')
-            $('.js--no-participant-results, .js--participant-no-event-results').removeAttr('role')
+            $('.js--no-participant-results, .js--company-no-event-results,  .js--participant-no-event-results').addClass('d-none')
+            $('.js--no-participant-results, .js--company-no-event-results, .js--participant-no-event-results').removeAttr('role')
             $('.js--participant-loading').show()
 
             luminateExtend.api({
@@ -1233,7 +1233,7 @@
         // getCompaniesLandingPage
 
         cd.getParticipantsLanding = function(firstName, lastName) {
-            $('.js--no-participant-results, .js--participant-no-event-results').addClass('d-none')
+            $('.js--no-participant-results, .js--company-no-event-results, .js--participant-no-event-results').addClass('d-none')
             $('.js--participant-loading').show()
 
             luminateExtend.api({
