@@ -1174,7 +1174,7 @@
                                 var companySearchArr = fullCompanyArr.flat().filter(item => item !== undefined)
                                 //   console.log(companySearchArr);
                                 if (companySearchArr.length === 0) {
-                                    $('.js--participant-no-event-results').attr('role', 'alert').removeClass('d-none')
+                                    $('.js--company-no-event-results').attr('role', 'alert').removeClass('d-none')
                                 }
                                 if (companySearchArr.length > 10) {
                                     $('.js--participant-more-event-results').removeClass('hidden')
@@ -1213,7 +1213,7 @@
 
                         } else {
                             $('.js--participant-loading').hide()
-                            $('.js--participant-no-event-results').attr('role', 'alert').removeClass('d-none')
+                            $('.js--participant-no-event-results, .js--company-no-event-results,').attr('role', 'alert').removeClass('d-none')
                         }
                     }
                 },
