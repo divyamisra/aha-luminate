@@ -1199,7 +1199,7 @@
                                     }
 
                                 })
-
+                                cd.insertEventNameLanding()
                             }
                             companyTRLoop()
 
@@ -1208,8 +1208,6 @@
                                 $('.js--participant-search-results .row').removeClass('d-none')
                                 $(this).addClass('hidden')
                             })
-
-                            cd.insertEventNameLanding()
 
                             $('.js--participant-search-results').removeAttr('hidden')
 
