@@ -1187,7 +1187,7 @@
 
                                         companyLocation = $('#company-id-' + companyId + ' .js--company-data-location').html()
 
-                                        var eventRow = '<div class="row py-3' + (i > 10 ? ' d-none' : '') + '"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="' + company.companyURL + '"><convio:session name="42" param=" fr_ID:type:param " />' + company.companyName + '</a><br>'
+                                        var eventRow = '<div class="row py-3' + (i > 10 ? ' d-none' : '') + '"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="' + company.companyURL + '">' + company.companyName + '</a><br>'
 
                                         if (companyLocation !== undefined) {
                                             eventRow += '<span class="js--company-location">' + companyLocation + '</span>'
@@ -1284,17 +1284,16 @@
         /* EVENT NAME SCRIPTS */
         /***********************/
         cd.insertEventNameLanding = () => {
-            // Select all the anchor tags which are children of elements with class 'js--event-search-results' and have a parent element with class 'event-results__company'.
+            // Select all company page links
             const companyLinks = Array.from(document.querySelectorAll('.landing-participant-search__name a'))
 
-            // Function to insert date ranges into the event result headings.
+            // Function to insert event name into the company search results.
             const insertEventName = (obj) => {
                 obj = obj[obj.length - 1] // get the last object in the array
-                // Find the closest ancestor heading element, and create a new span element to hold the date range.
-                const companyNameLink = obj.link
-                const eventName = ` (${obj.eventName})`
+                const companyLink = obj.link
+                const eventName = obj.eventName ? ` (${trim(obj.eventName)})` : ''
 
-                companyNameLink && eventName && companyNameLink.appendChild(eventName)
+                companyLink && eventName && companyLink.insertAdjacentText(eventName)
 
                 $('.js--event-results-container').removeAttr('hidden')
             };
@@ -1302,7 +1301,7 @@
             (async () => {
                 const promises = []
 
-                // Loop through all greetingLinks, fetch each link's URL as text, parse it into a DOM, and extract its date range attribute value as an object.
+                // Loop through all companyLinks, fetch each link's URL as text, parse it into a DOM, and extract the event name.
                 for (const link of companyLinks) {
                     const result = await fetch(link.getAttribute('href')).then(response => {
                         return response.text() // get the response HTML as text
@@ -1311,10 +1310,10 @@
                         const doc = parser.parseFromString(html, 'text/html')
                         const eventName = doc.body.querySelector('#company_page_header')?.textContent || doc.body.querySelector('.trr-table-event-name')?.textContent // get the date range attribute value from the parsed DOM
 
-                        return { 'link': link, 'eventName': eventName } // return an object with the link and date range
+                        return { 'link': link, 'eventName': eventName } // return an object with the link and event name
                     })
-                    promises.push(await result) // push the result/object into an array of promises.
-                    insertEventName(await promises) // Call the insertDateRange function to insert the date range.
+                    promises.push(await result)
+                    insertEventName(await promises)
                 }
             })()
         }
