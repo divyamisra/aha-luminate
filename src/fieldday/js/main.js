@@ -1209,6 +1209,8 @@
                                 $(this).addClass('hidden')
                             })
 
+                            cd.insertEventNameLanding()
+
                             $('.js--participant-search-results').removeAttr('hidden')
 
                         } else {
@@ -1222,10 +1224,6 @@
                     console.log(response.errorResponse.message)
                 }
             })
-
-
-
-
         }
         // END getCompaniesLandingPage
 
@@ -1283,6 +1281,45 @@
             })
         }
         // END getCompaniesLandingPage
+
+        /***********************/
+        /* EVENT NAME SCRIPTS */
+        /***********************/
+        cd.insertEventNameLanding = () => {
+            // Select all the anchor tags which are children of elements with class 'js--event-search-results' and have a parent element with class 'event-results__company'.
+            const companyLinks = Array.from(document.querySelectorAll('.landing-participant-search__name a'))
+
+            // Function to insert date ranges into the event result headings.
+            const insertEventName = (obj) => {
+                obj = obj[obj.length - 1] // get the last object in the array
+                // Find the closest ancestor heading element, and create a new span element to hold the date range.
+                const companyNameLink = obj.link
+                const eventName = ` (${obj.eventName})`
+
+                companyNameLink && eventName && companyNameLink.appendChild(eventName)
+
+                $('.js--event-results-container').removeAttr('hidden')
+            };
+
+            (async () => {
+                const promises = []
+
+                // Loop through all greetingLinks, fetch each link's URL as text, parse it into a DOM, and extract its date range attribute value as an object.
+                for (const link of companyLinks) {
+                    const result = await fetch(link.getAttribute('href')).then(response => {
+                        return response.text() // get the response HTML as text
+                    }).then(html => {
+                        const parser = new DOMParser()
+                        const doc = parser.parseFromString(html, 'text/html')
+                        const eventName = doc.body.querySelector('#company_page_header')?.textContent || doc.body.querySelector('.trr-table-event-name')?.textContent // get the date range attribute value from the parsed DOM
+
+                        return { 'link': link, 'eventName': eventName } // return an object with the link and date range
+                    })
+                    promises.push(await result) // push the result/object into an array of promises.
+                    insertEventName(await promises) // Call the insertDateRange function to insert the date range.
+                }
+            })()
+        }
 
         /***********************/
         /* EVENT DATE RANGE SCRIPTS */
