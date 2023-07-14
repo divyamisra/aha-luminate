@@ -1187,7 +1187,7 @@
 
                                         companyLocation = $('#company-id-' + companyId + ' .js--company-data-location').html()
 
-                                        var eventRow = '<div class="row py-3' + (i > 10 ? ' d-none' : '') + '"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="' + company.companyURL + '">[[S42:4724:title]]' + company.companyName + '</a><br>'
+                                        var eventRow = '<div class="row py-3' + (i > 10 ? ' d-none' : '') + '"><div class="landing-participant-search__name col-12 col-lg-6"><p><a href="' + company.companyURL + '"><convio:session name="42" param=" fr_ID:type:param " />' + company.companyName + '</a><br>'
 
                                         if (companyLocation !== undefined) {
                                             eventRow += '<span class="js--company-location">' + companyLocation + '</span>'
