@@ -1293,7 +1293,7 @@
                 const companyLink = obj.link
                 const eventName = obj.eventName ? ` (${trim(obj.eventName)})` : ''
 
-                companyLink && eventName && companyLink.insertAdjacentText(eventName)
+                companyLink && eventName && companyLink.insertAdjacentText('beforeend', eventName)
 
                 $('.js--event-results-container').removeAttr('hidden')
             };
