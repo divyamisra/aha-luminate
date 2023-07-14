@@ -1181,7 +1181,6 @@
                                 }
                                 $(companySearchArr).each(function(i, company) {
                                     if (company !== undefined) {
-                                        var eventName = getEventName(company.frId)
                                         var companyId = company.companyId
 
                                         var companyLocation
