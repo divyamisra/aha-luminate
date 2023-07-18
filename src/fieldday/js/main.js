@@ -1291,9 +1291,13 @@
             const insertEventName = (obj) => {
                 obj = obj[obj.length - 1] // get the last object in the array
                 const companyLink = obj.link
+                const companyButton = companyLink?.closest('.landing-participant-search__name')?.nextElementSibling?.querySelector('a')
                 const eventName = obj.eventName ? ` (${trim(obj.eventName)})` : ''
 
-                companyLink && eventName && companyLink.insertAdjacentText('beforeend', eventName)
+                if (eventName) {
+                    companyLink && companyLink.insertAdjacentText('beforeend', eventName)
+                    companyButton && companyButton.setAttribute('aria-label', `${companyButton.getAttribute('aria-label')}${eventName}`)
+                }
 
                 $('.js--event-results-container').removeAttr('hidden')
             };
