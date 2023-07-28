@@ -650,6 +650,18 @@
         }
 
         // Header Search Forms
+        //landing page skip to search link
+
+        const focusFirstSearchInput = function() {
+            setTimeout(() => {
+                $('.event-city-search').find('input')[0].focus()
+            }, 100)
+        }
+
+        $('header a[href="#search"]').on('click', function(e) {
+            focusFirstSearchInput()
+        })
+
         //search by company
         $('.js--header-company-search').on('submit', function(e) {
             e.preventDefault()
