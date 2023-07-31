@@ -3,6 +3,7 @@ angular.module 'ahaLuminateControllers'
     '$scope'
     '$rootScope'
     '$location'
+    '$sce'
     '$filter'
     '$timeout'
     '$uibModal'
@@ -12,7 +13,7 @@ angular.module 'ahaLuminateControllers'
     'ZuriService'
     'BoundlessService'
     'TeamraiserParticipantPageService'
-    ($scope, $rootScope, $location, $filter, $timeout, $uibModal, APP_INFO, TeamraiserParticipantService, TeamraiserCompanyService, ZuriService, BoundlessService, TeamraiserParticipantPageService) ->
+    ($scope, $rootScope, $location, $sce, $filter, $timeout, $uibModal, APP_INFO, TeamraiserParticipantService, TeamraiserCompanyService, ZuriService, BoundlessService, TeamraiserParticipantPageService) ->
       $dataRoot = angular.element '[data-aha-luminate-root]'
       $scope.participantId = $location.absUrl().split('px=')[1].split('&')[0].split('#')[0]
       $scope.companyId = $dataRoot.data('company-id') if $dataRoot.data('company-id') isnt ''
@@ -29,24 +30,51 @@ angular.module 'ahaLuminateControllers'
       $scope.has_bonus = 0
       $scope.studentChallengeBadge = false
       $scope.schoolChallengeBadge = false
+      timestamp = new Date().getTime() 
+      
       BoundlessService.getBadges $scope.frId + '/' + $scope.participantId
       .then (response) ->
         prizes = response.data.prizes
         $scope.has_bonus = response.data.has_bonus
         angular.forEach prizes, (prize) ->
-          $scope.prizes.push
-            id: prize.id
-            label: prize.label
-            sku: prize.sku
-            status: prize.status
-            earned: prize.earned_datetime
-            image_url: prize.earned_image_url
+          ## skip 3+ donations
+          if prize.sku != 'BDG-4'
+            $scope.prizes.push
+              id: prize.id
+              label: prize.label
+              sku: prize.sku
+              status: prize.status
+              earned: prize.earned_datetime
+              earned_image_url: prize.earned_image_url
+              not_earned_image_url: prize.non_earned_image_url
 
-          if prize.status is 1
-            $scope.prizesEarned++
+            if prize.status is 1
+              $scope.prizesEarned++
       , (response) ->
         # TODO
 
+      $scope.getSchoolPlan = () ->
+        ZuriService.schoolPlanData '&method=GetSchoolPlan&CompanyId=' + $scope.companyId + '&EventId=' + $scope.frId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            $scope.schoolPlan = response.data.company[0]
+            if $scope.schoolPlan.EventStartDate != undefined
+              if $scope.schoolPlan.EventStartDate != '0000-00-00'
+                $scope.schoolPlan.EventStartDate = new Date($scope.schoolPlan.EventStartDate.replace(/-/g, "/") + ' 00:01')
+              if $scope.schoolPlan.EventEndDate != '0000-00-00'
+                $scope.schoolPlan.EventEndDate = new Date($scope.schoolPlan.EventEndDate.replace(/-/g, "/") + ' 00:01')
+              if $scope.schoolPlan.DonationDueDate != '0000-00-00'
+                $scope.schoolPlan.DonationDueDate = new Date($scope.schoolPlan.DonationDueDate.replace(/-/g, "/") + ' 00:01')
+              if $scope.schoolPlan.KickOffDate != '0000-00-00'
+                $scope.schoolPlan.KickOffDate = new Date($scope.schoolPlan.KickOffDate.replace(/-/g, "/") + ' 00:01')
+              $scope.coordinatorPoints = JSON.parse($scope.schoolPlan.PointsDetail)
+            else
+              $scope.schoolPlan.EventStartDate = ''
+              $scope.schoolPlan.DonationDueDate = ''
+              $scope.schoolPlan.KickOffDate = ''
+      $scope.getSchoolPlan()
+      
       checkSchoolChallenges = (amountRaised) ->
         amt = amountRaised / 100
         ZuriService.getSchoolData $scope.companyId,
@@ -185,7 +213,7 @@ angular.module 'ahaLuminateControllers'
           $scope.personalDonors.totalNumber = $defaultPersonalDonors.length
       
       $scope.personalPagePhoto1 =
-        defaultUrl: APP_INFO.rootPath + 'dist/middle-school/image/fy22/personal-default.jpg'
+        defaultUrl: APP_INFO.rootPath + 'dist/middle-school/image/fy23/personal-default.jpg'
       
       $scope.editPersonalPhoto1 = ->
         delete $scope.updatePersonalPhoto1Error

@@ -56,7 +56,7 @@
 
     #mobile-toggle, #mobile-search {
       margin: 25px 20px 0;
-      color: $white;
+      color: $red-deep;
     }
   }
 
@@ -448,7 +448,7 @@
   }
 
   h2 {
-    font-size: 1.111rem;
+    font-size: 1.7rem;
   }
 
   h4 {
@@ -512,7 +512,6 @@
 
       .btn {
         max-width: none !important;
-        padding: 9px 0 !important;
         &:first-child {
           margin-bottom: 10px;
         }

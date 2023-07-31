@@ -9,6 +9,18 @@
   </script>
   <script src="../js/ajax_mce.js"></script>
 ::]]
+<script>
+  fbq('track', 'CompleteRegistration');
+</script>
+[[?[[S8]]::/admin/::
+  <!-- on admin-facing page -->
+::
+<style>
+body {
+   display: none;
+}
+</style>
+]]
 <div class="ym-registration-page-container ym-registration-page-container--regsummary" ng-controller="RegistrationRegSummaryCtrl">
   <div ng-cloak>
     <div class="ym-registration-page-header">
@@ -23,7 +35,7 @@
         </div>
       ]]
       [[?xyz.xnullynullz.xynullz.xnullyz::x[[A4]]y[[A6]]z::::
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-danger" role="alert" tabindex="0">
           [[?xy.xnully::x[[A4]]y::
             [[M0:friendraiser:generic_error]]
           ::
@@ -33,15 +45,15 @@
       ]]
     </div>
     <form class="ym-registration-regsummary-form" method="POST" novalidate ng-submit="submitRegSummary()">
-      <div class="hidden js--registration-regsummary-participant-info">
+      <div class="hidden d-none js--registration-regsummary-participant-info">
         [[A13]]
       </div>
       <div class="ym-registration-regsummary-contact-header">
         <div class="clearfix">
           <p class="ym-section-header">
-            Student contact information:
+            <span class="ym-contact-type">Student</span> contact information:
           </p>
-          <a class="btn btn-md btn-toggle" href="[[A1]]?fr_id=[[S80:trID]]&amp;pg=regsummary&amp;action=previous">
+          <a aria-label="Edit Contact Information" class="btn btn-md btn-toggle" href="[[A1]]?fr_id=[[S80:trID]]&amp;pg=regsummary&amp;action=previous">
             <i class="fa fa-pencil"></i> Edit
           </a>
         </div>
@@ -59,7 +71,7 @@
             <p class="ym-section-header">
               Your donation:
             </p>
-            <a class="btn btn-md btn-toggle" href="[[A1]]?fr_id=[[S80:trID]]&amp;pg=regsummary&amp;action=previous">
+            <a aria-label="Edit Your Donation" class="btn btn-md btn-toggle" href="[[A1]]?fr_id=[[S80:trID]]&amp;pg=regsummary&amp;action=previous">
               <i class="fa fa-pencil"></i> Edit
             </a>
           </div>
@@ -84,7 +96,7 @@
                 </button>
               ]]
             </div>
-            <div class="pull-right hidden-xs">
+            <div class="center hidden-xs">
               [[?xTx::x[[A26]]x::::
                 <button type="[[?xTx::x[[A12]]x::button::submit]]" class="btn btn-primary">
                   <strong>Next</strong> <i class="fa fa-chevron-right"></i>
@@ -97,7 +109,7 @@
       [[S66:util/SpamControlComponentResponsive.tpt]]
     </form>
   </div>
-  <div class="hidden" hidden aria-hidden="true">
+  <div class="hidden d-none" hidden aria-hidden="true">
     <form class="js--default-regsummary-form" action="[[A1]]" method="POST">
       <input type="hidden" name="fr_id" value="[[A2]]">
       <input type="hidden" name="pg" value="[[A7]]">

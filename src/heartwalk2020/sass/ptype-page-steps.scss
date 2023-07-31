@@ -1,0 +1,615 @@
+div#registration-ptype-page-steps {
+    display: none;
+
+    .font-size-lg {
+        font-size: $font-size-lg;
+    }
+
+    button {
+        &.btn-secondary {
+            color: $gray-900;
+            border-color: $gray-900;
+
+            &:hover {
+                color: $gray-900 !important;
+                border-color: $gray-900 !important;
+                background-color: $gray-200 !important;
+            }
+        }
+    }
+
+    div.registration-ptype-page-step {
+        display: none;
+
+        > h1,
+        a.previous-step {
+            display: none;
+        }
+
+        .display-table {
+            display: table;
+        }
+
+        .display-table-cell {
+            display: table-cell;
+        }
+
+        .img-item {
+            width: 100%;
+            max-width: 225px;
+            max-height: 225px;
+        }
+
+        div#part_type_additional_gift_container,
+        div#part_type_individual_company_selection_container,
+        div#part_type_section_footer {
+            display: block;
+        }
+    }
+
+    div#registration-ptype-page-step-1 {
+        display: block;
+
+        ul {
+            list-style-type: none;
+            padding: 10px 0 0 0;
+
+            li {
+                position: relative;
+                padding: 15px 0 15px 30px;
+
+                span.heart-icon {
+                    position: absolute;
+                    left: 0;
+                    color: red;
+                }
+            }
+        }
+    }
+
+    div#registration-ptype-page-step-2 {
+        div#discount_code_container,
+        div#part_type_selection_container {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 680px;
+        }
+
+        div#discount_code_container {
+            #part_type_discount_code_section_row_container {
+                text-align: center;
+
+                input {
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+            }
+        }
+    }
+
+    div#registration-ptype-page-step-3 {
+        @media (max-width: 767px) {
+            h2 {
+                text-align: center;
+            }
+        }
+    }
+
+    div#registration-ptype-page-step-4 {
+        #part_type_additional_gift_container {
+            &> .form-content {
+                margin-right: 0;
+            }
+
+            .donation-level-row-container-no-gift {
+                display: block;
+                border: none;
+                padding-top: 5px;
+
+                &:hover, &.active {
+                    color: inherit;
+                    background: transparent;
+                }
+            }
+        }
+
+        .img-item {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        div.dtd-content {
+            margin: 0 auto 40px auto;
+            width: 80%;
+        }
+
+        button#next_step {
+            float: none;
+            height: auto;
+            min-width: auto;
+            font-size: 1rem;
+            margin: 0;
+            padding: 15px 20px;
+            line-height: 1;
+        }
+
+        @media (max-width: 991px) {
+            div.dtd-content {
+                width: 100%;
+            }
+        }
+    }
+
+    .registration-ptype-personal-goal-slider-photos {
+        position: relative;
+        width: 92%;
+        max-width: 764px;
+        padding-bottom: 30px;
+        margin: 15px auto 0 auto;
+
+        > div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+
+            &#pg-slider-photo-1 {
+                position: relative;
+            }
+
+            &#pg-slider-photo-2
+            {
+                z-index: 5;
+            }
+            &#pg-slider-photo-3
+            {
+                z-index: 4;
+            }
+            &#pg-slider-photo-4
+            {
+                z-index: 3;
+            }
+            &#pg-slider-photo-5
+            {
+                z-index: 2;
+            }
+
+            //&#pg-slider-photo-3,
+            //&#pg-slider-photo-5
+            //{
+            //    z-index: 10;
+            //}
+        }
+
+        .pg-slider-photo {
+            width: 100%;
+            max-width: 100%;
+        }
+    }
+
+    .registration-ptype-personal-goal-slider-container {
+        width: 82%;
+        margin: 80px auto 70px auto;
+
+        .registration-ptype-personal-goal-slider-dots {
+            position: relative;
+            margin: 0 auto;
+
+            .slider-dot {
+                position: absolute;
+                display: block;
+                top: -11px;
+                width: 28px;
+                height: 28px;
+                border-radius: 50%;
+                cursor: pointer;
+                background-color: #bababb;
+
+                &.active {
+                    background-color: #c00001;
+
+                    &.selected {
+                        &::after {
+                            color: #c00001;
+                            font-family: LubDubBold,Helvetica,Arial,sans-serif;
+                            font-weight: 700;
+                            font-size: 2rem;
+                            position: absolute;
+                            top: -80px;
+                        }
+                    }
+                }
+
+                &#slider-dot-1 {
+                    left: -14px;
+
+                    &::before {
+                        content: "$100" / "";
+                        font-size: 16px;
+                        position: absolute;
+                        top: 48px;
+                        left: -4px;
+                    }
+
+                    &.selected {
+                        &::after {
+                            content: '$100';
+                            left: -23px;
+                        }
+                    }
+                }
+
+                &#slider-dot-2 {
+                    left: calc(20% - 14px);
+
+                    &.selected {
+                        &::after {
+                            content: '$250';
+                            left: -27px;
+                        }
+                    }
+                }
+
+                &#slider-dot-3 {
+                    left: calc(40% - 14px);
+
+                    &.selected {
+                        &::after {
+                            content: '$500';
+                            left: -27px;
+                        }
+                    }
+                }
+
+                &#slider-dot-4 {
+                    left: calc(60% - 14px);
+
+                    &.selected {
+                        &::after {
+                            content: '$1,000';
+                            left: -42px;
+                        }
+                    }
+                }
+
+                &#slider-dot-5 {
+                    left: calc(80% - 14px);
+
+                    &.selected {
+                        &::after {
+                            content: '$2,500';
+                            left: -42px;
+                        }
+                    }
+                }
+
+                &#slider-dot-6 {
+                    left: calc(100% - 14px);
+
+                    &::before {
+                        content: "$5,000" / "";
+                        font-size: 16px;
+                        position: absolute;
+                        top: 48px;
+                        left: -15px;
+                    }
+
+                    &.selected {
+                        &::after {
+                            content: '$5,000';
+                            left: -42px;
+                        }
+                    }
+                }
+            }
+        }
+
+        #registration-ptype-personal-goal-slider {
+            &.ui-slider {
+                position: relative;
+                height: 5px;
+                background-color: #bababb;
+
+                .ui-slider-range {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 100%;
+                    background-color: #c00001;
+                    z-index: 1;
+                }
+
+                .ui-slider-handle {
+                    position: absolute;
+                    background-image: url('../../../../../images/content/pagebuilder/heart.png');
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    width: 65px;
+                    height: 57px;
+                    top: -24px;
+                    margin-left: -32px;
+                    cursor: pointer;
+                    border: none;
+                    //outline: none;
+                    z-index: 2;
+
+                    &.shake-horizontal {
+                        -webkit-animation: shake-horizontal 1.2s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+                        animation: shake-horizontal 1.2s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+                    }
+                }
+            }
+        }
+    }
+
+    .registration-ptype-personal-goal-slider-other-amount-selector {
+        padding-bottom: 40px;
+
+        a {
+            color: $gray-900;
+            font-size: 16px;
+        }
+    }
+
+    @media (max-width: 991px) {
+        .registration-ptype-personal-goal-slider-photos {
+            margin-top: 35px;
+            padding-bottom: 10px;
+        }
+
+        .registration-ptype-personal-goal-slider-container {
+            #registration-ptype-personal-goal-slider {
+                &.ui-slider {
+                    height: 3px;
+
+                    .ui-slider-handle {
+                        width: 48px;
+                        height: 42px;
+                        top: -18px;
+                        margin-left: -24px;
+                    }
+                }
+            }
+
+            .registration-ptype-personal-goal-slider-dots {
+                .slider-dot {
+                    top: -8px;
+                    width: 20px;
+                    height: 20px;
+
+                    &.active {
+                        &.selected {
+                            &::after {
+                                font-size: 1.2rem;
+                                top: -55px;
+                            }
+                        }
+                    }
+
+                    &#slider-dot-1 {
+                        left: -10px;
+
+                        &::before {
+                            top: 38px;
+                            left: -8px;
+                        }
+
+                        &.selected {
+                            &::after {
+                                left: -10px;
+                            }
+                        }
+                    }
+
+                    &#slider-dot-2 {
+                        left: calc(20% - 10px);
+
+                        &.selected {
+                            &::after {
+                                left: -16px;
+                            }
+                        }
+                    }
+
+                    &#slider-dot-3 {
+                        left: calc(40% - 10px);
+
+                        &.selected {
+                            &::after {
+                                left: -16px;
+                            }
+                        }
+                    }
+
+                    &#slider-dot-4 {
+                        left: calc(60% - 10px);
+
+                        &.selected {
+                            &::after {
+                                left: -24px;
+                            }
+                        }
+                    }
+
+                    &#slider-dot-5 {
+                        left: calc(80% - 10px);
+
+                        &.selected {
+                            &::after {
+                                left: -24px;
+                            }
+                        }
+                    }
+
+                    &#slider-dot-6 {
+                        left: calc(100% - 10px);
+
+                        &::before {
+                            top: 38px;
+                            left: -20px;
+                        }
+
+                        &.selected {
+                            &::after {
+                                left: -24px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    #registration-ptype-personal-goal-other-amount-page {
+        img {
+            display: block;
+            margin: 40px auto;
+            width: 40%;
+            max-width: 209px;
+        }
+
+        .registration-ptype-personal-goal-other-amount-container {
+            padding-bottom: 30px;
+        }
+
+        .personal-goal-other-amount-input-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 10px;
+
+            .dollar-sign {
+                position: absolute;
+                top: 7px;
+                left: 37px;
+                color: #c00001;
+                font-family: LubDubBold,Helvetica,Arial,sans-serif;
+                font-weight: 700;
+                font-size: 3.2rem;
+
+                &.custom-amount-blink {
+                    -webkit-animation: custom-amount-blink 3s infinite both;
+                    animation: custom-amount-blink 3s infinite both;
+                }
+            }
+
+            input {
+                width: 300px;
+                line-height: 80px;
+                height: auto !important;
+                max-height: none !important;
+                padding-left: 65px;
+                color: #c00001;
+                font-family: LubDubBold,Helvetica,Arial,sans-serif;
+                font-weight: 700;
+                font-size: 3.2rem;
+                border: 5px solid $gray-600 !important;
+                border-radius: 30px !important;
+            }
+        }
+    }
+
+    /* ----------------------------------------------
+     * Generated by Animista on 2022-7-14 12:31:49
+     * Licensed under FreeBSD License.
+     * See http://animista.net/license for more info.
+     * w: http://animista.net, t: @cssanimista
+     * ---------------------------------------------- */
+
+    /**
+     * ----------------------------------------
+     * animation shake-horizontal
+     * ----------------------------------------
+     */
+    @-webkit-keyframes shake-horizontal {
+        0%,
+        100% {
+            -webkit-transform: translateX(0);
+            transform: translateX(0);
+        }
+        10%,
+        30%,
+        50%,
+        70% {
+            -webkit-transform: translateX(-8px);
+            transform: translateX(-8px);
+        }
+        20%,
+        40%,
+        60% {
+            -webkit-transform: translateX(8px);
+            transform: translateX(8px);
+        }
+        80% {
+            -webkit-transform: translateX(6px);
+            transform: translateX(6px);
+        }
+        90% {
+            -webkit-transform: translateX(-6px);
+            transform: translateX(-6px);
+        }
+    }
+    @keyframes shake-horizontal {
+        0%,
+        100% {
+            -webkit-transform: translateX(0);
+            transform: translateX(0);
+        }
+        10%,
+        30%,
+        50%,
+        70% {
+            -webkit-transform: translateX(-8px);
+            transform: translateX(-8px);
+        }
+        20%,
+        40%,
+        60% {
+            -webkit-transform: translateX(8px);
+            transform: translateX(8px);
+        }
+        80% {
+            -webkit-transform: translateX(6px);
+            transform: translateX(6px);
+        }
+        90% {
+            -webkit-transform: translateX(-6px);
+            transform: translateX(-6px);
+        }
+    }
+
+    /* ----------------------------------------------
+     * Generated by Animista on 2022-7-18 13:52:14
+     * Licensed under FreeBSD License.
+     * See http://animista.net/license for more info.
+     * w: http://animista.net, t: @cssanimista
+     * ---------------------------------------------- */
+
+    /**
+     * ----------------------------------------
+     * animation custom-amount-blink
+     * ----------------------------------------
+     */
+    @-webkit-keyframes custom-amount-blink {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.2;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    @keyframes custom-amount-blink {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.2;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+}

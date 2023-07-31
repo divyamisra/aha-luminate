@@ -1,0 +1,29 @@
+  <div class="modal-header">
+    <h2 class="h5 modal-title">
+      Available Products List
+    </h2>
+  </div>
+  <div class="modal-body text-center" ng-if="reportPending" ng-cloak>
+    <div class="available-products-status">
+      <div style="vertical-align: bottom;height: 50px;display: flex;align-items: flex-end;justify-content: center;margin-bottom: 30px;">
+        Report is being generated... <img class="img-responsive" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-rewards/image/loading.gif" alt="Loading Image"></div>
+      </div>
+  </div>
+  <div class="modal-body text-center" ng-if="!reportPending" ng-cloak>
+    <div class="available-products-status">
+      Report generation is completed.<br/><br/>
+      <button type="button" class="btn btn-md-wide btn-primary" ng-csv="productReport" filename="product_list_report.csv" csv-header="['Main Product ID', 'Product ID', 'Quantity', 'Total Quantity']" csv-fields="['origProductId', 'productSizeId', 'quantity', 'totalQuantity']" charset="utf-8"><span class="glyphicon glyphicon-download-alt">&nbsp;</span>Download CSV</button>
+      <div class="alert" role="alert" ng-if="buildCSVPending == 'done'" ng-cloak>
+	<strong>CSV File has been created and downloaded.</strong>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer" ng-if="!reportPending" ng-cloak>
+    <div class="clearfix">
+      <div class="text-center">
+        <button type="button" class="btn btn-toggle" ng-click="cancelAvailableProducts()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div> 

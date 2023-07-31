@@ -660,6 +660,8 @@
         $(greetingIntroContainer).insertAfter('.details-container');
       }
 
+
+
     }
 
 
@@ -2558,6 +2560,27 @@
           $(this).closest('.part-type-container').addClass('selected');
         });
 
+        $('#next_step').on('click', function () {
+          console.log('click function for stationery? ')
+          if ($('input[name^="donation_level_form_"]:checked').val() != '$0.00' || ($('input[name^="donation_level_form_"]:checked').closest('donation-level-row-container').hasClass('.other-amount-row-container') && $('input[name^="fr_donation_level_enter_amount_"]').val() != '')) {
+            // If the participant chooses to make a gift, check for the Double the Donation field
+            // and record the chosen company in local storage if it exists
+            var $doubleDonationCompany = $('input[name="doublethedonation_company_id"]');
+            if ($doubleDonationCompany.length && $doubleDonationCompany.val().length > 0) {
+                console.log('found dtd value');
+                var dtdCoId = $('input[name="doublethedonation_company_id"]').val();
+                console.log('dtdCoId ' + dtdCoId);
+                localStorage.dtdCompanyId = dtdCoId;
+            } else {
+                console.log('clear dtd company id');
+                localStorage.dtdCompanyId = "";
+            }
+          }
+
+        });
+        
+
+
       } else {
         $('#sel_type_container').text('How would you like to participate?');
         // Hide and disable participation types that don't apply to this particular registration path
@@ -2584,6 +2607,23 @@
             }, 1000);
 
             return false;
+          }
+
+          // if ($('.donation-level-container').find('.donation-level-row-container.active').length > 0 || $('.donation-level-container').find('.donation-level-row-container.active').hasClass('don-no-gift') === false) {
+
+          if ($('input[name^="donation_level_form_"]:checked').val() != '$0.00' || ($('input[name^="donation_level_form_"]:checked').closest('donation-level-row-container').hasClass('.other-amount-row-container') && $('input[name^="fr_donation_level_enter_amount_"]').val() != '')) {
+            // If the participant chooses to make a gift, check for the Double the Donation field
+            // and record the chosen company in local storage if it exists
+            var $doubleDonationCompany = $('input[name="doublethedonation_company_id"]');
+            if ($doubleDonationCompany.length && $doubleDonationCompany.val().length > 0) {
+                console.log('found dtd value');
+                var dtdCoId = $('input[name="doublethedonation_company_id"]').val();
+                console.log('dtdCoId ' + dtdCoId);
+                localStorage.dtdCompanyId = dtdCoId;
+            } else {
+                console.log('clear dtd company id');
+                localStorage.dtdCompanyId = "";
+            }
           }
         });
 
@@ -2920,6 +2960,23 @@
         e.preventDefault();
         $('#next_button').click();
       });
+
+      $('#next_button').click(function(){
+
+        if ($('.additional-gift-amount').text() != '$0.00'){
+            console.log('there is a gift value');
+            var addlGiftAmt = $('.additional-gift-amount').text();
+            addlGiftAmt = addlGiftAmt.trim();
+            console.log("addlGiftAmt " + addlGiftAmt)
+            localStorage.addlGiftAmt = addlGiftAmt;
+        }
+        else {
+            console.log('clear addGiftAmt'); 
+            localStorage.addlGiftAmt = "";
+        }
+
+      });
+
 
     }
     // payment step of reg
@@ -3260,11 +3317,418 @@
       $('.js__chapter-intro-images img').each(function (i) {
         $('.js__carousel-indicators').append('<li data-target="#carouselIndicators" data-slide-to="' + i + '"' + (i === 0 ? 'class="active"' : '') + '></li>');
 
-        $('.js__carousel-inner').append('<div class="carousel-item ' + (i === 0 ? 'active' : '') + '"><img src="' + $(this).attr('src') + '" alt="' + $(this).attr('alt') + '"></div>');
+        $('.js__carousel-inner').append('<div class="carousel-item item ' + (i === 0 ? 'active' : '') + '"><img src="' + $(this).attr('src') + '" alt="' + $(this).attr('alt') + '"></div>');
       });
       $('.carousel').carousel({
         interval: 4000
       });
+
+      // accessible carousel overrides.
+      setTimeout(function() {
+        console.log("boot in carousel");
+       
+       (function($) {
+        "use strict"; 
+      
+        // GENERAL UTILITY FUNCTIONS
+        // ===============================
+        
+        var uniqueId = function(prefix) {
+            return (prefix || 'ui-id') + '-' + Math.floor((Math.random()*1000)+1)
+        }
+      
+        
+        var removeMultiValAttributes = function (el, attr, val) {
+         var describedby = (el.attr( attr ) || "").split( /\s+/ )
+            , index = $.inArray(val, describedby)
+         if ( index !== -1 ) {
+           describedby.splice( index, 1 )
+         }
+         describedby = $.trim( describedby.join( " " ) )
+         if (describedby ) {
+           el.attr( attr, describedby )
+         } else {
+          el.removeAttr( attr )
+         }
+        }
+      
+      // selectors  Courtesy: https://github.com/jquery/jquery-ui/blob/master/ui/core.js
+        var focusable = function ( element, isTabIndexNotNaN ) {
+          var map, mapName, img,
+          nodeName = element.nodeName.toLowerCase();
+          if ( "area" === nodeName ) {
+          map = element.parentNode;
+          mapName = map.name;
+          if ( !element.href || !mapName || map.nodeName.toLowerCase() !== "map" ) {
+          return false;
+          }
+          img = $( "img[usemap='#" + mapName + "']" )[ 0 ];
+          return !!img && visible( img );
+          }
+          return ( /input|select|textarea|button|object/.test( nodeName ) ?
+          !element.disabled :
+          "a" === nodeName ?
+          element.href || isTabIndexNotNaN :isTabIndexNotNaN) && visible( element ); // the element and all of its ancestors must be visible  
+        }
+        var visible = function ( element ) {
+          return $.expr.filters.visible( element ) &&
+            !$( element ).parents().addBack().filter(function() {
+              return $.css( this, "visibility" ) === "hidden";
+            }).length;
+        }
+      
+        $.extend( $.expr[ ":" ], {
+          data: $.expr.createPseudo ?
+            $.expr.createPseudo(function( dataName ) {
+              return function( elem ) {
+                return !!$.data( elem, dataName );
+              };
+            }) :
+            // support: jQuery <1.8
+            function( elem, i, match ) {
+              return !!$.data( elem, match[ 3 ] );
+            },
+      
+          focusable: function( element ) {
+            return focusable( element, !isNaN( $.attr( element, "tabindex" ) ) );
+          },
+      
+          tabbable: function( element ) {
+            var tabIndex = $.attr( element, "tabindex" ),
+              isTabIndexNaN = isNaN( tabIndex );
+            return ( isTabIndexNaN || tabIndex >= 0 ) && focusable( element, !isTabIndexNaN );
+          }
+        });
+      
+          
+         // Carousel Extension
+        // ===============================
+        
+            $('.carousel').each(function (index) {
+            
+              // This function positions a highlight box around the tabs in the tablist to use in focus styling
+              
+              function setTablistHighlightBox() {
+      
+                var $tab
+                    , offset
+                    , height
+                    , width
+                    , highlightBox = {}
+      
+                  highlightBox.top     = 0
+                highlightBox.left    = 32000
+                highlightBox.height  = 0
+                highlightBox.width   = 0
+      
+                for (var i = 0; i < $tabs.length; i++) {
+                  $tab = $tabs[i]
+                  offset = $($tab).offset()
+                  height = $($tab).height()
+                  width  = $($tab).width()
+                
+      //            console.log(" Top: " + offset.top + " Left: " + offset.left + " Height: " + height + " Width: " + width)
+                
+                  if (highlightBox.top < offset.top) { 
+                    highlightBox.top    = Math.round(offset.top)
+                  }
+      
+                  if (highlightBox.height < height) { 
+                    highlightBox.height = Math.round(height)
+                  }
+                  
+                  if (highlightBox.left > offset.left) {
+                    highlightBox.left = Math.round(offset.left)
+                  }
+                
+                  var w = (offset.left - highlightBox.left) + Math.round(width)
+                
+                  if (highlightBox.width < w) {
+                    highlightBox.width = w 
+                  }
+                    
+                } // end for
+                
+                $tablistHighlight.style.top    = (highlightBox.top    - 2)  + 'px'
+                $tablistHighlight.style.left   = (highlightBox.left   - 2)  + 'px'
+                $tablistHighlight.style.height = (highlightBox.height + 7)  + 'px'
+                $tablistHighlight.style.width  = (highlightBox.width  + 8)  + 'px'
+              
+              } // end function
+            
+              var $this = $(this)
+                , $prev        = $this.find('[data-slide="prev"]')
+                , $next        = $this.find('[data-slide="next"]')
+                , $tablist    = $this.find('.carousel-indicators')
+                , $tabs       = $this.find('.carousel-indicators li')
+                , $tabpanels  = $this.find('.item')
+                , $tabpanel
+                , $tablistHighlight
+                , $pauseCarousel
+                , $complementaryLandmark
+                , $tab
+                , $is_paused = false
+                , offset
+                , height
+                , width
+                , i
+                , id_title  = 'id_title'
+                , id_desc   = 'id_desc'
+      
+      
+              $tablist.attr('role', 'tablist')
+              
+              $tabs.focus(function() {
+                $this.carousel('pause')
+                $is_paused = true
+                $pauseCarousel.innerHTML = "Play Carousel"
+                $(this).parent().addClass('active');
+      //          $(this).addClass('focus')
+                setTablistHighlightBox()
+                $($tablistHighlight).addClass('focus')
+                $(this).parents('.carousel').addClass('contrast')
+              })
+      
+              $tabs.blur(function(event) {
+                $(this).parent().removeClass('active');
+      //          $(this).removeClass('focus')
+                $($tablistHighlight).removeClass('focus')
+                $(this).parents('.carousel').removeClass('contrast')
+              })
+      
+              
+              for (i = 0; i < $tabpanels.length; i++) {
+                $tabpanel = $tabpanels[i]
+                $tabpanel.setAttribute('role', 'tabpanel')
+                $tabpanel.setAttribute('id', 'tabpanel-' + index + '-' + i)
+                $tabpanel.setAttribute('aria-labelledby', 'tab-' + index + '-' + i)
+              }
+      
+              if (typeof $this.attr('role') !== 'string') {
+                $this.attr('role', 'complementary');
+                $this.attr('aria-labelledby', id_title);
+                $this.attr('aria-describedby', id_desc);
+                $this.prepend('<p  id="' + id_desc   + '" class="sr-only">A carousel is a rotating set of images, rotation stops on keyboard focus on carousel tab controls or hovering the mouse pointer over images.  Use the tabs to change the displayed slide.</p>')
+                $this.prepend('<h2 id="' + id_title  + '" class="sr-only">Field Day image arousel content with ' + $tabpanels.length + ' slides.</h2>')
+              }  
+      
+                      
+              for (i = 0; i < $tabs.length; i++) {
+                $tab = $tabs[i]
+                
+                $tab.setAttribute('role', 'tab')
+                $tab.setAttribute('id', 'tab-' + index + '-' + i)
+                $tab.setAttribute('aria-controls', 'tabpanel-' + index + '-' + i)
+                
+                var tpId = '#tabpanel-' + index + '-' + i
+                // var caption = $this.find(tpId).find('h1').text()
+                var caption = $('.carousel-inner '+tpId+' img').attr('alt');
+                          
+                var tabName = document.createElement('span')
+                tabName.setAttribute('class', 'sr-only')
+                tabName.innerHTML='Slide ' + (i+1)
+                if (caption) tabName.innerHTML += ": " +  caption          
+                $tab.appendChild(tabName)
+                
+               }
+      
+              // create div for focus styling of tablist
+              $tablistHighlight = document.createElement('div')
+              $tablistHighlight.className = 'carousel-tablist-highlight'
+              document.body.appendChild($tablistHighlight)
+              
+              // create button for screen reader users to stop rotation of carousel
+      
+              // create button for screen reader users to pause carousel for virtual mode review
+              $complementaryLandmark = document.createElement('aside')
+              $complementaryLandmark.setAttribute('aria-label', 'carousel pause/play control')
+              $('.section-hero-photos').prepend($complementaryLandmark)
+              
+              $pauseCarousel = document.createElement('button')
+              $pauseCarousel.className = "play-pause-carousel aural-only"
+              $pauseCarousel.innerHTML = "Pause Carousel"
+              $pauseCarousel.setAttribute('title', "Pause/Play carousel button can be used by screen reader users to stop carousel animations")
+              $($complementaryLandmark).append($pauseCarousel)
+              
+              $($pauseCarousel).click(function() {
+                if ($is_paused) {
+                  $pauseCarousel.innerHTML = "Pause Carousel"
+                  $this.carousel('cycle')
+                  $is_paused = false
+                }
+                else {
+                  $pauseCarousel.innerHTML = "Play Carousel"
+                  $this.carousel('pause')
+                  $is_paused = true
+                }  
+              })
+              $($pauseCarousel).focus(function() {
+                $(this).addClass('focus')
+              })
+              
+              $($pauseCarousel).blur(function() {
+                $(this).removeClass('focus')
+              })
+              
+              setTablistHighlightBox()
+      
+              $( window ).resize(function() {
+                setTablistHighlightBox()
+              })
+              
+              // Add space bar behavior to prev and next buttons for SR compatibility
+              $prev.attr('aria-label', 'Previous Slide')
+              $prev.keydown(function(e) {
+                var k = e.which || e.keyCode
+                if (/(13|32)/.test(k)) {
+                  e.preventDefault()
+                  e.stopPropagation()
+                  $prev.trigger('click');
+                }
+              });
+      
+              $prev.focus(function() {
+                $(this).parents('.carousel').addClass('contrast')
+              })        
+      
+              $prev.blur(function() {
+                $(this).parents('.carousel').removeClass('contrast')
+              })        
+              
+              $next.attr('aria-label', 'Next Slide')
+              $next.keydown(function(e) {
+                var k = e.which || e.keyCode
+                if (/(13|32)/.test(k)) {
+                  e.preventDefault()
+                  e.stopPropagation()           
+                  $next.trigger('click');
+                }
+              });
+      
+              $next.focus(function() {
+                $(this).parents('.carousel').addClass('contrast')
+              })        
+      
+              $next.blur(function() {
+                $(this).parents('.carousel').removeClass('contrast')
+              })        
+              
+              $('.carousel-inner a').focus(function() {
+                $(this).parents('.carousel').addClass('contrast')
+              })        
+      
+               $('.carousel-inner a').blur(function() {
+                $(this).parents('.carousel').removeClass('contrast')
+              })        
+      
+              $tabs.each(function () {
+                var item = $(this)
+                if(item.hasClass('active')) {
+                  item.attr({ 'aria-selected': 'true', 'tabindex' : '0' })
+                  console.log("one time set params right?");
+                }else{
+                  item.attr({ 'aria-selected': 'false', 'tabindex' : '-1' })
+                }
+              })
+            })
+      
+            // var slideCarousel = $.fn.carousel.Constructor.prototype.slide
+            //$.fn.carousel.Constructor.prototype.slide = function (type, next) {
+      
+      // $('#myCarousel').on('slide.bs.carousel', function (e) {
+      //   console.log(e.direction)
+      // })
+      
+            $('#carouselIndicators').on('slid.bs.carousel', function(e) {
+      
+              // var $element = this.$element
+              var $element = $(this)
+      
+                // , $active  = $(this).find('[role=tabpanel].active')
+      
+                , $active  = $element.find('[role=tabpanel].active')
+      
+            $active
+              .one('bsTransitionEnd', function () {
+                var $tab
+      
+                // console.log("active = ", $active)
+                // console.log("nect = ", $next)
+      
+      
+                $element.find('li[role="tab"]').attr({'aria-selected': false, 'tabIndex': '-1'})
+                
+                $tab = $element.find('li[aria-controls="' + $active.attr('id') + '"]')
+                if ($tab) $tab.attr({'aria-selected':true, 'tabIndex': '0'})
+      
+                // $tab = $element.find('li[aria-controls="' + $next.attr('id') + '"]')
+                // if ($tab) $tab.attr({'aria-selected': true, 'tabIndex': '0'})
+                
+             })
+      
+            
+            })
+            // this was not in original $(document).on('slid.bs.carousel', 'li[role=tab]', $.fn.carousel.Constructor.prototype.slide)
+            // $('#carouselIndicators').on('slide.bs.carousel', slideFunction())
+      
+      
+           var $this;
+           $.fn.carousel.Constructor.prototype.keydown = function (e) {
+      
+            console.log("car cons keydown");
+           
+           $this = $this || $(this)
+           if(this instanceof Node) $this = $(this)
+           
+           function selectTab(index) {
+             if (index >= $tabs.length) return 
+             if (index < 0) return
+      
+             $carousel.carousel(index)
+             setTimeout(function () {
+                  $tabs[index].focus()
+                  // $this.prev().focus()
+             }, 150)      
+           }
+           
+           var $carousel = $(e.target).closest('.carousel')
+            , $tabs      = $carousel.find('[role=tab]')
+            , k = e.which || e.keyCode
+            , index
+             
+             console.log("keycode ",k)
+            if (!/(37|38|39|40)/.test(k)) return
+            
+            index = $tabs.index($tabs.filter('.active'))
+            if (k == 38) {                           //  Up
+              index--
+              selectTab(index);
+            }
+            
+            if (k == 40) {                          // Down
+              index++
+              selectTab(index);
+            }
+      
+            if (k == 37) {                           //  Up
+              // index--
+              selectTab(index);
+            }
+            
+            if (k == 39) {                          // Down
+              // index++
+              selectTab(index);
+            }
+      
+            e.preventDefault()
+            e.stopPropagation()
+          }
+          $(document).on('keydown.carousel.data-api', 'li[role=tab]', $.fn.carousel.Constructor.prototype.keydown)
+      
+      
+       })(jQuery);
+      
+      },1000);
 
       if (viewportWidth < 640) {
         $('#rider_name').attr('placeholder', 'Search');
@@ -3312,6 +3776,8 @@
 
               break;
           }
+
+          
 
           // var sponsorToPush = { };
           // sponsorToPush["sponsorName"] = sponsorName;
@@ -3611,7 +4077,7 @@ cd.getTeamHonorRoll();
             // Populate company name from page title
             var pageTitle = jQuery('head title').text().trim();
             var start_pos = pageTitle.indexOf(':') + 1;
-            var end_pos = pageTitle.indexOf('- Heart Walk', start_pos);
+            var end_pos = pageTitle.indexOf('- American Heart Association', start_pos);
             var currentCompanyName = pageTitle.substring(start_pos, end_pos).trim();
             var currentCompanyId = getURLParameter(currentUrl, 'company_id');
             // var isParentCompany = ($('#company_hierarchy_list_component .lc_Row1').length ? true : false)
@@ -3696,10 +4162,11 @@ cd.getTeamHonorRoll();
                       $('.js--company-name').text(newAmpersand);
                     }
 
-                    var raised = numberWithCommas(response.getCompaniesResponse.company.amountRaised / 100);
+                    // var raised = numberWithCommas(response.getCompaniesResponse.company.amountRaised / 100);
+                    var raised = $('.company-tally-container--amount .company-tally-ammount').text();
 
                     if (raised) {
-                        $('#progress-amount').html('$' + raised);
+                        $('#progress-amount').text(raised);
                     }
 
                     // Get company goal
@@ -3761,11 +4228,11 @@ cd.getTeamHonorRoll();
                                     var teamRaised = (parseInt(team.amountRaised) * 0.01).toFixed(2);
                                     var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
                                     //$('#team-roster tbody').append('<tr class="' + (numTeamRows > 4 ? 'd-none' : '') + '"> <td class="team-name"> <a href="' + team.teamPageURL + '" data-sort="' + team.name + '">' + team.name + '</a> </td><td class="donor-name"> <a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '" data-sort="' + team.captainFirstName + ' ' + team.captainLastName + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a> </td><td class="company-name"> <a href="' + luminateExtend.global.path.secure + 'TR/?pg=company&company_id=' + team.companyId + '&fr_id=' + team.EventId + '" data-sort="' + team.companyName + '">' + team.companyName + '</a> </td><td class="raised" data-sort="' + teamRaisedFormmatted + '"> <span><strong>$' + teamRaisedFormmatted + '</strong></span> </td><td> <a href="' + team.joinTeamURL + '">' + (screenWidth <= 480 ? 'Join' : 'Join Team') + '</a> </td></tr>');
-                                    $('#team-roster tbody').append('<tr> <td class="team-name"> <a href="' + team.teamPageURL + '" data-sort="' + team.name + '">' + team.name + '</a> </td><td class="donor-name"> <a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '" data-sort="' + team.captainFirstName + ' ' + team.captainLastName + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a> </td><td class="company-name"> <a href="' + luminateExtend.global.path.secure + 'TR/?pg=company&company_id=' + team.companyId + '&fr_id=' + team.EventId + '" data-sort="' + team.companyName + '">' + team.companyName + '</a> </td><td class="raised" data-sort="' + teamRaisedFormmatted + '"> <span><strong>$' + teamRaisedFormmatted + '</strong></span> </td><td> <a href="' + team.joinTeamURL + '">' + (screenWidth <= 480 ? 'Join' : 'Join Team') + '</a> </td></tr>');
+                                    $('#team-roster tbody').append('<tr> <td class="team-name"> <a href="' + team.teamPageURL + '" data-sort="' + team.name + '">' + team.name + '</a> </td><td class="donor-name"> <a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '" data-sort="' + team.captainFirstName + ' ' + team.captainLastName + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a> </td><td class="company-name"> <a href="' + luminateExtend.global.path.secure + 'TR/?pg=company&company_id=' + team.companyId + '&fr_id=' + team.EventId + '" data-sort="' + companyName + '">' + companyName + '</a> </td><td class="raised" data-sort="' + teamRaisedFormmatted + '"> <span><strong>$' + teamRaisedFormmatted + '</strong></span> </td><td> <a href="' + team.joinTeamURL + '">' + (screenWidth <= 480 ? 'Join' : 'Join Team') + '</a> </td></tr>');
                                     numTeamRows++;
-                                    console.log('company name', team.companyName);
-                                    var companyNameInsert = $('.js--company-name').text();
-                                    $('.company-name a').text(companyNameInsert);
+                                    console.log('company name 2 : ', companyName);
+                                    // var companyNameInsert = $('.js--company-name').text();
+                                    // $('.company-name a').text(companyNameInsert);
                                 });
 
                                 $('.js--more-team-results').on('click', function (e) {
@@ -4047,9 +4514,11 @@ cd.getTeamHonorRoll();
             }
             // var getCompanyId = getURLParameter(currentUrl, 'company_id');
             // console.log(getCompanyId)
-            setTimeout(function () {
-              cd.getCompanyName(getCompanyId);
-            }, 1000);
+            
+            // stop this to avoid participant table on comapany page only showing one company name - 10-05-2022
+            // setTimeout(function () {
+            //   cd.getCompanyName(getCompanyId);
+            // }, 1000);
     }
     if ($('body').is('.app_donation')) {
       /* 2019 DF UPDATES */

@@ -13,6 +13,7 @@ angular.module 'ahaLuminateControllers'
       $rootScope.companyName = ''
       $scope.teachers = []
       $scope.teachersByGrade = []
+      $scope.listUpload = false
       $scope.companyId = angular.element('[name=s_frCompanyId]').val()
       
       regCompanyId = luminateExtend.global.regCompanyId
@@ -32,7 +33,7 @@ angular.module 'ahaLuminateControllers'
       #      companyInfo = companies[0]
       #      setCompanyName companyInfo.companyName
       setCompanyName localStorage.companyName
-      
+
       $scope.registrationInfoErrors =
         errors: []
       $fieldErrors = angular.element '.ErrorMessage'
@@ -162,6 +163,7 @@ angular.module 'ahaLuminateControllers'
             questionOptions.push
               value: questionOptionValue
               text: questionOptionText
+        
         questionValue = $additionalInfoQuestion.val() or ''
         questionMaxLength = $additionalInfoQuestion.attr('maxlength') or ''
         questionHasError = $additionalInfoQuestion.is '.form-error *'
@@ -174,7 +176,7 @@ angular.module 'ahaLuminateControllers'
           maxLength: questionMaxLength
           hasError: questionHasError
         $scope.registrationInfo[questionName] = questionValue
-      
+
       $scope.participationType = {}
       setParticipationType = (participationType) ->
         $scope.participationType = participationType
@@ -201,10 +203,11 @@ angular.module 'ahaLuminateControllers'
           setRegistrationQuestionSurveyKey = (questionName, surveyKey) ->
             $scope.registrationQuestions[questionName].surveyKey = surveyKey
             questionLegend = $scope.registrationQuestions[questionName].legend
-            if surveyKey is 'ym_khc_email_type' or surveyKey is 'ym_khc_grade' or surveyKey is 'ym_khc_school' or surveyKey is 'ym_khc_teacher_title' or surveyKey is 'ym_khc_teacher_name' or surveyKey is 'ym_khc_school_city' or surveyKey is 'ym_khc_school_state' or surveyKey is 'ym_khc_parentfirstname' or surveyKey is 'ym_khc_parentlastname' or surveyKey is 'ym_khc_student_state' or surveyKey is 'ym_khc_instruction_type' or surveyKey is 'ym_khc_email_consent_text'
+            if surveyKey is 'ym_khc_email_type' or surveyKey is 'ym_khc_grade' or surveyKey is 'ym_khc_school' or surveyKey is 'ym_khc_teacher_title' or surveyKey is 'ym_khc_teacher_name' or surveyKey is 'ym_khc_school_city' or surveyKey is 'ym_khc_school_state' or surveyKey is 'ym_khc_parentfirstname' or surveyKey is 'ym_khc_parentlastname' or surveyKey is 'ym_khc_student_state' or surveyKey is 'ym_khc_instruction_type' or surveyKey is 'ym_khc_email_consent_text' or surveyKey is 'ym_khc_future_middleschool'
               initCustomQuestions()
               $scope.registrationCustomQuestions[surveyKey] = questionName
             else if questionLegend isnt 'Event Date' and surveyKey isnt 'ym_khc_challenge_info' and surveyKey isnt 'ym_khc_ecards_sent' and surveyKey isnt 'ym_khc_ecards_shared' and surveyKey isnt 'ym_khc_ecards_open' and surveyKey isnt 'ym_khc_ecards_clicked' and surveyKey isnt 'ym_khc_ym_game_points' and surveyKey isnt 'bb_facebook_connector_id'
+              console.log('dealing with other reg questions')
               if not $scope.registrationAdditionalQuestions
                 $scope.registrationAdditionalQuestions = {}
               $scope.registrationAdditionalQuestions[questionName] = questionName
@@ -228,7 +231,84 @@ angular.module 'ahaLuminateControllers'
                   if registrationQuestion.ng_questionName
                     setRegistrationQuestionSurveyKey registrationQuestion.ng_questionName, registrationQuestion.key
               initCustomQuestions()
+
+
+      prevTrId = angular.element(document).find('.prev-tr-id').text()
+
+      $scope.getPrevSurveyResponses = ()->
+        TeamraiserRegistrationService.getSurveyResponses 'fr_id=' + prevTrId,
+            error: ->
+              # TODO
+            success: (response) ->
+              surveyResponses = response.getSurveyResponsesResponse.responses
+              if surveyResponses
+                surveyResponses = [surveyResponses] if not angular.isArray surveyResponses
+                console.log('got survey responses')
+                console.log('are fields here? ' + angular.element(document).find('.ym_khc_parentfirstname').length)
+
+                findFields = () ->
+                  if angular.element(document).find('.ym_khc_parentfirstname').length > 0
+                    console.log('found fields')
+                    angular.forEach surveyResponses, (surveyResponse, serveyResponseIndex) ->
+                      surveyResponseKey = surveyResponse.key
+                      surveyResponseAnswer = surveyResponse.responseValue                  
+                      if surveyResponseKey == 'ym_khc_parentfirstname'
+                        angular.element(document).find('.ym_khc_parentfirstname').val(surveyResponseAnswer).trigger('change')
+
+                      if surveyResponseKey == 'ym_khc_parentlastname'
+                        angular.element(document).find('.ym_khc_parentlastname').val(surveyResponseAnswer).trigger('change')
+
+                      # if surveyResponseKey == 'ym_khc_student_state'
+                      #   angular.element(document).find('.ym_khc_student_state').val(surveyResponseAnswer).trigger('change')
+
+                      if surveyResponseKey == 'ym_khc_grade'
+                        newGrade
+                        if surveyResponseAnswer == 'Pre-School'
+                          newGrade = 'Kindergarten'
+                        if surveyResponseAnswer ==  'Kindergarten'
+                          newGrade = '1st'
+                        if surveyResponseAnswer ==  '2nd'
+                          newGrade = '3rd'
+                        if surveyResponseAnswer ==  '3rd'
+                          newGrade = '4th'
+                        if surveyResponseAnswer == '4th' || surveyResponseAnswer == '5th' || surveyResponseAnswer ==  '6th'|| surveyResponseAnswer == '7th' || surveyResponseAnswer == '8th' || surveyResponseAnswer == '9th' || surveyResponseAnswer == '10th' || surveyResponseAnswer == '11th'
+                          newGrade = Number(surveyResponseAnswer.split('th')[0]) + 1
+                          newGrade = newGrade+'th'
+                        if surveyResponseAnswer ==  '12th'
+                          newGrade = 'College'
+                        if surveyResponseAnswer ==  'College' || surveyResponseAnswer == 'Other'
+                          newGrade = 'Other'
+                        angular.element(document).find('.ym_khc_grade').val(newGrade).trigger('change')
+
+                  else
+                    window.setTimeout(findFields,50);
+                findFields();
+
+      if $fieldErrors.length == 0
+        $scope.getPrevSurveyResponses()
+
+      # hide t-shirt question for jump start schools
+      currentSchool = angular.element(document).find('.company-id').text()
+      jumpStartSchools = angular.element(document).find('.jump-start-list').text()
+      jumpStartArray = JSON.parse("[" + jumpStartSchools + "]");
       
+      findLabel = () ->
+        console.log('findlabel function')
+        if angular.element('#questions_hdr_container').length > 0
+          if jumpStartArray.indexOf(currentSchool) != -1
+            console.log('current school is in array')
+
+            angular.element('label.control-label span:contains("Shirt")').closest('.row').css('display','none')
+            angular.element('label.control-label span:contains("Shirt")').closest('.row').find('select').val('Jump Start School').trigger('change')
+          else
+            console.log('current school is NOT in array')
+            angular.element('label.control-label span:contains("Shirt")').closest('.row').find('select option[value="Jump Start School"]').remove()
+
+        else
+          window.setTimeout(findLabel,50);
+
+      #findLabel()
+
       $scope.toggleAcceptWaiver = (acceptWaiver) ->
         $scope.acceptWaiver = acceptWaiver
       
@@ -252,27 +332,34 @@ angular.module 'ahaLuminateControllers'
             }
           ]
         else
-          if not $scope.familyChallengePopup
-            $scope.familyChallengePopup = true
-            $scope.showFamilyChallengePopup = $uibModal.open
-              scope: $scope
-              templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/modal/showFamilyChallengePopup.html'
-          else 
-            angular.element('.js--default-reg-form').submit()
+          #if not $scope.familyChallengePopup
+          #  $scope.familyChallengePopup = true
+          #  $scope.showFamilyChallengePopup = $uibModal.open
+          #    scope: $scope
+          #    templateUrl: APP_INFO.rootPath + 'dist/ym-primary/html/modal/showFamilyChallengePopup.html'
+          #else 
+          angular.element('.js--default-reg-form').submit()
         false
+
+      $scope.getTeacherList = () ->
+        if typeof $scope.registrationCustomQuestions != 'undefined'
+          selectedGrade = $scope.registrationInfo[$scope.registrationCustomQuestions.ym_khc_grade]
+          if selectedGrade == ""
+            selectedGrade = "1st"
+          $scope.teachersByGrade = []
+          teachersByGrade = []
+          teachersFound = []
+          angular.forEach $scope.teachers, (teacher) ->
+            if not teachersFound[teacher.teacher_name]
+              teachersByGrade.push teacher_name: teacher.teacher_name
+            teachersFound[teacher.teacher_name] = teacher.teacher_name
+          $scope.teachersByGrade = teachersByGrade
 
       BoundlessService.getTeachersBySchool $scope.companyId
       .then (response) ->
         $scope.teachers = response.data.teachers
-
-      $scope.getTeacherList = () ->
-        selectedGrade = $scope.registrationInfo[$scope.registrationCustomQuestions.ym_khc_grade]
-        $scope.teachersByGrade = []
-        teachersByGrade = []
-        angular.forEach $scope.teachers, (teacher) ->
-          if teacher.grade == selectedGrade
-            teachersByGrade.push teacher_name: teacher.teacher_name
-        $scope.teachersByGrade = teachersByGrade
+        $scope.listUpload = response.data.list_upload
+        $scope.getTeacherList()
         
       setCompanyCity = (companyCity) ->
         $rootScope.companyCity = companyCity

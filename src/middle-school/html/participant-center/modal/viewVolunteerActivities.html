@@ -1,0 +1,30 @@
+  <div class="modal-header">
+    <h2 class="h5 modal-title">
+      Available Volunteer Activities
+    </h2>
+  </div>
+  <div class="modal-body">
+    <div class="volunteerActivities py-1 mb-3 ms-md-auto">
+      <div class="p-0" id="accordionList" style="max-height: 50vh;overflow: scroll;">
+	<button type="button" tabindex="0" id="activityHeading{{activity.id}}" data-bs-toggle="collapse" data-bs-target="#activity{{activity.id}}" aria-expanded="true" aria-controls="activity{{activity.id}}" class="text-black me-5 py-1 accordion-button flex-wrap cursor-pointer collapsed" ng-if="activity.active == 1" ng-repeat="activity in volunteerActivities | orderBy: 'name'">{{activity.name}}
+  	  <div id="activity{{activity.id}}" class="accordion-collapse collapse" aria-labelledby="activityHeading{{activity.id}}" data-bs-parent="#accordionList" style="width:90%">
+	    <div class="fw-normal fst-italic" ng-if="activity.description != ''" ng-cloak>
+		<span ng-bind-html="activity.description" data-bs-toggle="collapse" data-bs-target=""></span>
+	    </div>
+	    <div class="fw-normal fst-italic" ng-if="activity.description == ''" ng-cloak>
+		No description specified
+	    </div>
+	  </div>
+	</button>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="clearfix">
+      <div class="pull-left">
+        <button type="button" class="btn btn-toggle" ng-click="cancelViewVolunteerActivities()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,18 @@
+  <div class="modal-header">
+    <h5 class="h5 modal-title">
+      {{prize_label}}
+    </h5>
+  </div>
+  <div class="modal-body text-center">
+      <img class="img-responsive prize-image" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/prizes2023/{{prize_sku}}.png" alt="{{prize_label}}">
+      <div class="ym-pc-dashboard-gift-earned" ng-if="prize_status">Earned!</div>
+  </div>
+  <div class="modal-footer">
+    <div class="clearfix">
+      <div class="text-center">
+        <button type="button" class="btn btn-toggle" ng-click="cancelShowPrize()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>

@@ -1,13 +1,13 @@
 header {
-  background-color: $red-deep;
+  background-color: $white;
   @include media-breakpoint-up(lg) {
-    background-color: #c10e21;
+    background-color: $white;
   }
 
   background-image: none;
-  @include media-breakpoint-up(lg) {
-    background-image: url(https://secure3.convio.net/heart/images/content/pagebuilder/background-impact.png);
-  }
+  // @include media-breakpoint-up(lg) {
+  //   background-image: url(../images/content/pagebuilder/background-impact.png);
+  // }
   background-repeat: no-repeat;
   background-position: center right;
   background-size: auto 100%;
@@ -15,11 +15,5 @@ header {
 
   .container {
     max-width: 1350px!important;
-  }
-  .toi-logo {
-    width: 150px;
-    @include media-breakpoint-down(lg) {
-      width: 100px;
-    }
   }
 }

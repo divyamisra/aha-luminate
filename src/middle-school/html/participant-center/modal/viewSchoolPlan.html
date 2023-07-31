@@ -4,13 +4,13 @@
     </h2>
   </div>
   <div class="modal-body">
-    <div class="ym-pc-dashboard-school-plan">
-      <div class="row">
+    <div class="ym-pc-dashboard-school-plan" role="list">
+      <div class="row" role="listitem">
         <div class="plan-heading col-md-4">Measurement</div>
         <div class="plan-heading col-md-6">Explanation</div>
         <div class="plan-heading col-md-2 mb-2">Points Earned</div>
       </div>
-      <div ng-repeat="pointSummary in coordinatorPoints.PointSummary" ng-cloak>
+      <div ng-repeat="pointSummary in coordinatorPoints.PointSummary" role="listitem" ng-cloak>
         <div class="row">
           <div class="col-md-4">
             <div ng-bind-html="pointSummary.PointsCategory.Title"></div>
@@ -24,7 +24,7 @@
         </div>
         <hr>
      </div>
-     <div class="row">
+     <div class="row" role="listitem">
        <div class="plan-heading col-md-4">Total Points:</div>
          <div class="plan-heading col-md-6">&nbsp;</div>
          <div class="plan-heading col-md-2 mb-2">

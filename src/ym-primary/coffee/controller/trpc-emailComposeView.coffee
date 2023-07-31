@@ -15,7 +15,7 @@ angular.module 'trPcControllers'
     ($rootScope, $scope, $routeParams, $timeout, $sce, $httpParamSerializer, $uibModal, APP_INFO, BoundlessService, NgPcTeamraiserEventService, NgPcTeamraiserEmailService, NgPcContactService) ->
       $scope.messageType = $routeParams.messageType
       $scope.messageId = $routeParams.messageId
-      
+
       $scope.emailPromises = []
       
       # $scope.getMessageCounts = (refresh) ->
@@ -33,7 +33,73 @@ angular.module 'trPcControllers'
       #     if not refresh
       #       $scope.emailPromises.push messageCountPromise
       # $scope.getMessageCounts()
-      
+
+      $scope.copyToClipboard = ->
+        text = document.getElementById('emailComposer-recipients').value
+        console.log('text ' + text)
+        if window.clipboardData and window.clipboardData.setData
+          return clipboardData.setData('Text', text)
+        else if document.queryCommandSupported and document.queryCommandSupported('copy')
+          textarea = document.createElement('textarea')
+          textarea.textContent = text
+          textarea.style.position = 'fixed'
+          document.body.appendChild textarea
+          textarea.select()
+          try
+            alert 'Message copied successfully.'
+            return document.execCommand('copy')
+          catch ex
+            console.warn 'Copy to clipboard failed.', ex
+            return false
+          finally
+            document.body.removeChild textarea
+        return
+
+      $scope.displayMessage = ->
+        messageName = document.getElementById('emailComposerMessages').value;
+        console.log("messageName messageName " + messageName)
+        #document.getElementsByClassName('email-composer-message').style.display = 'none';
+        angular.element('.email-composer-message').css('display','none')
+        document.getElementById(messageName).style.display = 'block';
+
+      $scope.copyMessage = ->
+        #text = document.getElementsByName("message_body");
+        messageName = document.getElementById('emailComposerMessages').value;
+        console.log('messageName ' + messageName)
+        message = document.getElementById(messageName+'-message').innerHTML
+        console.log('message ' + message)
+
+        #CopyToClipboard = (id) ->
+        r = document.createRange()
+        r.selectNode document.getElementById(messageName+'-message')
+        window.getSelection().removeAllRanges()
+        window.getSelection().addRange r
+        alert 'Message copied successfully.'
+        document.execCommand 'copy'
+        window.getSelection().removeAllRanges()
+        return
+        
+        # if window.clipboardData and window.clipboardData.setData
+        #   console.log('window.clipboardData')
+        #   return clipboardData.setData('message', message)
+        # else if document.queryCommandSupported and document.queryCommandSupported('copy')
+        #   console.log('queryCommandSupported')
+        #   textarea = document.createElement('textarea')
+        #   textarea.textContent = message
+        #   textarea.style.position = 'fixed'
+        #   document.body.appendChild textarea
+        #   textarea.select()
+        #   try
+        #     alert 'Message copied successfully.'
+        #     return document.execCommand('copy')
+        #   catch ex
+        #     console.warn 'Copy to clipboard failed.', ex
+        #     return false
+        #   finally
+        #     document.body.removeChild textarea
+        # return
+        
+
       $scope.getContactCounts = ->
         $scope.contactCounts = {}
         contactFilters = [
@@ -50,9 +116,13 @@ angular.module 'trPcControllers'
           contactFilters.push 'email_custom_rpt_show_company_coordinator_weekly_participants'
           contactFilters.push 'email_custom_rpt_show_company_coordinator_0_dollar_participants'
           contactFilters.push 'email_custom_rpt_show_company_coordinator_250_dollar_participants'
+          contactFilters.push 'email_custom_rpt_show_company_coordinator_mission_partial'
+          contactFilters.push 'email_custom_rpt_show_company_coordinator_mission_complete'
+          contactFilters.push 'email_custom_rpt_show_company_coordinator_challenge_half'
+          contactFilters.push 'email_custom_rpt_show_company_coordinator_challenge_complete'
           contactFilters.push 'email_custom_rpt_show_past_company_coordinator_participants'
         angular.forEach contactFilters, (filter) ->
-          if filter is 'email_custom_rpt_show_company_coordinator_new_participants' or filter is 'email_custom_rpt_show_company_coordinator_weekly_participants' or filter is 'email_custom_rpt_show_company_coordinator_0_dollar_participants' or filter is 'email_custom_rpt_show_company_coordinator_250_dollar_participants' or filter is 'email_custom_rpt_show_past_company_coordinator_participants'
+          if filter is 'email_custom_rpt_show_company_coordinator_new_participants' or filter is 'email_custom_rpt_show_company_coordinator_weekly_participants' or filter is 'email_custom_rpt_show_company_coordinator_0_dollar_participants' or filter is 'email_custom_rpt_show_company_coordinator_250_dollar_participants' or filter is 'email_custom_rpt_show_company_coordinator_mission_partial' or filter is 'email_custom_rpt_show_company_coordinator_mission_complete' or filter is 'email_custom_rpt_show_company_coordinator_challenge_half' or filter is 'email_custom_rpt_show_company_coordinator_challenge_complete' or filter is'email_custom_rpt_show_past_company_coordinator_participants'
             $scope.contactCounts[filter] = ''
           else
             # contactCountPromise = NgPcContactService.getTeamraiserAddressBookContacts 'tr_ab_filter=' + filter + '&skip_groups=true&list_page_size=1'
@@ -86,11 +156,14 @@ angular.module 'trPcControllers'
           prepend_salutation: false
           message_body: ''
           layout_id: if defaultStationeryId isnt '-1' then defaultStationeryId else ''
+          messages: ''
       setEmailComposerDefaults()
-      
+
       setEmailMessageBody = (messageBody = '') ->
         if not messageBody or not angular.isString(messageBody)
           messageBody = ''
+        if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
+          messageBody = '<a href="'+luminateExtend.global.path.secure + 'TR?fr_id='+$rootScope.frId+'&pg=personal&px='+$rootScope.participantRegistration.consId+'">Click here to help me reach my goal today!</a>' + messageBody
         $scope.emailComposer.message_body = messageBody
       
       getEmailMessageBody = ->
@@ -136,26 +209,31 @@ angular.module 'trPcControllers'
                 setEmailMessageBody messageBody
 
       sortOrder = {
-        "Get a Jump Start/Past Participant wTeaser Video": 0,
-        "Get a Jump Start/Past Participant (No Teaser Video)": 1,
-        "One week before Kick-off": 2,
-        "Non Kick-off Event Email/All School Kick-off Email": 3,
-        "Mid-Event Reminder": 4,
-        "Help Our School Conquer Finn's Mission": 5,
-        "Send 10": 6,
-        "Last Chance Reminder": 7,
-        "Donation Solicitation Email 1": 8,
-        "Donation Solicitation Email 2": 9,
-        "Team Member Thank You Email": 10,
-        "Help me become a FINN's Mission Heart Hero": 11,
-        "I'm Trying to get a Donation from every state!": 12,
-        "Help Me Save Lives": 13,
-        "Have a heart, lend a hand": 14,
-        "Your BIG heart can help save lives": 15,
-        "Get 10 Donations Emails": 16,
-        "Donation Reminder": 17,
-        "Donation Thank you Email": 18,
-        "Thanks for helping me be a Heart Hero": 19
+
+        "Pre-Pre-Kick Off (WO/Frankie 3 weeks before Kick Off)": 1,
+        "Pre-Pre-Kick Off (W/Frankie 3 weeks before Kick Off)": 2,
+        "Pre-Kick Off (1 week to 1 day before kick-off)": 3,
+        "Post Assembly/Kick Off Email": 4,
+        "Mid Event Reminder #1 (Week after Kick Off)": 5,
+        "Mid Event Reminder #2 (2 weeks post kick-off/mid event)": 6,
+        "Last Chance Reminder (week of Event)": 7,
+        "$0 students Post Kick Off": 8,
+        "Students that have not yet registered post KO": 9,
+        "We are so close to our Goal (school close to fundraising goal)": 10,
+        "You're so close to a MYSTERY GIFT": 11,
+        "Help our class!": 12,
+        "Complete Finn's Mission": 13,
+        "Help our school earn valuable equipment and resources": 14,
+        "Thank You (post event)": 15,
+        "Your BIG Heart Can Help Save Lives": 16,
+        "Help Me Save Lives": 17,
+        "Have a Heart, Lend a Hand": 18,
+        "Earn all 6 Heart Heroes Goal": 19,
+        "Get 10 Donation Emails": 20,
+        "Help Me Become a FINN's Mission Heart Hero": 21,
+        "Donation Reminder": 22,
+        "Thanks for Helping me be a Heart Hero!": 23,
+        "Donation Thank You Email": 24
       }
 
       suggestedMessagesPromise = NgPcTeamraiserEmailService.getSuggestedMessages()
@@ -171,12 +249,12 @@ angular.module 'trPcControllers'
                   #   $scope.suggestedMessageCountByType[message.messageType] = 0
                   # $scope.suggestedMessageCountByType[message.messageType] = $scope.suggestedMessageCountByType[message.messageType] + 1
                   message.name = message.name.split('Student: ')[1] or message.name
-                  console.log('message.name x' + message.name + 'x' + 'message type ' + message.messageType)
+                  # console.log('message.name x' + message.name + 'x' + 'message type ' + message.messageType)
                   message.name = message.name.trim()
-                  console.log('message.name x' + message.name + 'x' + 'message type ' + message.messageType)
+                  # console.log('message.name x' + message.name + 'x' + 'message type ' + message.messageType)
                   if sortOrder[message.name]
                     message.sortOrder = sortOrder[message.name]
-                    console.log('message.sortOrder ' + message.sortOrder + typeof message.sortOrder)
+                    #console.log('message.sortOrder ' + message.sortOrder + typeof message.sortOrder)
                   $scope.suggestedMessages.push message
               else
                 if message.name.indexOf('Student:') is -1
@@ -184,15 +262,15 @@ angular.module 'trPcControllers'
                   #   $scope.suggestedMessageCountByType[message.messageType] = 0
                   # $scope.suggestedMessageCountByType[message.messageType] = $scope.suggestedMessageCountByType[message.messageType] + 1
                   message.name = message.name.split('Coordinator: ')[1] or message.name
-                  console.log('message.name x' + message.name + 'x' + 'message type ' + message.messageType)
+                  #console.log('message.name x' + message.name + 'x' + 'message type ' + message.messageType)
                   message.name = message.name.trim()
-                  console.log('message.name x' + message.name + 'x' + 'message type ' + message.messageType)
-                  if message.name == 'Get a Jump Start/Past Participant wTeaser Video'
-                    console.log('gotcha!')
-                    message.sortOrder = 0
+                  #console.log('message.name x' + message.name + 'x' + 'message type ' + message.messageType)
+                  # if message.name == 'Get a Jump Start/Past Participant wTeaser Video'
+                  #   console.log('gotcha!')
+                  #   message.sortOrder = 0
                   if sortOrder[message.name]
                     message.sortOrder = sortOrder[message.name]
-                    console.log('message.sortOrder ' + message.sortOrder)
+                    #console.log('message.sortOrder ' + message.sortOrder)
                   $scope.suggestedMessages.push message
               
               # angular.forEach suggestedMessages, (suggestedMessage, suggestedMessageIndex) ->

@@ -15,10 +15,9 @@ angular.module 'ahaLuminateControllers'
     'TeamraiserRegistrationService'
     'TeamraiserCompanyPageService'
     'PageContentService'
-    'CompanyService'
     '$sce'
     '$http'
-    ($scope, $rootScope, $location, $filter, $timeout, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserTeamService, TeamraiserParticipantService, BoundlessService, ZuriService, TeamraiserRegistrationService, TeamraiserCompanyPageService, PageContentService, CompanyService, $sce, $http) ->
+    ($scope, $rootScope, $location, $filter, $timeout, $uibModal, APP_INFO, TeamraiserCompanyService, TeamraiserTeamService, TeamraiserParticipantService, BoundlessService, ZuriService, TeamraiserRegistrationService, TeamraiserCompanyPageService, PageContentService, $sce, $http) ->
       $scope.companyId = $location.absUrl().split('company_id=')[1].split('&')[0].split('#')[0]
       $rootScope.companyName = ''
       $scope.totalTeams = ''
@@ -117,26 +116,7 @@ angular.module 'ahaLuminateControllers'
             $scope.$apply()
           getBoundlessSchoolData()
         , 500
-
-
-      $scope.getSchoolPlan = () ->
-        ZuriService.schoolPlanData '&method=GetSchoolPlan&CompanyId=' + $scope.companyId + '&EventId=' + $scope.frId,
-          failure: (response) ->
-          error: (response) ->
-          success: (response) ->
-            $scope.schoolPlan = response.data.company[0]
-            if $scope.schoolPlan.EventStartDate != undefined
-              if $scope.schoolPlan.EventStartDate != '0000-00-00'
-                $scope.schoolPlan.EventStartDate = new Date($scope.schoolPlan.EventStartDate.replace(/-/g, "/") + ' 00:01')
-              if $scope.schoolPlan.EventEndDate != '0000-00-00'
-                $scope.schoolPlan.EventEndDate = new Date($scope.schoolPlan.EventEndDate.replace(/-/g, "/") + ' 00:01')
-              if $scope.schoolPlan.DonationDueDate != '0000-00-00'
-                $scope.schoolPlan.DonationDueDate = new Date($scope.schoolPlan.DonationDueDate.replace(/-/g, "/") + ' 00:01')
-              if $scope.schoolPlan.KickOffDate != '0000-00-00'
-                $scope.schoolPlan.KickOffDate = new Date($scope.schoolPlan.KickOffDate.replace(/-/g, "/") + ' 00:01')
-            $scope.coordinatorPoints = JSON.parse($scope.schoolPlan.PointsDetail)
-      $scope.getSchoolPlan()
-      
+        
       getCompanyTotals = ->
         TeamraiserCompanyService.getCompanies 'company_id=' + $scope.companyId,
           error: ->
@@ -159,30 +139,39 @@ angular.module 'ahaLuminateControllers'
               $rootScope.companyName = name
               setCompanyProgress amountRaised, goal
 
-              CompanyService.getSchoolDates()
-                .then (response) ->
-                  schoolDataRows = response.data.getSchoolDatesResponse.schoolData
-                  schoolDataHeaders = {}
-                  schoolDates = {}
-                  angular.forEach schoolDataRows[0], (schoolDataHeader, schoolDataHeaderIndex) ->
-                    schoolDataHeaders[schoolDataHeader] = schoolDataHeaderIndex
-                  i = 0
-                  len = schoolDataRows.length
-                  while i < len
-                    if $scope.companyId is schoolDataRows[i][schoolDataHeaders.CID]
-                      $scope.hideAmount = schoolDataRows[i][schoolDataHeaders.HA]
-                      $scope.notifyName = schoolDataRows[i][schoolDataHeaders.YMDN]
-                      $scope.notifyEmail = schoolDataRows[i][schoolDataHeaders.YMDE]
-                      $scope.unconfirmedAmountRaised = schoolDataRows[i][schoolDataHeaders.UCR]
-                      break
-                    i++
-                  #setCompanyProgress Number(amountRaised) + Number(($scope.unconfirmedAmountRaised) * 100), goal
-                  setCompanyProgress Number(amountRaised), goal
+              ZuriService.getSchoolDetail '&school_id=' + $scope.companyId + '&EventId=' + $scope.frId,
+                failure: (response) ->
+                error: (response) ->
+                success: (response) ->
+                  if response.data.company[0] != ""
+                    $scope.schoolPlan = response.data.company[0]
+                    $scope.hideAmount = $scope.schoolPlan.HideAmountRaised
+                    $scope.notifyName = $scope.schoolPlan.YMDName
+                    $scope.notifyEmail = $scope.schoolPlan.YMDEmail
+                    $scope.unconfirmedAmountRaised = $scope.schoolPlan.OfflineUnconfirmedRevenue
+                    $scope.highestGift = $scope.schoolPlan.HighestRecordedRaised
+                    $scope.top25school = $scope.schoolPlan.IsTop25School
+                    $scope.highestRaisedAmount = $scope.schoolPlan.HRR
+                    $scope.highestRaisedYear = $scope.schoolPlan.HRRYear
+
+                    if $scope.schoolPlan.EventStartDate != undefined
+                      if $scope.schoolPlan.EventStartDate != '0000-00-00'
+                        $scope.schoolPlan.EventStartDate = new Date($scope.schoolPlan.EventStartDate.replace(/-/g, "/") + ' 00:01')
+                      if $scope.schoolPlan.EventEndDate != '0000-00-00'
+                        $scope.schoolPlan.EventEndDate = new Date($scope.schoolPlan.EventEndDate.replace(/-/g, "/") + ' 00:01')
+                      if $scope.schoolPlan.DonationDueDate != '0000-00-00'
+                        $scope.schoolPlan.DonationDueDate = new Date($scope.schoolPlan.DonationDueDate.replace(/-/g, "/") + ' 00:01')
+                      if $scope.schoolPlan.KickOffDate != '0000-00-00'
+                        $scope.schoolPlan.KickOffDate = new Date($scope.schoolPlan.KickOffDate.replace(/-/g, "/") + ' 00:01')
+                      $scope.coordinatorPoints = JSON.parse($scope.schoolPlan.PointsDetail)
+                    else
+                      $scope.schoolPlan.EventStartDate = ''
+                      $scope.schoolPlan.DonationDueDate = ''
+                      $scope.schoolPlan.KickOffDate = ''
                   
               if coordinatorId and coordinatorId isnt '0' and eventId
                 TeamraiserCompanyService.getCoordinatorQuestion coordinatorId, eventId
                   .then (response) ->
-                    $scope.eventDate = response.data.coordinator?.event_date
                     if totalTeams is 1
                       $scope.teamId = response.data.coordinator?.team_id
       getCompanyTotals()
@@ -252,7 +241,7 @@ angular.module 'ahaLuminateControllers'
               $scope.participantRegistration = participantRegistration
       
       $scope.companyPagePhoto1 =
-        defaultUrl: APP_INFO.rootPath + 'dist/middle-school/image/fy22/company-default.jpg'
+        defaultUrl: APP_INFO.rootPath + 'dist/middle-school/image/fy23/company-default.jpg'
       
       $scope.editCompanyPhoto1 = ->
         delete $scope.updateCompanyPhoto1Error

@@ -13,23 +13,22 @@ angular.module 'ahaLuminateControllers'
       $dataRoot = angular.element '[data-aha-luminate-root]'
       consId = $dataRoot.data('cons-id') if $dataRoot.data('cons-id') isnt ''
 
+      ###
       setNoSchoolLink = (noSchoolLink) ->
         $scope.noSchoolLink = noSchoolLink
         if not $scope.$$phase
           $scope.$apply()
-      TeamraiserService.getTeamRaisersByInfo 'event_type=' + encodeURIComponent('YM Kids Heart Challenge 2022') + '&public_event_type=' + encodeURIComponent('School Not Found') + '&name=' + encodeURIComponent('%') + '&list_page_size=1&list_ascending=false&list_sort_column=event_date',
+      TeamraiserService.getTeamRaisersByInfo 'event_type=' + encodeURIComponent('YM Kids Heart Challenge 2023') + '&public_event_type=' + encodeURIComponent('School Not Found') + '&name=' + encodeURIComponent('%') + '&list_page_size=1&list_ascending=false&list_sort_column=event_date',
           error: (response) ->
-            # TODO
           success: (response) ->
             teamraisers = response.getTeamraisersResponse?.teamraiser
             if not teamraisers
-              # TODO
             else
               teamraisers = [teamraisers] if not angular.isArray teamraisers
               teamraiserInfo = teamraisers[0]
               setNoSchoolLink $scope.nonsecureDomain + 'site/TRR?fr_id=' + teamraiserInfo.id + '&pg=tfind&fr_tm_opt=none&s_frTJoin=&s_frCompanyId='
       if consId
-        TeamraiserParticipantService.getRegisteredTeamraisers 'cons_id=' + consId + '&event_type=' + encodeURIComponent('YM Kids Heart Challenge 2022'),
+        TeamraiserParticipantService.getRegisteredTeamraisers 'cons_id=' + consId + '&event_type=' + encodeURIComponent('YM Kids Heart Challenge 2023'),
           error: ->
             # TODO
           success: (response) ->
@@ -42,7 +41,9 @@ angular.module 'ahaLuminateControllers'
               modalSet = readCookie 'modalSet'
               if modalSet isnt 'true'
                 setModal()
-
+      ###
+      
+      ###
       readCookie = (name) ->
         nameEQ = name + '='
         ca = document.cookie.split ';'
@@ -68,6 +69,7 @@ angular.module 'ahaLuminateControllers'
       $scope.closeModal = ->
         angular.element('#noRegModal').modal 'hide'
         document.getElementById('school-search').scrollIntoView()
+      ###
 
       $scope.totalStudents = ''
       $scope.totalSchools = ''
@@ -97,7 +99,7 @@ angular.module 'ahaLuminateControllers'
         , (response) ->
           $scope.showStats = false
       ###
-
+      ###
       initCarousel = ->
         owl = jQuery '.ym-home-feature .owl-carousel'
         owlStr = '.ym-home-feature .owl-carousel'
@@ -149,6 +151,6 @@ angular.module 'ahaLuminateControllers'
                 AriaCarouselService.init(owlStr)
               onChanged: ->
                 AriaCarouselService.onChange(owlStr)
-
+      ###
       #$timeout initHeroCarousel, 1000
   ]

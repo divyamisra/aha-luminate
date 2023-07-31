@@ -656,7 +656,7 @@
 
         // ptype page
         if ($('#participation_options_page').length > 0) {
-	    $('#part_type_campaign_banner_container').prepend(evDateYear+" ");
+	    // $('#part_type_campaign_banner_container').prepend(evDateYear+" ");
 	    $('#part_type_fundraising_goal_input_container').prepend("<h2>Set Your Personal Fundraising Goal!</h2>")
             $('div#part_type_campaign_banner_container').replaceWith(function() {
                 return '<h1 class="campaign-banner-container" id="part_type_campaign_banner_container">' + $(this).html() + '</h1>';
@@ -1285,7 +1285,7 @@
         }
 
       if ($('body').is('.pg_reg')) {
-  	    $('h1.campaign-banner-container').prepend(evDateYear+" ");
+  	    // $('h1.campaign-banner-container').prepend(evDateYear+" ");
   	    /* zip only reg flow */
   	    $('#cons_zip_code').parent().parent().parent().parent().addClass('field-required consZip');
 

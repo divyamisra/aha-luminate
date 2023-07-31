@@ -1,8 +1,10 @@
+.ym-awards-section,
+.ym-stats-section,
+.ym-finns-mission-student-list,
 .ym-teachers-leaderboard {
-  h2 {
-    font-size:42px;
-    color:#a41752;
-  }
+	h2.ym-headline {
+		font-size: 32px;
+	}
 }
 
 body.pg-company {
@@ -17,28 +19,32 @@ body.pg-company {
 	.ym-progress {
 		.ym-progress__title {
 			font-size: 48px;
-			color: indigo;
-			font-family: "Luckiest Guy",cursive;
+			color: $event-secondary;
+			font-family: $headline-font;
 			margin: 10px 0 0;
+			font-weight:bold;
 		}
 		.ym-progress__stats {
 		    margin: 10px auto 0;
 		}
 	}
 	.challenge-ice {
-		background: #fff url('../image/fy22/school_challenge_splash.jpg') no-repeat center top / 100% 100%;
+		background: #fff url('../image/fy23/school_challenge_water.png') no-repeat center top / 100% 100%;
 	}
 	.challenge-slime {
-		background: #fff url('../image/fy22/school_challenge_ooze.jpg') no-repeat center top / 100% 100%;
+		background: #fff url('../image/fy23/school_challenge_slime.png') no-repeat center top / 100% 100%;
 	}
 	.challenge-pie {
-		background: #fff url('../image/fy22/school_challenge_splat.jpg') no-repeat center top / 100% 100%;
+		background: #fff url('../image/fy23/school_challenge_pie.png') no-repeat center top / 100% 100%;
 	}
 	.challenge-activity {
-		background: #fff url('../image/fy22/school_challenge_bubbles.jpg') no-repeat center top / 100% 100%;
+		background: #fff url('../image/fy23/school_challenge_party.png') no-repeat center top / 100% 100%;
 	}
 	.challenge-color {
-		background: #fff url('../image/fy22/school_challenge_chalk.jpg') no-repeat center top / 100% 100%;
+		background: #fff url('../image/fy23/school_challenge_blast.png') no-repeat center top / 100% 100%;
+	}
+	.challenge-other {
+		background: #fff url('../image/fy23/school_challenge_other.png') no-repeat center top / 100% 100%;
 	}
 	
      @media (max-width: $screen-sm-max) {
@@ -96,19 +102,19 @@ body.pg-company {
              color: #000;
              margin: 0 2px 5px 2px;
              &:nth-child(1) {
-                 background: #94C960;
+                 background: #b0e1f4;
             }
              &:nth-child(2) {
-                 background: #A8D180;
+                 background: #bee4f2;
             }
              &:nth-child(3) {
-                 background: #BDDC9D;
+                 background: #cfe7f0;
             }
              &:nth-child(4) {
-                 background: #D2E6BB;
+                 background: #e0eaee;
             }
              &:nth-child(5) {
-                 background: #E7F1DB;
+                 background: #e8eced;
             }
         }
     }

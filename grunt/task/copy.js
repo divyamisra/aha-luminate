@@ -196,6 +196,43 @@ module.exports = {
       }
     ]
   },
+  "fieldday-fonts": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/fieldday/webfonts/',
+        src: [
+          '**/*.{eot,woff,ttf,svg}'
+        ],
+        dest: 'dist/fieldday/webfonts/'
+      }
+    ]
+  },
+  
+  "fieldday2023-scripts": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/fieldday2023/js/',
+        src: [
+          '*.js'
+        ],
+        dest: 'dist/fieldday2023/js/'
+      }
+    ]
+  },
+  "fieldday2023-fonts": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/fieldday2023/webfonts/',
+        src: [
+          '*.{eot,woff,ttf,svg}'
+        ],
+        dest: 'dist/fieldday2023/webfonts/'
+      }
+    ]
+  },
 
   "heartwalklawyers-scripts": {
     files: [
@@ -257,6 +294,17 @@ module.exports = {
         dest: 'dist/teens-of-impact/js/'
       }
     ]
+  },
+  "ym-rewards-images": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/ym-rewards/images/',
+        src: [
+          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
+        ],
+        dest: 'dist/ym-rewards/images/'
+      }
+    ]
   }
-
 }

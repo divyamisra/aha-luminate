@@ -219,7 +219,53 @@ angular.module 'ahaLuminateControllers'
                   if registrationQuestion.ng_questionName
                     setRegistrationQuestionSurveyKey registrationQuestion.ng_questionName, registrationQuestion.key
               initCustomQuestions()
-      
+
+
+      prevTrId = angular.element(document).find('.prev-tr-id').text()
+
+      $scope.getPrevSurveyResponses = ()->
+        TeamraiserRegistrationService.getSurveyResponses 'fr_id=' + prevTrId,
+            error: ->
+              # TODO
+            success: (response) ->
+              surveyResponses = response.getSurveyResponsesResponse.responses
+              if surveyResponses
+                surveyResponses = [surveyResponses] if not angular.isArray surveyResponses
+                console.log('got survey responses')
+                console.log('are fields here? ' + angular.element(document).find('.ym_middle_school_grade').length)
+
+                findFields = () ->
+                  if angular.element(document).find('.ym_middle_school_grade').length > 0
+                    console.log('found fields')
+                    angular.forEach surveyResponses, (surveyResponse, serveyResponseIndex) ->
+                      surveyResponseKey = surveyResponse.key
+                      surveyResponseAnswer = surveyResponse.responseValue 
+
+                      if surveyResponseKey == 'ym_middle_school_grade'
+                        newGrade
+                        if surveyResponseAnswer == 'Pre-School'
+                          newGrade = 'Kindergarten'
+                        if surveyResponseAnswer ==  'Kindergarten'
+                          newGrade = '1st'
+                        if surveyResponseAnswer ==  '2nd'
+                          newGrade = '3rd'
+                        if surveyResponseAnswer ==  '3rd'
+                          newGrade = '4th'
+                        if surveyResponseAnswer == '4th' || surveyResponseAnswer == '5th' || surveyResponseAnswer ==  '6th'|| surveyResponseAnswer == '7th' || surveyResponseAnswer == '8th' || surveyResponseAnswer == '9th' || surveyResponseAnswer == '10th' || surveyResponseAnswer == '11th'
+                          newGrade = Number(surveyResponseAnswer.split('th')[0]) + 1
+                          newGrade = newGrade+'th'
+                        if surveyResponseAnswer ==  '12th'
+                          newGrade = 'College'
+                        if surveyResponseAnswer ==  'College' || surveyResponseAnswer == 'Other'
+                          newGrade = 'Other'
+                        angular.element(document).find('.ym_middle_school_grade').val(newGrade).trigger('change')
+                  else
+                    window.setTimeout(findFields,50);
+                findFields();
+
+      if $fieldErrors.length == 0
+        $scope.getPrevSurveyResponses()
+
       $scope.toggleAcceptWaiver = (acceptWaiver) ->
         $scope.acceptWaiver = acceptWaiver
       

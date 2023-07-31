@@ -1,0 +1,153 @@
+/************** Color Definitions **************/
+:root {
+  --counter_red: #991B1E;
+  --counter_red_shade1: rgba(163, 51, 53, 1);
+  --counter_red_shade2: rgba(173, 72, 75, 1);
+  --counter_red_shade3: rgba(153, 27, 30, 1);
+}
+/************ Widget styles *************/
+.aha_counter {
+  display: flex;
+  font-size: 1rem;
+}
+// .aha-counter-block {
+//   width: 25%;
+//   margin: 0 2%;
+// }
+.aha-counter-top {
+  display: flex;
+  justify-content: center;
+}
+.aha-counter-bottom {
+  text-align: center;
+  text-transform: uppercase;
+  padding: 0.1rem;
+}
+.aha-counter-digit {
+  margin: 0.1em;
+  background-color: var(--counter_red);
+  font-size: 4em;
+  line-height: 1em;
+  color: #fff;
+  border-radius: 5px;
+  position: relative;
+}
+.aha-counter-digit:first-child {
+  margin-left: auto;
+}
+.aha-counter-digit:last-child {
+  margin-right: auto;
+}
+.aha-counter-digit-static, .aha-counter-digit-top, .aha-counter-digit-bottom {
+  padding: 0.5rem;
+  position: static;
+  z-index: 1;
+}
+.aha-counter-digit-tcover, .aha-counter-digit-bcover {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 50%;
+  overflow: hidden;
+  text-align:center;
+}
+.aha-counter-digit-bcover {}
+.aha-counter-digit-top {
+  position: absolute;
+  z-index: 3;
+  background-color: var(--counter_red);
+  background: linear-gradient(135deg, var(--counter_red_shade1) 0%, var(--counter_red_shade2) 35%, var(--counter_red_shade3) 35%);
+  top: 0;
+  border-radius: 5px;
+}
+.aha-counter-digit-bottom {
+  position: absolute;
+  padding: 0.5rem;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  background-color: var(--counter_red);
+  border-radius: 5px;
+}
+.aha-counter-digit-sep {
+  position: absolute;
+  left: 1px;
+  right: 1px;
+  top: 50%;
+  border-top: #000 solid 1px;
+  border-bottom: #ccc solid 1px;
+  background-color: #999;
+  z-index: 10;
+  height: 0px;
+}
+.aha-counter-digit-sep div {
+  position: relative;
+}
+.aha-counter-digit-sep span {
+  background: linear-gradient(to bottom, #c5bd94, #6a6a84);
+  position: absolute;
+  width: 0.05em;
+  height: 0.2em;
+  top: -0.1em;
+  border-radius: 3px;
+}
+.digit-sep-left {
+  left: 0.05em;
+}
+.digit-sep-right {
+  right: 0.05em;
+}
+@keyframes digitflip_down {
+  0% {
+    transform: rotateX(0deg);
+    z-index: 4;
+  }
+  25% {
+    transform: rotateX(90deg);
+    z-index: 2;
+    box-shadow: 0 0 10px #999;
+  }
+  50% {
+    transform: rotateX(0deg);
+    z-index: 2;
+  }
+  75% {
+    z-index: 0;
+  }
+}
+@keyframes digitflip_cover {
+  0% {
+    height: 50%;
+  }
+  24% {
+    height: 50%
+  }
+  25% {
+    height: 100%;
+  }
+  75% {
+    display: none;
+  }
+}
+.digit-flip .aha-counter-digit-bottom {
+  animation-name: digitflip_down;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+}
+.digit-flip .aha-counter-digit-bcover {
+  animation-name: digitflip_cover;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+}
+.aha-counter-digit-static {
+  text-align: center;
+}
+.aha-counter-digit-bottom, .aha-counter-digit-static, .aha-counter-digit-to {
+min-width: 3.75rem;
+}
+
+.aha-counter-digit-top {
+background: linear-gradient(130deg,var(--counter_red_shade1) 0,var(--counter_red_shade2) 45%,var(--counter_red_shade3) 35%);
+width: 100%;
+}

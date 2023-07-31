@@ -1,0 +1,449 @@
+[[?COMMENT::::::
+   NOT PART OF DEPLOYMENT PROCESS. MUST BE MANUALLY COPIED TO PAGEBUILDER.
+   THIS IS THE ONE USED ON PRODUCTION RATHER THAN ym_registration_reg_khc
+]]
+
+[[?xTx::x[[A24]]x::
+  <!-- manage mode -->
+  <script>
+    var myHtmlEditor = 'Gfr_htmltextarea';
+  </script>
+  <script src="../js/ajax_mce.js"></script>
+::]]
+<div class="d-none hidden prev-tr-id">[[E42:[[S80:trID]]:prev-fr-id]]</div>
+<div class="d-none hidden company-id">[[S80:frCompanyId]]</div>
+<div class="d-none hidden jump-start-list">
+  [[?xTRUEx::x[[E46:ym-jumpstart-schools/jumpstartschools.csv]]x::
+    [[E130:[[T8:[[T6:[[E84:ym-jumpstart-schools/jumpstartschools.csv]]]]]] "\r\n" "'" replaceall "\" "" replaceall "'" "," replaceall]]
+  ::]]
+</div>
+<div class="ym-registration-page-container ym-registration-page-container--reg mw-100" ng-controller="RegistrationRegCtrl">
+  <div ng-show="registrationCustomQuestions" ng-cloak>
+    <div class="ym-registration-page-header">
+      <div class="manageable-content" data-container="edit_title_container">
+        <h2 class="h4" id="title_container">
+          [[C1:fr_reg_title]]
+        </h2>
+      </div>
+      [[?xxnullx::x[[A5]]x::::
+        <div class="alert alert-success" role="alert">
+          [[A5]]
+        </div>
+      ]]
+      <div class="alert alert-danger" role="alert" aria-atomic="true" aria-live="assertive" tabindex="0" ng-class="{'d-none hidden': [[?xyz.xnullynullz.xynullz.xnullyz::x[[A4]]y[[A6]]z::true::]] && (!registrationInfoErrors || !registrationInfoErrors.errors || registrationInfoErrors.errors.length == 0)}" ng-cloak>
+        [[?xy.xnully::x[[A4]]y::
+          [[M0:friendraiser:generic_error]]
+        ::
+          [[A4]]
+        ]]
+        <ul ng-if="registrationInfoErrors.errors.length > 0" ng-cloak>
+          <li ng-repeat="registrationInfoError in registrationInfoErrors.errors">
+            <span ng-bind-html="registrationInfoError.text"></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <form name="regForm" class="ym-registration-reg-form" method="POST" novalidate ng-submit="submitReg()">
+      <div class="d-none hidden js--registration-reg-contact-info">
+        [[A13]]
+      </div>
+      <div class="manageable-content" data-container="edit_contact_info_hdr_container">
+        <p class="ym-section-header" id="contact_info_hdr_container_new">
+          [[C1:cons_info_contact_info_header]]
+        </p>
+      </div>
+      <div class="row" ng-if="registrationQuestions.cons_first_name || registrationQuestions.cons_last_name" ng-cloak>
+        <div class="col-sm-6">
+          <div class="form-group required" ng-class="{'has-error': registrationQuestions.cons_first_name.hasError}" ng-if="registrationQuestions.cons_first_name" ng-cloak>
+            <label class="control-label" for="registrationInfo-cons_first_name">
+              Student First Name:
+            </label>
+            <input aria-required="true" type="text" class="form-control input-lg" name="ng_cons_first_name" id="registrationInfo-cons_first_name" ng-model="registrationInfo.cons_first_name" maxlength="{{registrationQuestions.cons_first_name.maxLength}}" ng-capitalize no-profanity>
+    <div style="color:#ed1c24" class="has-error" ng-show="regForm.ng_cons_first_name.$dirty && regForm.ng_cons_first_name.$error.profanity">no profanity allowed</div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group required" ng-class="{'has-error': registrationQuestions.cons_last_name.hasError}" ng-if="registrationQuestions.cons_last_name" ng-cloak>
+            <label class="control-label" for="registrationInfo-cons_last_name">
+              Student Last Name:
+            </label>
+            <input aria-required="true" type="text" class="form-control input-lg" name="ng_cons_last_name" id="registrationInfo-cons_last_name" ng-model="registrationInfo.cons_last_name" maxlength="{{registrationQuestions.cons_last_name.maxLength}}" ng-capitalize no-profanity>
+    <div style="color:#ed1c24" class="has-error" ng-show="regForm.ng_cons_last_name.$dirty && regForm.ng_cons_last_name.$error.profanity">no profanity allowed</div>
+          </div>
+        </div>
+      </div>
+      <div class="ym-registration-row--bottomed" role="presentation" ng-cloak>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group required" ng-class="{'has-error': registrationQuestions[registrationCustomQuestions.ym_khc_parentfirstname].hasError}" ng-if="registrationCustomQuestions.ym_khc_parentfirstname" ng-cloak>
+              <label class="control-label" for="registrationInfo-{{registrationCustomQuestions.ym_khc_parentfirstname}}">
+                <span ng-bind-html="registrationQuestions[registrationCustomQuestions.ym_khc_parentfirstname].label"></span>
+              </label>
+              <input aria-required="true" type="text" class="form-control input-lg ym_khc_parentfirstname" name="ng_{{registrationCustomQuestions.ym_khc_parentfirstname}}" id="registrationInfo-{{registrationCustomQuestions.ym_khc_parentfirstname}}" ng-model="registrationInfo[registrationCustomQuestions.ym_khc_parentfirstname]" maxlength="{{registrationQuestions[registrationCustomQuestions.ym_khc_parentfirstname].maxLength}}" ng-capitalize>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group required" ng-class="{'has-error': registrationQuestions[registrationCustomQuestions.ym_khc_parentlastname].hasError}" ng-if="registrationCustomQuestions.ym_khc_parentlastname" ng-cloak>
+              <label class="control-label" for="registrationInfo-{{registrationCustomQuestions.ym_khc_parentlastname}}">
+                <span ng-bind-html="registrationQuestions[registrationCustomQuestions.ym_khc_parentlastname].label"></span>
+              </label>
+              <input aria-required="true" type="text" class="form-control input-lg ym_khc_parentlastname" name="ng_{{registrationCustomQuestions.ym_khc_parentlastname}}" id="registrationInfo-{{registrationCustomQuestions.ym_khc_parentlastname}}" ng-model="registrationInfo[registrationCustomQuestions.ym_khc_parentlastname]" maxlength="{{registrationQuestions[registrationCustomQuestions.ym_khc_parentlastname].maxLength}}" ng-capitalize>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ym-registration-row--bottomed mb-2" role="presentation" ng-if="registrationQuestions.cons_email" ng-cloak>
+        <div class="form-group required" ng-class="{'has-error': registrationQuestions.cons_email.hasError}" ng-if="registrationQuestions.cons_email" ng-cloak>
+          <label class="control-label" for="registrationInfo-cons_email">
+            Parent Email Address:
+          </label>
+          <input aria-required="true" type="email" class="form-control input-lg" name="ng_cons_email" id="registrationInfo-cons_email" ng-model="registrationInfo.cons_email" maxlength="{{registrationQuestions.cons_email.maxLength}}">
+        </div>
+      </div>
+
+
+      <div class="form-group required checkbox" custom-checkbox ng-class="{'checked': registrationInfo[registrationCustomQuestions.ym_khc_email_consent_text] == true || registrationInfo[registrationCustomQuestions.ym_khc_email_consent_text] == 'true', 'has-error': registrationQuestions[registrationCustomQuestions.ym_khc_email_consent_text].hasError}" ng-if="registrationCustomQuestions.ym_khc_email_consent_text" ng-cloak>
+        <label for="registrationInfo-{{registrationCustomQuestions.ym_khc_email_consent_text}}">
+          <input aria-required="true" type="checkbox" name="ng_ym_khc_email_consent_text" id="registrationInfo-{{registrationCustomQuestions.ym_khc_email_consent_text}}" ng-model="registrationInfo[registrationCustomQuestions.ym_khc_email_consent_text]" ng-true-value=true ng-false-value=false> 
+          <span class="manageable-content" data-container="edit_opt_in_container">
+            <span id="opt_in_label_consent" class="control-label">
+              {{registrationQuestions[registrationCustomQuestions.ym_khc_email_consent_text].label}}
+            </span>
+          </span>
+        </label>
+      </div>
+
+
+      <div class="ym-registration-row--bottomed" role="presentation" ng-cloak>
+        <div class="form-group required" ng-class="{'has-error': registrationQuestions[registrationCustomQuestions.ym_khc_student_state].hasError}" ng-if="registrationCustomQuestions.ym_khc_student_state" ng-cloak>
+          <label class="control-label" for="registrationInfo-{{registrationCustomQuestions.ym_khc_student_state}}">
+            <span ng-bind-html="registrationQuestions[registrationCustomQuestions.ym_khc_student_state].label"></span>
+          </label>
+          <select aria-required="true" class="form-control input-lg ym_khc_student_state" name="ng_{{registrationCustomQuestions.ym_khc_student_state}}" id="registrationInfo-{{registrationCustomQuestions.ym_khc_student_state}}" ng-model="registrationInfo[registrationCustomQuestions.ym_khc_student_state]">
+            <option ng-repeat="questionOption in registrationQuestions[registrationCustomQuestions.ym_khc_student_state].options" value="{{questionOption.value}}">{{questionOption.text}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="d-none hidden js--registration-reg-opt-ins">
+        [[?xxnullx::x[[A23]]x::::
+          [[A23]]
+        ]]
+        [[?xxnullx::x[[A20]]x::::
+          [[?xxnullxBASELINEx::x[[S0:TPV_FR_CSTM_REG_OPTIN]]x::
+            <input type="checkbox" name="fr_email_opt_in" id="fr_email_opt_in" [[?[[A20]]::T::checked::]]>
+          :: 
+            [[?xOPTINx::x[[S0:TPV_FR_CSTM_REG_OPTIN]]x:: 
+              <input type="d-none hidden" name="fr_email_opt_in" id="fr_email_opt_in" value="on">
+            ::]]
+          ]]
+        ]]
+      </div>
+      <div class="checkbox" custom-checkbox ng-class="{'checked': registrationInfo.fr_email_opt_in}" ng-if="registrationQuestions.fr_email_opt_in" ng-cloak>
+        <label for="registrationInfo-fr_email_opt_in">
+          <input type="checkbox" name="ng_fr_email_opt_in" id="registrationInfo-fr_email_opt_in" ng-model="registrationInfo.fr_email_opt_in"> 
+          <span class="manageable-content" data-container="edit_opt_in_container">
+            <span id="opt_in_label">
+              [[?xx::x[[C1:fr_gift_notice_opt_in_checkbox]]x::
+                [[M0:friendraiser:gift_notice_opt_in_checkbox]]
+              ::
+                [[C1:fr_gift_notice_opt_in_checkbox]]
+              ]]
+            </span>
+          </span>
+        </label>
+      </div>
+      <div class="checkbox" custom-checkbox ng-class="{'checked': registrationInfo.cons_email_opt_in}" ng-if="registrationQuestions.cons_email_opt_in" ng-cloak>
+        <label for="registrationInfo-cons_email_opt_in">
+          <input type="checkbox" name="ng_cons_email_opt_in" id="registrationInfo-cons_email_opt_in" ng-model="registrationInfo.cons_email_opt_in"> 
+          <span ng-bind-html="registrationQuestions.cons_email_opt_in.label"></span>
+        </label>
+      </div>
+      <div class="ym-registration-row--bottomed" role="presentation" ng-cloak>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group required" ng-class="{'has-error': registrationQuestions[registrationCustomQuestions.ym_khc_grade].hasError}" ng-if="registrationCustomQuestions.ym_khc_grade" ng-cloak>
+              <label class="control-label" for="registrationInfo-{{registrationCustomQuestions.ym_khc_grade}}">
+                <span ng-bind-html="registrationQuestions[registrationCustomQuestions.ym_khc_grade].label"></span>
+              </label>
+              <select aria-required="true" class="form-control input-lg ym_khc_grade" name="ng_{{registrationCustomQuestions.ym_khc_grade}}" id="registrationInfo-{{registrationCustomQuestions.ym_khc_grade}}" ng-model="registrationInfo[registrationCustomQuestions.ym_khc_grade]" ng-change="getTeacherList()">
+                <option ng-repeat="questionOption in registrationQuestions[registrationCustomQuestions.ym_khc_grade].options" value="{{questionOption.value}}">{{questionOption.text}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group required" ng-class="{'has-error': registrationQuestions[registrationCustomQuestions.ym_khc_teacher_name].hasError}" ng-if="registrationCustomQuestions.ym_khc_teacher_name && teachersByGrade.length > 0 && listUpload" ng-cloak>
+              <label class="control-label" for="registrationInfo-{{registrationCustomQuestions.ym_khc_teacher_name}}">
+                <span ng-bind-html="registrationQuestions[registrationCustomQuestions.ym_khc_teacher_name].label"></span>
+              </label>
+              <select class="form-control input-lg ym_khc_teacher" name="ng_{{registrationCustomQuestions.ym_khc_teacher_name}}" id="registrationInfo-{{registrationCustomQuestions.ym_khc_teacher_name}}" ng-model="registrationInfo[registrationCustomQuestions.ym_khc_teacher_name]">
+                 <option ng-repeat="teacher in teachersByGrade" value="{{teacher.teacher_name}}">{{teacher.teacher_name}}</option>
+                 <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group required" ng-class="{'has-error': registrationQuestions[registrationCustomQuestions.ym_khc_teacher_name].hasError}" ng-if="registrationCustomQuestions.ym_khc_teacher_name && !listUpload" ng-cloak>
+              <label class="control-label" for="registrationInfo-{{registrationCustomQuestions.ym_khc_teacher_name}}">
+                <span ng-bind-html="registrationQuestions[registrationCustomQuestions.ym_khc_teacher_name].label"></span>
+              </label>
+              <input aria-required="true" type="text" class="form-control input-lg" name="ng_{{registrationCustomQuestions.ym_khc_teacher_name}}" id="registrationInfo-{{registrationCustomQuestions.ym_khc_teacher_name}}" ng-model="registrationInfo[registrationCustomQuestions.ym_khc_teacher_name]" maxlength="{{registrationQuestions[registrationCustomQuestions.ym_khc_teacher_name].maxLength}}">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ym-registration-row--bottomed" role="presentation" ng-if="registrationInfo[registrationCustomQuestions.ym_khc_grade] != 'NOREPLY' && registrationInfo[registrationCustomQuestions.ym_khc_grade] != 'Pre-School' && registrationInfo[registrationCustomQuestions.ym_khc_grade] != 'Kindergarten' && registrationInfo[registrationCustomQuestions.ym_khc_grade] != '1st' && registrationInfo[registrationCustomQuestions.ym_khc_grade] != '2nd' && registrationInfo[registrationCustomQuestions.ym_khc_grade] != '3rd' && registrationInfo[registrationCustomQuestions.ym_khc_grade] != '4th'" ng-cloak>
+
+            <div class="form-group required" ng-class="{'has-error': registrationQuestions[registrationCustomQuestions.ym_khc_future_middleschool].hasError}" ng-if="registrationCustomQuestions.ym_khc_future_middleschool" ng-cloak>
+              <label class="control-label" for="registrationInfo-{{registrationCustomQuestions.ym_khc_future_middleschool}}">
+                <span ng-bind-html="registrationQuestions[registrationCustomQuestions.ym_khc_future_middleschool].label"></span>
+              </label>
+              <input aria-required="true" type="text" class="form-control input-lg" name="ng_{{registrationCustomQuestions.ym_khc_future_middleschool}}" id="registrationInfo-{{registrationCustomQuestions.ym_khc_future_middleschool}}" ng-model="registrationInfo[registrationCustomQuestions.ym_khc_future_middleschool]" maxlength="{{registrationQuestions[registrationCustomQuestions.ym_khc_future_middleschool].maxLength}}">
+            </div>
+      </div>
+      <div class="row" ng-if="registrationCustomQuestions.ym_khc_instruction_type" ng-cloak>
+        <div class="col-xs-12">
+          <div class="form-group required" ng-class="{'has-error': registrationQuestions[registrationCustomQuestions.ym_khc_instruction_type].hasError}" ng-if="registrationCustomQuestions.ym_khc_instruction_type" ng-cloak>
+            <label class="control-label" for="registrationInfo-{{registrationCustomQuestions.ym_khc_instruction_type}}">
+              <span ng-bind-html="registrationQuestions[registrationCustomQuestions.ym_khc_instruction_type].label"></span>
+            </label>
+              <select aria-required="true" class="form-control input-lg" name="ng_{{registrationCustomQuestions.ym_khc_instruction_type}}" id="registrationInfo-{{registrationCustomQuestions.ym_khc_instruction_type}}" ng-model="registrationInfo[registrationCustomQuestions.ym_khc_instruction_type]">
+                <option ng-repeat="questionOption in registrationQuestions[registrationCustomQuestions.ym_khc_instruction_type].options" value="{{questionOption.value}}">{{questionOption.text}}</option>
+              </select>
+          </div>
+        </div>
+      </div>
+      <div class="row" ng-if="registrationCustomQuestions.ym_khc_school" ng-cloak>
+        <div class="col-xs-12">
+          <div class="form-group" ng-class="{'has-error': registrationQuestions[registrationCustomQuestions.ym_khc_school].hasError}" ng-if="registrationCustomQuestions.ym_khc_school" ng-cloak>
+            <label class="control-label" for="registrationInfo-{{registrationCustomQuestions.ym_khc_school}}">
+              <span ng-bind-html="registrationQuestions[registrationCustomQuestions.ym_khc_school].label"></span>
+            </label>
+            <input type="text" class="form-control input-lg" name="ng_{{registrationCustomQuestions.ym_khc_school}}" id="registrationInfo-{{registrationCustomQuestions.ym_khc_school}}" ng-model="registrationInfo[registrationCustomQuestions.ym_khc_school]" maxlength="{{registrationQuestions[registrationCustomQuestions.ym_khc_school].maxLength}}">
+          </div>
+        </div>
+      </div>
+      <div class="row" ng-if="registrationCustomQuestions.ym_khc_school_city" ng-cloak>
+        <div class="col-sm-6">
+          <div class="form-group" ng-class="{'has-error': registrationQuestions[registrationCustomQuestions.ym_khc_school_city].hasError}" ng-if="registrationCustomQuestions.ym_khc_school_city" ng-cloak>
+            <label class="control-label" for="registrationInfo-{{registrationCustomQuestions.ym_khc_school_city}}">
+              <span ng-bind-html="registrationQuestions[registrationCustomQuestions.ym_khc_school_city].label"></span>
+            </label>
+            <input type="text" class="form-control input-lg" name="ng_{{registrationCustomQuestions.ym_khc_school_city}}" id="registrationInfo-{{registrationCustomQuestions.ym_khc_school_city}}" ng-model="registrationInfo[registrationCustomQuestions.ym_khc_school_city]" maxlength="{{registrationQuestions[registrationCustomQuestions.ym_khc_school_city].maxLength}}">
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group" ng-class="{'has-error': registrationQuestions[registrationCustomQuestions.ym_khc_school_state].hasError}" ng-if="registrationCustomQuestions.ym_khc_school_state" ng-cloak>
+            <label class="control-label" for="registrationInfo-{{registrationCustomQuestions.ym_khc_school_state}}">
+              <span ng-bind-html="registrationQuestions[registrationCustomQuestions.ym_khc_school_state].label"></span>
+            </label>
+            <select class="form-control input-lg" name="ng_{{registrationCustomQuestions.ym_khc_school_state}}" id="registrationInfo-{{registrationCustomQuestions.ym_khc_school_state}}" ng-model="registrationInfo[registrationCustomQuestions.ym_khc_school_state]">
+              <option ng-repeat="questionOption in registrationQuestions[registrationCustomQuestions.ym_khc_school_state].options" value="{{questionOption.value}}">{{questionOption.text}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      [[?xx::x[[A16]]x::::
+        <div class="d-none hidden js--registration-reg-login-info">
+          [[?xxnullx::x[[A16]]x::::
+            [[A16]]
+          ]]
+        </div>
+        <div ng-if="registrationQuestions.cons_user_name || registrationQuestions.cons_password || registrationQuestions.cons_rep_password" ng-cloak>
+          <hr class="ym-section-divider">
+          <div class="manageable-content" data-container="edit_password_hdr_container">
+            <p class="ym-section-header" id="password_hdr_container">
+              [[C1:fr_password_hdr]]
+            </p>
+          </div>
+          <div class="row" ng-if="registrationQuestions.cons_user_name" ng-cloak>
+            <div class="col-xs-12">
+              <div class="form-group required" ng-class="{'has-error': registrationQuestions.cons_user_name.hasError}">
+                <label class="control-label" for="registrationInfo-cons_user_name">
+                  <span ng-bind-html="registrationQuestions.cons_user_name.label"></span>
+                </label>
+                <input aria-required="true" type="text" class="form-control input-lg" name="ng_cons_user_name" id="registrationInfo-cons_user_name" ng-model="registrationInfo.cons_user_name" maxlength="{{registrationQuestions.cons_user_name.maxLength}}">
+                <div class="help-block">
+                  Valid characters are letters, digits, and the characters +, -, _, @, ., %, and :
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row" ng-if="registrationQuestions.cons_password || registrationQuestions.cons_rep_password" ng-cloak>
+            <div class="col-sm-6">
+              <div class="form-group required" ng-class="{'has-error': registrationQuestions.cons_password.hasError}" ng-if="registrationQuestions.cons_password" ng-cloak>
+                <label class="control-label" for="registrationInfo-cons_password">
+                  <span ng-bind-html="registrationQuestions.cons_password.label"></span>
+                </label>
+                <input aria-required="true" type="password" class="form-control input-lg" name="ng_cons_password" id="registrationInfo-cons_password" ng-model="registrationInfo.cons_password" maxlength="{{registrationQuestions.cons_password.maxLength}}">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group required" ng-class="{'has-error': registrationQuestions.cons_rep_password.hasError}" ng-if="registrationQuestions.cons_rep_password" ng-cloak>
+                <label class="control-label" for="registrationInfo-cons_rep_password">
+                  <span ng-bind-html="registrationQuestions.cons_rep_password.label"></span>
+                </label>
+                <input aria-required="true" type="password" class="form-control input-lg" name="ng_cons_rep_password" id="registrationInfo-cons_rep_password" ng-model="registrationInfo.cons_rep_password" maxlength="{{registrationQuestions.cons_rep_password.maxLength}}">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="help-block mt-1">
+                Password must be 5-20 characters.  Password may contain letters, digits and special characters.
+              </div>
+            </div>
+            <p class="p-2">
+              <em>Please save your login information for all future years.</em>
+            </p>
+          </div>
+        </div>
+      ]]
+      [[?xTx::x[[A24]]x::
+        <!-- manage mode -->
+        <hr class="ym-section-divider">
+        <div class="d-none hidden js--registration-reg-additional-info">
+          <div class="manageable-content" data-container="edit_questions_hdr_container">
+            <p class="ym-section-header" id="questions_hdr_container">
+              [[C1:fr_questions_hdr]]
+            </p>
+          </div>
+        </div>
+      ::
+        [[?xxnullx::x[[A19]]x::::
+          <div class="d-none hidden js--registration-reg-additional-info">
+            [[A19]]
+          </div>
+          [[?xtruex::x[[A29]]x::
+            <div ng-if="registrationAdditionalQuestions" ng-cloak>
+              <hr class="ym-section-divider">
+              <div class="manageable-content" data-container="edit_questions_hdr_container">
+                <p class="ym-section-header" id="questions_hdr_container">
+                  [[C1:fr_questions_hdr]]
+                </p>
+              </div>
+              <div ng-repeat="(key, value) in registrationAdditionalQuestions">
+                <div class="row mb-2">
+                  <div class="col-xs-12">
+                    <div class="form-group required" ng-class="{'has-error': registrationQuestions[key].hasError}">
+                      <label class="control-label" for="registrationInfo-{{key}}">
+                        <span ng-bind-html="registrationQuestions[key].label"></span>
+                      </label>
+                      <div ng-if="registrationQuestions[key].type != 'textarea' && registrationQuestions[key].type != 'select'">
+                        <input aria-required="true" type="text" class="form-control input-lg {{key}}" name="ng_{{key}}" id="registrationInfo-{{key}}" ng-model="registrationInfo[key]" maxlength="{{registrationQuestions[key].maxLength}}">
+                      </div>
+                      <div ng-if="registrationQuestions[key].type == 'textarea'">
+                        <textarea aria-required="true" class="form-control {{key}}" name="ng_{{key}}" id="registrationInfo-{{key}}" ng-model="registrationInfo[key]" maxlength="{{registrationQuestions[key].maxLength}}"></textarea>
+                      </div>
+                      <div ng-if="registrationQuestions[key].type == 'select'">
+                        <select aria-required="true" class="form-control input-lg {{key}}" name="ng_{{key}}" id="registrationInfo-{{key}}" ng-model="registrationInfo[key]">
+                          <option ng-repeat="questionOption in registrationQuestions[key].options" value="{{questionOption.value}}">{{questionOption.text}}</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ::]]
+        ]]
+      ]]
+      <div class="ym-registration-reg-waiver" ng-if="participationType.waiver.content" ng-cloak>
+        <div class="form-group required" aria-required="true" tabindex="0">
+          <label class="control-label">
+            Parental Consent
+          </label>
+          <div class="form-control">
+            <div ng-bind-html="participationType.waiver.content" tabindex=0></div>
+          </div>
+        </div>
+        <div class="ym-registration-reg-waiver-btns">
+          <div class="clearfix">
+            <div class="pull-left">
+              <button aria-required="true" type="button" class="btn btn-toggle d-block" ng-class="{'active': acceptWaiver == 'yes'}" ng-click="toggleAcceptWaiver('yes')">
+                Yes, I agree
+              </button>
+            </div>
+            <div class="pull-right">
+              <button type="button" class="btn btn-toggle" ng-class="{'active': acceptWaiver == 'no'}" ng-click="toggleAcceptWaiver('no')">
+                No
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ym-registration-form-footer">
+        <div class="ym-registration-form-footer-btns">
+          <div class="clearfix">
+            <div class="pull-right">
+              <button type="[[?xTx::x[[A12]]x::button::submit]]" class="btn btn-primary">
+                <strong>Next</strong> <i class="fa fa-chevron-right"></i>
+              </button>
+            </div>
+            <div class="pull-left">
+              <button type="[[?xTx::x[[A12]]x::button::submit]]" class="btn btn-toggle" ng-click="previousStep()">
+                <i class="fa fa-chevron-left"></i> <strong>Previous</strong>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      [[S66:util/SpamControlComponentResponsive.tpt]]
+    </form>
+  </div>
+  <div class="d-none hidden" hidden aria-hidden="true">
+    <form class="js--default-reg-form" action="[[A1]]" method="POST">
+      <input type="hidden" name="fr_id" value="[[A2]]">
+      <input type="hidden" name="pg" value="[[A7]]">
+      <input type="hidden" name="cons_email_format" value="1">
+      <div ng-repeat="(key, value) in registrationHiddenFields">
+        <input type="hidden" name="{{key}}" value="{{value}}">
+      </div>
+      <div ng-repeat="(key, value) in registrationInfo">
+        <input type="hidden" name="{{key}}" value="{{value}}">
+      </div>
+      <input type="hidden" name="s_frCompanyId" value="[[S80:frCompanyId]]">
+      <input type="hidden" name="s_frTJoin" value="[[S80:frTJoin]]">
+      <input type="hidden" name="next_step.x" value="[[M1:friendraiser:join_team_step_next_button]]" ng-if="!ng_go_back">
+      <input type="hidden" name="previous_step.x" value="[[M1:friendraiser:join_team_step_prev_button]]" ng-if="ng_go_back">
+    </form>
+  </div>
+</div>
+[[?xTx::x[[A24]]x::
+  <!-- manage mode -->
+  <div id="edit_title_container" class="EditContainer" style="display: none;">
+    [[C:ajax-custompage-edit-component:edit_title_container]]
+  </div>
+  <div id="edit_contact_hdr_container" class="EditContainer" style="display: none;">
+    [[C:ajax-custompage-edit-component:edit_contact_hdr_container]]
+  </div>
+  <div id="edit_contact_info_hdr_container" class="EditContainer" style="display: none;">
+    [[C:ajax-custompage-edit-component:edit_contact_info_hdr_container]]
+  </div>
+  <div id="edit_opt_in_container" class="EditContainer" style="display: none;">
+    [[C:ajax-custompage-edit-component:edit_opt_in_container]]
+  </div>
+  <div id="edit_password_hdr_container" class="EditContainer" style="display: none;">
+    [[C:ajax-custompage-edit-component:edit_password_hdr_container]]
+  </div>
+  <div id="edit_questions_hdr_container" class="EditContainer" style="display: none;">
+    [[C:ajax-custompage-edit-component:edit_questions_hdr_container]]
+  </div>
+  <div id="edit_privacy_options_hdr_container" class="EditContainer" style="display: none;">
+    [[C:ajax-custompage-edit-component:edit_privacy_options_hdr_container]]
+  </div>
+  <div id="edit_privacy_options_hint_container" class="EditContainer" style="display: none;">
+    [[C:ajax-custompage-edit-component:edit_privacy_options_hint_container]]
+  </div>
+  <div id="edit_fr_html_container" class="EditContainer">
+    [[C:ajax-custompage-edit-component:edit_fr_html_container]]
+  </div>
+  <input id="edit_btn_title" type="hidden" value="[[M0:friendraiser_emgmt:preview_edit_link]]">
+  <script>
+    hide_element('edit_fr_html_container');
+    Y.use('emc-reg-editor', function(Y) {
+      jQuery(function() {
+        jQuery('.ym-registration-page-container').manageEMCEditable({
+          windowTitle: '[[T6:[[M0:friendraiser_emgmt:editor_window_title]]]]'
+        });
+      });
+    });
+  </script>
+::]]

@@ -19,7 +19,7 @@
           </h2>
         </div>
         [[?xyz.xnullynullz.xynullz.xnullyz::x[[A4]]y[[A8]]z::::
-          <div class="alert alert-danger" role="alert">
+          <div class="alert alert-danger" role="alert" tabindex="0">
             [[?xy.xnully::x[[A4]]y::
               [[M0:friendraiser:generic_error]]
             ::
@@ -66,8 +66,13 @@
           display: none;
         }
       </style>
-      <div class="hidden" hidden aria-hidden="true">
-        <img ng-src="//hearttools.heart.org/aha_ym18/api/student/register/[[S80:trID]]/[[S1:cons_id]]?team_id=[[E48:[[S80:trID]]-[[S1:cons_id]]:team-id]]&amp;school_id=[[E43:[[S80:trID]]:company-id:[[E48:[[S80:trID]]-[[S1:cons_id]]:team-id]]]]" alt="">
+
+      <div class="hidden d-none" hidden aria-hidden="true">
+        [[?[[E42:[[S334:fr_id]]::classification]]::American::
+        <img ng-src="//tools.heart.org/aha_ahc23/api/student/register/[[S80:trID]]/[[S1:cons_id]]?team_id=[[E48:[[S80:trID]]-[[S1:cons_id]]:team-id]]&amp;school_id=[[E43:[[S80:trID]]:company-id:[[E48:[[S80:trID]]-[[S1:cons_id]]:team-id]]]]" alt="">
+        ::
+        <img ng-src="//tools.heart.org/aha_ym23/api/student/register/[[S80:trID]]/[[S1:cons_id]]?team_id=[[E48:[[S80:trID]]-[[S1:cons_id]]:team-id]]&amp;school_id=[[E43:[[S80:trID]]:company-id:[[E48:[[S80:trID]]-[[S1:cons_id]]:team-id]]]]" alt="">
+        ]]
       </div>
       <div class="tracking-code">[[A31]]</div>
       <script>
@@ -88,7 +93,7 @@
           window.location = 'https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]TRSC?fr_id=[[A2]]&pg=center';
 
         };
-        if(pushRegSuccessToDataLayer) {
+        if(typeof pushRegSuccessToDataLayer != "undefined") {
           pushRegSuccessToDataLayer();
           setTimeout(function() {
             redirectToParticipantCenter();

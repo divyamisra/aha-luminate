@@ -46,6 +46,18 @@ angular.module 'trPcControllers'
           #get all prizes
           BoundlessService.getPrizes $scope.consId
           .then (response) ->
+            if !response.data
+              response.data = []
+              response.data.student = []
+              response.data.student.push
+                id: 0
+                has_bonus: 2
+                total_collected: '0.00'
+                invalid_flag: 0
+                is_new: 1
+                prizes: []
+                current_level: '$0'
+                current_level_goal: '0'
             students = response.data.student
             angular.forEach students, (student) ->
               if student.has_bonus
@@ -75,7 +87,7 @@ angular.module 'trPcControllers'
                     if prevstatus == 1 and status == 0
                       $scope.standardGifts[$scope.standardGifts.length-1].lastItem = 1
                     #mark finns mission as earned if all badges earned
-                    if gift.id == "FINNLS-22" and $scope.badges.length == $scope.badgesEarned
+                    if gift.id == "FINN-23" and $scope.badges.length == $scope.badgesEarned
                       status = 1
                     $scope.standardGifts.push
                       prize_label: gift.name
@@ -87,6 +99,8 @@ angular.module 'trPcControllers'
                       prize_level: gift.level
                       msg_earned: gift.msg_earned
                       msg_unearned: gift.msg_unearned
+                      post_event: gift.post_event
+                      vucheck: gift.vucheck
                     $scope.giftStatus = status
                     prevstatus = status
                     if status == 1

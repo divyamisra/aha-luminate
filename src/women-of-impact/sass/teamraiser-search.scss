@@ -50,6 +50,10 @@
     max-width: 250px;
   }
 
+  .event-status-switch-trigger .event-status-switch {
+    display: none;
+  }
+
 }
 
 .pg_search_list {
@@ -58,5 +62,12 @@
 }
   .js--team-results-rows .col-cta a {
     display: none;
+  }
+}
+
+.js--header-participant-search,
+.js--header-team-search {
+  .form-control {
+    border-color: $gray-500;
   }
 }

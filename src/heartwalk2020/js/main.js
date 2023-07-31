@@ -118,21 +118,44 @@
            motion_event = 1061;
         }
 
-        var skipLink = document.getElementById('skip-main');
+        // var skipLink = document.getElementById('skip-main');
+        //
+        // skipLink.addEventListener('click', function (e) {
+        //     e.preventDefault();
+        //     document.getElementById('pcBodyContainer').scrollIntoView();
+        // });
+        //
+        // if ($('body').is('.pg_HeartWalk_HQ')) {
+        //     $('.js__skip-to').on('click', function (e) {
+        //         e.preventDefault();
+        //         $('html, body').animate({
+        //             scrollTop: $('#pcBodyContainer').offset().top
+        //         }, 500);
+        //     });
+        // }
 
-        skipLink.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.getElementById('pcBodyContainer').scrollIntoView();
-        });
+        const pcBodyContainer = document.getElementById("pcBodyContainer");
+        if (typeof(pcBodyContainer) != 'undefined' && pcBodyContainer != null) {
+            pcBodyContainer.setAttribute("tabindex", "-1");
 
-        if ($('body').is('.pg_HeartWalk_HQ')) {
-            $('.js__skip-to').on('click', function (e) {
-                e.preventDefault();
-                $('html, body').animate({
-                    scrollTop: $('#pcBodyContainer').offset().top
-                }, 500);
+            // Get the skip link element
+            const skipLink = document.getElementById("skip-main");
+
+            // Get the main content element
+            const mainContent = document.getElementById("pcBodyContainer");
+
+            // Add a click event listener to the skip link
+            skipLink.addEventListener("click", function(event) {
+                // Prevent the default link behavior
+                event.preventDefault();
+
+                // Scroll to the main content
+                mainContent.scrollIntoView({ behavior: "smooth" });
+                mainContent.focus();
             });
         }
+
+
 
         var addScrollLinks = function () {
             $('a.scroll-link')
@@ -325,6 +348,7 @@
                 }
             });
         };
+
 
         cd.getCompanies = function (companyName, isCrossEvent) {
             luminateExtend.api({
@@ -653,7 +677,10 @@
         // BEGIN TOP COMPANIES
 // TODO - replace with companyList
 
+        //var totalTopLevelCompanies = 0
+
         cd.getCompanyList = function (eventId) {
+            console.log('GETCOMPANYLIST')
             luminateExtend.api({
                 api: 'teamraiser',
                 data: 'method=getCompanyList&fr_id=' + eventId +
@@ -715,6 +742,8 @@
                         var sortedAncestorCompanies = rootAncestorCompanies.sort(function (a, b) {
                             return b.amountRaised - a.amountRaised
                         });
+                        //console.log('sortedAncestorCompanies.length ' + sortedAncestorCompanies.length)
+                        $('.js--num-companies').text(sortedAncestorCompanies.length);
                         //var sortedAncestorCompanies = $filter('orderBy')(rootAncestorCompanies, 'amountRaised', true);
                         $(sortedAncestorCompanies).each(function (i) {
                             if (i < 5) {
@@ -1054,7 +1083,8 @@
             cd.getTopParticipants(evID);
             cd.getTopTeams(evID);
             cd.getCompanyList(evID);
-            cd.getTopCompanies(evID);
+            //commenting out because total number of companies is coming from list of ancestor companies above per AHA-1023 
+            //cd.getTopCompanies(evID);
 
             if (currDate >= fourWeek && currDate <= eventDate) {
                 //build steps leaderboard
@@ -1241,7 +1271,7 @@
                                     videoEmbedHtml = '<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/TnjvKjkANPI?wmode=opaque&amp;rel=0&amp;showinfo=0" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                                   }
                                   else {
-                                    videoEmbedHtml = '<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/b3K5LcaPzvE?wmode=opaque&amp;rel=0&amp;showinfo=0" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                                    videoEmbedHtml = '<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/YevRvej-dDk?wmode=opaque&amp;rel=0&amp;showinfo=0" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                                   }
                                 }
                                 else {
@@ -1249,7 +1279,7 @@
                                     videoEmbedHtml = '<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/TnjvKjkANPI?wmode=opaque&amp;rel=0&amp;showinfo=0" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                                   }
                                   else {
-                                    videoEmbedHtml = '<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/b3K5LcaPzvE?wmode=opaque&amp;rel=0&amp;showinfo=0" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                                    videoEmbedHtml = '<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/YevRvej-dDk?wmode=opaque&amp;rel=0&amp;showinfo=0" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                                   }
                                 }                                
                             }

@@ -1,4 +1,33 @@
 <div class="donation-form-container">
+
+  [[?[[S51:reus_ym_ahc_student_fundraising_closed_teams]]::x[[E48:[[S334:FR_ID]]-[[S334:PROXY_ID]]:team-id]]x::
+    [[?x20x::x[[S334:PROXY_TYPE]]x::
+      <style>
+        .app-9 .ym-page-content .col-md-8 {
+          flex:none;
+          margin: 50px 0 0 0;
+        }
+        .ym-donation-headlines,
+        .ym-donation-levels,
+        #ProcessForm,
+        .ym-donation-sidebar__text--top,
+        .ym-donation-sidebar hr {
+          display: none;
+        }
+
+        .ym-donation-giving-closed p {
+          font-size: 24px;
+          font-weight: bold;
+          text-align: center;
+        }
+      </style>
+      <div class="ym-donation-giving-closed">
+        <p>[[S120:dc:participantName]]'s personal fundraiser has ended but you can still support our school's overall fundraising efforts <a href="Donation2?[[S120:dc:donFormId]].donation=form1&df_id=[[S120:dc:donFormId]]&FR_ID=[[S334:FR_ID]]&mfc_pref=T&PROXY_TYPE=22&PROXY_ID=[[E48:[[S334:FR_ID]]-[[S334:PROXY_ID]]:team-id]][[?xtruex::x[[S334:paypal]]x::&paypal=true::]]" aria-label="donate here">here</a>.</p>
+      </div>
+    ::]]
+  ::]]
+
+
   <div class="ym-donation-headlines">
     [[?xx::x[[S1:user_name]]x::::
       <p>You are currently logged in as [[S1:first_name]] [[S1:last_name]]. <a href="UserLogin?logout=t&NEXTURL=[[T1:[[S8]]]]">Log out if you are not [[S1:first_name]] [[S1:last_name]]</a>.
@@ -14,13 +43,7 @@
       ]]
     ]]
     </h2>
-    <div class="pull-right hidden-xs hidden-sm">
-      <img style="height: 48px;" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/suggested-donation-40-2021.png" alt="Suggested Donation of $40">
-    </div>
     <h2 class="h4">Your Gift</h2>
-    <div class="hidden-md hidden-lg">
-      <img style="height: 48px;" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/suggested-donation-40-2021.png" alt="Suggested Donation of $40">
-    </div>
   </div>
   <div class="alert alert-danger" role="alert" ng-if="paymentInfoErrors.errors.length > 0" ng-cloak>
     [[M0:friendraiser:generic_error]]
@@ -51,14 +74,14 @@
       </div>
     </fieldset>
     <div class="alert alert-danger ng-hide" role="alert" ng-show="otherAmtError" aria-hidden="true">
-      Donations of all amounts are greatly appreciated.<br>Online donations have a $10 minimum
+      Online donations have a $10 minimum
     </div>
     <div class="ym-donation-levels__message level{{donationLevel.levelId}}" id="message-level-{{donationLevel.levelId}}" ng-repeat="donationLevel in donationLevels" ng-class="{'active': donationInfo.levelChecked == donationLevel.classLevel}">
       <p>
         {{donationLevel.levelLabel}}
       </p>
     </div>
-    <div class="ym-donation-levels__message--installment level--installment"  ng-class="{'hidden': donationInfo.giftType != 'monthly'}">
+    <div class="ym-donation-levels__message--installment level--installment"  ng-class="{'d-none': donationInfo.giftType != 'monthly'}">
       <p>
         An installment gift allows you flexibility to give at a higher level and pay over time.
       </p>

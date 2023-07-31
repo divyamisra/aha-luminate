@@ -716,6 +716,7 @@
                         var sortedAncestorCompanies = rootAncestorCompanies.sort(function (a, b) {
                             return b.amountRaised - a.amountRaised
                         });
+                        $('.js--num-companies').text(sortedAncestorCompanies.length);
                         //var sortedAncestorCompanies = $filter('orderBy')(rootAncestorCompanies, 'amountRaised', true);
                         $(sortedAncestorCompanies).each(function (i) {
                             if (i < 5) {
@@ -1055,7 +1056,8 @@
             cd.getTopParticipants(evID);
             cd.getTopTeams(evID);
             cd.getCompanyList(evID);
-            cd.getTopCompanies(evID);
+            // commenting out because total number of companies is coming from list of ancestor companies above per AHA-1023 
+            //cd.getTopCompanies(evID);
 
             if (currDate >= fourWeek && currDate <= eventDate) {
                 //build steps leaderboard

@@ -169,6 +169,19 @@ module.exports = {
     ]
   },
 
+  "fieldday2023": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/fieldday2023/html/',
+        src: [
+          '**/*.*'
+        ],
+        dest: "dist/fieldday2023/html/"
+      }
+    ]
+  },
+
   "heartwalklawyers": {
     files: [
       {
@@ -227,6 +240,18 @@ module.exports = {
           '**/*.*'
         ],
         dest: "dist/teens-of-impact/html/"
+      }
+    ]
+  },
+  "ym-rewards": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/ym-rewards/html/',
+        src: [
+          '**/*.*'
+        ],
+        dest: "dist/ym-rewards/html/"
       }
     ]
   }

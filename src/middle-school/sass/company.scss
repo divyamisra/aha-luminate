@@ -1,42 +1,53 @@
+.app-26 {
+  main {
+    > .container {
+      @media (max-width: $screen-xs-max) {
+        margin-top: 0px;
+      }
+    }
+  }
+}
+
+main {
+  > .container {
+    @media (max-width: $screen-xs-max) {
+      margin-top: 0px;
+    }
+  }
+}
+	
 body.pg-company {
 	.challenge-slime {
 		background: #fff url('../image/fy22/school_challenge_slime.jpg') no-repeat center bottom / 100% 100%;
 		.ym-progress__title {
-			color: $event-secondary-medium;
-		}
-		.ym-progress__stats p {
-  		        color: $event-secondary-medium;
+			color: #000000;
 		}
 	}
 	.challenge-pie {
 		background: #fff url('../image/fy22/school_challenge_pie_in_face.jpg') no-repeat center bottom / 100% 100%;
-		.ym-progress__title {
-			color: $event-secondary-medium;
-		}
-		.ym-progress__stats p {
-  		        color: $event-secondary-medium;
+		.ym-progress__stats {
+		    max-width: 343px;
+		    margin-left: 130px;
 		}
 	}
 	.challenge-color {
 		background: #fff url('../image/fy22/school_challenge_chalk.jpg') no-repeat center bottom / 100% 100%;
 		.ym-progress__title {
-			color: $event-secondary-medium;
-		}
-		.ym-progress__stats p {
-  		        color: $event-secondary-medium;
+			color: #000000;
 		}
 	}
 	.challenge-hair {
 		background: #fff url('../image/fy22/school_challenge_hair_dye.jpg') no-repeat center bottom / 100% 100%;
 		.ym-progress__title {
-			color: $event-secondary-medium;
+			color: #000000;
 			margin-left:65px;
+			padding: 0 10px;
 		}
 		.ym-progress__cta {
 			margin-left:65px;
 		}
-		.ym-progress__stats p {
-  		        color: $event-secondary-medium;
+		.ym-progress__thermometer {
+			margin-left: 85px;
 		}
 	}
 }
@@ -65,9 +76,4 @@ body.pg-company {
       line-height: 1.3em;
     }
   }
-}
-
-.app-26 .ym-progress__thermometer {
-	max-width: 80%;
-	margin-right: 4%;
 }

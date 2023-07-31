@@ -675,9 +675,9 @@
                 e.preventDefault();
                 $('.js__login-container').addClass('d-none');
                 $('.js__have-we-met-container').removeClass('d-none');
-		$('h1#user_type_campaign_banner_container').replaceWith(function() {
-	            return '<h1 class="campaign-banner-container" id="user_type_campaign_banner_container">Have We Met Before?</h1>';
-	        });
+                $('h1#user_type_campaign_banner_container').replaceWith(function() {
+	                return '<h1 class="campaign-banner-container" id="user_type_campaign_banner_container">Have We Met Before?</h1>';
+	              });
             });
             $('.js__new-record').on('click touchstart', function (e) {
             // new participant. continue to tfind step
@@ -1257,22 +1257,22 @@
         if ($('#fr_team_goal').length <= 0) {
             $('#team_find_section_footer').hide();
         }
-	// UTYPE
-	if (jQuery('input[name=pg]').val() == "utype") {
-   	    $('h1#user_type_campaign_banner_container').replaceWith(function() {
-	        return '<h1 class="campaign-banner-container" id="user_type_campaign_banner_container">Have We Met Before?</h1>';
-            });
-	}
+        // UTYPE
+        if (jQuery('input[name=pg]').val() == "utype") {
+              $('h1#user_type_campaign_banner_container').replaceWith(function() {
+                return '<h1 class="campaign-banner-container" id="user_type_campaign_banner_container">Have We Met Before?</h1>';
+                  });
+        }
 
         // PTYPE
         if ($('#F2fRegPartType').length > 0) {
             if ($('.part-type-container').length == 1) {
 
-		 if ($('input[name=discount_code]').length == 0) {
-	                $('.part-type-container, #part_type_section_header').hide();
-		} else {
-	                $('#part_type_section_header').hide();
-		}
+              if ($('input[name=discount_code]').length == 0) {
+                $('.part-type-container, #part_type_section_header').hide();
+              } else {
+                $('#part_type_section_header').hide();
+              }
                 //$('.part-type-container').before("<div class='part_type_one_only'><strong>Set Your Fundraising Goal!</strong></div>");
             } else {
                 $('input[name=fr_part_radio]:checked').removeAttr("checked");
@@ -1291,7 +1291,7 @@
             }
             if (regType === 'joinTeam') {
                 $('#part_type_additional_gift_section_header').html('<div class="bold-label" id="regDonationLabel">Your registration fee gets you in the game - your donation helps end heart disease and stroke. Add a personal donation to kickstart your own fundraising and show your team how it\'s done.</div>');
-	        //$('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Show your dedication and make a donation towards your goal.</div>');
+	              //$('#part_type_additional_gift_section_header').prepend('<div class="bold-label" id="regDonationLabel">Show your dedication and make a donation towards your goal.</div>');
             }
             $('#part_type_additional_gift_section_header').before("<h2>Add on a personal donation</h2>");
 
@@ -1305,34 +1305,34 @@
 
             $('input[name=fr_part_radio]').addClass("required").attr("title","Participation type is required");
 
-	    //hide back button and turn into link
-	    $('button#previous_step').after('<a href="javascript:window.history.go(-1)" class="step-button previous-step backBtnReg">Back</a>').hide();
+            //hide back button and turn into link
+            $('button#previous_step').after('<a href="javascript:window.history.go(-1)" class="step-button previous-step backBtnReg">Back</a>').hide();
 
             $('form').validate({
-		focusInvalid: false,
-		invalidHandler: function(form, validator) {
-			if (!validator.numberOfInvalids())
-				return;
+              focusInvalid: false,
+              invalidHandler: function(form, validator) {
+                if (!validator.numberOfInvalids())
+                  return;
 
-			$('html, body').animate({
-				scrollTop: $(validator.errorList[0].element).offset().top
-			}, 500);
-		},
-		errorPlacement: function(error, element) {
-			if ($(element).attr("name") == "fr_part_radio") {
-				$('#part_type_selection_container').append(error).css({"display":"block","text-align":"left"});
-			} else {
-				if ($(element).attr("name").indexOf("donation_level_form_input") > -1) {
-					$('.enterAmt-other').after(error);
-				} else {
-					var placement = $(element).data('error');
-					if (placement) {
-						$(placement).append(error)
-					} else {
-						error.insertAfter(element);
-					}
-				}
-			}
+                $('html, body').animate({
+                  scrollTop: $(validator.errorList[0].element).offset().top
+                }, 500);
+              },
+              errorPlacement: function(error, element) {
+                if ($(element).attr("name") == "fr_part_radio") {
+                  $('#part_type_selection_container').append(error).css({"display":"block","text-align":"left"});
+                } else {
+                  if ($(element).attr("name").indexOf("donation_level_form_input") > -1) {
+                    $('.enterAmt-other').after(error);
+                  } else {
+                    var placement = $(element).data('error');
+                    if (placement) {
+                      $(placement).append(error)
+                    } else {
+                      error.insertAfter(element);
+                    }
+                  }
+                }
                 }
             });
             $.validator.addMethod("validDonation",function(value, element) {
@@ -1367,6 +1367,22 @@
                 if ($('form').valid()) {
                     //store off personal goal in sess var by adding to action url
                     $('#F2fRegPartType').prepend('<input type="hidden" id="personalGoal" name="s_personalGoal" value="' + $('input#fr_goal').val() + '">');
+
+                    if ($('input[name^="donation_level_form_"]:checked').val() != '$0.00' || ($('input[name^="donation_level_form_"]:checked').closest('donation-level-row-container').hasClass('.other-amount-row-container') && $('input[name^="fr_donation_level_enter_amount_"]').val() != '')) {
+                      // If the participant chooses to make a gift, check for the Double the Donation field
+                      // and record the chosen company in local storage if it exists
+                      var $doubleDonationCompany = $('input[name="doublethedonation_company_id"]');
+                      if ($doubleDonationCompany.length && $doubleDonationCompany.val().length > 0) {
+                          console.log('found dtd value');
+                          var dtdCoId = $('input[name="doublethedonation_company_id"]').val();
+                          console.log('dtdCoId ' + dtdCoId);
+                          localStorage.dtdCompanyId = dtdCoId;
+                      } else {
+                          console.log('clear dtd company id');
+                          localStorage.dtdCompanyId = "";
+                      }
+                    }
+
                     return true;
                 } else {
                     return false;
@@ -1595,9 +1611,9 @@
             $('.p-bar-step-1').css('background', '#f18b21');
         }
         //if ($('input[name="pg"]').val() == 'waiver') {
-	//    $('h2.cstmTitle').prepend(evDateYear+" ");
-	//}
-	if ($('#fr_reg_summary_page #FriendraiserUserWaiver').length > 0) {
+      	//    $('h2.cstmTitle').prepend(evDateYear+" ");
+	      //}
+      	if ($('#fr_reg_summary_page #FriendraiserUserWaiver').length > 0) {
             $('.p-bar-step-1, .p-bar-step-2, .p-bar-step-3').show();
             $('#progressText1, #progressText2').hide();
             $('.p-bar-step-1, .p-bar-step-2').css('background', '#f18b21');
@@ -1638,7 +1654,7 @@
 
         $('span.input-label:contains("SurvivorQ")').parent().parent().addClass('survivorSelect');
         $('span.input-label:contains("SurvivorQ")').parent().parent().parent().parent().hide();
-	$('.survivor_yes_no li.input-container input[type="radio"]').attr("aria-required","true");
+	      $('.survivor_yes_no li.input-container input[type="radio"]').attr("aria-required","true");
         if ($('.survivor_yes_no li.input-container input[value="No"]').is(':checked')) {
             $('.survivor_yes_no li.input-container input[value="No"]').parent().parent().addClass('survivor_active');
         } else if ($('.survivor_yes_no li.input-container input[value="Yes"]').is(':checked')) {
@@ -1673,9 +1689,9 @@
         $('#part_type_individual_company_selection_container').insertAfter('#part_type_selection_container');
         $('.donation-level-row-label-no-gift').insertBefore(jQuery('.donation-level-row-label-no-gift').parent());
         $('.donation-level-row-container.enterAmt label.donation-level-row-label').text('Other Amount');
-	$('.donation-level-row-label-no-gift').parent().addClass('notTime');
-  $('.enterAmt .input-container > span').next('input').andSelf().wrapAll("<div class='enterAmt-other hidden'></div>");
-  // $('.donation-level-row-container').attr('tabindex', '0');
+        $('.donation-level-row-label-no-gift').parent().addClass('notTime');
+        $('.enterAmt .input-container > span').next('input').andSelf().wrapAll("<div class='enterAmt-other hidden'></div>");
+        // $('.donation-level-row-container').attr('tabindex', '0');
 
         $(".donation-level-amount-text").each(function() {
             $(this).text($(this).text().replace(".00", ""));
@@ -1686,132 +1702,151 @@
             $(this).addClass('active');
             //$('#part_type_anonymous_input_container, #part_type_show_public_input_container').show();
             $('.donation-level-row-container.enterAmt input').val('');
-	    $('.enterAmt-other').addClass("hidden");
-	    $('form').validate().resetForm();
+            $('.enterAmt-other').addClass("hidden");
+            $('form').validate().resetForm();
         });
         $('.donation-level-row-container.enterAmt').click(function() {
             $(this).find('input').prop('checked', true);
             if ($(this).find('input').val() == "") {
-		 $(this).find('input').val(0);
-	    }
-	    $('.enterAmt-other').removeClass("hidden");
+              $(this).find('input').val(0);
+	          }
+      	    $('.enterAmt-other').removeClass("hidden");
             $('.donation-level-row-container').removeClass('active');
-	    $(this).addClass("active");
+      	    $(this).addClass("active");
             //$('#part_type_anonymous_input_container, #part_type_show_public_input_container').show();
         });
         $('.donation-level-row-container.notTime').click(function() {
             $(this).find('input').prop('checked', true);
             $('.donation-level-row-container').removeClass('active');
-	    $(this).addClass("active");
+      	    $(this).addClass("active");
             //$('#part_type_anonymous_input_container, #part_type_show_public_input_container').show();
             $('.donation-level-row-container.enterAmt input').val('');
-	    $('.enterAmt-other').addClass("hidden");
-	    $('form').validate().resetForm();
-	});
-	//check if amounts preselected
+            $('.enterAmt-other').addClass("hidden");
+            $('form').validate().resetForm();
+	      });
+      	//check if amounts preselected
         $('.donation-level-row-container.donation-amt input:checked').closest('.donation-level-row-container.donation-amt').addClass("active");
-	$('.donation-level-row-container.enterAmt input:checked').closest('.donation-level-row-container.enterAmt').addClass("active");
-	$('.donation-level-row-container.notTime input:checked').closest('.donation-level-row-container.notTime').addClass("active");
+        $('.donation-level-row-container.enterAmt input:checked').closest('.donation-level-row-container.enterAmt').addClass("active");
+        $('.donation-level-row-container.notTime input:checked').closest('.donation-level-row-container.notTime').addClass("active");
 
         $('.donation-level-row-container.donation-amt input').focus(function(){
-	    $(this).click();
+	        $(this).click();
         });
 
-	//QA
+      	//QA
 
         if ($('#F2fRegPartType').length > 0 && $('#previous_step').length === 0) {
             $('#F2fRegPartType .section-footer button.next-step').after('<a href="TRR/?pg=utype&fr_id=' + fr_id + '" class="step-button previous-step backBtnReg">Back</a>');
         }
 
-	//wrap additional amount radio and label in own div for acc
-	$('.input-container label:contains(Other Amount)').prev('input').andSelf().wrapAll('<div class="donation-level-row-decoration-container"></div>');
+        //wrap additional amount radio and label in own div for acc
+        $('.input-container label:contains(Other Amount)').prev('input').andSelf().wrapAll('<div class="donation-level-row-decoration-container"></div>');
 
         /* Page = Reg */
         if ($('input[name="pg"]').val() == 'regsummary') {
 
-        console.log('reg page updates');
+          console.log('reg page updates');
 
-   	    //$('h2.cstmTitle').prepend(evDateYear+" ");
-            // if there is a donation then change button text
-            if ($.trim($('.additional-gift-amount').html()) != "$0.00") {
-                $('button.next-step').attr("value","Complete and Donate").find('span').html("Complete and Donate");
-            }
+          //$('h2.cstmTitle').prepend(evDateYear+" ");
+          // if there is a donation then change button text
+          if ($.trim($('.additional-gift-amount').html()) != "$0.00") {
+              $('button.next-step').attr("value","Complete and Donate").find('span').html("Complete and Donate");
+          }
 
-            //move custom details into content
-            $('.reg-summary-event-info').prepend($('#additionalRegDetails'));
+          //move custom details into content
+          $('.reg-summary-event-info').prepend($('#additionalRegDetails'));
 
     	    //save off mobile opt option
-            if (localStorage.mobile_optin == "on") {
-                luminateExtend.api({
-                    api: 'cons',
-                    useHTTPS: true,
-                    requestType: 'POST',
-                    requiresAuth: true,
-                    data: 'method=logInteraction' +
+          if (localStorage.mobile_optin == "on") {
+              luminateExtend.api({
+                  api: 'cons',
+                  useHTTPS: true,
+                  requestType: 'POST',
+                  requiresAuth: true,
+                  data: 'method=logInteraction' +
                     '&response_format=json' +
-    				'&interaction_type_id=0' +
-    				'&interaction_subject=Hustle-OptIn' +
-    				'&interaction_body=\'{"EventId":' + $('body').data("fr-id") + ',"GroupId":' + $('body').data("group-id") + ',"OptIn":"Yes"}\'' +
-    				'&cons_id=' + $('body').data("cons-id"),
-                    callback: {
-			success: function (response) {
-				if (response.updateConsResponse.message == "Interaction logged successfully.") {
+                    '&interaction_type_id=0' +
+                    '&interaction_subject=Hustle-OptIn' +
+                    '&interaction_body=\'{"EventId":' + $('body').data("fr-id") + ',"GroupId":' + $('body').data("group-id") + ',"OptIn":"Yes"}\'' +
+                    '&cons_id=' + $('body').data("cons-id"),
+                  callback: {
+                    success: function (response) {
+                      if (response.updateConsResponse.message == "Interaction logged successfully.") {
 
-				}
-			},
-			error: function (response) {
-				console.log(response.errorResponse.message);
-			}
+                      }
+                    },
+                    error: function (response) {
+                      console.log(response.errorResponse.message);
                     }
-                });
-		if (isProd) {
-	                $('<img width="1" height="1" style="display:none;" src="https://www2.heart.org/site/SPageServer?pagename=reus_leaders_mobileopt_add_group&group_id=' + $('body').data("group-id") + '&pgwrap=n" id="mobileopt_add_group">').appendTo($('#fr_reg_summary_page'));
-		} else {
-	                $('<img width="1" height="1" style="display:none;" src="https://dev2.heart.org/site/SPageServer?pagename=reus_leaders_mobileopt_add_group&group_id=' + $('body').data("group-id") + '&pgwrap=n" id="mobileopt_add_group">').appendTo($('#fr_reg_summary_page'));
-		}
-    	    }
-        }
+                  }
+              });
+              if (isProd) {
+                $('<img width="1" height="1" style="display:none;" src="https://www2.heart.org/site/SPageServer?pagename=reus_leaders_mobileopt_add_group&group_id=' + $('body').data("group-id") + '&pgwrap=n" id="mobileopt_add_group">').appendTo($('#fr_reg_summary_page'));
+              } else {
+                $('<img width="1" height="1" style="display:none;" src="https://dev2.heart.org/site/SPageServer?pagename=reus_leaders_mobileopt_add_group&group_id=' + $('body').data("group-id") + '&pgwrap=n" id="mobileopt_add_group">').appendTo($('#fr_reg_summary_page'));
+              }
+            }
+
+            $('#next_button').click(function(){
+
+              if ($('.additional-gift-amount').text() != '$0.00'){
+                  console.log('there is a gift value');
+                  var addlGiftAmt = $('.additional-gift-amount').text();
+                  addlGiftAmt = addlGiftAmt.trim();
+                  console.log("addlGiftAmt " + addlGiftAmt)
+                  localStorage.addlGiftAmt = addlGiftAmt;
+              }
+              else {
+                  console.log('clear addGiftAmt'); 
+                  localStorage.addlGiftAmt = "";
+              }
+      
+            });
+
+
+
+          }
 
         /* Page = paymentForm */
-  if ($('input[name="pg"]').val() == 'paymentForm') {
-		//$('h1#reg_payment_campaign_banner_container').prepend(evDateYear+" ");
-		$('button.previous-step').attr("formnovalidate","true");
+        if ($('input[name="pg"]').val() == 'paymentForm') {
+          //$('h1#reg_payment_campaign_banner_container').prepend(evDateYear+" ");
+          $('button.previous-step').attr("formnovalidate","true");
 
-		$('.payment-type-selection-container h3').attr("id","payment-type-label");
-		$('.payment-type-selections').attr({"role":"radiogroup","aria-labelledby":"payment-type-label","aria-required":"true"});
-		$('.payment-type-selections inpyt[type=radio]').attr("role","radio");
+          $('.payment-type-selection-container h3').attr("id","payment-type-label");
+          $('.payment-type-selections').attr({"role":"radiogroup","aria-labelledby":"payment-type-label","aria-required":"true"});
+          $('.payment-type-selections inpyt[type=radio]').attr("role","radio");
 
-		//remove paypal image and put text instead - passes accessibility
-		$('.external-payment .payment-type-label').html("PayPal");
+          //remove paypal image and put text instead - passes accessibility
+          $('.external-payment .payment-type-label').html("PayPal");
 
-		$('span.field-required').closest('.form-content').find('input:visible, select').addClass("required");
+          $('span.field-required').closest('.form-content').find('input:visible, select').addClass("required");
 
-		$('input.required').each(function(){
-      var label = $(this).closest('.form-content').find('label').html();
-  		$(this).attr("title",label.replace(":","") + " is required");
-		});
-		$('select.required').each(function(){
-		    var label = $(this).closest('.form-content').find('label span.label-text').html();
-		    if (label != undefined) {
-		    	$(this).attr("title",label.replace(":","") + " is required");
-		    }
-		});
+          $('input.required').each(function(){
+            var label = $(this).closest('.form-content').find('label').html();
+            $(this).attr("title",label.replace(":","") + " is required");
+          });
+          $('select.required').each(function(){
+              var label = $(this).closest('.form-content').find('label span.label-text').html();
+              if (label != undefined) {
+                $(this).attr("title",label.replace(":","") + " is required");
+              }
+          });
 
-		//hide back button and use link instead
-	   	$('button#btn_prev').after('<a href="javascript:window.history.go(-1)" class="step-button previous-step backBtnReg">Back</a>').hide();
+          //hide back button and use link instead
+          $('button#btn_prev').after('<a href="javascript:window.history.go(-1)" class="step-button previous-step backBtnReg">Back</a>').hide();
 
-       $('button.next-step').click(function(){
-        if ($('.payment-type-option.selected input').val() == "paypal") {
-            return true;
-        } else {
-            if ($('form').valid()) {
-                return true;
+          $('button.next-step').click(function(){
+            if ($('.payment-type-option.selected input').val() == "paypal") {
+              return true;
             } else {
+              if ($('form').valid()) {
+                return true;
+              } else {
                 return false;
+             }
             }
-        }
-    });
-	}
+          });
+	      }
 
         $('#reg_summary_header_container').insertAfter('.section-header');
         $('#previous_step span').text("Back");
@@ -1824,22 +1859,22 @@
         $('.survey-question-container legend span:contains("Publicity Release")').parent().parent().addClass('waiverCheck');
         $('.waiverCheck legend').addClass('aural-only');
         $('.waiverCheck label').html('<span class="field-required"></span> I accept and acknowledge that I have read and understand this Field Day <a id="waiverPopLink" href="javascript:void(0);">Release with Publicity Consent</a> and agree to them voluntarily.');
-	$('.waiverCheck input[type="checkbox"]').attr("aria-required","true");
+      	$('.waiverCheck input[type="checkbox"]').attr("aria-required","true");
         $('.survey-question-container legend span:contains("Terms of Service")').parent().parent().addClass('privacyCheck');
         $('.privacyCheck legend').addClass('aural-only');
         var trName = $('.campaign-banner-container').text();
         trName = trName.replace(/'/g, '');
         // TODO - update terms of service code for Field Day
         $('.privacyCheck label').html('<span class="field-required"></span> I agree to the <a href="javascript:void(0)" onclick="window.open(\'DocServer/Field_Days_165966_2020.03.20_TOS.pdf\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Terms and Conditions (PDF)</a> and <a href="javascript:void(0)" onclick="window.open(\'https://www.heart.org/en/about-us/statements-and-policies/privacy-statement\',\'_blank\',\'location=yes,height=570,width=520,scrollbars=yes,status=yes\');">Privacy Policy</a>.');
-	$('.privacyCheck input[type="checkbox"]').attr("aria-required","true");
+	      $('.privacyCheck input[type="checkbox"]').attr("aria-required","true");
 
-	$('.survey-question-container legend span:contains("Healthy for good signup")').parent().parent().addClass('healthyCheck');
+	      $('.survey-question-container legend span:contains("Healthy for good signup")').parent().parent().addClass('healthyCheck');
         $('.healthyCheck legend').addClass('aural-only');
 
         $('#waiverPopLink').click(function(e) {
             e.preventDefault();
             $('#overlayWaiver, #lightboxWiaver').fadeIn(400);
-	    $('.lightboxWiaverClose').focus();
+	          $('.lightboxWiaverClose').focus();
         });
 
         $('.healthyCheck label').text('Yes, sign me up for sharable tips, videos and hacks so I can be Healthy For Good.');
@@ -2170,7 +2205,7 @@
               return 0;
             }
 
-//start sort function
+            //start sort function
             if (!String.prototype.startsWith) {
              Object.defineProperty(String.prototype, 'startsWith', {
                  value: function(search, rawPos) {
@@ -2336,7 +2371,6 @@
                 $('.contact-info-middle').addClass('regMiddleName');
               }
             }
-
 
             if ($('body').is('.pg_tfind')) {
               $('#fr_team_name').attr('title', 'Team Name required');

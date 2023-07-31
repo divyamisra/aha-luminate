@@ -176,6 +176,15 @@ module.exports = {
     ]
   },
 
+  "fieldday2023": {
+    files: [
+      {
+        src: ["src/fieldday2023/js/main.js"],
+        dest: "dist/fieldday2023/js/main." + "<%= timestamp %>" + ".min.js"
+      }
+    ]
+  },
+
   "heartwalklawyers": {
     files: [
       {
@@ -274,6 +283,16 @@ module.exports = {
       {
         src: ["src/teens-of-impact/js/pushy.js"],
         dest: "dist/teens-of-impact/js/pushy.min.js"
+      }
+    ]
+  },
+  "ym-rewards": {
+    files: [
+      {
+        src: [
+          'dist/ym-rewards/js/main.js'
+        ],
+        dest: 'dist/ym-rewards/js/main.' + '<%= timestamp %>' + '.min.js'
       }
     ]
   }

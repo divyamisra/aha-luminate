@@ -34,7 +34,7 @@ padding: 0.625rem 1.25rem;
 #home, #find, #about {
   &:hover {
     @include media-breakpoint-up(md) {
-      color: $white!important;
+      color: $red!important;
     }
   }
 }
@@ -64,7 +64,7 @@ nav {
 
   /* Navigation links */
   .nav-link {
-    color: $white;
+    color: $red-deep;
     font-size: 1.4rem;
     text-decoration: none;
     font-family: $font-family-bold;
@@ -87,14 +87,14 @@ nav {
     list-style:none;
 
     @include media-breakpoint-up(sm) {
-      color: $white;
+      color: $red;
     }
 
     &.dropdown {
       a {
         &.nav-link{
           &:hover{
-            color: $white;
+            color: $red;
           }
         }
       }
@@ -104,7 +104,7 @@ nav {
     &.logged-in:hover {
       a {
         text-decoration: none !important;
-        color: $white!important;
+        color: $red!important;
         &.nav-link.utility-nav-item:hover {
           text-decoration: underline !important;
         }
@@ -128,12 +128,12 @@ nav {
       margin-right: 15px;
 
       p {
-        color: $white;
+        color: $red-deep;
       }
       a {
         display:inline-block;
         font-size:16px;
-        color:$white;
+        color:$red-deep;
         font-weight:bold;
       }
     }
@@ -187,7 +187,7 @@ nav {
 
       a {
         &:hover {
-          color: $red-deep;
+          color: $red;
           text-decoration: underline;
         }
       }
@@ -220,7 +220,7 @@ nav {
           border: none;
           margin: 0 30px 32px 0;
           &:hover {
-            color: $red-deep!important;
+            color: $red!important;
             text-decoration: underline !important;
           }
         }
@@ -258,7 +258,7 @@ nav {
     &:hover {
 
       a.nav-link {
-        color: $white;
+        color: $red;
         text-decoration: none;
       }
     }
@@ -326,7 +326,7 @@ nav {
 
   #mobile-toggle {
     .fa-times {
-      color: $white;
+      color: $red-deep;
     }
   }
 

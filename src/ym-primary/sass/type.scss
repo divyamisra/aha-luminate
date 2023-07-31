@@ -1,7 +1,14 @@
+.h1, 
+.h1-heading, 
+h1 {
+  font-weight:bold;
+}
+
 h2,
 .h2,
 .h2-heading {
   font-size: 32px;
+  font-weight:bold;
 
   @media (min-width: $screen-sm-min) {
     font-size: 42px;
@@ -16,6 +23,7 @@ h3,
 .h3,
 .h3-heading {
   font-size: 28px;
+  font-weight:bold;
 
   @media (min-width: $screen-sm-min) {
     font-size: 32px;
