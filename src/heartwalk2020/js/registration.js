@@ -710,9 +710,18 @@
                     console.log("found AT&T 4");
                     localStorage.companySelect = "AT&T";
                 } else {
-                    console.log("reset AT&T 4");
-                    localStorage.companySelect = $(this).find('option:selected').text();
+                    if ($(this).find('option:selected').text().indexOf("TUPSS") > -1 || 
+                        $(this).find('option:selected').text() == "UPS" || 
+                        $(this).find('option:selected').text() == "The UPS Store" ||
+                        $(this).find('option:selected').text() == "UPS Foundation") {
+                        console.log("found UPS 4");
+                        localStorage.companySelect = "UPS";
+                    } else {
+                        console.log("reset AT&T/UPS 4");
+                        localStorage.companySelect = $(this).find('option:selected').text();
+                    }
                 }
+
             });
             $('.list-component-cell-column-join-link a').click(function () {
                 var compSel = $(this).closest('.list-component-row').find('.list-component-cell-column-company-name .list-component-cell-data-text').html();
@@ -720,8 +729,16 @@
                     console.log("found AT&T 5");
                     localStorage.companySelect = "AT&T";
                 } else {
-                    console.log("reset AT&T 5");
-                    localStorage.companySelect = compSel;
+                    if (compSel.indexOf("TUPSS") > -1 || 
+                        compSel == "UPS" || 
+                        compSel == "The UPS Store" ||
+                        compSel == "UPS Foundation") {
+                        console.log("found UPS 5");
+                        localStorage.companySelect = "UPS";
+                    } else {
+                        console.log("reset AT&T/UPS 5");
+                        localStorage.companySelect = compSel;
+                    }
                 }
             });
 
@@ -782,8 +799,16 @@
                         console.log("found AT&T 6");
                         localStorage.companySelect = "AT&T";
                     } else {
-                        console.log("reset AT&T 6");
-                        localStorage.companySelect = $('select[name=fr_co_list] option:selected').text();
+                        if ($('select[name=fr_co_list] option:selected').text().indexOf("TUPSS") > -1 || 
+                            $('select[name=fr_co_list] option:selected').text() == "UPS" || 
+                            $('select[name=fr_co_list] option:selected').text() == "The UPS Store" ||
+                            $('select[name=fr_co_list] option:selected').text() == "UPS Foundation") {
+                            console.log("found UPS 6");
+                            localStorage.companySelect = "UPS";
+                        } else {
+                            console.log("reset AT&T/UPS 6");
+                            localStorage.companySelect = $('select[name=fr_co_list] option:selected').text();
+                        }
                     }
                 }
                 //store off personal goal in sess var by adding to action url
@@ -1543,8 +1568,16 @@
                     console.log("found AT&T 2");
                     localStorage.companySelect = "AT&T";
                 } else {
-                    console.log("reset AT&T 2");
-                    localStorage.companySelect = jQuery(this).find('option:selected').text();
+                    if (jQuery(this).find('option:selected').text().indexOf("TUPSS") > -1 || 
+                        jQuery(this).find('option:selected').text() == "UPS" || 
+                        jQuery(this).find('option:selected').text() == "The UPS Store" ||
+                        jQuery(this).find('option:selected').text() == "UPS Foundation") {
+                        console.log("found UPS 2");
+                        localStorage.companySelect = "UPS";
+                    } else {
+                        console.log("reset AT&T/UPS 2");
+                        localStorage.companySelect = jQuery(this).find('option:selected').text();
+                    }
                 }
             });
             $('button.next-step').click(function () {
@@ -1553,8 +1586,16 @@
                         console.log("found AT&T 3");
                         localStorage.companySelect = "AT&T";
                     } else {
-                        console.log("reset AT&T 3");
-                        localStorage.companySelect = $('select[name=fr_part_co_list] option:selected').text();
+                        if ($('select[name=fr_part_co_list] option:selected').text().indexOf("TUPSS") > -1 || 
+                            $('select[name=fr_part_co_list] option:selected').text() == "UPS" || 
+                            $('select[name=fr_part_co_list] option:selected').text() == "The UPS Store" ||
+                            $('select[name=fr_part_co_list] option:selected').text() == "UPS Foundation") {
+                            console.log("found UPS 3");
+                            localStorage.companySelect = "UPS";
+                        } else {
+                            console.log("reset AT&T/UPS 3");
+                            localStorage.companySelect = $('select[name=fr_part_co_list] option:selected').text();
+                        }
                     }
                 }
                 if ($('.donation-level-container').find('.donation-level-row-container.active').length > 0 || $('.donation-level-container').find('.donation-level-row-container.active').hasClass('notTime') === false) {
@@ -2025,10 +2066,11 @@
             //remove label causing acc issues
             $('.cons-zip-label, .cons-full-name-label, .cons-email-label').remove();
 
-            //for AT&T company - a question will be displayed for their employee id
+            //for AT&T or UPS company - a question will be displayed for their employee id
             //first it must be hidden though
             jQuery('label span.input-label:contains(By submitting the information requested in this form)').closest('.survey-question-container').addClass("att_id").hide();
             jQuery('label span.input-label:contains(Cleveland Clinic)').closest('.survey-question-container').addClass("cleveland_id").hide();
+            jQuery('label span.input-label:contains(If you are an employee at UPS)').closest('.survey-question-container').addClass("ups_id").hide();
             //jQuery('label span.input-label:contains(Clear Vidyard ID)').closest('.survey-question-container').addClass("vidyard_id").hide();
             //add additional code here for saving company name and displaying field if company selected was AT&T
 
@@ -2042,6 +2084,10 @@
                 if (localStorage.companySelect.indexOf("Cleveland Clinic") > -1) {
                     jQuery('.cleveland_id').show();
                     //localStorage.companySelect = "";
+                }
+                if (localStorage.companySelect.indexOf("UPS") > -1) {
+                    jQuery('.ups_id').show();
+                    localStorage.companySelect = "";
                 }
             }, 500);
 
