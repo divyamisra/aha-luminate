@@ -2987,9 +2987,47 @@
     //AHA-1053
 
     // Updated on the Registration Summary page in TR
-    //$('.reg-summary-event-info .reg-summary-edit-link a.js--edit-ptype').attr('aria-label', 'Edit Personal Goal');
+    document.addEventListener("DOMContentLoaded", function() {
+        let personalGoalLink = document.querySelector('.reg-summary-event-info .reg-summary-edit-link a.js--edit-ptype');
+        let personalInfoLink = document.querySelector('.reg-summary-address-info .reg-summary-edit-link a');
 
-    $('.reg-summary-address-info .reg-summary-edit-link a').attr('aria-label', 'Edit Personal Information');
+        if (typeof(personalGoalLink && personalInfoLink) != 'undefined' && personalGoalLink != null) {
+            personalGoalLink.setAttribute('aria-label', 'Edit Personal Goal');
+            personalInfoLink.setAttribute('aria-label', 'Edit Personal Information');
+        }
+    });
+    // AHA-1078
+
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelector('#registration-reg-page-step-6 .privacyCheck .indented-field-group').setAttribute('aria-live', 'assertive');
+        document.querySelector('#registration-reg-page-step-6 .waiverCheck .indented-field-group').setAttribute('aria-live', 'assertive');
+
+        const step6Button = document.querySelector('#registration-reg-page-step-6 .js__reg-page-next-step');
+        
+        if (typeof(step6Button) != 'undefined' && step6Button != null) {
+            step6Button.addEventListener('click', function() {
+                // Create a new observer
+                const observer = new MutationObserver(function(mutationsList, observer) {
+                    for(let mutation of mutationsList) {
+                        if (mutation.type === 'childList') {
+                            let errorLabels = document.querySelectorAll('.survey-question-container.field-required label.error');
+                            errorLabels[0].setAttribute('aria-live', 'assertive');
+                            errorLabels[1].setAttribute('aria-label', 'Terms and Conditions');
+                            errorLabels[2].setAttribute('aria-label', 'Publicity Consent');
+                            // You may want to disconnect the observer once you've made the modifications
+                            observer.disconnect();
+                        }
+                    }
+                });
+            
+                // Start observing the document with the configured parameters
+                observer.observe(document.body, { childList: true, subtree: true });
+            });
+        }
+    });
+    
+
+
 
 })(jQuery);
 
