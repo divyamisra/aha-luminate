@@ -1215,10 +1215,21 @@
                             }
                             companyTRLoop()
 
+                            const focusNextResult = (nextResult) => {
+                                if (nextResult) {
+                                    setTimeout(() => {
+                                        nextResult.focus()
+                                    }, 100)
+                                }
+                            }
+
                             $('.js--participant-more-event-results').on('click', function(e) {
+                                const nextResult = document.querySelector('.js--participant-search-results .row.d-none a')
+
                                 e.preventDefault()
                                 $('.js--participant-search-results .row').removeClass('d-none')
                                 $(this).addClass('hidden')
+                                focusNextResult(nextResult)
                             })
 
                             $('.js--participant-search-results').removeAttr('hidden')
