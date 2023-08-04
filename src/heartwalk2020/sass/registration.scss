@@ -1994,3 +1994,16 @@ div.required-indicator-legend {
         padding: 0 1em;
     }
 }
+
+div#registration-ptype-page-steps button.btn-secondary:focus,
+div#registration-ptype-page-steps button.btn-secondary:hover,
+div#registration-ptype-page-steps button.btn-secondary:active,
+button.js__reg-page-prev-step:focus,
+button.js__reg-page-prev-step:hover,
+button.js__reg-page-prev-step:active   {
+    color: #fff !important;
+    box-shadow: none!important;
+    outline-offset: 0.4rem;
+    outline: 0.2rem solid #000;
+    border: solid 2px #900!important;
+}
