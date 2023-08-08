@@ -2787,6 +2787,28 @@
 
       $('.two-col').wrapAll('<div class="row" />');
 
+
+     // Only add mobile opt in option if group id exists on body tag
+     // TODO: add the if for group ID when we have the groups
+     //if ($('body').data("group-id") != undefined) {
+        var optinHTML =
+            '<div id="mobile_optin_outer">' +
+                '<input type="checkbox" name="mobile_optin" id="mobile_optin">' +
+                '<label for="mobile_optin" class="wrapable">' +
+                    '<span id="optin_label"><strong>Mobile Opt in:</strong> By checking the box, I consent to receive up to 1 - 2 text messages per week from AHA  supporting my Heart Walk efforts at the mobile number above. Selecting text option is not required for my participation. Message and data rates may apply. I can Reply STOP at any time to opt out.</span>' +
+                '</label>' +
+            '</div>';
+        $('.mobile-question-container').closest('.row').after(optinHTML);
+        $('#mobile_optin').click(function () {
+            if ($(this).is(":checked")) {
+                $('.input-label:contains("Mobile Phone")').closest('label').next('input').addClass("phonecheck");
+            } else {
+                $('.input-label:contains("Mobile Phone")').closest('label').next('input').removeClass("phonecheck");
+            }
+        });
+      //}
+
+
       if (regType === 'startTeam') {
         $('#cons_info_component_contact_info_section .sub-section-header').after('<p>As a team lead, we\'ll need your address so we can show you some love and send you swag to help inspire your squad and help you hit those fundraising milestones!</p>');
         $('#cons_info_dob').show();
@@ -2906,14 +2928,23 @@
 
       var waiverCheckbox = $('.input-container label:contains("Release with Publicity")').prev('input[type=checkbox]');
 
+      var mobileOptinCheckbox = $('input[name=mobile_optin]:checked').val();
+      console.log("mobileOptinCheckbox val " + mobileOptinCheckbox);
+      var mobilePhoneVal = $('.regMobilePhone').find('input[type="text"]').val();
+      console.log('mobilePhoneVal ' + mobilePhoneVal)
+
       cd.regInfoVerification = function () {
+        console.log("cd.regInfoVerification function");
         if ($(waiverCheckbox).is(':checked') === true && addressComplete === true) {
-          $('#next_step').attr('disabled', false);
+          if ($(mobileOptinCheckbox).is(':checked') === true && mobilePhoneVal.length > 0) {
+            $('#next_step').attr('disabled', false);
+          }
         } else {
           $('#next_step').attr('disabled', true);
         }
       }
       cd.addressVerification = function () {
+        console.log("cd.addressVerification function");
         if (regType === 'startTeam') {
           if ($('input#cons_street1').val() == "" || $('input#cons_city').val() == "" || $('input#cons_zip_code').val() == "" || $('select#cons_state option:selected').val() == "" || $('select#cons_country option:selected').val() == "") {
             addressComplete = false;
@@ -2931,7 +2962,6 @@
 
       $('#contact_info_section_one input, #contact_info_section_one select').on('keyup keypress blur change mouseout', function (e) {
         cd.addressVerification();
-
       });
 
 
