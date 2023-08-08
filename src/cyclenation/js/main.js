@@ -2795,7 +2795,7 @@
             '<div id="mobile_optin_outer">' +
                 '<input type="checkbox" name="mobile_optin" id="mobile_optin">' +
                 '<label for="mobile_optin" class="wrapable">' +
-                    '<span id="optin_label"><strong>Mobile Opt in:</strong> By checking the box, I consent to receive up to 1 - 2 text messages per week from AHA  supporting my Heart Walk efforts at the mobile number above. Selecting text option is not required for my participation. Message and data rates may apply. I can Reply STOP at any time to opt out.</span>' +
+                    '<span id="optin_label"><strong>Mobile Opt in:</strong> By checking the box, I consent to receive up to 1 - 2 text messages per week from AHA  supporting my Cycle Nation efforts at the mobile number above. Selecting text option is not required for my participation. Message and data rates may apply. I can Reply STOP at any time to opt out.</span>' +
                 '</label>' +
             '</div>';
         $('.mobile-question-container').closest('.row').after(optinHTML);
@@ -2851,8 +2851,6 @@
       $('#password_component_container > div:nth-child(1)').addClass('col-md-6');
       $('#password_component_container > div:nth-child(2)').addClass('col-md-6').css('clear', 'left');
       $('#password_component_container > div:nth-child(3)').addClass('col-md-6');
-
-
 
       cd.setBirthMonth = function () {
         var birthDay = $('#cons_birth_date_DAY').val();
@@ -2928,17 +2926,10 @@
 
       var waiverCheckbox = $('.input-container label:contains("Release with Publicity")').prev('input[type=checkbox]');
 
-      var mobileOptinCheckbox = $('input[name=mobile_optin]:checked').val();
-      console.log("mobileOptinCheckbox val " + mobileOptinCheckbox);
-      var mobilePhoneVal = $('.regMobilePhone').find('input[type="text"]').val();
-      console.log('mobilePhoneVal ' + mobilePhoneVal)
-
       cd.regInfoVerification = function () {
         console.log("cd.regInfoVerification function");
         if ($(waiverCheckbox).is(':checked') === true && addressComplete === true) {
-          if ($(mobileOptinCheckbox).is(':checked') === true && mobilePhoneVal.length > 0) {
-            $('#next_step').attr('disabled', false);
-          }
+          $('#next_step').attr('disabled', false);
         } else {
           $('#next_step').attr('disabled', true);
         }
@@ -2972,6 +2963,17 @@
       // if ($(waiverCheckbox).is(':checked') === true && addressComplete === true) {
       //   $('#next_step').attr('disabled', false);
       // }
+
+      // $('#next_step').click(function(e){
+      //   e.preventDefault();
+      //   var mobileOptinCheckbox = $('input[name=mobile_optin]:checked').val();
+      //   console.log("mobileOptinCheckbox val " + mobileOptinCheckbox);
+      //   var mobilePhoneVal = $('.mobile-question-container').find('input[type="text"]').val();
+      //   console.log('mobilePhoneVal ' + mobilePhoneVal)
+
+      // });
+    
+
 
     }
 
