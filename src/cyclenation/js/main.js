@@ -2791,7 +2791,10 @@
      // Only add mobile opt in option if group id exists on body tag
      // TODO: add the if for group ID when we have the groups
      //if ($('body').data("group-id") != undefined) {
+        var mobilePhoneFieldId = $('.mobile-question-container').find('input[type="text"]').attr('id');
+        console.log('mobilePhoneFieldId ' + mobilePhoneFieldId);
         var optinHTML =
+            '<label id="'+mobilePhoneFieldId+'-error" class="error" for="'+mobilePhoneFieldId+'" style="display: none; color: #990000;"><span style="display: none;" id="blank-phone">Mobile Opt in is selected.</span><br /><span style="display: none; id="incorrect-phone-format">Please enter a mobile number.</label>'+
             '<div id="mobile_optin_outer">' +
                 '<input type="checkbox" name="mobile_optin" id="mobile_optin">' +
                 '<label for="mobile_optin" class="wrapable">' +
@@ -2799,14 +2802,39 @@
                 '</label>' +
             '</div>';
         $('.mobile-question-container').closest('.row').after(optinHTML);
+
         $('#mobile_optin').click(function () {
+            var mobilePhoneVal = $('.mobile-question-container').find('input[type="text"]').val();
+            console.log('mobilePhoneVal ' + mobilePhoneVal);
+            // phonePattern = (/^\(?([2-9][0-8][0-9])\)?\s?([2-9][0-9]{2})[-.●]?([0-9]{4})$/)
+            var phoneNumberCheck =  /^(((\+1)|1)?(| ))((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,3})|(\(?\d{2,3}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$/.test(mobilePhoneVal);
+            console.log('phoneNumberCheck ' + phoneNumberCheck);
+
             if ($(this).is(":checked")) {
                 $('.input-label:contains("Mobile Phone")').closest('label').next('input').addClass("phonecheck");
+                if (mobilePhoneVal.length === 0) {
+                  $('#'+mobilePhoneFieldId+'-error').css('display','inline-block');
+                  $('#'+mobilePhoneFieldId+'-error #blank-phone').css('display','inline-block');
+                  $('#'+mobilePhoneFieldId+'-error #incorrect-phone-format').css('display','inline-block');
+                }
             } else {
                 $('.input-label:contains("Mobile Phone")').closest('label').next('input').removeClass("phonecheck");
+                $('#'+mobilePhoneFieldId+'-error #blank-phone').css('display','none');
+                $('#'+mobilePhoneFieldId+'-error #incorrect-phone-format').css('display','none');
+
+                // if (mobilePhoneVal.length > 0) {
+                //   $('#'+mobilePhoneFieldId+'-error #blank-phone').css('display','none');
+                //   if (phoneNumberCheck === true) {
+                //     $('#'+mobilePhoneFieldId+'-error #incorrect-phone-format').css('display','none');
+                //   }
+                //   else {
+                //     $('#'+mobilePhoneFieldId+'-error #incorrect-phone-format').css('display','inline-block');
+                //   }
+                // }
             }
         });
       //}
+      
 
 
       if (regType === 'startTeam') {
@@ -2964,14 +2992,19 @@
       //   $('#next_step').attr('disabled', false);
       // }
 
-      // $('#next_step').click(function(e){
-      //   e.preventDefault();
-      //   var mobileOptinCheckbox = $('input[name=mobile_optin]:checked').val();
-      //   console.log("mobileOptinCheckbox val " + mobileOptinCheckbox);
-      //   var mobilePhoneVal = $('.mobile-question-container').find('input[type="text"]').val();
-      //   console.log('mobilePhoneVal ' + mobilePhoneVal)
+      $('#next_step').click(function(e){
+        e.preventDefault();
+        var mobileOptinCheckbox = $('input[name="mobile_optin"]');
+        if ($(mobileOptinCheckbox).is(':checked')) {
+          var mobilePhoneVal = $('.mobile-question-container').find('input[type="text"]').val();
+          console.log('mobilePhoneVal ' + mobilePhoneVal);
+          if (mobilePhoneVal.length === 0) {
+            $(mobilePhoneFieldId+'-error').css('display','inline-block');
 
-      // });
+          }
+        }
+
+      });
     
 
 
