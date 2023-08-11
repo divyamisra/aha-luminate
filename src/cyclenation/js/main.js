@@ -2794,7 +2794,7 @@
         var mobilePhoneFieldId = $('.mobile-question-container').find('input[type="text"]').attr('id');
         console.log('mobilePhoneFieldId ' + mobilePhoneFieldId);
         var optinHTML =
-            '<label id="'+mobilePhoneFieldId+'-error" class="error" for="'+mobilePhoneFieldId+'" style="display: none; color: #990000;"><span style="display: none;" id="blank-phone">Mobile Opt in is selected.</span><br /><span style="display: none; id="incorrect-phone-format">Please enter a mobile number.</label>'+
+            '<label id="'+mobilePhoneFieldId+'-error" class="error" for="'+mobilePhoneFieldId+'" style="display: inline; color: #990000;"><div style="display: none;" id="blank-phone">Mobile Opt in is selected.</div><div style="display: none;" id="incorrect-phone-format">Please enter a valid mobile number.</div></label>'+
             '<div id="mobile_optin_outer">' +
                 '<input type="checkbox" name="mobile_optin" id="mobile_optin">' +
                 '<label for="mobile_optin" class="wrapable">' +
@@ -2804,35 +2804,73 @@
         $('.mobile-question-container').closest('.row').after(optinHTML);
 
         $('#mobile_optin').click(function () {
+          console.log('mobile optin click function')
             var mobilePhoneVal = $('.mobile-question-container').find('input[type="text"]').val();
             console.log('mobilePhoneVal ' + mobilePhoneVal);
-            // phonePattern = (/^\(?([2-9][0-8][0-9])\)?\s?([2-9][0-9]{2})[-.●]?([0-9]{4})$/)
-            var phoneNumberCheck =  /^(((\+1)|1)?(| ))((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,3})|(\(?\d{2,3}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$/.test(mobilePhoneVal);
+            console.log('mobilePhoneVal length ' + mobilePhoneVal.length );
+            var phoneNumberCheck = /^\(?([2-9][0-8][0-9])\)?\s?([2-9][0-9]{2})[-.●]?([0-9]{4})$/.test(mobilePhoneVal);
+            //var phoneNumberCheck =  /^(((\+1)|1)?(| ))((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,3})|(\(?\d{2,3}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$/.test(mobilePhoneVal);
             console.log('phoneNumberCheck ' + phoneNumberCheck);
 
             if ($(this).is(":checked")) {
+                console.log('mobile optin checkbox is checked')
                 $('.input-label:contains("Mobile Phone")').closest('label').next('input').addClass("phonecheck");
                 if (mobilePhoneVal.length === 0) {
-                  $('#'+mobilePhoneFieldId+'-error').css('display','inline-block');
-                  $('#'+mobilePhoneFieldId+'-error #blank-phone').css('display','inline-block');
-                  $('#'+mobilePhoneFieldId+'-error #incorrect-phone-format').css('display','inline-block');
+                  console.log('phone field length is 0');
+                  console.log('mobilePhoneFieldId ?? ' + mobilePhoneFieldId);
+                  //$('#'+mobilePhoneFieldId+'-error').css('display','inline-block');
+                  $('#'+mobilePhoneFieldId+'-error #blank-phone').css('display','block');
+                  $('#'+mobilePhoneFieldId+'-error #incorrect-phone-format').css('display','block');
                 }
-            } else {
+                else if (phoneNumberCheck === false) {
+                  console.log('phoneNumberCheck is false');
+                  $('#'+mobilePhoneFieldId+'-error #blank-phone').css('display','block');
+                  $('#'+mobilePhoneFieldId+'-error #incorrect-phone-format').css('display','block');
+                }
+            } 
+            else {
+                console.log('mobile optin checkbox is NOT checked')
                 $('.input-label:contains("Mobile Phone")').closest('label').next('input').removeClass("phonecheck");
+                //$('#'+mobilePhoneFieldId+'-error').css('display','none');
                 $('#'+mobilePhoneFieldId+'-error #blank-phone').css('display','none');
                 $('#'+mobilePhoneFieldId+'-error #incorrect-phone-format').css('display','none');
-
-                // if (mobilePhoneVal.length > 0) {
-                //   $('#'+mobilePhoneFieldId+'-error #blank-phone').css('display','none');
-                //   if (phoneNumberCheck === true) {
-                //     $('#'+mobilePhoneFieldId+'-error #incorrect-phone-format').css('display','none');
-                //   }
-                //   else {
-                //     $('#'+mobilePhoneFieldId+'-error #incorrect-phone-format').css('display','inline-block');
-                //   }
-                // }
             }
         });
+
+        // keyup for mobile phone number question
+        $('.mobile-question-container').find('input[type="text"]').on('keyup',function(){
+          var mobilePhoneVal = $('.mobile-question-container').find('input[type="text"]').val();
+          console.log('keyup function mobilePhoneVal ' + mobilePhoneVal);
+          console.log('mobilePhoneVal length ' + mobilePhoneVal.length );
+          var phoneNumberCheck = /^\(?([2-9][0-8][0-9])\)?\s?([2-9][0-9]{2})[-.●]?([0-9]{4})$/.test(mobilePhoneVal);
+          if (phoneNumberCheck === false) {
+            $('#'+mobilePhoneFieldId+'-error #incorrect-phone-format').css('display','block');
+          }
+          else {
+            $('#'+mobilePhoneFieldId+'-error #incorrect-phone-format').css('display','none');
+          }
+        });
+
+        $('.mobile-question-container').find('input[type="text"]').on('blur',function(){
+          var mobilePhoneVal = $('.mobile-question-container').find('input[type="text"]').val();
+          console.log('mobilePhoneVal length ' + mobilePhoneVal.length );
+          console.log('blur function mobilePhoneVal ' + mobilePhoneVal);
+          var phoneNumberCheck = /^\(?([2-9][0-8][0-9])\)?\s?([2-9][0-9]{2})[-.●]?([0-9]{4})$/.test(mobilePhoneVal);
+          // if (mobilePhoneVal.length === 0 && $('#mobile_optin').is(':checked')) {
+          //   $('#'+mobilePhoneFieldId+'-error #blank-phone').css('display','block');
+          //   $('#'+mobilePhoneFieldId+'-error #incorrect-phone-format').css('display','block');
+          // }
+          //else if (phoneNumberCheck === false) {
+          if (phoneNumberCheck === false) {
+            $('#'+mobilePhoneFieldId+'-error #blank-phone').css('display','none');
+            $('#'+mobilePhoneFieldId+'-error #incorrect-phone-format').css('display','block');
+          }
+          else {
+            $('#'+mobilePhoneFieldId+'-error #blank-phone').css('display','none');
+            $('#'+mobilePhoneFieldId+'-error #incorrect-phone-format').css('display','none');
+          }
+        });
+
       //}
       
 
@@ -2992,16 +3030,47 @@
       //   $('#next_step').attr('disabled', false);
       // }
 
+      function scrollToElement(selector, time, verticalOffset) {
+        var time = typeof(time) != 'undefined' ? time : 500;
+        var verticalOffset = typeof(verticalOffset) != 'undefined' ? verticalOffset : 0;
+        var element = jQuery(selector);
+        var offset = element.offset();
+        var offsetTop = offset.top + verticalOffset;
+        jQuery('html, body').animate({
+          scrollTop: offsetTop
+        }, time);			
+      }
+
       $('#next_step').click(function(e){
+        // TODO: add a fake submit button and use it for validation and then click the real button
+        // and avoid this preventdefault nonsense
         e.preventDefault();
         var mobileOptinCheckbox = $('input[name="mobile_optin"]');
         if ($(mobileOptinCheckbox).is(':checked')) {
           var mobilePhoneVal = $('.mobile-question-container').find('input[type="text"]').val();
-          console.log('mobilePhoneVal ' + mobilePhoneVal);
+          var phoneNumberCheck = /^\(?([2-9][0-8][0-9])\)?\s?([2-9][0-9]{2})[-.●]?([0-9]{4})$/.test(mobilePhoneVal);
+          console.log('next step function phonenumber check' + phoneNumberCheck)
+          console.log('mobilePhoneVal length' + mobilePhoneVal.length);
           if (mobilePhoneVal.length === 0) {
-            $(mobilePhoneFieldId+'-error').css('display','inline-block');
-
+            console.log('phone field is blank show blank phone error id: ' + mobilePhoneFieldId)
+            $('#'+mobilePhoneFieldId+'-error #blank-phone').css('display','block');
+            if (phoneNumberCheck === false){
+              $('#'+mobilePhoneFieldId+'-error #incorrect-phone-format').css('display','block');
+            }
+            //scroll to error
+            console.log('mobile question container is here? ' + $('.mobile-question-container').length);
+            scrollToElement('.mobile-question-container', 700);
           }
+          else {
+            //form submit
+            // TODO: add phone opt in to localStorage for group addition after registration
+            $('#F2fRegContact').submit();
+          }
+        }
+        else {
+          //form submit
+          // TODO: add phone opt in to localStorage for group addition after registration
+          $('#F2fRegContact').submit();
         }
 
       });
