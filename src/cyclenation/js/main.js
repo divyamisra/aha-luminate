@@ -2697,6 +2697,7 @@
 
       // modify button behavior at bottom
       $('#next_step').wrap('<div class="order-1 order-sm-2 col-sm-4 offset-md-4 col-8 offset-2 mb-3"></div>');
+
       $('.donation-level-amount-text').each(function (i) {
         $(this).text($(this).text().replace('.00', ''));
         $(this).text($(this).text().replace(',', ''));
@@ -2790,11 +2791,13 @@
 
      // Only add mobile opt in option if group id exists on body tag
      // TODO: add the if for group ID when we have the groups
-     //if ($('body').data("group-id") != undefined) {
+     // If the body tag contains a group-id data attribute for Hustle opt-in, add a fake mobile opt-in checkbox and validation for it
+     // also add a fake next step button to which to attach submit validation for this
+     // if ($('body').data("group-id") != undefined) {
         var mobilePhoneFieldId = $('.mobile-question-container').find('input[type="text"]').attr('id');
         console.log('mobilePhoneFieldId ' + mobilePhoneFieldId);
         var optinHTML =
-            '<label id="'+mobilePhoneFieldId+'-error" class="error" for="'+mobilePhoneFieldId+'" style="display: inline; color: #990000;"><div style="display: none;" id="blank-phone">Mobile Opt in is selected.</div><div style="display: none;" id="incorrect-phone-format">Please enter a valid mobile number.</div></label>'+
+            '<label id="'+mobilePhoneFieldId+'-error" class="error" for="'+mobilePhoneFieldId+'" style="display: inline; color: #990000;"><div style="display: none;" id="mobile-opt-in-error">Mobile Opt in is selected.</div><div style="display: none;" id="incorrect-phone-format">Please enter a valid mobile number.</div></label>'+
             '<div id="mobile_optin_outer">' +
                 '<input type="checkbox" name="mobile_optin" id="mobile_optin">' +
                 '<label for="mobile_optin" class="wrapable">' +
@@ -2803,36 +2806,33 @@
             '</div>';
         $('.mobile-question-container').closest('.row').after(optinHTML);
 
+        var phoneNumberPattern = /^\(?([2-9][0-8][0-9])\)?\s?([2-9][0-9]{2})[-.●]?([0-9]{4})$/;
+
         $('#mobile_optin').click(function () {
           console.log('mobile optin click function')
             var mobilePhoneVal = $('.mobile-question-container').find('input[type="text"]').val();
             console.log('mobilePhoneVal ' + mobilePhoneVal);
-            console.log('mobilePhoneVal length ' + mobilePhoneVal.length );
-            var phoneNumberCheck = /^\(?([2-9][0-8][0-9])\)?\s?([2-9][0-9]{2})[-.●]?([0-9]{4})$/.test(mobilePhoneVal);
-            //var phoneNumberCheck =  /^(((\+1)|1)?(| ))((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,3})|(\(?\d{2,3}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$/.test(mobilePhoneVal);
+            var phoneNumberCheck = phoneNumberPattern.test(mobilePhoneVal);
             console.log('phoneNumberCheck ' + phoneNumberCheck);
 
             if ($(this).is(":checked")) {
                 console.log('mobile optin checkbox is checked')
-                $('.input-label:contains("Mobile Phone")').closest('label').next('input').addClass("phonecheck");
+                //$('.input-label:contains("Mobile Phone")').closest('label').next('input').addClass("phonecheck");
                 if (mobilePhoneVal.length === 0) {
                   console.log('phone field length is 0');
-                  console.log('mobilePhoneFieldId ?? ' + mobilePhoneFieldId);
-                  //$('#'+mobilePhoneFieldId+'-error').css('display','inline-block');
-                  $('#'+mobilePhoneFieldId+'-error #blank-phone').css('display','block');
+                  $('#'+mobilePhoneFieldId+'-error #mobile-opt-in-error').css('display','block');
                   $('#'+mobilePhoneFieldId+'-error #incorrect-phone-format').css('display','block');
                 }
                 else if (phoneNumberCheck === false) {
                   console.log('phoneNumberCheck is false');
-                  $('#'+mobilePhoneFieldId+'-error #blank-phone').css('display','block');
+                  $('#'+mobilePhoneFieldId+'-error #mobile-opt-in-error').css('display','block');
                   $('#'+mobilePhoneFieldId+'-error #incorrect-phone-format').css('display','block');
                 }
             } 
             else {
                 console.log('mobile optin checkbox is NOT checked')
-                $('.input-label:contains("Mobile Phone")').closest('label').next('input').removeClass("phonecheck");
-                //$('#'+mobilePhoneFieldId+'-error').css('display','none');
-                $('#'+mobilePhoneFieldId+'-error #blank-phone').css('display','none');
+                //$('.input-label:contains("Mobile Phone")').closest('label').next('input').removeClass("phonecheck");
+                $('#'+mobilePhoneFieldId+'-error #mobile-opt-in-error').css('display','none');
                 $('#'+mobilePhoneFieldId+'-error #incorrect-phone-format').css('display','none');
             }
         });
@@ -2841,8 +2841,7 @@
         $('.mobile-question-container').find('input[type="text"]').on('keyup',function(){
           var mobilePhoneVal = $('.mobile-question-container').find('input[type="text"]').val();
           console.log('keyup function mobilePhoneVal ' + mobilePhoneVal);
-          console.log('mobilePhoneVal length ' + mobilePhoneVal.length );
-          var phoneNumberCheck = /^\(?([2-9][0-8][0-9])\)?\s?([2-9][0-9]{2})[-.●]?([0-9]{4})$/.test(mobilePhoneVal);
+          var phoneNumberCheck = phoneNumberPattern.test(mobilePhoneVal);
           if (phoneNumberCheck === false) {
             $('#'+mobilePhoneFieldId+'-error #incorrect-phone-format').css('display','block');
           }
@@ -2853,20 +2852,14 @@
 
         $('.mobile-question-container').find('input[type="text"]').on('blur',function(){
           var mobilePhoneVal = $('.mobile-question-container').find('input[type="text"]').val();
-          console.log('mobilePhoneVal length ' + mobilePhoneVal.length );
           console.log('blur function mobilePhoneVal ' + mobilePhoneVal);
-          var phoneNumberCheck = /^\(?([2-9][0-8][0-9])\)?\s?([2-9][0-9]{2})[-.●]?([0-9]{4})$/.test(mobilePhoneVal);
-          // if (mobilePhoneVal.length === 0 && $('#mobile_optin').is(':checked')) {
-          //   $('#'+mobilePhoneFieldId+'-error #blank-phone').css('display','block');
-          //   $('#'+mobilePhoneFieldId+'-error #incorrect-phone-format').css('display','block');
-          // }
-          //else if (phoneNumberCheck === false) {
+          var phoneNumberCheck = phoneNumberPattern.test(mobilePhoneVal);
           if (phoneNumberCheck === false) {
-            $('#'+mobilePhoneFieldId+'-error #blank-phone').css('display','none');
+            $('#'+mobilePhoneFieldId+'-error #mobile-opt-in-error').css('display','none');
             $('#'+mobilePhoneFieldId+'-error #incorrect-phone-format').css('display','block');
           }
           else {
-            $('#'+mobilePhoneFieldId+'-error #blank-phone').css('display','none');
+            $('#'+mobilePhoneFieldId+'-error #mobile-opt-in-error').css('display','none');
             $('#'+mobilePhoneFieldId+'-error #incorrect-phone-format').css('display','none');
           }
         });
@@ -2981,10 +2974,28 @@
         $('#termsModal').modal();
       });
 
-      // disable next step button unless terms have been checked
+      // disable next step and custom next step button unless terms have been checked
       $('#next_step')
         .attr('disabled', true)
         .wrap('<div class="order-1 order-sm-2 col-sm-4 offset-md-4 col-8 offset-2 mb-3"/>');
+
+      // If the body tag contains a group-id data attribute for Hustle opt-in, 
+      // add a fake next step button on the reg info page to which to attach submit validation for mobile-opt-in validation
+      // if ($('body').data("group-id") != undefined) {
+        $('#next_step').parent().hide();
+
+        $('#next_step').parent().after('<div class="order-1 order-sm-2 col-sm-4 offset-md-4 col-8 offset-2 mb-3">'
+          + '<button class="step-button next-step" id="custom_next_step" name="custom_next_step" value="Next Step" type="button" disabled="disabled">'
+          + '<span>Next Step</span>'
+          + '</button>'
+          + '</div>');
+      // }
+      
+
+      if ( $('#custom_next_step').length > 0 ) {
+        $('#custom_next_step').attr('disabled', true);
+      }
+
       $('#previous_step').text('Back')
         .wrap('<div class="order-2 order-sm-1 col-sm-4 col-8 offset-2 offset-sm-0" />');
 
@@ -2996,8 +3007,14 @@
         console.log("cd.regInfoVerification function");
         if ($(waiverCheckbox).is(':checked') === true && addressComplete === true) {
           $('#next_step').attr('disabled', false);
+          if ( $('#custom_next_step').length > 0 ) {
+            $('#custom_next_step').attr('disabled', false);
+          }
         } else {
           $('#next_step').attr('disabled', true);
+          if ( $('#custom_next_step').length > 0 ) {
+            $('#custom_next_step').attr('disabled', true);
+          }
         }
       }
       cd.addressVerification = function () {
@@ -3041,39 +3058,48 @@
         }, time);			
       }
 
-      $('#next_step').click(function(e){
-        // TODO: add a fake submit button and use it for validation and then click the real button
-        // and avoid this preventdefault nonsense
-        e.preventDefault();
-        var mobileOptinCheckbox = $('input[name="mobile_optin"]');
-        if ($(mobileOptinCheckbox).is(':checked')) {
-          var mobilePhoneVal = $('.mobile-question-container').find('input[type="text"]').val();
-          var phoneNumberCheck = /^\(?([2-9][0-8][0-9])\)?\s?([2-9][0-9]{2})[-.●]?([0-9]{4})$/.test(mobilePhoneVal);
-          console.log('next step function phonenumber check' + phoneNumberCheck)
-          console.log('mobilePhoneVal length' + mobilePhoneVal.length);
-          if (mobilePhoneVal.length === 0) {
-            console.log('phone field is blank show blank phone error id: ' + mobilePhoneFieldId)
-            $('#'+mobilePhoneFieldId+'-error #blank-phone').css('display','block');
-            if (phoneNumberCheck === false){
+      // if ($('body').data("group-id") != undefined) {
+        $('#custom_next_step').click(function(){
+          // use the fake next step button to validate the email opt-in functionality 
+          //e.preventDefault();
+          localStorage.mobile_optin = jQuery('input[name=mobile_optin]:checked').val();
+          console.log('localStorage.mobile_optin ' + localStorage.mobile_optin)
+
+          var mobileOptinCheckbox = $('input[name="mobile_optin"]');
+
+          if ($(mobileOptinCheckbox).is(':checked')) {
+            var mobilePhoneVal = $('.mobile-question-container').find('input[type="text"]').val();
+            var phoneNumberCheck = phoneNumberPattern.test(mobilePhoneVal);
+            console.log('next step function phonenumber check' + phoneNumberCheck)
+            
+            if (mobilePhoneVal.length === 0) {
+              console.log('phone field is blank show blank phone error id: ' + mobilePhoneFieldId)
+              $('#'+mobilePhoneFieldId+'-error #mobile-opt-in-error').css('display','block');
               $('#'+mobilePhoneFieldId+'-error #incorrect-phone-format').css('display','block');
+              //scroll to error
+              scrollToElement('.mobile-question-container', 700);
             }
-            //scroll to error
-            console.log('mobile question container is here? ' + $('.mobile-question-container').length);
-            scrollToElement('.mobile-question-container', 700);
+            else if (mobilePhoneVal.length > 0 && phoneNumberCheck === false) {
+              console.log('phone field is not blank but phoneNumberCheck is false show phone errors')
+              $('#'+mobilePhoneFieldId+'-error #mobile-opt-in-error').css('display','block');
+              $('#'+mobilePhoneFieldId+'-error #incorrect-phone-format').css('display','block');
+              scrollToElement('.mobile-question-container', 700);
+            }
+            else {
+              //form submit
+              // TODO: add phone opt in to localStorage for group addition after registration
+              $('#next_step').trigger('click');
+
+            }
           }
           else {
             //form submit
             // TODO: add phone opt in to localStorage for group addition after registration
-            $('#F2fRegContact').submit();
+            $('#next_step').trigger('click');
           }
-        }
-        else {
-          //form submit
-          // TODO: add phone opt in to localStorage for group addition after registration
-          $('#F2fRegContact').submit();
-        }
 
-      });
+        });
+      // }
     
 
 
@@ -3094,6 +3120,36 @@
         e.preventDefault();
         $('#next_button').click();
       });
+
+      //save off mobile opt option
+      if (localStorage.mobile_optin == "on") {
+        luminateExtend.api({
+            api: 'cons',
+            useHTTPS: true,
+            requestType: 'POST',
+            requiresAuth: true,
+            data: 'method=logInteraction' +
+                '&response_format=json' +
+                '&interaction_type_id=0' +
+                '&interaction_subject=Hustle-OptIn' +
+                '&interaction_body=\'{"EventId":' + $('body').data("fr-id") + ',"GroupId":' + $('body').data("group-id") + ',"OptIn":"Yes"}\'' +
+                '&cons_id=' + $('body').data("cons-id"),
+            callback: {
+                success: function (response) {
+                    if (response.updateConsResponse.message == "Interaction logged successfully.") {
+                    }
+                },
+                error: function (response) {
+                    console.log(response.errorResponse.message);
+                }
+            }
+        });
+        if (isProd) {
+            $('<img width="1" height="1" style="display:none;" src="https://www2.heart.org/site/SPageServer?pagename=reus_cn_mobileopt_add_group&group_id=' + $('body').data("group-id") + '&pgwrap=n" id="mobileopt_add_group">').appendTo($('#fr_reg_summary_page'));
+        } else {
+            $('<img width="1" height="1" style="display:none;" src="https://dev2.heart.org/site/SPageServer?pagename=reus_cn_mobileopt_add_group&group_id=' + $('body').data("group-id") + '&pgwrap=n" id="mobileopt_add_group">').appendTo($('#fr_reg_summary_page'));
+        }
+      }
 
       $('#next_button').click(function(){
 
