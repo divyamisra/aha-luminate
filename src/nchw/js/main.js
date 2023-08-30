@@ -247,5 +247,185 @@
           Math.abs(n - i).toFixed(c).slice(2) : "");
       };
     }
+
+
+
+  //   <div id="top_participant_list_container" class="lc_Table">
+  //   <div class="lc_Row1 list-row top-participant-list-row clearfix">
+  //     <div class="top-participant-list-name">
+  //       <a href="https://dev2.heart.org/site/TR/OSE/FDA-FoundersAffiliate?px=8866676&amp;pg=personal&amp;fr_id=4736">Jean-test Vestal</a>
+  //     </div>
+  //     <div class="top-participant-list-amount-container">
+  //       <div class="top-participant-list-amount-label">Raised:</div>
+  //       <div class="top-participant-list-amount">$200.00</div>
+  //     </div>
+  //     <div class="top-participant-list-team">
+  //       <a href="https://dev2.heart.org/site/TR/OSE/FDA-FoundersAffiliate?team_id=4571&amp;pg=team&amp;fr_id=4736">Team Blackbaud</a>
+  //     </div>
+  //   </div>
+  // </div>
+
+  //   div#top_participant_list_container {
+  //     background: #fafafa;
+  //     border-top: 3px solid #e2e2e2;
+  //     border-bottom: 1px solid #e2e2e2;
+  //     border-left: 1px solid #e2e2e2;
+  //     border-right: 1px solid #e2e2e2;
+  //     padding: 16px 10px;
+  //     margin: 0px;
+  //   }
+        
+
+    if ($('body').is('.pg_topparticipantlist')) {
+      // Top Participant page JS goes here
+      $('#top_participant_list_container').hide();
+      $('#top_participant_list_container').after('<div id="all_participant_list_container" class="lc_Table"></div>')
+
+
+      // get all Participants
+      var allParticipantPromise = new Promise(function(resolve, reject) {
+        luminateExtend.api({
+          api: 'teamraiser',
+          data: 'method=getParticipants&fr_id=' + evID + '&response_format=json&first_name=%25&last_name=%25%25%25&list_sort_column=total&list_ascending=false&list_page_size=5',
+          callback: {
+            success: function (response) {
+              if (!$.isEmptyObject(response.getParticipantsResponse)) {
+                var participantData = luminateExtend.utils.ensureArray(response.getParticipantsResponse.teamraiserData);
+                if (participantData.length > 0) {
+                  var sortedParticipantsData = participantData.slice(0, 5);
+                  console.log('sortedParticipantsData ' + sortedParticipantsData)
+                  for (var i = 0, len = sortedParticipantsData.length; i < len; i++) {
+                    sortedParticipantsData[i].total = Number(sortedParticipantsData[i].total.replace('$', '').replace(',', ''));
+                    console.log('total: ' + sortedParticipantsData[i].total)
+                    if (sortedParticipantsData[i].total > 0) {
+                      // var participantDataOutput = '<tr><td><a href="' + luminateExtend.global.path.nonsecure + 'TR/?fr_id=' + evID + '&pg=personal&px=' +    
+                      //   + 'sortedParticipantsData[i].id'
+                      //   + '">' 
+                      //   + 'sortedParticipantsData[i].name'
+                      //   + '</a></td><td><span class="pull-right">$'
+                      //   + 'sortedParticipantsData[i].total.formatMoney(0)'
+                      //   + '</span></td></tr>';
+                      var teamData = ''
+                      if (sortedParticipantsData[i].teamName.length > 0) {
+                        teamData = '<a href="' + luminateExtend.global.path.secure + 'TR?team_id=' + sortedParticipantsData[i].teamId + '&pg=team&fr_id=' + evID + '">'+sortedParticipantsData[i].teamName+'</a>';
+                      }
+
+                      var participantDataOutput = '<div class="lc_Row1 list-row top-participant-list-row clearfix">'
+                        + '<div class="top-participant-list-name">'
+                          + '<a href="' + luminateExtend.global.path.secure + 'TR/?fr_id=' + evID + '&pg=personal&px=' + sortedParticipantsData[i].id
+                          +  '">'+sortedParticipantsData[i].name
+                        + '</div>'
+                        + '<div class="top-participant-list-amount-container">'
+                          + '<div class="top-participant-list-amount-label">Raised:</div>'
+                          + '<div class="top-participant-list-amount">'+sortedParticipantsData[i].total.formatMoney(0)
+                          +'</div>'
+                        + '</div>'
+                        + '<div class="top-participant-list-team">'
+                          + teamData
+                        + '</div>'
+                      + '</div>';
+
+                      $('#all_participant_list_container').append(participantDataOutput);
+                    }
+                  }
+                }
+              }
+              resolve();
+            },
+            error: function (response) {
+              console.log('getTopParticipants error: ' + response.errorResponse.message);
+              reject(Error());
+            }
+          }
+        });
+      });
+
+      allParticipantPromise.then(function() {
+        console.log("allParticipantPromise then function?")
+        // if( !$.trim( $('.insert_top-participants-list').html() ).length ) {
+        //   partP = false;
+        //   $('.top-participants-list').hide();
+        // }
+        // else {
+        //   partP = true;
+        //   $('#top_lists').show();
+        //   $('.top-participants-list').show();
+        // }
+      }, function(err) {
+        console.log(err);
+      });
+
+      Number.prototype.formatMoney = function (c, d, t) {
+        var n = this,
+          c = isNaN(c = Math.abs(c)) ? 2 : c,
+          d = d == undefined ? "." : d,
+          t = t == undefined ? "," : t,
+          s = n < 0 ? "-" : "",
+          i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))),
+          j = (j = i.length) > 3 ? j % 3 : 0;
+        return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d +
+          Math.abs(n - i).toFixed(c).slice(2) : "");
+      };
+    }
+
+
+
+
+    if ($('body').is('.pg_teamlist')) {
+      // Top team page JS goes here
+
+      // get all teams
+      var allTeamsPromise = new Promise(function(resolve, reject) {
+        luminateExtend.api({
+          api: 'teamraiser',
+          data: 'method=getTeamsByInfo&fr_id=' + evID + '&response_format=json&list_sort_column=total&list_ascending=false&list_page_size=5',
+          callback: {
+            success: function (response) {
+              console.log('allTeamsPromise success function')
+              // if (!$.isEmptyObject(response.getTopTeamsDataResponse)) {
+              //   var teamData = luminateExtend.utils.ensureArray(response.getTopTeamsDataResponse.teamraiserData);
+              //   if (teamData.length > 0) {
+              //     var sortedTeamsData = teamData.slice(0, 5);
+              //     for (var i = 0, len = sortedTeamsData.length; i < len; i++) {
+              //       sortedTeamsData[i].total = Number(sortedTeamsData[i].total.replace('$', '').replace(',', ''));
+              //       if (sortedTeamsData[i].total > 0) {
+              //         var teamsData = '<tr><td><a href="' + luminateExtend.global.path.nonsecure + 'TR/?pg=team&team_id=' + sortedTeamsData[i].id + '&fr_id=' + evID + '">' + sortedTeamsData[i].name + '</a></td><td><span class="pull-right">$' + sortedTeamsData[i].total.formatMoney(0) + '</span></td></tr>';
+              //         $('.insert_top-teams-list').append(teamsData);
+              //       }
+              //     }
+              //   }
+              // }
+              resolve();
+            },
+            error: function (response) {
+              console.log('getTopTeams error: ' + response.errorResponse.message);
+              reject(Error());
+            }
+          }
+        });
+      });
+
+      allTeamsPromise.then(function() {
+        console.log('all teams promise then')
+      }, function(err) {
+        console.log(err);
+      });
+
+      Number.prototype.formatMoney = function (c, d, t) {
+        var n = this,
+          c = isNaN(c = Math.abs(c)) ? 2 : c,
+          d = d == undefined ? "." : d,
+          t = t == undefined ? "," : t,
+          s = n < 0 ? "-" : "",
+          i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))),
+          j = (j = i.length) > 3 ? j % 3 : 0;
+        return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d +
+          Math.abs(n - i).toFixed(c).slice(2) : "");
+      };
+    }
+
+
+
+
   });
 }(jQuery));
