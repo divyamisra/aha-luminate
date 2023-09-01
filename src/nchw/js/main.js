@@ -284,6 +284,8 @@
 
       // get all Participants
       var allParticipantPromise = new Promise(function(resolve, reject) {
+        console.log('allParticipantPromise ');
+        console.log('evID ' + evID)
         luminateExtend.api({
           api: 'teamraiser',
           data: 'method=getParticipants&fr_id=' + evID + '&response_format=json&first_name=%25&last_name=%25%25%25&list_sort_column=total&list_ascending=false&list_page_size=5',
