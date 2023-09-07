@@ -342,7 +342,7 @@
         $.each(allParticipants,function(){
           console.log('array each function ' + this.firstName);
           var teamData = ''
-          if (this.teamName.length > 0) {
+          if (this.teamId) {
             teamData = '<a href="' + luminateExtend.global.path.secure + 'TR?team_id=' + this.teamId + '&pg=team&fr_id=' + this.eventId + '">'+this.teamName+'</a>';
           }
           var participantDataOutput = '<div class="lc_Row1 list-row top-participant-list-row clearfix">'
@@ -373,42 +373,8 @@
     if ($('body').is('.pg_teamlist')) {
       // Top team page JS goes here
 
-      // get all teams
-      var allTeamsPromise = new Promise(function(resolve, reject) {
-        luminateExtend.api({
-          api: 'teamraiser',
-          data: 'method=getTeamsByInfo&fr_id=' + evID + '&response_format=json&list_sort_column=total&list_ascending=false&list_page_size=5',
-          callback: {
-            success: function (response) {
-              console.log('allTeamsPromise success function')
-              // if (!$.isEmptyObject(response.getTopTeamsDataResponse)) {
-              //   var teamData = luminateExtend.utils.ensureArray(response.getTopTeamsDataResponse.teamraiserData);
-              //   if (teamData.length > 0) {
-              //     var sortedTeamsData = teamData.slice(0, 5);
-              //     for (var i = 0, len = sortedTeamsData.length; i < len; i++) {
-              //       sortedTeamsData[i].total = Number(sortedTeamsData[i].total.replace('$', '').replace(',', ''));
-              //       if (sortedTeamsData[i].total > 0) {
-              //         var teamsData = '<tr><td><a href="' + luminateExtend.global.path.nonsecure + 'TR/?pg=team&team_id=' + sortedTeamsData[i].id + '&fr_id=' + evID + '">' + sortedTeamsData[i].name + '</a></td><td><span class="pull-right">$' + sortedTeamsData[i].total.formatMoney(0) + '</span></td></tr>';
-              //         $('.insert_top-teams-list').append(teamsData);
-              //       }
-              //     }
-              //   }
-              // }
-              resolve();
-            },
-            error: function (response) {
-              console.log('getTopTeams error: ' + response.errorResponse.message);
-              reject(Error());
-            }
-          }
-        });
-      });
-
-      allTeamsPromise.then(function() {
-        console.log('all teams promise then')
-      }, function(err) {
-        console.log(err);
-      });
+      $('#top_team_list_container').hide();
+      $('#top_team_list_container').after('<div id="all_team_list_container" class="lc_Table team-list-table"></div>')
 
       Number.prototype.formatMoney = function (c, d, t) {
         var n = this,
@@ -421,9 +387,108 @@
         return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d +
           Math.abs(n - i).toFixed(c).slice(2) : "");
       };
+
+      // get all Teams
+
+      var allTeams = [];
+      var teamCount = 0;
+
+      if (!evID) {
+        var url = window.location.href;
+        url = url.split('fr_id=')[1];
+        url = url.split('&')[0];
+        evID = url;
+      }
+      console.log('evID ' + evID);
+      var pageOffset = 0;
+      console.log('pageOffset ' + pageOffset);
+
+      var getAllTeams = function(){
+        console.log('getAllTeams function')
+        console.log('pageOffset ' + pageOffset);
+        luminateExtend.api({
+          api: 'teamraiser',
+          data: 'method=getTeamsByInfo&fr_id=' + evID + '&response_format=json&list_sort_column=total&list_ascending=false&list_page_size=3&list&list_page_offset='+pageOffset,
+          callback: {
+            success: function (response) {
+              if (!$.isEmptyObject(response.getTeamSearchByInfoResponse)) {
+                var totalTeams = Number(response.getTeamSearchByInfoResponse.totalNumberResults);
+                console.log('totalTeams ' + totalTeams)
+                
+                var teamData = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
+                if (teamData.length > 0) {
+                  
+                  for (var i = 0, len = teamData.length; i < len; i++) {
+                    teamCount ++;
+                    console.log('teamCount '  + teamCount);
+                    var amountRaised = Number(teamData[i].amountRaised)/100;
+                    amountRaised = amountRaised.formatMoney(0);
+                    console.log('formatted amount raised? ' + amountRaised)
+
+                    var team = {
+                      teamId: teamData[i].id,
+                      teamName: teamData[i].name,
+                      captainFirstName: teamData[i].captainFirstName,
+                      captainLastName: teamData[i].captainLastName,
+                      eventId: teamData[i].EventId,
+                      teamSize: teamData[i].numMembers,
+                      amountRaised: amountRaised,
+                      joinTeamUrl: teamData[i].joinTeamURL
+                    }
+                    allTeams.push(team);
+
+                  }
+
+                  if (teamCount === totalTeams) {
+                    console.log("count is equal ");
+                    displayTeams();
+                  }
+                  else {
+                    console.log("count is NOT equal ")
+                    pageOffset ++;
+                    getAllTeams();
+                  }
+
+                }
+              }
+              
+            },
+            error: function (response) {
+              console.log('getAllTeams error: ' + response.errorResponse.message);
+            }
+          }
+        });
+      }
+      getAllTeams();
+
+      var displayTeams = function() {
+        console.log("allTeams display function?");
+        $.each(allTeams,function(){
+          console.log('teams array each function ' + this.teamName);
+          // var teamData = ''
+          // if (this.teamName.length > 0) {
+          //   teamData = '<a href="' + luminateExtend.global.path.secure + 'TR?team_id=' + this.teamId + '&pg=team&fr_id=' + this.eventId + '">'+this.teamName+'</a>';
+          // }
+          var teamDataOutput = '<div class="lc_Row0 list-row team-list-row clearfix">'
+            + '<div class="team-list-name">'
+              + '<a href="' + luminateExtend.global.path.secure + 'TR/?fr_id=' + this.eventId + '&pg=team&team_id=' + this.teamId + '">'+this.teamName + '</a>'
+            + '</div>'
+            + '<div class="team-list-captain">Team Captain: ' + this.captainFirstName + ' ' + this.captainLastName +'</div>'
+            + '<div class="team-list-participants">Members: ' + this.teamSize + '</div>'
+            + '<div class="team-list-donations">Amount Raised: $' + this.amountRaised + '</div>'
+            + '<div class="team-list-one-button-container">'
+              + '<div class="team-list-join-container">'
+                + '<a href=" ' + this.joinTeamUrl + ' " class="button">Join</a>'
+              + '</div>'
+            + '</div>'
+          + '</div>';
+
+          $('#all_team_list_container').append(teamDataOutput);
+
+        });
+      };
+
     }
-
-
 
 
   });
