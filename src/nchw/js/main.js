@@ -276,16 +276,13 @@
         url = url.split('&')[0];
         evID = url;
       }
-      console.log('evID ' + evID);
+
       var pageOffset = 0;
-      console.log('pageOffset ' + pageOffset);
 
       var getAllParticipants = function(){
-        console.log('getAllParticipants function')
-        console.log('pageOffset ' + pageOffset);
         luminateExtend.api({
           api: 'teamraiser',
-          data: 'method=getParticipants&fr_id=' + evID + '&response_format=json&first_name=%25&last_name=%25%25%25&list_sort_column=total&list_ascending=false&list_page_size=3&list&list_page_offset='+pageOffset,
+          data: 'method=getParticipants&fr_id=' + evID + '&response_format=json&first_name=%25&last_name=%25%25%25&list_sort_column=total&list_ascending=false&list_page_size=500&list&list_page_offset='+pageOffset,
           callback: {
             success: function (response) {
               if (!$.isEmptyObject(response.getParticipantsResponse)) {
@@ -338,9 +335,7 @@
       getAllParticipants();
 
       var displayParticipants = function() {
-        console.log("allParticipantPromise then function?");
         $.each(allParticipants,function(){
-          console.log('array each function ' + this.firstName);
           var teamData = ''
           if (this.teamId) {
             teamData = '<a href="' + luminateExtend.global.path.secure + 'TR?team_id=' + this.teamId + '&pg=team&fr_id=' + this.eventId + '">'+this.teamName+'</a>';
@@ -399,16 +394,15 @@
         url = url.split('&')[0];
         evID = url;
       }
-      console.log('evID ' + evID);
+
       var pageOffset = 0;
-      console.log('pageOffset ' + pageOffset);
 
       var getAllTeams = function(){
         console.log('getAllTeams function')
         console.log('pageOffset ' + pageOffset);
         luminateExtend.api({
           api: 'teamraiser',
-          data: 'method=getTeamsByInfo&fr_id=' + evID + '&response_format=json&list_sort_column=total&list_ascending=false&list_page_size=3&list&list_page_offset='+pageOffset,
+          data: 'method=getTeamsByInfo&fr_id=' + evID + '&response_format=json&list_sort_column=total&list_ascending=false&list_page_size=500&list&list_page_offset='+pageOffset,
           callback: {
             success: function (response) {
               if (!$.isEmptyObject(response.getTeamSearchByInfoResponse)) {
@@ -420,10 +414,8 @@
                   
                   for (var i = 0, len = teamData.length; i < len; i++) {
                     teamCount ++;
-                    console.log('teamCount '  + teamCount);
                     var amountRaised = Number(teamData[i].amountRaised)/100;
                     amountRaised = amountRaised.formatMoney(0);
-                    console.log('formatted amount raised? ' + amountRaised)
 
                     var team = {
                       teamId: teamData[i].id,
@@ -440,11 +432,9 @@
                   }
 
                   if (teamCount === totalTeams) {
-                    console.log("count is equal ");
                     displayTeams();
                   }
                   else {
-                    console.log("count is NOT equal ")
                     pageOffset ++;
                     getAllTeams();
                   }
@@ -462,13 +452,7 @@
       getAllTeams();
 
       var displayTeams = function() {
-        console.log("allTeams display function?");
         $.each(allTeams,function(){
-          console.log('teams array each function ' + this.teamName);
-          // var teamData = ''
-          // if (this.teamName.length > 0) {
-          //   teamData = '<a href="' + luminateExtend.global.path.secure + 'TR?team_id=' + this.teamId + '&pg=team&fr_id=' + this.eventId + '">'+this.teamName+'</a>';
-          // }
           var teamDataOutput = '<div class="lc_Row0 list-row team-list-row clearfix">'
             + '<div class="team-list-name">'
               + '<a href="' + luminateExtend.global.path.secure + 'TR/?fr_id=' + this.eventId + '&pg=team&team_id=' + this.teamId + '">'+this.teamName + '</a>'
