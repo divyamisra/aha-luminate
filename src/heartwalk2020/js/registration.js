@@ -2125,24 +2125,22 @@
         $('span.cons_email').parent().parent().addClass('consEmail');
         $('.survey-question-container.regMobilePhone').insertAfter('.cons-info-question-container.consEmail');
 
-        // Only add mobile opt in option if group id exists on body tag
-        if ($('body').data("group-id") != undefined) {
-            var optinHTML =
-                '<div id="mobile_optin_outer">' +
-                    '<input type="checkbox" name="mobile_optin" id="mobile_optin">' +
-                    '<label for="mobile_optin" class="wrapable">' +
-                        '<span id="optin_label"><strong>Mobile Opt in:</strong> By checking the box, I consent to receive up to 1 - 2 text messages per week from AHA  supporting my Heart Walk efforts at the mobile number above. Selecting text option is not required for my participation. Message and data rates may apply. I can Reply STOP at any time to opt out.</span>' +
-                    '</label>' +
-                '</div>';
-            $('.regMobilePhone').append(optinHTML);
-            $('#mobile_optin').click(function () {
-                if ($(this).is(":checked")) {
-                    $('.input-label:contains("Mobile Phone")').closest('label').next('input').addClass("phonecheck");
-                } else {
-                    $('.input-label:contains("Mobile Phone")').closest('label').next('input').removeClass("phonecheck");
-                }
-            });
-        }
+        // Add mobile opt in option
+        var optinHTML =
+            '<div id="mobile_optin_outer">' +
+                '<input type="checkbox" name="mobile_optin" id="mobile_optin">' +
+                '<label for="mobile_optin" class="wrapable">' +
+                    '<span id="optin_label"><strong>Mobile Opt in:</strong> By checking the box, I consent to receive up to 1 - 2 text messages per week from AHA  supporting my Heart Walk efforts at the mobile number above. Selecting text option is not required for my participation. Message and data rates may apply. I can Reply STOP at any time to opt out.</span>' +
+                '</label>' +
+            '</div>';
+        $('.regMobilePhone').append(optinHTML);
+        $('#mobile_optin').click(function () {
+            if ($(this).is(":checked")) {
+                $('.input-label:contains("Mobile Phone")').closest('label').next('input').addClass("phonecheck");
+            } else {
+                $('.input-label:contains("Mobile Phone")').closest('label').next('input').removeClass("phonecheck");
+            }
+        });
         
         $('#overlayWaiver, .lightboxWiaverClose').click(function () {
             $('#overlayWaiver, #lightboxWiaver').hide();
@@ -2286,36 +2284,6 @@
 
             //move custom details into content
             $('.reg-summary-event-info').prepend($('#additionalRegDetails'));
-
-            //save off mobile opt option
-            if (localStorage.mobile_optin == "on") {
-                luminateExtend.api({
-                    api: 'cons',
-                    useHTTPS: true,
-                    requestType: 'POST',
-                    requiresAuth: true,
-                    data: 'method=logInteraction' +
-                        '&response_format=json' +
-                        '&interaction_type_id=0' +
-                        '&interaction_subject=Hustle-OptIn' +
-                        '&interaction_body=\'{"EventId":' + $('body').data("fr-id") + ',"GroupId":' + $('body').data("group-id") + ',"OptIn":"Yes"}\'' +
-                        '&cons_id=' + $('body').data("cons-id"),
-                    callback: {
-                        success: function (response) {
-                            if (response.updateConsResponse.message == "Interaction logged successfully.") {
-                            }
-                        },
-                        error: function (response) {
-                            console.log(response.errorResponse.message);
-                        }
-                    }
-                });
-                if (isProd) {
-                    $('<img width="1" height="1" style="display:none;" src="https://www2.heart.org/site/SPageServer?pagename=reus_hw_mobileopt_add_group&group_id=' + $('body').data("group-id") + '&pgwrap=n" id="mobileopt_add_group">').appendTo($('#fr_reg_summary_page'));
-                } else {
-                    $('<img width="1" height="1" style="display:none;" src="https://dev2.heart.org/site/SPageServer?pagename=reus_hw_mobileopt_add_group&group_id=' + $('body').data("group-id") + '&pgwrap=n" id="mobileopt_add_group">').appendTo($('#fr_reg_summary_page'));
-                }
-            }
 
             $('button.next-step').click(function () {
                 // Add additional amount to local storage for Double the Donation
