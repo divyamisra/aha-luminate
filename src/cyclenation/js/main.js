@@ -2797,9 +2797,9 @@
       $('.mobile-question-container').closest('.row').append(optinHTML);
       $('#mobile_optin').click(function () {
           if ($(this).is(":checked")) {
-              $('.input-label:contains("Mobile Phone")').closest('label').next('input').addClass("phonecheck");
+              localStorage.mobile_optin = $('input[name=mobile_optin]:checked').val();
           } else {
-              $('.input-label:contains("Mobile Phone")').closest('label').next('input').removeClass("phonecheck");
+              localStorage.mobile_optin = "";
           }
       });
 
