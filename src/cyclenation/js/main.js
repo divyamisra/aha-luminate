@@ -2785,6 +2785,8 @@
         .after($('.email-question-container'))
         .after($('.mobile-question-container'));
 
+      $('.two-col').wrapAll('<div class="row" />');
+
       var optinHTML =
           '<div id="mobile_optin_outer" style="padding-left: 35px;padding-right: 15px;">' +
               '<input type="checkbox" name="mobile_optin" id="mobile_optin">' +
@@ -2800,8 +2802,6 @@
               $('.input-label:contains("Mobile Phone")').closest('label').next('input').removeClass("phonecheck");
           }
       });
-     
-      $('.two-col').wrapAll('<div class="row" />');
 
       if (regType === 'startTeam') {
         $('#cons_info_component_contact_info_section .sub-section-header').after('<p>As a team lead, we\'ll need your address so we can show you some love and send you swag to help inspire your squad and help you hit those fundraising milestones!</p>');
