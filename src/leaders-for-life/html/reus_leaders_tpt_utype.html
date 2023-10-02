@@ -1,0 +1,134 @@
+<section id="uType" aria-labelledby="haveWeMet">
+  <!-- BEGIN have we met container -->
+  <div class="row js__have-we-met-container mb-5">
+    <div class="col-sm-12 text-center my-4">
+      <div class="h6 ObjTitle" id="haveWeMet">Have you participated in an event<br class="d-none d-md-block">&nbsp;for the American Heart Association before?<button aria-label="If you've ever participated in Heart Walk, CycleNation or Kids Heart Challenge, choose yes." data-balloon-pos="up" data-balloon-length="large"><i class="fas fa-info-circle"></i></button></div>
+    </div>
+    <div class="col-md-3 offset-md-3">
+      <button type="button" id="utype-yes" class="btn btn-block btn-primary js__existing-record mb-4">YES</button>
+    </div>
+    <div class="col-md-3">
+      <button type="button" id="utype-no" class="btn btn-block btn-primary js__new-record mb-4">NO</button>
+    </div>
+  </div>
+  <!-- END have we met container -->
+
+  <!-- BEGIN login container -->
+  <div class="row js__login-container d-none">
+    <div class="col-11 m-auto text-center">
+      <h1 class="h3 ObjTitle">Use your username and password from the last time you registered, it'll make the registration process faster!</h1>
+
+      <p>
+        <span class="field-required"></span>
+        <!-- <sup>
+                  <i class="fas fa-asterisk"></i>
+                </sup> -->Indicates required</p>
+    </div>
+
+    <div class="col-md-6 offset-md-3">
+      <div class="js__login-error-container alert alert-danger d-none" role="alert" aria-atomic="true">
+        <span class="" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        <i class="fas fa-exclamation-triangle" aria-hidden="true" alt=""></i>
+        <span class="js__login-error-message"></span>
+      </div>
+    </div>
+
+    <div class="col-md-6 offset-md-3">
+      <form id="loginForm" class="js__login-form" autocomplete="off">
+        <div id="utype_login_container" class="">
+          <div class="">
+            <div class="form-group">
+              <span class="d-flex">
+                <span class="field-required"></span>
+                <label for="loginUsername">Username: </label>
+              </span>
+              <input type="text" name="user_name" id="loginUsername" class="form-control" aria-describedby="loginUsernameHelpBlock"
+                data-parsley-trigger="change" data-parsley-minlength="5" data-parsley-maxlength="60"
+                data-parsley-minlength-message="Your username must be at least 5 characters long."
+                data-parsley-maxlength-message="Your username must be at fewer than 60 characters long."
+                data-parsley-required-message="Username is required" data-parsley-required="true" required>
+            </div>
+            <div class="form-group">
+              <span class="d-flex">
+                <span class="field-required"></span>
+                <label for="loginPassword">Password:</label>
+              </span>
+
+              <input type="password" name="user_password" id="loginPassword" class="form-control" aria-describedby="loginPasswordHelpBlock"
+                data-parsley-trigger="change" data-parsley-minlength="5" data-parsley-maxlength="20"
+                data-parsley-minlength-message="Your password must be at least 5 characters long."
+                data-parsley-maxlength-message="Your password must be at fewer than 20 characters long."
+                data-parsley-required-message="Password is required" data-parsley-required="true" required>
+            </div>
+
+            <div class="form-group text-center">
+                <small id="loginUsernameHelpBlock" class="ml-auto form-text">
+                  <a href="#" class="js__show-retrieve-login">Forgot your Username or Password</a>
+                </small>
+            </div>
+            <div class="form-group text-center">
+              <button class="btn btn-block btn-primary js__login-submit step-button" name="loginSubmit" value="Log In"
+                type="submit">Log In</button>
+            </div>
+            <div class="form-group">
+              <p>
+                <a href="#" class="js__show-have-we-met text-link">Back</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="js__social-login-container text-center mx-auto mb-4">
+        <div class="col-12">
+            <p>Did you log in last time with your Facebook or Amazon account? <br class="d-none d-md-block">Log in using that account!</p>
+        </div>
+        <div class="loginText loginText col-md-12">
+            [[S202]]
+        </div>
+      </div>
+  </div>
+  <!-- END login container -->
+
+  <!-- BEGIN retrieval form  container -->
+  <div class="row js__retrieve-login-container d-none">
+    <div class="col-md-6 offset-md-3 text-center">
+      <h1 class="h3 show-desktop">Log In Assistance</h1>
+      <p>Submit the form below to have your login information emailed to you.</p>
+    </div>
+
+    <div class="col-md-6 offset-md-3">
+      <div class="js__retrieve-login-error-container alert alert-danger d-none" role="alert" aria-atomic="true">
+        <span class="" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        <i class="fas fa-exclamation-triangle" aria-hidden="true" alt=""></i>
+        <span class="js__retrieve-login-error-message"></span>
+      </div>
+
+      <form id="retrieveLoginForm" class="js__retrieve-login-form" autocomplete="off">
+        <div class="">
+          <div class="form-group">
+            <span class="field-required"></span>
+            <label for="retrieveLoginEmail">Email:</label>
+            <input type="email" name="email" id="retrieveLoginEmail" class="form-control" data-parsley-required-message="Email address is required"
+              data-parsley-required="true" data-parsley-trigger="keyup" required>
+          </div>
+
+          <div class="form-group text-center">
+            <button class="btn btn-primary btn-block step-button action-button" name="login" value="Retrieve Login"
+              type="submit">Send Login</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="text-center toggle-login-container form-group">
+            <a class="js__show-login" href="#">Back</a>
+          </div>
+        </div>
+      </form>
+
+    </div>
+
+  </div>
+  <!-- END retrieval form container -->
+</section>

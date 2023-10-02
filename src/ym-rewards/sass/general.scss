@@ -1,0 +1,23 @@
+:focus {
+    outline: 5px auto $main-background !important;
+}
+
+main {
+  background: $main-background;
+  
+  & > .container-fluid {
+     margin: -50px auto 0;
+  }
+}
+
+header .ym-header-logo.ym-header-logo--aha {
+    padding-top: 10px;
+}
+
+.modal {
+    background: rgba(51, 51, 51, 0.5);
+}
+
+.strikethrough {
+    text-decoration: line-through;
+}

@@ -12,6 +12,7 @@
       color: $event-primary;
       font-weight: 700;
       margin-left: 10px;
+      padding: 6px 12px;
 
       &:hover,
       &:focus {
@@ -49,6 +50,7 @@
       &:hover {
         background-color: $event-primary;
         border-color: $event-primary;
+        color: #ffffff;
       }
     }
 
@@ -58,6 +60,7 @@
       &:hover {
         background-color: $event-primary;
         border-color: $event-primary;
+        color: #ffffff;
       }
     }
   }

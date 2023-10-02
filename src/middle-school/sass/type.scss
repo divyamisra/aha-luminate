@@ -4,14 +4,14 @@ a {
   &:link,
   &:visited {
     text-decoration: underline;
-    color: $event-primary-acc;
+    color: $event-primary;
   }
 
   &:hover,
   &:focus,
   &:active {
     text-decoration: none;
-    color: $event-primary-acc;
+    color: $event-primary;
   }
 }
 
@@ -39,7 +39,10 @@ h2,
 .h2-heading,
 h3,
 .h3,
-.h3-heading,
+.h3-heading {
+  color: $event-secondary-heading;
+}
+
 h4,
 .h4,
 .h4-heading {
@@ -77,6 +80,7 @@ h4,
 }
 
 .event-secondary-medium {
+  color:#ffffff;
   padding-bottom: 20px;
   h5, 
   .h5, 

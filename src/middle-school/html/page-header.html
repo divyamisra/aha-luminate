@@ -1,6 +1,6 @@
 [[?x9x19x23x200x201x26x27x::x[[S4]]x::
   <div class="ym-page-header ym-accent-color">
-    <div class="container">
+    <div class="[[?[[S334:pagename]]::participant_center::container-fluid::container]]">
       <div class="col-sm-12">
         [[?x9x::x[[S4]]x::
           [[?xcompletedx::x[[E334:[[S334:df_id]].donation]]x::
@@ -14,7 +14,7 @@
             </p>
           ]]
         ::]]
-        [[?x19x23x::x[[S4]]x::
+        [[?x19x23x200x201x::x[[S4]]x::
           <!-- PageServer and SPageServer -->
           [[?xmiddle_school_participant_centerx::x[[S334:pagename]]x::
             <!-- participant center -->
@@ -58,7 +58,7 @@
         ::]]
         [[?x26x::x[[S4]]x::
           <!-- TR -->
-          [[?xpersonalxteamxcompanyx::x[[S334:pg]]x::
+          [[?xpersonalaxteamxcompanyx::x[[S334:pg]]x::
             [[?xpersonalx::x[[S334:pg]]x::
               <!-- personal page -->
               <h1>
@@ -95,11 +95,7 @@
                 <span ng-bind-html="companyName"></span>
               </h1>
             ::]]
-          ::
-            <!-- all other TR pages -->
-            <h1>
-            </h1>
-          ]]
+          ::]]
         ::]]
         [[?x27x::x[[S4]]x::
           <!-- TRR -->
@@ -111,13 +107,13 @@
               <p class="school-name">
                 My School: <a title="{{companyName}}" href="TR?fr_id=[[S80:trID]]&pg=company&company_id=[[S80:frCompanyId]]"><span ng-bind-html="companyName"></a>
               </p>
-              [[?xx::x[[S80:frTJoin]]x::::
-                <p class="team-name">
-                  My Team: <a title="[[E43:[[S80:trID]]:name:[[S80:frTJoin]]]]" href="TR?fr_id=[[S80:trID]]&pg=team&team_id=[[S80:frTJoin]]">[[E43:[[S80:trID]]:name:[[S80:frTJoin]]]]</a>
-                </p>
-              ]]
             </div>
           ]]
+          <div ng-if="companyCity" ng-cloak>
+            <p class="school-location h5" ng-if="companyCity" ng-cloak>
+              Located in <span ng-bind-html="companyCity"></span>, <span ng-bind-html="companyState"></span>
+            </p>
+          </div>
         ::]]
       </div>
     </div>

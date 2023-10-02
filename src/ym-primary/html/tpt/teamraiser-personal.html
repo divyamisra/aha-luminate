@@ -14,7 +14,7 @@
             <span class="fa fa-camera"></span> Edit Photo
           </button>
         ::]]
-        <img class="hidden-md hidden-lg" ng-src="{{personalPagePhoto1.customUrl && personalPagePhoto1.customUrl != '' ? personalPagePhoto1.customUrl : personalPagePhoto1.defaultUrl}}" alt="{{personalPagePhoto1.caption != '' ? personalPagePhoto1.caption : 'Student Photo'}}" ng-cloak>
+        <img class="d-block d-md-none" ng-src="{{personalPagePhoto1.customUrl && personalPagePhoto1.customUrl != '' ? personalPagePhoto1.customUrl : personalPagePhoto1.defaultUrl}}" alt="{{personalPagePhoto1.caption != '' ? personalPagePhoto1.caption : 'Student Photo'}}" ng-cloak>
       </div>
       <div class="caption" ng-if="personalPagePhoto1.caption && personalPagePhoto1.caption != ''" ng-cloak>
         <span ng-bind-html="personalPagePhoto1.caption"></span>
@@ -24,34 +24,58 @@
       <h2 class="ym-progress__title h4">
         Help me raise more lifesaving donations
       </h2>
-      <a aria-label="Donate to help me raise funds" class="btn btn-primary btn-lg" href="Donation2?df_id=[[E42:[[S80:trID]]:form-id]]&amp;FR_ID=[[S80:trID]]&amp;PROXY_ID=[[S334:px]]&amp;PROXY_TYPE=20">
-        Donate
-      </a>
-      <div class="ym-progress__thermometer" name="Personal Progress Bar" aria-valuetext="{{personalProgress.percent}} percent of fundraising progress" role="progressbar" aria-valuenow="{{personalProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
-        <div class="ym-progress__thermometer--fill" ng-style="{'width': personalProgress.percent + '%'}"></div>
+	<a aria-label="Donate to help me raise funds" class="btn btn-primary btn-lg mb-4" href="#paymentSelType" data-bs-toggle="collapse">
+		Donate
+	</a>
+	<div id="paymentSelType" class="collapse text-start">
+		<h7>How would you like to donate?</h7>
+		<div class="d-flex justify-content-between flex-wrap align-items-center text-center">
+			<a class="col-6 p-2" href="Donation2?df_id=[[E42:[[S80:trID]]:form-id]]&amp;FR_ID=[[S80:trID]]&amp;PROXY_ID=[[S334:px]]&amp;PROXY_TYPE=20">
+				<img class="img-fluid" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/credit-card-button.png" alt="Donate using Credit Card">
+			</a>
+			<a class="col-6 p-2" href="SPageNavigator/ym_khc_donate_amazon.html?FR_ID={{frId}}&mfc_pref=T&PROXY_ID=[[S334:px]]&PROXY_TYPE=20" class="amazon">
+				<img class="img-fluid" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/amazon-button.png" alt="Donate using Amazon">
+			</a>
+			<a class="col-6 p-2" href="SPageNavigator/ym_khc_donate_googlepay.html?FR_ID={{frId}}&mfc_pref=T&PROXY_ID=[[S334:px]]&PROXY_TYPE=20" class="googlepay">
+				<img class="img-fluid" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/googlepay-button.png" alt="Donate using Google Pay">
+			</a>
+			<a class="col-6 p-2" ng-class="(browserName == 'safari') ? '' : 'd-md-none'" href="SPageNavigator/ym_khc_donate_applepay.html?FR_ID={{frId}}&mfc_pref=T&PROXY_ID=[[S334:px]]&PROXY_TYPE=20" class="applepay ">
+				<img class="img-fluid" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/applepay-button.png" alt="Donate using ApplePay">
+			</a>
+			<a class="col-6 p-2 d-md-none" href="SPageNavigator/ym_khc_donate_venmo.html?FR_ID={{frId}}&mfc_pref=T&PROXY_ID=[[S334:px]]&PROXY_TYPE=20" class="venmo">
+				<img class="img-fluid" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/venmo-button.png" alt="Donate using Venmo">
+			</a>
+			<a class="col-6 p-2" href="Donation2?df_id=[[E42:[[S80:trID]]:form-id]]&FR_ID={{frId}}&PROXY_TYPE=20&PROXY_ID=[[S334:px]]&amp;paypal=true">
+				<img class="img-fluid" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/paypal-button.png" alt="Donate using Paypal">
+			</a>
+		</div>
+	</div>
+ 				<div class="d-flex justify-content-between mx-5">
+					<div class="ym-progress__amount col-sm-6 text-start">
+						<p>
+							I've raised <strong>[[E130:"[[E48:[[S80:trID]]-[[S334:px]]:dollars]]" ".00" "" replaceall]]</strong>
+						</p>
+					</div>
+					<div class="ym-progress__goal text-end col-sm-6">
+						<p>
+							My goal is <strong>[[E130:"[[E48:[[S80:trID]]-[[S334:px]]:goal]]" ".00" "" replaceall]]</strong>
+						</p>
+					</div>
+				</div>
+      <div class="ym-progress__thermometer mx-5 my-0 mw-100" name="Personal Progress Bar" aria-valuetext="{{personalProgress.percent}} percent of fundraising progress" role="progressbar" aria-label="{{personalProgress.percent}} percent of fundraising progress" aria-valuenow="{{personalProgress.percent}}" aria-valuemin="0" aria-valuemax="100">
+        <div class="ym-progress__thermometer--fill" ng-class="(personalProgress.percent < 15) ? 'therm-text-black' : 'therm-text-white'" ng-style="{'width': personalProgress.percent + '%'}">{{personalProgress.percent}}%</div>
       </div>
       <div class="ym-progress__stats">
-        <div class="ym-progress__amount col-sm-6">
+        <div class="ym-progress__date" ng-if="schoolPlan.EventStartDate && schoolPlan.EventStartDate != '' && schoolPlan.EventStartDate != 'User Provided No Response'" ng-cloak>
           <p>
-            I've raised <strong>[[E130:"[[E48:[[S80:trID]]-[[S334:px]]:dollars]]" ".00" "" replaceall]]</strong>
-          </p>
-        </div>
-        <div class="ym-progress__goal col-sm-6">
-          <p>
-            My goal is <strong>[[E130:"[[E48:[[S80:trID]]-[[S334:px]]:goal]]" ".00" "" replaceall]]</strong>
-          </p>
-        </div>
-        <div class="clearfix"></div>
-        <div class="ym-progress__date" ng-if="eventDate && eventDate != '' && eventDate != 'User Provided No Response'" ng-cloak>
-          <p>
-            My event date is <strong><span ng-bind-html="eventDate"></span></strong>
+	          Our event is kicking off on <strong>{{schoolPlan.EventStartDate | date:'MM/dd/yyyy'}}</strong><span ng-if="(schoolPlan.EventStartDate | date:'MM/dd/yyyy') !== (schoolPlan.EventEndDate | date:'MM/dd/yyyy') && schoolPlan.EventEndDate != ''" ng-cloak> and will conclude on <strong>{{schoolPlan.EventEndDate | date:'MM/dd/yyyy'}}</strong></span>.
           </p>
         </div>
       </div>
     </div>
     <div class="clearfix"></div>
   </div>
-  <div class="ym-page-section ym-page-section__main">
+  <div class="ym-page-section ym-page-section__main d-md-flex jsutify-content-between flex-wrap">
     <div class="ym-story" ng-class="prizes.length > 0 || challengeId != null ? 'col-md-6' : 'col-md-12'">
       <h2 class="ym-headline h3">
         My Story
@@ -75,7 +99,7 @@
           </div>
         </div>
       ::]]
-      <div class="hidden js--default-page-content" hidden aria-hidden="true" ng-non-bindable>
+      <div class="d-none js--default-page-content" hidden aria-hidden="true" ng-non-bindable>
         [[C6:fr_rich_text]]
       </div>
       <div ng-show="personalPageContent.mode == 'view'">
@@ -97,49 +121,65 @@
         </div>
       ::]]
     </div>
-    <div class="col-md-6 ym-user-interactions" ng-if="prizes.length > 0 || schoolChallenges.length > 0 || challengeId != null">
-      <div class="ym-badges" ng-if="prizes.length > 0 || schoolChallenges.length > 0">
+    <div class="col-md-6 ym-user-interactions" ng-if="prizes.length > 0 || studentChallengeBadge || schoolChallengeBadge || challengeId != null">
+      <div class="ym-badges" ng-if="prizes.length > 0 || studentChallengeBadge || schoolChallengeBadge || returningStudent">
         <h2 class="ym-headline h3">
           Check Out My Badges
         </h2>
-        <div class="ym-badges__item" ng-if="prizesEarned == prizes.length"  ng-cloak>
-          <div class="ym-badge__item">
-            <img class="img-responsive" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/finns_mission_completed.png" alt="Finn's Mission is Completed">
-            <span>Completed Finn's Mission!</span> <span class="sr-only">(earned)</span>
+        <div class="ym-badges__item" ng-if="prizesEarned == prizes.length && prizes.length != 0"  ng-cloak>
+          <div class="ym-badge__item" tabindex="0" aria-label="Finn's Mission is completed Badge Earned">
+            <img class="img-fluid" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy23/badge_Finns_Mission.png" alt="Finn's Mission is Completed">
+            <span>Completed Finn's Mission!</span>
           </div>
         </div>
         <div class="ym-badges__item" ng-repeat="prize in prizes | filter: {status: 1}" ng-cloak> <!--  ng-repeat="prize in prizes | limitTo: 3" -->
-          <div class="ym-badge__item" ng-if="prize.earned" ng-cloak>
-            <img class="img-responsive" ng-src="//cd-aha-oot-production.s3.amazonaws.com/fy21/assets/badges/khc/{{prize.id}}_delivered.png" alt="{{prize.label}}">
-            <span ng-bind-html="prize.label"></span> <span class="sr-only">(earned)</span>
+          <div class="ym-badge__item" ng-if="prize.earned" tabindex="0" aria-label="{{prize.label}} Badge Earned" ng-cloak>
+            <img class="img-fluid" ng-src="{{prize.image_url}}" alt="{{prize.label}} Badge Earned">
+            <span ng-bind-html="prize.label"></span>
           </div>
         </div>
-        <div class="ym-badges__item" ng-repeat="schoolChallenge in schoolChallenges" ng-cloak>
-          <div class="ym-badge__item" ng-if="schoolChallenge.earned" ng-cloak>
-            <img class="img-responsive" ng-src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy21/badge-challenge-{{schoolChallenge.id}}.png" alt="{{schoolChallenge.label}}">
-            <span ng-bind-html="schoolChallenge.label"></span> <span class="sr-only">(earned)</span>
+        <div class="ym-badges__item" ng-if="returningStudent" ng-cloak>
+          <div class="ym-badge__item" tabindex="0" aria-label="Returning Student Badge Earned" ng-cloak>
+            <img class="img-fluid" ng-src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy23/badge-returning-student.png" alt="Returning Student Badge Earned">
+            <span>Returning Student</span>
+          </div>
+        </div>
+        <div class="ym-badges__item" ng-if="studentChallengeBadge" ng-cloak>
+          <div class="ym-badge__item" tabindex="0" aria-label="Individual School Challenge Badge Earned" ng-cloak>
+            <img class="img-fluid" ng-src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy23/badge-challenge-student.png" alt="Individual School Challenge Badge Earned">
+            <span>Individual School Challenge Completed</span>
+          </div>
+        </div>
+        <div class="ym-badges__item" ng-if="schoolChallengeBadge" ng-cloak>
+          <div class="ym-badge__item" tabindex="0" aria-label="School Goal Challenge Badge Earned" ng-cloak>
+            <img class="img-fluid" ng-src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy23/badge-challenge-school.png" alt="School Goal Challenge Badge Earned">
+            <span>School Goal Challenge Completed</span>
+          </div>
+        </div>
+        <div class="ym-badges__item" ng-if="personalProgress.amountRaised > 25000" ng-cloak>
+          <div class="ym-badge__item" tabindex="0" aria-label="You've raised more than $250 Badge Earned" ng-cloak>
+            <img class="img-fluid" ng-src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy23/badge-raised-250.png" alt="You've raised more than $250 Badge Earned">
+            <span>Raised more than $250</span>
           </div>
         </div>
         <div class="clearfix"></div>
       </div>
-      <div class="ym-my-challenge ym-secondary-medium-color" ng-if="challengeId != null" ng-cloak>
+      <div class="ym-my-challenge ym-secondary-medium-color d-none" ng-if="challengeId != null" ng-cloak>
         <h2 class="ym-headline">
           My Challenge
         </h2>
         <div class="row challenge-day-streak">
           <div class="col-sm-4">
-            <img class="img-responsive" ng-if="challengeId == 1 || challengeId == 4" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy21/badge-kind.png" alt="{{challengeName}}" ng-cloak>
-            <img class="img-responsive" ng-if="challengeId == 2" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy21/badge-move.png" alt="{{challengeName}}" ng-cloak>
-            <img class="img-responsive" ng-if="challengeId == 3" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy21/badge-water.png" alt="{{challengeName}}" ng-cloak>
+            <img class="img-fluid" ng-if="challengeId == 1" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy23/badge-active-hover.png" alt="{{challengeName}}" ng-cloak>
+            <img class="img-fluid" ng-if="challengeId == 2" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy23/badge-kind-hover.png" alt="{{challengeName}}" ng-cloak>
           </div>
           <div class="col-sm-8" ng-if="challengeCompleted > 0" ng-cloak>
             <p class="ym_my_challenge__stats">
               I have a
               <span class="challenge-day-count">{{challengeCompleted}}</span>
               day streak
-              <span ng-if="challengeId == '1'" ng-cloak>for being ready!</span>
-              <span ng-if="challengeId == '2'" ng-cloak>for moving more!</span>
-              <span ng-if="challengeId == '3'" ng-cloak>for choosing water!</span>
+              <span ng-if="challengeId == '1'" ng-cloak>for moving more!</span>
+              <span ng-if="challengeId == '2'" ng-cloak>for being kind!</span>
             </p>
           </div>
         </div>
@@ -153,7 +193,7 @@
             My Challenge
           </h2>
           <div class="col-sm-4">
-            <img class="img-responsive" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy21/badge-grateful.png" alt="">
+            <img class="img-fluid" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy22/badge-grateful.png" alt="">
           </div>
           <div class="col-sm-8">
             <p class="ym_my_challenge__description">
@@ -186,11 +226,11 @@
         Donate
       </a>
     </div>
-    <div class="ym-list" ng-class="!personalDonors.donors || personalDonors.donors.length == 0 ? 'hidden' : 'col-sm-6'" role="list" aria-label="Top Donors List" ng-cloak>
+    <div class="ym-list" ng-class="!personalDonors.donors || personalDonors.donors.length == 0 ? 'd-none' : 'col-sm-6'" aria-label="Top Fundraisers List" ng-cloak>
       <h2>
-        <img class="img-responsive" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy21/khc-top-fundraisers.png" alt="Saluting these top donors:">
+        <img class="img-fluid" src="../[[?xx::x[[S80:dev_branch]]x::::[[S80:dev_branch]]/]]aha-luminate/dist/ym-primary/image/fy23/top-fundraisers.png" alt="Saluting these top fundraisers:">
       </h2>
-      <ul class="ym-donor-list">
+      <ul class="ym-donor-list" role="list">
         <li class="ym-donor-list__row" ng-repeat="personalDonor in personalDonors.donors" role="listitem" ng-if="personalDonors.donors.length > 0" ng-cloak>
           <div class="clearfix">
             <span class="ym-donor-list__row--name">{{personalDonor.name}}</span> 
@@ -201,7 +241,7 @@
     </div>
     <div class="clearfix"></div>
   </div>
-  <div class="hidden" hidden aria-hidden="true">
+  <div class="d-none" hidden aria-hidden="true">
     <div class="js--personal-donors">
       [[C5:fr_status_2]]
     </div>

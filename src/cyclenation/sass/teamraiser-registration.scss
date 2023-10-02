@@ -342,12 +342,28 @@ svg.fa-info-circle {
   
 }
  
-
 // tfind step
-#team_find_new_team_recruiting_goal,
 #team_find_registration_type_container {
   display:none;
 }
+
+#team_find_new_team_attributes {
+  flex: 0 0 100%!important;
+  max-width: 100%!important;
+}
+
+.recruit-description {
+  font-size: 16px;
+  font-style: italic;
+}
+
+#team_find_new_fundraising_goal .form-content {
+  margin-bottom: 0!important;
+}
+// tfind step, hiding team recruit goal till aha ready
+// #team_find_new_team_recruiting_goal {
+//   display: none!important;
+// }
 // #team_find_search_button_container {
 //   @extend .mt-2;
 // }
@@ -530,9 +546,11 @@ div.responsive div.ErrorMessage.page-error>span.field-error-text {
       margin-left: inherit;
       font-size: inherit;
     }
-    #team_find_section_header,
     #team_find_section_body {
       display:none;
+    }
+    #team_find_section_header {
+      display:none!important;
     }
   }
 
@@ -656,6 +674,17 @@ div.part-type-container {
       display:none;
     }
   }
+}
+
+.part-type-container.join-team-ptype-time.selected {
+  width: 50%;
+  border: 1px solid #c10e21!important;
+  color: #FFF!important;
+  text-align: center;
+}
+
+#custom_team_find button {
+  color: #212529!important;
 }
 
 div#part_type_fundraising_goal_container {

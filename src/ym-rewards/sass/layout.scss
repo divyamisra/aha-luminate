@@ -1,0 +1,108 @@
+.header-totals {
+	color: #fff;
+}
+
+.filterTitle {
+	font-size: 1.1em;
+	font-weight: bold;
+}
+.filter-column {
+	flex: 0;
+}
+.product-column {
+	flex: 1;
+}
+.basket-column {
+	flex: 0;
+}
+@media (min-width:992px) {
+	.filter-column {
+		min-width: 180px;
+	}
+	.product-column product {
+		min-width: 300px;
+	}
+	.basket-column {
+		min-width: 300px;
+	}
+}
+.btn.btn-primary {
+	margin-top: 10px;
+	display: inline-block;
+}
+
+product {
+	border: 1px solid #ccc;
+	padding: 25px;
+	margin-bottom: 20px;
+	border-radius: 5px;
+	background: #f1f1f1;
+	display:block;
+	overflow:hidden;
+}
+.productName {
+	font-size: 20px;
+	font-weight: bold;
+}
+.productDesc {
+	margin-bottom: 10px;
+}
+.productSize {
+	margin-bottom: 10px;
+}
+.productSizes {
+	margin-bottom: 10px;
+	span {
+		display: inline-block;
+		margin-right: 3px;
+	}
+}
+.productQuantity {
+	margin-bottom: 10px;
+}
+.productPoints {
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+.productPointsTotal {
+	margin-bottom: 10px;
+	div {
+		font-size: 10px;
+	}
+}
+.sizeText {
+	font-size: 10px;
+	border: 1px solid #ccc;
+	padding: 2px;
+}
+div.shoppingCart {
+	.totalPoints {
+		font-weight: bold;
+	}
+}
+
+@media (min-width:992px) {
+	div.productList {
+		product {
+			flex: 0 0 48%;
+		}
+	}
+	.productSummary {
+		product {
+			flex: 1 0 29%;
+		}
+	}
+}
+
+@media (min-width:1400px) {
+	div.productList {
+		product {
+			flex: 0 0 33%;
+		}
+	}
+	.productSummary {
+		product {
+			flex: 1 0 29%;
+		}
+	}
+}

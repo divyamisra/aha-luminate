@@ -1,6 +1,5 @@
 angular.module 'trPcApp', [
   'ngRoute'
-  'ngCsv'
   'textAngular'
   'trPcControllers'
   'ngAria'
@@ -42,7 +41,10 @@ angular.module 'trPcApp'
   ]
 
 angular.element(document).ready ->
-  if not angular.element(document).injector()
-    angular.bootstrap document, [
-      'trPcApp'
-    ]
+  setTimeout ->
+    if not angular.element(document).injector()
+      angular.bootstrap document, [
+        'trPcApp'
+      ]
+  ,1000
+      

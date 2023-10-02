@@ -24,12 +24,32 @@ div.donation-form-container label[for="terms-of-service-checkbox"] {
     font-size: 1.5em;
     padding-left: 5px;
   }
-  
 } 
+
+div.donation-form-container {
+  .section-header-container,
+  h2 {
+    color: $event-primary;
+    border-color: $event-primary;
+  }
+}
 
 div.donation-form-container .custom-field-container.has-error .checkbox label:before,
 div.donation-form-container .custom-field-container.has-error input[type=checkbox]+label:before {
   background-color: #fcddde;
 }
 
+div.donation-form-container .ym-donation-levels {
+    p {
+      color: $event-primary;
+    }
+}
 
+.ym-donation-thanks {
+   .ym-secondary-medium-color {
+      a,
+      a:link {
+         color: #c10e21;
+      }
+   }
+}

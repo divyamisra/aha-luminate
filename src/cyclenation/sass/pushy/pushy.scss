@@ -219,3 +219,9 @@ $menu_width: 200px !default;
         transform: translateY(-50%) rotate(90deg);
     }
 }
+
+@media only screen and (min-width: 1025px) {
+  .pushy-content .display-lg-none {
+    display: none;
+  }
+}

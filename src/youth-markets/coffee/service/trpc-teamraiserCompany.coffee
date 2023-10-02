@@ -36,15 +36,5 @@ angular.module 'trPcApp'
                 company.teamCount = Number teamCount
               $rootScope.companyInfo = company
             response
- 
-      getSchoolDates: (requestData) ->
-        requestUrl = luminateExtend.global.path.nonsecure
-        if window.location.protocol is 'https:'
-          requestUrl = luminateExtend.global.path.secure + 'S'
-        requestUrl += 'PageServer?pagename=reus_ym_school_dates_csv&evid='+$rootScope.frId+'&pgwrap=n'
-        $http.jsonp($sce.trustAsResourceUrl(requestUrl), jsonpCallbackParam: 'callback')
-          .then (response) ->
-            response
-          , (response) ->
-            response
+
   ]

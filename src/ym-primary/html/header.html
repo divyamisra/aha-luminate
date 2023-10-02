@@ -13,7 +13,7 @@
       <div class="container">
         <div class="clearfix">
           [[?x27x::x[[S4]]x::::
-            <ul class="ym-site-nav hidden-xs">
+            <ul class="ym-site-nav d-none d-xs-block d-sm-none d-md-block">
               <li>
                 <a href="https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]SPageNavigator/khc_resources_search.html">
                   Home
@@ -40,7 +40,7 @@
               [[?xx::x[[S1:user_name]]x::
               <li>
                 <a href="https://www.heart.org/en/professional/educator/school-programs/elementary-schools" target="_blank">
-                  Start a New Program
+                  Teacher Sign Up
                 </a>
               </li>
               ::]]
@@ -73,7 +73,7 @@
                         <a class="pull-right ym-header-login__help-link" href="UserLogin?CMD=ForgotLogin">Need Help?</a>
                       </div>
                     </form>
-                    <form class="hidden js--default-header-login-form" action="UserLogin" method="POST" hidden aria-hidden="true">
+                    <form class="d-none js--default-header-login-form" action="UserLogin" method="POST" hidden aria-hidden="true">
                       <input type="hidden" name="NEXTURL" value="{{headerLoginInfo.ng_nexturl}}">
                       <input type="hidden" name="USERNAME" value="{{headerLoginInfo.user_name}}">
                       <input type="hidden" name="Password" value="{{headerLoginInfo.password}}">
@@ -90,48 +90,31 @@
             <!-- logged in -->
             <div class="ym-header-logged-in" ng-cloak>
               <div class="clearfix">
-                <div class="ym-header-welcome">
+                <div class="d-flex">
+                  <a class="btn btn-global-primary d-xs-block d-sm-block d-md-none" ng-href="TRSC?fr_id={{regEventId}}" ng-if="numberEvents == 1">
+                    <span class="fw-bold">My HQ</span>
+                  </a>
                   <div class="dropdown">
-                    <button class="btn btn-link dropdown-toggle ym-header-welcome-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button type="button" class="btn btn-link dropdown-toggle ym-header-welcome-toggle" data-bs-toggle="dropdown" data-bs-target="#dropdownMenu" aria-haspopup="true" aria-expanded="false">
                       Welcome[[?xx::x[[S1:first_name]]x::::, <span class="ym-header-welcome-toggle--first-name">[[S1:first_name]]]]!</span> <span class="caret"></span>
                     </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+                    <div id="dropdownMenu" class="dropdown-menu" aria-labelledby="dropdownMenu">
                       <a class="dropdown-item" href="ConsProfileUser?dispMode=edit&amp;NEXTURL=[[T1:[[E130:[[T8:[[S8]]]] [[T8:&amp;]] [[T8:&]] replaceall]]]]">Edit Profile</a>
                       <a class="dropdown-item" href="UserLogin?logout=&amp;NEXTURL=[[T1:[[E130:[[T8:[[S8]]]] [[T8:&amp;]] [[T8:&]] replaceall]]]]">Log Out</a>
                     </div>
                   </div>
-                  <!--
-                  <button type="button" class="btn btn-link ym-header-welcome-toggle" ng-click="toggleWelcomeMenu()" title="Open menu to Edit Profile or Logout">
-                    Welcome[[?xx::x[[S1:first_name]]x::::, <span class="ym-header-welcome-toggle--first-name">[[S1:first_name]]]]!</span> <span class="fa fa-chevron-down" ng-class="{'fa-chevron-down': !welcomeMenuOpen, 'fa-chevron-up': welcomeMenuOpen}"></span>
-                  </button>
-                  <div class="ym-header-welcome-dropdown" ng-class="{'open': welcomeMenuOpen, 'my-events': numberEvents > 1, 'my-hq' : numberEvents == 1}" role="menubar" title="Welcome Menu" ng-cloak>
-                    <ul role="tablist" id="js--header-welcome-ul">
-                      <li role="presentation">
-                        <a tabindex="0" role="tab" href="ConsProfileUser?dispMode=edit&amp;NEXTURL=[[T1:[[E130:[[T8:[[S8]]]] [[T8:&amp;]] [[T8:&]] replaceall]]]]">
-                          Edit Profile
-                        </a>
-                      </li>
-                      <li role="presentation">
-                        <a tabindex="0" role="tab" href="UserLogin?logout=&amp;NEXTURL=[[T1:[[E130:[[T8:[[S8]]]] [[T8:&amp;]] [[T8:&]] replaceall]]]]">
-                          Log Out
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                  -->
                   <a class="btn btn-global-primary ym-header-hq-btn" href="PageServer?pagename=ym_khc_my_events" ng-if="numberEvents > 1">
                     My Events
                   </a>
-                  <a class="btn btn-global-primary ym-header-hq-btn" ng-href="TRSC?fr_id={{regEventId}}" ng-if="numberEvents == 1">
-                    <span class="visible-xs visible-sm">My HQ</span>
-                    <span class="hidden-xs hidden-sm">My Headquarters</span>
+                  <a class="btn btn-global-primary d-none d-md-block pull-right" ng-href="TRSC?fr_id={{regEventId}}" ng-if="numberEvents == 1">
+                    <span class="fw-bold">My Headquarters</span>
                   </a>
                 </div>
               </div>
             </div>
           ]]
           [[?x27x::x[[S4]]x::::
-            <div class="ym-site-menu visible-xs">
+            <div class="ym-site-menu d-xs-block d-sm-block d-md-none">
               <button type="button" class="btn btn-default ym-site-menu-toggle" ng-click="toggleSiteMenu()">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="ym-site-menu-bar"></span>
@@ -165,7 +148,7 @@
                   [[?xx::x[[S1:user_name]]x::
                   <li>
                     <a href="https://www.heart.org/en/professional/educator/school-programs/elementary-schools" target="_blank">
-                      Start a New Program
+                      Teacher Sign Up
                     </a>
                   </li>
                   ::]]

@@ -102,6 +102,8 @@ module.exports = {
         'src/global/coffee/directive/*.*',
         'src/middle-school/coffee/directive/*.*',
         '!src/middle-school/coffee/directive/trpc-*.*',
+        'src/middle-school/coffee/filter/*.*',
+        '!src/middle-school/coffee/filter/trpc-*.*',
         'src/middle-school/coffee/**/*.*',
         '!src/middle-school/coffee/**/trpc-*.*'
       ],
@@ -185,6 +187,19 @@ module.exports = {
         'src/global/coffee/directive/*.*',
         'src/jump-hoops/coffee/directive/*.*',
         'src/jump-hoops/coffee/**/*.*',
+      ]
+    }
+  },
+  "ym-rewards": {
+    files: {
+      'dist/ym-rewards/js/main.js': [
+        'src/ym-rewards/coffee/init.coffee',
+        'src/ym-rewards/coffee/config/*.*',
+        'src/global/coffee/service/*.*',
+        'src/ym-rewards/coffee/service/*.*',
+        'src/global/coffee/directive/*.*',
+        'src/ym-rewards/coffee/directive/*.*',
+        'src/ym-rewards/coffee/**/*.*'
       ]
     }
   }

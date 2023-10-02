@@ -1,14 +1,6 @@
 main {
-  background: $event-accent;
-
-  @media (min-width: $screen-md-min) {
-    /*background: url('../image/middle-school-bkgrd.png') repeat top left scroll;*/
-    background: rgb(19,138,203);
-    background: -moz-linear-gradient(180deg, rgba(19,138,203,1) 12%, rgba(106,181,222,1) 24%, rgba(255,255,255,1) 63%);
-    background: -webkit-linear-gradient(180deg, rgba(19,138,203,1) 12%, rgba(106,181,222,1) 24%, rgba(255,255,255,1) 63%);
-    background: linear-gradient(180deg, rgba(19,138,203,1) 12%, rgba(106,181,222,1) 24%, rgba(255,255,255,1) 63%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#138acb",endColorstr="#ffffff",GradientType=1);
-  }
+  background: url(../image/FY23_YM_Wallpaper.png) repeat;
+  background-size: 100% auto;
 }
 
 .event-secondary-medium--diagonal {

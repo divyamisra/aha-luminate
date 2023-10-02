@@ -1,3 +1,13 @@
+
+.ym-user-image {
+  @media (min-width: $screen-sm-min) {
+    background-size: 93%;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    box-shadow: inset 0px 0px 10px 7px #999;
+  }
+}
+
 a.btn.btn-donate {
 	font-size: 18px;
 	width:100%;
@@ -10,6 +20,10 @@ a.btn.btn-donate {
 		display: block;
 		padding: 10px 12px;
 	}
+}
+
+body.pg-personal .ym-badge__item {
+    width: 80px;
 }
 
 .ym-section-divider {
@@ -113,7 +127,7 @@ a.btn.btn-donate {
 .ym-page-section__list {
   .ym-donate-cta {
     .h5 {
-      color: indigo;
+      color: $event-secondary;
     }
   }
 }
@@ -141,4 +155,21 @@ hr.ym-zuri-animation__divider {
   img {
     width: 100%;
   }
+}
+
+.modal.fade.in {
+   opacity: 1;
+}
+.modal.fade .modal-dialog {
+   transform: translate(0, 0) !important;
+}
+
+.modal-backdrop.fade {
+  opacity: 0.5 !important;
+ }
+.modal-header{
+   display: block;
+}
+.modal-content{
+   border-radius: 1.3rem !important;
 }

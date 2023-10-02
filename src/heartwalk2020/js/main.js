@@ -118,21 +118,44 @@
            motion_event = 1061;
         }
 
-        var skipLink = document.getElementById('skip-main');
+        // var skipLink = document.getElementById('skip-main');
+        //
+        // skipLink.addEventListener('click', function (e) {
+        //     e.preventDefault();
+        //     document.getElementById('pcBodyContainer').scrollIntoView();
+        // });
+        //
+        // if ($('body').is('.pg_HeartWalk_HQ')) {
+        //     $('.js__skip-to').on('click', function (e) {
+        //         e.preventDefault();
+        //         $('html, body').animate({
+        //             scrollTop: $('#pcBodyContainer').offset().top
+        //         }, 500);
+        //     });
+        // }
 
-        skipLink.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.getElementById('pcBodyContainer').scrollIntoView();
-        });
+        const pcBodyContainer = document.getElementById("pcBodyContainer");
+        if (typeof(pcBodyContainer) != 'undefined' && pcBodyContainer != null) {
+            pcBodyContainer.setAttribute("tabindex", "-1");
 
-        if ($('body').is('.pg_HeartWalk_HQ')) {
-            $('.js__skip-to').on('click', function (e) {
-                e.preventDefault();
-                $('html, body').animate({
-                    scrollTop: $('#pcBodyContainer').offset().top
-                }, 500);
+            // Get the skip link element
+            const skipLink = document.getElementById("skip-main");
+
+            // Get the main content element
+            const mainContent = document.getElementById("pcBodyContainer");
+
+            // Add a click event listener to the skip link
+            skipLink.addEventListener("click", function(event) {
+                // Prevent the default link behavior
+                event.preventDefault();
+
+                // Scroll to the main content
+                mainContent.scrollIntoView({ behavior: "smooth" });
+                mainContent.focus();
             });
         }
+
+
 
         var addScrollLinks = function () {
             $('a.scroll-link')
@@ -325,6 +348,7 @@
                 }
             });
         };
+
 
         cd.getCompanies = function (companyName, isCrossEvent) {
             luminateExtend.api({
@@ -596,7 +620,7 @@
                             $(participantData).each(function () {
                                 if (counter <= 4) {
                                     var participantName = this.name.first + ' ' + this.name.last;
-                                    var participantRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
+                                    var participantRaised = (parseFloat(this.amountRaised) * 0.01).toFixed(2);
 
                                     var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
                                     var participantId = this.consId;
@@ -630,7 +654,7 @@
 
                             $(teamData).each(function (i) {
                                 var teamName = this.name;
-                                var teamRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
+                                var teamRaised = (parseFloat(this.amountRaised) * 0.01).toFixed(2);
 
                                 var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
                                 var teamId = this.id;
@@ -653,7 +677,10 @@
         // BEGIN TOP COMPANIES
 // TODO - replace with companyList
 
+        //var totalTopLevelCompanies = 0
+
         cd.getCompanyList = function (eventId) {
+            console.log('GETCOMPANYLIST')
             luminateExtend.api({
                 api: 'teamraiser',
                 data: 'method=getCompanyList&fr_id=' + eventId +
@@ -715,11 +742,13 @@
                         var sortedAncestorCompanies = rootAncestorCompanies.sort(function (a, b) {
                             return b.amountRaised - a.amountRaised
                         });
+                        //console.log('sortedAncestorCompanies.length ' + sortedAncestorCompanies.length)
+                        $('.js--num-companies').text(sortedAncestorCompanies.length);
                         //var sortedAncestorCompanies = $filter('orderBy')(rootAncestorCompanies, 'amountRaised', true);
                         $(sortedAncestorCompanies).each(function (i) {
                             if (i < 5) {
                                 var companyName = this.companyName;
-                                var companyRaised = (parseInt(this.amountRaised) * 0.01).toFixed(2);
+                                var companyRaised = (parseFloat(this.amountRaised) * 0.01).toFixed(2);
                                 var companyRaisedFormmatted = companyRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
                                 var topCompanyHtml = '<li><div class="d-flex"><div class="flex-grow-1"><a href="TR?company_id=' + this.companyId + '&fr_id=' + evID + '&pg=company">' + companyName + '</a></div><div class="raised">Raised<br><strong>$' + companyRaisedFormmatted + '</strong></div></div></li>';
                                 $('.js--company-top-list ul').append(topCompanyHtml);
@@ -898,7 +927,7 @@
         cd.reorderPageForMobile = function () {
             // Reorganize page for mobile views
             if (screenWidth <= 767) {
-                $('.tr-page-info').insertAfter('.sidebar-hero');
+                $('.tr-page-info').insertAfter('.personal-image-container');
                 $('.fundraising-amounts').prepend($('.fundraising-amounts .col-12'));
 
                 if ($('body').is('.pg_team')) {
@@ -1054,7 +1083,8 @@
             cd.getTopParticipants(evID);
             cd.getTopTeams(evID);
             cd.getCompanyList(evID);
-            cd.getTopCompanies(evID);
+            //commenting out because total number of companies is coming from list of ancestor companies above per AHA-1023 
+            //cd.getTopCompanies(evID);
 
             if (currDate >= fourWeek && currDate <= eventDate) {
                 //build steps leaderboard
@@ -1234,13 +1264,14 @@
                                 }
                                 videoEmbedHtml = '<iframe class="embed-responsive-item" src="' + personalVideoEmbedUrl + '" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                             } else {
+
                                 // TODO - show default video
                                 if (isProd) {
                                   if (evID === 5612 || evID === 4854 || evID === 5731) {
                                     videoEmbedHtml = '<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/TnjvKjkANPI?wmode=opaque&amp;rel=0&amp;showinfo=0" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                                   }
                                   else {
-                                    videoEmbedHtml = '<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/b3K5LcaPzvE?wmode=opaque&amp;rel=0&amp;showinfo=0" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                                    videoEmbedHtml = '<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/YevRvej-dDk?wmode=opaque&amp;rel=0&amp;showinfo=0" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                                   }
                                 }
                                 else {
@@ -1248,7 +1279,7 @@
                                     videoEmbedHtml = '<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/TnjvKjkANPI?wmode=opaque&amp;rel=0&amp;showinfo=0" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                                   }
                                   else {
-                                    videoEmbedHtml = '<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/b3K5LcaPzvE?wmode=opaque&amp;rel=0&amp;showinfo=0" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                                    videoEmbedHtml = '<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/YevRvej-dDk?wmode=opaque&amp;rel=0&amp;showinfo=0" title="American Heart Association Heart Walk Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
                                   }
                                 }                                
                             }
@@ -1312,12 +1343,14 @@
 
                                     var participantRaised = (parseInt(participant.amountRaised) * 0.01).toFixed(2);
                                     var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
-
-                                    $('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"><td class="donor-name"><a href="' + participant.personalPageUrl + '">' +
-                                        participant.name.first + ' ' + participant.name.last +
-                                        '</a>' + (participant.aTeamCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
-                                    if (participant.aTeamCaptain === 'true') {
-                                        $('.js--team-captain-link').attr('href', participant.personalPageUrl).text(participant.name.first + ' ' + participant.name.last);
+                                    
+                                    if (participant.name.first != null) {
+                                        $('#team-roster tbody').append('<tr class="' + (i > 4 ? 'd-none' : '') + '"><td class="donor-name"><a href="' + participant.personalPageUrl + '">' +
+                                            participant.name.first + ' ' + participant.name.last +
+                                            '</a>' + (participant.aTeamCaptain === "true" ? ' <span class="coach">- Coach</span>' : '') + '</td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span><strong>$' + participantRaisedFormmatted + '</strong></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>');
+                                        if (participant.aTeamCaptain === 'true') {
+                                            $('.js--team-captain-link').attr('href', participant.personalPageUrl).text(participant.name.first + ' ' + participant.name.last);
+                                        }
                                     }
                                 });
 
@@ -1469,7 +1502,7 @@
                             } else {
                                 var teams = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team);
                                 $(teams).each(function (i, team) {
-                                    var teamRaised = (parseInt(team.amountRaised) * 0.01).toFixed(2);
+                                    var teamRaised = (parseFloat(team.amountRaised) * 0.01).toFixed(2);
                                     var teamRaisedFormmatted = teamRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
                                     $('#team-roster tbody').append('<tr class="' + (numTeamRows > 4 ? 'd-none' : '') + '"> <td class="team-name"> <a href="' + team.teamPageURL + '" data-sort="' + team.name + '">' + team.name + '</a> </td><td class="donor-name"> <a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '" data-sort="' + team.captainFirstName + ' ' + team.captainLastName + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a> </td><td class="company-name"> <a href="' + luminateExtend.global.path.secure + 'TR/?pg=company&company_id=' + team.companyId + '&fr_id=' + team.EventId + '" data-sort="' + companyName + '">' + companyName + '</a> </td><td class="raised" data-sort="' + teamRaisedFormmatted + '"> <span><strong>$' + teamRaisedFormmatted + '</strong></span> </td><td> <a href="' + team.joinTeamURL + '">' + (screenWidth <= 480 ? 'Join' : 'Join Team') + '</a> </td></tr>');
                                     numTeamRows++;
@@ -1677,7 +1710,7 @@
 
             cd.buildParticipantList = function (participants) {
                 $(participants).each(function (i, participant) {
-                    var participantRaised = (parseInt(participant.amountRaised) * 0.01).toFixed(2);
+                    var participantRaised = (parseFloat(participant.amountRaised) * 0.01).toFixed(2);
                     var participantRaisedFormmatted = participantRaised.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,").replace('.00', '');
 
                     $('#participant-roster tbody').append('<tr class="' + (numWalkerRows > 4 ? 'd-none' : '') + '"><td class="participant-name"><a href="' + participant.personalPageUrl + '">' +
@@ -1717,7 +1750,7 @@
                             var html = "<div class='paymentSelType text-center' style='padding-top:10px;'>" +
                                 "<h2 class='h6'>How would you like to donate?</h2>" +
                                 "<div class='payment-options-container'><a href='" + dlink + "'><img src='https://www2.heart.org/images/content/pagebuilder/credit-card-logos2.png' alt='Donate with Visa, MasterCard, American Express or Discover cards'/></a>" +
-                                "<a href='" + default_path + "/site/SPageNavigator/heartwalk_donate_amazon.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='amazon'><img src='https://donatenow.heart.org/images/amazon-payments_inactive.png' alt='Donate with Amazon Pay'/></a>" +
+                                "<a href='" + default_path + "/site/SPageNavigator/heartwalk_donate_amazon.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='amazon'><img src='https://www2.heart.org/images/content/pagebuilder/amazon-payments.png' alt='Donate with Amazon Pay'/></a>" +
                                 "<a href='" + default_path + "/site/SPageNavigator/heartwalk_donate_googlepay.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='googlepay'><img src='https://www2.heart.org/donation-forms/donatenow/images/googlepay-button.png' alt='Donate with Google Pay'/></a>" +
                                 "<a href='" + default_path + "/site/SPageNavigator/heartwalk_donate_applepay.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='applepay hidden-md hidden-lg'><img src='https://www2.heart.org/donation-forms-braintree/donatenow/images/DonateBlack_32pt_@2x.png' alt='ApplePay'/></a>" +
                                 "<a href='" + default_path + "/site/SPageNavigator/heartwalk_donate_venmo.html?FR_ID=" + fr_id + "&mfc_pref=T&PROXY_ID=" + px + "&PROXY_TYPE=" + pt + "' class='venmo hidden-md hidden-lg'><img src='https://www2.heart.org/donation-forms/donatenow/images/venmo-button.png' alt='Venmo'/></a>" +

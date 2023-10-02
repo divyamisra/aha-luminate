@@ -1,0 +1,209 @@
+<h2 class="text-center h3">
+	Community Service Log
+</h2>
+<div class="py-3 text-white">
+	<div class="d-md-flex justify-content-center">
+		<div class="volunteer-hours red-bg-gradient border-red rounded mb-4 mx-sm-auto mx-md-0">
+			<div class="d-flex flex-wrap">
+				<div class="title col-5 text-center p-2">
+					Hours
+				</div>
+				<div class="col-2 border-white-left border-white-right">
+				</div>
+				<div class="title col-5 text-center p-2">
+					Minutes
+				</div>
+				<div class="time col-5 text-center bg-white text-red" aria-label="Volunteer Hours">
+					{{volunteerTotal.hours}}
+				</div>
+				<div class="time col-2 text-center bg-white text-red border-red-left border-red-right">
+					:
+				</div>
+				<div class="time col-5 text-center bg-white text-red" aria-label="Volunteer Minutes">
+					{{volunteerTotal.minutes}}
+				</div>
+			</div>
+		</div>
+		<div class="volunteer-buttons px-4 text-center">
+			<div class="py-1">
+				<button type="button" class="btn btn-md-wide btn-primary" ng-class="{'disabled': volunteerActivities.length == 0}" ng-click="viewVolunteerActivities()" ng-disabled="volunteerActivities.length == 0">
+					<strong>Available Activities</strong>
+				</button>
+			</div>
+			<div class="py-1">
+				<button type="button" class="btn btn-md-wide btn-primary" ng-class="{'disabled': volunteerData.length == 0}" ng-click="showVolunteerReport()" ng-disabled="volunteerData.length == 0">
+					<strong>Download Report</strong>
+				</button>
+			</div>
+			<div class="py-1">
+				<button class="btn btn-md-wide btn-primary" ng-click="PrintImage('#certificate')" ng-class="{'disabled': volunteerData.length == 0}" ng-disabled="volunteerData.length == 0">
+					<strong>Print Certificate</strong>
+				</button>
+			</div>
+		</div>
+		<div class="certImage" aria-hidden="true">
+			<img id="certificate" class="d-none" src="https://tools.heart.org/volunteer/volunteer-certificate.php?name={{consName}}&amp;hours={{volunteerTotal.hours}} Hours {{volunteerTotal.minutes}} Minutes"> 
+		</div>
+	</div>
+	<div>
+		<div class="table-responsive">
+			<div class="table table-striped volunteerEntries">
+					<div class="d-md-flex justify-content-between d-none d-md-block">
+						<div class="col-md-3 text-start">
+							<strong>
+								Date
+							</strong>
+						</div>
+						<div class="col-md-3 text-start text-md-center">
+							<strong>
+								Activity
+							</strong>
+						</div>
+						<div class="col-md-3 text-start text-md-center">
+							<strong>
+								Hours : Minutes
+							</strong>
+						</div>
+						<div class="col-md-3 text-start text-md-end">
+							<strong>Edit/Delete</strong>
+						</div>	
+					</div>
+					<div class="col-12" ng-if="volunteerLoadPending" ng-cloak>
+						<div class="fs-4 color-black py-2">
+							<div class="spinner-border" role="status"></div><span class="fs-5">Volunteer Entries Loading...</span>
+						</div>
+					</div>
+					<div ng-if="!volunteerLoadPending" ng-cloak>
+						<div class="col-12" ng-if="createVolunteerEntryDetail != true && !volunteerLoadPending" ng-cloak>
+							<div class="fs-4 color-black py-2" ng-click="showVolunteerEntry()">
+								<i class="bi bi-plus-circle"></i> <span class="fs-5">Add Volunteer Entry</span>
+							</div>
+						</div>
+						<div class="col-12 d-md-flex justify-content-between align-items-center py-2" ng-if="createVolunteerEntryDetail == true" ng-cloak>
+								<div class="col-md-3 text-start py-1">
+									<label class="d-inline-block d-md-none fw-bold" for="volunteer-date">Activity Date:</label>
+									<input type="date" class="form-control w-auto d-inline-block" id="volunteer-date" ng-model="volunteerAdd.date" ng-model-options="{timezone: null}" aria-label="Volunteer Date" /> 
+								</div>
+								<div class="col-md-3 text-start text-md-center py-1">
+									<label class="d-inline-block d-md-none fw-bold" for="volunteer-activity">Activity Type:</label>
+									<select class="form-select w-auto mx-md-auto pe-5 overflow-hidden" name="volunteer-activity" id="volunteer-activity" ng-model="volunteerAdd.activity">
+										<option value="">
+										</option>
+										<option ng-repeat="activity in volunteerActivities | orderBy: 'name'" value="{{activity.id}}" ng-if="activity.active == '1'">
+											{{activity.name}} 
+										</option>
+									</select>
+								</div>
+								<div class="col-md-3 text-start text-md-center py-1">
+									<label class="d-block d-md-inline-block d-md-none fw-bold" for="volunteer-hour">Activity Time:</label>
+									<select class="form-select w-auto d-inline-block pe-5" name="volunteer-hour" id="volunteer-hour" ng-model="volunteerAdd.hour" ng-change="checkVolunteerMinutes()">
+										<option value="">
+										</option>
+										<option ng-repeat="hour in hourList" value="{{hour}}">
+											{{hour}}
+										</option>
+									</select>
+									hrs 
+									<select class="form-select w-auto d-inline-block pe-5" name="volunteer-minute" id="volunteer-minute" ng-model="volunteerAdd.minute">
+										<option value="">
+										</option>
+											<option ng-repeat="minute in minuteList" ng-value="minute" ng-if="minute == 0" ng-cloak>
+												{{minute | numpad}}
+											</option>
+											<option ng-repeat="minute in minuteList" ng-value="minute" ng-if="(minute == 15 || minute == 30 || minute == 45) && volunteerAdd.hour < 2" ng-cloak>
+												{{minute | numpad}}
+											</option>
+									</select>
+									mins
+								</div>
+								<div class="col-md-3 text-start text-md-end py-1">
+									<button ng-disabled="volunteerAdd.date == '' || volunteerAdd.activity == '' || (volunteerAdd.hour == '' && volunteerAdd.hour != '0') || (volunteerAdd.minute == '' && volunteerAdd.minute != '0')" class="btn btn-md-wide btn-primary" ng-click="createVolunteerEntry()">
+										<strong>
+											Add
+										</strong>
+									</button>
+									<span class="fs-4 color-black" ng-click="hideVolunteerEntry()" data-id="{{entry.activity_type_id}}">
+										<i class="bi bi-x-circle"></i>
+									</span>
+								</div>
+						</div>
+						<div class="d-md-flex justify-content-between align-items-center py-2" ng-repeat="entry in volunteerData | orderBy: '-original_activity_date'" ng-class-odd="{'bg-row':true}">
+								<div class="col-md-3 text-start entry-{{entry.id}} py-1">
+									<span class="py-0" ng-if="entryView != entry.id" aria-label="Activity Date">
+										<span class="d-inline-block d-md-none fw-bold">Activity Date:</span> {{entry.activity_date | date : 'yyyy-M-d' : 'UTC'}}
+									</span>
+									<span class="p-0" ng-if="entryView == entry.id" aria-label="Select an Activity Date">
+										<label class="d-inline-block d-md-none fw-bold" for="volunteer-date-{{entry.id}}">Activity Date:</label>
+										<input type="date" class="form-control w-auto d-inline-block" name="volunteer-date-{{entry.id}}" id="volunteer-date-{{entry.id}}" ng-model="entry.activity_date" aria-label="Volunteer Date" />
+									</span>
+								</div>
+								<div class="col-md-3 text-start text-md-center py-1">
+									<span class="py-0" ng-if="entryView != entry.id" aria-label="Activity Type">
+										<span class="d-inline-block d-md-none fw-bold">Activity Type:</span> {{entry.activity_type}}
+									</span>
+									<span class="p-0" ng-if="entryView == entry.id" arial-label="Select an Activity Type">
+										<label class="d-inline-block d-md-none fw-bold" for="volunteer-activity-{{entry.id}}">Activity Type:</label>
+										<select class="form-select w-auto mx-md-auto d-inline-block pe-5" name="volunteer-activity-{{entry.id}}" id="volunteer-activity-{{entry.id}}" ng-model="entry.activity_type_id">
+											<option value="">
+											</option>
+											<option ng-repeat="activity in volunteerActivities | orderBy: 'name'" ng-value="{{activity.id}}" ng-if="activity.active == '1'">
+												{{activity.name}} 
+											</option>
+										</select>
+									</span>
+								</div>
+								<div class="col-md-3 text-start text-md-center py-1">
+									<span class="py-0" ng-if="entryView != entry.id" aria-label="Activity Hours">
+										<span class="d-inline-block d-md-none fw-bold">Time:</span> {{entry.hours | time}}
+									</span>
+									<span class="p-0" ng-if="entryView == entry.id" aria-label="Select Activity Time">
+										<label class="d-inline-block d-md-none fw-bold" for="volunteer-hour-{{entry.id}}">Activity Time:</label>
+										<select class="form-select w-auto d-inline-block pe-5" name="volunteer-hour-{{entry.id}}" id="volunteer-hour-{{entry.id}}" ng-model="entry.hour" ng-change="checkVolunteerMinutes()">
+											<option value="">
+											</option>
+											<option ng-repeat="hour in hourList" ng-value="hour">
+												{{hour}}
+											</option>
+										</select>
+										hrs 
+										<select class="form-select w-auto d-inline-block pe-5" name="volunteer-minute-{{entry.id}}" id="volunteer-minute-{{entry.id}}" ng-model="entry.minute">
+											<option value="">
+											</option>
+											<option ng-repeat="minute in minuteList" ng-value="minute" ng-if="minute == 0" ng-cloak>
+												{{minute | numpad}}
+											</option>
+											<option ng-repeat="minute in minuteList" ng-value="minute" ng-if="(minute == 15 || minute == 30 || minute == 45) && entry.hour < 2" ng-cloak>
+												{{minute | numpad}}
+											</option>
+										</select>
+										mins
+									</span>
+								</div>
+								<div class="col-md-3 text-start text-md-end py-1" ng-if="entryView != entry.id">
+									<!-- on view -->
+									<button class="btn btn-md-wide btn-primary" ng-click="showEntries()" data-id="{{entry.activity_type_id}}" aria-label="Edit Entry">
+										<strong>
+											Edit																																																											
+										</strong>
+									</button>
+									<span class="fs-4 color-black" ng-click="deleteVolunteerEntry()" data-id="{{entry.activity_type_id}}" ng-model="entry" aria-label="Delete Entry">
+										<i class="bi bi-dash-circle"></i>
+									</span>
+								</div>
+								<div class="text-start text-md-end" ng-if="entryView == entry.id" ng-cloak>
+									<!-- on edit -->
+									<button ng-disabled="entry.activity_date == '' || entry.activity_type_id == '' || (entry.hour == '' && entry.hour != '0') || (entry.minute == '' && entry.minute != '0')" class="btn btn-md-wide btn-primary" ng-click="saveVolunteerEntry()" data-id="{{entry.activity_type_id}}" aria-label="Save Entry">
+										<strong>
+											Save
+										</strong>
+									</button>
+									<span class="fs-4 color-black" ng-click="hideEntries()" data-id="{{entry.activity_type_id}}" aria-label="Cancel Entry Update">
+										<i class="bi bi-x-circle"></i>
+									</span>
+								</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

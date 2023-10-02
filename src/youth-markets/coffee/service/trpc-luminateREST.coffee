@@ -58,4 +58,7 @@ angular.module 'trPcApp'
       
       teamraiserRequest: (requestData, includeAuth, includeFrId) ->
         this.request 'CRTeamraiserAPI', requestData, includeAuth, includeFrId
-  ]
+
+      surveyRequest: (requestData, includeAuth, includeFrId) ->
+        this.request 'CRSurveyAPI', requestData, includeAuth, includeFrId
+]

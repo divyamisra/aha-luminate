@@ -1,5 +1,7 @@
 <!-- SESSION TAGS -->
 [[U0:greetingPercentage=[[E130:[[E130:"[[E42:[[S334:fr_id]]:dollars]]" ".00" "" replaceall]] [[E130:"[[E42:[[S334:fr_id]]:goal]]" ".00" "" replaceall]] / 100 * int 100 min]]]]
+[[U0:pageTitle=[[?xx{unassigned}x::x[[E47:[[S334:fr_id]]:fr_info:1:sponsor_4]]x::Ride with us in::[[T9:[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:sponsor_4]]" dup 0 swap "|" indexof substring]]]]]]]]
+[[U0:afterPartyTitle=[[?xx{unassigned}x::x[[E47:[[S334:fr_id]]:fr_info:1:sponsor_4]]x::After Party::[[T9:[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:sponsor_4]]" dup dup "|" lastindexof 1 + swap length substring]]]]]]]]
 [[U0:afterpartyMapLink=[[T9:[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:event_schedule]]" dup dup "|" lastindexof 1 + swap length substring]]]]]]
 [[U0:eventLocationParkingLink=[[T9:[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:map_link]]" dup dup "|" lastindexof 1 + swap length substring]]]]]]
 [[U0:albumId=[[?x{Luminate Photo Album IDx::x[[T9:[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:sponsor_4]]" dup 0 swap "|" indexof substring]]]]x::[[?xheartdevx::x[[S29:TABLE_PREFIX]]x::7738::7833]]::[[T9:[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:sponsor_4]]" dup 0 swap "|" indexof substring]]]]]]]]
@@ -12,17 +14,21 @@
       <div class="section-hero-content left-column content-box col-12 col-lg-6 px-0 py-0 order-2 order-lg-1">
         <div class="section-hero-content-container content-box-container offset-lg-1 px-5 py-5">
           <h1 class="event-info-title">
-            Ride with us in<br>
-            [[E47:[[S334:fr_id]]:fr_info:1:event_location_city]], [[E47:[[S334:fr_id]]:fr_info:1:event_location_state]]
+            [[S80:pageTitle]]<br />
+            
+            [[E130:"[[E47:[[S334:fr_id]]:fr_info:1:event_location_city]]" "{br}" "<br />" replaceall]][[?xx::x[[E47:[[S334:fr_id]]:fr_info:1:event_location_state]]x::::, [[E130:"[[E47:[[S334:fr_id]]:fr_info:1:event_location_state]]" "{br}" "<br />" replaceall]]]]
           </h1>
           <p class="event-info-description js__event-description">[[?xx::x[[E47:[[S334:fr_id]]:fr_info:1:google_analytics_account]]x::CycleNation is helping your community take control of brain and heart health. Each event has a minimum fundraising goal per team and the impact when you ride will make you feel all the feels. Get the details, sign up, start fundraising and/or donate to your friends below!::[[E47:[[S334:fr_id]]:fr_info:1:google_analytics_account]]]]</p>
           <div class="event-info-item">
             <div class="event-info-item-icon"><i class="far fa-calendar" aria-hidden="true" alt=""></i></div>[[E47:[[S334:fr_id]]:fr_info:1:event_date]]
           </div>
-          <div class="event-info-item">
-            <div class="event-info-item-icon"><i class="fas fa-map-marker-alt" aria-hidden="true" alt=""></i></div><a href="[[S80:eventLocationMapLink]]" target="_blank" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'header event map']);">[[E47:[[S334:fr_id]]:fr_info:1:event_location]]</a>
-          </div>
-          [[?x6225x6064x4442x::x[[S334:fr_id]]x::::
+          [[?xx::x[[E47:[[S334:fr_id]]:fr_info:1:event_location]]x::::
+            <div class="event-info-item">
+              <div class="event-info-item-icon"><i class="fas fa-map-marker-alt" aria-hidden="true" alt=""></i></div><a href="[[S80:eventLocationMapLink]]" target="_blank" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'header event map']);">[[E47:[[S334:fr_id]]:fr_info:1:event_location]]</a>
+            </div>
+          ]]
+
+          [[?xRoad Cyclingx::x[[E42:[[S80:evID]]:public-event-type]]x::
           <div class="event-info-item">
             <div class="event-info-item-icon">
               <?xml version="1.0" encoding="utf-8"?>
@@ -50,9 +56,9 @@
                 </g>
               </svg>
             </div>
-            [[?xRoad Cyclingx::x[[E42:[[S80:evID]]:public-event-type]]x::Road::Stationary Cycling]] Event
+            Road Cycling Event
           </div>
-         ]]
+         ::]]
           <div class="event-info-item">
             <div class="event-info-item-icon"><i class="fas fa-info-circle" aria-hidden="true" alt=""></i></div><a class="scroll-link" href="#eventDetails" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'header event more details']);">More Details</a>
           </div>
@@ -60,19 +66,19 @@
           [[?x1x2x::x[[S42:0:status]]x::
           <div class="col-md-6 mb-1 pc-[[E48:[[S334:fr_id]]-[[S1:cons_id]]:if-has-participant-center]]">
             [[?xx::x[[S1:user_name]]x::
-            <a href="SPageServer/?pagename=cn_register&amp;fr_id=[[S334:fr_id]]&amp;s_regType=" class="text-center btn-rounded btn-primary btn-block" aria-label="Register for CycleNation [[E47:[[S334:fr_id]]:fr_info:1:event_location_city]]" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'header register']);">Register</a>
+            <a href="SPageServer/?pagename=cn_register&amp;fr_id=[[S334:fr_id]]&amp;s_regType=" class="text-center btn-rounded btn-primary btn-block" aria-label='Register for CycleNation [[E130:"[[E47:[[S334:fr_id]]:fr_info:1:event_location_city]]" "{br}" "<br />" replaceall]]'' onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'header register']);">Register</a>
            ::
               [[?xTRUEx::x[[E48:[[S334:fr_id]]-[[S1:cons_id]]:if-has-participant-center]]x::
               <a href="TRC?pg=center&fr_id=[[S334:fr_id]]" class="text-center btn-rounded btn-primary btn-block" aria-label="Visit my HQ" onclick="_gaq.push(['_trackEvent', 'Visit my HQ', 'click', 'header events']);">My HQ</a>
               ::
-              <a href="SPageServer/?pagename=cn_register&amp;fr_id=[[S334:fr_id]]&amp;s_regType=" class="text-center btn-rounded btn-primary btn-block" aria-label="Register for CycleNation [[E47:[[S334:fr_id]]:fr_info:1:event_location_city]]" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'header register']);">Register</a>
+              <a href="SPageServer/?pagename=cn_register&amp;fr_id=[[S334:fr_id]]&amp;s_regType=" class="text-center btn-rounded btn-primary btn-block" aria-label='Register for CycleNation [[E130:"[[E47:[[S334:fr_id]]:fr_info:1:event_location_city]]" "{br}" "<br />" replaceall]]' onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'header register']);">Register</a>
               ]]
            ]]
           </div>
           ::]]
           [[?x2x3x::x[[S42:0:status]]x::
           <div class="col-md-6 mb-1">
-            <a href="#fundraiserSearch" class="text-center btn-rounded btn-primary btn-block scroll-link" aria-label="Donate to CycleNation [[E47:[[S334:fr_id]]:fr_info:1:event_location_city]]" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'header donate']);">Donate</a>
+            <a href="#fundraiserSearch" class="text-center btn-rounded btn-primary btn-block scroll-link" aria-label='Donate to CycleNation [[E130:"[[E47:[[S334:fr_id]]:fr_info:1:event_location_city]]" "{br}" "<br />" replaceall]]' onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'header donate']);">Donate</a>
           </div>
           ::]]
           </div>
@@ -95,7 +101,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <h2 class="h1 pb-1">CycleNation [[E47:[[S334:fr_id]]:fr_info:1:event_location_city]] Impact</h2>
+        <h2 class="h1 pb-1">CycleNation [[E130:"[[E47:[[S334:fr_id]]:fr_info:1:event_location_city]]" "{br}" "" replaceall]] Impact</h2>
         <div class="stats-container">
           <p class="mb-0 pb-3"><span class="amount-raised js__fundraiser-raised">[[E130:"[[E42:[[S334:fr_id]]:dollars]]" ".00" "" replaceall]]</span> Raised  <span class="separator text-white">//</span> <span class="amount-raised js__fundraiser-goal">[[E130:"[[E42:[[S334:fr_id]]:goal]]" ".00" "" replaceall]]</span> Goal <span class="separator text-white">//</span> <span class="days-left">[[E42:[[S334:fr_id]]:days-to-event]]</span> Days until we Ride</p>
         </div>
@@ -129,7 +135,7 @@
       <div class="js-details-container details-container col-12 pb-3">
         <h2 class="h1">Details</h2>
         <div id="event-details-accordion" class="details-items-container accordion col-12 pt-4 row">
-          [[?xx::x[[E47:[[S334:fr_id]]:fr_info:1:event_location]]x::::
+          [[?xx::x[[E47:[[S334:fr_id]]:fr_info:1:event_date]]x::::
           <!-- DETAILS ITEM -->
           <div class="details-item card date col-12 col-lg-3 pt-3 pt-lg-2 pb-3 pb-lg-1 pb-lg-5 pr-0 pl-0">
             <div id="headingOne" class="details-items-icon card-header col-lg-4 px-0 py-0 row mx-0">
@@ -182,7 +188,7 @@
                 <!-- BEGIN add to calendar -->
                 [[U0:thisEventDate=[[S42:0:event-date]]]]
                 [[U0:parsedEventDate=[[E130:"[[S80:thisEventDate]]" dup dup "/" lastindexof 1 + swap length substring]][[E130:"[[S80:thisEventDate]]" dup 0 swap "/" indexof substring]][[E130:"[[S80:thisEventDate]]" dup dup "/" indexof 1 + swap "/" lastindexof substring]]]]
-                [[U0:calendarLink=http://www.google.com/calendar/event?action=TEMPLATE&amp;text=[[T1:[[S42:0:title]]]]&amp;date=[[S80:parsedEventDate]]&amp;details=[[T1:Visit CycleNation for event schedule and more details at [[S8]]]]&amp;location=[[T1:[[E47:[[S334:fr_id]]:fr_info:1:event_location]],	[[E47:[[S334:fr_id]]:fr_info:1:event_location_city]],	[[E47:[[S334:fr_id]]:fr_info:1:event_location_state]]]]&amp;trp=false&amp;sprop=&amp;sprop=name:]]
+                [[U0:calendarLink=http://www.google.com/calendar/event?action=TEMPLATE&amp;text=[[T1:[[S42:0:title]]]]&amp;date=[[S80:parsedEventDate]]&amp;details=[[T1:Visit CycleNation for event schedule and more details at [[S8]]]]&amp;location=[[T1:[[E47:[[S334:fr_id]]:fr_info:1:event_location]],	[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:event_location_city]]" "{br}" "" replaceall]],	[[E47:[[S334:fr_id]]:fr_info:1:event_location_state]]]]&amp;trp=false&amp;sprop=&amp;sprop=name:]]
 
 
                 <!-- S80 thisEventDate: xx[[S80:thisEventDate]]xx -->
@@ -248,56 +254,7 @@
           </div>
           <!-- END DETAILS ITEM -->
           ]]
-          [[?xx::x[[E47:[[S334:fr_id]]:fr_info:1:sponsor_3]]x::::
-          <!-- DETAILS ITEM -->
-          <div class="details-item card distance col-12 col-lg-3 pt-3 pt-lg-2 pb-3 pb-lg-1 pb-lg-5 pr-0 pl-0">
-            <div id="headingThree" class="details-items-icon card-header col-lg-4 px-0 py-0 row mx-0">
-              <!-- ICON -->
-              <div class="icon-container col-2 col-lg-12 pt-0 pr-2 pr-lg-0 pb-0 pl-2 pl-lg-0 row mx-0">
-              <!-- DETAILS ICON - MAIN -->
-                <svg version="1.1" id="distance" class="details-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 266.6 231.2" style="enable-background:new 0 0 266.6 231.2;" xml:space="preserve" aria-hidden="true">
-                  <g>
-                    <path d="M105.3,204.5c-1.1,0-2,0-2.9,0c-18.6,0-37.2,0.2-55.7-0.1c-23-0.4-43.2-18.8-46.2-41.5c-2.5-19.7,4.3-35.5,20.3-47.2
-                    c8.6-6.3,18.5-9,29.1-9c45,0,124.7,0,169.7,0c6.6,0,10.6,3.4,10.7,8.9c0,4.2-3,8-7.2,8.7c-1.4,0.2-2.8,0.2-4.2,0.2
-                    c-44.7,0-124.2,0-168.9,0c-13.4,0-23.4,5.8-29.3,17.9c-9.3,19,3.9,42.3,24.9,44c2.7,0.2,5.3,0.3,8,0.3c16.3,0,32.7,0,49,0
-                    c0.9,0,1.8,0,3.4,0c-3.8-3.8-7.1-7-10.2-10.3c-1.2-1.2-2.3-2.7-3.1-4.2c-1.8-3.8-0.6-8,2.8-10.7c2.9-2.3,7.6-2.2,10.7,0.3
-                    c0.7,0.6,1.4,1.2,2,1.9c8.1,8.1,16.1,16.1,24.2,24.2c5.4,5.4,5.4,9.8,0,15.3c-8.3,8.3-16.6,16.6-24.9,24.9c-3.6,3.6-8.3,4-12,1.2
-                    c-4.3-3.3-4.8-9.4-1-13.4c3.5-3.6,7.2-7.2,10.7-10.8C105.1,205.1,105.1,205,105.3,204.5z"/>
-                    <path d="M117.8,44.8c-2.5,4.4-4.5,9.1-7.6,13C95.6,76.3,67.4,75.4,53.9,56c-8.1-11.6-9-24.2-2.6-36.6C57.6,7.1,68.1,0.5,82,0
-                    c15.1-0.5,29.1,9.2,34,23.5c0.9,2.5,2,3.2,4.6,3.2c31.7-0.1,63.3,0,95-0.1c9.5,0,18.5,2,26.8,6.8c17.4,10.1,27.2,30.4,23.4,50.2
-                    c-3.9,20.1-16.4,32.8-35.7,38.8c-4.2,1.3-8.6,1.7-13,2c-5.6,0.4-9.5-3.2-9.9-8.4c-0.3-4.7,3.2-8.8,8.6-9.2
-                    c7.1-0.5,13.7-2.1,19.7-6.4c14.7-10.4,17.8-30.1,6.7-44.2c-6.1-7.8-14.5-11.7-24.4-11.7c-33.2-0.1-66.5,0-99.7,0
-                    c-0.2,0-0.5,0.1-0.7,0.1C117.5,44.6,117.6,44.7,117.8,44.8z M100.6,35.4c0-9.9-8-17.7-17.9-17.6c-9.8,0.1-17.6,8-17.6,17.7
-                    c0,9.8,8.2,17.9,17.9,17.8C92.8,53.3,100.6,45.3,100.6,35.4z"/>
-                    <path d="M183.7,231.1c-19.5,0-35.5-15.9-35.7-35.3c-0.1-19.4,15.9-35.6,35.5-35.8c19.3-0.2,35.6,16.1,35.6,35.7
-                    C219.1,215.1,203.2,231.1,183.7,231.1z M165.9,194.8c-0.6,9.7,6.8,17.9,16.9,18.6c9.6,0.7,18-7.1,18.6-17.3
-                    c0.5-9.1-7.1-17.5-16.4-18.1C174.8,177.2,166.6,184.5,165.9,194.8z"/>
-                  </g>
-                </svg>
-                <!-- END DETAILS ICON - MAIN -->
-                <!-- DETAILS ICON - CIRCLE -->
-                <svg class="details-icon-circle" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true">
-                  <path class="circle-01" fill-rule="evenodd"  fill="rgb(208, 212, 219)"
-                  d="M30.016,-0.000 C46.489,-0.000 59.844,13.355 59.844,29.828 C59.844,46.302 46.489,59.656 30.016,59.656 C13.542,59.656 0.188,46.302 0.188,29.828 C0.188,13.355 13.542,-0.000 30.016,-0.000 Z"/>
-                </svg>
-                <!-- END DETAILS ICON - CIRCLE -->
-              </div>
-              <!-- ICON -->
-              <div class="card-title col-10">
-                <h3 class="text-uppercase text-bold mb-1"><button class="btn btn-link w-100 collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseOne">Distance(s)</button></h3>
-              </div>
-            </div>
-            <!-- DETAILS TEXT -->
-            <div id="collapseThree" class="details-items-text collapse dont-collapse-lg col-8 pl-0 pt-3 pt-lg-0" aria-labelledby="headingThree" data-parent="#event-details-accordion">
-              <div class="card-body">
-                <h3 class="text-uppercase text-primary text-bold mb-1">Distance(s)</h3>
-                <p class="mb-1">[[E47:[[S334:fr_id]]:fr_info:1:sponsor_3]]</p>
-              </div>
-            </div>
-            <!-- END DETAILS TEXT -->
-          </div>
-          <!-- END DETAILS ITEM -->
-          ]]
+          <!-- removed entire distance block as was referencing sponsor_3 which now is being repurposed for team recruit goal . refer to prior versions of 7/17/2022 to retrieve-->
           [[?xx::x[[E47:[[S334:fr_id]]:fr_info:1:sponsor_1]]x::::
           <!-- DETAILS ITEM -->
           <div class="details-item card checkin col-12 col-lg-3 pt-3 pt-lg-2 pb-3 pb-lg-1 pb-lg-5 pr-0 pl-0">
@@ -423,7 +380,7 @@
             <!-- DETAILS TEXT -->
             <div id="collapseSix" class="details-items-text collapse dont-collapse-lg col-8 pl-0 pt-3 pt-lg-0" aria-labelledby="headingSix" data-parent="#event-details-accordion">
               <div class="card-body">
-                <h3 class="text-uppercase text-primary text-bold mb-1">Afterparty</h3>
+                <h3 class="text-uppercase text-primary text-bold mb-1">[[S80:afterPartyTitle]]</h3>
                 <a href="[[S80:afterpartyMapLink]]" target="_blank" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'details afterparty map']);">[[T9:[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:event_schedule]]" dup 0 swap "|" indexof substring]]]]&nbsp;<i class="fas fa-external-link-alt" aria-hidden="true" alt=""></i></a>
                 <p class="mb-1">[[T9:[[E130:"[[T9:[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:event_schedule]]" dup dup "|" indexof 1 + swap length substring]]]]" dup 0 swap "|" indexof substring]]]]</p>
               </div>
@@ -529,7 +486,7 @@
             <div id="collapseEight" class="details-items-text collapse dont-collapse-lg col-8 pl-0 pt-3 pt-lg-0" aria-labelledby="headingEight" data-parent="#event-details-accordion">
               <div class="card-body">
                 <h3 class="text-uppercase text-white text-bold mb-1">Register</h3>
-                <a href="SPageServer/?pagename=cn_register&amp;fr_id=[[S334:fr_id]]&amp;s_regType=" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'details register']);">Let's Ride! ></a>
+                <a href="SPageServer/?pagename=cn_register&amp;fr_id=[[S334:fr_id]]&amp;s_regType=" onclick="_gaq.push(['_trackEvent', 'event homepage', 'click', 'details register']);">Let's Ride! <span aria-hidden="true">></span></a>
               </div>
             </div>
             <!-- END DETAILS TEXT -->
@@ -574,7 +531,7 @@
   <div class="leaderboard-container container">
     <div class="row">
       <div class="col-md-12">
-          <h2 class="h1 pb-4 text-white" id="packLeaderboard">Leading the pack in [[E47:[[S334:fr_id]]:fr_info:1:event_location_city]]</h2>
+          <h2 class="h1 pb-4 text-white" id="packLeaderboard">Leading the pack in [[E130:"[[E47:[[S334:fr_id]]:fr_info:1:event_location_city]]" "{br}" "<br />" replaceall]]</h2>
       </div>
     </div>
     <div class="row justify-content-center">
@@ -694,7 +651,7 @@
   <div class="leaderboard-container container">
     <div class="row">
       <div class="col-md-12">
-          <h2 class="h1 pb-4 text-white" id="durationLeaderboard">[[E47:[[S334:fr_id]]:fr_info:1:event_location_city]] Cyclenation Move More Challenge Leaderboard</h2>
+          <h2 class="h1 pb-4 text-white" id="durationLeaderboard">[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:event_location_city]]" "{br}" "<br />" replaceall]] Cyclenation Move More Challenge Leaderboard</h2>
           <p class="text-center"><a href="DocServer/CN_Move_More_Challenge_Toolkit.pdf" target="_blank" class="text-white">To learn more about Move More Challenge, click here</a></p>
       </div>
     </div>
@@ -789,7 +746,7 @@
 <section id="social-feed" class="section-social-feed gray-background" data-album-id="[[S80:albumId]]" data-album-url="AjaxProxy?cnv_url=[[T1:http://[[S29:DOMAIN]][[S29:PATH]]PhotoAlbumUser?view=UserAlbum&AlbumID=[[S80:albumId]]&pgwrap=n]]&auth=[[S86:true]]">
   <div class="container pt-5 pb-5">
     <div class="social-feed-title col-12">
-      <h2 class="pb-1">[[E47:[[S334:fr_id]]:fr_info:1:event_location_city]] CycleNation on Social Media</h2>
+      <h2 class="pb-1">[[E130:"[[E47:[[S334:fr_id]]:fr_info:1:event_location_city]]" "{br}" "" replaceall]] CycleNation on Social Media</h2>
     </div>
     <div class="title-divider col-12">
       <svg id="title-divider" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">

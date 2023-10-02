@@ -52,6 +52,7 @@ angular.module 'ahaLuminateApp'
       $rootScope.dev_branch = $dataRoot.data('dev-branch') if $dataRoot.data('dev-branch') isnt ''
       $rootScope.facebookFundraisersEnabled = $dataRoot.data('facebook-fundraisers-enabled') is 'TRUE'
       $rootScope.facebookFundraiserId = $dataRoot.data('facebook-fundraiser-id') if $dataRoot.data('facebook-fundraiser-id') isnt ''
+      $rootScope.currentCSTDate = $dataRoot.data('current-date') if $dataRoot.data('current-date') isnt ''
   ]
 
 angular.element(document).ready ->

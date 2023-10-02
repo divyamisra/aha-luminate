@@ -64,3 +64,9 @@
 	  transition: width 2s linear;
         }
 }
+
+@media (min-width: 1550px) {
+  #why-we-ride .photos-box {
+    background-size: auto !important;
+  }
+}

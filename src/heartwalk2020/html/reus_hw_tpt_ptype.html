@@ -1,4 +1,5 @@
 [[?[[T12:[[E47:[[S80:trID]]:fr_info:1:event_location_country]]]]::showselfpledgelb:false::::
+<!--
 <div class="modal fade" id="dspPledge" tabindex="-1" role="dialog" aria-labelledby="dspPledgeTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -21,11 +22,225 @@
       </div>
     </div>
   </div>
+-->
 ]]
 
-  [[?xjoinTeamx::x[[S80:regType]]x::
-    <div class="hidden">
-      <span class="captain-cons-id">[[S80:captainConsId]]</span>
-      <span class="captain-ptype">[[E48:[[S80:evID]]-[[S80:captainConsId]]:part-type]]</span>
+[[?xjoinTeamx::x[[S80:regType]]x::
+<!--
+<div class="hidden">
+  <span class="captain-cons-id">[[S80:captainConsId]]</span>
+  <span class="captain-ptype">[[E48:[[S80:evID]]-[[S80:captainConsId]]:part-type]]</span>
+</div>
+-->
+::]]
+
+[[?xx::x[[S334:extra_person]]x::
+<!-- ptype-page-steps content -->
+<style>
+    div#pt_title_container,
+    div#part_type_section_header,
+    div#part_type_selection_container,
+    div#discount_code_container,
+    div#part_type_fundraising_goal_container,
+    div#part_type_additional_gift_container,
+    div#part_type_individual_company_selection_container,
+    div#part_type_section_footer {
+        display: none;
+    }
+</style>
+<div id="registration-ptype-page-steps">
+    <div class="registration-ptype-page-step registration-ptype-page-step-showcase" id="registration-ptype-page-step-1" data-step="1">
+        <h1>
+            [[?xxnullxx::x[[S1:user_name]]x::
+                We're so happy you're here!
+            ::
+                We're so happy you're back!
+            ]]
+        </h1>
+        <div class="row pt-3">
+            <div class="col-lg-6 col-md-12 display-table">
+                <div class="align-middle display-table-cell">
+                    <div class="font-weight-bolder font-size-lg mb-3">
+                    [[?xxnullxx::x[[S1:user_name]]x::
+                        You're going to make a big difference!
+                    ::
+                        Get ready to make a big difference, again!
+                    ]]
+                    </div>
+                    <ul>
+                        <li><span class="heart-icon" role="presentation" aria-hidden="true">&hearts;</span> Save the lives of kids born with congenital heart defects</li>
+                        <li><span class="heart-icon" role="presentation" aria-hidden="true">&hearts;</span> Train thousands in life-saving CPR</li>
+                        <li><span class="heart-icon" role="presentation" aria-hidden="true">&hearts;</span> Fund the next heart and stroke medical breakthrough</li>
+                        <li><span class="heart-icon" role="presentation" aria-hidden="true">&hearts;</span> Champion equitable access to healthcare</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+                <div class="row">
+                    <div class="col-xs-6 my-3 text-center">
+                        <img class="rounded img-item" alt="" src="../images/content/pagebuilder/step1-img-1.jpg">
+                    </div>
+                    <div class="col-xs-6 my-3 text-center">
+                        <img class="rounded img-item" alt="" src="../images/content/pagebuilder/step1-img-2.jpg">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 my-3 text-center">
+                        <img class="rounded img-item" alt="" src="../images/content/pagebuilder/step1-img-3.jpg">
+                    </div>
+                    <div class="col-xs-6 my-3 text-center">
+                        <img class="rounded img-item" alt="" src="../images/content/pagebuilder/step1-img-4.jpg">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center pt-3">
+            <button type="button" class="btn btn-secondary mr-3 js__ptype-page-prev-step" data-step="1" data-prev-step="0">Back</button>
+            <button type="button" class="btn btn-primary js__ptype-page-next-step" data-step="1" data-next-step="2">Next</button>
+        </div>
     </div>
-  ::]]
+    <div class="registration-ptype-page-step registration-ptype-page-step-participation-type" id="registration-ptype-page-step-2" data-step="2">
+        <h1>How will you participate?</h1>
+        <div class="row pt-3">
+            <div class="col-lg-12">
+                <div class="participation-type-ptype-page-step-content pb-3"></div>
+            </div>
+        </div>
+        <div class="text-center">
+            <button type="button" class="btn btn-secondary mr-3 js__ptype-page-prev-step" data-step="2" data-prev-step="1">Back</button>
+            <button type="button" class="btn btn-primary js__ptype-page-next-step" data-step="2" data-next-step="3">Next</button>
+        </div>
+    </div>
+    <div class="registration-ptype-page-step registration-ptype-page-step-goal" id="registration-ptype-page-step-3" data-step="3">
+        <h1>Choose your fundraising goal</h1>
+        <div class="text-center">
+            <span>The bigger your goal, the more lives you impact</span>
+        </div>
+        <div id="registration-ptype-personal-goal-slider-page" style="display: none;">
+            <div class="registration-ptype-personal-goal-slider-photos">
+                <div id="pg-slider-photo-1">
+                    <img class="pg-slider-photo" alt="" src="../images/content/pagebuilder/pg-slider-photo-1.png">
+                </div>
+                <div id="pg-slider-photo-2">
+                    <img class="pg-slider-photo" alt="" src="../images/content/pagebuilder/pg-slider-photo-2.png">
+                </div>
+                <div id="pg-slider-photo-3" style="display: none;">
+                    <img class="pg-slider-photo" alt="" src="../images/content/pagebuilder/pg-slider-photo-3.png">
+                </div>
+                <div id="pg-slider-photo-4" style="display: none;">
+                    <img class="pg-slider-photo" alt="" src="../images/content/pagebuilder/pg-slider-photo-4.png">
+                </div>
+                <div id="pg-slider-photo-5" style="display: none;">
+                    <img class="pg-slider-photo" alt="" src="../images/content/pagebuilder/pg-slider-photo-5.png">
+                </div>
+                <div id="pg-slider-photo-6" style="display: none;">
+                    <img class="pg-slider-photo" alt="" src="../images/content/pagebuilder/pg-slider-photo-6.png">
+                </div>
+            </div>
+            <div class="registration-ptype-personal-goal-slider-container">
+                <p id="registration-ptype-personal-goal-slider-selected-amount" class="sr-only" role="alert" aria-atomic="true"></p>
+                <div class="registration-ptype-personal-goal-slider-dots">
+                    <a href="#slider-dot-1" id="slider-dot-1" title="$100 available" data-slider-pos="1" class="js__personal_goal_slider_dot slider-dot active"></a>
+                    <a href="#slider-dot-2" id="slider-dot-2" title="$250 selected" data-slider-pos="2" class="js__personal_goal_slider_dot slider-dot active selected"></a>
+                    <a href="#slider-dot-3" id="slider-dot-3" title="$500 available" data-slider-pos="3" class="js__personal_goal_slider_dot slider-dot"></a>
+                    <a href="#slider-dot-4" id="slider-dot-4" title="$1,000 available" data-slider-pos="4" class="js__personal_goal_slider_dot slider-dot"></a>
+                    <a href="#slider-dot-5" id="slider-dot-5" title="$2,500 available" data-slider-pos="5" class="js__personal_goal_slider_dot slider-dot"></a>
+                    <a href="#slider-dot-6" id="slider-dot-6" title="$5,000 available" data-slider-pos="6" class="js__personal_goal_slider_dot slider-dot"></a>
+                </div>
+                <div id="registration-ptype-personal-goal-slider"></div>
+                <script>
+                    Y.config.modules['jquery:1.10.2'] = {
+                        name: 'jquery:1.10.2',
+                        type: 'js',
+                        fullpath: '//code.jquery.com/jquery-1.10.2.js'
+                    }
+                    Y.config.modules['jquery-ui:1.10.4'] = {
+                        name: 'jquery-ui:1.10.4',
+                        type: 'js',
+                        fullpath: '//code.jquery.com/ui/1.10.4/jquery-ui.js',
+                        requires: ['jquery:1.10.2']
+                    }
+                    Y.use('jquery-ui:1.10.4', function () {
+                        var $jq = jQuery.noConflict(true);
+                        (function($jq) {
+                            $jq(document).ready(function () {
+                                var renderPersonalGoalSlider = function () {
+                                    var $personalGoalSlider = $jq('#registration-ptype-personal-goal-slider'),
+                                        sliderVal = cd.ptypePageSteps.personalGoalSliderInit();
+                                    cd.ptypePageSteps.$personalGoalSlider = $personalGoalSlider;
+                                    $personalGoalSlider.slider({
+                                        range: 'min',
+                                        value: sliderVal,
+                                        min: 100,
+                                        max: 600,
+                                        step: 5,
+                                        create: function() {
+                                            $personalGoalSlider.find('a.ui-slider-handle').attr('title', 'slider');
+                                        },
+                                        slide: function(event, ui) {
+                                            cd.ptypePageSteps.personalGoalSliderSlide(ui.value);
+                                        },
+                                        change: function(event, ui) {
+                                            cd.ptypePageSteps.personalGoalSliderChange(ui.value, false);
+                                        }
+                                    });
+                                    if (sliderVal !== cd.ptypePageSteps.defaultSliderVal) {
+                                        cd.ptypePageSteps.personalGoalSliderChange(sliderVal, true);
+                                    }
+                                }
+                                var wait4cd = setInterval(function () {
+                                    if (typeof cd !== 'undefined') {
+                                        clearInterval(wait4cd);
+                                        renderPersonalGoalSlider();
+                                    }
+                                }, 250);
+                            });
+                        })($jq);
+                    });
+                </script>
+            </div>
+            <div class="registration-ptype-personal-goal-slider-other-amount-selector text-center">
+                <a href="#" class="js__registration-ptype-personal-goal-show-other-amount">Other Amount</a>
+            </div>
+        </div>
+        <div id="registration-ptype-personal-goal-other-amount-page" class="text-center" style="display: none;">
+            <img alt="" src="../images/content/pagebuilder/pg-other-amount-photo-1.png">
+            <div class="registration-ptype-personal-goal-other-amount-container" class="text-center">
+                <label class="hidden" for="personal-goal-other-amount-input">Amount</label>
+                <div class="personal-goal-other-amount-input-container">
+                    <label for="personal-goal-other-amount-input" class="sr-only">Other Amount</label>
+                    <span class="dollar-sign">$</span>
+                    <input type="text" id="personal-goal-other-amount-input" class="js__personal-goal-other-amount-input" value="" size="15" maxlength="15">
+                </div>
+                <div>
+                    <strong>The sky's the limit!</strong>
+                </div>
+            </div>
+            <div class="registration-ptype-personal-goal-slider-other-amount-selector text-center">
+                <a href="#" class="js__registration-ptype-personal-goal-show-slider">Return to Goal Slider</a>
+            </div>
+        </div>
+        <div class="text-center">
+            <button type="button" class="btn btn-secondary mr-3 js__ptype-page-prev-step" data-step="3" data-prev-step="2">Back</button>
+            <button type="button" class="btn btn-primary js__ptype-page-next-step" data-step="3" data-next-step="4">Next</button>
+        </div>
+        <input type="hidden" id="registration-ptype-personal-goal-option" value="slider">
+    </div>
+    <div class="registration-ptype-page-step registration-ptype-page-step-personal-gift" id="registration-ptype-page-step-4" data-step="4">
+        <h1>Support your mission with a personal gift</h1>
+        <div class="row pt-3">
+            <div class="col-lg-12 col-xl-7">
+                <div class="registration-ptype-page-step-content"></div>
+            </div>
+            <div class="d-none d-xl-block col-xl-5 pt-4">
+                <img class="img-item" alt="" src="../images/content/pagebuilder/step3-img-1.jpg">
+            </div>
+        </div>
+        <div class="ptype-page-step-dtd-anchor"></div>
+        <div class="button-container text-center">
+            <button type="button" class="btn btn-secondary mr-3 js__ptype-page-prev-step" data-step="4" data-prev-step="3">Back</button>
+        </div>
+    </div>
+</div>
+<!-- /ptype-page-steps content -->
+::]]
