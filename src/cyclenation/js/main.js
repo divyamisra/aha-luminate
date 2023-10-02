@@ -2785,6 +2785,22 @@
         .after($('.email-question-container'))
         .after($('.mobile-question-container'));
 
+      var optinHTML =
+          '<div id="mobile_optin_outer" style="padding-left: 35px;padding-right: 15px;">' +
+              '<input type="checkbox" name="mobile_optin" id="mobile_optin">' +
+              '<label for="mobile_optin" class="wrapable">' +
+                  '<span id="optin_label"><strong>Mobile Opt in:</strong> By checking the box, I consent to receive up to 1 - 2 text messages per week from AHA  supporting my Heart Walk efforts at the mobile number above. Selecting text option is not required for my participation. Message and data rates may apply. I can Reply STOP at any time to opt out.</span>' +
+              '</label>' +
+          '</div>';
+      $('.mobile-question-container').closest('.row').append(optinHTML);
+      $('#mobile_optin').click(function () {
+          if ($(this).is(":checked")) {
+              $('.input-label:contains("Mobile Phone")').closest('label').next('input').addClass("phonecheck");
+          } else {
+              $('.input-label:contains("Mobile Phone")').closest('label').next('input').removeClass("phonecheck");
+          }
+      });
+     
       $('.two-col').wrapAll('<div class="row" />');
 
       if (regType === 'startTeam') {
@@ -2974,6 +2990,7 @@
             console.log('clear addGiftAmt'); 
             localStorage.addlGiftAmt = "";
         }
+        localStorage.mobile_optin = $('input[name=mobile_optin]:checked').val();
 
       });
 
