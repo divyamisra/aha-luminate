@@ -207,7 +207,7 @@ angular.module 'trPcControllers'
             $location.path '/email/compose/suggestedMessage/' + $scope.thankYouMessageId
           else
             $location.path '/email/compose/'
-      
+      ###
       if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
         $scope.schoolDetailStudents =
           downloadHeaders: [
@@ -307,4 +307,5 @@ angular.module 'trPcControllers'
               if companyParticipantContact
                 $rootScope.selectedContacts.contacts.push companyParticipantContact
           $location.path '/email/compose/'
+          ###
   ]
