@@ -2990,7 +2990,6 @@
             console.log('clear addGiftAmt'); 
             localStorage.addlGiftAmt = "";
         }
-        localStorage.mobile_optin = $('input[name=mobile_optin]:checked').val();
 
       });
 
