@@ -196,7 +196,19 @@ module.exports = {
       }
     ]
   },
-
+  "fieldday-fonts": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/fieldday/webfonts/',
+        src: [
+          '**/*.{eot,woff,ttf,svg}'
+        ],
+        dest: 'dist/fieldday/webfonts/'
+      }
+    ]
+  },
+  
   "fieldday2023-scripts": {
     files: [
       {
@@ -206,6 +218,18 @@ module.exports = {
           '*.js'
         ],
         dest: 'dist/fieldday2023/js/'
+      }
+    ]
+  },
+  "fieldday2023-fonts": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/fieldday2023/webfonts/',
+        src: [
+          '*.{eot,woff,ttf,svg}'
+        ],
+        dest: 'dist/fieldday2023/webfonts/'
       }
     ]
   },

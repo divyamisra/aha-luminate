@@ -1,4 +1,3 @@
-
 #preFooter {
   background-color: #fcf8dd;
   color: #3d3d3d;
@@ -6,8 +5,8 @@
 }
 
 #preFooter .col-xs-12 {
-  margin-top: 10px;
   margin-bottom: 10px;
+  margin-top: 10px;
 }
 footer .menu li.menu-item a::before {
   display: none;
@@ -16,9 +15,9 @@ footer .menu li.menu-item a::before {
 footer {
   .menu-item {
     svg {
-    margin-top:4px;
+      margin-top: 4px;
+    }
   }
-}
 }
 @media (min-width: 992px) {
   #preFooter .container {
@@ -33,22 +32,22 @@ footer {
 }
 
 a.button.footerWarning {
-  font-size: 14px;
   background-color: #ffffff;
-  border: 1px solid #cccccc;
-  color: #606060;
   background-image: -webkit-linear-gradient(top, #ffffff, #eeeeee);
   background-image: -moz-linear-gradient(top, #ffffff, #eeeeee);
   background-image: -ms-linear-gradient(top, #ffffff, #eeeeee);
   background-image: -o-linear-gradient(top, #ffffff, #eeeeee);
   background-image: linear-gradient(to bottom, #ffffff, #eeeeee);
+  border: 1px solid #cccccc;
   -webkit-border-radius: 5;
   -moz-border-radius: 5;
   border-radius: 5px;
-  line-height: 12px;
+  color: #606060;
+  font-size: 14px;
   font-weight: 400;
-  text-decoration: none;
   height: auto;
+  line-height: 12px;
+  text-decoration: none;
 }
 
 footer {
@@ -81,20 +80,20 @@ footer {
       }
     }
   }
-
 }
 
 .tr_sponsorship_logo_url {
-  &:focus{
-    -webkit-box-shadow: 0 0 0 0.2rem rgba(158,202,237, 0.75);
-    box-shadow: 0 0 0 0.2rem rgba(158,202,237, 0.75);
+  &:focus {
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(158, 202, 237, 0.75);
+    box-shadow: 0 0 0 0.2rem rgba(158, 202, 237, 0.75);
+    display: block;
     height: 150px;
     width: 150px;
-    display:block;
   }
 }
 
-a.unslider-arrow, .unslider-nav {
+a.unslider-arrow,
+.unslider-nav {
   display: none !important;
 }
 .unslider {
@@ -109,21 +108,43 @@ a.unslider-arrow, .unslider-nav {
 }
 
 .local_sponsors {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  opacity: 0;
+  transition: $transition-fade;
   vertical-align: top;
-  margin-top: 10px;
+
+  &.loaded {
+    opacity: 1;
+  }
+
+  .tr_sponsorship_logos {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    width: auto;
+  }
 }
-.unslider-wrap {
-  position: relative;
-}
-.tr_sponsorship_logo {
-  margin: 30px 0;
-}
+
 .tr_sponsorship_logos {
-  max-width: initial;
   margin: initial;
+  max-width: initial;
+}
+
+.tr_sponsorship_logo {
+  margin: 0;
+  text-align: center;
+  transition-duration: 1s;
 }
 
 img.tr_sponsorship_logo_image {
-  max-height: 65px;
-  text-align: center;
+  display: none !important;
+  margin: 0 auto !important;
+  max-height: 3rem;
+  position: static;
+}
+
+.tr_sponsorship_logo.active {
+  img.tr_sponsorship_logo_image {
+    display: block !important;
+  }
 }

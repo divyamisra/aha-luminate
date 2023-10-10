@@ -1245,6 +1245,7 @@
 		// END TOP PARTICIPANTS
 
 		// BEGIN TOP TEAMS
+		/*
 		cd.getTopTeams = function(eventId) {
 			luminateExtend.api({
 				api: 'teamraiser',
@@ -1310,6 +1311,80 @@
 						}
 					},
 					error: function(response) {
+						console.log('getTopTeams error: ' + response.errorResponse.message)
+					}
+				}
+			})
+		}
+*/
+		cd.getTopTeams = function (eventId) {
+			luminateExtend.api({
+				api: 'teamraiser',
+				data: 'method=getTeamsByInfo&fr_id=' + eventId + '&list_sort_column=team_name&list_ascending=true&list_page_size=25&response_format=json',
+				callback: {
+					success: function (response) {
+						if (!$.isEmptyObject(response.getTeamSearchByInfoResponse)) {
+							var teamData = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team)
+							console.log('this is the team data', teamData)
+							var pendingGeneratedHTML = []
+              
+							$(teamData).each(function (i) {
+                
+								var deferred = $.Deferred()
+								pendingGeneratedHTML.push(deferred)
+								var teamName = this.name
+								var teamId = this.id
+								var consId = this.captainConsId                              
+
+								try {
+									fetch(this.teamPageURL).then(data => {
+										data.text().then(txt => {
+											let dom = new DOMParser()
+											let doc = dom.parseFromString(txt, 'text/html')
+
+											let img = doc.querySelector('img.sidebar-hero')
+											let teamImage = img.src;
+
+											var topTeamRow = `<div class="col-sm-6 col-md-4 pt-4 px-md-3"><a href="TR/?team_id=${teamId}&amp;pg=team&amp;fr_id=${eventId}" class="bg-white"><div><div><img src="${teamImage}" alt="Photo of ${teamName}"></div></div><div class="align-items-center d-flex justify-content-center text-center"><p class="p-2 text-body"><strong>${teamName}</strong></p></div></a></div>`
+
+											deferred.resolve(topTeamRow)
+
+										})
+
+									})
+								}
+								catch (ex) { 
+									deferred.resolve('')
+								}
+
+
+							})
+							$.when.apply($, pendingGeneratedHTML).done(function () {
+								const isLandscape = (image) => {
+									return image.naturalWidth > image.naturalHeight
+								}
+
+								// console.log(arguments);
+								var topTeamContent = ''
+								for (var i = 0; i < arguments.length; i++) {
+									topTeamContent += arguments[i]
+								}
+								// console.log(topTeamContent);
+								$('.js--team-top-list').append(topTeamContent)
+
+								// This would make more sense above but it's easier here
+								// When getting the images above the paths are not resolving
+								// to consistently add a new Image() to check dimensions
+								document.querySelectorAll('.nominee-section img').forEach(image => {
+									if (isLandscape(image)) {
+										image.classList.add('is-landscape')
+									}
+								})
+							})
+
+						}
+					},
+					error: function (response) {
 						console.log('getTopTeams error: ' + response.errorResponse.message)
 					}
 				}

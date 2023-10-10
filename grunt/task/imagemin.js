@@ -163,11 +163,11 @@ module.exports = {
     files: [
       {
         expand: true,
-        cwd: 'src/fieldday/image/',
+        cwd: 'src/fieldday/img/',
         src: [
           '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
         ],
-        dest: 'dist/fieldday/image/'
+        dest: 'dist/fieldday/img/'
       }
     ]
   },

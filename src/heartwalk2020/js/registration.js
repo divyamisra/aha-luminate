@@ -619,7 +619,7 @@
                 $('#f2fRegPartType #next_step').click();
             });
 
-            $('.janrainEngage').html('<div class="btn-social-login btn-facebook"><i class="fab fa-facebook-f mr-2"></i> Create with Facebook</div><div class="btn-social-login btn-amazon"><i class="fab fa-amazon mr-2"></i> Create with Amazon</div>');
+            $('.janrainEngage').html('<div class="btn-social-login btn-facebook"><i class="fab fa-facebook-f mr-2"></i>Log in with Facebook</div><div class="btn-social-login btn-amazon"><i class="fab fa-amazon mr-2"></i> Log in with Amazon</div>');
 
             $('#janrainModal img').attr('alt', 'Close social login lightbox');
 
@@ -710,9 +710,18 @@
                     console.log("found AT&T 4");
                     localStorage.companySelect = "AT&T";
                 } else {
-                    console.log("reset AT&T 4");
-                    localStorage.companySelect = $(this).find('option:selected').text();
+                    if ($(this).find('option:selected').text().indexOf("TUPSS") > -1 || 
+                        $(this).find('option:selected').text() == "UPS" || 
+                        $(this).find('option:selected').text() == "The UPS Store" ||
+                        $(this).find('option:selected').text() == "UPS Foundation") {
+                        console.log("found UPS 4");
+                        localStorage.companySelect = "UPS";
+                    } else {
+                        console.log("reset AT&T/UPS 4");
+                        localStorage.companySelect = $(this).find('option:selected').text();
+                    }
                 }
+
             });
             $('.list-component-cell-column-join-link a').click(function () {
                 var compSel = $(this).closest('.list-component-row').find('.list-component-cell-column-company-name .list-component-cell-data-text').html();
@@ -720,8 +729,16 @@
                     console.log("found AT&T 5");
                     localStorage.companySelect = "AT&T";
                 } else {
-                    console.log("reset AT&T 5");
-                    localStorage.companySelect = compSel;
+                    if (compSel.indexOf("TUPSS") > -1 || 
+                        compSel == "UPS" || 
+                        compSel == "The UPS Store" ||
+                        compSel == "UPS Foundation") {
+                        console.log("found UPS 5");
+                        localStorage.companySelect = "UPS";
+                    } else {
+                        console.log("reset AT&T/UPS 5");
+                        localStorage.companySelect = compSel;
+                    }
                 }
             });
 
@@ -782,8 +799,16 @@
                         console.log("found AT&T 6");
                         localStorage.companySelect = "AT&T";
                     } else {
-                        console.log("reset AT&T 6");
-                        localStorage.companySelect = $('select[name=fr_co_list] option:selected').text();
+                        if ($('select[name=fr_co_list] option:selected').text().indexOf("TUPSS") > -1 || 
+                            $('select[name=fr_co_list] option:selected').text() == "UPS" || 
+                            $('select[name=fr_co_list] option:selected').text() == "The UPS Store" ||
+                            $('select[name=fr_co_list] option:selected').text() == "UPS Foundation") {
+                            console.log("found UPS 6");
+                            localStorage.companySelect = "UPS";
+                        } else {
+                            console.log("reset AT&T/UPS 6");
+                            localStorage.companySelect = $('select[name=fr_co_list] option:selected').text();
+                        }
                     }
                 }
                 //store off personal goal in sess var by adding to action url
@@ -1543,8 +1568,16 @@
                     console.log("found AT&T 2");
                     localStorage.companySelect = "AT&T";
                 } else {
-                    console.log("reset AT&T 2");
-                    localStorage.companySelect = jQuery(this).find('option:selected').text();
+                    if (jQuery(this).find('option:selected').text().indexOf("TUPSS") > -1 || 
+                        jQuery(this).find('option:selected').text() == "UPS" || 
+                        jQuery(this).find('option:selected').text() == "The UPS Store" ||
+                        jQuery(this).find('option:selected').text() == "UPS Foundation") {
+                        console.log("found UPS 2");
+                        localStorage.companySelect = "UPS";
+                    } else {
+                        console.log("reset AT&T/UPS 2");
+                        localStorage.companySelect = jQuery(this).find('option:selected').text();
+                    }
                 }
             });
             $('button.next-step').click(function () {
@@ -1553,8 +1586,16 @@
                         console.log("found AT&T 3");
                         localStorage.companySelect = "AT&T";
                     } else {
-                        console.log("reset AT&T 3");
-                        localStorage.companySelect = $('select[name=fr_part_co_list] option:selected').text();
+                        if ($('select[name=fr_part_co_list] option:selected').text().indexOf("TUPSS") > -1 || 
+                            $('select[name=fr_part_co_list] option:selected').text() == "UPS" || 
+                            $('select[name=fr_part_co_list] option:selected').text() == "The UPS Store" ||
+                            $('select[name=fr_part_co_list] option:selected').text() == "UPS Foundation") {
+                            console.log("found UPS 3");
+                            localStorage.companySelect = "UPS";
+                        } else {
+                            console.log("reset AT&T/UPS 3");
+                            localStorage.companySelect = $('select[name=fr_part_co_list] option:selected').text();
+                        }
                     }
                 }
                 if ($('.donation-level-container').find('.donation-level-row-container.active').length > 0 || $('.donation-level-container').find('.donation-level-row-container.active').hasClass('notTime') === false) {
@@ -2025,10 +2066,11 @@
             //remove label causing acc issues
             $('.cons-zip-label, .cons-full-name-label, .cons-email-label').remove();
 
-            //for AT&T company - a question will be displayed for their employee id
+            //for AT&T or UPS company - a question will be displayed for their employee id
             //first it must be hidden though
             jQuery('label span.input-label:contains(By submitting the information requested in this form)').closest('.survey-question-container').addClass("att_id").hide();
             jQuery('label span.input-label:contains(Cleveland Clinic)').closest('.survey-question-container').addClass("cleveland_id").hide();
+            jQuery('label span.input-label:contains(If you are an employee at UPS)').closest('.survey-question-container').addClass("ups_id").hide();
             //jQuery('label span.input-label:contains(Clear Vidyard ID)').closest('.survey-question-container').addClass("vidyard_id").hide();
             //add additional code here for saving company name and displaying field if company selected was AT&T
 
@@ -2042,6 +2084,10 @@
                 if (localStorage.companySelect.indexOf("Cleveland Clinic") > -1) {
                     jQuery('.cleveland_id').show();
                     //localStorage.companySelect = "";
+                }
+                if (localStorage.companySelect.indexOf("UPS") > -1) {
+                    jQuery('.ups_id').show();
+                    localStorage.companySelect = "";
                 }
             }, 500);
 
@@ -2079,24 +2125,22 @@
         $('span.cons_email').parent().parent().addClass('consEmail');
         $('.survey-question-container.regMobilePhone').insertAfter('.cons-info-question-container.consEmail');
 
-        // Only add mobile opt in option if group id exists on body tag
-        if ($('body').data("group-id") != undefined) {
-            var optinHTML =
-                '<div id="mobile_optin_outer">' +
-                    '<input type="checkbox" name="mobile_optin" id="mobile_optin">' +
-                    '<label for="mobile_optin" class="wrapable">' +
-                        '<span id="optin_label"><strong>Mobile Opt in:</strong> By checking the box, I consent to receive up to 1 - 2 text messages per week from AHA  supporting my Heart Walk efforts at the mobile number above. Selecting text option is not required for my participation. Message and data rates may apply. I can Reply STOP at any time to opt out.</span>' +
-                    '</label>' +
-                '</div>';
-            $('.regMobilePhone').append(optinHTML);
-            $('#mobile_optin').click(function () {
-                if ($(this).is(":checked")) {
-                    $('.input-label:contains("Mobile Phone")').closest('label').next('input').addClass("phonecheck");
-                } else {
-                    $('.input-label:contains("Mobile Phone")').closest('label').next('input').removeClass("phonecheck");
-                }
-            });
-        }
+        // Add mobile opt in option
+        var optinHTML =
+            '<div id="mobile_optin_outer">' +
+                '<input type="checkbox" name="mobile_optin" id="mobile_optin">' +
+                '<label for="mobile_optin" class="wrapable">' +
+                    '<span id="optin_label"><strong>Mobile Opt in:</strong> By checking the box, I consent to receive up to 1 - 2 text messages per week from AHA  supporting my Heart Walk efforts at the mobile number above. Selecting text option is not required for my participation. Message and data rates may apply. I can Reply STOP at any time to opt out.</span>' +
+                '</label>' +
+            '</div>';
+        $('.regMobilePhone').append(optinHTML);
+        $('#mobile_optin').click(function () {
+            if ($(this).is(":checked")) {
+                $('.input-label:contains("Mobile Phone")').closest('label').next('input').addClass("phonecheck");
+            } else {
+                $('.input-label:contains("Mobile Phone")').closest('label').next('input').removeClass("phonecheck");
+            }
+        });
         
         $('#overlayWaiver, .lightboxWiaverClose').click(function () {
             $('#overlayWaiver, #lightboxWiaver').hide();
@@ -2107,6 +2151,9 @@
             $('#additional_questions_container .survey-question-container:contains("Facebook Fundraiser ID:")').hide();
             $('input#cons_user_name + span.input-hint').html("You can use your email address or a unique name with any of the following: letters, numbers, and these symbols: +, -, _, @, ., %, and : but no spaces!");
             $('input#cons_password + span.input-hint').html("This needs to be at least 5 characters long and can contain any of the following: letters, numbers, and these symbols: !#$%()*+,-./:;=?@[\]^_`{|}~ o");
+
+            $('input#cons_user_name').attr('aria-label','You can use your email address or a unique name with any of the following: letters, numbers, and these symbols: +, -, _, @, ., %, and : but no spaces!');
+            $('input#cons_password').attr('aria-label', 'This needs to be at least 5 characters long and can contain any of the following: letters, numbers, and these symbols: !#$%()*+,-./:;=?@[\]^_`{|}~ o' );
         }
 
         $('#password_component_container #cons_rep_password').parent().parent().parent().addClass('left');
@@ -2237,36 +2284,6 @@
 
             //move custom details into content
             $('.reg-summary-event-info').prepend($('#additionalRegDetails'));
-
-            //save off mobile opt option
-            if (localStorage.mobile_optin == "on") {
-                luminateExtend.api({
-                    api: 'cons',
-                    useHTTPS: true,
-                    requestType: 'POST',
-                    requiresAuth: true,
-                    data: 'method=logInteraction' +
-                        '&response_format=json' +
-                        '&interaction_type_id=0' +
-                        '&interaction_subject=Hustle-OptIn' +
-                        '&interaction_body=\'{"EventId":' + $('body').data("fr-id") + ',"GroupId":' + $('body').data("group-id") + ',"OptIn":"Yes"}\'' +
-                        '&cons_id=' + $('body').data("cons-id"),
-                    callback: {
-                        success: function (response) {
-                            if (response.updateConsResponse.message == "Interaction logged successfully.") {
-                            }
-                        },
-                        error: function (response) {
-                            console.log(response.errorResponse.message);
-                        }
-                    }
-                });
-                if (isProd) {
-                    $('<img width="1" height="1" style="display:none;" src="https://www2.heart.org/site/SPageServer?pagename=reus_hw_mobileopt_add_group&group_id=' + $('body').data("group-id") + '&pgwrap=n" id="mobileopt_add_group">').appendTo($('#fr_reg_summary_page'));
-                } else {
-                    $('<img width="1" height="1" style="display:none;" src="https://dev2.heart.org/site/SPageServer?pagename=reus_hw_mobileopt_add_group&group_id=' + $('body').data("group-id") + '&pgwrap=n" id="mobileopt_add_group">').appendTo($('#fr_reg_summary_page'));
-                }
-            }
 
             $('button.next-step').click(function () {
                 // Add additional amount to local storage for Double the Donation
@@ -2826,6 +2843,159 @@
             $('.js__reg-company-name').append($.sortedCoList);
         }
     }
+
+    // AHA-1047
+    const yesBtn = document.getElementById('utype-yes');
+    if (typeof(yesBtn) != 'undefined' && yesBtn != null) {
+        yesBtn.addEventListener("click", function(){
+            const loginUserPass = document.querySelectorAll('#loginForm > #utype_login_container > div > .form-group');
+
+            loginUserPass[0].setAttribute('aria-live', 'assertive');
+            loginUserPass[1].setAttribute('aria-live', 'assertive');
+        });
+    }
+
+    // AHA-1049
+
+    document.addEventListener("DOMContentLoaded", function() {
+        let yearsParticipated = document.querySelectorAll('#relocated_participation_years select option');
+
+        if (yearsParticipated !== null) {
+            yearsParticipated.forEach((year, index)=> {
+                if (year.value === 'NOREPLY') {
+                    return;
+                } else if (year.value === '1') {
+                    year.setAttribute('aria-label', `${year.value} year`);
+                } else {
+                    year.setAttribute('aria-label', `${year.value} years`);
+                }
+                console.log(index, year.value);
+            })
+        }
+    });
+
+
+
+    // AHA-1050
+    let friendPotionNext = document.getElementById('friend_potion_next');
+    if (typeof(friendPotionNext) != 'undefined' && friendPotionNext != null) {
+        document.getElementById('fr_team_name').setAttribute('aria-live', 'assertive');
+    }
+
+
+
+
+    // AHA-1052 - This is a general purpose function to replace elements if they need to be replaced
+    function replaceTagName(element, newTagName) {
+        const newElement = document.createElement(newTagName);
+        const attributes = Array.from(element.attributes);
+
+        attributes.forEach((attr) => {
+            newElement.setAttribute(attr.name, attr.value);
+        });
+
+        newElement.innerHTML = element.innerHTML;
+        element.parentNode.replaceChild(newElement, element);
+
+        return newElement;
+    }
+
+        const element = document.querySelector(".campaign-banner-container");
+        replaceTagName(element, "h1");
+
+
+    const urlParams = new URLSearchParams(window.location.search);
+
+    // Check if the URL contains the "s_regType=joinTeam" parameter
+    if (urlParams.toString().indexOf("s_regType=joinTeam") !== -1) {
+        // Run code if the parameter is present in the URL
+        let button1 = document.querySelector('[data-sort="team-name-label"]');
+             let teamNameLabel = button1.textContent;
+        let button2 = document.querySelector('[data-sort="team-captain-name"]');
+              let teamCaptainLabel = button2.textContent;
+        let button3 = document.querySelector('[data-sort="team-company-name"]');
+               let teamCompanyLabel = button3.textContent;
+
+        button1.setAttribute('aria-label', `Sort by ${teamNameLabel}`);
+        button2.setAttribute('aria-label', `Sort by ${teamCaptainLabel}`);
+        button3.setAttribute('aria-label', `Sort by ${teamCompanyLabel}`);
+
+
+        const tablistDiv = document.createElement("div");
+        tablistDiv.setAttribute("role", "tablist");
+
+        button1.parentElement.insertBefore(tablistDiv, button1);
+        tablistDiv.appendChild(button1);
+        tablistDiv.appendChild(button2);
+        tablistDiv.appendChild(button3);
+
+        const tablist = document.querySelector('[role="tablist"]');
+        const buttons = tablist.querySelectorAll('button');
+
+        buttons.forEach((button, index) => {
+
+            // Add the role attribute
+            button.setAttribute('role', 'tab');
+
+
+            // Add event listener for click events
+            button.addEventListener('click', function (event) {
+                // Deselect all buttons
+                buttons.forEach((otherButton) => {
+                    otherButton.setAttribute('aria-selected', 'false');
+                });
+
+                // Select the clicked button
+                const selectedButton = event.currentTarget;
+                selectedButton.setAttribute('aria-selected', 'true');
+            });
+        });
+    }
+
+    //AHA-1053
+
+    // Updated on the Registration Summary page in TR
+    document.addEventListener("DOMContentLoaded", function() {
+        let personalGoalLink = document.querySelector('.reg-summary-event-info .reg-summary-edit-link a.js--edit-ptype');
+        let personalInfoLink = document.querySelector('.reg-summary-address-info .reg-summary-edit-link a');
+
+        if (typeof(personalGoalLink && personalInfoLink) != 'undefined' && personalGoalLink != null) {
+            personalGoalLink.setAttribute('aria-label', 'Edit Personal Goal');
+            personalInfoLink.setAttribute('aria-label', 'Edit Personal Information');
+        }
+    });
+    // AHA-1078
+
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelector('#registration-reg-page-step-6 .privacyCheck .indented-field-group').setAttribute('aria-live', 'assertive');
+        document.querySelector('#registration-reg-page-step-6 .waiverCheck .indented-field-group').setAttribute('aria-live', 'assertive');
+
+        const step6Button = document.querySelector('#registration-reg-page-step-6 .js__reg-page-next-step');
+        
+        if (typeof(step6Button) != 'undefined' && step6Button != null) {
+            step6Button.addEventListener('click', function() {
+                // Create a new observer
+                const observer = new MutationObserver(function(mutationsList, observer) {
+                    for(let mutation of mutationsList) {
+                        if (mutation.type === 'childList') {
+                            let errorLabels = document.querySelectorAll('.survey-question-container.field-required label.error');
+                            errorLabels[0].setAttribute('aria-live', 'assertive');
+                            errorLabels[1].setAttribute('aria-label', 'Terms and Conditions');
+                            errorLabels[2].setAttribute('aria-label', 'Publicity Consent');
+                            // You may want to disconnect the observer once you've made the modifications
+                            observer.disconnect();
+                        }
+                    }
+                });
+            
+                // Start observing the document with the configured parameters
+                observer.observe(document.body, { childList: true, subtree: true });
+            });
+        }
+    });
+    
+
+
 
 })(jQuery);
 

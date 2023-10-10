@@ -373,7 +373,14 @@ module.exports = {
       },
       {
         expand: true,
-        cwd: 'dist/fieldday/image/',
+        cwd: 'dist/fieldday/img/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/fieldday/webfonts/',
         src: [
           '**/*'
         ]
@@ -399,6 +406,13 @@ module.exports = {
       {
         expand: true,
         cwd: 'dist/fieldday2023/html/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/fieldday2023/webfonts/',
         src: [
           '**/*'
         ]

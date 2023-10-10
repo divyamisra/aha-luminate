@@ -918,6 +918,13 @@ angular.module 'trPcControllers'
               final_url = 'TR?fr_id=' + $scope.frId + '&pg=personal&px=' + $scope.consId
             if prize.mission_url_type == 'Tab' 
               final_url = $scope.baseUrl + prize.mission_url
+              if prize.sku == 'BDG-6'
+                if $scope.tablePrefix == 'heartdev'
+                  final_url = 'https://tools.heart.org/aha_ym23_dev/?eid=' + $scope.frId + '&sid=' + $scope.consId + '&name=' + $scope.consNameFirst
+                if $scope.tablePrefix == 'heartnew'
+                  final_url = 'https://tools.heart.org/aha_ym23_testing/?eid=' + $scope.frId + '&sid=' + $scope.consId + '&name=' + $scope.consNameFirst
+                if $scope.tablePrefix == 'heart'
+                  final_url = 'https://tools.heart.org/aha_ym23/?eid=' + $scope.frId + '&sid=' + $scope.consId + '&name=' + $scope.consNameFirst
             if prize.mission_url_type == 'URL' 
               final_url = prize.mission_url
             if prize.mission_url_type == 'Quiz' 
@@ -941,7 +948,7 @@ angular.module 'trPcControllers'
               when "Edit Personal Page" then prize_label = "Edit Your Page"
               when "Self Donor" then prize_label = "Self-Donation"
               when "Go Social" then prize_label = "Share on Social"
-              when "Send Email/Ecard" then prize_label = "Send Emails"
+              when "Send Email/Ecard" then prize_label = "Send E-card"
               when "First Online Donation" then prize_label = "First Donation"
               when "CPR Quiz" then prize_label = "Hands-Only CPR"
               when "Stroke Quiz" then prize_label = "Warning Signs of Stroke"
@@ -1139,6 +1146,16 @@ angular.module 'trPcControllers'
               $scope.schoolPlan.HideGifts = "NO"
             if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
               $scope.getSchoolTop15()
+				
+            if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
+              NgPcConstituentService.getUserRecord('fields=custom_string18&cons_id=' + $scope.consId).then (response) ->
+                if response.data.errorResponse
+                  console.log 'There was an error getting user profile. Please try again later.'
+                $scope.constituent = response.data.getConsResponse
+                angular.forEach $scope.constituent.custom.string, (field) ->
+                  if field.id == 'custom_string18'
+                    $scope.schoolPlan.ParticipatingNextYear = field.content
+                  return
       $scope.getSchoolPlan()
 
       $scope.putSchoolPlan = (event, sel) ->
@@ -1174,6 +1191,15 @@ angular.module 'trPcControllers'
               error: (response) ->
               success: (response) ->
 
+      $scope.updateParticipatingNextYear = ->
+        updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_string18=' + this.participatingNextYear + '&cons_id=' + $scope.consId).then (response) ->
+          if response.data.errorResponse
+            console.log 'There was an error processing your update. Please try again later.'
+          updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_date5_MONTH='+(($scope.theDate).getMonth()+1)+'&custom_date5_DAY='+($scope.theDate).getDate()+'&custom_date5_YEAR='+($scope.theDate).getFullYear()+'&cons_id=' + $scope.consId).then (response) ->
+            if response.data.errorResponse
+              console.log 'There was an error processing your update. Please try again later.'
+          $scope.dashboardPromises.push updateUserProfilePromise
+					
       formatDateString = (dateVal) ->
         regex = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}).*$/
         token_array = regex.exec(dateVal.toJSON());
