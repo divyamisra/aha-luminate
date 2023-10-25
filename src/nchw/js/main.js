@@ -627,7 +627,7 @@
                   }
                   
                   allTeams.sort( compare );
-                  allTeams.reverse();   numMembers
+                  allTeams.reverse();
 
                   $.each(allTeams,function(i, team){
                     
