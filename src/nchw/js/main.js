@@ -548,7 +548,7 @@
           Math.abs(n - i).toFixed(c).slice(2) : "");
       };
 
-      // get all Teams
+      // get all Teams for teamlist
 
       var allTeams = [];
       var teamCount = 0;
