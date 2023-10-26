@@ -1499,7 +1499,7 @@
             $('.p-bar-step-1').css('background', '#f18b21');
         }
         if ($('input[name="pg"]').val() == 'waiver') {
-	    $('h2.cstmTitle').prepend(evDateYear+" ");
+	    // $('h2.cstmTitle').prepend(evDateYear+" ");
 	}
 	if ($('#fr_reg_summary_page #FriendraiserUserWaiver').length > 0) {
             $('.p-bar-step-1, .p-bar-step-2, .p-bar-step-3').show();
@@ -1619,7 +1619,7 @@
 
         console.log('reg page updates');
 
-   	    $('h2.cstmTitle').prepend(evDateYear+" ");
+   	    // $('h2.cstmTitle').prepend(evDateYear+" ");
             // if there is a donation then change button text
             if ($.trim($('.additional-gift-amount').html()) != "$0.00") {
                 $('button.next-step').attr("value","Complete and Donate").find('span').html("Complete and Donate");
