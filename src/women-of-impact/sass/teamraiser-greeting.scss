@@ -227,6 +227,16 @@
         min-width: 10rem;
         right: 16.6666%;
         width: 50%;
+
+        > div {
+          &:first-child {
+            font-weight: 900;
+          }
+
+          &:last-child {
+            font-weight: 600;
+          }
+        }
       }
     }
     // End movement-section
