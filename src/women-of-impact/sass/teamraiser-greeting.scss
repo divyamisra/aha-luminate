@@ -270,9 +270,14 @@
           content: "";
           display: block;
         }
+
         > span {
           line-height: 1.2;
           width: 11rem;
+
+          &:first-line {
+            font-size: 2.25em;
+          }
         }
       }
 
