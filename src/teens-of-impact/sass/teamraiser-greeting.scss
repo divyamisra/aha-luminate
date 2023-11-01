@@ -3,16 +3,6 @@
     margin-bottom: 60px;
 
     .greeting-header {
-      // background-image: url("https://secure3.convio.net/heartdev/images/content/pagebuilder/TOI-Nominee-BG.png");
-      // background-position: 0;
-      // background-repeat: no-repeat;
-      // background-size: 100%;
-
-      // @include media-breakpoint-down(md) {
-      //   background-image: url("https://secure3.convio.net/heartdev/images/content/pagebuilder/TOI-Nominee-BG-short.png");
-      //   background-position: bottom;
-      //   background-size: cover;
-      // }
       position: relative;
 
       > img {
@@ -26,19 +16,6 @@
       .transparent-bars {
         background: radial-gradient(circle, rgba(255, 255, 255, 1) 31%, rgba(255, 255, 255, 0) 100%);
         position: relative;
-        // &:after {
-        //   content: "";
-        //   width: 30%;
-        //   height: 10px;
-        //   background: #c10e21ba;
-        //   display: block;
-        //   position: absolute;
-        //   align-self: baseline;
-        //   right: 0;
-        //   @include media-breakpoint-down(md) {
-        //     display: none;
-        //   }
-        // }
 
         .event-info-banner {
           background-image: url("https://secure3.convio.net/heartdev/images/content/pagebuilder/TOI-Teen-Banner.png");
@@ -70,25 +47,6 @@
           .event-info__header {
             width: fit-content;
 
-            //h1 {
-            //  font-size: 32px;
-            //  font-weight: bold;
-            //  font-family: "LubDubBold", Helvetica, Arial, sans-serif;
-            //  letter-spacing: 3px;
-            //  @include media-breakpoint-up(sm) {
-            //    font-size: calc(32px + 28 * ((100vw - 768px) / (3960 - 1536)));
-            //  }
-
-            //  span.event-info__header-last-word {
-            //    font-size: 73px;
-            //    letter-spacing: 1px;
-            //    line-height: 73px;
-            //    font-family: "LubDubHeavy", Helvetica, Arial, sans-serif;
-            //    @include media-breakpoint-up(sm) {
-            //      font-size: calc(73px + 73 * ((100vw - 768px) / (3960 - 1536)));
-            //    }
-            //  }
-            //}
             h1 {
               font-family: LubDubHeavy, Helvetica, Arial, sans-serif;
               font-size: 64px;
