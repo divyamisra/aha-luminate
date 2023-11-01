@@ -3,15 +3,24 @@
     margin-bottom: 60px;
 
     .greeting-header {
-      background-image: url("https://secure3.convio.net/heartdev/images/content/pagebuilder/TOI-Nominee-BG.png");
-      background-position: 0;
-      background-repeat: no-repeat;
-      background-size: 100%;
+      // background-image: url("https://secure3.convio.net/heartdev/images/content/pagebuilder/TOI-Nominee-BG.png");
+      // background-position: 0;
+      // background-repeat: no-repeat;
+      // background-size: 100%;
 
-      @include media-breakpoint-down(md) {
-        background-image: url("https://secure3.convio.net/heartdev/images/content/pagebuilder/TOI-Nominee-BG-short.png");
-        background-position: bottom;
-        background-size: cover;
+      // @include media-breakpoint-down(md) {
+      //   background-image: url("https://secure3.convio.net/heartdev/images/content/pagebuilder/TOI-Nominee-BG-short.png");
+      //   background-position: bottom;
+      //   background-size: cover;
+      // }
+      position: relative;
+
+      > img {
+        height: 100%;
+        object-fit: cover;
+        object-position: bottom;
+        position: absolute;
+        width: 100%;
       }
 
       .transparent-bars {
@@ -241,6 +250,67 @@
       }
     }
     // End movement-section
+
+    #social-feed {
+      .row {
+        @media (min-width: 768px) {
+          max-width: 56rem;
+        }
+      }
+
+      [class*="col"] {
+        @media (max-width: 767px) {
+          margin-bottom: 2rem;
+        }
+      }
+
+      .card-body {
+        word-break: keep-all;
+      }
+
+      h3 {
+        align-items: center;
+        background-color: #fff;
+        border-radius: 50%;
+        color: #900;
+        display: inline-flex;
+        font-size: 1.5rem;
+        justify-content: center;
+        margin-bottom: 0.75rem;
+        text-transform: uppercase;
+
+        &::before {
+          content: "";
+          float: left;
+          padding-top: 100%;
+        }
+
+        &::after {
+          clear: both;
+          content: "";
+          display: block;
+        }
+
+        > span {
+          line-height: 1.2;
+          width: 11rem;
+
+          &:first-line {
+            font-size: 2.25em;
+          }
+        }
+      }
+
+      p {
+        font-size: 0.95rem;
+        font-weight: inherit;
+        line-height: 1.2;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
   }
   // End main
 }
