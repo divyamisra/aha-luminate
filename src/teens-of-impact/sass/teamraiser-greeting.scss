@@ -25,7 +25,7 @@
 
       .transparent-bars {
         background: radial-gradient(circle, rgba(255, 255, 255, 1) 31%, rgba(255, 255, 255, 0) 100%);
-
+        position: relative;
         // &:after {
         //   content: "";
         //   width: 30%;
