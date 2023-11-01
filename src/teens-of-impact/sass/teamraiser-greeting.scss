@@ -211,12 +211,30 @@
           display: none;
         }
       }
+
       .container {
         .movement-copy {
           background-color: #fff;
           box-shadow: 0 1rem 11rem 10rem #fff;
 
           p {
+            font-weight: 600;
+          }
+        }
+      }
+
+      figcaption {
+        bottom: 0;
+        min-width: 10rem;
+        right: 16.6666%;
+        width: 50%;
+
+        > div {
+          &:first-child {
+            font-weight: 900;
+          }
+
+          &:last-child {
             font-weight: 600;
           }
         }
