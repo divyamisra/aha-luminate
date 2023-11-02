@@ -3,16 +3,6 @@
     margin-bottom: 60px;
 
     .greeting-header {
-      // background-image : url("https://secure3.convio.net/heartdev/images/content/pagebuilder/WOI-Header-BGpng.png");
-      // background-repeat: no-repeat;
-      // background-size  : 100%;
-      // background-position: 0;
-
-      // @include media-breakpoint-down(md) {
-      //   background-image: url("https://secure3.convio.net/heartdev/images/content/pagebuilder/WOI-Header-BGpng-mobile.png");
-      //   background-position: bottom;
-      //   background-size: cover;
-      // }
       position: relative;
 
       > img {
@@ -264,7 +254,7 @@
         border-radius: 50%;
         color: #900;
         display: inline-flex;
-        font-size: 1.4rem;
+        font-size: 1.3333rem;
         justify-content: center;
         margin-bottom: 0.75rem;
         text-transform: uppercase;
