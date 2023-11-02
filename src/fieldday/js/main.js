@@ -1,5 +1,4 @@
 'use strict'
-
 ;(function ($) {
   $(document).ready(function ($) {
     console.log('loading main.js file')
@@ -1352,6 +1351,7 @@
               var totalEvents = parseInt(response.getTeamraisersResponse.totalNumberResults)
 
               $(events).each(function (i, event) {
+                console.log('event', event)
                 var eventStatus = event.status
                 var acceptsRegistration = event.accepting_registrations
 
