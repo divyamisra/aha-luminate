@@ -518,6 +518,8 @@
                   + '</th>'
                   + '<th class="th-sm">Team Coach'
                   + '</th>'
+                  + '<th class="th-sm">Participants'
+                  + '</th>'
                   + '<th class="th-sm">Amount Raised'
                   + '</th>'
                   + '<th class="th-sm" data-orderable="false"><span class="js--num-team-results"></span>'
@@ -546,7 +548,7 @@
           Math.abs(n - i).toFixed(c).slice(2) : "");
       };
 
-      // get all Teams
+      // get all Teams for teamlist
 
       var allTeams = [];
       var teamCount = 0;
@@ -635,6 +637,7 @@
                       $('.js--team-results-rows')
                           .append('<tr' + (i > 10 ? ' class="d-none"' : '') + '><td><a href="' + team.teamPageURL + '">' +
                               team.name + '</a></td><td><a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a></td>' +
+                              '<td>'+team.numMembers+'</td>' +
                               '<td>' + formattedAmountRaised + '</td><td class="col-cta"><a href="' + team.teamDonateURL + '" class="btn btn-primary btn-block btn-rounded" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr>');
                     } else {
                       $('#teamResultsTable thead').remove();
@@ -642,7 +645,9 @@
                           .addClass('mobile')
                           .append('<tr><td><table><tr' + (i > 10 ? ' class="d-none"' : '') + '><td>Team</td><td><a href="' + team.teamPageURL + '">' +
                               team.name + '</a></td></tr><tr><td>Team Captain</td><td><a href="TR/?px=' + team.captainConsId + '&pg=personal&fr_id=' + team.EventId + '">' + team.captainFirstName + ' ' + team.captainLastName + '</a></td></tr>' +
-                              '</tr><tr><td>Amount Raised</td><td>' + formattedAmountRaised + '</td></tr><tr><td colspan="2" class="text-center"><a href="' + team.teamDonateURL + '" class="btn btn-primary btn-block btn-rounded" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr></table></td></tr>');
+                              '</tr>' + 
+                              '<tr><td>Participants</td><td>'+team.numMembers+'</td></tr>' +
+                              '<tr><td>Amount Raised</td><td>' + formattedAmountRaised + '</td></tr><tr><td colspan="2" class="text-center"><a href="' + team.teamDonateURL + '" class="btn btn-primary btn-block btn-rounded" title="Donate to ' + team.name + '" aria-label="Donate to ' + team.name + '">Donate</a></td></tr></table></td></tr>');
                     }
                   });
 
