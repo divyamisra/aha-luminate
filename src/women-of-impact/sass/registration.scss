@@ -2039,7 +2039,7 @@ div.required-indicator-legend {
     }
 }
 
-.app_tr_registration, .pg_fieldday_register, .app_donation {
+.pg_fieldday_register, .app_donation {
   background-color: #900;
   background-repeat: no-repeat;
   background-position: right top;
@@ -2048,6 +2048,31 @@ div.required-indicator-legend {
   header {
     background-color: transparent;
     background-image: none;
+    nav{
+      background-color: transparent;
+    }
+  }
+
+  main {
+    background-color: transparent;
+  }
+
+  .nav-item--about, .nav-item--find {
+    display: none!important;
+  }
+
+  .global-sponsors, .mobile-utility-nav{
+    display: none;
+  }
+}
+
+.app_tr_registration {
+  background-color: #900;
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-size: 70%;
+
+  header {
     nav{
       background-color: transparent;
     }
