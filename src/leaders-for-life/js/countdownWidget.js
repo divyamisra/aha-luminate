@@ -60,8 +60,10 @@ var CountDownWidget = function(element_id, a, b, c) {
         heading = c[1];
         desc = c[2];
     }
-   wrapper.querySelector('h2').innerHTML = heading;
-   wrapper.querySelector('p').innerHTML = desc; 
+  // wrapper.querySelector('h2').innerHTML = heading;
+  let ptags =  wrapper.querySelectorAll('p');
+  ptags[0].innerHTML =  heading; 
+  ptags[1].innerHTML = desc; 
     
 }
 
