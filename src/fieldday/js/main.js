@@ -1730,19 +1730,27 @@
       const greetingLinks = Array.from(document.querySelectorAll(".js--event-search-results .event-results__company a"))
 
       // Function to insert date ranges into the event result headings.
-      const insertDateRange = (obj) => {
+      const insertEventInfo = (obj) => {
         console.log("obj", obj)
         obj = obj[obj.length - 1] // get the last object in the array
         // Find the closest ancestor heading element, and create a new span element to hold the date range.
         const eventRowHeading = obj.link?.closest(".event-results__company.row")?.querySelector(".h3")
+        const eventTitle = cd.getDateRange(obj.eventTitle)
         const dateRange = cd.getDateRange(obj.dateRange)
         const dateRangeContainer = document.createElement("span")
 
-        // If there is a heading element and date range value, add the 'event-date' class to the dateRangeContainer span and append it to the heading element.
-        if (eventRowHeading && Array.isArray(dateRange)) {
-          dateRangeContainer.classList.add("event-date-range")
-          dateRangeContainer.textContent = dateRange[0]
-          eventRowHeading.appendChild(dateRangeContainer)
+        // If there is a heading element, change the event name and insert the date range.
+        if (eventRowHeading) {
+          // Replace the public event name with the event title.
+          if (Array.isArray(eventTitle)) {
+            eventRowHeading.textContent = eventTitle[0]
+          }
+          // Add the 'event-date' class to the dateRangeContainer span and append it to the heading element.
+          if (Array.isArray(dateRange)) {
+            dateRangeContainer.classList.add("event-date-range")
+            dateRangeContainer.textContent = dateRange[0]
+            eventRowHeading.appendChild(dateRangeContainer)
+          }
         }
         $(".js--event-results-container").removeAttr("hidden")
       }
@@ -1759,13 +1767,13 @@
             .then((html) => {
               const parser = new DOMParser()
               const doc = parser.parseFromString(html, "text/html")
-              const eventName = doc.body.querySelector(".event-info__header h1").textContent // get the event name from the parsed DOM
+              const eventTitle = doc.body.querySelector(".event-info__header h1").textContent // get the event name from the parsed DOM
               const dateRange = doc.body.dataset.eventDate // get the date range attribute value from the parsed DOM
 
-              return { link: link, eventName: eventName, dateRange: dateRange } // return an object with the link and date range
+              return { link: link, eventTitle: eventTitle, dateRange: dateRange } // return an object with the link and date range
             })
           promises.push(await result) // push the result/object into an array of promises.
-          insertDateRange(await promises) // Call the insertDateRange function to insert the date range.
+          insertEventInfo(await promises) // Call the insertDateRange function to insert the date range.
         }
       })()
     }
