@@ -55,10 +55,21 @@ var CountDownWidget = function (element_id, a, b, c) {
     heading = c[1]
     desc = c[2]
   }
-  // wrapper.querySelector('h2').innerHTML = heading;
-  let ptags = wrapper.querySelectorAll("p")
-  ptags[0].innerHTML = heading
-  ptags[1].innerHTML = desc
+
+  try {
+    let title_ele = wrapper.querySelector("h2")
+    let ptags = wrapper.querySelectorAll("p")
+
+    if (title_ele) {
+      title_ele = heading
+      ptags[0] = desc
+    } else {
+      ptags[0].innerHTML = heading
+      ptags[1].innerHTML = desc
+    }
+  } catch (ex) {
+    console.log("Error populating countdown time text")
+  }
 }
 
 CountDownWidget.prototype.getCodes = function () {
