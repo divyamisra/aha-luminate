@@ -61,8 +61,8 @@ var CountDownWidget = function (element_id, a, b, c) {
     let ptags = wrapper.querySelectorAll("p")
 
     if (title_ele) {
-      title_ele = heading
-      ptags[0] = desc
+      title_ele.innerHTML = heading
+      ptags[0].innerHTML = desc
     } else {
       ptags[0].innerHTML = heading
       ptags[1].innerHTML = desc
