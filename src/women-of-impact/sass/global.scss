@@ -4,33 +4,33 @@ body {
 }
 
 main {
-    padding: 0;
+  padding: 0;
 }
-@media (max-width:767px) {
+@media (max-width: 767px) {
   main {
     padding: 0;
   }
 }
 @media (min-width: 1200px) {
-     main .content {
-         margin: 0 auto;
-    }
+  main .content {
+    margin: 0 auto;
+  }
 }
- main > .container {
-     background-color: #ffffff;
-     padding: 40px 20px !important;
+main > .container {
+  background-color: #ffffff;
+  padding: 40px 20px !important;
 }
 
-@media (max-width:767px) {
-   main > .container {
-     padding-top: 10px !important;
-   }
+@media (max-width: 767px) {
+  main > .container {
+    padding-top: 10px !important;
+  }
 }
 
 a {
   color: $red;
   text-decoration: underline;
-  &:focus{
+  &:focus {
     outline: 2px solid $outline-blue;
     outline-offset: 2px;
     p {
@@ -56,18 +56,43 @@ a {
   background-color: $gray-100;
 }
 
-h1, .h1, h3, .h3, h4, .h4, h5, .h5, strong {
+.bg-blue {
+  background-color: #36c9c6;
+}
+
+.bg-red {
+  background-color: #fe424b;
+}
+
+h1,
+.h1,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+strong {
   font-family: $font-family-bold;
   font-weight: bold;
 }
 
-h2, .h2 {
+h2,
+.h2 {
   font-size: 46px;
   font-weight: 300;
 }
 
-P, LI, OL, UL, TABLE, TR, TH, TD, .Explicit {
-  font-family: 'Montserrat', arial, sans-serif;
+P,
+LI,
+OL,
+UL,
+TABLE,
+TR,
+TH,
+TD,
+.Explicit {
+  font-family: "Montserrat", arial, sans-serif;
   font-weight: 400;
 }
 
@@ -96,15 +121,15 @@ img {
 }
 
 .box-shadow {
-  @include box-shadow(0px, 15px, 30px, rgba(0,0,0,0.2));
+  @include box-shadow(0px, 15px, 30px, rgba(0, 0, 0, 0.2));
 }
 
 .information-box {
   margin: 0;
-  padding: 0!important;
+  padding: 0 !important;
   width: 100%;
   @include media-breakpoint-up(md) {
-      @include box-shadow(0px, 15px, 30px, rgba(0,0,0,0.2));
+    @include box-shadow(0px, 15px, 30px, rgba(0, 0, 0, 0.2));
   }
 
   .information-box__content {
@@ -114,19 +139,19 @@ img {
     }
   }
   .information-box__name {
-      display: flex;
-      flex-direction: column;
-      padding: 17px 65px 9px 73px;
-      @include media-breakpoint-up(md) {
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-      }
+    display: flex;
+    flex-direction: column;
+    padding: 17px 65px 9px 73px;
+    @include media-breakpoint-up(md) {
+      align-items: center;
+      flex-direction: row;
+      justify-content: space-between;
+    }
 
-      h1 {
-        display: block;
-        margin: 0!important;
-      }
+    h1 {
+      display: block;
+      margin: 0 !important;
+    }
   }
   .information-box__team-members {
     color: $red;
@@ -175,7 +200,7 @@ img {
         margin: 0;
         padding-left: 23px;
         padding-right: 14px;
-        text-align: left;;
+        text-align: left;
       }
       input.js--personal-amt-other {
         background-color: #f8f9fa;
@@ -190,8 +215,6 @@ img {
     }
   }
 
-
-
   .fundraising-amounts {
     margin-bottom: 45px;
     span {
@@ -201,7 +224,7 @@ img {
     .amount {
       color: $red-deep;
       display: block;
-      font-family: 'Montserrat', arial, sans-serif;
+      font-family: "Montserrat", arial, sans-serif;
       font-size: 1.4rem;
       margin: -6px 0 0 0;
     }
@@ -232,7 +255,7 @@ img {
   margin: 80px 0 0 0;
   padding-bottom: 15px;
 
-  .donations-container{
+  .donations-container {
     padding: 40px 33px 37px;
   }
 
@@ -329,7 +352,6 @@ img {
       width: 100%;
     }
     .sidebar-content {
-
       background: #fff;
       padding: 0;
       @include media-breakpoint-up(md) {
@@ -366,7 +388,8 @@ img {
     }
 
     .achievements {
-      svg, img {
+      svg,
+      img {
         display: block;
         padding: 10px 0;
         width: 100%;
@@ -394,7 +417,6 @@ img {
       .badge-label {
         font-size: 10px;
       }
-
     }
   }
 
@@ -411,7 +433,9 @@ img {
   }
 }
 
-.pg_personal, .pg_team, .pg_company {
+.pg_personal,
+.pg_team,
+.pg_company {
   header {
     height: 250px;
     @include media-breakpoint-up(md) {
@@ -475,18 +499,12 @@ img {
   }
 }
 
-
-
 #globalFooter {
   background-color: #e9ecef;
   .medical-statement {
     font-size: 0.74375rem;
     padding: 15px 0 0;
     text-align: center;
-  }
-
-  footer {
-    padding-bottom: 1px;
   }
 }
 
@@ -505,10 +523,11 @@ img {
 
 .table-responsive {
   @include media-breakpoint-up(sm) {
-    display: table!important;
+    display: table !important;
   }
 }
 
-div.form-input-label-block, div.donation-level-expanded-label {
+div.form-input-label-block,
+div.donation-level-expanded-label {
   overflow: visible;
 }
