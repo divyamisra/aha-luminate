@@ -1382,7 +1382,7 @@
                 $(".js--end-event-list").removeAttr("hidden")
               })
 
-              cd.insertEventDateRangeLanding()
+              cd.insertEventInfoLanding()
             } else {
               $(".js--loading").hide()
               $(".js--no-event-results").attr("role", "alert").removeClass("d-none")
@@ -1454,7 +1454,7 @@
                 $(".js--end-event-list").removeAttr("hidden")
               })
 
-              cd.insertEventDateRangeLanding()
+              cd.insertEventInfoLanding()
             } else {
               $(".js--loading").hide()
               $(".js--no-event-results").attr("role", "alert").removeClass("d-none")
@@ -1725,7 +1725,7 @@
       return new Date(date).toISOString().substring(0, 10)
     }
 
-    cd.insertEventDateRangeLanding = () => {
+    cd.insertEventInfoLanding = () => {
       // Select all the anchor tags which are children of elements with class 'js--event-search-results' and have a parent element with class 'event-results__company'.
       const greetingLinks = Array.from(document.querySelectorAll(".js--event-search-results .event-results__company a"))
 
