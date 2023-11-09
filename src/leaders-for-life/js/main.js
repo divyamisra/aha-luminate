@@ -1923,7 +1923,24 @@
 					callback: {
 						success: function(response) {
 							if (response.getParticipantsResponse.totalNumberResults === '0') {
-								// no search results
+								console.log("getParts returned no results");
+								luminateExtend.api({
+									api: 'teamraiser',
+									data: 'method=getTeamCaptains' +
+										'&fr_id=' + evID +
+										'&team_id=' + teamId +
+										'&response_format=json',
+									callback: {
+										success: function(response) {
+											var captains = luminateExtend.utils.ensureArray(response.getTeamCaptainsResponse.captain)
+											console.log(captains);
+											$('.js--team-captain-link').attr('href', captains[0].donationUrl).attr('aria-lablel', "Team Captain " + captains[0].name.first + ' ' + captains[0].name.last + "'s fundraising page'");
+										},
+										error: function(response) {
+											console.log(response.errorResponse.message);
+										}
+									}
+								});
 
 							} else {
 								var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant)
@@ -1947,7 +1964,7 @@
 										participant.name.first + ' ' + participant.name.last +
 										'</a></td><td class="raised" data-sort="' + participantRaisedFormmatted + '"><span></span></td><td><a href="' + participant.donationUrl + '">' + (screenWidth <= 480 ? 'Donate' : 'Donate to ' + participant.name.first) + '</a></td></tr>')
 									if (participant.aTeamCaptain === 'true') {
-										$('.js--team-captain-link').attr('href', participant.donationUrl).attr('aria-lablel', "Team Captain " + participant.name.first + ' ' + participant.name.last + "'s fundraising page'")
+										$('.js--team-captain-link').attr('href', participant.donationUrl).attr('aria-lablel', "Team Captain " + participant.name.first + ' ' + participant.name.last + "'s fundraising page'");
 									}
 								})
 
