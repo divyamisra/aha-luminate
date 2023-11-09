@@ -1735,15 +1735,15 @@
         obj = obj[obj.length - 1] // get the last object in the array
         // Find the closest ancestor heading element, and create a new span element to hold the date range.
         const eventRowHeading = obj.link?.closest(".event-results__company.row")?.querySelector(".h3")
-        const eventTitle = cd.getDateRange(obj.eventTitle)
+        const eventTitle = obj.eventTitle
         const dateRange = cd.getDateRange(obj.dateRange)
         const dateRangeContainer = document.createElement("span")
 
         // If there is a heading element, change the event name and insert the date range.
         if (eventRowHeading) {
           // Replace the public event name with the event title.
-          if (Array.isArray(eventTitle)) {
-            eventRowHeading.textContent = eventTitle[0]
+          if (eventTitle) {
+            eventRowHeading.textContent = eventTitle
           }
           // Add the 'event-date' class to the dateRangeContainer span and append it to the heading element.
           if (Array.isArray(dateRange)) {
