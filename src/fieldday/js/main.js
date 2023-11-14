@@ -1382,7 +1382,7 @@
                 $(".js--end-event-list").removeAttr("hidden")
               })
 
-              cd.insertEventDateRangeLanding()
+              cd.insertEventInfoLanding()
             } else {
               $(".js--loading").hide()
               $(".js--no-event-results").attr("role", "alert").removeClass("d-none")
@@ -1454,7 +1454,7 @@
                 $(".js--end-event-list").removeAttr("hidden")
               })
 
-              cd.insertEventDateRangeLanding()
+              cd.insertEventInfoLanding()
             } else {
               $(".js--loading").hide()
               $(".js--no-event-results").attr("role", "alert").removeClass("d-none")
@@ -1725,7 +1725,7 @@
       return new Date(date).toISOString().substring(0, 10)
     }
 
-    cd.insertEventDateRangeLanding = () => {
+    cd.insertEventInfoLanding = () => {
       // Select all the anchor tags which are children of elements with class 'js--event-search-results' and have a parent element with class 'event-results__company'.
       const greetingLinks = Array.from(document.querySelectorAll(".js--event-search-results .event-results__company a"))
 
@@ -1735,15 +1735,15 @@
         obj = obj[obj.length - 1] // get the last object in the array
         // Find the closest ancestor heading element, and create a new span element to hold the date range.
         const eventRowHeading = obj.link?.closest(".event-results__company.row")?.querySelector(".h3")
-        const eventTitle = cd.getDateRange(obj.eventTitle)
+        const eventTitle = obj.eventTitle
         const dateRange = cd.getDateRange(obj.dateRange)
         const dateRangeContainer = document.createElement("span")
 
         // If there is a heading element, change the event name and insert the date range.
         if (eventRowHeading) {
           // Replace the public event name with the event title.
-          if (Array.isArray(eventTitle)) {
-            eventRowHeading.textContent = eventTitle[0]
+          if (eventTitle) {
+            eventRowHeading.textContent = eventTitle
           }
           // Add the 'event-date' class to the dateRangeContainer span and append it to the heading element.
           if (Array.isArray(dateRange)) {
