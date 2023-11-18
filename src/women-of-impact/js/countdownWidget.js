@@ -60,6 +60,8 @@ var CountDownWidget = function (element_id, a, b, c) {
     let title_ele = wrapper.querySelector("h2")
     let ptags = wrapper.querySelectorAll("p")
 
+    if (!title_ele && !ptags) return
+
     if (title_ele) {
       title_ele.innerHTML = heading
       ptags[0].innerHTML = desc
@@ -200,6 +202,9 @@ var CounterDigitChange = function (id, num) {
   this.num = num
 
   let root = document.getElementById(this.id)
+
+  if (!root) return
+
   root.classList.add("digit-flip")
   root.querySelector(".aha-counter-digit-top").innerHTML = num
 
@@ -213,17 +218,25 @@ var CounterDigitChange = function (id, num) {
 
 CounterDigitChange.prototype.swap = function () {
   let root = document.getElementById(this.id)
+
+  if (!root) return
+
   root.querySelector(".aha-counter-digit-bottom").innerHTML = this.num
 }
 
 CounterDigitChange.prototype.commit = function () {
   let root = document.getElementById(this.id)
+
+  if (!root) return
+
   root.querySelector(".aha-counter-digit-static").innerHTML = this.num
   root.classList.remove("digit-flip")
 }
 
 CountDownWidget.prototype.announce = function () {
   const countdownWidgetAlert = document.getElementById("countdownWidgetAlert")
+
+  if (!countdownWidgetAlert) return
 
   countdownWidgetAlert.textContent = makeReadableString(this.announceTitle, this.prev)
   setTimeout(() => {
