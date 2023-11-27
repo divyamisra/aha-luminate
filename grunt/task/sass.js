@@ -125,6 +125,14 @@ module.exports = {
     }
   },
 
+  "fieldday2023": {
+    files: {
+      'dist/fieldday2023/css/main.css': [
+        'src/fieldday2023/sass/main.scss'
+      ]
+    }
+  },
+
   "heartwalklawyers": {
     files: {
       'dist/heartwalklawyers/css/main.css': [

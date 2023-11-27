@@ -619,7 +619,7 @@
                 $('#f2fRegPartType #next_step').click();
             });
 
-            $('.janrainEngage').html('<div class="btn-social-login btn-facebook"><i class="fab fa-facebook-f mr-2"></i> Create with Facebook</div><div class="btn-social-login btn-amazon"><i class="fab fa-amazon mr-2"></i> Create with Amazon</div>');
+            $('.janrainEngage').html('<div class="btn-social-login btn-facebook"><i class="fab fa-facebook-f mr-2"></i> Log in with Facebook</div><div class="btn-social-login btn-amazon"><i class="fab fa-amazon mr-2"></i> Log in with Amazon</div>');
 
             $('#janrainModal img').attr('alt', 'Close social login lightbox');
 

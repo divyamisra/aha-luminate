@@ -467,9 +467,9 @@ angular.module 'ahaLuminateControllers'
           angular.element('#responsive_payment_typecc_exp_date_YEAR').attr('aria-required','true') 
           angular.element('#responsive_payment_typecc_cvvname').attr('aria-required','true') 
 
-      jQuery.validator.addMethod 'zipcode', ((value, element) ->
-        @optional(element) or ! !value.trim().match(/^\d{5}(?:[-\s]\d{4})?$/)
-      ), 'Invalid zip code'
+      #jQuery.validator.addMethod 'zipcode', ((value, element) ->
+      #  @optional(element) or ! !value.trim().match(/\d{5}-\d{4}$|^\d{5}$|^[a-zA-Z][0-9][a-zA-Z](| )?[0-9][a-zA-Z][0-9]$/)
+      #), 'Invalid zip code'
 
       $scope.toggleBillingInfo = ->
         angular.element('.billing-info').toggleClass 'hidden'

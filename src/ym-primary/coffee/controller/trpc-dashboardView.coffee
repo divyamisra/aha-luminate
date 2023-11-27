@@ -50,6 +50,13 @@ angular.module 'trPcControllers'
       lockStart = 2200 #prod luminate server is est whereas dev server is cst
       lockEnd = 500
       $scope.lockEnabled = false
+      $scope.lockEnabledMsg = "School Planning fields are currently locked for point calculations until 6 am CST."
+      $dataRootBody = angular.element '[data-aha-luminate-root]'
+      if $dataRootBody.data('school-plan-locked') isnt ''
+        if $dataRootBody.data('school-plan-locked') == true
+          $scope.lockEnabled = $dataRootBody.data('school-plan-locked') 
+          $scope.lockEnabledMsg = "School Planning fields are currently locked for entry as we perform maintenance on the system."
+          #$scope.lockEnabledMsg = "If any of the information below is not editable and needs to be updated, please contact your staff partner."
       if $rootScope.currentCSTDate != ''
         currDate = new Date $rootScope.currentCSTDate
         if currDate.getMinutes() < 10
@@ -114,6 +121,12 @@ angular.module 'trPcControllers'
             $rootScope.companyInfo.participantCount = response.data.students_registered
             $scope.companyProgress.raised = response.data.total_amount
             $scope.companyProgress.raisedFormatted = $filter('currency')(response.data.total_amount, '$')
+            goal = response.data.goal
+            percent = 0
+            if goal isnt 0
+              $scope.companyProgress.percent = Math.ceil(($scope.companyProgress.raised / goal) * 100)
+            if $scope.companyProgress.percent > 100
+              $scope.companyProgress.percent = 100
           
       #school years, challenge and level update
       $scope.schoolInfo = {}
@@ -175,7 +188,7 @@ angular.module 'trPcControllers'
             if participantIndex < (participants.length - 1)
               participantsString += ', '
           companyParticipantsString = '{participants: [' + participantsString + '], totalNumber: ' + participants.length + '}'
-          if angular.element('.ym-school-animation iframe') > 0
+          if angular.element('.ym-school-animation iframe').length > 0
             angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
             angular.element('.ym-school-animation iframe').on 'load', ->
               angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
@@ -905,6 +918,13 @@ angular.module 'trPcControllers'
               final_url = 'TR?fr_id=' + $scope.frId + '&pg=personal&px=' + $scope.consId
             if prize.mission_url_type == 'Tab' 
               final_url = $scope.baseUrl + prize.mission_url
+              if prize.sku == 'BDG-6'
+                if $scope.tablePrefix == 'heartdev'
+                  final_url = 'https://tools.heart.org/aha_ym23_dev/?eid=' + $scope.frId + '&sid=' + $scope.consId + '&name=' + $scope.consNameFirst
+                if $scope.tablePrefix == 'heartnew'
+                  final_url = 'https://tools.heart.org/aha_ym23_testing/?eid=' + $scope.frId + '&sid=' + $scope.consId + '&name=' + $scope.consNameFirst
+                if $scope.tablePrefix == 'heart'
+                  final_url = 'https://tools.heart.org/aha_ym23/?eid=' + $scope.frId + '&sid=' + $scope.consId + '&name=' + $scope.consNameFirst
             if prize.mission_url_type == 'URL' 
               final_url = prize.mission_url
             if prize.mission_url_type == 'Quiz' 
@@ -928,7 +948,7 @@ angular.module 'trPcControllers'
               when "Edit Personal Page" then prize_label = "Edit Your Page"
               when "Self Donor" then prize_label = "Self-Donation"
               when "Go Social" then prize_label = "Share on Social"
-              when "Send Email/Ecard" then prize_label = "Send Emails"
+              when "Send Email/Ecard" then prize_label = "Send E-card"
               when "First Online Donation" then prize_label = "First Donation"
               when "CPR Quiz" then prize_label = "Hands-Only CPR"
               when "Stroke Quiz" then prize_label = "Warning Signs of Stroke"
@@ -1126,6 +1146,16 @@ angular.module 'trPcControllers'
               $scope.schoolPlan.HideGifts = "NO"
             if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
               $scope.getSchoolTop15()
+				
+            if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
+              NgPcConstituentService.getUserRecord('fields=custom_string18&cons_id=' + $scope.consId).then (response) ->
+                if response.data.errorResponse
+                  console.log 'There was an error getting user profile. Please try again later.'
+                $scope.constituent = response.data.getConsResponse
+                angular.forEach $scope.constituent.custom.string, (field) ->
+                  if field.id == 'custom_string18'
+                    $scope.schoolPlan.ParticipatingNextYear = field.content
+                  return
       $scope.getSchoolPlan()
 
       $scope.putSchoolPlan = (event, sel) ->
@@ -1136,6 +1166,11 @@ angular.module 'trPcControllers'
             failure: (response) ->
             error: (response) ->
             success: (response) ->
+          if sel == 'ParticipatingNextYear'
+            ZuriService.schoolPlanData '&method=UpdateParticipatingNextYear&EventProgram=KHC&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&value=' + $scope.schoolPlan[sel],
+              failure: (response) ->
+              error: (response) ->
+              success: (response) ->
         else
           if event.currentTarget.id == 'school_goal'
             $scope.schoolGoalInfo.goal = event.currentTarget.value
@@ -1156,6 +1191,15 @@ angular.module 'trPcControllers'
               error: (response) ->
               success: (response) ->
 
+      $scope.updateParticipatingNextYear = ->
+        updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_string18=' + this.participatingNextYear + '&cons_id=' + $scope.consId).then (response) ->
+          if response.data.errorResponse
+            console.log 'There was an error processing your update. Please try again later.'
+          updateUserProfilePromise = NgPcConstituentService.updateUserRecord('custom_date5_MONTH='+(($scope.theDate).getMonth()+1)+'&custom_date5_DAY='+($scope.theDate).getDate()+'&custom_date5_YEAR='+($scope.theDate).getFullYear()+'&cons_id=' + $scope.consId).then (response) ->
+            if response.data.errorResponse
+              console.log 'There was an error processing your update. Please try again later.'
+          $scope.dashboardPromises.push updateUserProfilePromise
+					
       formatDateString = (dateVal) ->
         regex = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}).*$/
         token_array = regex.exec(dateVal.toJSON());

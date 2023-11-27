@@ -176,6 +176,15 @@ module.exports = {
     ]
   },
 
+  "fieldday2023": {
+    files: [
+      {
+        src: ["src/fieldday2023/js/main.js"],
+        dest: "dist/fieldday2023/js/main." + "<%= timestamp %>" + ".min.js"
+      }
+    ]
+  },
+
   "heartwalklawyers": {
     files: [
       {

@@ -1,101 +1,111 @@
 .landing-hero {
+  box-shadow: 0px 15px 30px 0px rgba(0, 0, 0, 0.16);
   position: relative;
-  box-shadow: 0px 15px 30px 0px rgba(0,0,0,0.16);
 }
 .landing-hero__photo {
   height: 200px;
+  overflow: hidden;
+  position: relative;
+
   @include media-breakpoint-up(md) {
     height: 385px;
   }
   @include media-breakpoint-up(xl) {
     height: 685px;
   }
-  background-image: url(https://www2.heart.org/images/content/pagebuilder/fieldday-landing-hero.jpg);
-  background-position: center;
-  @include media-breakpoint-up(lg) {
-    background-position: center center;
+  // background-image: url(https://www2.heart.org/images/content/pagebuilder/fieldday-landing-hero.jpg);
+  // background-position: center;
+  // @include media-breakpoint-up(lg) {
+  //   background-position: center center;
+  // }
+  // background-size: cover;
+  // background-repeat: none;
+
+  img {
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    width: 100%;
   }
-  background-size: cover;
-  background-repeat: none;
 }
 
 .landing-hero__content {
-  width: 100%;
   text-align: center;
+  width: 100%;
   @include media-breakpoint-up(lg) {
     background: rgba(73, 80, 87, 0.5);
-   }
+  }
   .container {
     margin: auto;
   }
   h1 {
-      color: #C10E21;
-      font-size: 1.325em;
-      @include media-breakpoint-up(xl) {
-          font-size: 5.625em;
+    color: #c10e21;
+    font-size: 1.325em;
+    @include media-breakpoint-up(xl) {
+      font-size: 5.625em;
     }
     @include media-breakpoint-up(lg) {
-        color: #fff;
-  }
+      color: #fff;
+    }
   }
   p {
-      font-size: 1em;
-      @include media-breakpoint-up(xl) {
-          font-size: 1.5em;
+    font-size: 1em;
+    @include media-breakpoint-up(xl) {
+      font-size: 1.5em;
     }
     @include media-breakpoint-up(lg) {
-        color: #fff;
-  }
+      color: #fff;
+    }
   }
   strong {
     color: $red;
   }
   @include media-breakpoint-up(lg) {
-    position: absolute;
     bottom: 0;
+    position: absolute;
   }
 }
 
 .landing-about {
   background-color: $red-deep;
-  background-image: url(https://www2.heart.org/images/content/pagebuilder/background-squiggles.png);
-  background-repeat: no-repeat;
   background-position: right top;
+  background-repeat: no-repeat;
   background-size: 60%;
   @include media-breakpoint-up(xl) {
-    padding-top: 80px;
     padding-bottom: 100px;
+    padding-top: 80px;
   }
   .landing-about__container {
     padding-left: 30px;
     padding-right: 30px;
     @include media-breakpoint-up(xl) {
-     max-width: 1640px;
+      max-width: 1640px;
     }
   }
   h2 {
-    display: inline-block;
     color: $white;
+    display: inline-block;
     font-size: 1.125em;
     margin: 45px 0;
     @include media-breakpoint-up(xl) {
-     font-size: 2.2em;
+      font-size: 2.2em;
     }
   }
   .card {
     border-radius: 0;
-    h3{
+    h3 {
       color: $red;
       font-size: 1.125em;
-      @include media-breakpoint-up(xl) {
-       font-size: 1.667em;
-      }
       line-height: 1;
-      text-align: center;
       margin: 0;
+      text-align: center;
+      @include media-breakpoint-up(xl) {
+        font-size: 1.667em;
+      }
     }
     @include media-breakpoint-up(xl) {
-     width: 32%;
+      width: 32%;
     }
 
     svg {
@@ -104,49 +114,58 @@
   }
   .card-header {
     background-color: $white;
-    padding-top: 16px;
+    box-shadow: 0px 15px 30px 0px rgba(0, 0, 0, 0.16);
     padding-bottom: 16px;
-    box-shadow: 0px 15px 30px 0px rgba(0,0,0,0.16);
+    padding-top: 16px;
     @include media-breakpoint-up(xl) {
-     padding: 28px 0;
+      padding: 28px 0;
     }
   }
   .card-body {
     @include media-breakpoint-up(xl) {
-     padding: 45px;
+      padding: 45px;
     }
   }
   p {
+    display: inline-block;
     font-size: 0.875em;
     line-height: 1.25em;
-    display: inline-block;
     margin-bottom: 25px;
     @include media-breakpoint-up(xl) {
-     font-size: 1.333em;
-     line-height: 1.5;
-     text-align: left;
+      font-size: 1.333em;
+      line-height: 1.5;
+      text-align: left;
     }
   }
   a {
-    display: inline-block;
     border: 2px solid $red;
-    color: $red;
-    padding: 8px 24px;
-    width: 200px;
-    text-decoration: none;
     border-radius: 60px;
+    color: $red;
+    display: inline-block;
     font-weight: bold;
     line-height: 1;
+    padding: 8px 24px;
+    text-decoration: none;
+    width: 200px;
     @include media-breakpoint-up(xl) {
-     min-width: 260px;
-     padding: 12px 28px;
-     text-align: center;
+      min-width: 260px;
+      padding: 12px 28px;
+      text-align: center;
     }
   }
 }
 
 .form-control {
-  boder-color: #ccc;
+  /*border-color: #ccc;*/
+  border: 1px solid #878787;
+}
+
+section#search {
+  scroll-margin-top: 5rem;
+
+  @include media-breakpoint-up(lg) {
+    scroll-margin-top: 7rem;
+  }
 }
 
 .event-city-search {
@@ -158,69 +177,100 @@
     color: $red;
     font-size: 1.125em;
     @include media-breakpoint-up(xl) {
-     font-size: 2.2em;
+      font-size: 2.2em;
     }
   }
-  .form-group-divider{
+  .form-group-divider {
+    align-self: center;
     font-size: 1.125em;
     font-weight: bold;
-    align-self: center;
   }
-  .event-state-select__button {
-      font-weight: 600;
-      color: #fff;
-      background-color: $red;
-      right: 0;
-      top: 0;
-      height: 55px;
-      padding-top: 0.4em;
-      border-top-right-radius: 0.25rem;
-      border-bottom-right-radius: 0.25rem;
-      position: absolute;
-      pointer-events: none;
-      text-align: center;
-      font-size: 1.5em;
-      width: 16.667%;
-      display: flex;
-      justify-content: center;
+  // .event-state-select__button {
+  //   font-weight: 600;
+  //   color: #fff;
+  //   background-color: $red;
+  //   right: 0;
+  //   top: 0;
+  //   height: 55px;
+  //   padding-top: 0.4em;
+  //   border-top-right-radius: 0.25rem;
+  //   border-bottom-right-radius: 0.25rem;
+  //   position: absolute;
+  //   pointer-events: none;
+  //   text-align: center;
+  //   font-size: 1.5em;
+  //   width: 16.667%;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  //   cursor: pointer;
+  //   border: none;
+  //   &:hover {
+  //     background-color: $red-deep;
+  //   }
+  //   &:focus {
+  //     -webkit-box-shadow: 0 0 0 0.2rem rgba(193, 14, 33, 0.5) !important;
+  //     box-shadow: 0 0 0 0.2rem rgba(193, 14, 33, 0.5) !important;
+  //     outline: none;
+  //   }
+  // }
+
+  .event-state-select-container {
+    position: relative;
+
+    &::before {
       align-items: center;
-      cursor: pointer;
-      border: none;
-      &:hover {
-        background-color: $red-deep;
-      }
-      &:focus {
-        -webkit-box-shadow: 0 0 0 .2rem rgba(193,14,33,.5)!important;
-        box-shadow: 0 0 0 .2rem rgba(193,14,33,.5)!important;
-        outline: none;
-      }
+      background-color: $red;
+      border-bottom-right-radius: 0.25rem;
+      border-top-right-radius: 0.25rem;
+      color: #fff;
+      content: "\f0d7";
+      display: flex;
+      font-family: "Font Awesome 5 Pro";
+      font-size: 1.25em;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: antialiased;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 900;
+      height: 55px;
+      justify-content: center;
+      padding-top: 0.4em;
+      pointer-events: none;
+      position: absolute;
+      right: 0;
+      text-rendering: auto;
+      top: 0;
+      width: 16.667%;
+      z-index: 10;
+    }
   }
 
   .event-zip-search-submit {
-      height: 55px;
-      background: $red;
-      color: white;
-      border-top-right-radius: 0.25rem;
-      border-bottom-right-radius: 0.25rem;
-      border-top-left-radius: 0;
+    background: $red;
+    border: none;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0.25rem;
+    border-color: #c11d20;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0.25rem;
+    color: white;
+    font-size: 1.25em;
+    height: 55px;
+    padding: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    &:hover {
+      background-color: $red-deep;
+    }
+    &.button {
       border-bottom-left-radius: 0;
-      border-color: #c11d20;
-      padding: 16px;
-      padding-right: 16px;
-      padding-left: 16px;
-      border: none;
-      font-size: 1.25em;
-      &:hover {
-        background-color: $red-deep;
-      }
-      &.button {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-      }
+      border-top-left-radius: 0;
+    }
   }
 
   .form-control {
-    background-color: #F8F9FA
+    background-color: #f8f9fa;
   }
 }
 
@@ -228,28 +278,47 @@
   .event-results__company {
     margin-bottom: 40px;
   }
-  h3 {
+  .h3 {
+    display: block;
     font-size: 1em;
     font-weight: 500;
-    display: block;
   }
+
+  .event-date-range {
+    display: block;
+    margin-top: 0.5rem;
+    &:empty {
+      display: none;
+    }
+  }
+
+  // time {
+  //   margin-bottom: 0.5rem;
+  //   margin-top: -0.25rem;
+  //   min-width: 100%;
+  //   &:empty {
+  //     display: none;
+  //   }
+  // }
 }
 
-.button-primary, .button-primary:visited, .button-primary:link {
-  display: inline-block;
-  border: 2px solid $red;
-  color: $white;
+.button-primary,
+.button-primary:visited,
+.button-primary:link {
   background-color: $red;
-  padding: 16px 32px;
-  min-width: 260px;
-  text-decoration: none;
+  border: 2px solid $red;
   border-radius: 60px;
+  color: $white;
+  display: inline-block;
   font-weight: bold;
+  min-width: 260px;
+  padding: 16px 32px;
+  text-decoration: none;
   &.button--inverse {
-    color: $red;
     background-color: transparent;
-    padding-top:8px;
+    color: $red;
     padding-bottom: 8px;
+    padding-top: 8px;
   }
 }
 
@@ -260,23 +329,23 @@
     color: $red;
   }
   input {
-    background-color: #fff!important;
+    background-color: #fff !important;
   }
   .alert {
     margin-top: 35px;
   }
-  .container{
+  .container {
     max-width: 821px;
   }
   .nav-tabs {
     border-bottom: none;
-    &:hover{
+    &:hover {
       border-bottom: none;
     }
     a {
       font-size: 0.667em;
-      padding: 1.25em 2.5em;
       font-weight: 600;
+      padding: 1.25em 2.5em;
       @include media-breakpoint-up(md) {
         font-size: 1em;
       }
@@ -284,17 +353,18 @@
   }
   .nav-tabs .nav-link {
     border-bottom: none;
-    text-decoration: none;
     color: #495057;
+    text-decoration: none;
     &.active {
       color: #c10e21;
       text-decoration: underline;
     }
   }
-  .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
+  .nav-tabs .nav-link.active,
+  .nav-tabs .nav-item.show .nav-link {
     background-color: transparent;
     border: none;
-    &:hover{
+    &:hover {
       border-bottom: none;
     }
   }
@@ -304,87 +374,125 @@
   .btn-primary {
     height: 55px;
   }
-  input[type="text"]{
+  input[type="text"] {
     height: 55px;
   }
 }
 
-.landing-participant-search__results, .event-results__company {
+.landing-participant-search__results,
+.event-results__company {
   .btn-primary {
-    width: 200px;
     line-height: 55px;
+    width: 200px;
   }
 }
 
 .landing-video {
-  padding-top: 32px;
   padding-bottom: 32px;
+  padding-top: 32px;
 
   @include media-breakpoint-up(lg) {
-    padding-top: 96px;
     padding-bottom: 96px;
+    padding-top: 96px;
   }
 }
 
 .global-video__wrapper {
-  position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
   height: 0;
+  padding-bottom: 56.25%; /* 16:9 */
+  position: relative;
 
   iframe {
+    height: 100%;
+    left: 0;
     position: absolute;
     top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
+  }
+}
+
+.landing-top-teams {
+  .row {
+    margin-top: -30px;
+
+    @include media-breakpoint-only(sm) {
+      margin-top: -20px;
+    }
+  }
+
+  .col {
+    flex: 0 0 auto;
+    margin-top: 30px;
+    width: 50%;
+
+    @include media-breakpoint-up(sm) {
+      width: 20%;
+    }
+
+    @include media-breakpoint-only(sm) {
+      margin-top: 20px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+
+  .card {
+    padding: 0.5rem;
+  }
+
+  .card-body {
+    padding: 0.5rem 0 0;
+    text-align: center;
   }
 }
 
 .landing-visual-banner {
-  background-image: url('https://www2.heart.org/images/content/pagebuilder/aha-fieldday-landing-banner_2x.jpg');
-  background-size: cover;
-  background-position: top center;
-  margin-top: 32px;
-  margin-bottom: 32px;
-  height: 200px;
-  @include media-breakpoint-up(xl) {
-    height: 300px;
-    margin-top: 86px;
-    margin-bottom: 86px;
-    background-position: center;
-    background-attachment: fixed;
-    height: 700px;
-  }
   background-color: $red;
+  background-image: var(--banner-image, url("https://www2.heart.org/images/content/pagebuilder/aha-fieldday-landing-banner_2x.jpg"));
+  background-position: top center;
+  background-size: cover;
+  height: 200px;
+  margin-bottom: 32px;
+  margin-top: 32px;
+  @include media-breakpoint-up(xl) {
+    background-attachment: fixed;
+    background-position: center;
+    height: 300px;
+    height: 700px;
+    margin-bottom: 86px;
+    margin-top: 86px;
+  }
+  img {
+    display: none;
+  }
 }
-
 
 .global-sponsors {
   width: 95%;
-    h2 {
-      font-size: 1.333em;
-    }
+  h2 {
+    font-size: 1.333em;
   }
+}
 
 .global-promo {
   margin-bottom: 20px;
   .container-fluid {
-    position: relative;
-    z-index: 1;
-    background-image: url('https://www2.heart.org/images/content/pagebuilder/aha-fieldday-landing-promo-mobile_2x.jpg');
-    @include media-breakpoint-up(lg) {
-      background-image: url('https://www2.heart.org/images/content/pagebuilder/aha-fieldday-landing-promo_2x.jpg');
-    }
+    background-image: url("https://www2.heart.org/images/content/pagebuilder/aha-fieldday-landing-promo-mobile_2x.jpg");
+    background-position: cover;
     background-repeat: none;
     background-size: cover;
-    background-position: cover;
     padding: 0 15px;
+    position: relative;
+    z-index: 1;
+    @include media-breakpoint-up(lg) {
+      background-image: url("https://www2.heart.org/images/content/pagebuilder/aha-fieldday-landing-promo_2x.jpg");
+    }
   }
   .btn {
     font-size: 0.875em;
-    text-align: center;
     min-width: 230px;
     padding: 13px;
+    text-align: center;
     @include media-breakpoint-up(md) {
       font-size: 1em;
     }
@@ -392,13 +500,14 @@
 }
 
 .global-promo__wrapper {
-  position: relative;
   padding: 2em 1.5em;
+  position: relative;
+  z-index: 10;
   @include media-breakpoint-up(lg) {
     padding: 4em 3em;
   }
-  z-index: 10;
-  h2, p {
+  h2,
+  p {
     color: #fff;
   }
   h2 {
@@ -418,14 +527,14 @@
     }
   }
 }
-.global-promo__overlay{
+.global-promo__overlay {
+  background: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  left: 0;
+  max-width: 100%;
   position: absolute;
   top: 0;
-  left: 0;
   width: 100%;
-  max-width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
   z-index: -10;
   @include media-breakpoint-up(lg) {
     display: none;
@@ -434,9 +543,9 @@
 
 .global-promo__icon {
   display: block;
-  width: 80px;
   height: auto;
   margin-bottom: 20px;
+  width: 80px;
   @include media-breakpoint-up(lg) {
     width: 120px;
   }

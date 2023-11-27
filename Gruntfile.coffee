@@ -204,7 +204,7 @@ module.exports = (grunt) ->
     ], 'fieldday'
     runTargetedTask [
       'copy'
-    ], 'fieldday-scripts'
+    ], ['fieldday-scripts','fieldday-fonts']
     runTargetedTask [
       'clean'
       'sass'
@@ -281,6 +281,20 @@ module.exports = (grunt) ->
       'htmlmin'
       'imagemin'
     ], 'ym-rewards'
+    runTargetedTask [
+      'clean'
+      'sass'
+      'postcss'
+      'cssmin'
+      'coffee'
+      'uglify'
+      'replace'
+      'htmlmin'
+      'imagemin'
+    ], 'fieldday2023'
+    runTargetedTask [
+      'copy'
+    ], 'fieldday2023-fonts'  
     return
   grunt.registerTask 'dev', ->
     devTasks = [
@@ -338,6 +352,9 @@ module.exports = (grunt) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
     config.watch['ym-rewards'].tasks.forEach (task) ->
+      if task.indexOf('notify:') is -1
+        devTasks.push task
+    config.watch['fieldday2023'].tasks.forEach (task) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
     devTasks.push 'watch'

@@ -144,6 +144,15 @@ module.exports = {
     ]
   },
 
+  "fieldday2023": {
+    files: [
+      {
+        src: 'dist/fieldday2023/css/main.css',
+        dest: 'dist/fieldday2023/css/main.'+ '<%= timestamp %>' +'.min.css'
+      }
+    ]
+  },
+
   "heartwalklawyers": {
     files: [
       {

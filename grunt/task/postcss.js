@@ -209,6 +209,19 @@ module.exports = {
     ]
   },
 
+  "fieldday2023": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/fieldday2023/css/',
+        src: [
+          'main.css'
+        ],
+        dest: 'dist/fieldday2023/css/'
+      }
+    ]
+  },
+
   "heartwalklawyers": {
     files: [
       {

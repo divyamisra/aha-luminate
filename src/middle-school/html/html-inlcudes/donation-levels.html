@@ -74,7 +74,7 @@
       </div>
     </fieldset>
     <div class="alert alert-danger ng-hide" role="alert" ng-show="otherAmtError" aria-hidden="true">
-      Donations of all amounts are greatly appreciated.<br>Online donations have a $10 minimum
+      Online donations have a $10 minimum
     </div>
     <div class="ym-donation-levels__message level{{donationLevel.levelId}}" id="message-level-{{donationLevel.levelId}}" ng-repeat="donationLevel in donationLevels" ng-class="{'active': donationInfo.levelChecked == donationLevel.classLevel}">
       <p>

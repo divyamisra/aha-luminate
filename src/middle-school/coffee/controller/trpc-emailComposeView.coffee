@@ -91,6 +91,8 @@ angular.module 'trPcControllers'
       setEmailMessageBody = (messageBody = '') ->
         if not messageBody or not angular.isString(messageBody)
           messageBody = ''
+        if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
+          messageBody = '<a href="'+luminateExtend.global.path.secure + 'TR?fr_id='+$rootScope.frId+'&pg=personal&px='+$rootScope.participantRegistration.consId+'">Click here to help me reach my goal today!</a>' + messageBody
         $scope.emailComposer.message_body = messageBody
       
       getEmailMessageBody = ->

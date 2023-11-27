@@ -15,7 +15,7 @@ angular.module 'trPcControllers'
     ($rootScope, $scope, $routeParams, $timeout, $sce, $httpParamSerializer, $uibModal, APP_INFO, BoundlessService, NgPcTeamraiserEventService, NgPcTeamraiserEmailService, NgPcContactService) ->
       $scope.messageType = $routeParams.messageType
       $scope.messageId = $routeParams.messageId
-      
+
       $scope.emailPromises = []
       
       # $scope.getMessageCounts = (refresh) ->
@@ -33,7 +33,73 @@ angular.module 'trPcControllers'
       #     if not refresh
       #       $scope.emailPromises.push messageCountPromise
       # $scope.getMessageCounts()
-      
+
+      $scope.copyToClipboard = ->
+        text = document.getElementById('emailComposer-recipients').value
+        console.log('text ' + text)
+        if window.clipboardData and window.clipboardData.setData
+          return clipboardData.setData('Text', text)
+        else if document.queryCommandSupported and document.queryCommandSupported('copy')
+          textarea = document.createElement('textarea')
+          textarea.textContent = text
+          textarea.style.position = 'fixed'
+          document.body.appendChild textarea
+          textarea.select()
+          try
+            alert 'Message copied successfully.'
+            return document.execCommand('copy')
+          catch ex
+            console.warn 'Copy to clipboard failed.', ex
+            return false
+          finally
+            document.body.removeChild textarea
+        return
+
+      $scope.displayMessage = ->
+        messageName = document.getElementById('emailComposerMessages').value;
+        console.log("messageName messageName " + messageName)
+        #document.getElementsByClassName('email-composer-message').style.display = 'none';
+        angular.element('.email-composer-message').css('display','none')
+        document.getElementById(messageName).style.display = 'block';
+
+      $scope.copyMessage = ->
+        #text = document.getElementsByName("message_body");
+        messageName = document.getElementById('emailComposerMessages').value;
+        console.log('messageName ' + messageName)
+        message = document.getElementById(messageName+'-message').innerHTML
+        console.log('message ' + message)
+
+        #CopyToClipboard = (id) ->
+        r = document.createRange()
+        r.selectNode document.getElementById(messageName+'-message')
+        window.getSelection().removeAllRanges()
+        window.getSelection().addRange r
+        alert 'Message copied successfully.'
+        document.execCommand 'copy'
+        window.getSelection().removeAllRanges()
+        return
+        
+        # if window.clipboardData and window.clipboardData.setData
+        #   console.log('window.clipboardData')
+        #   return clipboardData.setData('message', message)
+        # else if document.queryCommandSupported and document.queryCommandSupported('copy')
+        #   console.log('queryCommandSupported')
+        #   textarea = document.createElement('textarea')
+        #   textarea.textContent = message
+        #   textarea.style.position = 'fixed'
+        #   document.body.appendChild textarea
+        #   textarea.select()
+        #   try
+        #     alert 'Message copied successfully.'
+        #     return document.execCommand('copy')
+        #   catch ex
+        #     console.warn 'Copy to clipboard failed.', ex
+        #     return false
+        #   finally
+        #     document.body.removeChild textarea
+        # return
+        
+
       $scope.getContactCounts = ->
         $scope.contactCounts = {}
         contactFilters = [
@@ -90,11 +156,14 @@ angular.module 'trPcControllers'
           prepend_salutation: false
           message_body: ''
           layout_id: if defaultStationeryId isnt '-1' then defaultStationeryId else ''
+          messages: ''
       setEmailComposerDefaults()
-      
+
       setEmailMessageBody = (messageBody = '') ->
         if not messageBody or not angular.isString(messageBody)
           messageBody = ''
+        if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
+          messageBody = '<a href="'+luminateExtend.global.path.secure + 'TR?fr_id='+$rootScope.frId+'&pg=personal&px='+$rootScope.participantRegistration.consId+'">Click here to help me reach my goal today!</a>' + messageBody
         $scope.emailComposer.message_body = messageBody
       
       getEmailMessageBody = ->

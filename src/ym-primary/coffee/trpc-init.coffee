@@ -39,6 +39,10 @@ angular.module 'trPcApp'
         studentRegGoal = Number studentRegGoal
       $rootScope.studentRegGoal = studentRegGoal
       $rootScope.challengeTaken = $embedRoot.data('challenge-taken') if $embedRoot.data('challenge-taken') isnt ''
+      AmountRaised = $embedRoot.data('dollars') or '0'
+      $rootScope.AmountRaised = Number((AmountRaised).replace('$', '').replace(/,/g, ''))
+      
+      $rootScope.usePcEmail = $embedRoot.data('use-pc-email') or ''
   ]
 
 angular.element(document).ready ->

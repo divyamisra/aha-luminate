@@ -307,7 +307,7 @@ angular.module 'ahaLuminateControllers'
         else
           window.setTimeout(findLabel,50);
 
-      findLabel()
+      #findLabel()
 
       $scope.toggleAcceptWaiver = (acceptWaiver) ->
         $scope.acceptWaiver = acceptWaiver
@@ -342,17 +342,18 @@ angular.module 'ahaLuminateControllers'
         false
 
       $scope.getTeacherList = () ->
-        selectedGrade = $scope.registrationInfo[$scope.registrationCustomQuestions.ym_khc_grade]
-        if selectedGrade == ""
-          selectedGrade = "1st"
-        $scope.teachersByGrade = []
-        teachersByGrade = []
-        teachersFound = []
-        angular.forEach $scope.teachers, (teacher) ->
-          if not teachersFound[teacher.teacher_name]
-            teachersByGrade.push teacher_name: teacher.teacher_name
-          teachersFound[teacher.teacher_name] = teacher.teacher_name
-        $scope.teachersByGrade = teachersByGrade
+        if typeof $scope.registrationCustomQuestions != 'undefined'
+          selectedGrade = $scope.registrationInfo[$scope.registrationCustomQuestions.ym_khc_grade]
+          if selectedGrade == ""
+            selectedGrade = "1st"
+          $scope.teachersByGrade = []
+          teachersByGrade = []
+          teachersFound = []
+          angular.forEach $scope.teachers, (teacher) ->
+            if not teachersFound[teacher.teacher_name]
+              teachersByGrade.push teacher_name: teacher.teacher_name
+            teachersFound[teacher.teacher_name] = teacher.teacher_name
+          $scope.teachersByGrade = teachersByGrade
 
       BoundlessService.getTeachersBySchool $scope.companyId
       .then (response) ->

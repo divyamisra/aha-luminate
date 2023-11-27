@@ -3,56 +3,42 @@
     margin-bottom: 60px;
 
     .greeting-header {
-      background-image: url("https://secure3.convio.net/heartdev/images/content/pagebuilder/TOI-Nominee-BG.png");
-      background-repeat: no-repeat;
-      background-size: 100%;
-      background-position: 0;
+      position: relative;
 
-      @include media-breakpoint-down(md) {
-        background-image: url("https://secure3.convio.net/heartdev/images/content/pagebuilder/TOI-Nominee-BG-short.png");
-        background-position: bottom;
-        background-size: cover;
+      > img {
+        height: 100%;
+        object-fit: cover;
+        object-position: bottom;
+        position: absolute;
+        width: 100%;
       }
 
       .transparent-bars {
         background: radial-gradient(circle, rgba(255, 255, 255, 1) 31%, rgba(255, 255, 255, 0) 100%);
-
-        // &:after {
-        //   content: "";
-        //   width: 30%;
-        //   height: 10px;
-        //   background: #c10e21ba;
-        //   display: block;
-        //   position: absolute;
-        //   align-self: baseline;
-        //   right: 0;
-        //   @include media-breakpoint-down(md) {
-        //     display: none;
-        //   }
-        // }
+        position: relative;
 
         .event-info-banner {
-          width: 45%;
-          padding-top: 35%;
-          background-image: url("https://secure3.convio.net/heartdev/images/content/pagebuilder/TOI-Teen.png");
-          background-size: cover;
+          background-image: url("https://secure3.convio.net/heartdev/images/content/pagebuilder/TOI-Teen-Banner.png");
           background-position: left;
           background-repeat: no-repeat;
+          background-size: cover;
+          padding-top: 35%;
+          width: 45%;
           z-index: 1;
           @include media-breakpoint-down(md) {
             padding-top: 38%;
             width: 54%;
           }
           @include media-breakpoint-down(sm) {
-            width: 100%;
             padding-top: 100%;
+            width: 100%;
           }
         }
 
         .event-info {
+          flex: 50% 0 0;
           margin: 0;
           margin-left: 2rem;
-          flex: 50% 0 0;
           @include media-breakpoint-down(md) {
             flex: 44% 0 0;
             margin-top: 2rem;
@@ -61,33 +47,14 @@
           .event-info__header {
             width: fit-content;
 
-            //h1 {
-            //  font-size: 32px;
-            //  font-weight: bold;
-            //  font-family: "LubDubBold", Helvetica, Arial, sans-serif;
-            //  letter-spacing: 3px;
-            //  @include media-breakpoint-up(sm) {
-            //    font-size: calc(32px + 28 * ((100vw - 768px) / (3960 - 1536)));
-            //  }
-
-            //  span.event-info__header-last-word {
-            //    font-size: 73px;
-            //    letter-spacing: 1px;
-            //    line-height: 73px;
-            //    font-family: "LubDubHeavy", Helvetica, Arial, sans-serif;
-            //    @include media-breakpoint-up(sm) {
-            //      font-size: calc(73px + 73 * ((100vw - 768px) / (3960 - 1536)));
-            //    }
-            //  }
-            //}
             h1 {
+              font-family: LubDubHeavy, Helvetica, Arial, sans-serif;
               font-size: 64px;
+              font-weight: 900;
               letter-spacing: 1px;
               line-height: 73px;
-              font-family: LubDubHeavy, Helvetica, Arial, sans-serif;
               line-height: 1;
               max-width: 4em;
-              font-weight: 900;
 
               @media screen and (min-width: 400px) {
                 font-size: 73px;
@@ -98,10 +65,10 @@
               }
 
               &:first-line {
-                font-size: 0.5em;
-                font-family: LubDubBold, Helvetica, Arial, sans-serif;
-                font-weight: 700;
                 color: $dark;
+                font-family: LubDubBold, Helvetica, Arial, sans-serif;
+                font-size: 0.5em;
+                font-weight: 700;
               }
             }
             h2 {
@@ -122,10 +89,10 @@
               }
 
               &.btn {
-                padding: 1rem;
                 font-size: 1.5rem;
-                min-width: 10em;
                 max-width: 100%;
+                min-width: 10em;
+                padding: 1rem;
 
                 &.btn-primary {
                   background-color: $red-deep;
@@ -141,8 +108,8 @@
     }
     // End greeting-header
     .greeting-about {
-      padding-top: 0;
       padding-bottom: 36px;
+      padding-top: 0;
 
       h2 {
         color: $red;
@@ -199,30 +166,112 @@
       position: relative;
 
       &:after {
-        content: " ";
         background-color: #c10e21de;
-        width: 129px;
-        height: 71px;
-        display: block;
-        position: absolute;
         bottom: 125px;
+        content: " ";
+        display: block;
+        height: 71px;
+        position: absolute;
+        width: 129px;
 
         @include media-breakpoint-down(md) {
           display: none;
         }
       }
+
       .container {
         .movement-copy {
-          box-shadow: 0 1rem 11rem 10rem #fff;
           background-color: #fff;
+          box-shadow: 0 1rem 11rem 10rem #fff;
 
           p {
             font-weight: 600;
           }
         }
       }
+
+      figcaption {
+        bottom: 0;
+        min-width: 10rem;
+        right: 16.6666%;
+        width: 50%;
+
+        > div {
+          &:first-child {
+            font-weight: 900;
+          }
+
+          &:last-child {
+            font-weight: 600;
+          }
+        }
+      }
     }
     // End movement-section
+
+    #social-feed {
+      .row {
+        @media (min-width: 768px) {
+          max-width: 56rem;
+        }
+      }
+
+      [class*="col"] {
+        @media (max-width: 767px) {
+          margin-bottom: 2rem;
+        }
+      }
+
+      .card-body {
+        word-break: keep-all;
+      }
+
+      h3 {
+        align-items: center;
+        background-color: #fff;
+        border-radius: 50%;
+        color: #900;
+        display: inline-flex;
+        font-size: 1.3333rem;
+        justify-content: center;
+        margin-bottom: 0.75rem;
+        text-transform: uppercase;
+
+        &::before {
+          content: "";
+          float: left;
+          padding-top: 100%;
+        }
+
+        &::after {
+          clear: both;
+          content: "";
+          display: block;
+        }
+
+        > span {
+          line-height: 1.2;
+          width: 11rem;
+
+          &:first-line {
+            font-size: 2.25em;
+          }
+        }
+      }
+
+      p {
+        font-size: 0.95rem;
+        font-weight: inherit;
+        line-height: 1.3333;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 22rem;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
   }
   // End main
 }

@@ -373,7 +373,53 @@ module.exports = {
       },
       {
         expand: true,
-        cwd: 'dist/fieldday/image/',
+        cwd: 'dist/fieldday/img/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/fieldday/webfonts/',
+        src: [
+          '**/*'
+        ]
+      }
+    ]
+  },
+  "fieldday2023": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/fieldday2023/css/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/fieldday2023/js/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/fieldday2023/html/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/fieldday2023/webfonts/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/fieldday2023/image/',
         src: [
           '**/*'
         ]

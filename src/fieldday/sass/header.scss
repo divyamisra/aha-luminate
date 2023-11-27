@@ -4,8 +4,14 @@ header {
   background-repeat: no-repeat;
   background-position: right top;
   background-size: 70%;
-
+  position: sticky;
+  top: 0;
+  z-index: 1030;
   .container {
-    max-width: 1350px!important;
+    max-width: 1350px !important;
+  }
+
+  ul.navbar-nav .dropdown-item:focus {
+    outline-color: #000;
   }
 }

@@ -7,25 +7,25 @@
             <strong>{{filterName}}</strong> <span class="caret"></span>
           </button>
           <ul class="list-unstyled dropdown-menu" uib-dropdown-menu>
-            <li>
+            <li ng-show="usePcEmail">
               <a ng-href="{{baseUrl}}#/email/compose">
                 Compose
               </a>
             </li>
-            <li class="divider"></li>
-            <li>
+            <li class="divider" ng-show="usePcEmail"></li>
+            <li ng-show="usePcEmail">
               <a ng-href="{{baseUrl}}#/email/message/draft/list">
                 <span class="badge">{{messageCounts.drafts}}</span>
                 Drafts
               </a>
             </li>
-            <li>
+            <li ng-show="usePcEmail">
               <a ng-href="{{baseUrl}}#/email/message/sentMessage/list">
                 <span class="badge">{{messageCounts.sentMessages}}</span> 
                 Sent Messages
               </a>
             </li>
-            <li class="divider"></li>
+            <li class="divider" ng-show="usePcEmail"></li>
             <li>
               <a ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_all/list">
                 <span class="badge">{{contactCounts.email_rpt_show_all}}</span>
@@ -126,10 +126,10 @@
         </div>
       </div>
       <div class="hidden-xs">
-        <a class="btn btn-secondary form-control" ng-href="{{baseUrl}}#/email/compose">
+        <a class="btn btn-secondary form-control" ng-href="{{baseUrl}}#/email/compose" ng-show="usePcEmail">
           <strong>Compose</strong>
         </a>
-        <div class="list-group ng-pc-nav-list-group">
+        <div class="list-group ng-pc-nav-list-group" ng-show="usePcEmail">
           <a class="list-group-item" ng-href="{{baseUrl}}#/email/message/draft/list">
             <span class="badge">{{messageCounts.drafts}}</span> 
             Drafts
