@@ -394,11 +394,13 @@
 
 	    $('label:contains(Cover Fee)').closest('.form-input-label-block').remove();
 
-	    $('label[for=cover_fee_radio_Yes]').html($('label[for=cover_fee_radio_Yes]').html().replace("[amt]","<span class='feeVal'>$0</span>"));
+	    if ($('label[for=cover_fee_radio_Yes]').length > 0) {
+        $('label[for=cover_fee_radio_Yes]').html($('label[for=cover_fee_radio_Yes]').html().replace("[amt]","<span class='feeVal'>$0</span>"));
             if (getDonationAmount() > 0) {
-	       var feeVal = parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
-	       $('.feeVal').html("$"+feeVal.toFixed(2));
-	    }
+	         var feeVal = parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
+	         $('.feeVal').html("$"+feeVal.toFixed(2));
+	      }
+      }
 	    if (getDonationAmount() > 0 && $('#cover_fee_radio_Yes').is(':checked')) {
                var initAmt = parseFloat(getDonationAmount());
                var toDonate =  initAmt + parseFloat((getDonationAmount() * 0.029 + .30).toFixed(2));
