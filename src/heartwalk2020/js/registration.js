@@ -1525,7 +1525,7 @@
                 $('#part_type_individual_company_selection_container .input-container .hint-text').show();
               }
               else {
-                $('#part_type_individual_company_selection_container .input-container .hint-text').show();
+                $('#part_type_individual_company_selection_container .input-container .hint-text').hide();
               }
             })
 
