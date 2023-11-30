@@ -1515,8 +1515,19 @@
             $('#part_type_donation_level_input_container').wrapInner('<fieldset role="radiogroup" class="donation-form-fields" aria-label="Donation Amounts" aria-required="true" />');
             $('.donation-form-fields').prepend('<legend class="sr-only">Donate Towards Your Goal Now</legend>');
 
-            /* Alter company selection location */
-            $('#part_type_individual_company_selection_container .input-container').prepend("<span class='hint-text'>Choose your company below. If your company does not show up, you can skip this step.</span>");
+            /* Alter company selection location and hide hint until checkbox is checked */
+            //$('#part_type_individual_company_selection_container .input-container').prepend("<span class='hint-text'>Choose your company below. If your company does not show up, you can skip this step.</span>");
+            $('#part_type_individual_company_selection_container .input-container').append("<span class='hint-text'>Choose your company below. If your company does not show up, you can skip this step.</span>");
+            $('#part_type_individual_company_selection_container .input-container .hint-text').hide();
+            $('#part_type_company_selection').click(function(){
+              if ($(this).is(':checked') ) {
+                $('#part_type_individual_company_selection_container .input-container .hint-text').show();
+              }
+              else {
+                $('#part_type_individual_company_selection_container .input-container .hint-text').hide();
+              }
+            })
+
 
             /* setup form validation - additional donation amount must be >= $25 */
             $('input[name^=donation_level_form_input]').addClass("validDonation").attr("title", "Your donation needs to be at least $25.");
