@@ -485,6 +485,12 @@
               var teams = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team)
 
               $(teams).each(function (i, team) {
+                var proxyType = '20'
+                var proxyId = team.captainConsId
+                var captainDonateUrl = team.teamDonateURL
+                  .replace(/(PROXY_ID=).*?(&)/, '$1' + proxyId + '$2')
+                  .replace(/(PROXY_TYPE=).*?(&)/, '$1' + proxyType + '$2')
+
                 if (screenWidth >= 768) {
                   $('.js--team-results-rows').append(
                     '<tr' +
@@ -494,7 +500,7 @@
                       '">' +
                       team.name +
                       '</a></td><td></td><td></td><td></td><td class="col-cta text-right"><a href="' +
-                      team.teamDonateURL +
+                      captainDonateUrl +
                       '" class="btn btn-primary btn-block btn-rounded" title="Donate to ' +
                       team.name +
                       '" aria-label="Donate to ' +
@@ -517,7 +523,7 @@
                         '&pg=entry">' +
                         team.eventName +
                         '</a></td></tr><tr><td colspan="2" class="text-center"><a href="' +
-                        team.teamDonateURL +
+                        captainDonateUrl +
                         '" class="btn btn-primary btn-block btn-rounded" title="Donate to ' +
                         team.name +
                         '" aria-label="Donate to ' +
