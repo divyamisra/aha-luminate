@@ -1520,7 +1520,6 @@
             $('#part_type_individual_company_selection_container .input-container').append("<span class='hint-text'>Choose your company below. If your company does not show up, you can skip this step.</span>");
             $('#part_type_individual_company_selection_container .input-container .hint-text').hide();
             $('#part_type_company_selection').click(function(){
-              console.log('is this checked: ' + $(this).is(':checked'));
               if ($(this).is(':checked') ) {
                 $('#part_type_individual_company_selection_container .input-container .hint-text').show();
               }
