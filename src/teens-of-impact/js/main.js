@@ -499,6 +499,12 @@
               console.log('teams results ', teams)
 
               $(teams).each(function (i, team) {
+                var proxyType = '20'
+                var proxyId = team.captainConsId
+                var captainDonateUrl = team.teamDonateURL
+                  .replace(/(PROXY_ID=).*?(&)/, '$1' + proxyId + '$2')
+                  .replace(/(PROXY_TYPE=).*?(&)/, '$1' + proxyType + '$2')
+
                 if (screenWidth >= 768) {
                   if ($('body').hasClass('pg_search_list')) {
                     $('.js--team-results-rows').append(
@@ -519,7 +525,7 @@
                         '">' +
                         team.name +
                         '</a></td><td></td><td></td><td></td><td class="col-cta text-right event-status-switch"><a href="' +
-                        team.teamDonateURL +
+                        captainDonateUrl +
                         '" class="btn btn-primary btn-block btn-rounded" title="Donate to ' +
                         team.name +
                         '" aria-label="Donate to ' +
@@ -556,7 +562,7 @@
                           '</a></td></tr><tr' +
                           (i > 10 ? ' class="d-none"' : '') +
                           '><td colspan="2" class="text-center event-status-switch"><a href="' +
-                          team.teamDonateURL +
+                          captainDonateUrl +
                           '" class="btn btn-primary btn-block btn-rounded" title="Donate to ' +
                           team.name +
                           '" aria-label="Donate to ' +
