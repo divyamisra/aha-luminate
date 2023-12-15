@@ -144,6 +144,15 @@ module.exports = {
     ]
   },
 
+  "fieldday2023": {
+    files: [
+      {
+        src: 'dist/fieldday2023/css/main.css',
+        dest: 'dist/fieldday2023/css/main.'+ '<%= timestamp %>' +'.min.css'
+      }
+    ]
+  },
+
   "heartwalklawyers": {
     files: [
       {
@@ -222,6 +231,14 @@ module.exports = {
       {
         src: 'dist/teens-of-impact/css/donation.css',
         dest: 'dist/teens-of-impact/css/donation.'+ '<%= timestamp %>' +'.min.css'
+      }
+    ]
+  },
+  "ym-rewards": {
+    files: [
+      {
+        src: 'dist/ym-rewards/css/main.css',
+        dest: 'dist/ym-rewards/css/main.'+ '<%= timestamp %>' +'.min.css'
       }
     ]
   }

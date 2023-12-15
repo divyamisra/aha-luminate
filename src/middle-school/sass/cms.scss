@@ -20,4 +20,11 @@
       color: $event-secondary-medium;
     }
   }
+  .img-responsive {
+    margin: 0 auto 10px;
+    
+    @media (min-width: $screen-sm-min) {
+      margin: 0 auto 10px;
+    }
+  }
 }

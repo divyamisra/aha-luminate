@@ -209,6 +209,19 @@ module.exports = {
     ]
   },
 
+  "fieldday2023": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/fieldday2023/css/',
+        src: [
+          'main.css'
+        ],
+        dest: 'dist/fieldday2023/css/'
+      }
+    ]
+  },
+
   "heartwalklawyers": {
     files: [
       {
@@ -277,6 +290,18 @@ module.exports = {
           'donation.css'
         ],
         dest: 'dist/teens-of-impact/css/'
+      }
+    ]
+  },
+  "ym-rewards": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/ym-rewards/css/',
+        src: [
+          'main.css'
+        ],
+        dest: 'dist/ym-rewards/css/'
       }
     ]
   }

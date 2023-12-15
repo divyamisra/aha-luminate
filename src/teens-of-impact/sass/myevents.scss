@@ -16,7 +16,7 @@ body.myevents-page{
     font-size: 1.2rem;
     margin-bottom: 20px;
     border-radius: 7px;
-	  
+    
     .btn {
        display:block;
        font-size:1.2rem;
@@ -35,11 +35,11 @@ body.myevents-page{
     background-clip: padding-box;
     color: #fff;
     border: none;
-    font-family: LubDubMedium,Helvetica,Arial,sans-serif !important;
+    font-family: 'Montserrat', arial, sans-serif;
     margin-right: 10px;
     margin-top:10px;
   }
-	
+  
   .myevents-container {
     padding: 40px;
     @media (max-width:767px) {
@@ -50,8 +50,8 @@ body.myevents-page{
     box-shadow: 3px 4px 4px #ccc;
     border-radius: 5px;
     font-size: 14px;
-    font-family: LubDubMedium,Helvetica,Arial,sans-serif;
-	  
+    font-family: 'Montserrat', arial, sans-serif;
+    
     table.lc_Table {
        border:none;
     }

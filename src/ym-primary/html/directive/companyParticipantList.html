@@ -1,4 +1,4 @@
-<li class="ym-donor-list__row" ng-repeat="participant in participants" role="listitem">
+<li class="ym-donor-list__row" ng-repeat="participant in participants" role="listitem" tabindex="0" aria-label="{{participant.fullName}} raised {{participant.amountRaisedFormatted}}">
   <span class="ym-donor-list__row--name"><span ng-bind-html="participant.fullName"></span></span>
   <span class="ym-donor-list__row--amount">{{participant.amountRaisedFormatted}}</span>
   <div class="clearfix"></div>

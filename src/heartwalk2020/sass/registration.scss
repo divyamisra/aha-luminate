@@ -1,5 +1,7 @@
 @import "variables.scss";
 @import "mixins.scss";
+@import "ptype-page-steps.scss";
+@import "reg-page-steps.scss";
 
 // Heat Walk 2020 TeamRaiser Registration SCSS
 /*
@@ -52,6 +54,7 @@ main {
 	outline: 2px solid $red;
 }
 
+#uType p.h3.ObjTitle,
 h1#pt_title_container,
 h2#pt_title_container,
 h1.ObjTitle {
@@ -190,7 +193,14 @@ legend {border-bottom: 0;}
 .heart-page-container {
   background-color: #ffffff;
 }
-div.responsive a.next-step, div.responsive button.next-step, div.responsive button.action-button, div.responsive a.step-button, div.responsive button.step-button, div.responsive input.step-button {
+div.responsive a.next-step,
+div.responsive button.next-step,
+div.responsive button.action-button,
+div.responsive a.step-button,
+div.responsive button.step-button,
+div.responsive input.step-button,
+.btn-social-login.btn-facebook,
+.btn-social-login.btn-amazon {
     min-width: 190px;
     height: 60px;
     padding: 0 20px;
@@ -198,40 +208,41 @@ div.responsive a.next-step, div.responsive button.next-step, div.responsive butt
     font-size: 24px;
     font-weight: 400;
     background: none;
-    background-color: #d01d20 !important;
+    background-color: #d01d20;
     color: #ffffff;
     text-decoration: none;
 }
-
 div.responsive button.step-button,
 div.responsive .donation-level-row-container.donation-amt .donation-level-row-decoration-container,
-div.responsive .survivor_yes_no .input-container {
+div.responsive .survivor_yes_no .input-container,
+.btn-social-login.btn-facebook,
+.btn-social-login.btn-amazon {
     border-radius: 60px 60px 60px 60px;
     background-clip: padding-box;
     color: #fff;
     border: none;
     font-family: LubDubMedium,Helvetica,Arial,sans-serif!important;
-    margin-right:10px;
+    margin-right: 10px;
 }
-div.responsive button.step-button:hover {
+div.responsive button.step-button:hover,
+.btn-social-login.btn-facebook:hover,
+.btn-social-login.btn-amazon:hover,
+div.responsive button.step-button:focus,
+.btn-social-login.btn-facebook:focus,
+.btn-social-login.btn-amazon:focus{
     background: #900 !important;
     color: #fff;
 }
 div.responsive button#another_button {
-	text-transform: capitalize;
+    text-transform: capitalize;
 }
 div.responsive .donation-level-row-container.donation-amt .donation-level-row-decoration-container,
-div.responsive .survivor_yes_no .input-container{
-    border-radius: 60px 60px 60px 60px;
-    background-clip: padding-box;
-    color: #fff;
-    border: none;
-    font-family: LubDubMedium,Helvetica,Arial,sans-serif!important;
-    margin-right:10px;
+div.responsive .survivor_yes_no .input-container {
     background: #fff;
     color: #000;
     border: 2px solid #000;
-    position:relative;
+    position: relative;
+    //outline: none;
 }
 div.responsive .survivor_yes_no .input-container input[type=radio] {
     position: absolute;
@@ -419,7 +430,7 @@ div.registration-page-container div.section-container {
  color:#495057;
  background-color:#fff;
  background-clip:padding-box;
- border:1px solid #3c3c3c;
+ border:1px solid #3c3c3c !important;
  border-radius:0;
  -webkit-transition:border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
  transition:border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
@@ -443,13 +454,12 @@ div.registration-page-container div.section-container {
 .app_tr_registration div.responsive select:focus,
 .app_tr_registration div.responsive textarea:focus,
 .form-control:focus {
- color:#495057;
- background-color:#fff;
- border-color:#f35b6b;
- outline:0;
- -webkit-box-shadow:0 0 0 .2rem rgba(193,14,33,.25);
- box-shadow:0 0 0 .2rem rgba(193,14,33,.25)
+  color:#495057;
+  background-color:#fff;
+  outline-offset: 0.4rem;
+  outline: 0.2rem solid #000;
 }
+
 .app_tr_registration div.responsive input[type=email]::-webkit-input-placeholder,
 .app_tr_registration div.responsive input[type=number]::-webkit-input-placeholder,
 .app_tr_registration div.responsive input[type=password]::-webkit-input-placeholder,
@@ -598,39 +608,21 @@ div#user_type_login_email_container #user_type_login_email_button {
 	display:none;
 }
 
-.loginText a {
-	text-decoration: none;
-	text-align: center;
-	max-width: 300px;
-	display: flex;
-	font-size: 14px;
-	margin: 0 auto;
-}
-.btn-social-login.btn-facebook,
-.btn-social-login.btn-amazon {
-	width: 49%;
-	background: #000;
-	color: #fff;
-	padding: 15px 25px;
-	border-radius: 5px;
-  margin-right: 5px;
-}
-.btn-social-login.btn-facebook {
-	background: #445DB5;
-}
-.btn-social-login.btn-amazon {
-	background: #000;
-}
+/*** social-login  ***/
+div.social-login-container {
+    width: 100%;
 
-.btn-social-login i {
-	display: block;
-	font-size: 1.7em;
-	margin-bottom: 10px;
-}
+    a.janrainEngage {
+        text-decoration: none;
 
+        .btn-social-login {
+            margin-bottom: 20px;
+            white-space: nowrap;
+        }
+    }
+}
 
 /*** ptype  ***/
-
 .registration-page-container .section-header-text {
   font-weight: 600;
   margin-top: 20px;
@@ -649,6 +641,7 @@ div#participation_options_page input,
 div#participation_options_page select {
     margin-left: 0;
     max-width: 400px;
+    //outline: none;
 }
 div.required-indicator-legend {
     text-align: left;
@@ -662,6 +655,11 @@ div.required-indicator-legend {
 
 div#part_type_individual_company_selection_container {
   margin: 30px 0 !important;
+
+  @media (max-width:767px) {
+    margin-top: 0!important;
+
+  }
 }
 
 a.step-button.previous-step.backBtnReg {
@@ -2000,4 +1998,17 @@ div.required-indicator-legend {
     #fr_informational_page {
         padding: 0 1em;
     }
+}
+
+div#registration-ptype-page-steps button.btn-secondary:focus,
+div#registration-ptype-page-steps button.btn-secondary:hover,
+div#registration-ptype-page-steps button.btn-secondary:active,
+button.js__reg-page-prev-step:focus,
+button.js__reg-page-prev-step:hover,
+button.js__reg-page-prev-step:active   {
+    color: #fff !important;
+    box-shadow: none!important;
+    outline-offset: 0.4rem;
+    outline: 0.2rem solid #000;
+    border: solid 2px #900!important;
 }

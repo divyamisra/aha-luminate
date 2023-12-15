@@ -64,3 +64,10 @@
     display: none;
   }
 }
+
+.js--header-participant-search,
+.js--header-team-search {
+  .form-control {
+    border-color: $gray-500;
+  }
+}

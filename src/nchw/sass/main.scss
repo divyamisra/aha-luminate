@@ -400,3 +400,287 @@ a.unslider-arrow, .unslider-nav {
     width: 80%;
   }
 }
+
+
+
+.pg_teamlist {
+
+  .d-none {
+    display: none!important;
+  }
+
+  @media (min-width: 768px) {
+    .d-md-none {
+      display: none!important;
+    }
+  }
+
+  .button {
+    background-color: #ab0300;
+    border: 1px solid #ab0300;
+    color: white!important;
+    padding: 0 40px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    right: 0;
+    line-height: 43px;
+    font-size: 18px;
+    font-weight: bold;
+    height: 45px;
+    margin: 20px auto 5px;
+  }
+  
+}
+
+
+
+.pg_teamlist,
+.pg_topparticipantlist {
+
+  div.tr-page-main-content {
+    width: 100%!important;
+    margin: 0;
+    padding: 10px;
+
+
+    #top_participant_list_container,
+    #top_team_list_container {
+      display:none;
+    }
+
+    .row {
+      margin-right: 0;
+      margin-left: 0;
+    }
+
+    .js--participant-results-container,
+    .js--team-results-container{
+      padding-left: 0;
+      margin-left: -5px;
+
+      @media (max-width: 767px) {
+        margin-top: 25px;
+      }
+      
+    }
+  }
+
+  @media only screen and (min-width: 768px) and (max-width: 991px) {
+
+    .mobile div.tr-page-container div#team_page_main_content, 
+    .mobile div.tr-page-container div.tr-page-main-content,
+    .mobile div.tr-page-container #main_container {
+      width: 100%!important;
+    }
+  }
+
+
+  .d-none {
+    display: none!important;
+  }
+
+  @media (min-width: 768px) {
+    .d-md-none {
+      display: none!important;
+    }
+  }
+
+  .input-group input {
+    display: inline-block;
+    width: 32%;
+    padding: 7px!important;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+
+  #teamNameSearch {
+    width: 60%;
+  }
+
+  .input-group-append {
+    display: inline-block;
+  }
+
+  @media (max-width: 767px) {
+    .input-group input,
+    #teamNameSearch {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+  }
+
+  p,
+  div.responsive a:link,
+  div.responsive a:link:visited,
+  .js--num-participant-results,
+  .js--num-team-results {
+    font-size: 18px;
+  }
+
+  a.btn,
+  a.btn:visited,
+  .btn-primary {
+    background: #c10e21 url(../images/ga/btn_primary.gif) no-repeat 0px 0px;
+    border: 1px solid #c10e21;
+    font-size: 18px;
+  }
+
+  @media (max-width: 767px) {
+
+    a.btn,
+    a.btn:visited,
+    .btn-primary {
+      width: 100%;
+    }
+
+    div.mobile-view-description {
+      height: auto;
+    }
+  }
+
+
+}
+
+.table {
+  &.dataTable {
+    thead {
+      th {
+        &:hover {
+          cursor:pointer;
+        }
+      }
+      .sorting {
+        background-image:none;
+        &:after {
+          font-family: 'Font Awesome 5 Free';
+          content: "\f0dc";
+          font-weight: 800;
+          margin-left: 10px;
+        }
+      }
+      .sorting_desc {
+        background-image:none;
+        &:after {
+          font-family: 'Font Awesome 5 Free';
+          content: "\f0de";
+          font-weight: 800;
+          margin-left: 10px;
+        }
+      }
+      .sorting_asc {
+        background-image:none;
+        &:after {
+          font-family: 'Font Awesome 5 Free';
+          content: "\f0dd";
+          font-weight: 800;
+          margin-left: 10px;
+        }
+      }
+    }
+
+    th, td {
+      padding: 1.6rem;
+    }
+  }
+}
+.invalid-feedback {
+  &.filled {
+    display:block;
+  }
+} 
+
+
+.table {
+
+  .js--participants-results-rows.mobile,
+  .js--team-results-rows.mobile {
+    table {
+      width: 100%;
+    }
+
+    td {
+      font-size: 18px;
+    }
+
+    tr:nth-child(3) > td:nth-child(2) {
+      text-align: right;
+    }
+  }
+
+  &.dataTable {
+    &.no-footer {
+      border-top:none;
+      border-bottom:none;
+    }
+    thead {
+      th {
+        position:relative;
+        color:#636466;
+        border-bottom:2px solid #636466;
+        font-size: 18px;
+        font-weight: normal;
+      }
+      tr > th:last-child {
+        font-weight:normal;
+        font-style:italic;
+      }
+      tr > th:nth-child(3) {
+        text-align: right;
+      }
+    }
+    tbody {
+      td {
+        color: #c10e21;
+        border-bottom:1px solid #636466;
+        //max-width:100px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: top;
+        padding: 20px 15px 15px;
+        font-size: 18px;
+        &.col-cta {
+          text-align:center;
+
+        }
+        @media (max-width: 767px) {
+          max-width:100%;
+          width:100%;
+          border-bottom:none;
+          padding:5px 0;
+          white-space: pre-wrap;
+        }
+      }
+
+      tr > td:nth-child(3) {
+        text-align: right;
+      }
+
+    }
+  }
+
+  .btn-rounded {
+    font-size:18px;
+    font-weight:bold;
+    text-align:center;
+  }
+}
+
+.dataTables_filter {
+  label {
+    width:100%;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    font-size:13px;
+  }
+}
+.dataTables_info {
+  font-size:13px;
+}
+
+
+
+

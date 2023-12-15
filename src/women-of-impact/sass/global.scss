@@ -4,33 +4,33 @@ body {
 }
 
 main {
-    padding: 0;
+  padding: 0;
 }
-@media (max-width:767px) {
+@media (max-width: 767px) {
   main {
     padding: 0;
   }
 }
 @media (min-width: 1200px) {
-     main .content {
-         margin: 0 auto;
-    }
+  main .content {
+    margin: 0 auto;
+  }
 }
- main > .container {
-     background-color: #ffffff;
-     padding: 40px 20px !important;
+main > .container {
+  background-color: #ffffff;
+  padding: 40px 20px !important;
 }
 
-@media (max-width:767px) {
-   main > .container {
-     padding-top: 10px !important;
-   }
+@media (max-width: 767px) {
+  main > .container {
+    padding-top: 10px !important;
+  }
 }
 
 a {
   color: $red;
   text-decoration: underline;
-  &:focus{
+  &:focus {
     outline: 2px solid $outline-blue;
     outline-offset: 2px;
     p {
@@ -56,9 +56,44 @@ a {
   background-color: $gray-100;
 }
 
-h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, strong {
+.bg-blue {
+  background-color: #36c9c6;
+}
+
+.bg-red {
+  background-color: #fe424b;
+}
+
+h1,
+.h1,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+strong {
   font-family: $font-family-bold;
   font-weight: bold;
+}
+
+h2,
+.h2 {
+  font-size: 46px;
+  font-weight: 300;
+}
+
+P,
+LI,
+OL,
+UL,
+TABLE,
+TR,
+TH,
+TD,
+.Explicit {
+  font-family: "Montserrat", arial, sans-serif;
+  font-weight: 400;
 }
 
 ul {
@@ -73,21 +108,29 @@ ul {
   color: $red;
 }
 
+.text-red-deep {
+  color: $red-deep;
+}
+
+.bg-red-deep {
+  background-color: $red-deep;
+}
+
 img {
   max-width: 100%;
 }
 
 .box-shadow {
-  @include box-shadow(0px, 15px, 30px, rgba(0,0,0,0.2));
+  @include box-shadow(0px, 15px, 30px, rgba(0, 0, 0, 0.2));
 }
 
 .information-box {
-  width: 100%;
   margin: 0;
+  padding: 0 !important;
+  width: 100%;
   @include media-breakpoint-up(md) {
-      @include box-shadow(0px, 15px, 30px, rgba(0,0,0,0.2));
+    @include box-shadow(0px, 15px, 30px, rgba(0, 0, 0, 0.2));
   }
-  padding: 0!important;
 
   .information-box__content {
     padding: 80px 25px 0;
@@ -96,19 +139,19 @@ img {
     }
   }
   .information-box__name {
-      padding: 17px 65px 9px 73px;
-      display: flex;
-      flex-direction: column;
-      @include media-breakpoint-up(md) {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-      }
+    display: flex;
+    flex-direction: column;
+    padding: 17px 65px 9px 73px;
+    @include media-breakpoint-up(md) {
+      align-items: center;
+      flex-direction: row;
+      justify-content: space-between;
+    }
 
-      h1 {
-        display: block;
-        margin: 0!important;
-      }
+    h1 {
+      display: block;
+      margin: 0 !important;
+    }
   }
   .information-box__team-members {
     color: $red;
@@ -119,60 +162,58 @@ img {
   }
 
   h1 {
+    color: $red;
     font-size: 2rem;
     margin: 0 0 5px;
-    color: $red;
 
     .badges-container {
-      margin: -9px 0 0 36px;
       float: left;
+      margin: -9px 0 0 36px;
 
       svg {
         display: block;
         float: left;
-        width: 76px;
         margin: 0 15px 0 0;
+        width: 76px;
       }
     }
   }
 
   .donation-amounts {
-    padding: 0 13px;
     margin-bottom: 50px;
+    padding: 0 13px;
 
     .custom-amount {
+      background-color: #fff;
       //margin: -20px 0 0 0;
       border: solid 2px #000;
+      border-radius: 25px;
       color: #000;
-      background-color: #fff;
-      padding: 11px 0;
       float: left;
       margin: 0 1% 0 0;
-      position: relative;
-      border-radius: 25px;
       max-height: 50px;
+      padding: 11px 0;
+      position: relative;
       label {
         font-size: 1rem;
+        line-height: 1;
         margin: 0;
         padding-left: 23px;
         padding-right: 14px;
-        line-height: 1;
-        text-align: left;;
+        text-align: left;
       }
       input.js--personal-amt-other {
-        width: 100px;
         background-color: #f8f9fa;
         height: 40px;
+        width: 100px;
       }
       .other-amt-radio {
+        left: 5px;
         margin: auto;
         margin-top: 6px;
-        left: 5px;
       }
     }
   }
-
-
 
   .fundraising-amounts {
     margin-bottom: 45px;
@@ -181,11 +222,11 @@ img {
     }
 
     .amount {
-      font-size: 1.4rem;
-      font-family: 'LubDubBold', Helvetica, Arial, sans-serif;
-      margin: -6px 0 0 0;
-      display: block;
       color: $red-deep;
+      display: block;
+      font-family: "Montserrat", arial, sans-serif;
+      font-size: 1.4rem;
+      margin: -6px 0 0 0;
     }
   }
 
@@ -196,9 +237,9 @@ img {
   .buttons-row {
     margin-bottom: 50px;
     .btn {
+      font-size: 1rem;
       max-width: 265px;
       padding: 11px 0;
-      font-size: 1rem;
     }
   }
 }
@@ -214,7 +255,7 @@ img {
   margin: 80px 0 0 0;
   padding-bottom: 15px;
 
-  .donations-container{
+  .donations-container {
     padding: 40px 33px 37px;
   }
 
@@ -224,9 +265,9 @@ img {
     h5,
     span.h5 {
       color: $white;
+      display: block;
       font-size: 1em;
       margin: 0;
-      display: block;
     }
   }
 
@@ -238,9 +279,9 @@ img {
     overflow: hidden;
 
     div {
-      width: 100%;
       float: left;
       margin: 0 0 20px;
+      width: 100%;
     }
 
     .name {
@@ -281,10 +322,10 @@ img {
 }
 
 .info-boxes {
-  width: 1080px;
-  margin: 55px auto;
   border-left: solid 1px $gray-200;
   border-right: solid 1px $gray-200;
+  margin: 55px auto;
+  width: 1080px;
 
   .col-lg {
     padding-left: 100px;
@@ -311,26 +352,25 @@ img {
       width: 100%;
     }
     .sidebar-content {
+      background: #fff;
       padding: 0;
       @include media-breakpoint-up(md) {
         padding: 22px 54px 22px 44px;
       }
-
-      background: #fff;
     }
 
     li {
       color: $black;
-      padding: 11px;
       font-size: 0.97rem;
       line-height: 1.4;
       list-style: none;
+      padding: 11px;
       &:not(.sidebar__achievements) {
         display: flex;
       }
       .sidebar__icon {
-        padding-right: 10px;
         color: $red;
+        padding-right: 10px;
       }
 
       p {
@@ -348,7 +388,8 @@ img {
     }
 
     .achievements {
-      svg, img {
+      svg,
+      img {
         display: block;
         padding: 10px 0;
         width: 100%;
@@ -358,6 +399,7 @@ img {
       justify-content: space-between;
 
       .achievement-badge {
+        margin: 1%;
         width: 31%;
         @include media-breakpoint-up(md) {
           width: 48%;
@@ -365,7 +407,6 @@ img {
         @include media-breakpoint-up(xl) {
           width: 22%;
         }
-        margin: 1%;
         &:last-child {
           margin-right: auto;
         }
@@ -376,13 +417,12 @@ img {
       .badge-label {
         font-size: 10px;
       }
-
     }
   }
 
   .content-area {
-    margin: 67px 0 0 40px;
     font-size: 1rem;
+    margin: 67px 0 0 40px;
 
     h2 {
       margin: 0 0 21px;
@@ -393,7 +433,9 @@ img {
   }
 }
 
-.pg_personal, .pg_team, .pg_company {
+.pg_personal,
+.pg_team,
+.pg_company {
   header {
     height: 250px;
     @include media-breakpoint-up(md) {
@@ -404,9 +446,9 @@ img {
     }
   }
   main {
-    background-size: 100%;
-    background-repeat: no-repeat;
     background-color: $white;
+    background-repeat: no-repeat;
+    background-size: 100%;
     position: relative;
   }
 
@@ -414,25 +456,25 @@ img {
     &.static {
       position: static;
     }
+    background-color: transparent;
+    margin: 0 auto -180px;
     position: relative;
     top: -150px;
-    margin: 0 auto -180px;
     @include media-breakpoint-up(md) {
-      top: -200px;
       margin: 0 auto -250px;
+      top: -200px;
     }
-    background-color: transparent;
   }
 
   &.logged-in {
     .tr-page-container {
-      top: -80px;
-      margin: 0 auto -110px;
-      @include media-breakpoint-up(md) {
-        top: -200px;
-        margin: 0 auto -250px;
-      }
       background-color: transparent;
+      margin: 0 auto -110px;
+      top: -80px;
+      @include media-breakpoint-up(md) {
+        margin: 0 auto -250px;
+        top: -200px;
+      }
     }
   }
 
@@ -457,21 +499,19 @@ img {
   }
 }
 
-
-
 #globalFooter {
   background-color: #e9ecef;
   .medical-statement {
-    text-align: center;
     font-size: 0.74375rem;
     padding: 15px 0 0;
+    text-align: center;
   }
 }
 
 .pg_informational {
   .tr-page-container {
-    max-width: 814px;
     margin: auto;
+    max-width: 814px;
   }
 }
 
@@ -483,10 +523,11 @@ img {
 
 .table-responsive {
   @include media-breakpoint-up(sm) {
-    display: table!important;
+    display: table !important;
   }
 }
 
-div.form-input-label-block, div.donation-level-expanded-label {
+div.form-input-label-block,
+div.donation-level-expanded-label {
   overflow: visible;
 }

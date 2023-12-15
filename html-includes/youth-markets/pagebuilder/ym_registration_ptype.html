@@ -14,7 +14,7 @@
   document.show_addons = [];
   document.hide_addons = [];
 </script>
-<div class="ym-registration-page-container ym-registration-page-container--ptype" ng-controller="RegistrationPtypeCtrl">
+<div class="ym-registration-page-container ym-registration-page-container--ptype mw-100" ng-controller="RegistrationPtypeCtrl">
   [[?
     [[?[[S42:0:classification]]::YM Kids Heart Challenge::T::]]
     [[?[[S42:0:classification]]::American Heart Challenge::T::]]
@@ -31,20 +31,20 @@
       ]]
     ::T::
       <!-- not a returning participant in this event or previous amount raised is below $250 -->
-      <div class="hidden" hidden aria-hidden="true" ng-init="participationOptions.fr_goal = '[[?xx::x[[A15]]x::[[T6:[[A18]]]]::[[T6:[[A15]]]]]]'"></div>
+      <div class="d-none hidden" hidden aria-hidden="true" ng-init="participationOptions.fr_goal = '[[?xx::x[[A15]]x::[[T6:[[A18]]]]::[[T6:[[A15]]]]]]'"></div>
     ::
       <!-- returning participant in this event and previous amount raised is above $250 -->
-      <div class="hidden" hidden aria-hidden="true" ng-init="participationOptions.fr_goal = '[[?xx::x[[A15]]x::[[T6:[[E48:[[S42:0:prev-fr-id]]:dollars]]]]::[[T6:[[A15]]]]]]'"></div>
+      <div class="d-none hidden" hidden aria-hidden="true" ng-init="participationOptions.fr_goal = '[[?xx::x[[A15]]x::[[T6:[[E48:[[S42:0:prev-fr-id]]:dollars]]]]::[[T6:[[A15]]]]]]'"></div>
     ]]
   ::
     <!-- not kids heart challenge or american heart challenge -->
-    <div class="hidden" hidden aria-hidden="true" ng-init="participationOptions.fr_goal = '[[?xx::x[[A15]]x::[[T6:[[A18]]]]::[[T6:[[A15]]]]]]'"></div>
+    <div class="d-none hidden" hidden aria-hidden="true" ng-init="participationOptions.fr_goal = '[[?xx::x[[A15]]x::[[T6:[[A18]]]]::[[T6:[[A15]]]]]]'"></div>
   ]]
-  <div class="hidden" hidden aria-hidden="true" ng-init="participationOptions.min_donation = '$10.00'"></div>
+  <div class="d-none hidden" hidden aria-hidden="true" ng-init="participationOptions.min_donation = '$10.00'"></div>
   <div class="ym-registration-page-header">
     <div class="manageable-content" data-container="edit_pt_title_container">
       [[?xx::x[[S1:cons_id]]x::::
-        <div class="alert alert-info" role="alert">
+        <div class="alert alert-info" role="alert" tabindex="0">
           You are currently logged in as <strong>[[S1:first_name]] [[S1:last_name]]</strong>. If you are trying to register someone else, please <a href="UserLogin?logout=&NEXTURL=[[T1:TRR?fr_id=[[S80:trID]]&pg=tfind&fr_tm_opt=existing&company_id=[[S80:frCompanyId]]&s_frCompanyId=[[S80:frCompanyId]]]]">logout</a> before continuing. <a href="https://kidsheartchallenge.zendesk.com/hc/en-us/articles/4406678498707-How-do-I-register-more-than-one-student-" target="_blank">Here are directions for registering multiple students.</a
         </div>
       ]]
@@ -93,7 +93,7 @@
     </div>
   </div>
   <form class="ym-registration-ptype-form" name="participationOptionsForm" method="POST" novalidate ng-submit="submitPtype()">
-    <div class="hidden js--registration-ptype-part-types" hidden aria-hidden="true">
+    <div class="d-none hidden js--registration-ptype-part-types" hidden aria-hidden="true">
       [[A13]]
     </div>
     [[?xTx::x[[A16]]x::
@@ -118,7 +118,7 @@
           ]]
         ]]
         [[?xx::x[[A33]]x::::
-          <div class="hidden js--registration-ptype-donation-levels" hidden aria-hidden="true">
+          <div class="d-none hidden js--registration-ptype-donation-levels" hidden aria-hidden="true">
             <fieldset>
               <legend>
                 Donation levels
@@ -141,11 +141,11 @@
               <span>No, Thanks</span>
             </button>
             <span class="help-block" role="alert" ng-show="participationOptionsForm.ng_donation_level_other_amount.$error.amount" >Donations of all amounts are greatly appreciated.<br/>Online donations have a $10 minimum</span>
-            <div class="ym-registration-ptype-donation-message" ng-class="{'hidden': !donationLevels.activeLevel || donationLevels.activeLevel.isNoDonation}" ng-cloak>
-              <div ng-class="{'hidden': donationLevels.activeLevel.amount != donationLevel.amount}" id="ym-registration-ptype-donation-message-{{$index}}" ng-repeat="donationLevel in donationLevels.levels" ng-if="!donationLevel.isOtherAmount && !donationLevel.isNoDonation">
+            <div class="ym-registration-ptype-donation-message text-black" ng-class="{'d-none hidden': !donationLevels.activeLevel || donationLevels.activeLevel.isNoDonation}" ng-cloak>
+              <div ng-class="{'d-none hidden': donationLevels.activeLevel.amount != donationLevel.amount}" id="ym-registration-ptype-donation-message-{{$index}}" ng-repeat="donationLevel in donationLevels.levels" ng-if="!donationLevel.isOtherAmount && !donationLevel.isNoDonation">
                 <span ng-bind-html="donationLevel.askMessage"></span>
               </div>
-              <div ng-class="{'hidden': donationLevels.activeLevel.amount != donationLevel.amount}" id="ym-registration-ptype-donation-message-other" ng-repeat="donationLevel in donationLevels.levels" ng-if="donationLevel.isOtherAmount">
+              <div ng-class="{'d-none hidden': donationLevels.activeLevel.amount != donationLevel.amount}" id="ym-registration-ptype-donation-message-other" ng-repeat="donationLevel in donationLevels.levels" ng-if="donationLevel.isOtherAmount">
                 <span ng-bind-html="donationLevel.askMessage"></span> The minimum donation is {{participationOptions.min_donation}}
               </div>
             </div>
@@ -162,7 +162,7 @@
             </div>
           </div>
 
-          <div class="dtd-content" ng-class="{'hidden': !donationLevels.activeLevel || donationLevels.activeLevel.isNoDonation}"></div>
+          <div class="dtd-content mx-auto" style="max-width:700px" ng-class="{'d-none hidden': !donationLevels.activeLevel || donationLevels.activeLevel.isNoDonation}"></div>
         ]]
       </div>
 
@@ -172,12 +172,9 @@
         <p class="ym-section-header">
           Set your goal! How much can you raise to save lives?
         </p>
-        <p>
-          Thank you for being a Heart Hero!
-        </p>
         <div class="form-group required [[?[[A6]]::ERR_BAD_GOAL::has-error::]]" ng-class="{'has-error': participationOptionsForm.$submitted && participationOptionsForm.fr_goal.$invalid}">
           <div class="row">
-            <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3" data-container="edit_fund_goal_container">
+            <div class="" data-container="edit_fund_goal_container">
               <label for="participationOptions-fr_goal" class="control-label">
                 <span class="">
                   [[?xx::x[[C1:fr_your_fundraising_goal_field]]x::[[M0:friendraiser:your_fundraising_goal_field]]::[[C1:fr_your_fundraising_goal_field]]]]
@@ -186,7 +183,7 @@
                   [[E130:[[T8:[[M0:friendraiser:error_invalid_goal_amt]]]] "Error: " "" replaceall]]
                 </span>
               </label>
-              <input type="text" class="form-control input-lg" name="fr_goal" id="participationOptions-fr_goal" ng-model="participationOptions.fr_goal" placeholder="[[?xx::x[[A18]]x::::[[?xx::x[[C1:fr_suggested_goal_field]]x::[[M0:friendraiser:suggested_goal_field]]::[[C1:fr_suggested_goal_field]]]] [[A18]]]]" maxlength="15" required aria-required="true">
+              <input type="text" class="form-control w-auto mx-auto input-lg" name="fr_goal" id="participationOptions-fr_goal" ng-model="participationOptions.fr_goal" placeholder="[[?xx::x[[A18]]x::::[[?xx::x[[C1:fr_suggested_goal_field]]x::[[M0:friendraiser:suggested_goal_field]]::[[C1:fr_suggested_goal_field]]]] [[A18]]]]" maxlength="15" required aria-required="true">
             </div>
           </div>
         </div>
@@ -216,7 +213,7 @@
     </div>
     [[S66:util/SpamControlComponentResponsive.tpt]]
   </form>
-  <div class="hidden" hidden aria-hidden="true">
+  <div class="d-none hidden" hidden aria-hidden="true">
     <form class="js--default-ptype-form" action="[[A1]]" method="POST">
       <input type="hidden" name="fr_id" value="[[A2]]">
       <input type="hidden" name="pg" value="[[A7]]">

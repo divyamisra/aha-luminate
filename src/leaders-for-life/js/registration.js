@@ -19,9 +19,9 @@
         var subSrcCode = luminateExtend.global.subSrcCode;
         var evID = $('body').data('fr-id') ? $('body').data('fr-id') : null;
         var consID = $('body').data('cons-id') ? $('body').data('cons-id') : null;
-	var evDate = $('body').data('event-date') ? $('body').data('event-date') : null;
-	var evDateYear = /(\d{4})/.test(evDate) ? RegExp.$1 : '2020';
-	var coordEmail = $('input[name=coordinator_email]').val();
+        var evDate = $('body').data('event-date') ? $('body').data('event-date') : null;
+        var evDateYear = /(\d{4})/.test(evDate) ? RegExp.$1 : '2020';
+        var coordEmail = $('input[name=coordinator_email]').val();
 
 
         var currentUrl = window.location.href;
@@ -656,7 +656,7 @@
 
         // ptype page
         if ($('#participation_options_page').length > 0) {
-	    $('#part_type_campaign_banner_container').prepend(evDateYear+" ");
+	    // $('#part_type_campaign_banner_container').prepend(evDateYear+" ");
 	    $('#part_type_fundraising_goal_input_container').prepend("<h2>Set Your Personal Fundraising Goal!</h2>")
             $('div#part_type_campaign_banner_container').replaceWith(function() {
                 return '<h1 class="campaign-banner-container" id="part_type_campaign_banner_container">' + $(this).html() + '</h1>';
@@ -1285,7 +1285,7 @@
         }
 
       if ($('body').is('.pg_reg')) {
-  	    $('h1.campaign-banner-container').prepend(evDateYear+" ");
+  	    // $('h1.campaign-banner-container').prepend(evDateYear+" ");
   	    /* zip only reg flow */
   	    $('#cons_zip_code').parent().parent().parent().parent().addClass('field-required consZip');
 
@@ -1498,10 +1498,10 @@
             $('#progressText1').hide();
             $('.p-bar-step-1').css('background', '#f18b21');
         }
-        if ($('input[name="pg"]').val() == 'waiver') {
-	    $('h2.cstmTitle').prepend(evDateYear+" ");
-	}
-	if ($('#fr_reg_summary_page #FriendraiserUserWaiver').length > 0) {
+        // if ($('input[name="pg"]').val() == 'waiver') {
+        //     $('h2.cstmTitle').prepend(evDateYear+" ");
+        // }
+        if ($('#fr_reg_summary_page #FriendraiserUserWaiver').length > 0) {
             $('.p-bar-step-1, .p-bar-step-2, .p-bar-step-3').show();
             $('#progressText1, #progressText2').hide();
             $('.p-bar-step-1, .p-bar-step-2').css('background', '#f18b21');
@@ -1617,9 +1617,9 @@
         /* Page = Reg */
         if ($('input[name="pg"]').val() == 'regsummary') {
 
-        console.log('reg page updates');
+          console.log('reg page updates');
 
-   	    $('h2.cstmTitle').prepend(evDateYear+" ");
+   	      // $('h2.cstmTitle').prepend(evDateYear+" ");
             // if there is a donation then change button text
             if ($.trim($('.additional-gift-amount').html()) != "$0.00") {
                 $('button.next-step').attr("value","Complete and Donate").find('span').html("Complete and Donate");

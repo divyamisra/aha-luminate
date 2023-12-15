@@ -15,7 +15,6 @@
   
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.17/angular-filter[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper[[?xtruex::x[[S80:debug]]x::::.min]].js" crossorigin="anonymous"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
 [[?
   [[?xym_khc_participant_centerx::x[[S334:pagename]]x::T::]]
@@ -44,7 +43,7 @@
     ajaxProxyAuth: '[[S86:true]]',
     [[?
       [[?xx::x[[S1:cons_id]]x::T::
-        [[?[[S39:0*#000000*10pt*true*1*0*0*Events:true:YM Kids Heart Challenge 2022:::]]:: href=::::T]]
+        [[?[[S39:0*#000000*10pt*true*1*0*0*Events:true:YM Kids Heart Challenge 2023:::]]:: href=::::T]]
       ]]
     ::T::
       isParticipant: false
@@ -72,7 +71,8 @@
 [[?xym_khc_participant_centerx::x[[S334:pagename]]x::
   <script src="//cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/ng-csv/0.3.6/ng-csv[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
+  <!--<script src="//cdnjs.cloudflare.com/ajax/libs/ng-csv/0.3.6/ng-csv[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>-->
+  <script src='[[?x0x::x[[S4]]x::[[E130:"https://[[S29:SECURE_DOMAIN]][[S29:SECURE_PATH]]" "/site/" "" replaceall]]::..]]/jquery/ng-csv.js'></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment[[?xtruex::x[[S80:debug]]x::::.min]].js"></script>
   <script>
     window.fbAsyncInit = function() {
@@ -126,12 +126,12 @@
       
       var scriptTag = document.createElement('script');
       [[?xheartdevx::x[[S29:TABLE_PREFIX]]x::
-        scriptTag.src = 'https://tools.heart.org/aha_ym22_dev/visitlink_record.php?ecard_linktrack=' + uparts[0];
+        scriptTag.src = 'https://tools.heart.org/aha_ym23_dev/visitlink_record.php?ecard_linktrack=' + uparts[0];
       ::
         [[?xheartnewx::x[[S29:TABLE_PREFIX]]x::
-          scriptTag.src = 'https://tools.heart.org/aha_ym22_testing/visitlink_record.php?ecard_linktrack=' + uparts[0];
+          scriptTag.src = 'https://tools.heart.org/aha_ym23_testing/visitlink_record.php?ecard_linktrack=' + uparts[0];
         ::
-          scriptTag.src = 'https://tools.heart.org/aha_ym22/visitlink_record.php?ecard_linktrack=' + uparts[0];
+          scriptTag.src = 'https://tools.heart.org/aha_ym23/visitlink_record.php?ecard_linktrack=' + uparts[0];
         ]]
       ]]
       document.body.appendChild(scriptTag);

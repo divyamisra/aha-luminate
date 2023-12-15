@@ -442,6 +442,7 @@
       margin: 30px 0 40px;
     }
   }
+  
 }
 
 .ym-registration-reg-waiver {
@@ -450,11 +451,18 @@
   }
   
   .form-control {
-    border-radius: 0;
-    height: 105px;
-    overflow-y: scroll;
+    // border-radius: 0;
+    // height: 105px;
+    // overflow-y: scroll;
   }
 }
+
+.ym-registration-reg-waiver div .form-control div {
+//   border-radius: 0;
+//   height: 105px;
+//   overflow-y: scroll;
+}
+
 
 .ym-registration-reg-waiver-btns {
   width: 254px;
@@ -466,6 +474,13 @@
   
   @media (min-width: $screen-sm-min) {
     width: 306px;
+  }
+
+  .pull-left::after {
+    color: red;
+    content: "*";
+    font-size: 1.5em;
+    vertical-align: top;
   }
   
   .btn {

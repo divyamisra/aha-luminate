@@ -147,6 +147,19 @@ angular.module 'ahaLuminateApp'
           , (response) ->
             response
             
+      putSocialMedia: ->
+        if $rootScope.tablePrefix is 'heartdev'
+          url = 'https://khc.staging.ootqa.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/10/manual_social_earn'
+        else if $rootScope.tablePrefix is 'heartnew'
+          url = 'https://khc.staging.ootqa.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/10/manual_social_earn'
+        else
+          url = 'https://kidsheartchallenge.heart.org/api/points/activity/log/' + $rootScope.frId + '/' + $rootScope.consId + '/10/manual_social_earn'
+        $http.jsonp($sce.trustAsResourceUrl(url), jsonpCallbackParam: 'callback')
+          .then (response) ->
+            response
+          , (response) ->
+            response
+            
       getBMLeaderboard: (requestData) ->
         motion_username = 'kidsheartapi'
         motion_password = 'mYhtYeBWCrA7cTST'
@@ -172,7 +185,7 @@ angular.module 'ahaLuminateApp'
       defaultStandardGifts: ->
         [
           {
-            "id":"KWB-22"
+            "id":"KTWB-23"
             "name":"Wristband"
             "status":0
             "level":"Wristband"
@@ -181,10 +194,12 @@ angular.module 'ahaLuminateApp'
             "instant": 1
             "online_only":0
             "video": ""
+            "post_event":0
+            "vucheck": 0
           }
           {
-            "id":"CLIPCREW-22"
-            "name":"Crew"
+            "id":"HEARTY-23"
+            "name":"Hearty"
             "status":0
             "level":"$5"
             "msg_earned":"$5 Raised"
@@ -192,6 +207,8 @@ angular.module 'ahaLuminateApp'
             "instant": 1
             "online_only":0
             "video": ""
+            "post_event":0
+            "vucheck": 1
           }
           {
             "id":"LVL1WB-18"
@@ -203,10 +220,12 @@ angular.module 'ahaLuminateApp'
             "instant": 0
             "online_only":0
             "video": ""
+            "post_event":0
+            "vucheck": 0
           }
           {
-            "id":"CLIPSKY-22"
-            "name":"Sky"
+            "id":"BREEZE-23"
+            "name":"Breeze"
             "status":0
             "level":"$10"
             "msg_earned":"$10 Raised"
@@ -214,9 +233,11 @@ angular.module 'ahaLuminateApp'
             "instant": 1
             "online_only":0
             "video": ""
+            "post_event":0
+            "vucheck": 1
           }
           {
-            "id":"JR-22"
+            "id":"JR-23"
             "name":"Jump Rope"
             "status":0
             "level":"$15"
@@ -225,10 +246,12 @@ angular.module 'ahaLuminateApp'
             "instant": 1
             "online_only":0
             "video": ""
+            "post_event":1
+            "vucheck": 0
           }
           {
-            "id":"CLIPLEE-22"
-            "name":"Lee"
+            "id":"HYDRO-23"
+            "name":"Hydro"
             "status":0
             "level":"$25"
             "msg_earned":"$25 Raised"
@@ -236,10 +259,12 @@ angular.module 'ahaLuminateApp'
             "instant": 1
             "online_only":0
             "video": ""
+            "post_event":0
+            "vucheck": 1
           }
           {
-            "id":"CLIPFLASH-22"
-            "name":"Flash"
+            "id":"DREAM-23"
+            "name":"Dream"
             "status":0
             "level":"$40"
             "msg_earned":"$40 Raised"
@@ -247,6 +272,8 @@ angular.module 'ahaLuminateApp'
             "instant": 1
             "online_only":0
             "video": "https://vimeo.com/americanheartassociation/review/453777085/ab8611f4ce"
+            "post_event":0
+            "vucheck": 1
           }
           {
             "id":"KHC"
@@ -258,9 +285,11 @@ angular.module 'ahaLuminateApp'
             "instant": 2
             "online_only":0
             "video": ""
+            "post_event":1
+            "vucheck": 0
           }
           {
-            "id":"PBALL-22"
+            "id":"PBALL-23"
             "name":"Playground Ball"
             "status":0
             "level":"$75"
@@ -269,10 +298,12 @@ angular.module 'ahaLuminateApp'
             "instant": 2
             "online_only":0
             "video": ""
+            "post_event":1
+            "vucheck": 0
           }
           {
-            "id":"CLIPBANKS-22"
-            "name":"Banks"
+            "id":"MARLEY-23"
+            "name":"Marley"
             "status":0
             "level":"$100"
             "msg_earned":"$100 Raised"
@@ -280,10 +311,25 @@ angular.module 'ahaLuminateApp'
             "instant": 2
             "online_only":0
             "video": ""
+            "post_event":0
+            "vucheck": 1
           }
           {
-            "id":"CLIPAMOR-22"
-            "name":"Amor & Max"
+            "id":"FRANKIE-23"
+            "name":"Frankie"
+            "status":0
+            "level":"$150"
+            "msg_earned":"$150 Raised"
+            "msg_unearned":"Raise $150"
+            "instant": 2
+            "online_only":0
+            "video": ""
+            "post_event":0
+            "vucheck": 1
+          }
+          {
+            "id":"BAXTER-23"
+            "name":"Baxter"
             "status":0
             "level":"$200"
             "msg_earned":"$200 Raised"
@@ -291,9 +337,11 @@ angular.module 'ahaLuminateApp'
             "instant": 2
             "online_only":0
             "video": ""
+            "post_event":0
+            "vucheck": 1
           }
           {
-            "id":"SOCKS-22"
+            "id":"SOCKS-23"
             "name":"Socks"
             "status":0
             "level":"$250"
@@ -302,10 +350,12 @@ angular.module 'ahaLuminateApp'
             "instant": 2
             "online_only":0
             "video": ""
+            "post_event":1
+            "vucheck": 0
           }
           {
-            "id":"POPPER-22"
-            "name":"Ball Launcher"
+            "id":"FP-23"
+            "name":"Mystery Popper"
             "status":0
             "level":"$500"
             "msg_earned":"$500 Raised"
@@ -313,10 +363,12 @@ angular.module 'ahaLuminateApp'
             "instant": 2
             "online_only":0
             "video": "https://vimeo.com/americanheartassociation/review/453776957/cde52d6c23"
+            "post_event":1
+            "vucheck": 0
           }
           {
-            "id":"SPEAKERS-22"
-            "name":"2 Speaker Set"
+            "id":"WATCH-23"
+            "name":"Watch"
             "status":0
             "level":"$1,000"
             "msg_earned":"$1,000 Raised"
@@ -324,9 +376,11 @@ angular.module 'ahaLuminateApp'
             "instant": 2
             "online_only":0
             "video": "https://video.link/w/On7X"
+            "post_event":1
+            "vucheck": 0
           }
           {
-            "id":"FINNLS-22"
+            "id":"FINN-23"
             "name":"Finn's Lifesaver Award"
             "status":0
             "level":"Complete Finn's Mission"
@@ -335,170 +389,174 @@ angular.module 'ahaLuminateApp'
             "instant": 2
             "online_only":0
             "video": ""
+            "post_event":0
+            "vucheck": 1
           }
           {
-            "id":"CHARM-22"
+            "id":"CHARM-23"
             "name":"Mystery Gift"
             "status":0
             "level":"Every $50"
             "msg_earned":"Every $50 Raised<br/><em>Students can earn up to 20 Mystery Gifts</em>"
-            "msg_unearned":"Raise $50"
+            "msg_unearned":"Every $50 Raised<br/><em>Students can earn up to 20 Mystery Gifts</em>"
             "instant": 2
             "online_only":0
             "video": ""
+            "post_event":0
+            "vucheck": 0
           }
         ]
 
       giftLevels_instant: -> 
         [
-          "KWB-22"
-          "CLIPCREW-22"
-          "CLIPSKY-22"
-          "JR-22"
-          "CLIPLEE-22"
-          "CLIPFLASH-22"
+          "KTWB-23"
+          "HEARTY-23"
+          "BREEZE-23"
+          "JR-23"
+          "HYDRO-23"
+          "DREAM-23"
           "KHC"
-          "PBALL-22"
-          "CLIPBANKS-22"
-          "CLIPAMOR-22"
-          "SOCKS-22"
-          "POPPER-22"
-          "SPEAKERS-22"
-          "FINNLS-22"
-          "CHARM-22"
+          "PBALL-23"
+          "MARLEY-23"
+          "BAXTER-23"         
+          "SOCKS-23"
+          "FP-23"
+          "WATCH-23"
+          "FINN-23"
+          "CHARM-23"
         ]
 
       giftLevels_noninstant: -> 
         [
           "LVL1WB-18"
-          "JR-22"
+          "JR-23"
           "KHC"
-          "SOCKS-22"
-          "POPPER-22"
-          "SPEAKERS-22"
+          "SOCKS-23"
+          "FP-23"
+          "WATCH-23"
         ]
 
       giftLevels_instant_earned: -> 
         {
           "$0": [
-            "KWB-22"
+            "KTWB-23"
           ]
           "$5-$14":[
-            "KWB-22"
-            "CLIPCREW-22"
-            "CLIPSKY-22"
+            "KTWB-23"
+            "HEARTY-23"
+            "BREEZE-23"
           ]
           "$15-$24":[
-            "KWB-22"
-            "CLIPCREW-22"
-            "CLIPSKY-22"
-            "JR-22"
+            "KTWB-23"
+            "HEARTY-23"
+            "BREEZE-23"
+            "JR-23"
           ]
           "$25-$39":[
-            "KWB-22"
-            "CLIPCREW-22"
-            "CLIPSKY-22"
-            "JR-22"
-            "CLIPLEE-22"
+            "KTWB-23"
+            "HEARTY-23"
+            "BREEZE-23"
+            "JR-23"
+            "HYDRO-23"
           ]
           "$40-$49":[
-            "KWB-22"
-            "CLIPCREW-22"
-            "CLIPSKY-22"
-            "JR-22"
-            "CLIPLEE-22"
-            "CLIPFLASH-22"
+            "KTWB-23"
+            "HEARTY-23"
+            "BREEZE-23"
+            "JR-23"
+            "HYDRO-23"
+            "DREAM-23"
           ]
           "$50-$74":[
-            "KWB-22"
-            "CLIPCREW-22"
-            "CLIPSKY-22"
-            "JR-22"
-            "CLIPLEE-22"
-            "CLIPFLASH-22"
+            "KTWB-23"
+            "HEARTY-23"
+            "BREEZE-23"
+            "JR-23"
+            "HYDRO-23"
+            "DREAM-23"
             "KHC"
-            "CHARM-22"
+            "CHARM-23"
           ]
           "Green $75-$99":[
-            "KWB-22"
-            "CLIPCREW-22"
-            "CLIPSKY-22"
-            "JR-22"
-            "CLIPLEE-22"
-            "CLIPFLASH-22"
+            "KTWB-23"
+            "HEARTY-23"
+            "BREEZE-23"
+            "JR-23"
+            "HYDRO-23"
+            "DREAM-23"
             "KHC"
-            "PBALL-22"
-            "CHARM-22"
+            "PBALL-23"
+            "CHARM-23"
           ]
           "Blue $100-$199":[
-            "KWB-22"
-            "CLIPCREW-22"
-            "CLIPSKY-22"
-            "JR-22"
-            "CLIPLEE-22"
-            "CLIPFLASH-22"
+            "KTWB-23"
+            "HEARTY-23"
+            "BREEZE-23"
+            "JR-23"
+            "HYDRO-23"
+            "DREAM-23"
             "KHC"
-            "PBALL-22"
-            "CLIPBANKS-22"
-            "CHARM-22"
+            "PBALL-23"
+            "MARLEY-23"
+            "CHARM-23"
           ]
           "Red $200-$249":[
-            "KWB-22"
-            "CLIPCREW-22"
-            "CLIPSKY-22"
-            "JR-22"
-            "CLIPLEE-22"
-            "CLIPFLASH-22"
+            "KTWB-23"
+            "HEARTY-23"
+            "BREEZE-23"
+            "JR-23"
+            "HYDRO-23"
+            "DREAM-23"
             "KHC"
-            "PBALL-22"
-            "CLIPBANKS-22"
-            "CLIPAMOR-22"
-            "CHARM-22"
+            "PBALL-23"
+            "MARLEY-23"
+            "BAXTER-23"
+            "CHARM-23"
           ]
           "Orange $250-$499":[
-            "KWB-22"
-            "CLIPCREW-22"
-            "CLIPSKY-22"
-            "JR-22"
-            "CLIPLEE-22"
-            "CLIPFLASH-22"
+            "KTWB-23"
+            "HEARTY-23"
+            "BREEZE-23"
+            "JR-23"
+            "HYDRO-23"
+            "DREAM-23"
             "KHC"
-            "PBALL-22"
-            "CLIPBANKS-22"
-            "CLIPAMOR-22"
-            "SOCKS-22"
-            "CHARM-22"
+            "PBALL-23"
+            "MARLEY-23"
+            "BAXTER-23"
+            "SOCKS-23"
+            "CHARM-23"
           ]
           "Brown $500-$999":[
-            "KWB-22"
-            "CLIPCREW-22"
-            "CLIPSKY-22"
-            "JR-22"
-            "CLIPLEE-22"
-            "CLIPFLASH-22"
+            "KTWB-23"
+            "HEARTY-23"
+            "BREEZE-23"
+            "JR-23"
+            "HYDRO-23"
+            "DREAM-23"
             "KHC"
-            "PBALL-22"
-            "CLIPBANKS-22"
-            "CLIPAMOR-22"
-            "SOCKS-22"
-            "POPPER-22"
-            "CHARM-22"
+            "PBALL-23"
+            "MARLEY-23"
+            "BAXTER-23"
+            "SOCKS-23"
+            "FP-23"
+            "CHARM-23"
           ]
           "Yellow $1000+":[
-            "KWB-22"
-            "CLIPCREW-22"
-            "CLIPSKY-22"
-            "JR-22"
-            "CLIPLEE-22"
-            "CLIPFLASH-22"
+            "KTWB-23"
+            "HEARTY-23"
+            "BREEZE-23"
+            "JR-23"
+            "HYDRO-23"
+            "DREAM-23"
             "KHC"
-            "PBALL-22"
-            "CLIPBANKS-22"
-            "CLIPAMOR-22"
-            "SOCKS-22"
-            "POPPER-22"
-            "SPEAKERS-22"
-            "CHARM-22"
+            "PBALL-23"
+            "MARLEY-23"
+            "BAXTER-23"
+            "SOCKS-23"
+            "FP-23"
+            "WATCH-23"
+            "CHARM-23"
           ]
         }
       giftLevels_noninstant_earned: -> 
@@ -510,57 +568,57 @@ angular.module 'ahaLuminateApp'
           ]
           "$15-$24":[
             "LVL1WB-18"
-            "JR-22"
+            "JR-23"
           ]
           "$25-$39":[
             "LVL1WB-18"
-            "JR-22"
+            "JR-23"
           ]
           "$40-$49":[
             "LVL1WB-18"
-            "JR-22"
+            "JR-23"
           ]
           "$50-$74":[
             "LVL1WB-18"
-            "JR-22"
+            "JR-23"
             "KHC"
           ]
           "Green $75-$99":[
             "LVL1WB-18"
-            "JR-22"
+            "JR-23"
             "KHC"
-            "PBALL-22"
+            "PBALL-23"
           ]
           "Blue $100-$199":[
             "LVL1WB-18"
-            "JR-22"
+            "JR-23"
             "KHC"
           ]
           "Red $200-$249":[
             "LVL1WB-18"
-            "JR-22"
+            "JR-23"
             "KHC"
           ]
           "Orange $250-$499":[
             "LVL1WB-18"
-            "JR-22"
+            "JR-23"
             "KHC"
-            "SOCKS-22"
+            "SOCKS-23"
           ]
           "Brown $500-$999":[
             "LVL1WB-18"
-            "JR-22"
+            "JR-23"
             "KHC"
-            "SOCKS-22"
-            "POPPER-22"
+            "SOCKS-23"
+            "FP-23"
           ]
           "Yellow $1000+":[
             "LVL1WB-18"
             "JR-22"
             "KHC"
-            "SOCKS-22"
-            "POPPER-22"
-            "SPEAKERS-22"
+            "SOCKS-23"
+            "FP-23"
+            "WATCH-23"
           ]
         }
   ]

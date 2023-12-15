@@ -1,3 +1,14 @@
+.error {
+    color: $event-primary;
+    display: block;
+    margin-top: 0px !important;
+}
+
+.form-selectlist {
+    font-size: .875em;
+    color: #6c757d;
+}
+
 select {
   &,
   &.form-control {
@@ -31,3 +42,34 @@ input.btn-enter[name=otherAmt]{
   }
 }
 
+input[type="text"] {
+  &::-webkit-input-placeholder {
+    color: $event-secondary !important;
+    opacity: 0.75 !important;
+  }
+  
+  &:-moz-placeholder {
+    color: $event-secondary !important;
+    opacity: 0.75 !important;
+  }
+  
+  &::-moz-placeholder {
+    color: $event-secondary !important;
+    opacity: 0.75 !important;
+  }
+  
+  &::-ms-input-placeholder {
+    color: $event-secondary !important;
+    opacity: 1 !important;
+  }
+  
+  &:placeholder {
+    color: $event-secondary !important;
+    opacity: 0.75 !important;
+  }
+  
+  &::placeholder {
+    color: $event-secondary !important;
+    opacity: 0.75 !important;
+  }
+}

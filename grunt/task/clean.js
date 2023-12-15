@@ -373,7 +373,53 @@ module.exports = {
       },
       {
         expand: true,
-        cwd: 'dist/fieldday/image/',
+        cwd: 'dist/fieldday/img/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/fieldday/webfonts/',
+        src: [
+          '**/*'
+        ]
+      }
+    ]
+  },
+  "fieldday2023": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/fieldday2023/css/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/fieldday2023/js/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/fieldday2023/html/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/fieldday2023/webfonts/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/fieldday2023/image/',
         src: [
           '**/*'
         ]
@@ -534,6 +580,38 @@ module.exports = {
       {
         expand: true,
         cwd: 'dist/teens-of-impact/image/',
+        src: [
+          '**/*'
+        ]
+      }
+    ]
+  },
+  "ym-rewards": {
+    files: [
+      {
+        expand: true,
+        cwd: 'dist/ym-rewards/css/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/ym-rewards/js/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/ym-rewards/html/',
+        src: [
+          '**/*'
+        ]
+      },
+      {
+        expand: true,
+        cwd: 'dist/ym-rewards/image/',
         src: [
           '**/*'
         ]

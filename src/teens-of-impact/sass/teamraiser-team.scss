@@ -150,16 +150,11 @@
 }
 
 .pg_team {
-  .js--team-text p, .js--team-text p span, .js--team-text span {
-    font-family: "LubDubMedium", Helvetica, Arial, sans-serif!important;
-    font-size: 16px!important;
-    line-height: 24px!important;
-  }
   .js--team-text {
     ul {
-    list-style-position: inside;
-    margin-bottom: 1em;
-    }
+      list-style-position: inside;
+      margin-bottom: 1em;
+      }
     p em {
       font-style: italic;
     }

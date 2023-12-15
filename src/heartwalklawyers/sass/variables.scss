@@ -6,6 +6,7 @@
  $success: #5cb85c !default;
  $white: #FFFFFF !default;
  $dark: #636466 !default;
+ $gray-900: #212529 !default;
  $gray-700: #495057 !default;
  $gray-600: #515151 !default;
  $gray-500: #8d8d8d !default;
@@ -20,6 +21,9 @@
  $black: #000000 !default;
  $thermometer-border: #CCCCCC !default;
  $team-roster-bg-gray: #E9ECEE;
+ $font-size-base: 1rem !default;
+ $font-size-lg: $font-size-base * 1.25 !default;
+ $font-size-xl: $font-size-base * 1.5 !default;
 
  // Font family variables
  $font-fallback: Helvetica, Arial, sans-serif;

@@ -3,7 +3,8 @@ angular.module 'ahaLuminateApp'
     '$filter'
     'TeamraiserCompanyService'
     'SchoolLookupService'
-    ($filter, TeamraiserCompanyService, SchoolLookupService) ->
+    'ZuriService'
+    ($filter, TeamraiserCompanyService, SchoolLookupService, ZuriService) ->
       init: ($scope, eventType, getLoc) ->
         $scope.schoolList =
           searchSubmitted: false
@@ -141,31 +142,6 @@ angular.module 'ahaLuminateApp'
             $scope.getSchoolSearchResultsNew()
         # END new Geo locate code for KHC
 
-        #
-        # New Alt Geo Locate code for KHC to get state
-        getSchoolState = (e) ->
-          $scope.schoolList.geoLocationEnabled = true
-          SchoolLookupService.getGeoState(e)
-            .then (response) ->
-              $scope.schoolList.stateFilter = stateFilter = response.data.results[0].address_components[4].short_name
-              SchoolLookupService.getSchoolDataByState(stateFilter)
-                .then (response) ->
-                  schoolDataRows = response.data.getSchoolSearchDataResponse.schoolData
-                  schoolDataHeaders = {}
-                  schoolDataMapByState = {}
-                  angular.forEach schoolDataRows[0], (schoolDataHeader, schoolDataHeaderIndex) ->
-                    schoolDataHeaders[schoolDataHeader] = schoolDataHeaderIndex
-                  angular.forEach schoolDataRows, (schoolDataRow, schoolDataRowIndex) ->
-                    if schoolDataRowIndex > 0
-                      schoolDataMapByState['id' + schoolDataRow[schoolDataHeaders.COMPANY_ID]] =
-                        SCHOOL_CITY: schoolDataRow[schoolDataHeaders.SCHOOL_CITY]
-                        SCHOOL_STATE: schoolDataRow[schoolDataHeaders.SCHOOL_STATE]
-                        COORDINATOR_FIRST_NAME: schoolDataRow[schoolDataHeaders.COORDINATOR_FIRST_NAME]
-                        COORDINATOR_LAST_NAME: schoolDataRow[schoolDataHeaders.COORDINATOR_LAST_NAME]
-          
-                  $scope.schoolDataMapByState = schoolDataMapByState
-                  $scope.getSchoolSearchResults(true)
-
         # ask or retrieve current lat/long
         $scope.getLocationAlt = ->
           $scope.schoolList.searchSubmitted = true
@@ -184,32 +160,6 @@ angular.module 'ahaLuminateApp'
             if navigator.geolocation then navigator.geolocation.getCurrentPosition(filterGeoSchoolData, showGEOError, e) else console.log('Geolocation is not supported by this browser.')
             return
 
-        SchoolLookupService.getSchoolData()
-          .then (response) ->
-            schoolDataRows = response.data.getSchoolSearchDataResponse.schoolData
-            schoolDataHeaders = {}
-            schoolDataMap = {}
-            angular.forEach schoolDataRows[0], (schoolDataHeader, schoolDataHeaderIndex) ->
-              schoolDataHeaders[schoolDataHeader] = schoolDataHeaderIndex
-            angular.forEach schoolDataRows, (schoolDataRow, schoolDataRowIndex) ->
-              if schoolDataRowIndex > 0
-                schoolDataMap['id' + schoolDataRow[schoolDataHeaders.COMPANY_ID]] =
-                  SCHOOL_CITY: schoolDataRow[schoolDataHeaders.SCHOOL_CITY]
-                  SCHOOL_STATE: schoolDataRow[schoolDataHeaders.SCHOOL_STATE]
-                  COORDINATOR_FIRST_NAME: schoolDataRow[schoolDataHeaders.COORDINATOR_FIRST_NAME]
-                  COORDINATOR_LAST_NAME: schoolDataRow[schoolDataHeaders.COORDINATOR_LAST_NAME]
-          
-            $scope.schoolDataMap = schoolDataMap
-            if $scope.schoolList.schools?.length > 0
-              angular.forEach $scope.schoolList.schools, (school, schoolIndex) ->
-                schoolData = $scope.schoolDataMap['id' + school.COMPANY_ID]
-                if schoolData
-                  school.SCHOOL_CITY = schoolData.SCHOOL_CITY
-                  school.SCHOOL_STATE = schoolData.SCHOOL_STATE
-                  school.COORDINATOR_FIRST_NAME = schoolData.COORDINATOR_FIRST_NAME
-                  school.COORDINATOR_LAST_NAME = schoolData.COORDINATOR_LAST_NAME
-                  $scope.schoolList.schools[schoolIndex] = school
-
         $scope.submitSchoolSearch = ->
           nameFilter = jQuery.trim $scope.schoolList.ng_nameFilter
           $scope.schoolList.nameFilter = nameFilter
@@ -219,7 +169,10 @@ angular.module 'ahaLuminateApp'
             $scope.schoolList.searchErrorMessage = 'Please specify a search criteria before initiating a search.'
           else
             delete $scope.schoolList.searchErrorMessage
-            $scope.getSchoolSearchResults()
+            if $scope.tablePrefix is 'heartdev'
+              $scope.getSchoolSearchResultsDEV()
+            else
+              $scope.getSchoolSearchResults()
         
         $scope.orderSchools = (sortProp, keepSortOrder) ->
           schools = $scope.schoolList.schools
@@ -248,18 +201,12 @@ angular.module 'ahaLuminateApp'
                 COMPANY_ID: company.companyId
                 SCHOOL_NAME: company.companyName
                 COORDINATOR_ID: company.coordinatorId
+                SCHOOL_CITY: company.SCHOOL_CITY
+                SCHOOL_STATE: company.SCHOOL_STATE
+                COORDINATOR_FIRST_NAME: company.COORDINATOR_FIRST_NAME
+                COORDINATOR_LAST_NAME: company.COORDINATOR_LAST_NAME                
           schools
-        
-        setSchoolsDataByState = (schools) ->
-          angular.forEach schools, (school, schoolIndex) ->
-            schoolData = $scope.schoolDataMapByState['id' + school.COMPANY_ID]
-            if schoolData
-              schools[schoolIndex].SCHOOL_CITY = schoolData.SCHOOL_CITY
-              schools[schoolIndex].SCHOOL_STATE = schoolData.SCHOOL_STATE
-              schools[schoolIndex].COORDINATOR_FIRST_NAME = schoolData.COORDINATOR_FIRST_NAME
-              schools[schoolIndex].COORDINATOR_LAST_NAME = schoolData.COORDINATOR_LAST_NAME
-          schools
-        
+          
         setSchoolsData = (schools) ->
           angular.forEach schools, (school, schoolIndex) ->
             schoolData = $scope.schoolDataMap['id' + school.COMPANY_ID]
@@ -269,7 +216,7 @@ angular.module 'ahaLuminateApp'
               schools[schoolIndex].COORDINATOR_FIRST_NAME = schoolData.COORDINATOR_FIRST_NAME
               schools[schoolIndex].COORDINATOR_LAST_NAME = schoolData.COORDINATOR_LAST_NAME
           schools
-        
+          
         searchOverridesMap = [
           {
             original: 'Saint', 
@@ -328,14 +275,64 @@ angular.module 'ahaLuminateApp'
         updateCompanyData = ->
           if not $scope.$$phase
             $scope.$apply()
-        
+
         $scope.getSchoolSearchResults = (bystate) ->
+          delete $scope.schoolList.schools
+          $scope.schoolList.searchPending = true
+          nameFilter = $scope.schoolList.nameFilter or '%'
+          nameFilter = nameFilter.toLowerCase().replace(' elementary', '')
+          nameFilter = nameFilter.toLowerCase().replace(' school', '')
+          nameFilter = nameFilter.replace("'","\\'")
+          companies = []
+          #isOverride = findOverrides(nameFilter)
+          #if isOverride.length > 0
+          #  angular.forEach override.overrides, (replace) ->
+          #  nameFilterReplace = nameFilter.replace(override.original, replace)
+          #  if nameFilterReplace.indexOf('..') == -1
+          #    nameFilter = nameFilter + '|' + nameFilterReplace
+
+          ZuriService.getSchools '&school_name=' + encodeURIComponent(nameFilter) + '&school_state=' + encodeURIComponent($scope.schoolList.stateFilter),
+            failure: (response) ->
+            error: (response) ->
+            success: (response) ->
+              $scope.schoolList.totalNumberResults = response.data.company[0].length
+              companies = response.data.company[0]
+              schools = []
+              updateCompanyData()
+
+              setResults = ->
+                if companies.length > 0
+                  schools = setSchools(companies)
+                  $scope.schoolList.totalItems = schools.length
+                  $scope.schoolList.totalNumberResults = schools.length
+                  $scope.schoolList.schools = schools
+                  $scope.orderSchools $scope.schoolList.sortProp, true
+                  if nameFilter != 'zz'
+                    schools = $filter('filter')(schools, ((value) ->
+                      value.SCHOOL_NAME.toLowerCase().indexOf('zz') != 0
+                    ), false)
+                    $scope.schoolList.schools = schools
+                    $scope.schoolList.totalItems = schools.length
+                    $scope.schoolList.totalNumberResults = schools.length
+                  if $scope.schoolList.stateFilter != ''
+                    schools = $filter('filter')(schools, SCHOOL_STATE: $scope.schoolList.stateFilter)
+                    $scope.schoolList.schools = schools
+                    $scope.schoolList.totalItems = schools.length
+                    $scope.schoolList.totalNumberResults = schools.length
+                else
+                  $scope.schoolList.schools = []
+                  $scope.schoolList.totalItems = 0
+                  $scope.schoolList.totalNumberResults = 0
+
+              setResults()
+              delete $scope.schoolList.searchPending
+              updateCompanyData()
+
+        $scope.getSchoolSearchResultsDEV = (bystate) ->
           delete $scope.schoolList.schools
           $scope.schoolList.searchPending = true
           $scope.schoolList.currentPage = 1
           nameFilter = $scope.schoolList.nameFilter or '%'
-          nameFilter = (nameFilter.toLowerCase()).replace " elementary", ""
-          nameFilter = (nameFilter.toLowerCase()).replace " school", ""
           companies = []
           TeamraiserCompanyService.getCompanies 'event_type=' + encodeURIComponent(eventType) + '&company_name=' + encodeURIComponent(nameFilter) + '&list_sort_column=company_name&list_page_size=500', (response) ->
             if response.getCompaniesResponse?.company
@@ -368,7 +365,7 @@ angular.module 'ahaLuminateApp'
                   $scope.schoolList.totalItems = schools.length
                   $scope.schoolList.totalNumberResults = schools.length
                 if $scope.schoolList.stateFilter isnt ''
-                  schools = $filter('filter') schools, SCHOOL_STATE: $scope.schoolList.stateFilter
+                  #schools = $filter('filter') schools, SCHOOL_STATE: $scope.schoolList.stateFilter
                   $scope.schoolList.schools = schools
                   $scope.schoolList.totalItems = schools.length
                   $scope.schoolList.totalNumberResults = schools.length
@@ -379,20 +376,12 @@ angular.module 'ahaLuminateApp'
             
             getAdditionalPages = (filter, totalNumber) ->
               additionalPages = []
-              #angular.forEach [1..Math.ceil(totalNumber / 2)], (additionalPage) ->
-              angular.forEach [1,2,3], (additionalPage) ->
+              angular.forEach [1, 2, 3], (additionalPage) ->
                 if totalNumber > additionalPage * 500
                   additionalPages.push additionalPage
               additionalPagesComplete = 0
               angular.forEach additionalPages, (additionalPage) ->
                 TeamraiserCompanyService.getCompanies 'event_type=' + encodeURIComponent(eventType) + '&company_name=' + encodeURIComponent(filter) + '&list_sort_column=company_name&list_page_size=500&list_page_offset=' + additionalPage, (response) ->
-                  #if response.getCompaniesResponse?.company
-                  #  if response.getCompaniesResponse.company.length is undefined
-                  #    companies.push response.getCompaniesResponse.company
-                  #  else
-                  #    angular.forEach response.getCompaniesResponse.company, (company) ->
-                  #      companies.push company
-
                   moreCompanies = response.getCompaniesResponse?.company
                   moreSchools = []
                   if moreCompanies
@@ -454,4 +443,5 @@ angular.module 'ahaLuminateApp'
                 setResults()
                 delete $scope.schoolList.searchPending
                 updateCompanyData()
+
   ]

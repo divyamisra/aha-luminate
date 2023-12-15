@@ -125,6 +125,14 @@ module.exports = {
     }
   },
 
+  "fieldday2023": {
+    files: {
+      'dist/fieldday2023/css/main.css': [
+        'src/fieldday2023/sass/main.scss'
+      ]
+    }
+  },
+
   "heartwalklawyers": {
     files: {
       'dist/heartwalklawyers/css/main.css': [
@@ -188,6 +196,13 @@ module.exports = {
       ],
       'dist/teens-of-impact/css/donation.css': [
         'src/teens-of-impact/sass/donation.scss'
+      ]
+    }
+  },
+  "ym-rewards": {
+    files: {
+      'dist/ym-rewards/css/main.css': [
+        'src/ym-rewards/sass/main.scss'
       ]
     }
   }

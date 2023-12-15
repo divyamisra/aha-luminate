@@ -7,6 +7,16 @@ angular.module 'ahaLuminateControllers'
     '$timeout'
     '$q'
     ($scope, $rootScope, $compile, DonationService, $timeout, $q) ->
+       
+      currentUrl = window.location.href
+      queryString = if currentUrl.indexOf('?') == -1 then undefined else decodeURIComponent(currentUrl.split('?')[1])
+
+      getQueryParameter = (paramName) ->
+        if !queryString or queryString.indexOf(paramName + '=') == -1
+          undefined
+        else
+          queryString.split(paramName + '=')[1].split('&')[0]
+    
       $scope.paymentInfoErrors =
         errors: []
       $scope.donationGiftType = "installment";
@@ -396,6 +406,22 @@ angular.module 'ahaLuminateControllers'
             angular.element('#tribute_show_honor_fieldsname').prop 'checked', false
             angular.element('#tribute_honoree_name_row').hide()
 
+      donorAddressFields = ->
+        angular.element('#donor_first_namename').attr('aria-required','true') 
+        angular.element('#donor_last_namename').attr('aria-required','true') 
+        angular.element('#donor_email_addressname').attr('aria-required','true') 
+        angular.element('#donor_addr_street1name').attr('aria-required','true') 
+        angular.element('#donor_addr_cityname').attr('aria-required','true') 
+        angular.element('#donor_addr_state').attr('aria-required','true') 
+        angular.element('#donor_addr_zipname').attr('aria-required','true')
+        angular.element('#donor_addr_country').attr('aria-required','true')
+
+      paymentFields = ->
+        angular.element('#responsive_payment_typecc_numbername').attr('aria-required','true') 
+        angular.element('#responsive_payment_typecc_exp_date_MONTH').attr('aria-required','true') 
+        angular.element('#responsive_payment_typecc_exp_date_YEAR').attr('aria-required','true') 
+        angular.element('#responsive_payment_typecc_cvvname').attr('aria-required','true') 
+
       billingAddressFields = ->
         angular.element('#billing_first_name_row').addClass 'billing-info'
         angular.element('#billing_last_name_row').addClass 'billing-info'
@@ -424,11 +450,26 @@ angular.module 'ahaLuminateControllers'
           angular.element('#payment_cc_container').hide()
           angular.element('.btn--credit').removeClass 'active'
           angular.element('.btn--paypal').addClass 'active'
+
+          angular.element('#responsive_payment_typecc_numbername').attr('aria-required','false') 
+          angular.element('#responsive_payment_typecc_exp_date_MONTH').attr('aria-required','false') 
+          angular.element('#responsive_payment_typecc_exp_date_YEAR').attr('aria-required','false') 
+          angular.element('#responsive_payment_typecc_cvvname').attr('aria-required','trufalsee') 
+
         else
           angular.element('#responsive_payment_typepay_typeradiocredit').click()
           angular.element('#payment_cc_container').show()
           angular.element('.btn--credit').addClass 'active'
           angular.element('.btn--paypal').removeClass 'active'
+
+          angular.element('#responsive_payment_typecc_numbername').attr('aria-required','true') 
+          angular.element('#responsive_payment_typecc_exp_date_MONTH').attr('aria-required','true') 
+          angular.element('#responsive_payment_typecc_exp_date_YEAR').attr('aria-required','true') 
+          angular.element('#responsive_payment_typecc_cvvname').attr('aria-required','true') 
+
+      #jQuery.validator.addMethod 'zipcode', ((value, element) ->
+      #  @optional(element) or ! !value.trim().match(/\d{5}-\d{4}$|^\d{5}$|^[a-zA-Z][0-9][a-zA-Z](| )?[0-9][a-zA-Z][0-9]$/)
+      #), 'Invalid zip code'
 
       $scope.toggleBillingInfo = ->
         angular.element('.billing-info').toggleClass 'hidden'
@@ -436,41 +477,81 @@ angular.module 'ahaLuminateControllers'
 
         if inputStatus is true
           angular.element('#billing_info_same_as_donorname').prop 'checked', true
+
+          angular.element('#billing_first_namename').attr('aria-required','false') 
+          angular.element('#billing_last_namename').attr('aria-required','false') 
+          angular.element('#billing_addr_street1name').attr('aria-required','false') 
+          angular.element('#billing_addr_cityname').attr('aria-required','false') 
+          angular.element('#billing_addr_state').attr('aria-required','false') 
+          angular.element('#billing_addr_zipname').attr('aria-required','false')
+          angular.element('#billing_addr_country').attr('aria-required','false')
+
+         
         else
           angular.element('#billing_info_same_as_donorname').prop 'checked', false
 
+          angular.element('#billing_first_namename').attr('aria-required','true') 
+          angular.element('#billing_last_namename').attr('aria-required','true') 
+          angular.element('#billing_addr_street1name').attr('aria-required','true') 
+          angular.element('#billing_addr_cityname').attr('aria-required','true') 
+          angular.element('#billing_addr_state').attr('aria-required','true') 
+          angular.element('#billing_addr_zipname').attr('aria-required','true')
+          angular.element('#billing_addr_country').attr('aria-required','true')
+
+      angular.element('#ProcessForm').validate 
+        errorPlacement: (error, element) ->
+          #angular.element(error).attr "role", "alert"
+          angular.element(error).attr "aria-live", "polite"
+          angular.element(error).attr "tabindex", "0"
+          angular.element(error).attr "aria-label", "Field required: "+angular.element('label[for='+angular.element(element).attr("name")+']').text().replace(":","")
+          if element.attr('name') == 'terms-of-service-checkbox'
+            # do whatever you need to place label where you want
+            angular.element(element).next('label').after error
+          else
+            # the default error placement for the rest
+            error.insertAfter element
+        showErrors: (errorMap, errorList) ->
+          if typeof errorList[0] != 'undefined'
+            position = angular.element(errorList[0].element).position().top
+            angular.element('html, body').animate { scrollTop: position }, 300
+          @defaultShowErrors()
+
       $scope.submitDonationForm = (e) ->
-        # remove any credit card numbers from input fields other than the cc field
-        r = /((?:\d{4}[ -]?){3}\d{3,4})/gm
-        jQuery('[type=text]:not(#responsive_payment_typecc_numbername)').each ->
-          jQuery(this).val jQuery(this).val().replace(r, '')
-          return
+        if angular.element("#ProcessForm").valid()
+          # remove any credit card numbers from input fields other than the cc field
+          r = /((?:\d{4}[ -]?){3}\d{3,4})/gm
+          jQuery('[type=text]:not(#responsive_payment_typecc_numbername)').each ->
+            jQuery(this).val jQuery(this).val().replace(r, '')
+            return
 
-        loading = '<div class="ym-loading text-center h3">Processing Gift <i class="fa fa-spinner fa-spin"></i></div>'
-        angular.element('.button-sub-container').append loading
-        angular.element('#pstep_finish').addClass 'hidden'
+          loading = '<div class="ym-loading text-center h3">Processing Gift <i class="fa fa-spinner fa-spin"></i></div>'
+          angular.element('.button-sub-container').append loading
+          angular.element('#pstep_finish').addClass 'hidden'
 
-#        console.log('level type ' + $scope.donationInfo.levelType)
-#        console.log('other amt ' + $scope.donationInfo.otherAmt)
-#        console.log('parseint other amt ' + parseInt($scope.donationInfo.otherAmt))
-#        console.log('amount in the damned field ' + angular.element('#other_amount').val())
+#          console.log('level type ' + $scope.donationInfo.levelType)
+#          console.log('other amt ' + $scope.donationInfo.otherAmt)
+#          console.log('parseint other amt ' + parseInt($scope.donationInfo.otherAmt))
+#          console.log('amount in the damned field ' + angular.element('#other_amount').val())
 
-        if $scope.donationInfo.levelType is 'other' || $scope.donationInfo.levelType is 'addFee'
-#          console.log('level type is other or addFee')
-          if $scope.donationInfo.otherAmt is undefined or !(parseInt($scope.donationInfo.otherAmt) >= 10)
-#            console.log('otheramt ' + $scope.donationInfo.otherAmt)
-#            console.log('parseint otheramt ' + parseInt($scope.donationInfo.otherAmt))
-            e.preventDefault()
-            jQuery('html, body').animate
-              scrollTop: jQuery('a[name="donationLevels"]').offset().top
-            , 0
-            $scope.otherAmtError = true
-            if not $scope.$$phase
-              $scope.$apply()
-            angular.element('#pstep_finish').removeClass 'hidden'
-            angular.element('.ym-loading').addClass 'hidden'
-#          console.log('amount in the damned field 2 ' + angular.element('#other_amount').val())
-      angular.element("#ProcessForm").submit $scope.submitDonationForm
+          if $scope.donationInfo.levelType is 'other' || $scope.donationInfo.levelType is 'addFee'
+#           console.log('level type is other or addFee')
+            if $scope.donationInfo.otherAmt is undefined or !(parseInt($scope.donationInfo.otherAmt) >= 10)
+#             console.log('otheramt ' + $scope.donationInfo.otherAmt)
+#             console.log('parseint otheramt ' + parseInt($scope.donationInfo.otherAmt))
+              e.preventDefault()
+              jQuery('html, body').animate
+                scrollTop: jQuery('a[name="donationLevels"]').offset().top
+              , 0
+              $scope.otherAmtError = true
+              if not $scope.$$phase
+                $scope.$apply()
+              angular.element('#pstep_finish').removeClass 'hidden'
+              angular.element('.ym-loading').addClass 'hidden'
+#            console.log('amount in the damned field 2 ' + angular.element('#other_amount').val())
+          return true
+        else
+          return false
+      angular.element('#pstep_finish').click $scope.submitDonationForm
 
       loggedInForm = ->
         angular.element('#donor_first_name_row').addClass 'hidden'
@@ -563,6 +644,18 @@ angular.module 'ahaLuminateControllers'
                   userSpecified: userSpecified
                   levelLabel: levelLabel
                   levelChecked: levelChecked
+                  
+              if getQueryParameter('amount')
+                $scope.donationInfo.levelType = 'level'
+                $scope.donationInfo.amount = getQueryParameter('amount')
+                giftAmt = $scope.donationInfo.amount
+                $scope.enterAmount(giftAmt)
+                $scope.selectLevel(null, 'other', $scope.donationInfo.otherLevelId, giftAmt, true)
+                $scope.donationInfo.levelChecked = 'level' + $scope.donationInfo.otherLevelId
+                $scope.donationInfo.classLevel = 'level' + $scope.donationInfo.otherLevelId
+            
+              if getQueryParameter('paypal') == "true"
+                setTimeout $scope.togglePaymentType 'paypal', 1000
           resolve()
 
       calculateGiftAmt = (type) ->
@@ -598,6 +691,11 @@ angular.module 'ahaLuminateControllers'
           angular.element('#cover_fee_radio_Yes').hide()
           $compile(elmAddFeeCheckbox) $scope
 
+      markRequired = ->
+        angular.element('span.field-required').closest('.form-content').find('input:not(:hidden), select:not(:hidden)').addClass('required')
+        angular.element('input#donor_addr_zipname').addClass("zipcode");
+        angular.element('input#responsive_payment_typecc_numbername').addClass("creditcard")
+        
       loadLevels().then ->
         $scope.otherAmtError = false
         if $scope.paymentInfoErrors.errors.length > 0
@@ -621,9 +719,11 @@ angular.module 'ahaLuminateControllers'
         addOptional()
         addFeeCheckbox()
 #        employerMatchFields()
+        donorAddressFields()
         billingAddressFields()
         donorRecognitionFields()
         ariaAdjustments()
+        markRequired()
         if angular.element('body').is '.cons-logged-in'
           hideDonorInfo = true
           $reqInput = angular.element '.form-row-required input[type="text"]'

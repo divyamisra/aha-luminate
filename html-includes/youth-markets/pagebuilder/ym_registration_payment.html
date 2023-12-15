@@ -18,7 +18,7 @@
         </h2>
       </div>
       [[?xxnullx::x[[A0]]x::::
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-danger" role="alert" tabindex="0">
           [[A0]]
           <ul ng-if="paymentInfoErrors.errors.length > 0" ng-cloak>
             <li ng-repeat="paymentInfoError in paymentInfoErrors.errors">
@@ -28,9 +28,8 @@
         </div>
       ]]
     </div>
-
     <form class="ym-registration-payment-form" method="POST" novalidate ng-submit="submitPayment()">
-      <div class="hidden js--registration-payment-billing-info">
+      <div class="hidden d-none js--registration-payment-billing-info">
         [[C:selectlist-title-element:billing_title]]
         [[C:text-element:billing_first_name]]
         [[C:text-element:billing_last_name]]
@@ -126,7 +125,7 @@
         </div>
       </div>
       <hr class="ym-section-divider">
-      <div class="hidden js--registration-payment-account-info">
+      <div class="hidden d-none js--registration-payment-account-info">
         [[?xx::x[[C:payment-type-element:responsive_payment_type]]x::
           [[C:payment-type-element:payment_type]]
         ::
@@ -186,7 +185,7 @@
               </select>
             </div>
           </div>
-          <div class="hidden-xs col-sm-4">
+          <div class="d-xs-none d-sm-block col-sm-4">
             <div class="form-group required" ng-class="{'has-error': paymentQuestions.responsive_payment_typecc_cvvname.hasError}" ng-if="paymentQuestions.responsive_payment_typecc_cvvname" ng-cloak>
               <label class="control-label" for="paymentInfo-responsive_payment_typecc_cvvname">
                 CVV:
@@ -195,7 +194,7 @@
             </div>
           </div>
         </div>
-        <div class="row visible-xs" ng-if="paymentQuestions.responsive_payment_typecc_cvvname" ng-cloak>
+        <div class="row d-xs-block d-sm-none" ng-if="paymentQuestions.responsive_payment_typecc_cvvname" ng-cloak>
           <div class="col-xs-6">
             <div class="form-group required" ng-class="{'has-error': paymentQuestions.responsive_payment_typecc_cvvname.hasError}" ng-if="paymentQuestions.responsive_payment_typecc_cvvname" ng-cloak>
               <label class="control-label" for="paymentInfo-responsive_payment_typecc_cvvname">
@@ -216,7 +215,7 @@
               </button>
             </div>
             <div class="pull-left">
-              <button type="[[?xTx::x[[A7]]x::button::submit]]" class="btn btn-toggle" ng-click="previousStep()">
+              <button type="button" class="btn btn-toggle" ng-click="previousStep()">
                 <i class="fa fa-chevron-left"></i> <strong>Previous</strong>
               </button>
             </div>
@@ -225,7 +224,7 @@
       </div>
     </form>
   </div>
-  <div class="hidden" hidden aria-hidden="true">
+  <div class="hidden d-none" hidden aria-hidden="true">
     <form class="js--default-payment-form" action="[[A1]]" method="POST">
       <input type="hidden" name="fr_id" value="[[A2]]">
       <input type="hidden" name="pg" value="[[A5]]">

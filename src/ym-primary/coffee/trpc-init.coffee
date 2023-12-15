@@ -1,6 +1,5 @@
 angular.module 'trPcApp', [
   'ngRoute'
-  'ngCsv'
   'textAngular'
   'trPcControllers'
   'ngAria'
@@ -40,10 +39,16 @@ angular.module 'trPcApp'
         studentRegGoal = Number studentRegGoal
       $rootScope.studentRegGoal = studentRegGoal
       $rootScope.challengeTaken = $embedRoot.data('challenge-taken') if $embedRoot.data('challenge-taken') isnt ''
+      AmountRaised = $embedRoot.data('dollars') or '0'
+      $rootScope.AmountRaised = Number((AmountRaised).replace('$', '').replace(/,/g, ''))
+      
+      $rootScope.usePcEmail = $embedRoot.data('use-pc-email') or ''
   ]
 
 angular.element(document).ready ->
-  if not angular.element(document).injector()
-    angular.bootstrap document, [
-      'trPcApp'
-    ]
+  setTimeout ->
+    if not angular.element(document).injector()
+      angular.bootstrap document, [
+        'trPcApp'
+      ]
+  ,1000
