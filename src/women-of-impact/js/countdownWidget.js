@@ -19,7 +19,7 @@
  ***********************************************************************/
 
 var CountDownWidget = function (element_id) {
-  const frId = document.body.dataset.frId
+  const frId = sessionStorage.getItem("frId") || document.body.dataset.frId
   const envDevelopment = {
     API_KEY_ZURI: "18h2qgqrcW2Ek6jD",
     API_BASE_URL_ZURI: "https://tools.heart.org/aha-socials-dev",
@@ -28,7 +28,6 @@ var CountDownWidget = function (element_id) {
     API_KEY_ZURI: "ovMgWp3QsUmPmaGK",
     API_BASE_URL_ZURI: "https://tools.heart.org/aha-socials-fy24",
   }
-
   const env = location.host === "dev2.heart.org" ? envDevelopment : envProduction
 
   const getEventDetails = new Promise(async (resolve, reject) => {
