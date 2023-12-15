@@ -31,7 +31,7 @@ var CountDownWidget = function (element_id, a, b, c) {
 
   const env = location.host === "dev2.heart.org" ? envDevelopment : envProduction
 
-  const getEventDetails = async (data) => {
+  const getEventDetails = new Promise(async (resolve, reject) => {
     const url = `${env.API_BASE_URL_ZURI}/api/events/${frId}?key=${env.API_KEY_ZURI}`
     let eventDetails = null
 
@@ -49,69 +49,72 @@ var CountDownWidget = function (element_id, a, b, c) {
       if (data) {
         eventDetails = data.event
         console.log("eventDetails", eventDetails)
+        resolve(eventDetails)
       } else {
         throw Error("No event details data")
       }
     } catch (err) {
       console.error(err)
+      reject(err)
     }
-  }
+  })
 
-  frId && getEventDetails()
+  frId &&
+    getEventDetails.then((eventDetails) => {
+      this.id = element_id
+      //this.offset = timeoffset;
+      this.tzoffset_a = getTimeOffset(a[0]) * 60
+      this.tzoffset_b = getTimeOffset(b[0]) * 60
+      this.datetime = convertTime(a[0])
+      this.enddate = convertTime(b[0])
+      this.halt = false
+      /* b - before , p - in progress, e - ended */
+      this.stage = "b"
 
-  this.id = element_id
-  //this.offset = timeoffset;
-  this.tzoffset_a = getTimeOffset(a[0]) * 60
-  this.tzoffset_b = getTimeOffset(b[0]) * 60
-  this.datetime = convertTime(a[0])
-  this.enddate = convertTime(b[0])
-  this.halt = false
-  /* b - before , p - in progress, e - ended */
-  this.stage = "b"
+      this.delta = 0
+      this.prev = { d1: "", d0: "", h1: "", h0: "", m1: "", m0: "", s1: "", s0: "" }
 
-  this.delta = 0
-  this.prev = { d1: "", d0: "", h1: "", h0: "", m1: "", m0: "", s1: "", s0: "" }
+      this.key = Math.random().toString(16).slice(2)
 
-  this.key = Math.random().toString(16).slice(2)
+      this.announceInterval = 1000 * 60 * 5 // in ms
+      this.announceTitle = "Time left: "
 
-  this.announceInterval = 1000 * 60 * 5 // in ms
-  this.announceTitle = "Time left: "
+      this.getTimeDiff()
 
-  this.getTimeDiff()
+      document.getElementById(this.id).innerHTML = this.getCodes()
+      this.run()
+      this.announce()
 
-  document.getElementById(this.id).innerHTML = this.getCodes()
-  this.run()
-  this.announce()
+      /********** Updating header and description ************/
+      let wrapper = document.getElementById("countdownWidget-section")
+      let heading = a[1]
+      let desc = a[2]
 
-  /********** Updating header and description ************/
-  let wrapper = document.getElementById("countdownWidget-section")
-  let heading = a[1]
-  let desc = a[2]
+      if (this.stage == "p") {
+        heading = b[1]
+        desc = b[2]
+      } else if (this.stage == "e") {
+        heading = c[1]
+        desc = c[2]
+      }
 
-  if (this.stage == "p") {
-    heading = b[1]
-    desc = b[2]
-  } else if (this.stage == "e") {
-    heading = c[1]
-    desc = c[2]
-  }
+      try {
+        let title_ele = wrapper.querySelector("h2")
+        let ptags = wrapper.querySelectorAll("p")
 
-  try {
-    let title_ele = wrapper.querySelector("h2")
-    let ptags = wrapper.querySelectorAll("p")
+        if (!title_ele && !ptags) return
 
-    if (!title_ele && !ptags) return
-
-    if (title_ele) {
-      title_ele.innerHTML = heading
-      ptags[0].innerHTML = desc
-    } else {
-      ptags[0].innerHTML = heading
-      ptags[1].innerHTML = desc
-    }
-  } catch (ex) {
-    console.log("Error populating countdown time text")
-  }
+        if (title_ele) {
+          title_ele.innerHTML = heading
+          ptags[0].innerHTML = desc
+        } else {
+          ptags[0].innerHTML = heading
+          ptags[1].innerHTML = desc
+        }
+      } catch (ex) {
+        console.log("Error populating countdown time text")
+      }
+    })
 }
 
 CountDownWidget.prototype.getCodes = function () {
