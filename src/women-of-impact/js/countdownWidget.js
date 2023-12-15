@@ -22,11 +22,11 @@ var CountDownWidget = function (element_id, a, b, c) {
   const frId = document.body.dataset.frId
   const envDevelopment = {
     API_KEY_ZURI: "18h2qgqrcW2Ek6jD",
-    API_BASE_URL_ZURI: "https://tools.heart.org/aha-socials-fy24",
+    API_BASE_URL_ZURI: "https://tools.heart.org/aha-socials-dev",
   }
   const envProduction = {
     API_KEY_ZURI: "ovMgWp3QsUmPmaGK",
-    API_BASE_URL_ZURI: "https://tools.heart.org/aha-socials-dev",
+    API_BASE_URL_ZURI: "https://tools.heart.org/aha-socials-fy24",
   }
 
   const env = location.host === "dev2.heart.org" ? envDevelopment : envProduction
@@ -53,11 +53,11 @@ var CountDownWidget = function (element_id, a, b, c) {
         throw Error("No event details data")
       }
     } catch (err) {
-      setError(true)
       console.error(err)
     }
   }
-  getEventDetails()
+
+  frId && getEventDetails()
 
   this.id = element_id
   //this.offset = timeoffset;
