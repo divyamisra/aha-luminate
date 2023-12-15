@@ -18,7 +18,7 @@
  *
  ***********************************************************************/
 
-var CountDownWidget = function (element_id, a, b, c) {
+var CountDownWidget = function (element_id) {
   const frId = document.body.dataset.frId
   const envDevelopment = {
     API_KEY_ZURI: "18h2qgqrcW2Ek6jD",
@@ -61,6 +61,12 @@ var CountDownWidget = function (element_id, a, b, c) {
 
   frId &&
     getEventDetails.then((eventDetails) => {
+      if (!eventDetails) return
+
+      const a = [`${eventDetails.begin_date} ${eventDetails.begin_timezone}`, eventDetails.title_before, eventDetails.message_before]
+      const b = [`${eventDetails.end_date} ${eventDetails.end_timezone}`, eventDetails.title_during, eventDetails.message_during]
+      const c = ["0", eventDetails.title_after, eventDetails.message_after]
+
       this.id = element_id
       //this.offset = timeoffset;
       this.tzoffset_a = getTimeOffset(a[0]) * 60
