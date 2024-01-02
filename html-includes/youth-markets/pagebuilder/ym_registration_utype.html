@@ -1,213 +1,213 @@
 [[?COMMENT::::::
-   NOT PART OF DEPLOYMENT PROCESS. MUST BE MANUALLY COPIED TO PAGEBUILDER.
+NOT PART OF DEPLOYMENT PROCESS. MUST BE MANUALLY COPIED TO PAGEBUILDER.
 ]]
 
 [[?xTx::x[[A24]]x::
-  <!-- manage mode -->
-  <script>
-    var myHtmlEditor = 'Gfr_htmltextarea';
-  </script>
-  <script src="../js/ajax_mce.js"></script>
+<!-- manage mode -->
+<script>
+ var myHtmlEditor = 'Gfr_htmltextarea';
+</script>
+<script src="../js/ajax_mce.js"></script>
 ::]]
 <div class="ym-registration-page-container ym-registration-page-container--utype" ng-controller="RegistrationUtypeCtrl" ng-init="[[?xTx::x[[A21]]x::userType='existing';::]][[?xx::x[[A26]]x::::showForgotLogin=true;]]">
-  <div ng-class="{'hidden': showForgotLogin}" ng-cloak>
-    <div class="ym-registration-page-header">
-      <div class="manageable-content" data-container="edit_ut_title_container">
-        <h2 class="h4" id="ut_title_container">
-          [[C1:fr_ut_title]]
-        </h2>
-      </div>
-      [[?xxnullx::x[[A5]]x::::
-        <div class="alert alert-success" role="alert">
-          [[A5]]
-        </div>
-      ]]
-      [[?xx::x[[A25]]x::::
-        <div class="alert alert-success" role="alert">
-          [[A25]]
-        </div>
-      ]]
-      [[?xyz.xnullynullz.xynullz.xnullyz::x[[A4]]y[[A6]]z::::
-        <div class="alert alert-danger" role="alert">
-          [[?xy.xnully::x[[A4]]y::
-            [[M0:friendraiser:generic_error]]
-          ::
-            [[A4]]
-          ]]
-        </div>
-      ]]
-      [[?xx::x[[A20]]x::::
-        <div class="alert alert-danger" role="alert">
-          [[A20]]
-        </div>
-      ]]
-      <p class="ym-section-header">
-        Did you participate last year?
-      </p>
-    </div>
-    <div class="ym-registration-utype-user-types">
-      <div class="clearfix">
-        <div class="ym-registration-utype-user-type">
-          <div class="manageable-content" data-container="edit_fr_returning_user_container">
-            <button type="button" class="btn btn-toggle" ng-class="{'active': userType == 'existing'}" ng-click="toggleUserType('existing')">
-              <span id="fr_returning_user_container">[[C1:fr_returning_user]]</span>
-            </button>
-          </div>
-        </div>
-        <div class="ym-registration-utype-user-type">
-          <div class="manageable-content" data-container="edit_fr_new_user_container">
-            <button type="button" class="btn btn-toggle" ng-click="toggleUserType('new')">
-              <span id="fr_new_user_container">[[C1:fr_new_user]]</span> <i class="fa fa-chevron-right"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div ng-class="{'hidden': userType != 'existing'}" ng-cloak>
-      <form class="ym-registration-utype-login-form" method="POST" novalidate ng-submit="submitUtypeLogin()">
-        <div class="ym-registration-utype-login-header">
-          <p class="ym-section-header">
-            Welcome Back! Please Log In:
-          </p>
-          <p>
-            As a returning student, we will need to ask you to update your current information.
-          </p>
-        </div>
-        <div class="ym-registration-utype-login-info">
-          <div class="row">
-            <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-              <div class="row">
-                <div class="col-xs-6">
-                  <div class="form-group [[?xx::x[[A20]]x::::[[?x[[M0:login_admin:err_username_password_required]]x[[M0:login_admin:err_invalid_userid]]x::x[[A20]]x::has-error::]]]]">
-                    <label class="control-label" for="existingUser-username">
-                      [[M0:global:user_name_field]]
-                    </label>
-                    <input type="text" class="form-control input-lg" name="USERNAME" id="existingUser-username" ng-model="existingUser.username" maxlength="[[S0:USER_MAX_LOGIN_LEN]]">
-                  </div>
-                </div>
-                <div class="col-xs-6">
-                  <div class="form-group [[?xx::x[[A20]]x::::[[?x[[M0:login_admin:err_username_password_required]]x[[M0:login_admin:err_invalid_password]]x::x[[A20]]x::has-error::]]]]">
-                    <label class="control-label" for="existingUser-password">
-                      [[M0:global:user_password_field]]
-                    </label>
-                    <input type="password" class="form-control input-lg" name="Password" id="existingUser-password" ng-model="existingUser.password" maxlength="[[S0:USER_MAX_PASSWD_LEN]]">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="ym-registration-utype-forgot-toggle">
-          <a ng-click="toggleForgotLogin('show')">Forgot Username or Password?</a>
-        </div>
-        <div class="ym-registration-form-footer">
-          <div class="ym-registration-form-footer-btns">
-            <div class="clearfix">
-              <div class="visible-xs">
-                <button type="submit" class="btn btn-primary">
-                  <strong>Next</strong> <i class="fa fa-chevron-right"></i>
-                </button>
-              </div>
-              <div class="pull-right hidden-xs">
-                <button type="submit" class="btn btn-primary">
-                  <strong>Next</strong> <i class="fa fa-chevron-right"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-  <div ng-class="{'hidden': !showForgotLogin}" ng-cloak>
-    <div class="ym-registration-page-header">
-      <h2 class="h5" id="ut_title_forgot_pwd">
-        Forgot Username or Password
-      </h2>
-      [[?xx::x[[A26]]x::::
-        <div class="alert alert-danger" role="alert">
-          [[A26]]
-        </div>
-      ]]
-      <p>
-      </p>
-    </div>
-    <form class="ym-registration-utype-forgot-form" method="POST" novalidate ng-submit="submitForgotLogin()">
-      <div class="row">
-        <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-          <div class="form-group [[?xx::x[[A26]]x::::has-error]]">
-            <label class="control-label" for="existingUser-email">
-              Email Address:
-            </label>
-            <input type="text" class="form-control input-lg" name="email" id="existingUser-email" ng-model="existingUser.email" maxlength="100">
-          </div>
-        </div>
-      </div>
-      <div class="ym-registration-form-footer">
-        <div class="ym-registration-form-footer-btns">
-          <div class="clearfix">
-            <div class="pull-right">
-              <button type="submit" class="btn btn-primary">
-                <strong>Submit</strong>
-              </button>
-            </div>
-            <div class="pull-left">
-              <a class="btn btn-toggle" ng-click="toggleForgotLogin('hide')">
-                <i class="fa fa-chevron-left"></i> <strong>Cancel</strong>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </form>
-  </div>
-  <div class="hidden" hidden aria-hidden="true">
-    <form class="js--default-utype-existing-form" action="[[A1]]" method="POST">
-      <input type="hidden" name="fr_id" value="[[A2]]">
-      <input type="hidden" name="pg" value="[[A7]]">
-      <input type="text" name="[[A13]]" ng-model="existingUser.username">
-      <input type="password" name="[[A14]]" ng-model="existingUser.password">
-      <input type="hidden" name="s_frCompanyId" value="[[S80:frCompanyId]]">
-      <input type="hidden" name="s_frTJoin" value="[[S80:frTJoin]]">
-      <input type="hidden" name="[[A16]]" value="[[M0:global:login_button]]">
-    </form>
-    <form class="js--default-utype-send-username-form" action="[[A1]]" method="POST">
-      <input type="hidden" name="fr_id" value="[[A2]]">
-      <input type="hidden" name="pg" value="[[A7]]">
-      <input type="text" name="[[A17]]" ng-model="existingUser.email">
-      <input type="hidden" name="s_frCompanyId" value="[[S80:frCompanyId]]">
-      <input type="hidden" name="s_frTJoin" value="[[S80:frTJoin]]">
-      <input type="hidden" name="[[A18]]" value="[[M0:global:send_user_name_button]]">
-    </form>
-    <form class="js--default-utype-new-form" action="[[A1]]" method="POST">
-      <input type="hidden" name="fr_id" value="[[A2]]">
-      <input type="hidden" name="pg" value="[[A7]]">
-      <input type="hidden" name="s_frCompanyId" value="[[S80:frCompanyId]]">
-      <input type="hidden" name="s_frTJoin" value="[[S80:frTJoin]]">
-      <input type="hidden" name="next_step.x" value="[[M1:friendraiser:join_team_step_next_button]]">
-    </form>
-  </div>
+<div ng-class="{'hidden d-none': showForgotLogin}" ng-cloak>
+ <div class="ym-registration-page-header">
+   <div class="manageable-content" data-container="edit_ut_title_container">
+     <h2 class="h4" id="ut_title_container">
+       [[C1:fr_ut_title]]
+     </h2>
+   </div>
+   [[?xxnullx::x[[A5]]x::::
+     <div class="alert alert-success" role="alert">
+       [[A5]]
+     </div>
+   ]]
+   [[?xx::x[[A25]]x::::
+     <div class="alert alert-success" role="alert">
+       [[A25]]
+     </div>
+   ]]
+   [[?xyz.xnullynullz.xynullz.xnullyz::x[[A4]]y[[A6]]z::::
+     <div class="alert alert-danger" role="alert" tabindex="0">
+       [[?xy.xnully::x[[A4]]y::
+         [[M0:friendraiser:generic_error]]
+       ::
+         [[A4]]
+       ]]
+     </div>
+   ]]
+   [[?xx::x[[A20]]x::::
+     <div class="alert alert-danger" role="alert" tabindex="0">
+       [[A20]]
+     </div>
+   ]]
+   <p class="ym-section-header">
+     Did your student participate last year?
+   </p>
+ </div>
+ <div class="ym-registration-utype-user-types">
+   <div class="clearfix">
+     <div class="ym-registration-utype-user-type">
+       <div class="manageable-content" data-container="edit_fr_returning_user_container">
+         <button type="button" class="btn btn-toggle" ng-class="{'active': userType == 'existing'}" ng-click="toggleUserType('existing')">
+           <span id="fr_returning_user_container">[[C1:fr_returning_user]]</span>
+         </button>
+       </div>
+     </div>
+     <div class="ym-registration-utype-user-type">
+       <div class="manageable-content" data-container="edit_fr_new_user_container">
+         <button type="button" class="btn btn-toggle" ng-click="toggleUserType('new')">
+           <span id="fr_new_user_container">[[C1:fr_new_user]]</span> <i class="fa fa-chevron-right"></i>
+         </button>
+       </div>
+     </div>
+   </div>
+ </div>
+ <div ng-class="{'hidden d-none': userType != 'existing'}" ng-cloak>
+   <form class="ym-registration-utype-login-form" method="POST" novalidate ng-submit="submitUtypeLogin()">
+     <div class="ym-registration-utype-login-header">
+       <p class="ym-section-header">
+         Welcome Back! Please Log In:
+       </p>
+       <p>
+         As a returning student, we will need to ask you to update your current information.
+       </p>
+     </div>
+     <div class="ym-registration-utype-login-info">
+       <div class="row">
+         <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+           <div class="row">
+             <div class="col-xs-6">
+               <div class="form-group required [[?xx::x[[A20]]x::::[[?x[[M0:login_admin:err_username_password_required]]x[[M0:login_admin:err_invalid_userid]]x::x[[A20]]x::has-error::]]]]">
+                 <label class="control-label" for="existingUser-username">
+                   [[M0:global:user_name_field]]
+                 </label>
+                 <input type="text" class="form-control input-lg" name="USERNAME" id="existingUser-username" ng-model="existingUser.username" maxlength="[[S0:USER_MAX_LOGIN_LEN]]" required aria-required="true">
+               </div>
+             </div>
+             <div class="col-xs-6">
+               <div class="form-group required [[?xx::x[[A20]]x::::[[?x[[M0:login_admin:err_username_password_required]]x[[M0:login_admin:err_invalid_password]]x::x[[A20]]x::has-error::]]]]">
+                 <label class="control-label" for="existingUser-password">
+                   [[M0:global:user_password_field]]
+                 </label>
+                 <input type="password" class="form-control input-lg" name="Password" id="existingUser-password" ng-model="existingUser.password" maxlength="[[S0:USER_MAX_PASSWD_LEN]]" required aria-required="true">
+               </div>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+     <div class="ym-registration-utype-forgot-toggle">
+       <a href="" ng-click="toggleForgotLogin('show')">Forgot Username or Password?</a>
+     </div>
+     <div class="ym-registration-form-footer">
+       <div class="ym-registration-form-footer-btns">
+         <div class="clearfix">
+           <div class="d-xs-block d-sm-none">
+             <button type="submit" class="btn btn-primary">
+               <strong>Next</strong> <i class="fa fa-chevron-right"></i>
+             </button>
+           </div>
+           <div class="pull-right d-xs-none d-sm-block">
+             <button type="submit" class="btn btn-primary">
+               <strong>Next</strong> <i class="fa fa-chevron-right"></i>
+             </button>
+           </div>
+         </div>
+       </div>
+     </div>
+   </form>
+ </div>
+</div>
+<div ng-class="{'hidden d-none': !showForgotLogin}" ng-cloak>
+ <div class="ym-registration-page-header">
+   <h2 class="h5" id="ut_title_forgot_pwd">
+     Forgot Username or Password
+   </h2>
+   [[?xx::x[[A26]]x::::
+     <div class="alert alert-danger" role="alert" tabindex="0">
+       [[A26]]
+     </div>
+   ]]
+   <p>
+   </p>
+ </div>
+ <form class="ym-registration-utype-forgot-form" method="POST" novalidate ng-submit="submitForgotLogin()">
+   <div class="row">
+     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+       <div class="form-group required [[?xx::x[[A26]]x::::has-error]]">
+         <label class="control-label" for="existingUser-email">
+           Email Address:
+         </label>
+         <input type="text" class="form-control input-lg" name="email" id="existingUser-email" ng-model="existingUser.email" maxlength="100" required aria-required="true">
+       </div>
+     </div>
+   </div>
+   <div class="ym-registration-form-footer">
+     <div class="ym-registration-form-footer-btns">
+       <div class="clearfix">
+         <div class="pull-right">
+           <button type="submit" class="btn btn-primary">
+             <strong>Submit</strong>
+           </button>
+         </div>
+         <div class="pull-left">
+           <a class="btn btn-toggle" ng-click="toggleForgotLogin('hide')">
+             <i class="fa fa-chevron-left"></i> <strong>Cancel</strong>
+           </a>
+         </div>
+       </div>
+     </div>
+   </div>
+ </form>
+</div>
+<div class="hidden d-none" hidden aria-hidden="true">
+ <form class="js--default-utype-existing-form" action="[[A1]]" method="POST">
+   <input type="hidden" name="fr_id" value="[[A2]]">
+   <input type="hidden" name="pg" value="[[A7]]">
+   <input type="text" name="[[A13]]" ng-model="existingUser.username">
+   <input type="password" name="[[A14]]" ng-model="existingUser.password">
+   <input type="hidden" name="s_frCompanyId" value="[[S80:frCompanyId]]">
+   <input type="hidden" name="s_frTJoin" value="[[S80:frTJoin]]">
+   <input type="hidden" name="[[A16]]" value="[[M0:global:login_button]]">
+ </form>
+ <form class="js--default-utype-send-username-form" action="[[A1]]" method="POST">
+   <input type="hidden" name="fr_id" value="[[A2]]">
+   <input type="hidden" name="pg" value="[[A7]]">
+   <input type="text" name="[[A17]]" ng-model="existingUser.email">
+   <input type="hidden" name="s_frCompanyId" value="[[S80:frCompanyId]]">
+   <input type="hidden" name="s_frTJoin" value="[[S80:frTJoin]]">
+   <input type="hidden" name="[[A18]]" value="[[M0:global:send_user_name_button]]">
+ </form>
+ <form class="js--default-utype-new-form" action="[[A1]]" method="POST">
+   <input type="hidden" name="fr_id" value="[[A2]]">
+   <input type="hidden" name="pg" value="[[A7]]">
+   <input type="hidden" name="s_frCompanyId" value="[[S80:frCompanyId]]">
+   <input type="hidden" name="s_frTJoin" value="[[S80:frTJoin]]">
+   <input type="hidden" name="next_step.x" value="[[M1:friendraiser:join_team_step_next_button]]">
+ </form>
+</div>
 </div>
 [[?xTx::x[[A24]]x::
-  <!-- manage mode -->
-  <div id="edit_ut_title_container" class="EditContainer" style="display: none;">
-    [[C:ajax-custompage-edit-component:edit_ut_title_container]]
-  </div>
-  <div id="edit_fr_returning_user_container" class="EditContainer" style="display: none;">
-    [[C:ajax-custompage-edit-component:edit_fr_returning_user_container]]
-  </div>
-  <div id="edit_fr_new_user_container" class="EditContainer" style="display: none;">
-    [[C:ajax-custompage-edit-component:edit_fr_new_user_container]]
-  </div>
-  <input id="edit_btn_title" type="hidden" value="[[M0:friendraiser_emgmt:preview_edit_link]]">
-  <script>
-    hide_element('edit_fr_html_container');
-    Y.use('emc-reg-editor', function(Y) {
-      jQuery(function() {
-        jQuery('.ym-registration-page-container').manageEMCEditable({
-          windowTitle: '[[T6:[[M0:friendraiser_emgmt:editor_window_title]]]]'
-        });
-      });
-    });
-  </script>
+<!-- manage mode -->
+<div id="edit_ut_title_container" class="EditContainer" style="display: none;">
+ [[C:ajax-custompage-edit-component:edit_ut_title_container]]
+</div>
+<div id="edit_fr_returning_user_container" class="EditContainer" style="display: none;">
+ [[C:ajax-custompage-edit-component:edit_fr_returning_user_container]]
+</div>
+<div id="edit_fr_new_user_container" class="EditContainer" style="display: none;">
+ [[C:ajax-custompage-edit-component:edit_fr_new_user_container]]
+</div>
+<input id="edit_btn_title" type="hidden" value="[[M0:friendraiser_emgmt:preview_edit_link]]">
+<script>
+ hide_element('edit_fr_html_container');
+ Y.use('emc-reg-editor', function(Y) {
+   jQuery(function() {
+     jQuery('.ym-registration-page-container').manageEMCEditable({
+       windowTitle: '[[T6:[[M0:friendraiser_emgmt:editor_window_title]]]]'
+     });
+   });
+ });
+</script>
 ::]]

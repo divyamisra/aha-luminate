@@ -15,4 +15,16 @@ angular.module 'trPcApp'
           url: requestUrl
         .then (response) ->
           response
+
+      getSchoolChallengeReport: (frId) ->
+        requestUrl = 'SPageServer?pagename=getYmKhcSchoolChallengeReport&pgwrap=n&fr_id=' + $rootScope.frId
+        requestUrl += '&response_format=json'
+        $http
+          method: 'GET'
+          url: requestUrl
+        .then (response) ->
+          response
+
+
+
   ]

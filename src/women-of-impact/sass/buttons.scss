@@ -1,0 +1,134 @@
+a.btn {
+  text-decoration: none;
+}
+
+// .btn {
+//   @include border-radius(60px, 60px, 60px, 60px);
+//   color: $white;
+//   border: none;
+//   font-family: "Montserrat", Helvetica, Arial, sans-serif !important;
+// }
+
+.content {
+  .btn {
+    line-height: 1;
+    padding: 15px 20px;
+  }
+
+  .btn-primary {
+    border: solid 2px $red !important;
+
+    &:hover {
+      border: solid 2px $red-deep !important;
+    }
+  }
+}
+
+.btn-primary {
+  background-color: $red;
+
+  &:hover {
+    background-color: $red-deep;
+  }
+}
+
+.btn-secondary {
+  background-color: $white;
+  border: solid 2px $red;
+  color: $red;
+}
+
+.btn-tertiary {
+  border: solid 2px $white;
+}
+
+.btn-tertiary-black {
+  border: solid 2px $black !important;
+  color: $black !important;
+  padding: 5px 20px !important;
+}
+
+.btn-secondary,
+.btn-tertiary,
+.btn-tertiary-black {
+  &:hover {
+    background-color: $red !important;
+    border: solid 2px $red !important;
+    color: $white !important;
+  }
+}
+
+.input-group-append .btn {
+  @include border-radius(4px, 4px, 0, 0);
+}
+
+.donation-amount-btn {
+  background-color: $white;
+  border: solid 2px $black;
+  color: $black;
+  float: left;
+  margin: 0 1% 0 0;
+  max-height: 50px;
+  padding: 11px 0;
+  position: relative;
+  width: 99px;
+
+  &:hover,
+  &.active {
+    background-color: $black;
+    color: $white;
+  }
+  .form-check-input {
+    left: 5px;
+    margin-left: auto;
+  }
+}
+
+.btn-primary:focus,
+a.btn.btn-primary:focus,
+#login-div-content a.btn.btn-primary:focus,
+div.responsive a.btn.btn-primary:focus,
+.btn-primary.focus,
+a.focus.btn.btn-primary,
+#login-div-content a.focus.btn.btn-primary,
+div.responsive a.focus.btn.btn-primary,
+.btn:focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(248, 249, 250, 0.5) !important;
+  box-shadow: 0 0 0 0.2rem rgba(248, 249, 250, 0.5) !important;
+}
+
+#login-div-content a.btn.btn-primary:focus,
+#login-div-content a.focus.btn.btn-primary,
+#login-div-content div.responsive a.btn.btn-primary:focus,
+#login-div-content div.responsive a.focus.btn.btn-primary,
+.btn-primary.focus,
+.btn-primary:focus,
+.btn:focus,
+a.btn.btn-primary:focus,
+a.focus.btn.btn-primary,
+div.responsive #login-div-content a.btn.btn-primary:focus,
+.modal-content a:focus,
+div.responsive #login-div-content a.focus.btn.btn-primary,
+div.responsive a.btn.btn-primary:focus,
+div.responsive a.focus.btn.btn-primary {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(193, 14, 33, 0.5) !important;
+  box-shadow: 0 0 0 0.2rem rgba(193, 14, 33, 0.5) !important;
+  outline: 2px solid $outline-blue;
+}
+
+.card-facebook .btn:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.95) !important;
+  outline: 1px solid #000;
+}
+
+#navbar-container a.btn.btn-primary:focus,
+.global-promo a.btn.btn-primary:focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.5) !important;
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.5) !important;
+  outline: 2px solid $outline-blue;
+}
+
+#navbar-container a.btn.btn-primary:focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.75) !important;
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.75) !important;
+}

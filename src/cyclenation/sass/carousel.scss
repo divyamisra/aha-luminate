@@ -1,4 +1,15 @@
 .pg_entry {
+  .play-pause-carousel:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    clip: unset;
+    -webkit-clip-path: none;
+    clip-path: none;
+    display: block;
+    background: #f8f9fa;
+    padding: 0.625rem 1.25rem;
+  }
   .carousel {
     .carousel-indicators {
       bottom: 0;

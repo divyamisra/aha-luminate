@@ -77,7 +77,7 @@ a.btn-lg {
     font-weight: 700;
     
     @media (min-width: $screen-sm-min) {
-      @include button-size($padding-base-vertical, $padding-base-horizontal, 20px);
+      @include button-size($padding-base-vertical, $padding-base-horizontal, 18px);
       min-width: 180px;
     }
   }

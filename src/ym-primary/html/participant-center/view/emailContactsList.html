@@ -7,25 +7,25 @@
             <strong>{{filterName}}</strong> <span class="caret"></span>
           </button>
           <ul class="list-unstyled dropdown-menu" uib-dropdown-menu>
-            <li>
+            <li ng-show="usePcEmail">
               <a ng-href="{{baseUrl}}#/email/compose">
                 Compose
               </a>
             </li>
-            <li class="divider"></li>
-            <li>
+            <li class="divider" ng-show="usePcEmail"></li>
+            <li ng-show="usePcEmail">
               <a ng-href="{{baseUrl}}#/email/message/draft/list">
                 <span class="badge">{{messageCounts.drafts}}</span>
                 Drafts
               </a>
             </li>
-            <li>
+            <li ng-show="usePcEmail">
               <a ng-href="{{baseUrl}}#/email/message/sentMessage/list">
                 <span class="badge">{{messageCounts.sentMessages}}</span> 
                 Sent Messages
               </a>
             </li>
-            <li class="divider"></li>
+            <li class="divider" ng-show="usePcEmail"></li>
             <li>
               <a ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_all/list">
                 <span class="badge">{{contactCounts.email_rpt_show_all}}</span>
@@ -68,6 +68,54 @@
                 School Participants
               </a>
             </li>
+            <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+              <a ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_new_participants/list">
+                <span class="badge"><span class="fa fa-star"></span></span>
+                New to Kids Heart Challenge
+              </a>
+            </li>
+            <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+              <a ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_weekly_participants/list">
+                <span class="badge"><span class="fa fa-star"></span></span>
+                New Registrations
+              </a>
+            </li>
+            <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+              <a ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_0_dollar_participants/list">
+                <span class="badge"><span class="fa fa-star"></span></span>
+                $0 Participants
+              </a>
+            </li>
+            <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+              <a ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_250_dollar_participants/list">
+                <span class="badge"><span class="fa fa-star"></span></span>
+                $250 Participants
+              </a>
+            </li>
+            <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+              <a ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_mission_partial/list">
+                <span class="badge"><span class="fa fa-star"></span></span>
+                Finn's Mission Not Complete
+              </a>
+            </li>
+            <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+              <a ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_mission_complete/list">
+                <span class="badge"><span class="fa fa-star"></span></span>
+                Completed Finn's Mission
+              </a>
+            </li>
+            <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+              <a ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_challenge_half/list">
+                <span class="badge"><span class="fa fa-star"></span></span>
+                50% of School Challenge
+              </a>
+            </li>
+            <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+              <a ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_challenge_complete/list">
+                <span class="badge"><span class="fa fa-star"></span></span>
+                Met School Challenge
+              </a>
+            </li>
             <li ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' && prev1FrId && prev1FrId != ''" ng-cloak>
               <a ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_past_company_coordinator_participants/list">
                 <span class="badge"><span class="fa fa-star"></span></span>
@@ -78,10 +126,10 @@
         </div>
       </div>
       <div class="hidden-xs">
-        <a class="btn btn-secondary form-control" ng-href="{{baseUrl}}#/email/compose">
+        <a class="btn btn-secondary form-control" ng-href="{{baseUrl}}#/email/compose" ng-show="usePcEmail">
           <strong>Compose</strong>
         </a>
-        <div class="list-group ng-pc-nav-list-group">
+        <div class="list-group ng-pc-nav-list-group" ng-show="usePcEmail">
           <a class="list-group-item" ng-href="{{baseUrl}}#/email/message/draft/list">
             <span class="badge">{{messageCounts.drafts}}</span> 
             Drafts
@@ -122,6 +170,38 @@
           <a class="list-group-item" ng-class="{'active': filter == 'email_rpt_show_company_coordinator_participants'}" ng-href="{{baseUrl}}#/email/contacts/email_rpt_show_company_coordinator_participants/list" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
             <span class="badge">{{contactCounts.email_rpt_show_company_coordinator_participants}}</span>
             School Participants
+          </a>
+          <a class="list-group-item" ng-class="{'active': filter == 'email_custom_rpt_show_company_coordinator_new_participants'}" ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_new_participants/list" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+            <span class="badge"><span class="fa fa-star"></span></span>
+            New to Kids Heart Challenge
+          </a>
+          <a class="list-group-item" ng-class="{'active': filter == 'email_custom_rpt_show_company_coordinator_weekly_participants'}" ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_weekly_participants/list" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+            <span class="badge"><span class="fa fa-star"></span></span>
+            New Registrations
+          </a>
+          <a class="list-group-item" ng-class="{'active': filter == 'email_custom_rpt_show_company_coordinator_0_dollar_participants'}" ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_0_dollar_participants/list" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+            <span class="badge"><span class="fa fa-star"></span></span>
+            $0 Participants
+          </a>
+          <a class="list-group-item" ng-class="{'active': filter == 'email_custom_rpt_show_company_coordinator_250_dollar_participants'}" ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_250_dollar_participants/list" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+            <span class="badge"><span class="fa fa-star"></span></span>
+            $250 Participants
+          </a>
+          <a class="list-group-item" ng-class="{'active': filter == 'email_custom_rpt_show_company_coordinator_mission_partial'}" ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_mission_partial/list" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+            <span class="badge"><span class="fa fa-star"></span></span>
+            Finn's Mission Not Complete
+          </a>
+          <a class="list-group-item" ng-class="{'active': filter == 'email_custom_rpt_show_company_coordinator_mission_complete'}" ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_mission_complete/list" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+            <span class="badge"><span class="fa fa-star"></span></span>
+            Completed Finn's Mission
+          </a>
+          <a class="list-group-item" ng-class="{'active': filter == 'email_custom_rpt_show_company_coordinator_challenge_half'}" ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_challenge_half/list" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+            <span class="badge"><span class="fa fa-star"></span></span>
+            50% of School Challenge
+          </a>
+          <a class="list-group-item" ng-class="{'active': filter == 'email_custom_rpt_show_company_coordinator_challenge_complete'}" ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_company_coordinator_challenge_complete/list" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true'" ng-cloak>
+            <span class="badge"><span class="fa fa-star"></span></span>
+            Met School Challenge
           </a>
           <a class="list-group-item" ng-class="{'active': filter == 'email_custom_rpt_show_past_company_coordinator_participants'}" ng-href="{{baseUrl}}#/email/contacts/email_custom_rpt_show_past_company_coordinator_participants/list" ng-if="participantRegistration.companyInformation.isCompanyCoordinator == 'true' && prev1FrId && prev1FrId != ''" ng-cloak>
             <span class="badge"><span class="fa fa-star"></span></span>
@@ -191,7 +271,7 @@
           No contacts to display.
         </div>
         <pc-contact-list contacts="addressBookContacts.contacts" toggle-contact="toggleContact" select-contact="selectContact" delete-contact="deleteContact" ng-if="addressBookContacts.totalNumber > 0"></pc-contact-list>
-        <div class="panel-footer" ng-if="filter != 'email_custom_rpt_show_past_company_coordinator_participants' && addressBookContacts.totalNumber > 10">
+        <div class="panel-footer" ng-if="filter != 'email_custom_rpt_show_company_coordinator_new_participants' && filter != 'email_custom_rpt_show_company_coordinator_weekly_participants' && filter != 'email_custom_rpt_show_company_coordinator_0_dollar_participants' && filter != 'email_custom_rpt_show_company_coordinator_250_dollar_participants' && filter != 'email_custom_rpt_show_past_company_coordinator_participants' && filter != 'email_custom_rpt_show_company_coordinator_mission_partial'  && filter != 'email_custom_rpt_show_company_coordinator_mission_complete'  && filter != 'email_custom_rpt_show_company_coordinator_challenge_half'  && filter != 'email_custom_rpt_show_company_coordinator_challenge_complete' && addressBookContacts.totalNumber > 10">
           <div class="ym-list-pagination">
             <nav>
               <ul class="list-unstyled" uib-pagination items-per-page="10" total-items="addressBookContacts.totalNumber" max-size="5" ng-model="addressBookContacts.page" ng-change="getContacts()"></ul>

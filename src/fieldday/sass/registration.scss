@@ -94,14 +94,24 @@ div.registration-page-container div.section-body {
 div.registration-page-container span.option-label {
 	margin-right: 10px;
 }
-.reg-summary-part-type::before {
-	content: "Confirm your registration total:";
-	font-size: 1.1em;
+
+.confirmReg {
+  font-size: 1.1em;
 	font-weight: bold;
 	display: block;
 	margin-bottom: 10px;
 	margin-top: 20px;
 }
+
+// .reg-summary-part-type::before {
+// 	content: "Confirm your registration total:";
+// 	font-size: 1.1em;
+// 	font-weight: bold;
+// 	display: block;
+// 	margin-bottom: 10px;
+// 	margin-top: 20px;
+// }
+
 #fr_reg_summary_page button.cancel-step {
 	display:none;
 }
@@ -306,6 +316,10 @@ a.show-not-sure {
     text-align: right;
     margin-left: 90px;
 }
+div#part_type_fundraising_goal_container, div#part_type_additional_gift_container {
+  margin-top: 40px;
+}
+
 div#part_type_fundraising_goal_container #suggested_goal_container {
 	margin-left: 0px;
 	color: #555555;
@@ -630,6 +644,13 @@ div#user_type_login_email_container #user_type_login_email_button {
 	margin-bottom: 10px;
 }
 
+.janrainPage li a:focus {
+  /* outline: 4px solid #0064bd; 
+    outline-offset: initial;
+  */
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
 
 /*** ptype  ***/
 
@@ -1280,7 +1301,8 @@ div.responsive .part-type-decoration-messages label {
   margin: 0;
 
   .part-type-fee-text {
-    font-size: 24px;
+    font-size: 2rem;
+    font-weight: bold;
     line-height: 32px;
     &::before {
       content: 'Registration fee: ';
@@ -2064,4 +2086,41 @@ div.required-indicator-legend {
 
 .default-submit-hack {
   display: none!important;
+}
+
+.pg_reg {
+  #password_hdr_container, .sub-section-header {
+    font-family: LubDubBold,Helvetica,Arial,sans-serif;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: .5rem;
+    line-height: 1.2;
+  }
+  .section-header, .sub-section-header, #additional_questions_container .survey-question-container {
+    margin: 2rem 0!important;
+  }
+}
+
+.pg_ptype {
+  .part-type-container {
+    display: none;
+  }
+  #discount_code_container {
+    margin-top: 1.5rem;
+  }
+}
+
+.pg_regsummary {
+  .contact-info-first, .contact-info-middle.regMiddleName {
+    margin-right: 5px;
+  }
+}
+
+#F2fRegContact input.error + span {
+  color: #c10e21;
+}
+
+.privacyCheck legend, .waiverCheck legend {
+  display: none;
 }

@@ -107,3 +107,7 @@ a.btn {
   -webkit-box-shadow: 0 0 0 .2rem rgba(0,0,0,.75)!important;
   box-shadow: 0 0 0 .2rem rgba(0,0,0,.75)!important;
 }
+
+#navbar-container .nav-item--login a.btn.btn-primary:focus {
+  outline-color: #ffffff;
+}

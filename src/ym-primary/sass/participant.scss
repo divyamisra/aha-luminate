@@ -24,22 +24,48 @@
      }
    }
 }*/
-.ym-page-header-related {
-  bottom: -20px;
+
+.list-group-item > .badge {
+    float: right;
 }
 
+a.list-group-item:focus, 
+a.list-group-item:hover {
+    color: #555;
+    text-decoration: none;
+    background-color: #f5f5f5;
+}
+
+.ym-pc-dashboard-email-challenge-images {
+  a {
+    &,
+    &:link,
+    &:visited,
+    &:hover,
+    &:focus,
+    &:active {
+      margin:0;
+    }
+  }
+}
 .ym-pc-dashboard-activities-section {
   margin: 0;
 }
 
 .ym-coordinator-message-monster {
   display: block;
-  max-width: 200px;
-  margin: 0 auto -9px;
+  margin: 0 auto;
 }
 
 .ym-pc-dashboard-activities-section {
   margin: 0 0 24px;
+}
+
+.ym-pc-dashboard-coordinators-message-section {
+  background-color: #fcd151;
+  .ym-pc-dashboard-section-header {
+    color: $event-font-color;
+  }
 }
 
 .entry-container{
@@ -61,7 +87,8 @@
 	line-height:28px;
 	padding:10px 20px;
 	color:#fff;
-	font-family: 'Luckiest Guy', cursive;
+	font-family: $headline-font;
+	font-weight:bold;
 }
 .entry-division .title-banner-link {
 	color:#ffffff;
@@ -86,49 +113,33 @@
    a {
       color: $event-primary-acc;
    }
+
    .challenge-days {
       position:relative;
-      /*background: url(../image/pc-challenge-days-bg.png) no-repeat top / 100% auto;*/
-      /*@media only screen and (max-width: $screen-md-max) { 
-	 background: #ed1c24;
-      }*/
+      flex: 0 0 50%;
       overflow:hidden;
       .challenge-day-streak {
 	position:relative;
 	z-index: 1;
 	margin-bottom:20px;
         &::before {
-  	  background: #ed1c24;
+  	  background: $event-primary;
   	  content: " ";
 	  height: 100%;
 	  width: 101%;
 	  display: block;
 	  position: absolute;
-	  transform: rotate(-2deg);
 	  margin-top: 9px;
 	  left: -2px;
         }
 	   }
       button.btn {
 	margin: 20px 0 60px 0;
-	background: #83bf37;
 	width: 100%;
 	font-size: 20px;
-	color: indigo;
       }
       .challenge-day-add-day {
 	position:relative;
-        &::before {
-  	  background: #253c91;
-  	  content: " ";
-	  height: 100%;
-	  width: 101%;
-	  display: block;
-	  position: absolute;
-	  transform: rotate(2deg);
-	  margin-top: -30px;
-          left:-2px;
-       }
      }
      .challenge-day-add-icon {
 	position: relative;
@@ -152,6 +163,12 @@
       border: 2px solid #293B90;
       font-weight: bold;
       margin-bottom: 7px;
+	   
+      @media only screen and (max-width: $screen-md-max) {
+        width: 80px;
+        line-height: 56px;
+        padding: 8px 10px 12px 10px;
+      }
    }
    .text_with_1px_border {
       text-shadow: 
@@ -168,7 +185,7 @@
       text-transform: uppercase;
       font-size: 44px;
       @media only screen and (max-width: $screen-md-max) {
-	      font-size:3rem;
+	      font-size:1.5rem;
       }
       color: #fff;
       margin-top: 25px;
@@ -178,39 +195,38 @@
       font-size:33px;
       color:#ffffff;
       @media only screen and (max-width: $screen-md-max) {
-	      font-size:2.5rem;
+	      font-size:1.5rem;
       }
    }
    .ym_my_challenge__description {
-      color: indigo;
+      color: $event-secondary;
       font-size: 26px;
       margin-top:0px;
    }
-   .row {
-     a {
-	display: block;
-	text-decoration: none;
-	font-weight: bold;
-	color: #293b90;
-	font-size: 24px;
-	line-height: 28px;
-        margin-bottom:20px;
+   div.challenge-selection {
+      display: block;
+      text-decoration: none;
+      font-weight: bold;
+      color: #293b90;
+      font-size: 24px;
+      line-height: 28px;
+      margin-bottom:20px;
+      cursor: pointer;
 
-	&.selected {
-	   font-weight:bold;
-	}
-	&.disabled {
-   	   cursor: not-allowed;
-           filter: alpha(opacity=65);
-           -webkit-box-shadow: none;
-           box-shadow: none;
-     	   opacity: .65;
-        }
-	img {
-           margin:0 auto 5px;
-	}
+      &.selected {
+	font-weight:bold;
       }
-   }
+      &.disabled {
+        cursor: not-allowed;
+        filter: alpha(opacity=65);
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        opacity: .65;
+      }
+      img {
+         margin:0 auto 5px;
+      }
+    }
 }
 .ym-activity-box.ym-activity-box--virtual {
    a.entry-button{
@@ -218,7 +234,7 @@
 	line-height:28px;
 	padding:5px 20px;
 	color:#fff;
-	font-family: 'Luckiest Guy', cursive;
+	font-family: $headline-font;
 	background:#ff0096;
 	border-radius:5px;
 	text-decoration: none;
@@ -252,4 +268,46 @@
     bottom: 24px;
     width: 45%;
     right: 20px;
+}
+
+.khc-btn-copy::before {
+    content: $copy-icon;
+    padding-right: 10px;
+}
+
+.khc-social-share {
+  .grid {
+    grid-auto-rows: 1fr;
+  }
+  .btn {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    font-weight:bold;
+  }
+}
+
+.khc-share-facebook,
+.khc-connect-facebook {
+  &::before {
+    content: $facebook-icon;
+    padding-right: 10px;
+  }
+}
+
+.khc-share-facebook {
+  @include button-variant($white, $facebook-blue, $facebook-blue);
+}
+
+.khc-connect-facebook {
+  @include button-variant($white, $facebook-blue-dark, $facebook-blue-dark);
+}
+
+.khc-share-twitter {
+  @include button-variant($white, $twitter-blue, $twitter-blue, $white, #1989ce, $white);
+
+  &::before {
+    content: $twitter-icon;
+    padding-right: 10px;
+  }
 }

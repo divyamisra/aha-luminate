@@ -1,0 +1,27 @@
+  <div class="modal-header">
+    <h2 class="h5 modal-title">
+      Download Mobile App
+    </h2>
+  </div>
+  <div class="modal-body">
+    <p>
+      Download our free AHC app.
+    </p>
+    <div class="ym-pc-dashboard-mobile-downloads">
+      <a href="https://apps.apple.com/us/app/american-heart-challenge/id1274201161" target="_blank">
+        <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/apple-store-logo.png" alt="Download the iPhone App">
+      </a> 
+      <a href="https://play.google.com/store/apps/details?id=com.aha_jump.android.communicator&amp;hl=en" target="_blank">
+        <img ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/youth-markets/image/google-play-logo.png" alt="Download the Android App">
+      </a>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="clearfix">
+      <div class="text-center">
+        <button type="button" class="btn btn-toggle" ng-click="cancelMobileApp()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>

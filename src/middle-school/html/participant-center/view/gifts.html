@@ -1,0 +1,19 @@
+   <h2 class="text-center h3">Thank-you gifts that can be earned!</h2>
+   <h3 class="h6 text-center mb-24">
+     Continue sending emails and texts to receive additional thank-you gifts!
+   </h3>
+   <em class="text-center d-block mb-4">*Plus lower level gifts</em>
+   <section class="ym-pc-dashboard-standard-gifts-section" aria-label="My Standard Gifts" ng-if="standardGifts && standardGifts.length > 0" ng-cloak>
+      <div class="ym-pc-dashboard-standard-gifts-icons d-flex justify-content-start flex-wrap" role="list" aria-label="Standard Gifts">
+        <div class="ym-pc-dashboard-standard-gifts-icon col-md-3 text-center mb-4" ng-repeat="standardGift in standardGifts" role="listitem" aria-label="{{standardGift.prize_label}}" ng-cloak>
+           <a role="button" class="d-block border text-decoration-none p-2 mx-4 mb-4" href="" ng-click="showPrize(standardGift.prize_sku,standardGift.prize_label,standardGift.prize_status,standardGift.prize_video)">
+              <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/middle-school/image/prizes2023/{{standardGift.prize_sku}}.png" alt="{{standardGift.prize_label}}">
+              <div class="ym-pc-dashboard-standard-gift-earned mb-4">
+                 <h4 class="h5" ng-bind-html="standardGift.prize_label"></h4>
+                 <div class="gift-subtitle1"><span ng-bind-html="standardGift.msg_unearned"></span></div>
+              </div>
+              <div class="btn btn-sm btn-primary">More Details</div>
+           </a>
+        </div>
+      </div>
+   </section> 

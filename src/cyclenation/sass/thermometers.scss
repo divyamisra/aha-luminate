@@ -100,52 +100,69 @@
     }
 }
 
+// .pg_personal,
+// .pg_team,
+// .pg_company {
+//     .fundraiser-progress-container {
+//         .progress-header {
+//             margin-top: 4rem;
+//         }
+//         small {
+//             color: $body-color;
+//             font-size: 1.3rem;
+//         }
+//         .h2 {
+//             font-size: 1.75rem;
+//         }
+//         .progress {
+//             height: 60px;
+//         }
+//     }
+
+//     @include media-breakpoint-down(md) {
+//     .fundraiser-progress-container {
+//         .button {
+//             width:100%;
+//         }
+//         .fundraiser-raised,
+//         .fundraiser-goal {
+//             position: absolute;
+//             bottom: 0;
+//         }
+//         .fundraiser-raised {
+//             text-align:left;
+//             left: 0;
+//         }
+//         .fundraiser-goal {
+//             right: 0;
+//             text-align:right;
+//         }
+//     }
+//     }
+
+//     @include media-breakpoint-down(sm) {
+//     .progress-donate-container {
+//         padding-right: 0;
+//         padding-left: 0;
+//     }
+    
+//     }
+
+// }
+
 .pg_personal,
 .pg_team,
 .pg_company {
-    .fundraiser-progress-container {
-        .progress-header {
-            margin-top: 4rem;
-        }
-        small {
-            color: $body-color;
-            font-size: 1.3rem;
-        }
-        .h2 {
-            font-size: 1.75rem;
-        }
-        .progress {
-            height: 60px;
-        }
-    }
-
-    @include media-breakpoint-down(md) {
-    .fundraiser-progress-container {
-        .button {
-            width:100%;
-        }
-        .fundraiser-raised,
-        .fundraiser-goal {
-            position: absolute;
-            bottom: 0;
-        }
-        .fundraiser-raised {
-            text-align:left;
-            left: 0;
-        }
-        .fundraiser-goal {
-            right: 0;
-            text-align:right;
-        }
-    }
-    }
-
-    @include media-breakpoint-down(sm) {
-    .progress-donate-container {
-        padding-right: 0;
-        padding-left: 0;
-    }
-    
-    }
-
+  .thermometer {
+    background-color: $gray-200;
+    border: solid 1px $thermometer-border;
+    margin: 19px 0 0;
+  }
+  .thermometer-inner {
+    background-color: $red-deep;
+    height: 50px;
+    width: 0;
+    margin: -1px 0 -1px -1px;
+    max-width:100%;
+  }
 }

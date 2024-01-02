@@ -9,6 +9,7 @@ angular.module 'trPcControllers'
     'APP_INFO'
     'BoundlessService'
     'TeamraiserParticipantService'
+    'TeamraiserParticipantPageService'
     'NgPcTeamraiserRegistrationService'
     'NgPcTeamraiserProgressService'
     'NgPcTeamraiserTeamService'
@@ -18,9 +19,11 @@ angular.module 'trPcControllers'
     'NgPcInteractionService'
     'NgPcTeamraiserCompanyService'
     'NgPcTeamraiserSchoolService'
+    'NgPcConstituentService'
+    'NgPcSurveyService'
     'FacebookFundraiserService'
     'ZuriService'
-    ($rootScope, $scope, $sce, $filter, $timeout, $uibModal, APP_INFO, BoundlessService, TeamraiserParticipantService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, NgPcTeamraiserSchoolService, FacebookFundraiserService, ZuriService) ->
+    ($rootScope, $scope, $sce, $filter, $timeout, $uibModal, APP_INFO, BoundlessService, TeamraiserParticipantService, TeamraiserParticipantPageService, NgPcTeamraiserRegistrationService, NgPcTeamraiserProgressService, NgPcTeamraiserTeamService, NgPcTeamraiserGiftService, NgPcContactService, NgPcTeamraiserShortcutURLService, NgPcInteractionService, NgPcTeamraiserCompanyService, NgPcTeamraiserSchoolService, NgPcConstituentService, NgPcSurveyService, FacebookFundraiserService, ZuriService) ->
       $scope.dashboardPromises = []
       $scope.eventDate = ''
       $scope.moneyDueDate = ''
@@ -38,13 +41,34 @@ angular.module 'trPcControllers'
       $scope.companyId = $scope.participantRegistration.companyInformation.companyId
       theDate = new Date
       $scope.yearsList = [1..(theDate.getFullYear()-1978)] # 0 - 50
-      $scope.schoolChallenges = []
+
+      lockStart = 2200 #prod luminate server is est whereas dev server is cst
+      lockEnd = 500
+      $scope.lockEnabled = false
+      $scope.lockEnabledMsg = "School Planning fields are currently locked for point calculations until 6 am CST."
+      $dataRootBody = angular.element '[data-aha-luminate-root]'
+      if $dataRootBody.data('school-plan-locked') isnt ''
+        if $dataRootBody.data('school-plan-locked') == true
+          $scope.lockEnabled = $dataRootBody.data('school-plan-locked') 
+          $scope.lockEnabledMsg = "School Planning fields are currently locked for entry as we perform maintenance on the system."
+          #$scope.lockEnabledMsg = "If any of the information below needs to be updated, please contact your staff partner."
+      if $rootScope.currentCSTDate != ''
+        currDate = new Date $rootScope.currentCSTDate
+        if currDate.getMinutes() < 10
+          currTime = currDate.getHours()+'0'+currDate.getMinutes()
+        else
+          currTime = currDate.getHours()+''+currDate.getMinutes()
+        if currTime >= lockStart or currTime < lockEnd
+          $scope.lockEnabled = true
       
       $dataRoot = angular.element '[data-embed-root]'
-
-      urlPrefix = 'bfapps1'
-      if $scope.tablePrefix is 'heartdev'
-        urlPrefix = 'bfstage'
+		
+      #setup social iframe
+      urlPrefix = ''
+      if $scope.tablePrefix is 'heartdev' or $scope.tablePrefix is 'heartnew'
+        urlPrefix = 'load'
+      else
+        urlPrefix = 'loadprod'
       url = 'https://' + urlPrefix + '.boundlessfundraising.com/applications/ahatgr/social/app/ui/#/addsocial/' + $scope.consId + '/' + $scope.frId + '/' + $rootScope.authToken + '/' + $rootScope.sessionCookie + '?source=PCSocial'
       $scope.socialIframeURL = $sce.trustAsResourceUrl url
 
@@ -52,11 +76,24 @@ angular.module 'trPcControllers'
         BoundlessService.checkOOTDashboard $scope.frId + '/' + $scope.consId
         .then (response) ->
           $rootScope.hasOOTDashboard = response.data.coordinatorHasDashboard
+          if $rootScope.hasOOTDashboard
+            BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.participantRegistration.companyInformation.companyId
+            .then (response) ->
+              $scope.schoolBadgesRegistrations = response.data.registration_badges
+              $scope.schoolBadgesFundraising = response.data.fundraising_badges
+              $scope.companyInfo.participantCount = response.data.students_registered
+              $scope.companyProgress.goal = response.data.goal
+              $scope.companyProgress.raised = response.data.total_amount
+              $scope.companyProgress.raisedFormatted = $filter('currency')(response.data.total_amount, '$').replace(".00","")
+              if $scope.companyProgress.goal isnt 0
+                $scope.companyProgress.percent = Math.ceil(($scope.companyProgress.raised / $scope.companyProgress.goal) * 100)
+                if $scope.companyProgress.percent > 100
+                  $scope.companyProgress.percent = 100
         , (response) ->
           # TODO
       else
         $rootScope.hasOOTDashboard = true
-        
+      
       if $scope.participantRegistration.lastPC2Login is '0'
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
           $scope.firstLoginModal = $uibModal.open
@@ -115,17 +152,6 @@ angular.module 'trPcControllers'
                   if meta.name == 'school-goal'
                     $scope.companyProgress.schoolChallengeLevel = meta.value
                 amt = $scope.participantProgress.raised / 100
-                if amt >= Number(($scope.companyProgress.schoolChallengeLevel).replace('$', '').replace(/,/g, '')) and $scope.companyProgress.schoolChallenge != "No School Challenge"
-                  # check if student badge already added
-                  schoolChallengeAdded = false
-                  angular.forEach $scope.schoolChallenges, (schoolChallenge, schoolChallengeIndex) ->
-                    if schoolChallenge.id == "student"
-                      schoolChallengeAdded = true
-                  if not schoolChallengeAdded
-                    $scope.schoolChallenges.push
-                      id: 'student'
-                      label: 'Individual Challenge'
-                      earned: true
                       
       participantsString = ''
       $scope.companyParticipants = {}
@@ -142,9 +168,6 @@ angular.module 'trPcControllers'
             if participantIndex < (participants.length - 1)
               participantsString += ', '
           companyParticipantsString = '{participants: [' + participantsString + '], totalNumber: ' + participants.length + '}'
-          angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
-          angular.element('.ym-school-animation iframe').on 'load', ->
-            angular.element('.ym-school-animation iframe')[0].contentWindow.postMessage companyParticipantsString, domain
 
       getCompanyParticipants = ->
         TeamraiserParticipantService.getParticipants 'team_name=' + encodeURIComponent('%') + '&first_name=' + encodeURIComponent('%%') + '&last_name=' + encodeURIComponent('%') + '&list_filter_column=team.company_id&list_filter_text=' + $scope.participantRegistration.companyInformation.companyId + '&list_sort_column=total&list_ascending=false&list_page_size=500',
@@ -164,7 +187,7 @@ angular.module 'trPcControllers'
                     participant.lastName = participant.name.last || ""
                     participant.name.last =  participant.lastName.substring(0, 1) + '.'
                     participant.fullName = participant.name.first + ' ' + participant.name.last
-                    participant.amountRaisedFormatted = $filter('currency')(participant.amountRaised / 100, '$')
+                    participant.amountRaisedFormatted = $filter('currency')(participant.amountRaised / 100, '$').replace(".00","")
                     if participant.donationUrl
                       participant.donationFormId = participant.donationUrl.split('df_id=')[1].split('&')[0]
                     companyParticipants.push participant
@@ -183,9 +206,9 @@ angular.module 'trPcControllers'
                 # TODO
               else
                 participantProgress.raised = Number participantProgress.raised
-                participantProgress.raisedFormatted = if participantProgress.raised then $filter('currency')(participantProgress.raised / 100, '$') else '$0.00'
+                participantProgress.raisedFormatted = if participantProgress.raised then $filter('currency')(participantProgress.raised / 100, '$').replace(".00","") else '$0'
                 participantProgress.goal = Number participantProgress.goal
-                participantProgress.goalFormatted = if participantProgress.goal then $filter('currency')(participantProgress.goal / 100, '$') else '$0.00'
+                participantProgress.goalFormatted = if participantProgress.goal then $filter('currency')(participantProgress.goal / 100, '$').replace(".00","") else '$0'
                 participantProgress.percent = 0
                 if participantProgress.goal isnt 0
                   participantProgress.percent = Math.ceil((participantProgress.raised / participantProgress.goal) * 100)
@@ -201,9 +224,9 @@ angular.module 'trPcControllers'
                   # TODO
                 else
                   teamProgress.raised = Number teamProgress.raised
-                  teamProgress.raisedFormatted = if teamProgress.raised then $filter('currency')(teamProgress.raised / 100, '$') else '$0.00'
+                  teamProgress.raisedFormatted = if teamProgress.raised then $filter('currency')(teamProgress.raised / 100, '$').replace(".00","") else '$0'
                   teamProgress.goal = Number teamProgress.goal
-                  teamProgress.goalFormatted = if teamProgress.goal then $filter('currency')(teamProgress.goal / 100, '$') else '$0.00'
+                  teamProgress.goalFormatted = if teamProgress.goal then $filter('currency')(teamProgress.goal / 100, '$').replace(".00","") else '$0'
                   teamProgress.percent = 0
                   if teamProgress.goal isnt 0
                     teamProgress.percent = Math.ceil((teamProgress.raised / teamProgress.goal) * 100)
@@ -219,9 +242,9 @@ angular.module 'trPcControllers'
                   # TODO
                 else
                   companyProgress.raised = Number companyProgress.raised
-                  companyProgress.raisedFormatted = if companyProgress.raised then $filter('currency')(companyProgress.raised / 100, '$') else '$0.00'
+                  companyProgress.raisedFormatted = if companyProgress.raised then $filter('currency')(companyProgress.raised / 100, '$').replace(".00","") else '$0'
                   companyProgress.goal = Number companyProgress.goal
-                  companyProgress.goalFormatted = if companyProgress.goal then $filter('currency')(companyProgress.goal / 100, '$') else '$0.00'
+                  companyProgress.goalFormatted = if companyProgress.goal then $filter('currency')(companyProgress.goal / 100, '$').replace(".00","") else '$0'
                   companyProgress.percent = 0
                   if companyProgress.goal isnt 0
                     companyProgress.percent = Math.ceil((companyProgress.raised / companyProgress.goal) * 100)
@@ -231,36 +254,32 @@ angular.module 'trPcControllers'
                   companyProgress.schoolChallenge = $scope.companyProgress?.schoolChallenge
                   companyProgress.schoolChallengeLevel = $scope.companyProgress?.schoolChallengeLevel
                   $scope.companyProgress = companyProgress
-                  if companyProgress.raised >= companyProgress.goal 
-                    $scope.schoolChallenges.push
-                      id: 'school'
-                      label: 'School Challenge'
-                      earned: true
             response
+            getSchoolInformation()
         $scope.dashboardPromises.push fundraisingProgressPromise
-        getSchoolInformation()
-      $scope.refreshFundraisingProgress()
-
-      BoundlessService.getSchoolBadges $scope.frId + '/' + $scope.participantRegistration.companyInformation.companyId
-      .then (response) ->
-        $scope.schoolBadgesRegistrations = response.data.registration_badges
-        $scope.schoolBadgesFundraising = response.data.fundraising_badges
-        $scope.companyInfo.participantCount = response.data.students_registered
-        $scope.companyProgress.raised = response.data.total_amount
-        $scope.companyProgress.raisedFormatted = $filter('currency')(response.data.total_amount, '$')
         
+      $scope.refreshFundraisingProgress()
+      
+      if $scope.prev1FrId
+        NgPcTeamraiserProgressService.getProgress $scope.prev1FrId
+          .then (response) ->
+            if response.data.errorResponse
+              angular.noop()
+            else
+              participantPrevProgress = response.data.getParticipantProgressResponse.personalProgress
+              if not participantPrevProgress
+                angular.noop()
+              else
+                participantPrevProgress.raised = Number participantPrevProgress.raised
+                participantPrevProgress.raisedFormatted = if participantPrevProgress.raised then $filter('currency')(participantPrevProgress.raised / 100, '$').replace(".00","") else '$0'
+                $scope.participantPrevProgress = participantPrevProgress
+      
       $scope.emailChallenge = {}
       setEmailSampleText = ->
-        sampleText = 'What if I told you that together, we can help save the lives of millions of people? Seriously, we can!\n\n' +
-        'I\'m excited to be raising critical funds for the American Heart Association to fund lifesaving research.\n\n' +
-        'The kind of research that created the artificial heart valve, new medications to lower blood pressure and create guidelines used by physicians worldwide. The kind of science that is literally saving lives!\n\n' +
-        'I need your help. Please help me to reach my fundraising goal'
-        if not $scope.personalGoalInfo or not $scope.personalGoalInfo.goal or $scope.personalGoalInfo.goal is ''
-          sampleText += ' '
-        else
-          sampleText += ' of ' + $scope.personalGoalInfo.goal + ' '
-        sampleText += 'and help save the lives of more moms, dads, brothers, aunts and best friends.\n\n' +
-        'Thank you for your amazing generosity,\n' +
+        sampleText = 'I\'ve made a commitment to raise money to keep hearts beating. I need your help because more money ' +
+        'raised means more moms, dads, brothers, aunts and babies\' lives saved. Even the smallest donation can make a big difference.\n\n' +
+        'Please make a donation and support me today!\n\n' +
+        'Thank you in advance for your generosity,\n' +
         $scope.consName + '\n\n' +
         '***Did you know you might be able to double your gift to the American Heart Association? Ask your employer if you have an Employee Matching Gift program.'
         if $scope.personalPageUrl
@@ -310,9 +329,11 @@ angular.module 'trPcControllers'
                   $scope.coordinatorMessage.text = interaction.note?.text or ''
                   $scope.coordinatorMessage.interactionId = interaction.interactionId or ''
 
+
         $scope.editCoordinatorMessage = ->
           $scope.editCoordinatorMessageModal = $uibModal.open
             scope: $scope
+            size: 'lg'
             templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/editCoordinatorMessage.html'
 
         $scope.cancelEditCoordinatorMessage = ->
@@ -336,6 +357,30 @@ angular.module 'trPcControllers'
                   $scope.coordinatorMessage.successMessage = true
                   $scope.editCoordinatorMessageModal.close()
 
+      $scope.feedbackMessage =
+        text: ''
+        errorMessage: null
+        message: ''
+      ###
+      feedbackSurveyParams = ($dataRoot.data 'feedback-survey').split ','
+	
+      $scope.postFeedbackMessage = ->
+        $scope.postFeedbackMessageModal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/postFeedbackMessage.html'
+
+      $scope.cancelPostFeedbackMessage = ->
+        $scope.postFeedbackMessageModal.close()
+
+      $scope.saveFeedbackMessage = ->
+        NgPcSurveyService.submitSurvey 'survey_id=' + feedbackSurveyParams[0] + '&question_'+feedbackSurveyParams[1] + '=' + $scope.consId + '&question_'+feedbackSurveyParams[2] + '=' + $scope.eventInfo.name + '&question_'+feedbackSurveyParams[3] + '=' + ($scope.feedbackMessage?.text or '')
+          .then (response) ->
+            if response.data.submitSurveyResponse?.success == 'true'
+              $scope.feedbackMessage.message = response.data.submitSurveyResponse?.thankYouPageContent
+            else
+              $scope.feedbackMessage.errorMessage = 'There was an error processing your feedback.'
+              $scope.feedbackMessage.message = 'Please try again later.'
+      ###
       $scope.personalGoalInfo = {}
 
       $scope.editPersonalGoal = ->
@@ -434,11 +479,24 @@ angular.module 'trPcControllers'
               $scope.refreshFundraisingProgress()
           $scope.dashboardPromises.push updateSchoolGoalPromise
 
+      $scope.schoolPlanInfo = {}
+      $scope.showSchoolPlan = ->
+        $scope.showSchoolPlanModal = $uibModal.open
+          scope: $scope
+          size: 'lg'
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewSchoolPlan.html'
+
+      $scope.cancelShowSchoolPlan = ->
+        $scope.showSchoolPlanModal.close()
+          
       if $scope.facebookFundraisersEnabled and $rootScope.facebookFundraiserId and $rootScope.facebookFundraiserId isnt ''
         $rootScope.facebookFundraiserConfirmedStatus = 'pending'
         FacebookFundraiserService.confirmFundraiserStatus()
           .then (response) ->
             confirmOrUnlinkFacebookFundraiserResponse = response.data.confirmOrUnlinkFacebookFundraiserResponse
+            if typeof response.data.confirmOrUnlinkFacebookFundraiserResponse == 'undefined'
+              confirmOrUnlinkFacebookFundraiserResponse = []
+              confirmOrUnlinkFacebookFundraiserResponse.active = 'false'
             if confirmOrUnlinkFacebookFundraiserResponse?.active is 'false'
               delete $rootScope.facebookFundraiserId
               $rootScope.facebookFundraiserConfirmedStatus = 'deleted'
@@ -563,7 +621,7 @@ angular.module 'trPcControllers'
                     $scope.teamPageUrl = shortcutItem.defaultUrl.split('/site/')[0] + '/site/TR?fr_id=' + $scope.frId + '&pg=team&team_id=' + $scope.participantRegistration.teamId
               response
           $scope.dashboardPromises.push getTeamShortcutPromise
-        $scope.getTeamShortcut()
+        #$scope.getTeamShortcut()
 
         $scope.teamUrlInfo = {}
 
@@ -753,9 +811,8 @@ angular.module 'trPcControllers'
               # id: challengeIndex
               # name: challenge
       challengeOptions =
-        "1": "Be physically active for 60 minutes a day."
-        "2": "Learn Hands-Only CPR."
-        "3": "Say no to tobacco and vaping."
+        "1": "Think Positive - Write down something you're grateful for every day."
+        "2": "Choose Kindness - Complete an act of kindness each day."
       angular.forEach challengeOptions, (challenge, challengeIndex) ->
         $scope.challenges.push
           id: challengeIndex
@@ -797,27 +854,80 @@ angular.module 'trPcControllers'
             delete $scope.personalChallenge.updatePending
             getStudentChallenge()
 
-      NgPcTeamraiserCompanyService.getSchoolDates()
-        .then (response) ->
-          schoolDataRows = response.data.getSchoolDatesResponse.schoolData
-          schoolDataHeaders = {}
-          schoolDates = {}
-          angular.forEach schoolDataRows[0], (schoolDataHeader, schoolDataHeaderIndex) ->
-            schoolDataHeaders[schoolDataHeader] = schoolDataHeaderIndex
-          i = 0
-          len = schoolDataRows.length
-          while i < len
-            if $rootScope.companyInfo.companyId is schoolDataRows[i][schoolDataHeaders.CID]
-              $scope.eventDate = schoolDataRows[i][schoolDataHeaders.ED]
-              $scope.moneyDueDate = schoolDataRows[i][schoolDataHeaders.MDD]
-              $scope.schoolStudentGoal = schoolDataRows[i][schoolDataHeaders.PG]
-              $scope.schoolStudentReg = schoolDataRows[i][schoolDataHeaders.TR]
-              $scope.schoolStudentRegOnline = schoolDataRows[i][schoolDataHeaders.RO]
-              $scope.notifyName = schoolDataRows[i][schoolDataHeaders.YMDN]
-              $scope.notifyEmail = schoolDataRows[i][schoolDataHeaders.YMDE]
-              break
-            i++
+      $scope.schoolPlan = []
+      $rootScope.HideGifts = "NO"	
+      ZuriService.getSchoolDetail '&school_id=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId,
+        failure: (response) ->
+        error: (response) ->
+        success: (response) ->
+          if response.data.company[0] != "" and response.data.company[0] != null
+            $scope.schoolPlan = response.data.company[0]
+            $scope.hideAmount = $scope.schoolPlan.HideAmountRaised
+            $rootScope.HideGifts = $scope.schoolPlan.HideGifts  
+            $scope.notifyName = $scope.schoolPlan.YMDName
+            $scope.notifyEmail = $scope.schoolPlan.YMDEmail
+            $scope.unconfirmedAmountRaised = $scope.schoolPlan.OfflineUnconfirmedRevenue
+            $scope.highestGift = $scope.schoolPlan.HighestRecordedRaised
+            $scope.top25school = $scope.schoolPlan.IsTop25School
+            $scope.highestRaisedAmount = $scope.schoolPlan.HRR
+            $scope.highestRaisedYear = $scope.schoolPlan.HRRYear
 
+            if $scope.schoolPlan.EventStartDate != '0000-00-00'
+              $scope.schoolPlan.EventStartDate = new Date($scope.schoolPlan.EventStartDate.replace(/-/g, "/") + ' 00:01')
+            if $scope.schoolPlan.EventEndDate != '0000-00-00'
+              $scope.schoolPlan.EventEndDate = new Date($scope.schoolPlan.EventEndDate.replace(/-/g, "/") + ' 00:01')
+            if $scope.schoolPlan.DonationDueDate != '0000-00-00'
+              $scope.schoolPlan.DonationDueDate = new Date($scope.schoolPlan.DonationDueDate.replace(/-/g, "/") + ' 00:01')
+            if $scope.schoolPlan.KickOffDate != '0000-00-00'
+              $scope.schoolPlan.KickOffDate = new Date($scope.schoolPlan.KickOffDate.replace(/-/g, "/") + ' 00:01')
+            if $scope.schoolPlan.LastDayOfSchool != '0000-00-00'
+              $scope.schoolPlan.LastDayOfSchool = new Date($scope.schoolPlan.LastDayOfSchool.replace(/-/g, "/") + ' 00:01')
+            $scope.coordinatorPoints = JSON.parse($scope.schoolPlan.PointsDetail)
+          else
+            $rootScope.HideGifts = "NO"	      
+	
+      $scope.putSchoolPlan = (event, sel) ->
+        school = @schoolPlan
+        if sel == 'ParticipatingNextYear' or sel == 'MaterialsNeeded'
+          schoolParams = '&field_id=' + sel + '&value=' + $scope.schoolPlan[sel] + '&type=dropdown'
+          ZuriService.schoolPlanData '&method=UpdateSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId + schoolParams,
+            failure: (response) ->
+            error: (response) ->
+            success: (response) ->
+          if sel == 'ParticipatingNextYear'
+            ZuriService.schoolPlanData '&method=UpdateParticipatingNextYear&EventProgram=AHC&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&value=' + $scope.schoolPlan[sel],
+              failure: (response) ->
+              error: (response) ->
+              success: (response) ->
+        else
+          if event.currentTarget.id == 'school_goal'
+            $scope.schoolGoalInfo.goal = event.currentTarget.value
+            $scope.updateSchoolGoal()
+            $scope.getSchoolPlan()
+          else
+            switch event.currentTarget.type
+              when 'date'
+                schoolParams = '&field_id=' + event.currentTarget.id + '&value=' + event.currentTarget.value + '&type=' + event.currentTarget.type
+              when 'checkbox'
+                schoolParams = '&field_id=' + event.currentTarget.id + '&value=' + $scope.schoolPlan[event.currentTarget.id] + '&type=' + event.currentTarget.type
+              when 'dropdown'
+                schoolParams = '&field_id=' + event.currentTarget.id + '&value=' + event.currentTarget.value + '&type=' + event.currentTarget.type
+              else
+                schoolParams = '&field_id=' + event.currentTarget.id + '&value=' + school[event.currentTarget.id] + '&type=' + event.currentTarget.type
+            ZuriService.schoolPlanData '&method=UpdateSchoolPlan&CompanyId=' + $scope.participantRegistration.companyInformation.companyId + '&EventId=' + $scope.frId + schoolParams,
+              failure: (response) ->
+              error: (response) ->
+              success: (response) ->
+
+      $scope.showMaterialTypes = ->
+        $scope.showMaterialTypesModal = $uibModal.open
+          scope: $scope
+          size: 'lg'
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewMaterialTypes.html'
+
+      $scope.cancelShowMaterialsTypes = ->
+        $scope.showMaterialTypesModal.close()
+	
       $scope.updateSchoolYears = ->
         delete $scope.schoolInfo.errorMessage
         newYears = $scope.companyProgress.schoolYears
@@ -953,58 +1063,315 @@ angular.module 'trPcControllers'
                       key.earned = ''
                       $scope.prizesEarned = $scope.prizesEarned - 1
 
-      $scope.prizes = []
-      $scope.prizesEarned = 0
-      $rootScope.has_bonus = 0
-      $scope.current_mission_completed_count = ''
-      $scope.current_mission_completed_header = ''
-      $scope.current_mission_action = ''
-      $scope.current_mission_title = ''
-      $scope.current_mission_message = ''
-      BoundlessService.getBadges $scope.frId + '/' + $scope.consId
-      .then (response) ->
-        prizes = response.data.prizes
-        $scope.current_mission_completed_count = response.data.current_mission_completed_count
-        $scope.current_mission_completed_header = response.data.current_mission_completed_header
-        $scope.current_mission_action = response.data.current_mission_action
-        $scope.current_mission_title = response.data.current_mission_title
-        $scope.current_mission_message = response.data.current_mission_message
-        $rootScope.has_bonus = response.data.has_bonus
-        final_url = ''
-        angular.forEach prizes, (prize) ->
-          if prize.mission_url_type == 'Donate' 
-            final_url = 'Donation2?df_id=' + $scope.eventInfo.donationFormId + "&FR_ID=" + $scope.frId + "&PROXY_TYPE=20&PROXY_ID=" + $scope.consId
-          if prize.mission_url_type == 'Tab' 
-            final_url = $scope.baseUrl + prize.mission_url
-          if prize.mission_url_type == 'URL' 
-            final_url = prize.mission_url
-          if prize.mission_url_type == 'Quiz' 
-            if $scope.tablePrefix == 'heartdev'
-              final_url = 'https://tools.heart.org/aha_ahc21_dev/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
-            if $scope.tablePrefix == 'heartnew'
-              final_url = 'https://tools.heart.org/aha_ahc21_testing/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
-            if $scope.tablePrefix == 'heart'
-              final_url = 'https://tools.heart.org/aha_ahc21/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
-          if prize.mission_url_type == 'Modal' and prize.mission_url == 'app' 
-            final_url = 'showMobileApp()'
-          $scope.prizes.push
-            id: prize.id
-            label: prize.label
-            sku: prize.sku
-            status: prize.status
-            earned: prize.earned_datetime
-            completed_label: prize.completed_label
-            mission_url: prize.mission_url
-            mission_url_type: prize.mission_url_type
-            earned_image_url: prize.earned_image_url
-            not_earned_image_url: prize.non_earned_image_url
-            locked_image_url: prize.locked_image_url
-            final_url: final_url
+      refreshFinnsMission = ->
+        $scope.prizes = []
+        $scope.coordinatorBadges = []
+        $scope.prizesEarned = 0
+        $rootScope.has_bonus = 0
+        BoundlessService.getBadges $scope.frId + '/' + $scope.consId
+        .then (response) ->
+          prizes = response.data.prizes
+          $rootScope.has_bonus = response.data.has_bonus
+          final_url = ''
+          angular.forEach prizes, (prize) ->
+            if prize.mission_url_type == 'Donate' 
+              final_url = 'Donation2?df_id=' + $scope.eventInfo.donationFormId + "&FR_ID=" + $scope.frId + "&PROXY_TYPE=20&PROXY_ID=" + $scope.consId
+            if prize.mission_url_type == 'Personal' 
+              final_url = 'TR?fr_id=' + $scope.frId + '&pg=personal&px=' + $scope.consId
+            if prize.mission_url_type == 'Tab' 
+              final_url = $scope.baseUrl + prize.mission_url
+            if prize.mission_url_type == 'URL' 
+              final_url = prize.mission_url
+            if prize.mission_url_type == 'Quiz' 
+              if $scope.tablePrefix == 'heartdev'
+                final_url = 'https://tools.heart.org/aha_ahc23_dev/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+              if $scope.tablePrefix == 'heartnew'
+                final_url = 'https://tools.heart.org/aha_ahc23_testing/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+              if $scope.tablePrefix == 'heart'
+                final_url = 'https://tools.heart.org/aha_ahc23/quiz/show/' + prize.mission_url + '?event_id=' + $scope.frId + '&user_id=' + $scope.consId + '&name=' + $scope.consNameFirst
+            if prize.mission_url_type == 'Modal' and prize.mission_url == 'app' 
+              final_url = 'showMobileApp()'
+            if prize.status != 0
+              earned_status = 'Earned'
+              hover_msg = prize.earned_hover
+            else 
+              earned_status = 'Unearned'
+              hover_msg = prize.unearned_hover
+            aria_label = prize.label + ": " + earned_status + " - " + hover_msg
+            $scope.prizes.push
+              id: prize.id
+              label: prize.label
+              sku: prize.sku
+              status: prize.status
+              earned: prize.earned_datetime
+              completed_label: prize.completed_label
+              mission_url: prize.mission_url
+              mission_url_type: prize.mission_url_type
+              earned_image_url: prize.earned_image_url
+              not_earned_image_url: prize.non_earned_image_url
+              locked_image_url: prize.locked_image_url
+              final_url: final_url
+              hover_msg: hover_msg
+              aria_label: aria_label
 
-          if prize.status == 1
-            $scope.prizesEarned++
-        $scope.getMoveMoreFlag()
-      , (response) ->
-        # TODO
+            if prize.id == 3 or prize.id == 6 or prize.id == 9 or prize.id == 10
+              if prize.id == 3
+                prize.label = 'Made a Donation'
+              if prize.id == 6
+                prize.label = 'Sent Kickoff Email'
+              if prize.id == 9
+                prize.label = 'Mobile App User'
+              if prize.id == 10
+                prize.label = 'Updated Coordinator Page'
+              $scope.coordinatorBadges.push
+                id: prize.id
+                status: prize.status
+                label: prize.label
+                earned_image_url: prize.earned_image_url
+                not_earned_image_url: prize.non_earned_image_url
+                aria_label: aria_label
+              
+            if prize.status != 0
+              $scope.prizesEarned++
+            
+        , (response) ->
+          # TODO
+      refreshFinnsMission()
+
+      $scope.showMobileApp = ->
+        $scope.viewMobileApp = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/participant-center/modal/viewMobileApp.html'
+
+      $scope.cancelMobileApp = ->
+        $scope.viewMobileApp.close()
+        
+      $scope.mouseover = (prize, xPos, yPos, sel, offset) ->
+        document.getElementById("tRct").style.fill = "#800971"
+        document.getElementById("tRct").x.baseVal.value = xPos
+        document.getElementById("tRct").y.baseVal.value = yPos
+
+        jQuery("#tTip div").attr("aria-label",$scope.prizes[prize].hover_msg).html($scope.prizes[prize].hover_msg)
+        document.getElementById("tTip").setAttribute('x',xPos)
+        document.getElementById("tTip").setAttribute('y',yPos)
+
+        document.getElementById("tTri").setAttribute('points',(parseInt(xPos)+53+parseInt(offset)) + ' ' + (parseInt(yPos)+60) + ' ' + (parseInt(xPos)+62+parseInt(offset)) + ' ' + (parseInt(yPos)+60) + ' ' + (parseInt(xPos)+58+parseInt(offset)) + ' ' + (parseInt(yPos)+66))
+
+      $scope.mouseout = ->
+        document.getElementById("tRct").x.baseVal.value = -99999
+        jQuery("#tTip div").html("")
+        document.getElementById("tTri").setAttribute('points','0 0 0 0 0 0')
+
+
+      $scope.mouseoverm = (prize, xPos, yPos, sel, offset) ->
+        document.getElementById("tRctm").style.fill = "#800971"
+        document.getElementById("tRctm").x.baseVal.value = xPos
+        document.getElementById("tRctm").y.baseVal.value = yPos
+
+        jQuery("#tTipm div").attr("aria-label",$scope.prizes[prize].hover_msg).html($scope.prizes[prize].hover_msg)
+        document.getElementById("tTipm").setAttribute('x',xPos)
+        document.getElementById("tTipm").setAttribute('y',yPos)
+
+        document.getElementById("tTrim").setAttribute('points', (parseInt(xPos) + 83 + parseInt(offset)) + ' ' + (parseInt(yPos) + 100) + ' ' + (parseInt(xPos) + 97 + parseInt(offset)) + ' ' + (parseInt(yPos) + 100) + ' ' + (parseInt(xPos) + 92 + parseInt(offset)) + ' ' + (parseInt(yPos) + 106))
+
+      $scope.mouseoutm = ->
+        document.getElementById("tRctm").x.baseVal.value = -99999
+        jQuery("#tTipm div").html("")
+        document.getElementById("tTrim").setAttribute('points','0 0 0 0 0 0')
+
+      $scope.personalPagePhoto1 = 
+        defaultUrl: APP_INFO.rootPath + 'dist/middle-school/image/fy22/personal-default.jpg'
+
+      $scope.editPersonalPhoto1 = ->
+        delete $scope.updatePersonalPhoto1Error
+        $scope.editPersonalPhoto1Modal = $uibModal.open
+          scope: $scope
+          templateUrl: APP_INFO.rootPath + 'dist/middle-school/html/modal/editPersonalPhoto1.html'
+      
+      $scope.closePersonalPhoto1Modal = ->
+        delete $scope.updatePersonalPhoto1Error
+        $scope.editPersonalPhoto1Modal.close()
+      
+      $scope.cancelEditPersonalPhoto1 = ->
+        $scope.closePersonalPhoto1Modal()
+      
+      $scope.deletePersonalPhoto1 = (e) ->
+        if e
+          e.preventDefault()
+        angular.element('.js--delete-personal-photo-1-form').submit()
+        false
+      
+      window.trPageEdit =
+        uploadPhotoError: (response) ->
+          errorResponse = response.errorResponse
+          photoNumber = errorResponse.photoNumber
+          errorCode = errorResponse.code
+          errorMessage = errorResponse.message
+          
+          if errorCode is '5'
+            window.location = luminateExtend.global.path.secure + 'UserLogin?NEXTURL=' + encodeURIComponent('TR?fr_id=' + $scope.frId + '&pg=personal&px=' + $scope.participantId)
+          else
+            if photoNumber is '1'
+              $scope.updatePersonalPhoto1Error =
+                message: errorMessage
+            if not $scope.$$phase
+              $scope.$apply()
+        uploadPhotoSuccess: (response) ->
+          delete $scope.updatePersonalPhoto1Error
+          if not $scope.$$phase
+            $scope.$apply()
+          BoundlessService.logPersonalPageUpdated()
+          successResponse = response.successResponse
+          photoNumber = successResponse.photoNumber
+          
+          TeamraiserParticipantPageService.getPersonalPhotos
+            error: (response) ->
+              # TODO
+            success: (response) ->
+              photoItems = response.getPersonalPhotosResponse?.photoItem
+              if photoItems
+                photoItems = [photoItems] if not angular.isArray photoItems
+                angular.forEach photoItems, (photoItem) ->
+                  photoUrl = photoItem.customUrl
+                  photoCaption = photoItem.caption
+                  if not photoCaption or not angular.isString(photoCaption)
+                    photoCaption = ''
+                  if photoItem.id is '1'
+                    $scope.personalPagePhoto1.customUrl = photoUrl
+                    $scope.personalPagePhoto1.caption = photoCaption
+              if not $scope.$$phase
+                $scope.$apply()
+              $scope.closePersonalPhoto1Modal()
+
+      TeamraiserParticipantPageService.getPersonalPhotos
+        error: (response) ->
+        success: (response) ->
+          photoItems = if (ref7 = response.getPersonalPhotosResponse) != null then ref7.photoItem else undefined
+          if photoItems
+            if !angular.isArray(photoItems)
+              photoItems = [ photoItems ]
+            angular.forEach photoItems, (photoItem) ->
+              photoUrl = photoItem.customUrl
+              photoCaption = photoItem.caption
+              if !photoCaption or !angular.isString(photoCaption)
+                photoCaption = ''
+              if photoItem.id == '1'
+                $scope.personalPagePhoto1.customUrl = photoUrl
+                $scope.personalPagePhoto1.caption = photoCaption
+
+      $scope.personalPageContent =
+        mode: 'view'
+        serial: new Date().getTime()
+        textEditorToolbar: [
+          [
+            'bold'
+            'italics'
+            'underline'
+          ]
+          [
+            'ul'
+            'ol'
+          ]
+          [
+            'insertImage'
+            'insertLink'
+          ]
+          [
+            'undo'
+            'redo'
+          ]
+        ]
+
+      TeamraiserParticipantPageService.getPersonalPageInfo
+        error: (response) ->
+          # TODO
+        success: (response) ->
+          $scope.personalPageInfo  = response.getPersonalPageResponse;
+          $scope.personalPageContent.rich_text = $scope.personalPageInfo.personalPage.richText
+          $scope.personalPageContent.ng_rich_text = $scope.personalPageInfo.personalPage.richText
+            
+          richText = $scope.personalPageContent.ng_rich_text
+          $richText = jQuery '<div />',
+            html: richText
+          richText = $richText.html()
+          richText = richText.replace(/<strong>/g, '<b>').replace(/<strong /g, '<b ').replace /<\/strong>/g, '</b>'
+          .replace(/<em>/g, '<i>').replace(/<em /g, '<i ').replace /<\/em>/g, '</i>'
+          $scope.personalPageContent.ng_rich_text = richText 
+          if not $scope.$$phase
+            $scope.$apply()
+      
+      $scope.editPersonalPageContent = ->
+        richText = $scope.personalPageContent.ng_rich_text
+        $richText = jQuery '<div />',
+          html: richText
+        richText = $richText.html()
+        richText = richText.replace(/<strong>/g, '<b>').replace(/<strong /g, '<b ').replace /<\/strong>/g, '</b>'
+        .replace(/<em>/g, '<i>').replace(/<em /g, '<i ').replace /<\/em>/g, '</i>'
+        $scope.personalPageContent.ng_rich_text = richText
+        $scope.personalPageContent.mode = 'edit'
+        $timeout ->
+          angular.element('[ta-bind][contenteditable]').focus()
+        , 500
+      
+      $scope.resetPersonalPageContent = ->
+        $scope.personalPageContent.ng_rich_text = $scope.personalPageContent.rich_text
+        $scope.personalPageContent.mode = 'view'
+      
+      $scope.savePersonalPageContent = (isRetry) ->
+        richText = $scope.personalPageContent.ng_rich_text
+        $richText = jQuery '<div />', 
+          html: richText
+        richText = $richText.html()
+        richText = richText.replace /<\/?[A-Z]+.*?>/g, (m) ->
+          m.toLowerCase()
+        .replace(/<font>/g, '<span>').replace(/<font /g, '<span ').replace /<\/font>/g, '</span>'
+        .replace(/<b>/g, '<strong>').replace(/<b /g, '<strong ').replace /<\/b>/g, '</strong>'
+        .replace(/<i>/g, '<em>').replace(/<i /g, '<em ').replace /<\/i>/g, '</em>'
+        .replace(/<u>/g, '<span style="text-decoration: underline;">').replace(/<u /g, '<span style="text-decoration: underline;" ').replace /<\/u>/g, '</span>'
+        .replace /[\u00A0-\u9999\&]/gm, (i) ->
+          '&#' + i.charCodeAt(0) + ';'
+        .replace /&#38;/g, '&'
+        .replace /<!--[\s\S]*?-->/g, ''
+        TeamraiserParticipantPageService.updatePersonalPageInfo 'rich_text=' + encodeURIComponent(richText),
+          error: ->
+            # TODO
+          success: (response) ->
+            if response.teamraiserErrorResponse
+              errorCode = response.teamraiserErrorResponse.code
+              if errorCode is '2647' and not isRetry
+                $scope.personalPageContent.ng_rich_text = response.teamraiserErrorResponse.body
+                $scope.savePageContent true
+            else
+              isSuccess = response.updatePersonalPageResponse?.success is 'true'
+              if not isSuccess
+                # TODO
+              else
+                $scope.personalPageContent.rich_text = richText
+                $scope.personalPageContent.ng_rich_text = richText
+                $scope.personalPageContent.mode = 'view'
+                BoundlessService.logPersonalPageUpdated()
+                if not $scope.$$phase
+                  $scope.$apply()
+
+      $scope.volunteerData = []
+      $scope.volunteerTotal =
+        'hours': '0'
+        'minutes': '00'
+      getVolunteerism = ->
+        ZuriService.getVolunteerData $scope.frId + '/' + $scope.consId,
+          failure: (response) ->
+          error: (response) ->
+          success: (response) ->
+            if typeof response.data.data != 'undefined'
+              if response.data.total_hours > 0
+                totalTimeInMinutes = response.data.total_hours
+                hours = Math.floor(totalTimeInMinutes / 60)
+                minutes = totalTimeInMinutes - (hours * 60)
+                minutes = if minutes < 10 then '0' + minutes else minutes
+                $scope.volunteerTotal =
+                  'hours': hours
+                  'minutes': minutes
+                $scope.volunteerData = response.data.data
+      getVolunteerism()
 
   ]

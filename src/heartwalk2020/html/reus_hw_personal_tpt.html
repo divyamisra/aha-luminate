@@ -112,10 +112,10 @@
             </p>
           </li>
           ]]
-          <li>
+          <li class="achievements-container">
             <p><strong>[[E48:[[S334:fr_id]]-[[S334:px]]:cons.first_name]]'s Achievements:</strong></p>
             <div class="achievements row">
-              [[?xTRUEx::x[[E48:[[S334:fr_id]]-[[S334:px]]:if-in-group:[[?xheartdevx::x[[S29:TABLE_PREFIX]]x::230362::255229]]]]x::
+              [[?xTRUEx::x[[E48:[[S334:fr_id]]-[[S334:px]]:if-in-group:[[?xheartdevx::x[[S29:TABLE_PREFIX]]x::231336::286990]]]]x::
               <div class="achievement-badge col-6 mt-2 text-center">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" alt="" title="I downloaded the HeartWalk app">
                 <defs>
@@ -181,7 +181,7 @@
              
               [[?
               [[?xTRUEx::x[[E48:[[S334:fr_id]]-[[S334:px]]:if-emails-gt:0]]x::T::]]
-              [[?xTRUEx::x[[E48:[[S334:fr_id]]-[[S334:px]]:if-in-group:[[?xheartdevx::x[[S29:TABLE_PREFIX]]x::230361::230361]]]]x::T::]]
+              [[?xTRUEx::x[[E48:[[S334:fr_id]]-[[S334:px]]:if-in-group:[[?xheartdevx::x[[S29:TABLE_PREFIX]]x::231337::267604]]]]x::T::]]
             ::T::
             <!-- TODO - sent messages -->
                <div class="achievement-badge col-6 mt-2 text-center">
@@ -605,7 +605,7 @@
           <!-- /.row -->
 
           [[?x2x3x::x[[S42:0:status]]x::
-          <!-- TODO - hide personal donation form until levels have been built via API        -->
+          <!-- TODO - hide personal donation form until levels have been built via API  -->
           <form class="js--personal-don-form">
             <p>Select an Amount to Donate to [[E48:[[S334:fr_id]]-[[S334:px]]:cons.first_name]]:</p>
             <fieldset>
@@ -639,7 +639,11 @@
       <!-- /.container -->
       <!-- END PERSONAL PAGE INFO BOX -->
       <div class="content-area">
-        <h2 class="h4">Why I Walk</h2>
+        [[?[[E42:[[S334:fr_id]]:title]]::Lawyers:: 
+          <h2 class="h4">Why We Run</h2>
+        :: 
+        <h2 class="h4">I Walk to Save Lives!</h2>
+        ]]
         <div class="js--personal-text"></div>
         <div class="video-container embed-responsive embed-responsive-16by9 js--personal-video-container">
 

@@ -46,9 +46,13 @@ angular.module 'trPcControllers'
         ]
         if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
           contactFilters.push 'email_rpt_show_company_coordinator_participants'
+          contactFilters.push 'email_custom_rpt_show_company_coordinator_new_participants'
+          contactFilters.push 'email_custom_rpt_show_company_coordinator_weekly_participants'
+          contactFilters.push 'email_custom_rpt_show_company_coordinator_0_dollar_participants'
+          contactFilters.push 'email_custom_rpt_show_company_coordinator_250_dollar_participants'
           contactFilters.push 'email_custom_rpt_show_past_company_coordinator_participants'
         angular.forEach contactFilters, (filter) ->
-          if filter is 'email_custom_rpt_show_past_company_coordinator_participants'
+          if filter is 'email_custom_rpt_show_company_coordinator_new_participants' or filter is 'email_custom_rpt_show_company_coordinator_weekly_participants' or filter is 'email_custom_rpt_show_company_coordinator_0_dollar_participants' or filter is 'email_custom_rpt_show_company_coordinator_250_dollar_participants' or filter is 'email_custom_rpt_show_past_company_coordinator_participants'
             $scope.contactCounts[filter] = ''
           else
             # contactCountPromise = NgPcContactService.getTeamraiserAddressBookContacts 'tr_ab_filter=' + filter + '&skip_groups=true&list_page_size=1'
@@ -87,6 +91,8 @@ angular.module 'trPcControllers'
       setEmailMessageBody = (messageBody = '') ->
         if not messageBody or not angular.isString(messageBody)
           messageBody = ''
+        if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
+          messageBody = '<a href="'+luminateExtend.global.path.secure + 'TR?fr_id='+$rootScope.frId+'&pg=personal&px='+$rootScope.participantRegistration.consId+'">Click here to help me reach my goal today!</a>' + messageBody
         $scope.emailComposer.message_body = messageBody
       
       getEmailMessageBody = ->
@@ -130,9 +136,29 @@ angular.module 'trPcControllers'
                 $scope.emailComposer.subject = messageInfo.subject
                 messageBody = messageInfo.messageBody
                 setEmailMessageBody messageBody
-      
+
+      sortOrder = {
+        "Staff Announcement Email": 1,
+        "Registration: Past Participants Email (2 weeks before kickoff)": 2,
+        "Register Today - To All Families (1 week before kickoff)": 3,
+        "Post Kickoff Next Steps - To All Families (day of your kickoff)": 4,
+        "Midway Point  To All Families": 5,
+        "Midway Point To All Families": 5,
+        "Complete Finn's Mission - To All Families": 6,
+        "1 Week Left - To All Families": 7,
+        "Two Days Before Event - To All Families": 8,
+        "Thank You & Event Wrap-up - To All Families": 9,
+        "Donation Received: Thank You": 10,
+        "Donation Request": 11,
+        "Help Me To Help Others": 12,
+        "Help Me Reach My Goal": 13,
+        "Donation Ask to Past Donors": 14,
+        "Donation Received: Thank You for Your Donation!": 15,
+      }
+
+      $scope.suggestedMessageCountByType = {}
       suggestedMessagesPromise = NgPcTeamraiserEmailService.getSuggestedMessages()
-        .then (response) ->
+        .then (response) -> 
           suggestedMessages = response.data.getSuggestedMessagesResponse.suggestedMessage
           suggestedMessages = [suggestedMessages] if not angular.isArray suggestedMessages
           $scope.suggestedMessages = []
@@ -140,11 +166,34 @@ angular.module 'trPcControllers'
             if message.active is 'true'
               if $scope.participantRegistration.companyInformation?.isCompanyCoordinator isnt 'true'
                 if message.name.indexOf('Coordinator:') is -1
+                  # if not $scope.suggestedMessageCountByType[message.messageType]
+                  #   $scope.suggestedMessageCountByType[message.messageType] = 0
+                  # $scope.suggestedMessageCountByType[message.messageType] = $scope.suggestedMessageCountByType[message.messageType] + 1
                   message.name = message.name.split('Student: ')[1] or message.name
+                  console.log('message.name x' + message.name + 'x' + 'message type ' + message.messageType)
+                  message.name = message.name.trim()
+                  console.log('message.name x' + message.name + 'x')
+                  if sortOrder[message.name]
+                    message.sortOrder = sortOrder[message.name]
+                    console.log('message.sortOrder ' + message.sortOrder + typeof message.sortOrder)
                   $scope.suggestedMessages.push message
               else
                 if message.name.indexOf('Student:') is -1
+                  # if not $scope.suggestedMessageCountByType[message.messageType]
+                  #   $scope.suggestedMessageCountByType[message.messageType] = 0
+                  # $scope.suggestedMessageCountByType[message.messageType] = $scope.suggestedMessageCountByType[message.messageType] + 1
                   message.name = message.name.split('Coordinator: ')[1] or message.name
+                  message.name = message.name.trim()
+                  if message.name.indexOf('&amp;') != -1
+                    message.name = message.name.replace('&amp;', '&');
+                    
+                  console.log('message.name x' + message.name + 'x' + 'message type ' + message.messageType)
+                  # if message.name == 'Registration - Past Participants Email (Prepare for Kickoff and Sign-Up)'
+                  #   console.log('gotcha!')
+                  #   message.sortOrder = 0
+                  if sortOrder[message.name]
+                    message.sortOrder = sortOrder[message.name]
+                    console.log('message.sortOrder ' + message.sortOrder)
                   $scope.suggestedMessages.push message
           response
       $scope.emailPromises.push suggestedMessagesPromise

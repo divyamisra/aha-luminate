@@ -28,6 +28,7 @@
   header {
     background-color: transparent;
     background-image: none;
+    position: initial;
     nav{
       background-color: transparent;
       &.mobile-utility-nav {
@@ -838,3 +839,4 @@ div.responsive .donation-level-general-ask {
      border: 1px solid white;
      color: #ffffff;
 }
+

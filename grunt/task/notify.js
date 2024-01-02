@@ -99,10 +99,48 @@ module.exports = {
     }
   },
 
+  "fieldday2023": {
+    options: {
+      title: 'AHA Luminate Framework',
+      message: 'Field Day 2023 files updated.'
+    }
+  },
+
   "heartwalklawyers": {
     options: {
       title: 'AHA Luminate Framework',
       message: 'Lawyers Have Heart files updated.'
+    }
+  },
+
+  "leaders-for-life": {
+    options: {
+      title: 'AHA Luminate Framework',
+      message: 'Lawyers Have Heart files updated.'
+    }
+  },
+  "social-stem": {
+    options: {
+      title: 'AHA Luminate Framework',
+      message: 'Lawyers Have Heart files updated.'
+    }
+  },
+  "women-of-impact": {
+    options: {
+      title: 'AHA Luminate Framework',
+      message: 'Lawyers Have Heart files updated.'
+    }
+  },
+  "teens-of-impact": {
+    options: {
+      title: 'AHA Luminate Framework',
+      message: 'Lawyers Have Heart files updated.'
+    }
+  },
+  "ym-rewards": {
+    options: {
+      title: 'AHA Luminate Framework',
+      message: 'Coordinator Reward Center'
     }
   }
 }

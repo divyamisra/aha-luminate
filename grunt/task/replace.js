@@ -156,6 +156,17 @@ module.exports = {
     ]
   },
 
+  "fieldday2023": {
+    files: [
+      {
+        expand: true,
+        cwd: "src/fieldday2023/html/",
+        src: ["**/*.*"],
+        dest: "dist/fieldday2023/html/"
+      }
+    ]
+  },
+
   "heartwalklawyers": {
     files: [
       {
@@ -163,6 +174,59 @@ module.exports = {
         cwd: "src/heartwalklawyers/html/",
         src: ["**/*.*"],
         dest: "dist/heartwalklawyers/html/"
+      }
+    ]
+  },
+
+  "leaders-for-life": {
+    files: [
+      {
+        expand: true,
+        cwd: "src/leaders-for-life/html/",
+        src: ["**/*.*"],
+        dest: "dist/leaders-for-life/html/"
+      }
+    ]
+  },
+  "social-stem": {
+    files: [
+      {
+        expand: true,
+        cwd: "src/social-stem/html/",
+        src: ["**/*.*"],
+        dest: "dist/social-stem/html/"
+      }
+    ]
+  },
+  "women-of-impact": {
+    files: [
+      {
+        expand: true,
+        cwd: "src/women-of-impact/html/",
+        src: ["**/*.*"],
+        dest: "dist/women-of-impact/html/"
+      }
+    ]
+  },
+  "teens-of-impact": {
+    files: [
+      {
+        expand: true,
+        cwd: "src/teens-of-impact/html/",
+        src: ["**/*.*"],
+        dest: "dist/teens-of-impact/html/"
+      }
+    ]
+  },
+  "ym-rewards": {
+    files: [
+      {
+        expand: true,
+        cwd: 'src/ym-rewards/html/',
+        src: [
+          '**/*.*'
+        ],
+        dest: "dist/ym-rewards/html/"
       }
     ]
   }

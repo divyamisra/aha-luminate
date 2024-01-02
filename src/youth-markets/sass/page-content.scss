@@ -134,25 +134,26 @@
   position: relative;
   padding: 0;
 
-  @media (max-width: $screen-sm-max) {
+  @media (max-width: $screen-xs-max) {
     background-image: none !important;
   }
 
-  @media (min-width: 630px) and (max-width: $screen-sm-max) {
+  @media (min-width: 630px) and (max-width: $screen-xs-max) {
     background: $brand-white;
-    padding: 20px 0;
+    margin-top: 40px;
   }
 
-  @media (min-width: $screen-md-min) {
+  @media (min-width: $screen-sm-min) {
     background-size: cover;
     min-height: 360px;
+    background-position:center;
   }
 
   .ym-user-image-inner {
     position: relative;
     background: $brand-white;
 
-    @media (min-width: $screen-md-min) {
+    @media (min-width: $screen-sm-min) {
       min-height: 360px;
       background: transparent;
     }
@@ -168,7 +169,7 @@
     img {
       margin: auto;
 
-      @media (max-width: $screen-sm-max) {
+      @media (max-width: $screen-xs-max) {
         max-width: 100%;
         display: block;
         width:100%;
@@ -198,13 +199,17 @@
 .ym-page-section__main {
   padding: 30px 0;
   overflow: hidden;
-  
+
+  @media (max-width: $screen-md-min) {
+    padding: 50px 0;
+  }
+
   @media (max-width: $screen-sm-min) {
    padding: 40px 0;
   }
-  
-  @media (max-width: $screen-md-min) {
-    padding: 50px 0;
+
+  @media (max-width: $screen-xs-min) {
+    padding: 25px 0;
   }
   
   > .col-md-6,

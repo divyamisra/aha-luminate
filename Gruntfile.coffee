@@ -204,7 +204,7 @@ module.exports = (grunt) ->
     ], 'fieldday'
     runTargetedTask [
       'copy'
-    ], 'fieldday-scripts'
+    ], ['fieldday-scripts','fieldday-fonts']
     runTargetedTask [
       'clean'
       'sass'
@@ -218,6 +218,83 @@ module.exports = (grunt) ->
     runTargetedTask [
       'copy'
     ], 'heartwalklawyers-scripts'
+    runTargetedTask [
+      'clean'
+      'sass'
+      'postcss'
+      'cssmin'
+      'uglify'
+      'replace'
+      'htmlmin'
+      'imagemin'
+    ], 'leaders-for-life'
+    runTargetedTask [
+      'copy'
+    ], 'leaders-for-life-scripts'
+    runTargetedTask [
+      'clean'
+      'sass'
+      'postcss'
+      'cssmin'
+      'uglify'
+      'replace'
+      'htmlmin'
+      'imagemin'
+    ], 'social-stem'
+    runTargetedTask [
+      'copy'
+    ], 'social-stem-scripts'
+    runTargetedTask [
+      'clean'
+      'sass'
+      'postcss'
+      'cssmin'
+      'uglify'
+      'replace'
+      'htmlmin'
+      'imagemin'
+    ], 'women-of-impact'
+    runTargetedTask [
+      'copy'
+    ], 'women-of-impact-scripts'
+    runTargetedTask [
+      'clean'
+      'sass'
+      'postcss'
+      'cssmin'
+      'uglify'
+      'replace'
+      'htmlmin'
+      'imagemin'
+    ], 'teens-of-impact'
+    runTargetedTask [
+      'copy'
+    ], 'teens-of-impact-scripts'
+    runTargetedTask [
+      'clean'
+      'sass'
+      'postcss'
+      'cssmin'
+      'coffee'
+      'uglify'
+      'replace'
+      'htmlmin'
+      'imagemin'
+    ], 'ym-rewards'
+    runTargetedTask [
+      'clean'
+      'sass'
+      'postcss'
+      'cssmin'
+      'coffee'
+      'uglify'
+      'replace'
+      'htmlmin'
+      'imagemin'
+    ], 'fieldday2023'
+    runTargetedTask [
+      'copy'
+    ], 'fieldday2023-fonts'  
     return
   grunt.registerTask 'dev', ->
     devTasks = [
@@ -260,6 +337,24 @@ module.exports = (grunt) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
     config.watch['heartwalklawyers'].tasks.forEach (task) ->
+      if task.indexOf('notify:') is -1
+        devTasks.push task
+    config.watch['leaders-for-life'].tasks.forEach (task) ->
+      if task.indexOf('notify:') is -1
+        devTasks.push task
+    config.watch['social-stem'].tasks.forEach (task) ->
+      if task.indexOf('notify:') is -1
+        devTasks.push task
+    config.watch['women-of-impact'].tasks.forEach (task) ->
+      if task.indexOf('notify:') is -1
+        devTasks.push task
+    config.watch['teens-of-impact'].tasks.forEach (task) ->
+      if task.indexOf('notify:') is -1
+        devTasks.push task
+    config.watch['ym-rewards'].tasks.forEach (task) ->
+      if task.indexOf('notify:') is -1
+        devTasks.push task
+    config.watch['fieldday2023'].tasks.forEach (task) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
     devTasks.push 'watch'

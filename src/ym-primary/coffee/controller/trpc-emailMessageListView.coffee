@@ -48,9 +48,13 @@ angular.module 'trPcControllers'
       ]
       if $scope.participantRegistration.companyInformation?.isCompanyCoordinator is 'true'
         contactFilters.push 'email_rpt_show_company_coordinator_participants'
+        contactFilters.push 'email_custom_rpt_show_company_coordinator_new_participants'
+        contactFilters.push 'email_custom_rpt_show_company_coordinator_weekly_participants'
+        contactFilters.push 'email_custom_rpt_show_company_coordinator_0_dollar_participants'
+        contactFilters.push 'email_custom_rpt_show_company_coordinator_250_dollar_participants'
         contactFilters.push 'email_custom_rpt_show_past_company_coordinator_participants'
       angular.forEach contactFilters, (filter) ->
-        if filter is 'email_custom_rpt_show_past_company_coordinator_participants'
+        if filter is 'email_custom_rpt_show_company_coordinator_new_participants' or filter is 'email_custom_rpt_show_company_coordinator_weekly_participants' or filter is 'email_custom_rpt_show_company_coordinator_0_dollar_participants' or filter is 'email_custom_rpt_show_company_coordinator_250_dollar_participants' or filter is 'email_custom_rpt_show_past_company_coordinator_participants'
           $scope.contactCounts[filter] = ''
         else
           # contactCountPromise = NgPcContactService.getTeamraiserAddressBookContacts 'tr_ab_filter=' + filter + '&skip_groups=true&list_page_size=1'

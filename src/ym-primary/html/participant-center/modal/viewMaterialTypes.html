@@ -1,0 +1,26 @@
+<div class="ym-pc-dashboard-materials">
+  <div class="modal-header">
+    <h2 class="h5 modal-title">
+      Material Types
+    </h2>
+  </div>
+  <div class="modal-body text-center" style="display:flex">
+    <div class="text-left" style="flex:0 0 50%;padding-right:15px;">
+       <p class="text-center bold">Envelope</p>
+       <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/2022_khc_envelope.png" alt="Envelope">
+    </div>
+    <div class="text-right bold" style="flex:0 0 50%;">
+       <p class="text-center">Parent Letter</p>
+       <img class="img-fluid" ng-src="../{{dev_branch != '' ? dev_branch + '/' : ''}}aha-luminate/dist/ym-primary/image/2022_khc_parent_letter.png" alt="Parent Letter">
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="clearfix">
+      <div class="text-center">
+        <button type="button" class="btn btn-toggle" ng-click="cancelShowMaterialsTypes()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

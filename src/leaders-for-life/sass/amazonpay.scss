@@ -1,0 +1,62 @@
+/* amazon pay css */
+.paymentSelType {
+  a {
+     display: block;
+     margin: 25px 15px;
+     @media (min-width: 768px) {
+       width:25%;
+     }
+  }
+  img {
+     max-width:100%;
+  }
+  .h6 {
+    font-size: 1.1em;
+    word-wrap: break-word;
+    white-space: normal;
+  }
+}
+
+
+@media (min-width: 768px) {
+#participant-roster > tbody > tr > td:nth-child(3),
+#team-roster > tbody > tr > td:nth-child(3) {
+  width:35%;
+}
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+.paymentSelType .hidden-md {
+  display: none !important;
+}
+}
+@media (min-width: 1200px) {
+.paymentSelType .hidden-lg {
+  display: none !important;
+}
+}
+
+@media not all and (min-resolution:.001dpcm) {
+.paymentSelType .applepay {
+    display: block !important;
+}
+.paymentSelType a:focus {
+  outline: 2px solid $red;
+  outline-offset: 2px;
+}
+.paymentSelType img:focus {
+  outline-offset: 2px;
+}
+}
+
+/*
+a.venmo {
+  display:none;
+}
+body.tr3635 a.venmo {
+  display:inline-block;
+}
+body.tr4110 a.venmo {
+  display:inline-block;
+}
+*/

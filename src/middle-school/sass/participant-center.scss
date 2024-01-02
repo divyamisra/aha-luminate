@@ -1,3 +1,63 @@
+option {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 18px;
+}
+
+span.input-group-addon {
+    display: inline-block;
+    line-height: 40px;
+    padding-right: 5px;
+}
+
+.ahc-social-share-slot {
+	.row>* {
+		flex: 1 0 0;
+	}
+	a {
+		min-width:150px;
+	}
+}
+
+.ym-pc-dashboard-coordinator-school-years-section {
+	select {
+		min-width:70px;
+	}
+}
+.ym-pc-dashboard-coordinator-progress-section,
+.ym-pc-dashboard-coordinator-steps-section,
+.ym-pc-dashboard-coordinator-school-challenge-section,
+.ym-pc-dashboard-coordinator-school-years-section,
+.ym-spread-the-word-box {
+  a {
+    &,
+    &:link,
+    &:visited {
+      color: $event-primary-acc;
+    }
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: $event-primary-acc;
+    }
+  }
+}
+
+.ym-progress-related-school {
+	margin-top:30px;
+}
+
+.ym-pc-dashboard-coordinator-steps-section {
+  .h3 {
+    color: $event-secondary-medium;
+  }
+  .ym-activity-box {
+    h2.h3 {
+      color: $title-color;
+    } 
+  }
+}
+	
 .social-iframe {
 	min-height: 950px;
 }
@@ -22,7 +82,7 @@ a.btn-compose {
 a.btn.btn-secondary:active, 
 a.btn.btn-secondary:focus, 
 a.btn.btn-secondary:hover {
-	background: #337ab7;
+	background: $event-primary;
 }
 
 div[id^="taTextElement"]:focus {
@@ -33,7 +93,7 @@ div[id^="taTextElement"]:focus {
 }
 
 select#ym-update-challenge {
-	color: #000000;
+	font-size:18px;
 }
 
 .ym-pc-dashboard-coordinator-school-detail-section {
@@ -52,20 +112,29 @@ select#ym-update-challenge {
 	color: $event-grey;
 }
 
+.ym-pc-dashboard-section-header {
+  h2,.h3 {
+	color: $event-secondary-medium;
+  }
+}
+
 .ym-pc-dashboard-coordinator-school-years-section,
 .ym-pc-dashboard-coordinator-school-challenge-section,
 .ym-pc-dashboard-coordinator-school-level-section {
-	background-color: $event-accent-light;
+	background-color: $event-secondary-medium;
 	padding: 36px;
 	margin: 0 0 30px;
+	color: $event-secondary-heading;
 
 	h2.h3 {
 		margin-bottom: 20px;
+		color: $title-color;
 	}
 
 	div.ym-pc-dashboard-section-header {
 		font-size: 18px;
 		line-height: 22px;
+		color: $event-secondary-medium;
 
 		select {
 			width: auto;
@@ -87,6 +156,42 @@ select#ym-update-challenge {
 			}
 		}
 	}
+}
+
+.ym-pc-dashboard-coordinator-school-plan-section,
+.ym-pc-dashboard-school-plan {
+  max-height:600px;
+  overflow:scroll;
+	
+  h2.h3 {
+    color: $title-color;
+  }
+  
+  hr {
+    margin-top:5px;
+    margin-bottom:5px;
+  }
+	
+  .plan-heading {
+    color: $event-secondary-medium;
+    font-weight: bold;
+  }
+
+  .ym-pc-dashboard-school-goals {
+    input {
+      max-width:200px;
+    }
+  }
+  .ym-pc-dashboard-total-points {
+    margin-top:20px;
+    border:1px solid $event-secondary-heading;
+    padding:10px;
+    border-radius:10px;
+    
+    a, a:active, a:focus, a:hover {
+      color: $event-primary-acc;
+    }
+  }
 }
 
 .schoolStatusTitle {
@@ -128,11 +233,13 @@ select#ym-update-challenge {
   .btn {
     white-space:normal;
   }
+  h2, .h3 {
+    color: $event-secondary-medium;
+  }
 }
 
 .ym-pc-dashboard-badge-path {
    position: relative;
-   max-width: 663px;
    margin: 0 auto 40px;
    svg {
       @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
@@ -144,11 +251,6 @@ select#ym-update-challenge {
 	    font-size: 24px;
 	}
    }
-   .agentk {
-     max-width: 25%;
-     margin-bottom: 10px;
-     width: 100%;
-   }
    .ym-pc-dashboard-badges-header {
 
      @media (max-width: $screen-sm-min) {
@@ -157,15 +259,6 @@ select#ym-update-challenge {
         margin-bottom: 10px;
      }
 	   
-     img {
-	margin-top: -35px;
-	max-width: 70px;
-	margin-bottom: 20px;
-     }
-     p {
-	display: block;
-	margin:0 auto;
-     }
      em {
   	font-size:16px;
      }
@@ -175,112 +268,6 @@ select#ym-update-challenge {
 	 font-weight:bold;
 	 text-align:center;
      }
-   }
-   .ym-pc-dashboard-badges-icons {
- 	position: absolute;
-	top: 18%;
-	left: 0px;
-	img {
-	    margin: 0 0 10px;
-	    max-width: none;
-	    height: 100px;
-	    width: 100px;
-	}
-   }
-   .ym-pc-dashboard-badges-icon {
-	text-align: center;
-	padding: 0 25px 25px;
-	max-width:150px;
-	position:absolute;
-	.earned::after {
-	    background: url(../image/badge_earned_check.png) no-repeat;
-	    content: '';
-	    width: 40px;
-	    height: 40px;
-	    display: block;
-	    position: absolute;
-	    bottom: 30px;
-	    right: 19px;
-	}
-   }
-   /*online registration*/
-   .ym-pc-dashboard-badges-icon:nth-child(1) {
-	offset-path: path("M244 188");
-   }
-   /*take challenge*/
-   .ym-pc-dashboard-badges-icon:nth-child(2) {
-	offset-path: path("M379 188");
-   }
-   /*1st donation*/
-   .ym-pc-dashboard-badges-icon:nth-child(3) {
-	offset-path: path("M528 226");
-   }
-   /*self donation*/
-   .ym-pc-dashboard-badges-icon:nth-child(4) {
-	offset-path: path("M528 396");
-	.earned:after {
-	  bottom: 20px;
-	  right: 82px;
-	}
-   }
-   /*go social*/
-   .ym-pc-dashboard-badges-icon:nth-child(5) {
-	offset-path: path("M379 433");
-   }
-   /*get active*/
-   .ym-pc-dashboard-badges-icon:nth-child(9) {
-	offset-path: path("M244 433");
-   }
-   /*send email*/
-   .ym-pc-dashboard-badges-icon:nth-child(6) {
-	offset-path: path("M95 465");
-	.earned:after {
-	  bottom: 20px;
-	  right: 82px;
-	}
-   }
-   /*CPR Quiz*/
-   .ym-pc-dashboard-badges-icon:nth-child(7) {
-	offset-path: path("M95 647");
-   }
-   /*heart facts quiz*/
-   .ym-pc-dashboard-badges-icon:nth-child(8) {
-	offset-path: path("M303 675");
-   }
-   .secret-box {
-     position: absolute;
-     color: #fff;
-     font-size: 20px;
-     max-width: 185px;
-     right: 40px;
-     bottom: 26px;
-     text-align: center;
-     &.not-secret-finn:before {
-	    background: url(../image/not_secret_finn.png) no-repeat;
-	    content: '';
-	    width: 96px;
-	    height: 53px;
-	    display: block;
-	    position: absolute;
-	    bottom: 97px;
-	    right: 39px;
-     }
-     &.secret-finn:before {
-	    background: url(../image/secret_finn.png) no-repeat;
-	    content: '';
-	    width: 178px;
-	    height: 96px;
-	    display: block;
-	    position: absolute;
-	    bottom: 96px;
-	    right: -5px;
-     }
-   }
-   path.badge-path:hover {
-     	transition: all 0.3s ease-in-out;
-	-webkit-transition: all 0.3s ease-in-out;
-	pointer-events:all;
-	opacity:0;
    }
 }
 
@@ -352,7 +339,7 @@ select#ym-update-challenge {
   
   .ym-pc-dashboard-school-badges-box {
     .ym-badges__item {
-        max-width:75px;
+        max-width:90px;
 	margin: 10px 15px 5px;
         img.img-responsive {
           max-width: 80px;
@@ -364,6 +351,7 @@ select#ym-update-challenge {
 	    display: block;
 	    margin-top: 5px;
 	    margin-bottom: 10px;
+	    text-align: center;
 	}
     }
   }
@@ -382,4 +370,62 @@ select#ym-update-challenge {
 }
 .fundraisingStatusTitle + .ym-progress__thermometer + .ym-progress-related {
     margin-top: 15px;
+}
+
+.ym-pc-first-login-modal {
+  .h3 {
+    color: #02517b;
+  }
+}
+
+#status-text,
+#status-text-mobile {
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+}
+
+.winding-road, .winding-road-mobile {display:none;}
+@media (min-width:1024px) {
+	.winding-road {display:block;}
+}
+@media (max-width:1023px) {
+	.winding-road-mobile {display:block;}
+}
+
+.middleschool {
+	display: block;
+	/*justify-content: flex-start;
+	flex-wrap: wrap;*/
+}
+.box {
+	margin: 10px;
+	max-width: 300px;
+	border: 1px solid #d3d3d3;
+	padding: 10px;
+	min-height:235px;
+}
+.box a {text-decoration:none;}
+.box > a {
+    display: block;
+    height: 25px;
+}
+.box img {max-width:235px;width:100%;}
+.box .item-title {text-align:center;color:#000;font-weight:bold;height:40px;color:#c10e21;}
+
+.ym-pc-feedback {
+	margin-top:10px;
+}
+textarea#feedbackMessage {
+	height: 30vh;
+}
+
+.ym-pc-dashboard-qrcode canvas {
+	max-width:150px;
+	max-height:150px;
+}
+
+.clipboard-copy {
+    font-weight: 400;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 12px;
+    font-style: italic;
 }

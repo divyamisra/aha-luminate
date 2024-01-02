@@ -1,0 +1,22 @@
+<style>div.appArea{width:auto;}.Button {display:none;}</style>
+  <form method="POST" novalidate ng-submit="saveFeedbackMessage()">
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="feedbackMessage" style="margin:15px 0;">Please provide any feedback about the Kids Heart Challenge Program. 
+            If you need assistance with your page or fundraising efforts, please <a autofocus href="https://kidsheartchallenge.zendesk.com/hc/en-us/categories/4406643279891-Students-Parents" target="_blank">click here</a>.</label>
+        <textarea class="form-control" id="feedbackMessage" ng-model="feedbackMessage.text" aria-label="Feedback Message"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer d-flex justify-content-between flex-wrap">
+      <div class="">
+        <button type="button" class="btn btn-toggle" ng-click="cancelPostFeedbackMessage()">
+          Cancel
+        </button>
+      </div>
+      <div class="">
+        <button type="submit" class="btn btn-primary">
+          <strong>Submit</strong>
+        </button>
+      </div>
+    </div>
+  <form>
