@@ -4613,13 +4613,13 @@ cd.getTeamHonorRoll();
       $('#billing_first_name_row, #billing_last_name_row, #donor_email_address_row, .custom-field-container:contains("Cell or Phone Number"), #billing_addr_street1_row, #billing_addr_street2_row, #billing_addr_city_row, #billing_addr_state_row, #billing_addr_zip_row, #billing_addr_country_row').wrapAll('<div class="billing-fields-container"></div>');
 
       // change paypal logo
-      $('#responsive_payment_typepay_typeradio_payment_types .external-payment img').attr('src', 'http://heartdev.convio.net/images/content/pagebuilder/aha_cn_donation_form_paypal_logo.png');
+      $('#responsive_payment_typepay_typeradio_payment_types .external-payment img').attr('src', 'http://www2.heart.org/images/content/pagebuilder/aha_cn_donation_form_paypal_logo.png');
 
       // change cc logos
-      $('#responsive_payment_typecc_type_Visa').attr('src', 'http://heartdev.convio.net/images/content/pagebuilder/aha_cn_donation_form_credit_cards_visa.png');
-      $('#responsive_payment_typecc_type_Discover').attr('src', 'http://heartdev.convio.net/images/content/pagebuilder/aha_cn_donation_form_credit_cards_discover.png');
-      $('#responsive_payment_typecc_type_American_Express').attr('src', 'http://heartdev.convio.net/images/content/pagebuilder/aha_cn_donation_form_credit_cards_amex.png');
-      $('#responsive_payment_typecc_type_MasterCard').attr('src', 'http://heartdev.convio.net/images/content/pagebuilder/aha_cn_donation_form_credit_cards_mastercard.png');
+      $('#responsive_payment_typecc_type_Visa').attr('src', 'http://www2.heart.org/images/content/pagebuilder/aha_cn_donation_form_credit_cards_visa.png');
+      $('#responsive_payment_typecc_type_Discover').attr('src', 'http://www2.heart.org/images/content/pagebuilder/aha_cn_donation_form_credit_cards_discover.png');
+      $('#responsive_payment_typecc_type_American_Express').attr('src', 'http://www2.heart.org/images/content/pagebuilder/aha_cn_donation_form_credit_cards_amex.png');
+      $('#responsive_payment_typecc_type_MasterCard').attr('src', 'http://www2.heart.org/images/content/pagebuilder/aha_cn_donation_form_credit_cards_mastercard.png');
 
       // wrap cc fields into container
       $('#responsive_payment_typecc_number_row, #responsive_payment_typecc_exp_date_row').wrapAll('<div class="cc-fields-container"></div>');
