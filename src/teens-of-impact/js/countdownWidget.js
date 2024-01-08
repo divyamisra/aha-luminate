@@ -18,150 +18,100 @@
  *
  ***********************************************************************/
 
-var CountDownWidget = function (element_id) {
-  const frId = sessionStorage.getItem("frId") || document.body.dataset.frId
-  const envDevelopment = {
-    API_KEY_ZURI: "18h2qgqrcW2Ek6jD",
-    API_BASE_URL_ZURI: "https://tools.heart.org/aha-socials-dev",
+var CountDownWidget = function (element_id, a, b, c) {
+  this.id = element_id
+  //this.offset = timeoffset;
+  this.tzoffset_a = getTimeOffset(a[0]) * 60
+  this.tzoffset_b = getTimeOffset(b[0]) * 60
+  this.datetime = convertTime(a[0])
+  this.enddate = convertTime(b[0])
+  this.halt = false
+  /* b - before , p - in progress, e - ended */
+  this.stage = 'b'
+
+  this.delta = 0
+  this.prev = { d1: '', d0: '', h1: '', h0: '', m1: '', m0: '', s1: '', s0: '' }
+
+  this.key = Math.random().toString(16).slice(2)
+
+  this.announceInterval = 1000 * 60 * 5 // in ms
+  this.announceTitle = 'Time left: '
+
+  this.getTimeDiff()
+
+  document.getElementById(this.id).innerHTML = this.getCodes()
+  this.run()
+  this.announce()
+
+  /********** Updating header and description ************/
+  let wrapper = document.getElementById('countdownWidget-section')
+  let heading = a[1]
+  let desc = a[2]
+
+  if (this.stage == 'p') {
+    heading = b[1]
+    desc = b[2]
+  } else if (this.stage == 'e') {
+    heading = c[1]
+    desc = c[2]
   }
-  const envProduction = {
-    API_KEY_ZURI: "ovMgWp3QsUmPmaGK",
-    API_BASE_URL_ZURI: "https://tools.heart.org/aha-socials-fy24",
-  }
-  const env = location.host === "dev2.heart.org" ? envDevelopment : envProduction
 
-  const getEventDetails = new Promise(async (resolve, reject) => {
-    const url = `${env.API_BASE_URL_ZURI}/api/events/${frId}?key=${env.API_KEY_ZURI}`
-    let eventDetails = null
+  try {
+    let title_ele = wrapper.querySelector('h2')
+    let ptags = wrapper.querySelectorAll('p')
 
-    try {
-      const response = await fetch(url)
-
-      if (!response.ok) {
-        throw Error(response.statusText)
-      }
-
-      const data = await response.json()
-      if ("status" in data && data.status === "error") {
-        throw Error(data.message)
-      }
-      if (data) {
-        eventDetails = data.event
-        console.log("eventDetails", eventDetails)
-        resolve(eventDetails)
-      } else {
-        throw Error("No event details data")
-      }
-    } catch (err) {
-      console.error(err)
-      reject(err)
+    if (title_ele) {
+      title_ele.innerHTML = heading
+      ptags[0].innerHTML = desc
+    } else {
+      ptags[0].innerHTML = heading
+      ptags[1].innerHTML = desc
     }
-  })
-
-  frId &&
-    getEventDetails.then((eventDetails) => {
-      if (!eventDetails) return
-
-      const a = [`${eventDetails.begin_date} ${eventDetails.begin_timezone}`, eventDetails.title_before, eventDetails.message_before]
-      const b = [`${eventDetails.end_date} ${eventDetails.end_timezone}`, eventDetails.title_during, eventDetails.message_during]
-      const c = ["0", eventDetails.title_after, eventDetails.message_after]
-
-      this.id = element_id
-      //this.offset = timeoffset;
-      this.tzoffset_a = getTimeOffset(a[0]) * 60
-      this.tzoffset_b = getTimeOffset(b[0]) * 60
-      this.datetime = convertTime(a[0])
-      this.enddate = convertTime(b[0])
-      this.halt = false
-      /* b - before , p - in progress, e - ended */
-      this.stage = "b"
-
-      this.delta = 0
-      this.prev = { d1: "", d0: "", h1: "", h0: "", m1: "", m0: "", s1: "", s0: "" }
-
-      this.key = Math.random().toString(16).slice(2)
-
-      this.announceInterval = 1000 * 60 * 5 // in ms
-      this.announceTitle = "Time left: "
-
-      this.getTimeDiff()
-
-      document.getElementById(this.id).innerHTML = this.getCodes()
-      this.run()
-      this.announce()
-
-      /********** Updating header and description ************/
-      let wrapper = document.getElementById("countdownWidget-section")
-      let heading = a[1]
-      let desc = a[2]
-
-      if (this.stage == "p") {
-        heading = b[1]
-        desc = b[2]
-      } else if (this.stage == "e") {
-        heading = c[1]
-        desc = c[2]
-      }
-
-      try {
-        let title_ele = wrapper.querySelector("h2")
-        let ptags = wrapper.querySelectorAll("p")
-
-        if (!title_ele && !ptags) return
-
-        if (title_ele) {
-          title_ele.innerHTML = heading
-          ptags[0].innerHTML = desc
-        } else {
-          ptags[0].innerHTML = heading
-          ptags[1].innerHTML = desc
-        }
-      } catch (ex) {
-        console.log("Error populating countdown time text")
-      }
-    })
+  } catch (ex) {
+    console.log('Error populating countdown time text')
+  }
 }
 
 CountDownWidget.prototype.getCodes = function () {
-  let blocks = { d: "Days", h: "Hours", m: "Minutes", s: "Seconds" }
+  let blocks = { d: 'Days', h: 'Hours', m: 'Minutes', s: 'Seconds' }
   let html = '<div class="aha_counter row" >'
 
   for (let k in blocks) {
     html += '  <div class="aha-counter-block col-6 col-xl-3">'
     html += '    <div class="aha-counter-top">'
 
-    html += '      <div class="aha-counter-digit" id="' + this.key + "_" + k + '1" >'
+    html += '      <div class="aha-counter-digit" id="' + this.key + '_' + k + '1" >'
     html += '        <div class="aha-counter-digit-tcover">'
     html += '          <div class="aha-counter-digit-top"></div>'
-    html += "        </div>"
+    html += '        </div>'
     html += '        <div class="aha-counter-digit-sep">'
     html += '          <div> <span class="digit-sep-left"></span><span class="digit-sep-right"></span> </div>'
-    html += "        </div>"
+    html += '        </div>'
     html += '        <div class="aha-counter-digit-bcover">'
     html += '          <div class="aha-counter-digit-bottom"></div>'
-    html += "        </div>"
+    html += '        </div>'
     html += '        <div class="aha-counter-digit-static"></div>'
-    html += "      </div>"
+    html += '      </div>'
 
-    html += '      <div class="aha-counter-digit" id="' + this.key + "_" + k + '0" >'
+    html += '      <div class="aha-counter-digit" id="' + this.key + '_' + k + '0" >'
     html += '        <div class="aha-counter-digit-tcover">'
     html += '          <div class="aha-counter-digit-top"></div>'
-    html += "        </div>"
+    html += '        </div>'
     html += '        <div class="aha-counter-digit-sep">'
     html += '          <div> <span class="digit-sep-left"></span><span class="digit-sep-right"></span> </div>'
-    html += "        </div>"
+    html += '        </div>'
     html += '        <div class="aha-counter-digit-bcover">'
     html += '          <div class="aha-counter-digit-bottom"></div>'
-    html += "        </div>"
+    html += '        </div>'
     html += '        <div class="aha-counter-digit-static"></div>'
-    html += "      </div>"
+    html += '      </div>'
 
-    html += "    </div>"
-    html += '    <div class="aha-counter-bottom">' + blocks[k] + "</div>"
-    html += "  </div>"
+    html += '    </div>'
+    html += '    <div class="aha-counter-bottom">' + blocks[k] + '</div>'
+    html += '  </div>'
   }
 
-  html += "</div>"
+  html += '</div>'
   html += '<div id="countdownWidgetAlert" role="alert" aria-live="assertive" style="position:absolute; width:0; height:0; clip: rect(0,0,0,0);"></div>'
   return html
 }
@@ -174,7 +124,7 @@ CountDownWidget.prototype.getTimeDiff = function () {
     diff = (this.enddate - dt) / 1000 - this.tzoffset_b - dt.getTimezoneOffset() * 60
 
     if (diff > 0) {
-      this.stage = "p"
+      this.stage = 'p'
     }
 
     // console.log(this.enddate);
@@ -182,7 +132,7 @@ CountDownWidget.prototype.getTimeDiff = function () {
 
   if (diff < 0) {
     this.halt = true
-    this.stage = "e"
+    this.stage = 'e'
     return
   }
 
@@ -196,7 +146,7 @@ CountDownWidget.prototype.run = function () {
 
   for (let k in this.prev) {
     if (this.prev[k] !== nn[k]) {
-      new CounterDigitChange(this.key + "_" + k, nn[k])
+      new CounterDigitChange(this.key + '_' + k, nn[k])
     }
   }
 
@@ -211,7 +161,7 @@ CountDownWidget.prototype.run = function () {
 }
 
 CountDownWidget.prototype.calc = function () {
-  let out = { d1: "0", d0: "0", h1: "0", h0: "0", m1: "0", m0: "0", s1: "0", s0: "0" }
+  let out = { d1: '0', d0: '0', h1: '0', h0: '0', m1: '0', m0: '0', s1: '0', s0: '0' }
   //console.log(this.delta)
   if (this.delta == 0) {
     //   window.location.href = window.location.href;
@@ -234,13 +184,13 @@ CountDownWidget.prototype.calc = function () {
   let s = String(k % 60)
 
   return {
-    d1: d.length > 1 ? d[0] : "0",
+    d1: d.length > 1 ? d[0] : '0',
     d0: d.length > 1 ? d[1] : d[0],
-    h1: h.length > 1 ? h[0] : "0",
+    h1: h.length > 1 ? h[0] : '0',
     h0: h.length > 1 ? h[1] : h[0],
-    m1: m.length > 1 ? m[0] : "0",
+    m1: m.length > 1 ? m[0] : '0',
     m0: m.length > 1 ? m[1] : m[0],
-    s1: s.length > 1 ? s[0] : "0",
+    s1: s.length > 1 ? s[0] : '0',
     s0: s.length > 1 ? s[1] : s[0],
   }
 }
@@ -250,11 +200,8 @@ var CounterDigitChange = function (id, num) {
   this.num = num
 
   let root = document.getElementById(this.id)
-
-  if (!root) return
-
-  root.classList.add("digit-flip")
-  root.querySelector(".aha-counter-digit-top").innerHTML = num
+  root.classList.add('digit-flip')
+  root.querySelector('.aha-counter-digit-top').innerHTML = num
 
   setTimeout(() => {
     this.swap()
@@ -266,25 +213,17 @@ var CounterDigitChange = function (id, num) {
 
 CounterDigitChange.prototype.swap = function () {
   let root = document.getElementById(this.id)
-
-  if (!root) return
-
-  root.querySelector(".aha-counter-digit-bottom").innerHTML = this.num
+  root.querySelector('.aha-counter-digit-bottom').innerHTML = this.num
 }
 
 CounterDigitChange.prototype.commit = function () {
   let root = document.getElementById(this.id)
-
-  if (!root) return
-
-  root.querySelector(".aha-counter-digit-static").innerHTML = this.num
-  root.classList.remove("digit-flip")
+  root.querySelector('.aha-counter-digit-static').innerHTML = this.num
+  root.classList.remove('digit-flip')
 }
 
 CountDownWidget.prototype.announce = function () {
-  const countdownWidgetAlert = document.getElementById("countdownWidgetAlert")
-
-  if (!countdownWidgetAlert) return
+  const countdownWidgetAlert = document.getElementById('countdownWidgetAlert')
 
   countdownWidgetAlert.textContent = makeReadableString(this.announceTitle, this.prev)
   setTimeout(() => {
@@ -299,9 +238,9 @@ function makeReadableString(title, parts) {
 }
 
 function convertTime(datetime) {
-  let a = datetime.split(" ")
-  let b = a[0].split("-")
-  let c = a[1].split(":")
+  let a = datetime.split(' ')
+  let b = a[0].split('-')
+  let c = a[1].split(':')
 
   let dt = new Date()
   dt.setFullYear(b[0])
@@ -315,43 +254,43 @@ function convertTime(datetime) {
 }
 
 function getTimeOffset(datetime) {
-  let a = datetime.split(" ")
+  let a = datetime.split(' ')
   a = a[2].toLowerCase()
 
   switch (a) {
-    case "ast":
+    case 'ast':
       return -240
-    case "pst":
+    case 'pst':
       return -480
-    case "pdt":
+    case 'pdt':
       return -420
-    case "est":
+    case 'est':
       return -300
-    case "edt":
+    case 'edt':
       return -240
-    case "cst":
+    case 'cst':
       return -360
-    case "cdt":
+    case 'cdt':
       return -300
-    case "mst":
+    case 'mst':
       return -420
-    case "mdt":
+    case 'mdt':
       return -360
-    case "akst":
+    case 'akst':
       return -540
-    case "akdt":
+    case 'akdt':
       return -480
-    case "hst":
+    case 'hst':
       return -600
-    case "hast":
+    case 'hast':
       return -600
-    case "hadt":
+    case 'hadt':
       return -540
-    case "sst":
+    case 'sst':
       return -660
-    case "sdt":
+    case 'sdt':
       return -600
-    case "chst":
+    case 'chst':
       return 600
   }
 
