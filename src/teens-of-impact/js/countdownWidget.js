@@ -244,8 +244,9 @@ function convertTime(datetime) {
 
   let dt = new Date()
   dt.setFullYear(b[0])
-  dt.setMonth(b[1] - 1)
-  dt.setDate(b[2])
+  dt.setMonth(parseInt(b[1]) - 1)
+  dt.setDate(parseInt(b[2]))
+  dt.setMonth(parseInt(b[1]) - 1)
   dt.setHours(c[0])
   dt.setMinutes(c[1])
   dt.setSeconds(0)
