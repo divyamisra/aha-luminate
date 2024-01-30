@@ -27,15 +27,15 @@ var CountDownWidget = function (element_id, a, b, c) {
   this.enddate = convertTime(b[0])
   this.halt = false
   /* b - before , p - in progress, e - ended */
-  this.stage = "b"
+  this.stage = 'b'
 
   this.delta = 0
-  this.prev = { d1: "", d0: "", h1: "", h0: "", m1: "", m0: "", s1: "", s0: "" }
+  this.prev = { d1: '', d0: '', h1: '', h0: '', m1: '', m0: '', s1: '', s0: '' }
 
   this.key = Math.random().toString(16).slice(2)
 
   this.announceInterval = 1000 * 60 * 5 // in ms
-  this.announceTitle = "Time left: "
+  this.announceTitle = 'Time left: '
 
   this.getTimeDiff()
 
@@ -44,21 +44,21 @@ var CountDownWidget = function (element_id, a, b, c) {
   this.announce()
 
   /********** Updating header and description ************/
-  let wrapper = document.getElementById("countdownWidget-section")
+  let wrapper = document.getElementById('countdownWidget-section')
   let heading = a[1]
   let desc = a[2]
 
-  if (this.stage == "p") {
+  if (this.stage == 'p') {
     heading = b[1]
     desc = b[2]
-  } else if (this.stage == "e") {
+  } else if (this.stage == 'e') {
     heading = c[1]
     desc = c[2]
   }
 
   try {
-    let title_ele = wrapper.querySelector("h2")
-    let ptags = wrapper.querySelectorAll("p")
+    let title_ele = wrapper.querySelector('h2')
+    let ptags = wrapper.querySelectorAll('p')
 
     if (!title_ele && !ptags) return
 
@@ -70,50 +70,50 @@ var CountDownWidget = function (element_id, a, b, c) {
       ptags[1].innerHTML = desc
     }
   } catch (ex) {
-    console.log("Error populating countdown time text")
+    console.log('Error populating countdown time text')
   }
 }
 
 CountDownWidget.prototype.getCodes = function () {
-  let blocks = { d: "Days", h: "Hours", m: "Minutes", s: "Seconds" }
+  let blocks = { d: 'Days', h: 'Hours', m: 'Minutes', s: 'Seconds' }
   let html = '<div class="aha_counter row" >'
 
   for (let k in blocks) {
     html += '  <div class="aha-counter-block col-6 col-xl-3">'
     html += '    <div class="aha-counter-top">'
 
-    html += '      <div class="aha-counter-digit" id="' + this.key + "_" + k + '1" >'
+    html += '      <div class="aha-counter-digit" id="' + this.key + '_' + k + '1" >'
     html += '        <div class="aha-counter-digit-tcover">'
     html += '          <div class="aha-counter-digit-top"></div>'
-    html += "        </div>"
+    html += '        </div>'
     html += '        <div class="aha-counter-digit-sep">'
     html += '          <div> <span class="digit-sep-left"></span><span class="digit-sep-right"></span> </div>'
-    html += "        </div>"
+    html += '        </div>'
     html += '        <div class="aha-counter-digit-bcover">'
     html += '          <div class="aha-counter-digit-bottom"></div>'
-    html += "        </div>"
+    html += '        </div>'
     html += '        <div class="aha-counter-digit-static"></div>'
-    html += "      </div>"
+    html += '      </div>'
 
-    html += '      <div class="aha-counter-digit" id="' + this.key + "_" + k + '0" >'
+    html += '      <div class="aha-counter-digit" id="' + this.key + '_' + k + '0" >'
     html += '        <div class="aha-counter-digit-tcover">'
     html += '          <div class="aha-counter-digit-top"></div>'
-    html += "        </div>"
+    html += '        </div>'
     html += '        <div class="aha-counter-digit-sep">'
     html += '          <div> <span class="digit-sep-left"></span><span class="digit-sep-right"></span> </div>'
-    html += "        </div>"
+    html += '        </div>'
     html += '        <div class="aha-counter-digit-bcover">'
     html += '          <div class="aha-counter-digit-bottom"></div>'
-    html += "        </div>"
+    html += '        </div>'
     html += '        <div class="aha-counter-digit-static"></div>'
-    html += "      </div>"
+    html += '      </div>'
 
-    html += "    </div>"
-    html += '    <div class="aha-counter-bottom">' + blocks[k] + "</div>"
-    html += "  </div>"
+    html += '    </div>'
+    html += '    <div class="aha-counter-bottom">' + blocks[k] + '</div>'
+    html += '  </div>'
   }
 
-  html += "</div>"
+  html += '</div>'
   html += '<div id="countdownWidgetAlert" role="alert" aria-live="assertive" style="position:absolute; width:0; height:0; clip: rect(0,0,0,0);"></div>'
   return html
 }
@@ -126,7 +126,7 @@ CountDownWidget.prototype.getTimeDiff = function () {
     diff = (this.enddate - dt) / 1000 - this.tzoffset_b - dt.getTimezoneOffset() * 60
 
     if (diff > 0) {
-      this.stage = "p"
+      this.stage = 'p'
     }
 
     // console.log(this.enddate);
@@ -134,7 +134,7 @@ CountDownWidget.prototype.getTimeDiff = function () {
 
   if (diff < 0) {
     this.halt = true
-    this.stage = "e"
+    this.stage = 'e'
     return
   }
 
@@ -148,7 +148,7 @@ CountDownWidget.prototype.run = function () {
 
   for (let k in this.prev) {
     if (this.prev[k] !== nn[k]) {
-      new CounterDigitChange(this.key + "_" + k, nn[k])
+      new CounterDigitChange(this.key + '_' + k, nn[k])
     }
   }
 
@@ -163,7 +163,7 @@ CountDownWidget.prototype.run = function () {
 }
 
 CountDownWidget.prototype.calc = function () {
-  let out = { d1: "0", d0: "0", h1: "0", h0: "0", m1: "0", m0: "0", s1: "0", s0: "0" }
+  let out = { d1: '0', d0: '0', h1: '0', h0: '0', m1: '0', m0: '0', s1: '0', s0: '0' }
   //console.log(this.delta)
   if (this.delta == 0) {
     //   window.location.href = window.location.href;
@@ -186,13 +186,13 @@ CountDownWidget.prototype.calc = function () {
   let s = String(k % 60)
 
   return {
-    d1: d.length > 1 ? d[0] : "0",
+    d1: d.length > 1 ? d[0] : '0',
     d0: d.length > 1 ? d[1] : d[0],
-    h1: h.length > 1 ? h[0] : "0",
+    h1: h.length > 1 ? h[0] : '0',
     h0: h.length > 1 ? h[1] : h[0],
-    m1: m.length > 1 ? m[0] : "0",
+    m1: m.length > 1 ? m[0] : '0',
     m0: m.length > 1 ? m[1] : m[0],
-    s1: s.length > 1 ? s[0] : "0",
+    s1: s.length > 1 ? s[0] : '0',
     s0: s.length > 1 ? s[1] : s[0],
   }
 }
@@ -205,8 +205,8 @@ var CounterDigitChange = function (id, num) {
 
   if (!root) return
 
-  root.classList.add("digit-flip")
-  root.querySelector(".aha-counter-digit-top").innerHTML = num
+  root.classList.add('digit-flip')
+  root.querySelector('.aha-counter-digit-top').innerHTML = num
 
   setTimeout(() => {
     this.swap()
@@ -221,7 +221,7 @@ CounterDigitChange.prototype.swap = function () {
 
   if (!root) return
 
-  root.querySelector(".aha-counter-digit-bottom").innerHTML = this.num
+  root.querySelector('.aha-counter-digit-bottom').innerHTML = this.num
 }
 
 CounterDigitChange.prototype.commit = function () {
@@ -229,12 +229,12 @@ CounterDigitChange.prototype.commit = function () {
 
   if (!root) return
 
-  root.querySelector(".aha-counter-digit-static").innerHTML = this.num
-  root.classList.remove("digit-flip")
+  root.querySelector('.aha-counter-digit-static').innerHTML = this.num
+  root.classList.remove('digit-flip')
 }
 
 CountDownWidget.prototype.announce = function () {
-  const countdownWidgetAlert = document.getElementById("countdownWidgetAlert")
+  const countdownWidgetAlert = document.getElementById('countdownWidgetAlert')
 
   if (!countdownWidgetAlert) return
 
@@ -251,14 +251,15 @@ function makeReadableString(title, parts) {
 }
 
 function convertTime(datetime) {
-  let a = datetime.split(" ")
-  let b = a[0].split("-")
-  let c = a[1].split(":")
+  let a = datetime.split(' ')
+  let b = a[0].split('-')
+  let c = a[1].split(':')
 
   let dt = new Date()
   dt.setFullYear(b[0])
-  dt.setMonth(b[1] - 1)
-  dt.setDate(b[2])
+  dt.setMonth(parseInt(b[1]) - 1)
+  dt.setDate(parseInt(b[2]))
+  dt.setMonth(parseInt(b[1]) - 1)
   dt.setHours(c[0])
   dt.setMinutes(c[1])
   dt.setSeconds(0)
@@ -267,43 +268,43 @@ function convertTime(datetime) {
 }
 
 function getTimeOffset(datetime) {
-  let a = datetime.split(" ")
+  let a = datetime.split(' ')
   a = a[2].toLowerCase()
 
   switch (a) {
-    case "ast":
+    case 'ast':
       return -240
-    case "pst":
+    case 'pst':
       return -480
-    case "pdt":
+    case 'pdt':
       return -420
-    case "est":
+    case 'est':
       return -300
-    case "edt":
+    case 'edt':
       return -240
-    case "cst":
+    case 'cst':
       return -360
-    case "cdt":
+    case 'cdt':
       return -300
-    case "mst":
+    case 'mst':
       return -420
-    case "mdt":
+    case 'mdt':
       return -360
-    case "akst":
+    case 'akst':
       return -540
-    case "akdt":
+    case 'akdt':
       return -480
-    case "hst":
+    case 'hst':
       return -600
-    case "hast":
+    case 'hast':
       return -600
-    case "hadt":
+    case 'hadt':
       return -540
-    case "sst":
+    case 'sst':
       return -660
-    case "sdt":
+    case 'sdt':
       return -600
-    case "chst":
+    case 'chst':
       return 600
   }
 
