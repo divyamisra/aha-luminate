@@ -54,58 +54,6 @@ module.exports = {
     ]
   },
 
-  "ym-primary-images": {
-    files: [
-      {
-        expand: true,
-        cwd: 'src/ym-primary/image/',
-        src: [
-          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
-        ],
-        dest: 'dist/ym-primary/image/'
-      }
-    ]
-  },
-
-  "middle-school-images": {
-    files: [
-      {
-        expand: true,
-        cwd: 'src/middle-school/image/',
-        src: [
-          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
-        ],
-        dest: 'dist/middle-school/image/'
-      }
-    ]
-  },
-
-  "high-school-images": {
-    files: [
-      {
-        expand: true,
-        cwd: 'src/high-school/image/',
-        src: [
-          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
-        ],
-        dest: 'dist/high-school/image/'
-      }
-    ]
-  },
-
-  "district-heart-images": {
-    files: [
-      {
-        expand: true,
-        cwd: 'src/district-heart/image/',
-        src: [
-          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
-        ],
-        dest: 'dist/district-heart/image/'
-      }
-    ]
-  },
-
   "nchw-images": {
     files: [
       {
@@ -292,18 +240,6 @@ module.exports = {
           '*.js'
         ],
         dest: 'dist/teens-of-impact/js/'
-      }
-    ]
-  },
-  "ym-rewards-images": {
-    files: [
-      {
-        expand: true,
-        cwd: 'src/ym-rewards/images/',
-        src: [
-          '*.{gif,GIF,jpg,JPG,png,PNG,svg,SVG}'
-        ],
-        dest: 'dist/ym-rewards/images/'
       }
     ]
   }
