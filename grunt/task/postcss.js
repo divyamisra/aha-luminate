@@ -56,90 +56,6 @@ module.exports = {
     ]
   },
 
-  "ym-primary": {
-    files: [
-      {
-        expand: true,
-        cwd: 'dist/ym-primary/css/',
-        src: [
-          'main.css'
-        ],
-        dest: 'dist/ym-primary/css/'
-      },
-      {
-        expand: true,
-        cwd: 'dist/ym-primary/css/',
-        src: [
-          'participant.css'
-        ],
-        dest: 'dist/ym-primary/css/'
-      }
-    ]
-  },
-
-  "middle-school": {
-    files: [
-      {
-        expand: true,
-        cwd: 'dist/middle-school/css/',
-        src: [
-          'main.css'
-        ],
-        dest: 'dist/middle-school/css/'
-      },
-      {
-        expand: true,
-        cwd: 'dist/middle-school/css/',
-        src: [
-          'participant.css'
-        ],
-        dest: 'dist/middle-school/css/'
-      }
-    ]
-  },
-
-  "high-school": {
-    files: [
-      {
-        expand: true,
-        cwd: 'dist/high-school/css/',
-        src: [
-          'main.css'
-        ],
-        dest: 'dist/high-school/css/'
-      },
-      {
-        expand: true,
-        cwd: 'dist/high-school/css/',
-        src: [
-          'participant.css'
-        ],
-        dest: 'dist/high-school/css/'
-      }
-    ]
-  },
-
-  "district-heart": {
-    files: [
-      {
-        expand: true,
-        cwd: 'dist/district-heart/css/',
-        src: [
-          'main.css'
-        ],
-        dest: 'dist/district-heart/css/'
-      },
-      {
-        expand: true,
-        cwd: 'dist/district-heart/css/',
-        src: [
-          'participant.css'
-        ],
-        dest: 'dist/district-heart/css/'
-      }
-    ]
-  },
-
   "nchw": {
     files: [
       {
@@ -290,18 +206,6 @@ module.exports = {
           'donation.css'
         ],
         dest: 'dist/teens-of-impact/css/'
-      }
-    ]
-  },
-  "ym-rewards": {
-    files: [
-      {
-        expand: true,
-        cwd: 'dist/ym-rewards/css/',
-        src: [
-          'main.css'
-        ],
-        dest: 'dist/ym-rewards/css/'
       }
     ]
   }
