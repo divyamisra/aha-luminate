@@ -136,7 +136,9 @@ crossorigin="anonymous"></script> -->
 <script>
   jQuery(function() {
     //Bare bones
-    jQuery('#globalFooter').ahaHeaderFooterSitecore()
+    if (jQuery.isFunction(jQuery().ahaHeaderFooterSitecore)) {
+      jQuery('#globalFooter').ahaHeaderFooterSitecore();
+    }
   });
 </script>
 

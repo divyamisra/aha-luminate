@@ -36,34 +36,6 @@ module.exports = {
     }
   },
 
-  "ym-primary": {
-    options: {
-      title: 'AHA Luminate Framework',
-      message: 'YM Kids Heart Challenge files updated.'
-    }
-  },
-
-  "middle-school": {
-    options: {
-      title: 'AHA Luminate Framework',
-      message: 'Middle School files updated.'
-    }
-  },
-
-  "high-school": {
-    options: {
-      title: 'AHA Luminate Framework',
-      message: 'High School files updated.'
-    }
-  },
-
-  "district-heart": {
-    options: {
-      title: 'AHA Luminate Framework',
-      message: 'District Heart Challenge files updated.'
-    }
-  },
-
   "nchw": {
     options: {
       title: 'AHA Luminate Framework',
@@ -135,12 +107,6 @@ module.exports = {
     options: {
       title: 'AHA Luminate Framework',
       message: 'Lawyers Have Heart files updated.'
-    }
-  },
-  "ym-rewards": {
-    options: {
-      title: 'AHA Luminate Framework',
-      message: 'Coordinator Reward Center'
     }
   }
 }

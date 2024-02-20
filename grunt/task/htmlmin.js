@@ -51,58 +51,6 @@ module.exports = {
     ]
   },
 
-  "ym-primary": {
-    files: [
-      {
-        expand: true,
-        cwd: 'dist/ym-primary/html/',
-        src: [
-          '**/*.*'
-        ],
-        dest: "dist/ym-primary/html/"
-      }
-    ]
-  },
-
-  "middle-school": {
-    files: [
-      {
-        expand: true,
-        cwd: 'dist/middle-school/html/',
-        src: [
-          '**/*.*'
-        ],
-        dest: "dist/middle-school/html/"
-      }
-    ]
-  },
-
-  "high-school": {
-    files: [
-      {
-        expand: true,
-        cwd: 'dist/high-school/html/',
-        src: [
-          '**/*.*'
-        ],
-        dest: "dist/high-school/html/"
-      }
-    ]
-  },
-
-  "district-heart": {
-    files: [
-      {
-        expand: true,
-        cwd: 'dist/district-heart/html/',
-        src: [
-          '**/*.*'
-        ],
-        dest: "dist/district-heart/html/"
-      }
-    ]
-  },
-
   "nchw": {
     files: [
       {
@@ -240,18 +188,6 @@ module.exports = {
           '**/*.*'
         ],
         dest: "dist/teens-of-impact/html/"
-      }
-    ]
-  },
-  "ym-rewards": {
-    files: [
-      {
-        expand: true,
-        cwd: 'dist/ym-rewards/html/',
-        src: [
-          '**/*.*'
-        ],
-        dest: "dist/ym-rewards/html/"
       }
     ]
   }

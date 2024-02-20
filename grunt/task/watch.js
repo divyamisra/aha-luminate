@@ -80,86 +80,6 @@ module.exports = {
     ]
   },
 
-  "ym-primary": {
-    files: [
-      'src/youth-markets/sass/**/*',
-      'src/global/coffee/**/*',
-      'src/youth-markets/coffee/**/*',
-      'src/ym-primary/html/**/*',
-      'src/ym-primary/image/**/*',
-      'src/ym-primary/sass/**/*',
-      'src/ym-primary/coffee/**/*'
-    ],
-    tasks: [
-      'clean:ym-primary',
-      'css-dist:ym-primary',
-      'js-dist:ym-primary',
-      'html-dist:ym-primary',
-      'img-copy:ym-primary-images',
-      'notify:ym-primary'
-    ]
-  },
-
-  "middle-school": {
-    files: [
-      'src/youth-markets/sass/**/*',
-      'src/global/coffee/**/*',
-      'src/youth-markets/coffee/**/*',
-      'src/middle-school/html/**/*',
-      'src/middle-school/image/**/*',
-      'src/middle-school/sass/**/*',
-      'src/middle-school/coffee/**/*'
-    ],
-    tasks: [
-      'clean:middle-school',
-      'css-dist:middle-school',
-      'js-dist:middle-school',
-      'html-dist:middle-school',
-      'img-copy:middle-school-images',
-      'notify:middle-school'
-    ]
-  },
-
-  "high-school": {
-    files: [
-      'src/youth-markets/sass/**/*',
-      'src/global/coffee/**/*',
-      'src/youth-markets/coffee/**/*',
-      'src/high-school/html/**/*',
-      'src/high-school/image/**/*',
-      'src/high-school/sass/**/*',
-      'src/high-school/coffee/**/*'
-    ],
-    tasks: [
-      'clean:high-school',
-      'css-dist:high-school',
-      'js-dist:high-school',
-      'html-dist:high-school',
-      'img-copy:high-school-images',
-      'notify:high-school'
-    ]
-  },
-
-  "district-heart": {
-    files: [
-      'src/youth-markets/sass/**/*',
-      'src/global/coffee/**/*',
-      'src/youth-markets/coffee/**/*',
-      'src/district-heart/html/**/*',
-      'src/district-heart/image/**/*',
-      'src/district-heart/sass/**/*',
-      'src/district-heart/coffee/**/*'
-    ],
-    tasks: [
-      'clean:district-heart',
-      'css-dist:district-heart',
-      'js-dist:district-heart',
-      'html-dist:district-heart',
-      'img-copy:district-heart-images',
-      'notify:district-heart'
-    ]
-  },
-
   "nchw": {
     files: [
       'src/nchw/html/**/*',
@@ -338,17 +258,6 @@ module.exports = {
       'html-dist:teens-of-impact',
       'img-copy:teens-of-impact',
       'notify:teens-of-impact'
-    ]
-  },
-  "ym-rewards": {
-    files: [
-      'src/youth-markets/sass/**/*',
-      'src/global/coffee/**/*',
-      'src/youth-markets/coffee/**/*',
-      'src/ym-rewards/html/**/*',
-      'src/ym-rewards/images/**/*',
-      'src/ym-rewards/sass/**/*',
-      'src/ym-rewards/coffee/**/*'
     ]
   }
 }
