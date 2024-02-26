@@ -1201,15 +1201,33 @@
 
     // EXPANDABLE DONOR ROLL
     $('.js--honor-roll-expander').on('click', function (e) {
-      if ($(this).children('i').hasClass('fa-chevron-down')) {
-        $(this).children('i').removeClass('fa-chevron-down')
-        $(this).children('i').addClass('fa-chevron-up')
-      } else {
-        $(this).children('i').removeClass('fa-chevron-up')
-        $(this).children('i').addClass('fa-chevron-down')
-      }
 
-      $('.hidden-donor-row').slideToggle(200)
+      $('.hidden-donor-row.grouped-donor-row').removeClass('hidden-donor-row');
+      var x = $('.donations-container .hidden-donor-row').length;
+      $('.donations-container .hidden-donor-row').each(function (i, donor) {
+        console.log(i);
+        if (i < 25  ) {    
+            $(donor).addClass('grouped-donor-row');
+            if (i == 24 || i == x - 1) {
+                console.log(i,"in the if, ", x);
+                $('.hidden-donor-row.grouped-donor-row').slideToggle(200);
+            }
+        }
+      });
+      
+// need to fix this logic to make the chevrons work
+        if ($(this).children('i').hasClass('fa-chevron-down') && $('.donations-container .hidden-donor-row').length < 25 ) {
+          $(this).children('i').removeClass('fa-chevron-down')
+          $(this).children('i').addClass('fa-chevron-up')
+        } else if ($(this).children('i').hasClass('fa-chevron-up') ) {
+          $('.grouped-donor-row').removeClass('hidden-donor-row').addClass('hidden-donor-row').removeClass('grouped-donor-row');
+          $('.hidden-donor-row').slideToggle(200);
+          $(this).children('i').removeClass('fa-chevron-up')
+          $(this).children('i').addClass('fa-chevron-down')
+        }
+
+
+      // $('.hidden-donor-row').slideToggle(200)
     })
     cd.reorderPageForMobile = function () {
       // Reorganize page for mobile views
@@ -1296,6 +1314,30 @@
     }
 
     cd.getTeamHonorRoll = function () {
+      console.log("New Honor Roll");
+      // populate donor honor roll
+      if ($('.hidden_top_team_gifts .indicator-list-row').length > 0) {
+        $('.hidden_top_team_gifts .indicator-list-row').each(function (i, donor) {
+          var donorName = $(this).find('.display-name').text()
+          var donorAmt = $(this).find('.list-value-container').text()
+          $('.js--donor-roll').append(
+            '<div ' +
+              (i > 4 ? 'style="display:none;"' : '') +
+              ' class="donor-row ' +
+              (i > 4 ? 'hidden-donor-row' : '') +
+              '"><span class="name">' +
+              donorName +
+              '</span><span class="amount">' +
+              donorAmt +
+              '</span></div>'
+          )
+          if (i === 5) {
+            $('.js--honor-roll-expander').addClass('d-block').removeClass('hidden')
+          }
+        })
+      }
+    }
+    cd.getTeamHonorRoll_OLD = function () {
       // populate donor honor roll
       if ($('.team-honor-list-row').length > 0) {
         // console.log('native honor row length:', $('.team-honor-list-row').length);
