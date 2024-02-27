@@ -485,6 +485,12 @@
               var teams = luminateExtend.utils.ensureArray(response.getTeamSearchByInfoResponse.team)
 
               $(teams).each(function (i, team) {
+                var proxyType = '20'
+                var proxyId = team.captainConsId
+                var captainDonateUrl = team.teamDonateURL
+                  .replace(/(PROXY_ID=).*?(&)/, '$1' + proxyId + '$2')
+                  .replace(/(PROXY_TYPE=).*?(&)/, '$1' + proxyType + '$2')
+
                 if (screenWidth >= 768) {
                   $('.js--team-results-rows').append(
                     '<tr' +
@@ -494,7 +500,7 @@
                       '">' +
                       team.name +
                       '</a></td><td></td><td></td><td></td><td class="col-cta text-right"><a href="' +
-                      team.teamDonateURL +
+                      captainDonateUrl +
                       '" class="btn btn-primary btn-block btn-rounded" title="Donate to ' +
                       team.name +
                       '" aria-label="Donate to ' +
@@ -517,7 +523,7 @@
                         '&pg=entry">' +
                         team.eventName +
                         '</a></td></tr><tr><td colspan="2" class="text-center"><a href="' +
-                        team.teamDonateURL +
+                        captainDonateUrl +
                         '" class="btn btn-primary btn-block btn-rounded" title="Donate to ' +
                         team.name +
                         '" aria-label="Donate to ' +
@@ -2160,6 +2166,24 @@
             success: function (response) {
               if (response.getParticipantsResponse.totalNumberResults === '0') {
                 // no search results
+                console.log("getParts returned no results");
+								luminateExtend.api({
+									api: 'teamraiser',
+									data: 'method=getTeamCaptains' +
+										'&fr_id=' + evID +
+										'&team_id=' + teamId +
+										'&response_format=json',
+									callback: {
+										success: function(response) {
+											var captains = luminateExtend.utils.ensureArray(response.getTeamCaptainsResponse.captain)
+											console.log(captains);
+											$('.js--team-captain-link').attr('href', captains[0].donationUrl).attr('aria-lablel', "Team Captain " + captains[0].name.first + ' ' + captains[0].name.last + "'s fundraising page'");
+										},
+										error: function(response) {
+											console.log(response.errorResponse.message);
+										}
+									}
+								});
               } else {
                 var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant)
                 var totalParticipants = parseInt(response.getParticipantsResponse.totalNumberResults)
