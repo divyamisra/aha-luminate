@@ -101,50 +101,6 @@ module.exports = (grunt) ->
       'sass'
       'postcss'
       'cssmin'
-      'coffee'
-      'uglify'
-      'replace'
-      'htmlmin'
-      'imagemin'
-    ], 'ym-primary'
-    runTargetedTask [
-      'clean'
-      'sass'
-      'postcss'
-      'cssmin'
-      'coffee'
-      'uglify'
-      'replace'
-      'htmlmin'
-      'imagemin'
-    ], 'middle-school'
-    runTargetedTask [
-      'clean'
-      'sass'
-      'postcss'
-      'cssmin'
-      'coffee'
-      'uglify'
-      'replace'
-      'htmlmin'
-      'imagemin'
-    ], 'high-school'
-    runTargetedTask [
-      'clean'
-      'sass'
-      'postcss'
-      'cssmin'
-      'coffee'
-      'uglify'
-      'replace'
-      'htmlmin'
-      'imagemin'
-    ], 'district-heart'
-    runTargetedTask [
-      'clean'
-      'sass'
-      'postcss'
-      'cssmin'
       'uglify'
       'replace'
       'htmlmin'
@@ -280,17 +236,6 @@ module.exports = (grunt) ->
       'replace'
       'htmlmin'
       'imagemin'
-    ], 'ym-rewards'
-    runTargetedTask [
-      'clean'
-      'sass'
-      'postcss'
-      'cssmin'
-      'coffee'
-      'uglify'
-      'replace'
-      'htmlmin'
-      'imagemin'
     ], 'fieldday2023'
     runTargetedTask [
       'copy'
@@ -307,18 +252,6 @@ module.exports = (grunt) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
     config.watch['youth-markets'].tasks.forEach (task) ->
-      if task.indexOf('notify:') is -1
-        devTasks.push task
-    config.watch['ym-primary'].tasks.forEach (task) ->
-      if task.indexOf('notify:') is -1
-        devTasks.push task
-    config.watch['middle-school'].tasks.forEach (task) ->
-      if task.indexOf('notify:') is -1
-        devTasks.push task
-    config.watch['high-school'].tasks.forEach (task) ->
-      if task.indexOf('notify:') is -1
-        devTasks.push task
-    config.watch['district-heart'].tasks.forEach (task) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
     config.watch['nchw'].tasks.forEach (task) ->
@@ -349,9 +282,6 @@ module.exports = (grunt) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
     config.watch['teens-of-impact'].tasks.forEach (task) ->
-      if task.indexOf('notify:') is -1
-        devTasks.push task
-    config.watch['ym-rewards'].tasks.forEach (task) ->
       if task.indexOf('notify:') is -1
         devTasks.push task
     config.watch['fieldday2023'].tasks.forEach (task) ->

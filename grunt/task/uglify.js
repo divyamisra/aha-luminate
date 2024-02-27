@@ -35,74 +35,6 @@ module.exports = {
     ]
   },
 
-  "ym-primary": {
-    files: [
-      {
-        src: [
-          'dist/ym-primary/js/main.js'
-        ],
-        dest: 'dist/ym-primary/js/main.' + '<%= timestamp %>' + '.min.js'
-      },
-      {
-        src: [
-          'dist/ym-primary/js/participant.js'
-        ],
-        dest: 'dist/ym-primary/js/participant.' + '<%= timestamp %>' + '.min.js'
-      }
-    ]
-  },
-
-  "middle-school": {
-    files: [
-      {
-        src: [
-          'dist/middle-school/js/main.js'
-        ],
-        dest: 'dist/middle-school/js/main.' + '<%= timestamp %>' + '.min.js'
-      },
-      {
-        src: [
-          'dist/middle-school/js/participant.js'
-        ],
-        dest: 'dist/middle-school/js/participant.' + '<%= timestamp %>' + '.min.js'
-      }
-    ]
-  },
-
-  "high-school": {
-    files: [
-      {
-        src: [
-          'dist/high-school/js/main.js'
-        ],
-        dest: 'dist/high-school/js/main.' + '<%= timestamp %>' + '.min.js'
-      },
-      {
-        src: [
-          'dist/high-school/js/participant.js'
-        ],
-        dest: 'dist/high-school/js/participant.' + '<%= timestamp %>' + '.min.js'
-      }
-    ]
-  },
-
-  "district-heart": {
-    files: [
-      {
-        src: [
-          'dist/district-heart/js/main.js'
-        ],
-        dest: 'dist/district-heart/js/main.' + '<%= timestamp %>' + '.min.js'
-      },
-      {
-        src: [
-          'dist/district-heart/js/participant.js'
-        ],
-        dest: 'dist/district-heart/js/participant.' + '<%= timestamp %>' + '.min.js'
-      }
-    ]
-  },
-
   "nchw": {
     files: [
       {
@@ -283,16 +215,6 @@ module.exports = {
       {
         src: ["src/teens-of-impact/js/pushy.js"],
         dest: "dist/teens-of-impact/js/pushy.min.js"
-      }
-    ]
-  },
-  "ym-rewards": {
-    files: [
-      {
-        src: [
-          'dist/ym-rewards/js/main.js'
-        ],
-        dest: 'dist/ym-rewards/js/main.' + '<%= timestamp %>' + '.min.js'
       }
     ]
   }

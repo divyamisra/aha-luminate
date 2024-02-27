@@ -34,7 +34,7 @@ angular.module 'ahaLuminateControllers'
               if numberEvents is 1
                 regEventId = teamraisers[0].id
               setRegEventId numberEvents, regEventId
-      
+          
       $scope.toggleLoginMenu = ->
         if $scope.loginMenuOpen
           delete $scope.loginMenuOpen
