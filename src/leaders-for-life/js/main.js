@@ -2298,6 +2298,24 @@
             success: function (response) {
               if (response.getParticipantsResponse.totalNumberResults === '0') {
                 // no search results
+                console.log("getParts returned no results");
+								luminateExtend.api({
+									api: 'teamraiser',
+									data: 'method=getTeamCaptains' +
+										'&fr_id=' + evID +
+										'&team_id=' + teamId +
+										'&response_format=json',
+									callback: {
+										success: function(response) {
+											var captains = luminateExtend.utils.ensureArray(response.getTeamCaptainsResponse.captain)
+											console.log(captains);
+											$('.js--team-captain-link').attr('href', captains[0].donationUrl).attr('aria-lablel', "Team Captain " + captains[0].name.first + ' ' + captains[0].name.last + "'s fundraising page'");
+										},
+										error: function(response) {
+											console.log(response.errorResponse.message);
+										}
+									}
+								});
               } else {
                 var participants = luminateExtend.utils.ensureArray(response.getParticipantsResponse.participant)
                 var totalParticipants = parseInt(response.getParticipantsResponse.totalNumberResults)
