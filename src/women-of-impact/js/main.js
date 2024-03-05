@@ -2184,8 +2184,9 @@
                     defaultDonUrl +
                     "&set.DonationLevel=" +
                     $(".js--don-amt-other").data("level-id") +
-                    (isNaN(customAmt) === true ? "" : "&set.Value=" + customAmt)
-                  $(".js--personal-don-submit").attr("data-final-don-url", finalDonUrl)
+                    (isNaN(customAmt) === true ? "" : "&set.Value=" + customAmt);
+                  $(".js--personal-don-submit").attr("data-final-don-url", finalDonUrl);
+                  $('.js--personal-don-submit').attr('href', finalDonUrl);
                 }
               })
 

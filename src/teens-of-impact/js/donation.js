@@ -502,15 +502,19 @@
 
 function getDonationAmount() {
 	//get selected amount from checkbox
-	var amt = jQuery('[id^=level_]:checked').closest('.donation-level-container').find('label').html();
-	if (amt === null || amt == undefined || amt.indexOf("Enter an Amount") > -1) {
-		amt = jQuery('[id^=level_flexible]:checked').parent().parent().find('input[id$="amount"]').val();
-		if (amt === null) {
-			amt = 0;
-		}
-	}
-	//Convert currency string to number
-	amt = Number(amt.replace(/[^0-9\.]+/g, ""));
-	//console.log(amt);
-	return amt;
+    if ( jQuery('.donation-levels [id^=level_]:checked').length > 0 ) {
+        var amt = jQuery('.donation-levels [id^=level_]:checked').closest('.donation-level-container').find('label').html();
+        if (amt === null || amt == undefined || amt.indexOf("Enter an Amount") > -1 || amt.indexOf("Other") > -1) {
+            amt = jQuery('.donation-levels [id^=level_]:checked').parent().parent().find('input[id$="amount"]').val();
+            if (amt === null) {
+                amt = 0;
+            }
+        }
+        //Convert currency string to number
+        amt = Number(amt.replace(/[^0-9\.]+/g, ""));
+        //console.log(amt);
+        return amt;
+    } else {
+        return 0;
+    }
 }
